@@ -1,0 +1,831 @@
+{
+ "format": "Pauper",
+ "generatedAt": "2026-11-25T19:08:55.350Z",
+ "decks": 2806,
+ "otherOnly": [
+  {
+   "name": "Campfire",
+   "decks": 354,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Artifact",
+   "power": null
+  },
+  {
+   "name": "Suffocating Fumes",
+   "decks": 345,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Instant",
+   "power": null
+  },
+  {
+   "name": "Dispatch",
+   "decks": 296,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Instant",
+   "power": null
+  },
+  {
+   "name": "Winding Way",
+   "decks": 284,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery",
+   "power": null
+  },
+  {
+   "name": "Lead the Stampede",
+   "decks": 272,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery",
+   "power": null
+  },
+  {
+   "name": "Reckless Impulse",
+   "decks": 231,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery",
+   "power": null
+  },
+  {
+   "name": "Land Grant",
+   "decks": 218,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery",
+   "power": null
+  },
+  {
+   "name": "Wrenn's Resolve",
+   "decks": 204,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery",
+   "power": null
+  },
+  {
+   "name": "Arms of Hadar",
+   "decks": 172,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery",
+   "power": null
+  },
+  {
+   "name": "Utopia Sprawl",
+   "decks": 166,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Enchantment — Aura",
+   "power": null
+  },
+  {
+   "name": "First Day of Class",
+   "decks": 151,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Instant",
+   "power": null
+  },
+  {
+   "name": "Rancor",
+   "decks": 140,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Enchantment — Aura",
+   "power": null
+  },
+  {
+   "name": "Ethereal Armor",
+   "decks": 137,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Enchantment — Aura",
+   "power": null
+  },
+  {
+   "name": "Armadillo Cloak",
+   "decks": 136,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Enchantment — Aura",
+   "power": null
+  },
+  {
+   "name": "Ancestral Mask",
+   "decks": 135,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Enchantment — Aura",
+   "power": null
+  },
+  {
+   "name": "Cartouche of Solidarity",
+   "decks": 132,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Enchantment — Aura Cartouche",
+   "power": null
+  },
+  {
+   "name": "Black Mage's Rod",
+   "decks": 130,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Artifact — Equipment",
+   "power": null
+  },
+  {
+   "name": "Expedition Map",
+   "decks": 127,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Artifact",
+   "power": null
+  },
+  {
+   "name": "Lifelink",
+   "decks": 121,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Enchantment — Aura",
+   "power": null
+  },
+  {
+   "name": "Rally at the Hornburg",
+   "decks": 115,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery",
+   "power": null
+  },
+  {
+   "name": "Experimental Synthesizer",
+   "decks": 110,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Artifact",
+   "power": null
+  },
+  {
+   "name": "Kruphix's Insight",
+   "decks": 109,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery",
+   "power": null
+  },
+  {
+   "name": "Ghostly Flicker",
+   "decks": 107,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Instant",
+   "power": null
+  },
+  {
+   "name": "Ramosian Rally",
+   "decks": 89,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Instant",
+   "power": null
+  },
+  {
+   "name": "Weather the Storm",
+   "decks": 85,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Instant",
+   "power": null
+  },
+  {
+   "name": "Breath Weapon",
+   "decks": 80,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Instant",
+   "power": null
+  },
+  {
+   "name": "Skred",
+   "decks": 65,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Instant",
+   "power": null
+  },
+  {
+   "name": "End the Festivities",
+   "decks": 64,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery",
+   "power": null
+  },
+  {
+   "name": "Guardians' Pledge",
+   "decks": 61,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Instant",
+   "power": null
+  },
+  {
+   "name": "Stream of Thought",
+   "decks": 51,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery",
+   "power": null
+  },
+  {
+   "name": "Ancient Stirrings",
+   "decks": 48,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery",
+   "power": null
+  },
+  {
+   "name": "Spinning Darkness",
+   "decks": 46,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Instant",
+   "power": null
+  },
+  {
+   "name": "Inventor's Axe",
+   "decks": 43,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Artifact — Equipment",
+   "power": null
+  },
+  {
+   "name": "Wild Growth",
+   "decks": 39,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Enchantment — Aura",
+   "power": null
+  },
+  {
+   "name": "Duress",
+   "decks": 36,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery",
+   "power": null
+  },
+  {
+   "name": "Navigator's Compass",
+   "decks": 32,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Artifact",
+   "power": null
+  },
+  {
+   "name": "Pinnacle Kill-Ship",
+   "decks": 30,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Artifact — Spacecraft",
+   "power": "7"
+  },
+  {
+   "name": "Alms of the Vein",
+   "decks": 28,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery",
+   "power": null
+  },
+  {
+   "name": "Vampire's Kiss",
+   "decks": 28,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery",
+   "power": null
+  },
+  {
+   "name": "Barbed Batterfist",
+   "decks": 23,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Artifact — Equipment",
+   "power": null
+  },
+  {
+   "name": "Vines of Vastwood",
+   "decks": 20,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Instant",
+   "power": null
+  },
+  {
+   "name": "Thermokarst",
+   "decks": 20,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery",
+   "power": null
+  },
+  {
+   "name": "Clowning Around",
+   "decks": 20,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery",
+   "power": null
+  },
+  {
+   "name": "Visionary's Dance",
+   "decks": 19,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery",
+   "power": null
+  },
+  {
+   "name": "Rites of Initiation",
+   "decks": 18,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Instant",
+   "power": null
+  },
+  {
+   "name": "Mycosynth Wellspring",
+   "decks": 17,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Artifact",
+   "power": null
+  },
+  {
+   "name": "Cryoshatter",
+   "decks": 16,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Enchantment — Aura",
+   "power": null
+  },
+  {
+   "name": "Fiery Cannonade",
+   "decks": 12,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Instant",
+   "power": null
+  },
+  {
+   "name": "Rite of Consumption",
+   "decks": 12,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery",
+   "power": null
+  },
+  {
+   "name": "Supernatural Stamina",
+   "decks": 12,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Instant",
+   "power": null
+  },
+  {
+   "name": "Unexpected Fangs",
+   "decks": 11,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Instant",
+   "power": null
+  },
+  {
+   "name": "Fling",
+   "decks": 11,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Instant",
+   "power": null
+  },
+  {
+   "name": "Galvanic Discharge",
+   "decks": 11,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Instant",
+   "power": null
+  },
+  {
+   "name": "Ram Through",
+   "decks": 11,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Instant",
+   "power": null
+  },
+  {
+   "name": "Spirit Link",
+   "decks": 10,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Enchantment — Aura",
+   "power": null
+  },
+  {
+   "name": "Experimental Augury",
+   "decks": 9,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Instant",
+   "power": null
+  },
+  {
+   "name": "Ultimate Alliance",
+   "decks": 9,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Instant",
+   "power": null
+  },
+  {
+   "name": "Hopeless Nightmare",
+   "decks": 8,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Enchantment",
+   "power": null
+  },
+  {
+   "name": "Pieces of the Puzzle",
+   "decks": 7,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery",
+   "power": null
+  },
+  {
+   "name": "Burning Curiosity",
+   "decks": 6,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery",
+   "power": null
+  }
+ ],
+ "manyRoles": [],
+ "weakThreats": [
+  {
+   "name": "Murmuring Mystic",
+   "decks": 454,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Human Wizard",
+   "power": "1"
+  },
+  {
+   "name": "Thorn of the Black Rose",
+   "decks": 434,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Human Assassin",
+   "power": "1"
+  },
+  {
+   "name": "Voldaren Epicure",
+   "decks": 385,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Vampire",
+   "power": "1"
+  },
+  {
+   "name": "Nyxborn Hydra",
+   "decks": 334,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Enchantment Creature — Hydra",
+   "power": "0"
+  },
+  {
+   "name": "Augur of Bolas",
+   "decks": 284,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Merfolk Wizard",
+   "power": "1"
+  },
+  {
+   "name": "Faerie Seer",
+   "decks": 274,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Faerie Wizard",
+   "power": "1"
+  },
+  {
+   "name": "Quirion Ranger",
+   "decks": 256,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Elf Ranger",
+   "power": "1"
+  },
+  {
+   "name": "Kessig Flamebreather",
+   "decks": 218,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Human Shaman",
+   "power": "1"
+  },
+  {
+   "name": "Leonardo, Big Brother",
+   "decks": 148,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Legendary Creature — Mutant Ninja Turtle",
+   "power": "1"
+  },
+  {
+   "name": "Clockwork Percussionist",
+   "decks": 141,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Artifact Creature — Monkey Toy",
+   "power": "1"
+  },
+  {
+   "name": "Gatecreeper Vine",
+   "decks": 137,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Plant",
+   "power": "0"
+  },
+  {
+   "name": "Gladecover Scout",
+   "decks": 135,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Elf Scout",
+   "power": "1"
+  },
+  {
+   "name": "Silhana Ledgewalker",
+   "decks": 135,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Elf Rogue",
+   "power": "1"
+  },
+  {
+   "name": "Slippery Bogle",
+   "decks": 135,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Beast",
+   "power": "1"
+  },
+  {
+   "name": "Timberwatch Elf",
+   "decks": 133,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Elf",
+   "power": "1"
+  },
+  {
+   "name": "Mesmeric Fiend",
+   "decks": 128,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Nightmare Horror",
+   "power": "1"
+  },
+  {
+   "name": "Goblin Tomb Raider",
+   "decks": 121,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Goblin Pirate",
+   "power": "1"
+  },
+  {
+   "name": "Goblin Bushwhacker",
+   "decks": 119,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Goblin Warrior",
+   "power": "1"
+  },
+  {
+   "name": "Delver of Secrets // Insectile Aberration",
+   "decks": 119,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Human Wizard // Creature — Human Insect",
+   "power": "1"
+  },
+  {
+   "name": "God-Pharaoh's Faithful",
+   "decks": 48,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Human Wizard",
+   "power": "0"
+  },
+  {
+   "name": "Gingerbrute",
+   "decks": 39,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Artifact Creature — Food Golem",
+   "power": "1"
+  },
+  {
+   "name": "Arbor Elf",
+   "decks": 37,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Elf Druid",
+   "power": "1"
+  },
+  {
+   "name": "Ornithopter",
+   "decks": 30,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Artifact Creature — Thopter",
+   "power": "0"
+  },
+  {
+   "name": "Fortress Kin-Guard",
+   "decks": 30,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Dog Soldier",
+   "power": "1"
+  },
+  {
+   "name": "Phyrexian Walker",
+   "decks": 23,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Artifact Creature — Phyrexian Construct",
+   "power": "0"
+  },
+  {
+   "name": "Mysidian Elder",
+   "decks": 22,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Human Wizard",
+   "power": "1"
+  },
+  {
+   "name": "Stonehorn Dignitary",
+   "decks": 22,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Rhino Soldier",
+   "power": "1"
+  },
+  {
+   "name": "Mechanized Ninja Cavalry",
+   "decks": 22,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Artifact Creature — Robot Ninja",
+   "power": "1"
+  },
+  {
+   "name": "Tireless Tribe",
+   "decks": 21,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Human Nomad",
+   "power": "1"
+  },
+  {
+   "name": "Elvish Vanguard",
+   "decks": 17,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Elf Warrior",
+   "power": "1"
+  }
+ ],
+ "unknownCards": [
+  {
+   "name": "Darval, Whose Web Protects",
+   "decks": 27
+  },
+  {
+   "name": "Skittering Kitten",
+   "decks": 1
+  }
+ ],
+ "unclassifiedDecks": 7
+}
