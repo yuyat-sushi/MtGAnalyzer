@@ -169,7 +169,11 @@
   /**
    * entries: [{qty, card, roles}]（メインデッキのみ）
    */
-  function analyze(entries, format, archetype) {
+  /**
+   * bench（任意）: 上位デッキ集計から作った目安 { targets: {role: [min,max]}, label }
+   * 指定するとフォーマット別の固定目安の代わりに使う
+   */
+  function analyze(entries, format, archetype, bench) {
     const total = entries.reduce((s, e) => s + e.qty, 0);
     const roleCount = Object.fromEntries(ROLES.map(r => [r.id, 0]));
     const primaryCount = Object.fromEntries(ROLES.map(r => [r.id, 0]));
@@ -206,13 +210,13 @@
     const avgMV = nonLand ? mvSum / nonLand : 0;
     const recLand = recommendedLands(format, avgMV, cheapRampDraw);
     const interaction = roleCount.removal + roleCount.wipe + roleCount.counter;
-    const tgt = targets(format, archetype);
+    const tgt = bench ? bench.targets : targets(format, archetype);
     const size = FORMATS[format] ? FORMATS[format].size : 60;
 
     return {
       total, size, roleCount, primaryCount, curve, pips, sources, lands, nonLand, mdfcLands,
       avgMV, recLand, interaction, cheapRampDraw, targets: tgt,
-      advice: buildAdvice({ total, size, roleCount, lands, recLand, avgMV, interaction, tgt, curve, pips, sources, format, nonLand, mdfcLands })
+      advice: buildAdvice({ total, size, roleCount, lands, recLand, avgMV, interaction, tgt, curve, pips, sources, format, nonLand, mdfcLands, bench })
     };
   }
 
@@ -241,13 +245,20 @@
     else push('warn', `土地が多めかも。目安 ${rec} 枚に対して ${a.lands} 枚。マナフラッド対策に土地を減らすか、マナの使い道を足してみて。`);
 
     // 役割
-    const labels = { threat: '脅威/勝ち筋', interaction: '干渉（除去＋全体除去＋打ち消し）', draw: 'ドロー/アド', ramp: 'マナ加速', wipe: '全体除去', protection: '保護', tutor: 'サーチ' };
+    const labels = Object.fromEntries(ROLES.map(r => [r.id, r.label]));
+    labels.interaction = '干渉（除去＋全体除去＋打ち消し）';
+    // 上位デッキ比較のときは四分位の範囲から1枚ずれるまでは許容する
+    const tol = a.bench ? 1 : 0;
+    const src = a.bench ? `上位デッキ（${a.bench.label}）の中央50%` : '目安';
     for (const [key, [min, max]] of Object.entries(a.tgt)) {
+      if (key === 'land' || key === 'other') continue; // 土地は上の推奨枚数で判定
+      if (a.bench && max === 0 && (key === 'interaction' ? a.interaction : (a.roleCount[key] || 0)) === 0) continue; // どちらも0なら言及しない
       const v = key === 'interaction' ? a.interaction : (a.roleCount[key] || 0);
       const name = labels[key] || key;
-      if (v < min) push(key === 'threat' || key === 'interaction' ? 'bad' : 'warn', `${name} が ${v} 枚。目安は ${min}〜${max} 枚だから、あと ${min - v} 枚くらい欲しいな。`);
-      else if (v > max) push('warn', `${name} が ${v} 枚で目安（${min}〜${max}）より多め。他の役割に枠を回せないか考えてみよう。`);
-      else push('good', `${name} ${v} 枚は目安（${min}〜${max}）の範囲内！`);
+      if (v < min - tol) push(key === 'threat' || key === 'interaction' ? 'bad' : 'warn', `${name} が ${v} 枚。${src}は ${min}〜${max} 枚だから、あと ${min - v} 枚くらい欲しいな。`);
+      else if (v > max + tol) push('warn', `${name} が ${v} 枚で${src}（${min}〜${max}）より多め。他の役割に枠を回せないか考えてみよう。`);
+      else if (v < min || v > max) push('info', `${name} ${v} 枚は${src}（${min}〜${max}）から1枚ずれてるけど、許容範囲かな。`);
+      else push('good', `${name} ${v} 枚は${src}（${min}〜${max}）の範囲内！`);
     }
 
     // カーブ
@@ -278,5 +289,8 @@
 
   const COLOR_JA = { W: '白', U: '青', B: '黒', R: '赤', G: '緑' };
 
-  global.Roles = { ROLES, ROLE_MAP, PRIORITY, FORMATS, ARCHETYPES, COLOR_JA, classify, primary, analyze, targets };
-})(window);
+  const api = { ROLES, ROLE_MAP, PRIORITY, FORMATS, ARCHETYPES, COLOR_JA, classify, primary, analyze, targets };
+  // ブラウザでは window.Roles、Node.js（集計スクリプト）では require で使う
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  else global.Roles = api;
+})(typeof window !== 'undefined' ? window : globalThis);

@@ -194,6 +194,26 @@ input:focus, select:focus, textarea:focus { outline: 2px solid var(--gold-dim); 
 .advice li.bad { border-color: var(--bad); }
 .advice li.info { border-color: var(--gold); }
 
+/* ---- 上位デッキとの比較 ---- */
+.meta-controls { display: flex; gap: 6px; margin-bottom: 8px; }
+.meta-controls select { flex: 1; min-width: 0; }
+.meta-info { font-size: 13px; }
+.meta-detect, .meta-group { margin: 4px 0; line-height: 1.5; }
+.warn-text { color: var(--warn); }
+.meta-table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 12px; }
+.meta-table th { text-align: left; color: var(--muted); font-weight: 400; border-bottom: 1px solid var(--line); padding: 3px 4px; }
+.meta-table td { padding: 4px; border-bottom: 1px solid var(--line); }
+.meta-table .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.meta-table tr.low td:nth-child(2) { color: var(--bad); font-weight: 700; }
+.meta-table tr.high td:nth-child(2) { color: var(--warn); font-weight: 700; }
+.meta-table tr.near td:nth-child(2) { color: var(--gold); }
+.meta-table tr.ok td:nth-child(2) { color: var(--good); }
+.meta-keys summary { cursor: pointer; color: var(--gold); font-size: 12px; padding: 4px 0; }
+.meta-keys ul { list-style: none; margin: 4px 0; padding: 0; }
+.meta-keys li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 8px; padding: 4px 0; border-bottom: 1px solid var(--line); font-size: 12px; }
+.meta-keys .kc-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.meta-keys .kc-roles { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 3px; }
+
 /* ---- misc ---- */
 .statusbar {
   display: flex; align-items: center; gap: 12px; padding: 6px 16px; border-top: 1px solid var(--line);

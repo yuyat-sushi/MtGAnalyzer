@@ -1,0 +1,65 @@
+# 上位デッキの役割ベンチマークを週1回作り直して benchmarks/ にコミットする
+name: Build benchmarks
+
+on:
+  schedule:
+    - cron: '23 19 * * 0'   # 毎週月曜 04:23（日本時間）
+  workflow_dispatch:         # Actions タブの「Run workflow」で手動実行
+    inputs:
+      days:
+        description: '集計期間（日数）'
+        default: '60'
+
+permissions:
+  contents: write            # 集計結果をコミットするため
+
+concurrency:
+  group: benchmarks
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Fetch MTGO decklists (fbettega/MTG_decklistcache, 直近の月だけ)
+        run: |
+          git clone --depth 1 --filter=blob:none --sparse https://github.com/fbettega/MTG_decklistcache "$RUNNER_TEMP/decks"
+          months=""
+          for i in 0 1 2 3; do
+            months="$months Tournaments/MTGO/$(date -u -d "$(date -u +%Y-%m-01) -$i month" +%Y/%m)"
+          done
+          echo "sparse:$months"
+          git -C "$RUNNER_TEMP/decks" sparse-checkout set $months
+          echo "decklist cache: $(git -C "$RUNNER_TEMP/decks" log -1 --format='%ci %s')"
+
+      - name: Fetch archetype definitions (Badaro/MTGOFormatData)
+        run: |
+          git clone --depth 1 https://github.com/Badaro/MTGOFormatData "$RUNNER_TEMP/formatdata"
+          echo "format data: $(git -C "$RUNNER_TEMP/formatdata" log -1 --format='%ci %s')"
+
+      - name: Build benchmarks
+        run: |
+          node scripts/build-benchmarks.mjs \
+            --decks "$RUNNER_TEMP/decks/Tournaments/MTGO" \
+            --formatdata "$RUNNER_TEMP/formatdata/Formats" \
+            --out benchmarks \
+            --days "${{ github.event.inputs.days || '60' }}"
+
+      - name: Commit results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add benchmarks
+          if git diff --cached --quiet; then
+            echo "変更なし"
+          else
+            git commit -m "ベンチマーク更新 $(date -u +%Y-%m-%d)"
+            git push
+          fi

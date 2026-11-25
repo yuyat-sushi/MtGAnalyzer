@@ -20,6 +20,21 @@
 - 429（リクエスト過多）が返ってきたら、`Retry-After` または指数バックオフで待ってから再試行します
 - 画面下に送信回数とキャッシュの利用回数を表示しています
 
+## 上位デッキとの比較（ベンチマーク）
+分析パネルの「上位デッキとの比較」でフォーマットを選ぶと、MTGO で勝っているデッキ（Challenge 上位・リーグ 5-0）の役割の枚数と比べられます。デッキのアーキタイプは自動で判定されます。手動で選ぶこともできます。
+
+- 集計は GitHub Actions（`.github/workflows/benchmarks.yml`）が **毎週月曜 4:23（日本時間）** に実行し、結果を `benchmarks/` にコミットします
+- Actions タブの「Build benchmarks」→「Run workflow」で手動実行もできます（集計期間の日数を指定可）
+- Actions がリポジトリにコミットするので、**ローカルで作業する前に `git pull`** してください
+- 集計スクリプトは `scripts/build-benchmarks.mjs`。役割判定はアプリと同じ `js/roles.js` を使うので、ルールを直すと次回の集計にも反映されます
+- `benchmarks/diagnostics/<format>.json` に役割判定の見直し候補（「その他」としか判定されない採用率の高いカード、役割が多すぎるカード、パワー1以下なのに脅威扱いのクリーチャーなど）を出力します
+
+| 種類 | 出典 | ライセンス |
+|---|---|---|
+| デッキリスト | MTGO 公開デッキリスト（[fbettega/MTG_decklistcache](https://github.com/fbettega/MTG_decklistcache) 経由） | GPL-3.0。集計値のみ公開し、生のデッキリストは再配布しません |
+| アーキタイプ定義 | [Badaro/MTGOFormatData](https://github.com/Badaro/MTGOFormatData) | MIT（`benchmarks/archetypes/` に定義を同梱） |
+| カードテキスト | [Scryfall](https://scryfall.com) のバルクデータ（oracle-cards） | Scryfall API 利用規約 |
+
 ## GitHub Pages で公開する
 1. GitHub で **public** の空リポジトリを作成（README などは追加しない）
 2. このフォルダで `git remote add origin https://github.com/<ユーザー名>/<リポジトリ名>.git` → `git push -u origin main`
@@ -35,7 +50,11 @@ index.html
 css/style.css
 js/scryfall.js  … APIクライアント（キュー・キャッシュ・まとめて取得）
 js/deckio.js    … MTGO .txt / .dek の読み込みと書き出し
-js/roles.js     … 役割の判定ルール・フォーマット別の目安・分析
+js/cardmodel.js … Scryfallのカードを最小限の形に変換（アプリと集計で共通）
+js/roles.js     … 役割の判定ルール・フォーマット別の目安・分析（アプリと集計で共通）
+js/archetype.js … アーキタイプ判定（アプリと集計で共通）
 js/app.js       … 画面とその操作
+scripts/build-benchmarks.mjs … 上位デッキの集計（GitHub Actionsで実行）
+benchmarks/     … 集計結果（Actionsが自動更新）
 ```
 役割の判定ルールは `js/roles.js` の `RULES`（オラクルテキストの正規表現）を、目安の枚数は `targets()` を編集すると変えられます。
