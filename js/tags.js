@@ -90,7 +90,7 @@
       else if (/\b(you|a player|an opponent) casts?\b/.test(clause)) out.push('cast_trigger');
       if (/\byou gain life\b/.test(clause)) out.push('lifegain_trigger');
       if (/\bdies\b|put into (a|your) graveyard from the battlefield/.test(clause)) {
-        out.push(/\b(another|a|an|one or more|each|nontoken)\b/.test(clause) ? 'death_trigger' : 'dies');
+        out.push(/\b(another|a|an|one or more|each|nontoken)( other| nontoken)? (creatures?|permanents?|artifacts?|tokens?|[a-z]+ creatures?)\b/.test(clause) ? 'death_trigger' : 'dies');
       }
       if (!out.length) out.push(word === 'whenever' ? 'other_trigger' : 'once_trigger');
       return [...new Set(out)];
