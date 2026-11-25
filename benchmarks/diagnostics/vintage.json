@@ -1,6 +1,6 @@
 {
  "format": "Vintage",
- "generatedAt": "2026-11-25T20:18:41.407Z",
+ "generatedAt": "2026-11-25T20:36:54.705Z",
  "decks": 1268,
  "otherOnly": [
   {
@@ -18,12 +18,6 @@
   {
    "name": "Demonic Consultation",
    "decks": 46,
-   "typeLine": "Instant",
-   "tags": []
-  },
-  {
-   "name": "Misdirection",
-   "decks": 34,
    "typeLine": "Instant",
    "tags": []
   },
@@ -85,12 +79,6 @@
    "name": "Smelting Vat",
    "decks": 1,
    "typeLine": "Artifact",
-   "tags": []
-  },
-  {
-   "name": "Redirect Lightning",
-   "decks": 1,
-   "typeLine": "Instant — Lesson",
    "tags": []
   }
  ],
@@ -1356,13 +1344,6 @@
     ]
    },
    {
-    "name": "Misdirection",
-    "decks": 34,
-    "roles": [
-     "other"
-    ]
-   },
-   {
     "name": "Fastbond",
     "decks": 11,
     "roles": [
@@ -1427,13 +1408,6 @@
    },
    {
     "name": "Smelting Vat",
-    "decks": 1,
-    "roles": [
-     "other"
-    ]
-   },
-   {
-    "name": "Redirect Lightning",
     "decks": 1,
     "roles": [
      "other"
@@ -2241,14 +2215,6 @@
    "typeLine": "Creature — Wraith"
   },
   {
-   "name": "Misdirection",
-   "decks": 34,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Instant"
-  },
-  {
    "name": "Subtlety",
    "decks": 22,
    "roles": [
@@ -2460,6 +2426,14 @@
     "beater"
    ],
    "typeLine": "Creature — Human Soldier"
+  },
+  {
+   "name": "Goblin-town Flunkies",
+   "decks": 1,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Goblin Soldier"
   }
  ],
  "unknownCards": [

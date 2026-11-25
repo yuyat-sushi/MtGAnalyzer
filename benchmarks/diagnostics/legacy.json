@@ -1,6 +1,6 @@
 {
  "format": "Legacy",
- "generatedAt": "2026-11-25T20:18:41.407Z",
+ "generatedAt": "2026-11-25T20:36:54.705Z",
  "decks": 2846,
  "otherOnly": [
   {
@@ -18,12 +18,6 @@
   {
    "name": "Shallow Grave",
    "decks": 71,
-   "typeLine": "Instant",
-   "tags": []
-  },
-  {
-   "name": "Misdirection",
-   "decks": 27,
    "typeLine": "Instant",
    "tags": []
   },
@@ -79,12 +73,6 @@
    "name": "Leyline of Anticipation",
    "decks": 3,
    "typeLine": "Enchantment",
-   "tags": []
-  },
-  {
-   "name": "Surgical Extraction",
-   "decks": 3,
-   "typeLine": "Instant",
    "tags": []
   },
   {
@@ -201,12 +189,6 @@
    "name": "Thought Lash",
    "decks": 1,
    "typeLine": "Enchantment",
-   "tags": []
-  },
-  {
-   "name": "Redirect Lightning",
-   "decks": 1,
-   "typeLine": "Instant — Lesson",
    "tags": []
   }
  ],
@@ -1627,13 +1609,6 @@
     ]
    },
    {
-    "name": "Misdirection",
-    "decks": 27,
-    "roles": [
-     "other"
-    ]
-   },
-   {
     "name": "Ensnaring Bridge",
     "decks": 19,
     "roles": [
@@ -1691,13 +1666,6 @@
    },
    {
     "name": "Leyline of Anticipation",
-    "decks": 3,
-    "roles": [
-     "other"
-    ]
-   },
-   {
-    "name": "Surgical Extraction",
     "decks": 3,
     "roles": [
      "other"
@@ -1775,6 +1743,20 @@
    },
    {
     "name": "Ill-Gotten Gains",
+    "decks": 1,
+    "roles": [
+     "other"
+    ]
+   },
+   {
+    "name": "Manabond",
+    "decks": 1,
+    "roles": [
+     "other"
+    ]
+   },
+   {
+    "name": "Ashes to Ashes",
     "decks": 1,
     "roles": [
      "other"
@@ -2738,14 +2720,6 @@
    "typeLine": "Creature — Human Warrior"
   },
   {
-   "name": "Misdirection",
-   "decks": 27,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Instant"
-  },
-  {
    "name": "Gaddock Teeg",
    "decks": 25,
    "roles": [
@@ -2860,6 +2834,14 @@
     "other"
    ],
    "typeLine": "Sorcery"
+  },
+  {
+   "name": "Samut, Hazoret's Champion",
+   "decks": 10,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Legendary Creature — Human Warrior Cleric"
   }
  ],
  "unknownCards": [

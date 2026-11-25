@@ -1,6 +1,6 @@
 {
  "format": "Modern",
- "generatedAt": "2026-11-25T20:18:41.407Z",
+ "generatedAt": "2026-11-25T20:36:54.705Z",
  "decks": 5064,
  "otherOnly": [
   {
@@ -57,12 +57,6 @@
   },
   {
    "name": "Academic Dispute",
-   "decks": 9,
-   "typeLine": "Instant",
-   "tags": []
-  },
-  {
-   "name": "Surgical Extraction",
    "decks": 9,
    "typeLine": "Instant",
    "tags": []
@@ -221,12 +215,6 @@
    "name": "The Ten Rings",
    "decks": 1,
    "typeLine": "Legendary Artifact",
-   "tags": []
-  },
-  {
-   "name": "Extirpate",
-   "decks": 1,
-   "typeLine": "Instant",
    "tags": []
   },
   {
@@ -1692,13 +1680,6 @@
     ]
    },
    {
-    "name": "Surgical Extraction",
-    "decks": 9,
-    "roles": [
-     "other"
-    ]
-   },
-   {
     "name": "Shape Anew",
     "decks": 9,
     "roles": [
@@ -1798,6 +1779,13 @@
    },
    {
     "name": "Unmoored Ego",
+    "decks": 2,
+    "roles": [
+     "other"
+    ]
+   },
+   {
+    "name": "Prismatic Omen",
     "decks": 2,
     "roles": [
      "other"

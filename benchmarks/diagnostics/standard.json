@@ -1,6 +1,6 @@
 {
  "format": "Standard",
- "generatedAt": "2026-11-25T20:18:41.407Z",
+ "generatedAt": "2026-11-25T20:36:54.705Z",
  "decks": 2486,
  "otherOnly": [
   {
@@ -624,7 +624,8 @@
     "name": "Deadly Cover-Up",
     "decks": 254,
     "roles": [
-     "wipe"
+     "wipe",
+     "gyhate"
     ]
    },
    {
