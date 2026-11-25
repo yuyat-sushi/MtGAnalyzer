@@ -5,82 +5,52 @@
 (function (global) {
   'use strict';
 
+  // 効果タグ（js/tags.js）。Node.js では require、ブラウザでは window.Tags
+  const Tags = (typeof module !== 'undefined' && module.exports) ? require('./tags.js') : global.Tags;
+
   const ROLES = [
-    { id: 'land',       label: '土地',       color: '#8d7b62' },
-    { id: 'ramp',       label: 'マナ加速',   color: '#3fa36b' },
-    { id: 'draw',       label: 'ドロー/アド', color: '#3b82c4' },
-    { id: 'removal',    label: '単体除去',   color: '#d0503c' },
-    { id: 'wipe',       label: '全体除去',   color: '#9b2f2f' },
-    { id: 'counter',    label: '打ち消し',   color: '#5a6fd6' },
-    { id: 'tutor',      label: 'サーチ',     color: '#8a5cc7' },
-    { id: 'recursion',  label: '墓地回収',   color: '#4a4a6a' },
-    { id: 'protection', label: '保護',       color: '#d8b13a' },
-    { id: 'threat',     label: '脅威/勝ち筋', color: '#e07a2e' },
-    { id: 'other',      label: 'その他',     color: '#777' }
+    { id: 'land',       label: '土地',         color: '#8d7b62' },
+    { id: 'ramp',       label: 'マナ加速',     color: '#3fa36b' },
+    { id: 'draw',       label: 'ドロー/アド',  color: '#3b82c4' },
+    { id: 'removal',    label: '単体除去',     color: '#d0503c' },
+    { id: 'wipe',       label: '全体除去',     color: '#9b2f2f' },
+    { id: 'counter',    label: '打ち消し',     color: '#5a6fd6' },
+    { id: 'discard',    label: '手札破壊',     color: '#7a4fa0' },
+    { id: 'tutor',      label: 'サーチ',       color: '#8a5cc7' },
+    { id: 'recursion',  label: '墓地回収',     color: '#4a4a6a' },
+    { id: 'protection', label: '保護',         color: '#d8b13a' },
+    { id: 'finisher',   label: 'フィニッシャー', color: '#c0392b' },
+    { id: 'engine',     label: 'エンジン',     color: '#c4569a' },
+    { id: 'beater',     label: '打点',         color: '#e07a2e' },
+    { id: 'other',      label: 'その他',       color: '#777' }
   ];
   const ROLE_MAP = Object.fromEntries(ROLES.map(r => [r.id, r]));
   // 主役割を決める優先順位
-  const PRIORITY = ['land', 'wipe', 'removal', 'counter', 'ramp', 'draw', 'tutor', 'recursion', 'protection', 'threat', 'other'];
+  const PRIORITY = ['land', 'wipe', 'removal', 'counter', 'discard', 'ramp', 'draw', 'tutor', 'recursion', 'protection', 'finisher', 'engine', 'beater', 'other'];
+  // 「勝ち手段」としてまとめて数える役割
+  const PRESSURE = ['finisher', 'engine', 'beater'];
+  // 旧バージョンの役割IDの読み替え
+  const LEGACY = { threat: 'beater' };
+  // 「干渉」としてまとめて数える役割
+  const INTERACTION = ['removal', 'wipe', 'counter', 'discard'];
 
-  const RULES = {
+  // 効果タグ → 役割
+  const EFFECT_ROLE = {
+    mana: 'ramp', draw: 'draw', removal: 'removal', wipe: 'wipe', counter: 'counter', discard: 'discard',
+    tutor: 'tutor', recursion: 'recursion', protection: 'protection'
+  };
+  // 繰り返し起きるとき「エンジン」とみなす効果（自己強化やマナは除く）
+  const ENGINE_EFFECTS = new Set(['token', 'draw', 'lifegain', 'drain', 'removal', 'energy', 'recursion', 'discard']);
+
+  // タグでは拾いにくい、文全体で判定する追加ルール
+  const EXTRA = {
     ramp: [
-      /\badd (\{[wubrgcs]\}|one mana|two mana|three mana|x mana|mana of any|an amount of|\{c\}\{c\})/,
       /search your library for (a|an|up to \w+|two) (basic )?(land|forest|plains|island|swamp|mountain)[^.]*?onto the battlefield/,
       /put (a|up to \w+) land cards? from your hand onto the battlefield/,
-      /create (a|two|three|x) treasure tokens?/,
       /you may play (an )?additional lands?/,
       /costs? \{\d\} less to cast/
     ],
-    draw: [
-      /\bdraws? (a|an|one|two|three|four|five|x|that many|cards equal)\b[^.]*cards?/,
-      /\bdraw (a|two|three|x) cards?/,
-      /\binvestigate\b/,
-      /create (a|two|three) clue tokens?/,
-      /exile the top [^.]*cards? of your library[^.]*you may (play|cast)/,
-      /look at the top [^.]*put [^.]*into your hand/,
-      /\bconnive/
-    ],
-    removal: [
-      /(destroy|exile) (target|another target|up to (one|two|three) target) (?!card)[^.]*?(creature|artifact|enchantment|planeswalker|permanent|battle)/,
-      /deals? (\d+|x|damage equal to [^.]+) damage to (any target|target (creature|planeswalker|player or planeswalker|attacking|blocking))/,
-      /deals? (\d+|x) damage divided as you choose/,
-      /target creature (an opponent controls )?gets -(\d+|x)\/-(\d+|x)/,
-      /\bfights? (target|another target|up to one target)/,
-      /return (target|up to \w+ target) (nonland )?(creature|permanent|artifact|enchantment)[^.]*to (its|their) owner'?s'? hand/,
-      /target (player|opponent) sacrifices/,
-      /each opponent sacrifices (a|an) (creature|nonland|permanent)/,
-      /(gain control of) target/,
-      /put target [^.]*on (the )?(top|bottom) of its owner's library/,
-      /tap target [^.]*\. it doesn't untap/
-    ],
-    wipe: [
-      /(destroy|exile) all (creatures|nonland|permanents|artifacts|enchantments|other|nontoken|creatures and)/,
-      /(destroy|exile) each (creature|nonland|other)/,
-      /all creatures get -(\d+|x)\/-(\d+|x)/,
-      /each creature gets -/,
-      /deals? (\d+|x) damage to each (creature|other creature|creature and)/,
-      /return all (nonland |creatures|permanents)[^.]*to (its|their) owners?'? hands?/,
-      /each player sacrifices (all|that many|(a|an|two) (creature|nonland))/
-    ],
-    counter: [
-      /\bcounter target\b/,
-      /counter (it|that spell) unless/
-    ],
-    // 土地以外を探すサーチ（土地サーチはマナ加速側で扱う）
-    tutor: [
-      { test: t => (t.match(/search your library for [^.]*?cards?/g) || [])
-          .some(s => !/\b(land|forest|plains|island|swamp|mountain)\b/.test(s)) }
-    ],
-    recursion: [
-      /return [^.]*cards? from your graveyard to (your hand|the battlefield)/,
-      /return [^.]*from your graveyard (to|onto)/,
-      /(cast|play) [^.]*from your graveyard/,
-      /\b(flashback|unearth|escape|disturb|embalm|eternalize|retrace|jump-start)\b/
-    ],
     protection: [
-      /(gains?|have|has) (hexproof|indestructible|shroud|protection from)/,
-      /(target|creatures?|permanents?) you control (gain|have) (hexproof|indestructible|protection|shroud)/,
-      /phases? out/,
       /prevent all (combat )?damage/,
       /can't be countered/
     ]
@@ -90,37 +60,49 @@
     return String(card.typeLine || '').split('//')[0];
   }
 
-  /** card → 役割IDの配列（自動判定） */
-  function classify(card) {
-    if (!card) return ['other'];
+  const cache = new WeakMap();
+
+  /** card → { roles, tags, abilities }（自動判定。結果はカードごとにキャッシュ） */
+  function inspect(card) {
+    if (!card) return { roles: ['other'], tags: [], abilities: [] };
+    if (cache.has(card)) return cache.get(card);
     const tl = String(card.typeLine || '');
     const front = frontType(card);
-    const roles = new Set();
+    let result;
     if (/\bLand\b/.test(front)) {
-      roles.add('land');
-      return [...roles];
-    }
-    const text = String(card.oracle || '')
-      .toLowerCase()
-      .replace(/\([^)]*\)/g, ' ');        // 注釈文を除去
-    for (const [role, regs] of Object.entries(RULES)) {
-      if (regs.some(r => r.test(text))) roles.add(role);
-    }
-    // 全体除去しか持たないカードは単体除去から外す
-    if (roles.has('wipe') && /destroy all|exile all/.test(text) && !/destroy target|exile target/.test(text)) roles.delete('removal');
+      result = { roles: ['land'], tags: [], abilities: [] };
+    } else {
+      const t = Tags.analyze(card);
+      const roles = new Set();
+      t.tags.forEach(x => { if (EFFECT_ROLE[x.effect]) roles.add(EFFECT_ROLE[x.effect]); });
+      const text = String(card.oracle || '').toLowerCase().replace(/\([^)]*\)/g, ' ');
+      for (const [role, regs] of Object.entries(EXTRA)) if (regs.some(r => r.test(text))) roles.add(role);
 
-    const isCreature = /\bCreature\b/.test(tl);
-    const isPW = /\bPlaneswalker\b/.test(tl);
-    const power = parseInt(card.power, 10);
-    if (isPW || /you win the game/.test(text) || /\bVehicle\b/.test(tl)) roles.add('threat');
-    if (isCreature) {
-      const utility = [...roles].some(r => r !== 'threat');
-      if (!utility || power >= 4 || (card.keywords || []).some(k => /flying|trample|double strike|haste|infect/i.test(k)) && power >= 2) {
-        roles.add('threat');
+      const isSpell = /\b(Instant|Sorcery)\b/.test(front);
+      const isCreature = /\bCreature\b/.test(tl);
+      const power = parseInt(card.power, 10);
+      // エンジン：繰り返し起きる価値のある効果を持つパーマネント
+      if (!isSpell && t.tags.some(x => x.repeat && x.trigger !== 'static' && ENGINE_EFFECTS.has(x.effect))) roles.add('engine');
+      // フィニッシャー：勝利条件、または大型の打点
+      if (/you win the game/.test(text) || (isCreature && (power >= 5 || (card.cmc >= 6 && power >= 4)))) roles.add('finisher');
+      // 打点：本体で殴るクリーチャー（パワー3以上、回避能力つきのパワー2以上、または他に役割のないクリーチャー）
+      if (isCreature || /\bVehicle\b/.test(tl)) {
+        const others = [...roles].length;
+        if (power >= 3 || (power >= 2 && t.evasion) || !others) roles.add('beater');
       }
+      if (!roles.size) roles.add('other');
+      result = { roles: PRIORITY.filter(r => roles.has(r)), tags: t.tags, abilities: t.abilities };
     }
-    if (!roles.size) roles.add('other');
-    return PRIORITY.filter(r => roles.has(r));
+    cache.set(card, result);
+    return result;
+  }
+
+  /** card → 役割IDの配列（自動判定） */
+  function classify(card) { return inspect(card).roles; }
+
+  /** 保存済みの手動役割を現在のIDに読み替える */
+  function normalizeRoles(list) {
+    return [...new Set((list || []).map(r => LEGACY[r] || r).filter(r => ROLE_MAP[r]))];
   }
 
   function primary(roles) {
@@ -142,17 +124,17 @@
     if (format === 'commander') {
       return {
         ramp: [10, 14], draw: [10, 14], interaction: [10, 16], wipe: [2, 4],
-        protection: [2, 6], threat: [12, 25], tutor: [0, 8]
+        protection: [2, 6], pressure: [12, 25], tutor: [0, 8]
       };
     }
     if (format === 'limited') {
-      return { threat: [14, 18], interaction: [3, 8], draw: [1, 4], ramp: [0, 3], wipe: [0, 2] };
+      return { pressure: [14, 18], interaction: [3, 8], draw: [1, 4], ramp: [0, 3], wipe: [0, 2] };
     }
     const t = {
-      aggro:    { threat: [20, 30], interaction: [4, 10],  draw: [0, 4],  ramp: [0, 2],  wipe: [0, 1] },
-      midrange: { threat: [12, 20], interaction: [8, 14],  draw: [3, 8],  ramp: [0, 6],  wipe: [0, 3] },
-      control:  { threat: [3, 10],  interaction: [14, 22], draw: [6, 12], ramp: [0, 4],  wipe: [2, 5] },
-      combo:    { threat: [2, 12],  interaction: [4, 12],  draw: [6, 14], tutor: [2, 10], protection: [2, 8] }
+      aggro:    { pressure: [20, 30], interaction: [4, 10],  draw: [0, 4],  ramp: [0, 2],  wipe: [0, 1] },
+      midrange: { pressure: [12, 20], interaction: [8, 14],  draw: [3, 8],  ramp: [0, 6],  wipe: [0, 3] },
+      control:  { pressure: [3, 10],  interaction: [14, 22], draw: [6, 12], ramp: [0, 4],  wipe: [2, 5] },
+      combo:    { pressure: [2, 12],  interaction: [4, 12],  draw: [6, 14], tutor: [2, 10], protection: [2, 8] }
     };
     return t[archetype] || t.midrange;
   }
@@ -180,14 +162,20 @@
     const curve = [0, 0, 0, 0, 0, 0, 0, 0]; // 0..6, 7+
     const pips = { W: 0, U: 0, B: 0, R: 0, G: 0 };
     const sources = { W: 0, U: 0, B: 0, R: 0, G: 0 };
-    let nonLand = 0, mvSum = 0, cheapRampDraw = 0, lands = 0, mdfcLands = 0;
+    let nonLand = 0, mvSum = 0, cheapRampDraw = 0, lands = 0, mdfcLands = 0, interaction = 0, pressure = 0;
+    const tagCounts = {}; // "effect:r" / "effect:o"（繰り返し / 1回）→ 枚数
 
     for (const e of entries) {
       const roles = e.roles || ['other'];
       roles.forEach(r => { roleCount[r] = (roleCount[r] || 0) + e.qty; });
       primaryCount[primary(roles)] += e.qty;
+      // 1枚で複数の役割を持っていても、合計では1枚として数える
+      if (roles.some(r => INTERACTION.includes(r))) interaction += e.qty;
+      if (roles.some(r => PRESSURE.includes(r))) pressure += e.qty;
       const c = e.card;
       if (!c) continue;
+      const keys = new Set(inspect(c).tags.map(t => `${t.effect}:${t.repeat ? 'r' : 'o'}`));
+      keys.forEach(k => { tagCounts[k] = (tagCounts[k] || 0) + e.qty; });
       const isLand = roles.includes('land');
       if (isLand) {
         lands += e.qty;
@@ -209,14 +197,13 @@
 
     const avgMV = nonLand ? mvSum / nonLand : 0;
     const recLand = recommendedLands(format, avgMV, cheapRampDraw);
-    const interaction = roleCount.removal + roleCount.wipe + roleCount.counter;
     const tgt = bench ? bench.targets : targets(format, archetype);
     const size = FORMATS[format] ? FORMATS[format].size : 60;
 
     return {
       total, size, roleCount, primaryCount, curve, pips, sources, lands, nonLand, mdfcLands,
-      avgMV, recLand, interaction, cheapRampDraw, targets: tgt,
-      advice: buildAdvice({ total, size, roleCount, lands, recLand, avgMV, interaction, tgt, curve, pips, sources, format, nonLand, mdfcLands, bench })
+      avgMV, recLand, interaction, pressure, tagCounts, cheapRampDraw, targets: tgt,
+      advice: buildAdvice({ total, size, roleCount, lands, recLand, avgMV, interaction, pressure, tgt, curve, pips, sources, format, nonLand, mdfcLands, bench })
     };
   }
 
@@ -246,16 +233,17 @@
 
     // 役割
     const labels = Object.fromEntries(ROLES.map(r => [r.id, r.label]));
-    labels.interaction = '干渉（除去＋全体除去＋打ち消し）';
+    labels.interaction = '干渉（除去・全体除去・打ち消し・手札破壊）';
+    labels.pressure = '勝ち手段（打点・エンジン・フィニッシャー）';
     // 上位デッキ比較のときは四分位の範囲から1枚ずれるまでは許容する
     const tol = a.bench ? 1 : 0;
     const src = a.bench ? `上位デッキ（${a.bench.label}）の中央50%` : '目安';
     for (const [key, [min, max]] of Object.entries(a.tgt)) {
       if (key === 'land' || key === 'other') continue; // 土地は上の推奨枚数で判定
-      if (a.bench && max === 0 && (key === 'interaction' ? a.interaction : (a.roleCount[key] || 0)) === 0) continue; // どちらも0なら言及しない
-      const v = key === 'interaction' ? a.interaction : (a.roleCount[key] || 0);
+      const v = key === 'interaction' ? a.interaction : key === 'pressure' ? a.pressure : (a.roleCount[key] || 0);
+      if (a.bench && max === 0 && v === 0) continue; // どちらも0なら言及しない
       const name = labels[key] || key;
-      if (v < min - tol) push(key === 'threat' || key === 'interaction' ? 'bad' : 'warn', `${name} が ${v} 枚。${src}は ${min}〜${max} 枚だから、あと ${min - v} 枚くらい欲しいな。`);
+      if (v < min - tol) push(key === 'pressure' || key === 'interaction' ? 'bad' : 'warn', `${name} が ${v} 枚。${src}は ${min}〜${max} 枚だから、あと ${min - v} 枚くらい欲しいな。`);
       else if (v > max + tol) push('warn', `${name} が ${v} 枚で${src}（${min}〜${max}）より多め。他の役割に枠を回せないか考えてみよう。`);
       else if (v < min || v > max) push('info', `${name} ${v} 枚は${src}（${min}〜${max}）から1枚ずれてるけど、許容範囲かな。`);
       else push('good', `${name} ${v} 枚は${src}（${min}〜${max}）の範囲内！`);
@@ -289,7 +277,7 @@
 
   const COLOR_JA = { W: '白', U: '青', B: '黒', R: '赤', G: '緑' };
 
-  const api = { ROLES, ROLE_MAP, PRIORITY, FORMATS, ARCHETYPES, COLOR_JA, classify, primary, analyze, targets };
+  const api = { ROLES, ROLE_MAP, PRIORITY, PRESSURE, INTERACTION, inspect, normalizeRoles, FORMATS, ARCHETYPES, COLOR_JA, classify, primary, analyze, targets };
   // ブラウザでは window.Roles、Node.js（集計スクリプト）では require で使う
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else global.Roles = api;

@@ -16,7 +16,10 @@
   }
 
   function rolesOf(e) {
-    if (e.manualRoles && e.manualRoles.length) return e.manualRoles;
+    if (e.manualRoles && e.manualRoles.length) {
+      const r = Roles.normalizeRoles(e.manualRoles);
+      if (r.length) return r;
+    }
     return Roles.classify(e.card);
   }
 
@@ -257,6 +260,7 @@
     const cmp = metaComparison();
     const a = Roles.analyze(entries, state.format, state.archetype, cmp && cmp.group ? { targets: cmp.targets, label: cmp.label } : null);
     renderMeta(cmp, a);
+    renderTags(a, cmp && cmp.group);
 
     // 役割バー
     const maxScale = Math.max(a.size * 0.45, ...Object.values(a.roleCount));
@@ -274,15 +278,17 @@
         <span class="rb-val">${v}${t ? ` <span class="t">/ ${t[0]}–${t[1]}</span>` : ''}</span>
       </div>`;
     }).join('');
-    const inter = a.targets.interaction;
-    const interRow = inter ? `<div class="rb" title="単体除去＋全体除去＋打ち消し">
-        <span><b>干渉 合計</b></span>
+    // 合計の行（干渉・勝ち手段）。1枚が複数の役割を持っていても1枚として数える
+    const sumRow = (label, title, v, t, bg) => t ? `<div class="rb" title="${title}">
+        <span><b>${label}</b></span>
         <div class="rb-track">
-          <div class="rb-target" style="left:${Math.min(100, inter[0] / maxScale * 100)}%;width:${Math.max(0.5, (inter[1] - inter[0]) / maxScale * 100)}%"></div>
-          <div class="rb-fill" style="width:${Math.min(100, a.interaction / maxScale * 100)}%;background:linear-gradient(90deg,#d0503c,#5a6fd6)"></div>
+          <div class="rb-target" style="left:${Math.min(100, t[0] / maxScale * 100)}%;width:${Math.max(0.5, (t[1] - t[0]) / maxScale * 100)}%"></div>
+          <div class="rb-fill" style="width:${Math.min(100, v / maxScale * 100)}%;background:${bg}"></div>
         </div>
-        <span class="rb-val">${a.interaction} <span class="t">/ ${inter[0]}–${inter[1]}</span></span>
+        <span class="rb-val">${v} <span class="t">/ ${t[0]}–${t[1]}</span></span>
       </div>` : '';
+    const interRow = sumRow('干渉 合計', '単体除去・全体除去・打ち消し・手札破壊', a.interaction, a.targets.interaction, 'linear-gradient(90deg,#d0503c,#5a6fd6)') +
+      sumRow('勝ち手段 合計', '打点・エンジン・フィニッシャー', a.pressure, a.targets.pressure, 'linear-gradient(90deg,#e07a2e,#c4569a)');
     // 主役割の構成比
     const stack = a.total ? `<div class="stack" title="主役割の構成比">${Roles.ROLES.map(r => {
       const v = a.primaryCount[r.id];
@@ -359,7 +365,7 @@
       detected = Archetype.classify({ main: state.main, side: state.side }, m.defs, deckColors());
     }
     if (state.metaArch === 'auto') {
-      if (detected) group = bench.archetypes.find(a => a.name === detected.name) || bench.archetypes.find(a => a.base === detected.base && a.kind === detected.kind && detected.kind !== 'unknown');
+      if (detected) group = bench.archetypes.find(a => a.name === detected.name);
       how = group ? '自動判定' : '自動判定できなかったのでフォーマット全体';
     } else if (state.metaArch !== 'all') {
       group = bench.archetypes.find(a => a.name === state.metaArch);
@@ -367,7 +373,9 @@
     }
     if (!group) { group = { name: `${bench.format} 全体`, ...bench.overall, keyCards: null }; if (!how) how = 'フォーマット全体'; }
     const targets = {};
-    for (const [k, s] of Object.entries(group.roles)) targets[k] = [Math.floor(s.q1), Math.ceil(s.q3)];
+    for (const [k, s] of Object.entries(group.roles)) {
+      if (Roles.ROLE_MAP[k] || k === 'interaction' || k === 'pressure') targets[k] = [Math.floor(s.q1), Math.ceil(s.q3)];
+    }
     return { status: 'ok', bench, detected, group, how, targets, label: group.name };
   }
 
@@ -389,18 +397,18 @@
     if (cmp.status !== 'ok') { box.innerHTML = `<p class="hint">集計データを読み込めませんでした（${esc(cmp.message || '')}）</p>`; return; }
     const { bench, detected, group } = cmp;
     const det = detected ? `<div class="meta-detect">このデッキの判定：<b>${esc(detected.name)}</b>${detected.kind === 'fallback' ? '（近い構成から推定）' : ''}${detected.conflicts.length ? `<span class="muted">（他の候補: ${detected.conflicts.map(esc).join(', ')}）</span>` : ''}</div>` : '';
-    const rows = ['land', 'ramp', 'draw', 'removal', 'wipe', 'counter', 'tutor', 'recursion', 'protection', 'threat', 'interaction'].map(k => {
+    const rows = ['land', 'ramp', 'draw', 'removal', 'wipe', 'counter', 'discard', 'tutor', 'recursion', 'protection', 'finisher', 'engine', 'beater', 'interaction', 'pressure'].map(k => {
       const s = group.roles[k];
       if (!s) return '';
-      const v = k === 'interaction' ? a.interaction : (a.roleCount[k] || 0);
+      const v = k === 'interaction' ? a.interaction : k === 'pressure' ? a.pressure : (a.roleCount[k] || 0);
       const [lo, hi] = cmp.targets[k];
       const cls = v < lo - 1 ? 'low' : v > hi + 1 ? 'high' : (v < lo || v > hi) ? 'near' : 'ok';
-      const label = k === 'interaction' ? '干渉 合計' : Roles.ROLE_MAP[k].label;
+      const label = k === 'interaction' ? '干渉 合計' : k === 'pressure' ? '勝ち手段 合計' : Roles.ROLE_MAP[k].label;
       if (!v && !s.q3) return '';
       return `<tr class="${cls}"><td>${label}</td><td class="num">${v}</td><td class="num">${s.median}</td><td class="num muted">${s.q1}–${s.q3}</td></tr>`;
     }).join('');
     const keys = group.keyCards ? `<details class="meta-keys"><summary>このアーキタイプでよく使われるカード（役割の判定確認用）</summary>
-      <ul>${group.keyCards.map(c => `<li><span class="kc-name">${esc(c.name)}</span><span class="muted">${Math.round(c.rate * 100)}%・平均${c.avg}枚</span><span class="kc-roles">${c.roles.map(r => `<span class="chip" style="background:${Roles.ROLE_MAP[r].color}">${Roles.ROLE_MAP[r].label}</span>`).join('')}</span></li>`).join('')}</ul></details>` : '';
+      <ul>${group.keyCards.map(c => `<li><span class="kc-name">${esc(c.name)}</span><span class="muted">${Math.round(c.rate * 100)}%・平均${c.avg}枚</span><span class="kc-roles">${Roles.normalizeRoles(c.roles).map(r => `<span class="chip" style="background:${Roles.ROLE_MAP[r].color}">${Roles.ROLE_MAP[r].label}</span>`).join('')}</span></li>`).join('')}</ul></details>` : '';
     box.innerHTML = `${det}
       <div class="meta-group">比較対象：<b>${esc(group.name)}</b>（${esc(cmp.how)}）・${group.n} デッキ${group.reference ? '・<span class="warn-text">サンプル少なめの参考値</span>' : ''}</div>
       <table class="meta-table"><thead><tr><th>役割</th><th class="num">あなた</th><th class="num">中央値</th><th class="num">中央50%</th></tr></thead><tbody>${rows}</tbody></table>
@@ -408,6 +416,32 @@
       <p class="hint">${esc(bench.window.from)}〜${esc(bench.window.to)} の MTGO 公開デッキリスト（Challenge上位・リーグ5-0、${bench.events} 大会）を集計。
       出典: <a href="https://github.com/fbettega/MTG_decklistcache" target="_blank" rel="noopener">MTG_decklistcache</a> /
       アーキタイプ定義: <a href="https://github.com/Badaro/MTGOFormatData" target="_blank" rel="noopener">MTGOFormatData</a>（MIT）</p>`;
+  }
+
+  // ---------- 効果タグ ----------
+  function tagListHTML(card) {
+    if (!card) return '';
+    const info = Roles.inspect(card);
+    if (!info.tags.length) return '<div class="tag-list"><div class="muted">検出した効果タグはありません</div></div>';
+    return `<div class="tag-list"><div class="muted">検出した効果タグ</div>${info.tags.map(t =>
+      `<div class="tag ${t.repeat ? 'rep' : 'once'}"><span class="tag-kind">${t.repeat ? '繰り返し' : '1回'}</span>${esc(Tags.tagLabel(t))}</div>`).join('')}</div>`;
+  }
+
+  /** デッキ全体の効果タグを「繰り返し／1回」で集計して表示（上位デッキの中央値があれば並べる） */
+  function renderTags(a, group) {
+    const root = $('#tagTable');
+    const benchTags = group && group.tags;
+    const rows = Tags.EFFECTS.map(e => {
+      const r = a.tagCounts[e.id + ':r'] || 0, o = a.tagCounts[e.id + ':o'] || 0;
+      const br = benchTags && benchTags[e.id + ':r'], bo = benchTags && benchTags[e.id + ':o'];
+      if (!r && !o && !(br && br.q3) && !(bo && bo.q3)) return '';
+      const cell = (v, b) => `<td class="num">${v}${b ? ` <span class="muted">/ ${b.median}</span>` : ''}</td>`;
+      return `<tr><td>${esc(e.label)}</td>${cell(r, br)}${cell(o, bo)}</tr>`;
+    }).join('');
+    root.innerHTML = rows
+      ? `<table class="meta-table"><thead><tr><th>効果</th><th class="num">繰り返し</th><th class="num">1回</th></tr></thead><tbody>${rows}</tbody></table>
+         <p class="hint">その効果を持つカードの枚数。${benchTags ? '「/」の右は上位デッキの中央値。' : ''}カードの役割チップを押すと、カードごとのタグ（効果 × 発動条件）を確認できます。</p>`
+      : '<p class="hint">効果タグのあるカードがまだありません</p>';
   }
 
   function renderSaved() {
@@ -428,6 +462,7 @@
     pop.innerHTML = `<h4>${esc(e.card ? displayName(e.card) : e.name)}</h4>
       ${Roles.ROLES.map(r => `<label><input type="checkbox" value="${r.id}" ${current.has(r.id) ? 'checked' : ''}>
         <span class="sw" style="background:${r.color}"></span>${r.label}${auto.includes(r.id) ? ' <span class="muted">自動</span>' : ''}</label>`).join('')}
+      ${tagListHTML(e.card)}
       <div class="pop-actions"><button data-pop="reset">自動判定に戻す</button><button data-pop="close" class="primary">OK</button></div>`;
     const rect = anchor.getBoundingClientRect();
     pop.hidden = false;
