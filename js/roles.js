@@ -27,6 +27,7 @@
     { id: 'removal',    cat: 'disrupt',  label: '単体除去',     color: '#d0503c' },
     { id: 'wipe',       cat: 'disrupt',  label: '全体除去',     color: '#9b2f2f' },
     { id: 'counter',    cat: 'disrupt',  label: '打ち消し',     color: '#5a6fd6' },
+    { id: 'redirect',   cat: 'disrupt',  label: '対象変更',     color: '#7385d9' },
     { id: 'discard',    cat: 'disrupt',  label: '手札破壊',     color: '#7a4fa0' },
     { id: 'hate',       cat: 'disrupt',  label: 'ヘイト（ロック・課税）', color: '#5e7480' },
     { id: 'gyhate',     cat: 'disrupt',  label: '墓地対策',     color: '#6b6b80' },
@@ -55,7 +56,7 @@
    * 妨害に使えるカードは、打点やドローを兼ねていても主に妨害として数える（プレイヤーの感覚に合わせる）
    */
   const PRIORITY = ['land',
-    'removal', 'wipe', 'counter', 'discard', 'hate', 'gyhate',
+    'removal', 'wipe', 'counter', 'redirect', 'discard', 'hate', 'gyhate',
     'cheat', 'extraturn', 'untap', 'copy',
     'draw', 'tutor', 'recursion', 'selfmill',
     'ramp',
@@ -67,7 +68,7 @@
 
   // 効果タグ → 小カテゴリ
   const EFFECT_ROLE = {
-    mana: 'ramp', draw: 'draw', removal: 'removal', wipe: 'wipe', counter: 'counter', discard: 'discard',
+    mana: 'ramp', draw: 'draw', removal: 'removal', wipe: 'wipe', counter: 'counter', redirect: 'redirect', discard: 'discard',
     tutor: 'tutor', recursion: 'recursion', selfmill: 'selfmill', protection: 'protection', gyhate: 'gyhate', hate: 'hate',
     cheat: 'cheat', extraturn: 'extraturn', untap: 'untap', copy: 'copy', drain: 'reach'
   };
