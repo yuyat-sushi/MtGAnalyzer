@@ -16,17 +16,20 @@
     { id: 'wipe',       label: '全体除去',     color: '#9b2f2f' },
     { id: 'counter',    label: '打ち消し',     color: '#5a6fd6' },
     { id: 'discard',    label: '手札破壊',     color: '#7a4fa0' },
+    { id: 'hate',       label: '妨害/ヘイト',  color: '#5b6b7a' },
     { id: 'tutor',      label: 'サーチ',       color: '#8a5cc7' },
     { id: 'recursion',  label: '墓地回収',     color: '#4a4a6a' },
     { id: 'protection', label: '保護',         color: '#d8b13a' },
+    { id: 'combo',      label: '踏み倒し/コンボ', color: '#2f8f8a' },
     { id: 'finisher',   label: 'フィニッシャー', color: '#c0392b' },
     { id: 'engine',     label: 'エンジン',     color: '#c4569a' },
     { id: 'beater',     label: '打点',         color: '#e07a2e' },
+    { id: 'pump',       label: '強化',         color: '#b5803a' },
     { id: 'other',      label: 'その他',       color: '#777' }
   ];
   const ROLE_MAP = Object.fromEntries(ROLES.map(r => [r.id, r]));
   // 主役割を決める優先順位
-  const PRIORITY = ['land', 'wipe', 'removal', 'counter', 'discard', 'ramp', 'draw', 'tutor', 'recursion', 'protection', 'finisher', 'engine', 'beater', 'other'];
+  const PRIORITY = ['land', 'wipe', 'removal', 'counter', 'discard', 'hate', 'ramp', 'draw', 'tutor', 'recursion', 'protection', 'combo', 'finisher', 'engine', 'beater', 'pump', 'other'];
   // 「勝ち手段」としてまとめて数える役割
   const PRESSURE = ['finisher', 'engine', 'beater'];
   // 旧バージョンの役割IDの読み替え
@@ -37,7 +40,8 @@
   // 効果タグ → 役割
   const EFFECT_ROLE = {
     mana: 'ramp', draw: 'draw', removal: 'removal', wipe: 'wipe', counter: 'counter', discard: 'discard',
-    tutor: 'tutor', recursion: 'recursion', protection: 'protection'
+    tutor: 'tutor', recursion: 'recursion', protection: 'protection',
+    hate: 'hate', gyhate: 'hate', cheat: 'combo', extraturn: 'combo', untap: 'combo'
   };
   // 繰り返し起きるとき「エンジン」とみなす効果（自己強化やマナは除く）
   const ENGINE_EFFECTS = new Set(['token', 'draw', 'lifegain', 'drain', 'removal', 'energy', 'recursion', 'discard']);
@@ -45,7 +49,8 @@
   // タグでは拾いにくい、文全体で判定する追加ルール
   const EXTRA = {
     ramp: [
-      /search your library for (a|an|up to \w+|two) (basic )?(land|forest|plains|island|swamp|mountain)[^.]*?onto the battlefield/,
+      /search your library for (a|an|up to \w+|up to that many|two|any number of) (basic )?(land|forest|plains|island|swamp|mountain)[^.]*?onto the battlefield/,
+      /enchanted land is tapped for mana, its controller adds an additional/, /adds? an additional/,
       /put (a|up to \w+) land cards? from your hand onto the battlefield/,
       /you may play (an )?additional lands?/,
       /costs? \{\d\} less to cast/
@@ -90,6 +95,11 @@
         const others = [...roles].length;
         if (power >= 3 || (power >= 2 && t.evasion) || !others) roles.add('beater');
       }
+      // 1回きりのトークン生成はクリーチャーを並べる手段として打点に数える
+      if (t.tags.some(x => x.effect === 'token') && !roles.has('engine')) roles.add('beater');
+      // 強化（装備品・オーラ・強化呪文）は、他に役割がないときの役割として付ける
+      if (t.tags.some(x => x.effect === 'pump') && !roles.size) roles.add('pump');
+      if (!isCreature && /\b(Equipment|Aura)\b/.test(tl) && !roles.size) roles.add('pump');
       if (!roles.size) roles.add('other');
       result = { roles: PRIORITY.filter(r => roles.has(r)), tags: t.tags, abilities: t.abilities };
     }

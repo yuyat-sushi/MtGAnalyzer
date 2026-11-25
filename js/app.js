@@ -397,7 +397,7 @@
     if (cmp.status !== 'ok') { box.innerHTML = `<p class="hint">集計データを読み込めませんでした（${esc(cmp.message || '')}）</p>`; return; }
     const { bench, detected, group } = cmp;
     const det = detected ? `<div class="meta-detect">このデッキの判定：<b>${esc(detected.name)}</b>${detected.kind === 'fallback' ? '（近い構成から推定）' : ''}${detected.conflicts.length ? `<span class="muted">（他の候補: ${detected.conflicts.map(esc).join(', ')}）</span>` : ''}</div>` : '';
-    const rows = ['land', 'ramp', 'draw', 'removal', 'wipe', 'counter', 'discard', 'tutor', 'recursion', 'protection', 'finisher', 'engine', 'beater', 'interaction', 'pressure'].map(k => {
+    const rows = ['land', 'ramp', 'draw', 'removal', 'wipe', 'counter', 'discard', 'hate', 'tutor', 'recursion', 'protection', 'combo', 'finisher', 'engine', 'beater', 'pump', 'other', 'interaction', 'pressure'].map(k => {
       const s = group.roles[k];
       if (!s) return '';
       const v = k === 'interaction' ? a.interaction : k === 'pressure' ? a.pressure : (a.roleCount[k] || 0);
