@@ -1,12 +1,18 @@
 {
  "format": "Vintage",
- "generatedAt": "2026-11-25T19:44:18.602Z",
+ "generatedAt": "2026-11-25T20:14:44.975Z",
  "decks": 1268,
  "otherOnly": [
   {
    "name": "Mystic Forge",
    "decks": 169,
    "typeLine": "Artifact",
+   "tags": []
+  },
+  {
+   "name": "Oath of Druids",
+   "decks": 61,
+   "typeLine": "Enchantment",
    "tags": []
   },
   {
@@ -76,14 +82,6 @@
    "tags": []
   },
   {
-   "name": "Grindstone",
-   "decks": 1,
-   "typeLine": "Artifact",
-   "tags": [
-    "selfmill@activated"
-   ]
-  },
-  {
    "name": "Redirect Lightning",
    "decks": 1,
    "typeLine": "Instant — Lesson",
@@ -108,8 +106,8 @@
    "decks": 305,
    "roles": [
     "draw",
-    "protection",
-    "engine"
+    "engine",
+    "protection"
    ],
    "tags": [
     "protection@etb",
@@ -120,8 +118,8 @@
    "name": "Bilbo, Thief in the Night",
    "decks": 298,
    "roles": [
-    "ramp",
     "recursion",
+    "ramp",
     "engine"
    ],
    "tags": [
@@ -132,8 +130,8 @@
    "name": "Tezzeret, Cruel Captain",
    "decks": 275,
    "roles": [
+    "untap",
     "tutor",
-    "combo",
     "enhance"
    ],
    "tags": [
@@ -153,22 +151,7 @@
    ],
    "tags": [
     "draw@each_turn",
-    "draw@other_trigger",
     "drain@other_trigger"
-   ]
-  },
-  {
-   "name": "Coveted Jewel",
-   "decks": 139,
-   "roles": [
-    "ramp",
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "draw@etb",
-    "mana@activated",
-    "draw@attack"
    ]
   },
   {
@@ -266,8 +249,8 @@
    "name": "Relic of Sauron",
    "decks": 53,
    "roles": [
-    "ramp",
     "draw",
+    "ramp",
     "engine"
    ],
    "tags": [
@@ -291,9 +274,9 @@
    "name": "Golos, Tireless Pilgrim",
    "decks": 41,
    "roles": [
-    "ramp",
+    "cheat",
     "draw",
-    "combo",
+    "ramp",
     "engine",
     "beater"
    ],
@@ -307,7 +290,7 @@
    "name": "Raph & Mikey, Troublemakers",
    "decks": 24,
    "roles": [
-    "combo",
+    "cheat",
     "finisher",
     "beater"
    ],
@@ -319,8 +302,8 @@
    "name": "Hullbreacher",
    "decks": 23,
    "roles": [
-    "ramp",
     "draw",
+    "ramp",
     "beater"
    ],
    "tags": [
@@ -386,17 +369,44 @@
    ]
   },
   {
+   "name": "Grave Researcher // Reanimate",
+   "decks": 10,
+   "roles": [
+    "cheat",
+    "selfmill",
+    "beater"
+   ],
+   "tags": [
+    "selfmill@each_turn",
+    "cheat@spell"
+   ]
+  },
+  {
    "name": "Marwyn, the Preserver",
    "decks": 9,
    "roles": [
     "recursion",
-    "protection",
     "engine",
-    "beater"
+    "beater",
+    "protection"
    ],
    "tags": [
     "protection@static",
     "recursion@activated"
+   ]
+  },
+  {
+   "name": "Mole Man, Moloid Master",
+   "decks": 9,
+   "roles": [
+    "recursion",
+    "selfmill",
+    "engine"
+   ],
+   "tags": [
+    "recursion@static",
+    "token@landfall",
+    "selfmill@landfall"
    ]
   },
   {
@@ -429,10 +439,10 @@
    "name": "Uro, Titan of Nature's Wrath",
    "decks": 6,
    "roles": [
-    "ramp",
+    "cheat",
     "draw",
     "recursion",
-    "combo",
+    "ramp",
     "finisher",
     "engine",
     "beater"
@@ -445,6 +455,19 @@
     "draw@attack",
     "cheat@attack",
     "recursion@static"
+   ]
+  },
+  {
+   "name": "Icetill Explorer",
+   "decks": 6,
+   "roles": [
+    "recursion",
+    "selfmill",
+    "ramp"
+   ],
+   "tags": [
+    "recursion@static",
+    "selfmill@landfall"
    ]
   },
   {
@@ -464,7 +487,7 @@
    "name": "Boggart Trawler // Boggart Bog",
    "decks": 5,
    "roles": [
-    "hate",
+    "gyhate",
     "ramp",
     "beater"
    ],
@@ -472,42 +495,964 @@
     "gyhate@etb",
     "mana@activated"
    ]
-  },
-  {
-   "name": "Boromir, Warden of the Tower",
-   "decks": 4,
-   "roles": [
-    "counter",
-    "protection",
-    "beater"
-   ],
-   "tags": [
-    "counter@cast_trigger",
-    "protection@activated_once"
-   ]
-  },
-  {
-   "name": "Displacer Kitten",
-   "decks": 4,
-   "roles": [
-    "removal",
-    "protection",
-    "engine"
-   ],
-   "tags": [
-    "removal@cast_trigger",
-    "protection@cast_trigger"
-   ]
   }
  ],
+ "byCategory": {
+  "disrupt": [
+   {
+    "name": "Force of Will",
+    "decks": 934,
+    "roles": [
+     "counter"
+    ]
+   },
+   {
+    "name": "Vexing Bauble",
+    "decks": 828,
+    "roles": [
+     "counter",
+     "draw"
+    ]
+   },
+   {
+    "name": "Mental Misstep",
+    "decks": 809,
+    "roles": [
+     "counter"
+    ]
+   },
+   {
+    "name": "Force of Negation",
+    "decks": 679,
+    "roles": [
+     "counter"
+    ]
+   },
+   {
+    "name": "Gitaxian Probe",
+    "decks": 643,
+    "roles": [
+     "discard",
+     "draw"
+    ]
+   },
+   {
+    "name": "Karn, the Great Creator",
+    "decks": 395,
+    "roles": [
+     "hate",
+     "tutor"
+    ]
+   },
+   {
+    "name": "Swords to Plowshares",
+    "decks": 336,
+    "roles": [
+     "removal"
+    ]
+   },
+   {
+    "name": "Flusterstorm",
+    "decks": 325,
+    "roles": [
+     "counter",
+     "copy"
+    ]
+   },
+   {
+    "name": "Chalice of the Void",
+    "decks": 299,
+    "roles": [
+     "counter"
+    ]
+   },
+   {
+    "name": "Spell Pierce",
+    "decks": 252,
+    "roles": [
+     "counter"
+    ]
+   },
+   {
+    "name": "Soul-Guide Lantern",
+    "decks": 230,
+    "roles": [
+     "gyhate",
+     "draw"
+    ]
+   },
+   {
+    "name": "Trinisphere",
+    "decks": 225,
+    "roles": [
+     "hate"
+    ]
+   },
+   {
+    "name": "Sink into Stupor // Soporific Springs",
+    "decks": 213,
+    "roles": [
+     "removal",
+     "ramp"
+    ]
+   },
+   {
+    "name": "Thoughtseize",
+    "decks": 209,
+    "roles": [
+     "discard"
+    ]
+   },
+   {
+    "name": "Pithing Needle",
+    "decks": 197,
+    "roles": [
+     "hate"
+    ]
+   },
+   {
+    "name": "Null Rod",
+    "decks": 192,
+    "roles": [
+     "hate"
+    ]
+   },
+   {
+    "name": "Prismatic Ending",
+    "decks": 169,
+    "roles": [
+     "removal"
+    ]
+   },
+   {
+    "name": "Portable Hole",
+    "decks": 164,
+    "roles": [
+     "removal"
+    ]
+   },
+   {
+    "name": "Flame of Anor",
+    "decks": 164,
+    "roles": [
+     "removal",
+     "draw"
+    ]
+   },
+   {
+    "name": "Orcish Bowmasters",
+    "decks": 136,
+    "roles": [
+     "removal",
+     "draw",
+     "reach"
+    ]
+   },
+   {
+    "name": "Void Mirror",
+    "decks": 122,
+    "roles": [
+     "counter"
+    ]
+   },
+   {
+    "name": "Mindbreak Trap",
+    "decks": 121,
+    "roles": [
+     "counter"
+    ]
+   },
+   {
+    "name": "Lodestone Golem",
+    "decks": 121,
+    "roles": [
+     "hate",
+     "finisher",
+     "beater"
+    ]
+   },
+   {
+    "name": "Pyroblast",
+    "decks": 121,
+    "roles": [
+     "removal",
+     "counter"
+    ]
+   },
+   {
+    "name": "Fatal Push",
+    "decks": 117,
+    "roles": [
+     "removal"
+    ]
+   }
+  ],
+  "resource": [
+   {
+    "name": "Emeritus of Ideation // Ancestral Recall",
+    "decks": 838,
+    "roles": [
+     "draw",
+     "finisher",
+     "beater"
+    ]
+   },
+   {
+    "name": "Lórien Revealed",
+    "decks": 543,
+    "roles": [
+     "draw"
+    ]
+   },
+   {
+    "name": "Demonic Tutor",
+    "decks": 451,
+    "roles": [
+     "tutor"
+    ]
+   },
+   {
+    "name": "Stock Up",
+    "decks": 446,
+    "roles": [
+     "draw"
+    ]
+   },
+   {
+    "name": "Flow State",
+    "decks": 391,
+    "roles": [
+     "draw"
+    ]
+   },
+   {
+    "name": "Brainstorm",
+    "decks": 335,
+    "roles": [
+     "draw"
+    ]
+   },
+   {
+    "name": "The One Ring",
+    "decks": 305,
+    "roles": [
+     "draw",
+     "engine",
+     "protection"
+    ]
+   },
+   {
+    "name": "Bilbo, Thief in the Night",
+    "decks": 298,
+    "roles": [
+     "recursion",
+     "ramp",
+     "engine"
+    ]
+   },
+   {
+    "name": "Paradoxical Outcome",
+    "decks": 260,
+    "roles": [
+     "draw"
+    ]
+   },
+   {
+    "name": "Psychic Frog",
+    "decks": 224,
+    "roles": [
+     "draw",
+     "engine"
+    ]
+   },
+   {
+    "name": "Treasure Cruise",
+    "decks": 221,
+    "roles": [
+     "draw"
+    ]
+   },
+   {
+    "name": "Sensei's Divining Top",
+    "decks": 214,
+    "roles": [
+     "draw",
+     "engine"
+    ]
+   },
+   {
+    "name": "Thundertrap Trainer",
+    "decks": 202,
+    "roles": [
+     "draw"
+    ]
+   },
+   {
+    "name": "Snapcaster Mage",
+    "decks": 156,
+    "roles": [
+     "recursion"
+    ]
+   },
+   {
+    "name": "Scrawling Crawler",
+    "decks": 150,
+    "roles": [
+     "draw",
+     "engine",
+     "reach",
+     "beater"
+    ]
+   },
+   {
+    "name": "Coveted Jewel",
+    "decks": 139,
+    "roles": [
+     "draw",
+     "ramp"
+    ]
+   },
+   {
+    "name": "Vampiric Tutor",
+    "decks": 129,
+    "roles": [
+     "tutor"
+    ]
+   },
+   {
+    "name": "Merchant Scroll",
+    "decks": 121,
+    "roles": [
+     "tutor"
+    ]
+   },
+   {
+    "name": "Serum Powder",
+    "decks": 117,
+    "roles": [
+     "draw",
+     "ramp"
+    ]
+   },
+   {
+    "name": "Dig Through Time",
+    "decks": 110,
+    "roles": [
+     "draw"
+    ]
+   },
+   {
+    "name": "Dress Down",
+    "decks": 107,
+    "roles": [
+     "draw"
+    ]
+   },
+   {
+    "name": "Transmute Artifact",
+    "decks": 87,
+    "roles": [
+     "tutor"
+    ]
+   },
+   {
+    "name": "Ponder",
+    "decks": 83,
+    "roles": [
+     "draw"
+    ]
+   },
+   {
+    "name": "Bolas's Citadel",
+    "decks": 77,
+    "roles": [
+     "draw",
+     "reach"
+    ]
+   },
+   {
+    "name": "Underworld Breach",
+    "decks": 76,
+    "roles": [
+     "recursion"
+    ]
+   }
+  ],
+  "win": [
+   {
+    "name": "The Fantasticar",
+    "decks": 203,
+    "roles": [
+     "engine",
+     "beater"
+    ]
+   },
+   {
+    "name": "Forth Eorlingas!",
+    "decks": 139,
+    "roles": [
+     "tokens"
+    ]
+   },
+   {
+    "name": "Phyrexian Metamorph",
+    "decks": 136,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
+    "name": "Seasoned Dungeoneer",
+    "decks": 111,
+    "roles": [
+     "beater",
+     "protection"
+    ]
+   },
+   {
+    "name": "Chaos Defiler",
+    "decks": 73,
+    "roles": [
+     "finisher",
+     "beater"
+    ]
+   },
+   {
+    "name": "Narcomoeba",
+    "decks": 71,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
+    "name": "Ichorid",
+    "decks": 70,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
+    "name": "Shambling Shell",
+    "decks": 68,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
+    "name": "Golgari Thug",
+    "decks": 66,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
+    "name": "Creeping Chill",
+    "decks": 65,
+    "roles": [
+     "reach"
+    ]
+   },
+   {
+    "name": "Stonecoil Serpent",
+    "decks": 56,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
+    "name": "Oko, Thief of Crowns",
+    "decks": 52,
+    "roles": [
+     "engine"
+    ]
+   },
+   {
+    "name": "Thassa's Oracle",
+    "decks": 51,
+    "roles": [
+     "finisher"
+    ]
+   },
+   {
+    "name": "Basking Rootwalla",
+    "decks": 50,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
+    "name": "Blazing Rootwalla",
+    "decks": 49,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
+    "name": "Patchwork Automaton",
+    "decks": 48,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
+    "name": "Street Wraith",
+    "decks": 35,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
+    "name": "Avatar of Burgeoning Echoes",
+    "decks": 24,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
+    "name": "Subtlety",
+    "decks": 22,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
+    "name": "Council of Reeds",
+    "decks": 21,
+    "roles": [
+     "engine"
+    ]
+   },
+   {
+    "name": "Phyrexian Dreadnought",
+    "decks": 14,
+    "roles": [
+     "finisher",
+     "beater"
+    ]
+   },
+   {
+    "name": "Monastery Mentor",
+    "decks": 14,
+    "roles": [
+     "engine"
+    ]
+   },
+   {
+    "name": "Murktide Regent",
+    "decks": 12,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
+    "name": "Fury",
+    "decks": 11,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
+    "name": "Eater of Days",
+    "decks": 9,
+    "roles": [
+     "finisher",
+     "beater"
+    ]
+   }
+  ],
+  "support": [
+   {
+    "name": "Hexing Squelcher",
+    "decks": 114,
+    "roles": [
+     "protection"
+    ]
+   },
+   {
+    "name": "Golgari Grave-Troll",
+    "decks": 69,
+    "roles": [
+     "protection"
+    ]
+   },
+   {
+    "name": "Nettlecyst",
+    "decks": 38,
+    "roles": [
+     "enhance"
+    ]
+   },
+   {
+    "name": "Deep Space 9",
+    "decks": 4,
+    "roles": [
+     "enhance"
+    ]
+   },
+   {
+    "name": "Sylvan Safekeeper",
+    "decks": 3,
+    "roles": [
+     "protection"
+    ]
+   },
+   {
+    "name": "Theorist's Proxy",
+    "decks": 2,
+    "roles": [
+     "protection"
+    ]
+   },
+   {
+    "name": "Batterskull",
+    "decks": 1,
+    "roles": [
+     "enhance"
+    ]
+   },
+   {
+    "name": "Leyline Axe",
+    "decks": 1,
+    "roles": [
+     "enhance"
+    ]
+   },
+   {
+    "name": "Goblin Plate Mail",
+    "decks": 1,
+    "roles": [
+     "enhance"
+    ]
+   },
+   {
+    "name": "Smaug's Fury",
+    "decks": 1,
+    "roles": [
+     "enhance"
+    ]
+   },
+   {
+    "name": "Well-Worn Spatula",
+    "decks": 1,
+    "roles": [
+     "enhance"
+    ]
+   }
+  ],
+  "combo": [
+   {
+    "name": "Time Walk",
+    "decks": 835,
+    "roles": [
+     "extraturn"
+    ]
+   },
+   {
+    "name": "Time Vault",
+    "decks": 338,
+    "roles": [
+     "extraturn"
+    ]
+   },
+   {
+    "name": "Manifold Key",
+    "decks": 313,
+    "roles": [
+     "untap"
+    ]
+   },
+   {
+    "name": "Tezzeret, Cruel Captain",
+    "decks": 275,
+    "roles": [
+     "untap",
+     "tutor",
+     "enhance"
+    ]
+   },
+   {
+    "name": "Tinker",
+    "decks": 248,
+    "roles": [
+     "cheat",
+     "tutor"
+    ]
+   },
+   {
+    "name": "White Plume Adventurer",
+    "decks": 113,
+    "roles": [
+     "untap",
+     "beater"
+    ]
+   },
+   {
+    "name": "Brain Freeze",
+    "decks": 75,
+    "roles": [
+     "copy",
+     "selfmill"
+    ]
+   },
+   {
+    "name": "Paradox Engine",
+    "decks": 75,
+    "roles": [
+     "untap"
+    ]
+   },
+   {
+    "name": "Show and Tell",
+    "decks": 46,
+    "roles": [
+     "cheat"
+    ]
+   },
+   {
+    "name": "Golos, Tireless Pilgrim",
+    "decks": 41,
+    "roles": [
+     "cheat",
+     "draw",
+     "ramp",
+     "engine",
+     "beater"
+    ]
+   },
+   {
+    "name": "Flash",
+    "decks": 38,
+    "roles": [
+     "cheat"
+    ]
+   },
+   {
+    "name": "Voltaic Key",
+    "decks": 27,
+    "roles": [
+     "untap"
+    ]
+   },
+   {
+    "name": "Raph & Mikey, Troublemakers",
+    "decks": 24,
+    "roles": [
+     "cheat",
+     "finisher",
+     "beater"
+    ]
+   },
+   {
+    "name": "Beseech the Mirror",
+    "decks": 15,
+    "roles": [
+     "cheat",
+     "tutor"
+    ]
+   },
+   {
+    "name": "Tendrils of Agony",
+    "decks": 14,
+    "roles": [
+     "copy",
+     "reach"
+    ]
+   },
+   {
+    "name": "Once Upon a Time",
+    "decks": 13,
+    "roles": [
+     "cheat",
+     "draw"
+    ]
+   },
+   {
+    "name": "Grave Researcher // Reanimate",
+    "decks": 10,
+    "roles": [
+     "cheat",
+     "selfmill",
+     "beater"
+    ]
+   },
+   {
+    "name": "Uro, Titan of Nature's Wrath",
+    "decks": 6,
+    "roles": [
+     "cheat",
+     "draw",
+     "recursion",
+     "ramp",
+     "finisher",
+     "engine",
+     "beater"
+    ]
+   },
+   {
+    "name": "Dauthi Voidwalker",
+    "decks": 6,
+    "roles": [
+     "cheat",
+     "beater"
+    ]
+   },
+   {
+    "name": "Tezzeret the Seeker",
+    "decks": 5,
+    "roles": [
+     "untap",
+     "tutor"
+    ]
+   },
+   {
+    "name": "Scryb Ranger",
+    "decks": 3,
+    "roles": [
+     "untap"
+    ]
+   },
+   {
+    "name": "Crop Rotation",
+    "decks": 3,
+    "roles": [
+     "cheat",
+     "ramp"
+    ]
+   },
+   {
+    "name": "Repurposing Bay",
+    "decks": 2,
+    "roles": [
+     "cheat",
+     "tutor"
+    ]
+   },
+   {
+    "name": "Stoneforge Mystic",
+    "decks": 1,
+    "roles": [
+     "cheat",
+     "tutor"
+    ]
+   },
+   {
+    "name": "Little Bear",
+    "decks": 1,
+    "roles": [
+     "untap",
+     "beater"
+    ]
+   }
+  ],
+  "other": [
+   {
+    "name": "Mystic Forge",
+    "decks": 169,
+    "roles": [
+     "other"
+    ]
+   },
+   {
+    "name": "Oath of Druids",
+    "decks": 61,
+    "roles": [
+     "other"
+    ]
+   },
+   {
+    "name": "Demonic Consultation",
+    "decks": 46,
+    "roles": [
+     "other"
+    ]
+   },
+   {
+    "name": "Misdirection",
+    "decks": 34,
+    "roles": [
+     "other"
+    ]
+   },
+   {
+    "name": "Fastbond",
+    "decks": 11,
+    "roles": [
+     "other"
+    ]
+   },
+   {
+    "name": "Unable to Scream",
+    "decks": 5,
+    "roles": [
+     "other"
+    ]
+   },
+   {
+    "name": "Balance",
+    "decks": 4,
+    "roles": [
+     "other"
+    ]
+   },
+   {
+    "name": "Hurkyl's Recall",
+    "decks": 3,
+    "roles": [
+     "other"
+    ]
+   },
+   {
+    "name": "Step Through",
+    "decks": 2,
+    "roles": [
+     "other"
+    ]
+   },
+   {
+    "name": "The Ten Rings",
+    "decks": 2,
+    "roles": [
+     "other"
+    ]
+   },
+   {
+    "name": "Enchanted River's Grasp",
+    "decks": 1,
+    "roles": [
+     "other"
+    ]
+   },
+   {
+    "name": "Sculpting Steel",
+    "decks": 1,
+    "roles": [
+     "other"
+    ]
+   },
+   {
+    "name": "Smelting Vat",
+    "decks": 1,
+    "roles": [
+     "other"
+    ]
+   },
+   {
+    "name": "Redirect Lightning",
+    "decks": 1,
+    "roles": [
+     "other"
+    ]
+   }
+  ]
+ },
  "engines": [
   {
    "name": "The One Ring",
    "decks": 305,
    "roles": [
     "draw",
-    "protection",
-    "engine"
+    "engine",
+    "protection"
    ],
    "tags": [
     "protection@etb",
@@ -518,8 +1463,8 @@
    "name": "Bilbo, Thief in the Night",
    "decks": 298,
    "roles": [
-    "ramp",
     "recursion",
+    "ramp",
     "engine"
    ],
    "tags": [
@@ -571,22 +1516,7 @@
    ],
    "tags": [
     "draw@each_turn",
-    "draw@other_trigger",
     "drain@other_trigger"
-   ]
-  },
-  {
-   "name": "Coveted Jewel",
-   "decks": 139,
-   "roles": [
-    "ramp",
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "draw@etb",
-    "mana@activated",
-    "draw@attack"
    ]
   },
   {
@@ -644,8 +1574,8 @@
    "name": "Relic of Sauron",
    "decks": 53,
    "roles": [
-    "ramp",
     "draw",
+    "ramp",
     "engine"
    ],
    "tags": [
@@ -701,9 +1631,9 @@
    "name": "Golos, Tireless Pilgrim",
    "decks": 41,
    "roles": [
-    "ramp",
+    "cheat",
     "draw",
-    "combo",
+    "ramp",
     "engine",
     "beater"
    ],
@@ -840,9 +1770,9 @@
    "decks": 9,
    "roles": [
     "recursion",
-    "protection",
     "engine",
-    "beater"
+    "beater",
+    "protection"
    ],
    "tags": [
     "protection@static",
@@ -854,6 +1784,7 @@
    "decks": 9,
    "roles": [
     "recursion",
+    "selfmill",
     "engine"
    ],
    "tags": [
@@ -922,10 +1853,10 @@
    "name": "Uro, Titan of Nature's Wrath",
    "decks": 6,
    "roles": [
-    "ramp",
+    "cheat",
     "draw",
     "recursion",
-    "combo",
+    "ramp",
     "finisher",
     "engine",
     "beater"
@@ -958,8 +1889,8 @@
    "decks": 4,
    "roles": [
     "removal",
-    "protection",
-    "engine"
+    "engine",
+    "protection"
    ],
    "tags": [
     "removal@cast_trigger",
@@ -987,15 +1918,17 @@
    "name": "Ajani, Nacatl Pariah // Ajani, Nacatl Avenger",
    "decks": 3,
    "roles": [
+    "removal",
     "engine",
     "reach",
-    "beater"
+    "tokens"
    ],
    "tags": [
     "token@etb",
     "pump@loyalty",
     "token@loyalty",
-    "drain@loyalty"
+    "drain@loyalty",
+    "removal@loyalty"
    ]
   },
   {
@@ -1007,6 +1940,21 @@
     "reach"
    ],
    "tags": [
+    "drain@activated",
+    "removal@activated"
+   ]
+  },
+  {
+   "name": "Walking Ballista",
+   "decks": 3,
+   "roles": [
+    "removal",
+    "engine",
+    "reach"
+   ],
+   "tags": [
+    "pump@static",
+    "pump@activated",
     "drain@activated",
     "removal@activated"
    ]
@@ -1068,7 +2016,7 @@
    "name": "Raph & Mikey, Troublemakers",
    "decks": 24,
    "roles": [
-    "combo",
+    "cheat",
     "finisher",
     "beater"
    ]
@@ -1111,10 +2059,10 @@
    "name": "Uro, Titan of Nature's Wrath",
    "decks": 6,
    "roles": [
-    "ramp",
+    "cheat",
     "draw",
     "recursion",
-    "combo",
+    "ramp",
     "finisher",
     "engine",
     "beater"
@@ -1170,6 +2118,7 @@
    "decks": 2,
    "roles": [
     "finisher",
+    "tokens",
     "beater"
    ]
   },
@@ -1260,6 +2209,14 @@
     "beater"
    ],
    "typeLine": "Creature — Human Warrior"
+  },
+  {
+   "name": "Oath of Druids",
+   "decks": 61,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Enchantment"
   },
   {
    "name": "Thassa's Oracle",
@@ -1513,14 +2470,6 @@
     "beater"
    ],
    "typeLine": "Creature — Insect"
-  },
-  {
-   "name": "Iron Hills Stalwart",
-   "decks": 1,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Dwarf Warrior"
   }
  ],
  "unknownCards": [
