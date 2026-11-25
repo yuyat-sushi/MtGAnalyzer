@@ -133,12 +133,14 @@
       const t = Tags.analyze(card);
       tags = t.tags; abilities = t.abilities;
       const set = new Set();
-      t.tags.forEach(x => { if (EFFECT_ROLE[x.effect]) set.add(EFFECT_ROLE[x.effect]); });
+      const isCreature = /\bCreature\b/.test(tl);
+      t.tags.forEach(x => { if (EFFECT_ROLE[x.effect] && x.effect !== 'mana') set.add(EFFECT_ROLE[x.effect]); });
+      // マナ加速：クリーチャーがトークン（宝物・落とし子など）経由でマナを出すだけなら、主な役割はマナ加速ではない
+      if (t.abilities.some(ab => ab.effects.includes('mana') && !(isCreature && /\btokens?\b|treasure/.test(ab.text)))) set.add('ramp');
       const text = String(card.oracle || '').toLowerCase().replace(/\([^)]*\)/g, ' ');
       for (const [role, regs] of Object.entries(EXTRA)) if (regs.some(r => r.test(text))) set.add(role);
 
       const isSpell = /\b(Instant|Sorcery)\b/.test(front);
-      const isCreature = /\bCreature\b/.test(tl);
       const power = parseInt(card.power, 10);
       // 1回きりのトークン生成は「トークン展開」（繰り返しならエンジン）
       if (t.tags.some(x => x.effect === 'token' && !x.repeat)) set.add('tokens');

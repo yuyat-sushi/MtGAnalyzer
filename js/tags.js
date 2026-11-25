@@ -75,9 +75,9 @@
                                                  /can't be activated/, /(each player|players|your opponents|target player) can't (cast|activate|search|gain life|draw)/, /don't cause abilities to trigger/,
                                                  /(lands|creatures|artifacts|permanents) (your opponents control )?enter (the battlefield )?tapped/, /\bdon't untap during/, /players skip/] },
     { id: 'cheat',     label: '踏み倒し',     re: [/put (a|an|up to \w+|any number of|that|those|target) [^.]*?(creature|artifact|enchantment|permanent|nonland)[^.]*?cards? (from (your hand|your library|their hand|a graveyard|among them)[^.]*?)?onto the battlefield/,
-                                                 /from (their|your) hand onto the battlefield/, /puts? that card onto the battlefield/, /without paying (its|their) mana costs?/] },
+                                                 /(artifact|creature|enchantment|planeswalker|permanent)( cards?|, (artifact|creature|enchantment|planeswalker|land)[\w, ]*? cards?) from (their|your) hand onto the battlefield/, /puts? that (creature )?card onto the battlefield/, /without paying (its|their) mana costs?/] },
     { id: 'extraturn', label: '追加ターン',   re: [/take an extra turn/] },
-    { id: 'untap',     label: 'アンタップ',   re: [/\buntap (target|all|up to \w+ target|another target) (artifacts?|permanents?|lands?|creatures?|nonland)/] },
+    { id: 'untap',     label: 'アンタップ',   re: [/\buntap (target|all|up to \w+ target|another target|up to \w+) (artifacts?|lands?|nonland permanents?)\b/] },
     { id: 'copy',      label: 'コピー/ストーム', re: [/\bstorm\b/, /copy (target|that|the exiled|it)[^.]*?(instant|sorcery|spell|card)/] },
     { id: 'protection', label: '保護',        re: [/(gains?|have|has) (hexproof|indestructible|shroud|protection from)/, /phases? out/, /\bregenerate\b/,
                                                  /exile [^.]*?(target|any number of target) [^.]*?(creature|permanent|nonland)[^.]*?(you control|you own)[\s\S]{0,60}?return (it|that card|them|those cards)/] }
@@ -154,7 +154,12 @@
         const triggers = /^•/.test(line) && prev ? prev : triggerOf(line, isSpell);
         if (!/^•/.test(line)) prev = triggers;
         // 相手が得をする文（"that player draws" "its controller creates" など）は、自分の利益になる効果の判定から外す
-        const selfLine = line.split(/(?<=\.)\s+/).filter(sentence => !OPPONENT_SUBJECT.test(sentence.replace(/^(when|whenever|at|if|then)\b[^,]*,\s*/, ''))).join(' ');
+        const selfLine = line.split(/(?<=\.)\s+/).filter(sentence => {
+          const m = sentence.match(/^(when|whenever|at|if|then)\b[^,]*,\s*/);
+          // "Whenever enchanted Forest is tapped for mana, its controller adds..." のように、自分のパーマネントの話なら除外しない
+          if (m && /\b(enchanted|equipped|this|you control)\b/.test(m[0])) return true;
+          return !OPPONENT_SUBJECT.test(sentence.slice(m ? m[0].length : 0));
+        }).join(' ');
         const effects = EFFECTS.filter(e => e.re.some(r => r.test(SELF_BENEFIT.has(e.id) ? selfLine : line))).map(e => e.id);
         // トレジャーだけを作るならマナ、クルーだけならドロー（トークン生成としては数えない）
         if (effects.includes('token') && /\b(treasure|clue|food|blood|map|powerstone)\b tokens?/.test(line) &&
