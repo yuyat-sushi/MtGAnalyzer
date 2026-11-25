@@ -1,6 +1,6 @@
 {
  "format": "Standard",
- "generatedAt": "2026-11-25T19:23:01.259Z",
+ "generatedAt": "2026-11-25T19:24:51.686Z",
  "decks": 2486,
  "otherOnly": [
   {
@@ -124,12 +124,6 @@
    "tags": []
   },
   {
-   "name": "Aang's Iceberg",
-   "decks": 24,
-   "typeLine": "Enchantment",
-   "tags": []
-  },
-  {
    "name": "Combustion Technique",
    "decks": 22,
    "typeLine": "Instant — Lesson",
@@ -231,6 +225,15 @@
    "typeLine": "Artifact — Equipment",
    "tags": [
     "pump@static"
+   ]
+  },
+  {
+   "name": "Carrot Cake",
+   "decks": 7,
+   "typeLine": "Artifact — Food",
+   "tags": [
+    "token@etb",
+    "lifegain@activated_once"
    ]
   },
   {
@@ -962,7 +965,7 @@
    ],
    "tags": [
     "lifegain@creature_enters",
-    "recursion@activated"
+    "recursion@activated_once"
    ]
   },
   {
@@ -1147,18 +1150,6 @@
    ]
   },
   {
-   "name": "Candy Trail",
-   "decks": 88,
-   "roles": [
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "lifegain@activated",
-    "draw@activated"
-   ]
-  },
-  {
    "name": "Hired Claw",
    "decks": 88,
    "roles": [
@@ -1181,18 +1172,6 @@
    "tags": [
     "drain@etb",
     "drain@attack"
-   ]
-  },
-  {
-   "name": "Curious Farm Animals",
-   "decks": 64,
-   "roles": [
-    "removal",
-    "engine"
-   ],
-   "tags": [
-    "lifegain@dies",
-    "removal@activated"
    ]
   },
   {
@@ -1338,6 +1317,33 @@
    "tags": [
     "token@attack",
     "draw@attack"
+   ]
+  },
+  {
+   "name": "Chandra, Torch of Defiance",
+   "decks": 38,
+   "roles": [
+    "removal",
+    "ramp",
+    "draw",
+    "engine"
+   ],
+   "tags": [
+    "draw@loyalty",
+    "drain@loyalty",
+    "mana@loyalty",
+    "removal@loyalty"
+   ]
+  },
+  {
+   "name": "Anthropological Mission",
+   "decks": 37,
+   "roles": [
+    "draw",
+    "engine"
+   ],
+   "tags": [
+    "draw@cast_trigger"
    ]
   }
  ],
@@ -1821,14 +1827,6 @@
    "typeLine": "Enchantment"
   },
   {
-   "name": "Aang's Iceberg",
-   "decks": 24,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Enchantment"
-  },
-  {
    "name": "Combustion Technique",
    "decks": 22,
    "roles": [
@@ -1851,6 +1849,14 @@
     "ramp"
    ],
    "typeLine": "Legendary Creature — Spirit Cleric"
+  },
+  {
+   "name": "Stadium Headliner",
+   "decks": 19,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Goblin Warrior"
   }
  ],
  "unknownCards": [

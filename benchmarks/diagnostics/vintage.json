@@ -1,6 +1,6 @@
 {
  "format": "Vintage",
- "generatedAt": "2026-11-25T19:23:01.259Z",
+ "generatedAt": "2026-11-25T19:24:51.686Z",
  "decks": 1268,
  "otherOnly": [
   {
@@ -76,6 +76,14 @@
    "decks": 121,
    "typeLine": "Instant — Trap",
    "tags": []
+  },
+  {
+   "name": "Bolas's Citadel",
+   "decks": 77,
+   "typeLine": "Legendary Artifact",
+   "tags": [
+    "drain@activated_once"
+   ]
   },
   {
    "name": "Brain Freeze",
@@ -480,7 +488,7 @@
    ],
    "tags": [
     "recursion@each_turn",
-    "draw@activated"
+    "draw@activated_once"
    ]
   },
   {
@@ -651,18 +659,6 @@
    ]
   },
   {
-   "name": "Cathar Commando",
-   "decks": 4,
-   "roles": [
-    "removal",
-    "engine",
-    "beater"
-   ],
-   "tags": [
-    "removal@activated"
-   ]
-  },
-  {
    "name": "Metamorphosis Fanatic",
    "decks": 3,
    "roles": [
@@ -700,30 +696,16 @@
    ]
   },
   {
-   "name": "Aether Spellbomb",
-   "decks": 3,
-   "roles": [
-    "removal",
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "removal@activated",
-    "draw@activated"
-   ]
-  },
-  {
    "name": "Thief of Existence",
    "decks": 3,
    "roles": [
     "removal",
     "draw",
-    "engine",
     "beater"
    ],
    "tags": [
-    "draw@cast_trigger",
-    "removal@cast_trigger"
+    "draw@cast_self",
+    "removal@cast_self"
    ]
   },
   {
@@ -745,11 +727,10 @@
    "roles": [
     "draw",
     "finisher",
-    "engine",
     "beater"
    ],
    "tags": [
-    "draw@cast_trigger"
+    "draw@cast_self"
    ]
   },
   {
@@ -764,7 +745,7 @@
    ],
    "tags": [
     "removal@attack",
-    "removal@cast_trigger",
+    "removal@cast_self",
     "recursion@static"
    ]
   },
@@ -782,20 +763,38 @@
     "draw@spell",
     "removal@spell"
    ]
-  }
- ],
- "engines": [
+  },
   {
-   "name": "Vexing Bauble",
-   "decks": 828,
+   "name": "Thought-Knot Seer",
+   "decks": 2,
    "roles": [
+    "discard",
     "draw",
+    "beater"
+   ],
+   "tags": [
+    "discard@etb",
+    "draw@once_trigger"
+   ]
+  },
+  {
+   "name": "Tamiyo, Inquisitive Student // Tamiyo, Seasoned Scholar",
+   "decks": 2,
+   "roles": [
+    "ramp",
+    "draw",
+    "recursion",
     "engine"
    ],
    "tags": [
-    "draw@activated"
+    "draw@attack",
+    "mana@loyalty",
+    "recursion@loyalty",
+    "draw@loyalty"
    ]
-  },
+  }
+ ],
+ "engines": [
   {
    "name": "The One Ring",
    "decks": 305,
@@ -819,19 +818,6 @@
    ],
    "tags": [
     "recursion@attack"
-   ]
-  },
-  {
-   "name": "Soul-Guide Lantern",
-   "decks": 230,
-   "roles": [
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "gyhate@etb",
-    "gyhate@activated",
-    "draw@activated"
    ]
   },
   {
@@ -917,18 +903,8 @@
     "engine"
    ],
    "tags": [
-    "gyhate@activated",
+    "gyhate@activated_once",
     "draw@death_trigger"
-   ]
-  },
-  {
-   "name": "Bolas's Citadel",
-   "decks": 77,
-   "roles": [
-    "engine"
-   ],
-   "tags": [
-    "drain@activated"
    ]
   },
   {
@@ -965,7 +941,7 @@
    ],
    "tags": [
     "recursion@each_turn",
-    "draw@activated"
+    "draw@activated_once"
    ]
   },
   {
@@ -1039,17 +1015,6 @@
    ]
   },
   {
-   "name": "Mishra's Bauble",
-   "decks": 38,
-   "roles": [
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "draw@activated"
-   ]
-  },
-  {
    "name": "Necropotence",
    "decks": 26,
    "roles": [
@@ -1058,18 +1023,6 @@
    ],
    "tags": [
     "draw@activated"
-   ]
-  },
-  {
-   "name": "Momentum Breaker",
-   "decks": 24,
-   "roles": [
-    "removal",
-    "engine"
-   ],
-   "tags": [
-    "removal@etb",
-    "lifegain@activated"
    ]
   },
   {
@@ -1239,17 +1192,6 @@
    ]
   },
   {
-   "name": "Seal of Removal",
-   "decks": 7,
-   "roles": [
-    "removal",
-    "engine"
-   ],
-   "tags": [
-    "removal@activated"
-   ]
-  },
-  {
    "name": "Simulacrum Synthesizer",
    "decks": 7,
    "roles": [
@@ -1258,6 +1200,87 @@
    "tags": [
     "token@creature_enters",
     "pump@creature_enters"
+   ]
+  },
+  {
+   "name": "Poxwalkers",
+   "decks": 6,
+   "roles": [
+    "recursion",
+    "engine",
+    "beater"
+   ],
+   "tags": [
+    "recursion@cast_trigger"
+   ]
+  },
+  {
+   "name": "Uro, Titan of Nature's Wrath",
+   "decks": 6,
+   "roles": [
+    "ramp",
+    "draw",
+    "recursion",
+    "finisher",
+    "engine",
+    "beater"
+   ],
+   "tags": [
+    "lifegain@etb",
+    "draw@etb",
+    "lifegain@attack",
+    "draw@attack",
+    "recursion@static"
+   ]
+  },
+  {
+   "name": "Displacer Kitten",
+   "decks": 4,
+   "roles": [
+    "removal",
+    "engine"
+   ],
+   "tags": [
+    "removal@cast_trigger"
+   ]
+  },
+  {
+   "name": "Minsc & Boo, Timeless Heroes",
+   "decks": 4,
+   "roles": [
+    "removal",
+    "draw",
+    "engine"
+   ],
+   "tags": [
+    "pump@loyalty",
+    "draw@loyalty",
+    "drain@loyalty",
+    "removal@loyalty"
+   ]
+  },
+  {
+   "name": "Ajani, Nacatl Pariah // Ajani, Nacatl Avenger",
+   "decks": 3,
+   "roles": [
+    "engine"
+   ],
+   "tags": [
+    "token@etb",
+    "pump@loyalty",
+    "token@loyalty"
+   ]
+  },
+  {
+   "name": "Goblin Bombardment",
+   "decks": 3,
+   "roles": [
+    "removal",
+    "engine"
+   ],
+   "tags": [
+    "drain@activated",
+    "removal@activated"
    ]
   }
  ],
@@ -1422,7 +1445,6 @@
    "roles": [
     "draw",
     "finisher",
-    "engine",
     "beater"
    ]
   },

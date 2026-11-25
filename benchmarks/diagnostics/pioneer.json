@@ -1,6 +1,6 @@
 {
  "format": "Pioneer",
- "generatedAt": "2026-11-25T19:23:01.259Z",
+ "generatedAt": "2026-11-25T19:24:51.686Z",
  "decks": 1183,
  "otherOnly": [
   {
@@ -268,7 +268,7 @@
    "decks": 3,
    "typeLine": "Artifact",
    "tags": [
-    "gyhate@activated"
+    "gyhate@activated_once"
    ]
   },
   {
@@ -299,6 +299,15 @@
    "tags": []
   },
   {
+   "name": "Carrot Cake",
+   "decks": 2,
+   "typeLine": "Artifact — Food",
+   "tags": [
+    "token@etb",
+    "lifegain@activated_once"
+   ]
+  },
+  {
    "name": "The Birth of Meletis",
    "decks": 2,
    "typeLine": "Enchantment — Saga",
@@ -312,6 +321,14 @@
    "decks": 2,
    "typeLine": "Sorcery",
    "tags": []
+  },
+  {
+   "name": "Wolfwillow Haven",
+   "decks": 2,
+   "typeLine": "Enchantment — Aura",
+   "tags": [
+    "token@activated_once"
+   ]
   },
   {
    "name": "Violent Urge",
@@ -411,20 +428,6 @@
    "tags": [
     "pump@static"
    ]
-  },
-  {
-   "name": "War Squeak",
-   "decks": 1,
-   "typeLine": "Enchantment — Aura",
-   "tags": [
-    "pump@static"
-   ]
-  },
-  {
-   "name": "Fires of Invention",
-   "decks": 1,
-   "typeLine": "Enchantment",
-   "tags": []
   }
  ],
  "manyRoles": [
@@ -713,18 +716,6 @@
    ]
   },
   {
-   "name": "Bloodtithe Harvester",
-   "decks": 19,
-   "roles": [
-    "removal",
-    "engine",
-    "beater"
-   ],
-   "tags": [
-    "removal@activated"
-   ]
-  },
-  {
    "name": "Enduring Curiosity",
    "decks": 16,
    "roles": [
@@ -826,6 +817,21 @@
     "engine"
    ],
    "tags": [
+    "draw@activated"
+   ]
+  },
+  {
+   "name": "Kenrith, the Returned King",
+   "decks": 8,
+   "roles": [
+    "draw",
+    "finisher",
+    "engine",
+    "beater"
+   ],
+   "tags": [
+    "pump@activated",
+    "lifegain@activated",
     "draw@activated"
    ]
   }
@@ -1168,18 +1174,6 @@
    ]
   },
   {
-   "name": "Experimental Synthesizer",
-   "decks": 41,
-   "roles": [
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "draw@etb",
-    "token@activated"
-   ]
-  },
-  {
    "name": "Gran-Gran",
    "decks": 38,
    "roles": [
@@ -1242,18 +1236,6 @@
    ],
    "tags": [
     "draw@combat_damage"
-   ]
-  },
-  {
-   "name": "Aftermath Analyst",
-   "decks": 31,
-   "roles": [
-    "recursion",
-    "engine"
-   ],
-   "tags": [
-    "selfmill@etb",
-    "recursion@activated"
    ]
   },
   {
@@ -1339,6 +1321,27 @@
    "tags": [
     "drain@other_trigger",
     "removal@other_trigger"
+   ]
+  },
+  {
+   "name": "Eidolon of the Great Revel",
+   "decks": 23,
+   "roles": [
+    "engine"
+   ],
+   "tags": [
+    "drain@cast_trigger"
+   ]
+  },
+  {
+   "name": "Bloodghast",
+   "decks": 23,
+   "roles": [
+    "recursion",
+    "engine"
+   ],
+   "tags": [
+    "recursion@landfall"
    ]
   }
  ],

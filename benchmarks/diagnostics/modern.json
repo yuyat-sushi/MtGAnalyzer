@@ -1,6 +1,6 @@
 {
  "format": "Modern",
- "generatedAt": "2026-11-25T19:23:01.259Z",
+ "generatedAt": "2026-11-25T19:24:51.686Z",
  "decks": 5064,
  "otherOnly": [
   {
@@ -8,7 +8,7 @@
    "decks": 515,
    "typeLine": "Artifact",
    "tags": [
-    "gyhate@activated"
+    "gyhate@activated_once"
    ]
   },
   {
@@ -457,11 +457,10 @@
    "roles": [
     "removal",
     "finisher",
-    "engine",
     "beater"
    ],
    "tags": [
-    "removal@cast_trigger"
+    "removal@cast_self"
    ]
   },
   {
@@ -471,11 +470,10 @@
     "removal",
     "ramp",
     "finisher",
-    "engine",
     "beater"
    ],
    "tags": [
-    "removal@cast_trigger"
+    "removal@cast_self"
    ]
   },
   {
@@ -489,6 +487,7 @@
     "engine"
    ],
    "tags": [
+    "removal@cast_self",
     "removal@cast_trigger",
     "lifegain@loyalty",
     "draw@loyalty",
@@ -642,19 +641,6 @@
    ]
   },
   {
-   "name": "Mind Stone",
-   "decks": 145,
-   "roles": [
-    "ramp",
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "mana@activated",
-    "draw@activated"
-   ]
-  },
-  {
    "name": "Archon of Cruelty",
    "decks": 144,
    "roles": [
@@ -686,19 +672,6 @@
     "mana@chapter",
     "draw@chapter",
     "token@activated"
-   ]
-  },
-  {
-   "name": "Giant's Boulder",
-   "decks": 127,
-   "roles": [
-    "removal",
-    "ramp",
-    "engine"
-   ],
-   "tags": [
-    "mana@activated",
-    "removal@activated"
    ]
   },
   {
@@ -834,20 +807,34 @@
     "draw@loyalty",
     "pump@loyalty"
    ]
-  }
- ],
- "engines": [
+  },
   {
-   "name": "Mishra's Bauble",
-   "decks": 1301,
+   "name": "Ketramose, the New Dawn",
+   "decks": 62,
    "roles": [
     "draw",
+    "engine",
+    "beater"
+   ],
+   "tags": [
+    "draw@other_trigger"
+   ]
+  },
+  {
+   "name": "Tameshi, Reality Architect",
+   "decks": 56,
+   "roles": [
+    "draw",
+    "recursion",
     "engine"
    ],
    "tags": [
-    "draw@activated"
+    "draw@other_trigger",
+    "recursion@activated"
    ]
-  },
+  }
+ ],
+ "engines": [
   {
    "name": "Teferi, Time Raveler",
    "decks": 748,
@@ -862,45 +849,6 @@
    ]
   },
   {
-   "name": "Devourer of Destiny",
-   "decks": 703,
-   "roles": [
-    "removal",
-    "finisher",
-    "engine",
-    "beater"
-   ],
-   "tags": [
-    "removal@cast_trigger"
-   ]
-  },
-  {
-   "name": "Haywire Mite",
-   "decks": 543,
-   "roles": [
-    "removal",
-    "engine"
-   ],
-   "tags": [
-    "lifegain@dies",
-    "removal@activated"
-   ]
-  },
-  {
-   "name": "Emrakul, the Promised End",
-   "decks": 523,
-   "roles": [
-    "removal",
-    "ramp",
-    "finisher",
-    "engine",
-    "beater"
-   ],
-   "tags": [
-    "removal@cast_trigger"
-   ]
-  },
-  {
    "name": "Psychic Frog",
    "decks": 499,
    "roles": [
@@ -910,17 +858,6 @@
    "tags": [
     "draw@combat_damage",
     "pump@activated"
-   ]
-  },
-  {
-   "name": "Vexing Bauble",
-   "decks": 494,
-   "roles": [
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "draw@activated"
    ]
   },
   {
@@ -943,19 +880,6 @@
    ],
    "tags": [
     "token@each_turn"
-   ]
-  },
-  {
-   "name": "Soul-Guide Lantern",
-   "decks": 426,
-   "roles": [
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "gyhate@etb",
-    "gyhate@activated",
-    "draw@activated"
    ]
   },
   {
@@ -1014,7 +938,7 @@
     "engine"
    ],
    "tags": [
-    "gyhate@activated",
+    "gyhate@activated_once",
     "draw@death_trigger"
    ]
   },
@@ -1029,6 +953,7 @@
     "engine"
    ],
    "tags": [
+    "removal@cast_self",
     "removal@cast_trigger",
     "lifegain@loyalty",
     "draw@loyalty",
@@ -1069,6 +994,18 @@
     "token@etb",
     "draw@etb",
     "token@activated"
+   ]
+  },
+  {
+   "name": "Phelia, Exuberant Shepherd",
+   "decks": 246,
+   "roles": [
+    "removal",
+    "engine"
+   ],
+   "tags": [
+    "removal@attack",
+    "pump@attack"
    ]
   },
   {
@@ -1203,19 +1140,6 @@
    ]
   },
   {
-   "name": "Mind Stone",
-   "decks": 145,
-   "roles": [
-    "ramp",
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "mana@activated",
-    "draw@activated"
-   ]
-  },
-  {
    "name": "Archon of Cruelty",
    "decks": 144,
    "roles": [
@@ -1271,19 +1195,6 @@
    "tags": [
     "draw@activated",
     "gyhate@activated"
-   ]
-  },
-  {
-   "name": "Giant's Boulder",
-   "decks": 127,
-   "roles": [
-    "removal",
-    "ramp",
-    "engine"
-   ],
-   "tags": [
-    "mana@activated",
-    "removal@activated"
    ]
   },
   {
@@ -1353,6 +1264,94 @@
     "drain@activated",
     "removal@activated"
    ]
+  },
+  {
+   "name": "Salvage Titan",
+   "decks": 85,
+   "roles": [
+    "recursion",
+    "finisher",
+    "engine",
+    "beater"
+   ],
+   "tags": [
+    "recursion@activated"
+   ]
+  },
+  {
+   "name": "Seasoned Cryomancer",
+   "decks": 84,
+   "roles": [
+    "draw",
+    "engine"
+   ],
+   "tags": [
+    "draw@etb",
+    "draw@activated"
+   ]
+  },
+  {
+   "name": "Vengevine",
+   "decks": 81,
+   "roles": [
+    "recursion",
+    "engine",
+    "beater"
+   ],
+   "tags": [
+    "recursion@cast_trigger"
+   ]
+  },
+  {
+   "name": "Stormchaser's Talent",
+   "decks": 79,
+   "roles": [
+    "recursion",
+    "engine"
+   ],
+   "tags": [
+    "token@etb",
+    "recursion@once_trigger",
+    "token@cast_trigger"
+   ]
+  },
+  {
+   "name": "Darklight Phoenix",
+   "decks": 69,
+   "roles": [
+    "recursion",
+    "engine",
+    "beater"
+   ],
+   "tags": [
+    "recursion@each_turn"
+   ]
+  },
+  {
+   "name": "Cauldron Familiar",
+   "decks": 66,
+   "roles": [
+    "recursion",
+    "engine"
+   ],
+   "tags": [
+    "lifegain@etb",
+    "drain@etb",
+    "recursion@activated"
+   ]
+  },
+  {
+   "name": "Gilded Goose",
+   "decks": 65,
+   "roles": [
+    "ramp",
+    "engine"
+   ],
+   "tags": [
+    "lifegain@etb",
+    "lifegain@activated",
+    "mana@activated"
+   ]
   }
  ],
  "finishers": [
@@ -1362,7 +1361,6 @@
    "roles": [
     "removal",
     "finisher",
-    "engine",
     "beater"
    ]
   },
@@ -1373,7 +1371,6 @@
     "removal",
     "ramp",
     "finisher",
-    "engine",
     "beater"
    ]
   },
@@ -1537,14 +1534,6 @@
   }
  ],
  "noTags": [
-  {
-   "name": "Solitude",
-   "decks": 921,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Elemental Incarnation"
-  },
   {
    "name": "Street Wraith",
    "decks": 604,
@@ -1868,6 +1857,14 @@
     "beater"
    ],
    "typeLine": "Creature — Angel"
+  },
+  {
+   "name": "Young Wolf",
+   "decks": 79,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Wolf"
   }
  ],
  "unknownCards": [

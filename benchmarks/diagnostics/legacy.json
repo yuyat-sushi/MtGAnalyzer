@@ -1,6 +1,6 @@
 {
  "format": "Legacy",
- "generatedAt": "2026-11-25T19:23:01.259Z",
+ "generatedAt": "2026-11-25T19:24:51.686Z",
  "decks": 2846,
  "otherOnly": [
   {
@@ -249,7 +249,7 @@
    "decks": 13,
    "typeLine": "Artifact",
    "tags": [
-    "gyhate@activated"
+    "gyhate@activated_once"
    ]
   },
   {
@@ -482,6 +482,7 @@
     "engine"
    ],
    "tags": [
+    "removal@cast_self",
     "removal@cast_trigger",
     "lifegain@loyalty",
     "draw@loyalty",
@@ -498,19 +499,6 @@
     "beater"
    ],
    "tags": []
-  },
-  {
-   "name": "Giant's Boulder",
-   "decks": 170,
-   "roles": [
-    "removal",
-    "ramp",
-    "engine"
-   ],
-   "tags": [
-    "mana@activated",
-    "removal@activated"
-   ]
   },
   {
    "name": "Thought-Knot Seer",
@@ -602,7 +590,7 @@
     "engine"
    ],
    "tags": [
-    "mana@activated",
+    "mana@activated_once",
     "draw@death_trigger"
    ]
   },
@@ -669,19 +657,6 @@
    ]
   },
   {
-   "name": "Mishra's Research Desk",
-   "decks": 73,
-   "roles": [
-    "draw",
-    "recursion",
-    "engine"
-   ],
-   "tags": [
-    "draw@activated",
-    "recursion@static"
-   ]
-  },
-  {
    "name": "Jace, Wielder of Mysteries",
    "decks": 64,
    "roles": [
@@ -732,20 +707,6 @@
     "mana@chapter",
     "draw@chapter",
     "token@activated"
-   ]
-  },
-  {
-   "name": "Pyrite Spellbomb",
-   "decks": 35,
-   "roles": [
-    "removal",
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "drain@activated",
-    "removal@activated",
-    "draw@activated"
    ]
   },
   {
@@ -820,6 +781,47 @@
     "recursion@static",
     "pump@static"
    ]
+  },
+  {
+   "name": "Wail of the Forgotten",
+   "decks": 26,
+   "roles": [
+    "removal",
+    "discard",
+    "draw"
+   ],
+   "tags": [
+    "removal@spell",
+    "discard@spell",
+    "draw@spell"
+   ]
+  },
+  {
+   "name": "Ashen Rider",
+   "decks": 25,
+   "roles": [
+    "removal",
+    "finisher",
+    "beater"
+   ],
+   "tags": [
+    "removal@etb",
+    "removal@dies"
+   ]
+  },
+  {
+   "name": "Borborygmos Enraged",
+   "decks": 21,
+   "roles": [
+    "removal",
+    "finisher",
+    "engine",
+    "beater"
+   ],
+   "tags": [
+    "drain@activated",
+    "removal@activated"
+   ]
   }
  ],
  "engines": [
@@ -840,17 +842,6 @@
    ]
   },
   {
-   "name": "Mishra's Bauble",
-   "decks": 407,
-   "roles": [
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "draw@activated"
-   ]
-  },
-  {
    "name": "Kaito, Bane of Nightmares",
    "decks": 327,
    "roles": [
@@ -863,6 +854,18 @@
     "pump@loyalty",
     "draw@loyalty",
     "selfmill@loyalty"
+   ]
+  },
+  {
+   "name": "Phelia, Exuberant Shepherd",
+   "decks": 308,
+   "roles": [
+    "removal",
+    "engine"
+   ],
+   "tags": [
+    "removal@attack",
+    "pump@attack"
    ]
   },
   {
@@ -948,24 +951,12 @@
     "engine"
    ],
    "tags": [
+    "removal@cast_self",
     "removal@cast_trigger",
     "lifegain@loyalty",
     "draw@loyalty",
     "mana@loyalty",
     "tutor@loyalty"
-   ]
-  },
-  {
-   "name": "Giant's Boulder",
-   "decks": 170,
-   "roles": [
-    "removal",
-    "ramp",
-    "engine"
-   ],
-   "tags": [
-    "mana@activated",
-    "removal@activated"
    ]
   },
   {
@@ -977,17 +968,6 @@
    "tags": [
     "pump@static",
     "token@cast_trigger"
-   ]
-  },
-  {
-   "name": "Wastescape Battlemage",
-   "decks": 152,
-   "roles": [
-    "removal",
-    "engine"
-   ],
-   "tags": [
-    "removal@cast_trigger"
    ]
   },
   {
@@ -1045,17 +1025,6 @@
    ]
   },
   {
-   "name": "Urza's Bauble",
-   "decks": 101,
-   "roles": [
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "draw@activated"
-   ]
-  },
-  {
    "name": "Up the Beanstalk",
    "decks": 99,
    "roles": [
@@ -1065,19 +1034,6 @@
    "tags": [
     "draw@etb",
     "draw@cast_trigger"
-   ]
-  },
-  {
-   "name": "Soul-Guide Lantern",
-   "decks": 98,
-   "roles": [
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "gyhate@etb",
-    "gyhate@activated",
-    "draw@activated"
    ]
   },
   {
@@ -1091,17 +1047,6 @@
    "tags": [
     "draw@loyalty",
     "removal@loyalty"
-   ]
-  },
-  {
-   "name": "Sewer-veillance Cam",
-   "decks": 94,
-   "roles": [
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "draw@activated"
    ]
   },
   {
@@ -1125,7 +1070,7 @@
     "engine"
    ],
    "tags": [
-    "mana@activated",
+    "mana@activated_once",
     "draw@death_trigger"
    ]
   },
@@ -1189,19 +1134,6 @@
     "drain@etb",
     "removal@etb",
     "token@activated"
-   ]
-  },
-  {
-   "name": "Mishra's Research Desk",
-   "decks": 73,
-   "roles": [
-    "draw",
-    "recursion",
-    "engine"
-   ],
-   "tags": [
-    "draw@activated",
-    "recursion@static"
    ]
   },
   {
@@ -1315,20 +1247,6 @@
    ]
   },
   {
-   "name": "Pyrite Spellbomb",
-   "decks": 35,
-   "roles": [
-    "removal",
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "drain@activated",
-    "removal@activated",
-    "draw@activated"
-   ]
-  },
-  {
    "name": "Chandra, Chill of Compliance",
    "decks": 34,
    "roles": [
@@ -1340,6 +1258,102 @@
     "selfmill@loyalty",
     "mana@loyalty",
     "draw@loyalty"
+   ]
+  },
+  {
+   "name": "Caves of Chaos Adventurer",
+   "decks": 30,
+   "roles": [
+    "draw",
+    "finisher",
+    "engine",
+    "beater"
+   ],
+   "tags": [
+    "draw@attack"
+   ]
+  },
+  {
+   "name": "Stormchaser's Talent",
+   "decks": 28,
+   "roles": [
+    "recursion",
+    "engine"
+   ],
+   "tags": [
+    "token@etb",
+    "recursion@once_trigger",
+    "token@cast_trigger"
+   ]
+  },
+  {
+   "name": "Uro, Titan of Nature's Wrath",
+   "decks": 28,
+   "roles": [
+    "ramp",
+    "draw",
+    "recursion",
+    "finisher",
+    "engine",
+    "beater"
+   ],
+   "tags": [
+    "lifegain@etb",
+    "draw@etb",
+    "lifegain@attack",
+    "draw@attack",
+    "recursion@static"
+   ]
+  },
+  {
+   "name": "Stinkweed Imp",
+   "decks": 27,
+   "roles": [
+    "removal",
+    "engine"
+   ],
+   "tags": [
+    "removal@combat_damage"
+   ]
+  },
+  {
+   "name": "Borborygmos Enraged",
+   "decks": 21,
+   "roles": [
+    "removal",
+    "finisher",
+    "engine",
+    "beater"
+   ],
+   "tags": [
+    "drain@activated",
+    "removal@activated"
+   ]
+  },
+  {
+   "name": "Loran of the Third Path",
+   "decks": 20,
+   "roles": [
+    "removal",
+    "draw",
+    "engine"
+   ],
+   "tags": [
+    "removal@etb",
+    "draw@activated"
+   ]
+  },
+  {
+   "name": "Mole Man, Moloid Master",
+   "decks": 18,
+   "roles": [
+    "recursion",
+    "engine"
+   ],
+   "tags": [
+    "recursion@static",
+    "token@landfall",
+    "selfmill@landfall"
    ]
   }
  ],
@@ -1698,14 +1712,6 @@
    "typeLine": "Artifact"
   },
   {
-   "name": "Solitude",
-   "decks": 117,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Elemental Incarnation"
-  },
-  {
    "name": "Sneak Attack",
    "decks": 116,
    "roles": [
@@ -1851,6 +1857,14 @@
     "other"
    ],
    "typeLine": "Enchantment"
+  },
+  {
+   "name": "Narcomoeba",
+   "decks": 80,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Illusion"
   }
  ],
  "unknownCards": [

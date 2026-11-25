@@ -1,6 +1,6 @@
 {
  "format": "Pauper",
- "generatedAt": "2026-11-25T19:23:01.259Z",
+ "generatedAt": "2026-11-25T19:24:51.686Z",
  "decks": 2806,
  "otherOnly": [
   {
@@ -459,19 +459,6 @@
    "tags": []
   },
   {
-   "name": "Giant's Boulder",
-   "decks": 239,
-   "roles": [
-    "removal",
-    "ramp",
-    "engine"
-   ],
-   "tags": [
-    "mana@activated",
-    "removal@activated"
-   ]
-  },
-  {
    "name": "Cryptic Serpent",
    "decks": 216,
    "roles": [
@@ -508,19 +495,6 @@
    ]
   },
   {
-   "name": "Barrels of Blasting Jelly",
-   "decks": 102,
-   "roles": [
-    "removal",
-    "ramp",
-    "engine"
-   ],
-   "tags": [
-    "mana@activated",
-    "removal@activated"
-   ]
-  },
-  {
    "name": "Salt Road Packbeast",
    "decks": 91,
    "roles": [
@@ -530,34 +504,6 @@
    ],
    "tags": [
     "draw@etb"
-   ]
-  },
-  {
-   "name": "Tinder Wall",
-   "decks": 35,
-   "roles": [
-    "removal",
-    "ramp",
-    "engine"
-   ],
-   "tags": [
-    "mana@activated",
-    "removal@activated"
-   ]
-  },
-  {
-   "name": "Eldrazi Repurposer",
-   "decks": 33,
-   "roles": [
-    "ramp",
-    "engine",
-    "beater"
-   ],
-   "tags": [
-    "token@cast_trigger",
-    "mana@cast_trigger",
-    "token@dies",
-    "mana@dies"
    ]
   },
   {
@@ -584,19 +530,6 @@
    ],
    "tags": [
     "draw@combat_damage"
-   ]
-  },
-  {
-   "name": "Reckless Lackey",
-   "decks": 5,
-   "roles": [
-    "ramp",
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "draw@activated",
-    "mana@activated"
    ]
   },
   {
@@ -645,7 +578,7 @@
     "engine"
    ],
    "tags": [
-    "mana@activated",
+    "mana@activated_once",
     "draw@death_trigger"
    ]
   },
@@ -709,7 +642,7 @@
     "engine"
    ],
    "tags": [
-    "gyhate@activated",
+    "gyhate@activated_once",
     "draw@death_trigger"
    ]
   },
@@ -721,29 +654,6 @@
    ],
    "tags": [
     "lifegain@activated"
-   ]
-  },
-  {
-   "name": "Lembas",
-   "decks": 311,
-   "roles": [
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "draw@etb",
-    "lifegain@activated"
-   ]
-  },
-  {
-   "name": "Blood Fountain",
-   "decks": 306,
-   "roles": [
-    "recursion",
-    "engine"
-   ],
-   "tags": [
-    "recursion@activated"
    ]
   },
   {
@@ -792,19 +702,6 @@
    ]
   },
   {
-   "name": "Giant's Boulder",
-   "decks": 239,
-   "roles": [
-    "removal",
-    "ramp",
-    "engine"
-   ],
-   "tags": [
-    "mana@activated",
-    "removal@activated"
-   ]
-  },
-  {
    "name": "Kessig Flamebreather",
    "decks": 218,
    "roles": [
@@ -812,18 +709,6 @@
    ],
    "tags": [
     "drain@cast_trigger"
-   ]
-  },
-  {
-   "name": "Melded Moxite",
-   "decks": 204,
-   "roles": [
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "draw@etb",
-    "token@activated"
    ]
   },
   {
@@ -864,19 +749,6 @@
    ]
   },
   {
-   "name": "Writhing Chrysalis",
-   "decks": 137,
-   "roles": [
-    "ramp",
-    "engine"
-   ],
-   "tags": [
-    "token@cast_trigger",
-    "mana@cast_trigger",
-    "pump@other_trigger"
-   ]
-  },
-  {
    "name": "Armadillo Cloak",
    "decks": 136,
    "roles": [
@@ -885,17 +757,6 @@
    "tags": [
     "pump@static",
     "lifegain@other_trigger"
-   ]
-  },
-  {
-   "name": "Sewer-veillance Cam",
-   "decks": 120,
-   "roles": [
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "draw@activated"
    ]
   },
   {
@@ -912,31 +773,6 @@
    ]
   },
   {
-   "name": "Experimental Synthesizer",
-   "decks": 110,
-   "roles": [
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "draw@etb",
-    "token@activated"
-   ]
-  },
-  {
-   "name": "Barrels of Blasting Jelly",
-   "decks": 102,
-   "roles": [
-    "removal",
-    "ramp",
-    "engine"
-   ],
-   "tags": [
-    "mana@activated",
-    "removal@activated"
-   ]
-  },
-  {
    "name": "Lunarch Veteran // Luminous Phantom",
    "decks": 64,
    "roles": [
@@ -947,18 +783,6 @@
     "lifegain@creature_enters",
     "recursion@static",
     "lifegain@other_trigger"
-   ]
-  },
-  {
-   "name": "Candy Trail",
-   "decks": 51,
-   "roles": [
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "lifegain@activated",
-    "draw@activated"
    ]
   },
   {
@@ -984,68 +808,6 @@
    ]
   },
   {
-   "name": "Gingerbrute",
-   "decks": 39,
-   "roles": [
-    "engine"
-   ],
-   "tags": [
-    "lifegain@activated"
-   ]
-  },
-  {
-   "name": "Tinder Wall",
-   "decks": 35,
-   "roles": [
-    "removal",
-    "ramp",
-    "engine"
-   ],
-   "tags": [
-    "mana@activated",
-    "removal@activated"
-   ]
-  },
-  {
-   "name": "Soul-Guide Lantern",
-   "decks": 34,
-   "roles": [
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "gyhate@etb",
-    "gyhate@activated",
-    "draw@activated"
-   ]
-  },
-  {
-   "name": "Eldrazi Repurposer",
-   "decks": 33,
-   "roles": [
-    "ramp",
-    "engine",
-    "beater"
-   ],
-   "tags": [
-    "token@cast_trigger",
-    "mana@cast_trigger",
-    "token@dies",
-    "mana@dies"
-   ]
-  },
-  {
-   "name": "Heaped Harvest",
-   "decks": 24,
-   "roles": [
-    "ramp",
-    "engine"
-   ],
-   "tags": [
-    "lifegain@activated"
-   ]
-  },
-  {
    "name": "Cauldron Familiar",
    "decks": 23,
    "roles": [
@@ -1066,7 +828,7 @@
     "engine"
    ],
    "tags": [
-    "lifegain@activated",
+    "lifegain@activated_once",
     "draw@death_trigger"
    ]
   },
@@ -1158,6 +920,164 @@
    ],
    "tags": [
     "lifegain@other_trigger"
+   ]
+  },
+  {
+   "name": "Drannith Healer",
+   "decks": 9,
+   "roles": [
+    "engine"
+   ],
+   "tags": [
+    "lifegain@other_trigger"
+   ]
+  },
+  {
+   "name": "Drannith Stinger",
+   "decks": 9,
+   "roles": [
+    "engine"
+   ],
+   "tags": [
+    "drain@other_trigger"
+   ]
+  },
+  {
+   "name": "Hinterland Sanctifier",
+   "decks": 8,
+   "roles": [
+    "engine"
+   ],
+   "tags": [
+    "lifegain@creature_enters"
+   ]
+  },
+  {
+   "name": "Magmakin Artillerist",
+   "decks": 7,
+   "roles": [
+    "engine"
+   ],
+   "tags": [
+    "drain@other_trigger",
+    "drain@once_trigger"
+   ]
+  },
+  {
+   "name": "Stinkweed Imp",
+   "decks": 6,
+   "roles": [
+    "removal",
+    "engine"
+   ],
+   "tags": [
+    "removal@combat_damage"
+   ]
+  },
+  {
+   "name": "Molten Gatekeeper",
+   "decks": 6,
+   "roles": [
+    "recursion",
+    "engine"
+   ],
+   "tags": [
+    "drain@creature_enters",
+    "recursion@static"
+   ]
+  },
+  {
+   "name": "Pegasus Guardian // Rescue the Foal",
+   "decks": 5,
+   "roles": [
+    "removal",
+    "engine",
+    "beater"
+   ],
+   "tags": [
+    "token@each_turn",
+    "removal@spell"
+   ]
+  },
+  {
+   "name": "Photosynthetic Physician",
+   "decks": 5,
+   "roles": [
+    "finisher",
+    "engine",
+    "beater"
+   ],
+   "tags": [
+    "token@activated"
+   ]
+  },
+  {
+   "name": "Okiba-Gang Shinobi",
+   "decks": 5,
+   "roles": [
+    "discard",
+    "engine",
+    "beater"
+   ],
+   "tags": [
+    "discard@combat_damage"
+   ]
+  },
+  {
+   "name": "Gorilla Shaman",
+   "decks": 4,
+   "roles": [
+    "removal",
+    "engine"
+   ],
+   "tags": [
+    "removal@activated"
+   ]
+  },
+  {
+   "name": "Golem Foundry",
+   "decks": 4,
+   "roles": [
+    "engine"
+   ],
+   "tags": [
+    "token@activated"
+   ]
+  },
+  {
+   "name": "Valakut Invoker",
+   "decks": 4,
+   "roles": [
+    "removal",
+    "engine"
+   ],
+   "tags": [
+    "drain@activated",
+    "removal@activated"
+   ]
+  },
+  {
+   "name": "Chromatic Star",
+   "decks": 4,
+   "roles": [
+    "ramp",
+    "draw",
+    "engine"
+   ],
+   "tags": [
+    "mana@activated_once",
+    "draw@death_trigger"
+   ]
+  },
+  {
+   "name": "Lys Alana Huntmaster",
+   "decks": 4,
+   "roles": [
+    "engine",
+    "beater"
+   ],
+   "tags": [
+    "token@cast_trigger"
    ]
   }
  ],
