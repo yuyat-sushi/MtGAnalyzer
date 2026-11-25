@@ -1,6 +1,6 @@
 {
  "format": "Standard",
- "generatedAt": "2026-11-25T20:36:54.705Z",
+ "generatedAt": "2026-11-25T20:50:40.007Z",
  "decks": 2486,
  "otherOnly": [
   {
@@ -13,18 +13,6 @@
    "name": "United Battlefront",
    "decks": 111,
    "typeLine": "Sorcery",
-   "tags": []
-  },
-  {
-   "name": "Day of Black Sun",
-   "decks": 35,
-   "typeLine": "Sorcery",
-   "tags": []
-  },
-  {
-   "name": "Multiply by Zero",
-   "decks": 10,
-   "typeLine": "Instant",
    "tags": []
   },
   {
@@ -1520,20 +1508,6 @@
     ]
    },
    {
-    "name": "Day of Black Sun",
-    "decks": 35,
-    "roles": [
-     "other"
-    ]
-   },
-   {
-    "name": "Multiply by Zero",
-    "decks": 10,
-    "roles": [
-     "other"
-    ]
-   },
-   {
     "name": "Break Out",
     "decks": 7,
     "roles": [
@@ -2499,7 +2473,7 @@
    "name": "Day of Black Sun",
    "decks": 35,
    "roles": [
-    "other"
+    "wipe"
    ],
    "typeLine": "Sorcery"
   },
@@ -2579,7 +2553,7 @@
    "name": "Multiply by Zero",
    "decks": 10,
    "roles": [
-    "other"
+    "removal"
    ],
    "typeLine": "Instant"
   },
