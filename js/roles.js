@@ -16,28 +16,33 @@
     { id: 'wipe',       label: '全体除去',     color: '#9b2f2f' },
     { id: 'counter',    label: '打ち消し',     color: '#5a6fd6' },
     { id: 'discard',    label: '手札破壊',     color: '#7a4fa0' },
+    { id: 'hate',       label: '妨害',         color: '#5e7480' },
     { id: 'tutor',      label: 'サーチ',       color: '#8a5cc7' },
     { id: 'recursion',  label: '墓地回収',     color: '#4a4a6a' },
     { id: 'protection', label: '保護',         color: '#d8b13a' },
+    { id: 'combo',      label: 'コンボ/展開',  color: '#2f8f8f' },
     { id: 'finisher',   label: 'フィニッシャー', color: '#c0392b' },
     { id: 'engine',     label: 'エンジン',     color: '#c4569a' },
+    { id: 'reach',      label: '本体火力',     color: '#a8324a' },
     { id: 'beater',     label: '打点',         color: '#e07a2e' },
+    { id: 'enhance',    label: '強化',         color: '#b5835a' },
     { id: 'other',      label: 'その他',       color: '#777' }
   ];
   const ROLE_MAP = Object.fromEntries(ROLES.map(r => [r.id, r]));
   // 主役割を決める優先順位
-  const PRIORITY = ['land', 'wipe', 'removal', 'counter', 'discard', 'ramp', 'draw', 'tutor', 'recursion', 'protection', 'finisher', 'engine', 'beater', 'other'];
+  const PRIORITY = ['land', 'wipe', 'removal', 'counter', 'discard', 'hate', 'ramp', 'draw', 'tutor', 'recursion', 'protection', 'combo', 'finisher', 'engine', 'reach', 'beater', 'enhance', 'other'];
   // 「勝ち手段」としてまとめて数える役割
-  const PRESSURE = ['finisher', 'engine', 'beater'];
+  const PRESSURE = ['finisher', 'engine', 'reach', 'beater'];
   // 旧バージョンの役割IDの読み替え
   const LEGACY = { threat: 'beater' };
   // 「干渉」としてまとめて数える役割
-  const INTERACTION = ['removal', 'wipe', 'counter', 'discard'];
+  const INTERACTION = ['removal', 'wipe', 'counter', 'discard', 'hate'];
 
   // 効果タグ → 役割
   const EFFECT_ROLE = {
     mana: 'ramp', draw: 'draw', removal: 'removal', wipe: 'wipe', counter: 'counter', discard: 'discard',
-    tutor: 'tutor', recursion: 'recursion', protection: 'protection'
+    tutor: 'tutor', recursion: 'recursion', protection: 'protection', gyhate: 'hate', hate: 'hate',
+    cheat: 'combo', extraturn: 'combo', untap: 'combo', copy: 'combo', drain: 'reach'
   };
   // 繰り返し起きるとき「エンジン」とみなす効果（自己強化やマナは除く）
   const ENGINE_EFFECTS = new Set(['token', 'draw', 'lifegain', 'drain', 'removal', 'energy', 'recursion', 'discard']);
@@ -45,7 +50,7 @@
   // タグでは拾いにくい、文全体で判定する追加ルール
   const EXTRA = {
     ramp: [
-      /search your library for (a|an|up to \w+|two) (basic )?(land|forest|plains|island|swamp|mountain)[^.]*?onto the battlefield/,
+      /search your library for (a|an|up to [\w ]+?|two) (basic )?(land|forest|plains|island|swamp|mountain)[^.]*?onto the battlefield/,
       /put (a|up to \w+) land cards? from your hand onto the battlefield/,
       /you may play (an )?additional lands?/,
       /costs? \{\d\} less to cast/
@@ -81,13 +86,17 @@
       const isSpell = /\b(Instant|Sorcery)\b/.test(front);
       const isCreature = /\bCreature\b/.test(tl);
       const power = parseInt(card.power, 10);
+      // 1回きりのトークン生成は「打点を出す」とみなす（繰り返しならエンジン側で数える）
+      if (t.tags.some(x => x.effect === 'token' && !x.repeat)) roles.add('beater');
+      // クリーチャー以外の強化（装備品・オーラ・パンプ呪文）
+      if (!isCreature && t.tags.some(x => x.effect === 'pump')) roles.add('enhance');
       // エンジン：繰り返し起きる価値のある効果を持つパーマネント
       if (!isSpell && t.tags.some(x => x.repeat && x.trigger !== 'static' && ENGINE_EFFECTS.has(x.effect))) roles.add('engine');
       // フィニッシャー：勝利条件、または大型の打点
       if (/you win the game/.test(text) || (isCreature && (power >= 5 || (card.cmc >= 6 && power >= 4)))) roles.add('finisher');
       // 打点：本体で殴るクリーチャー（パワー3以上、回避能力つきのパワー2以上、または他に役割のないクリーチャー）
       if (isCreature || /\bVehicle\b/.test(tl)) {
-        const others = [...roles].length;
+        const others = [...roles].filter(r => r !== 'reach' && r !== 'beater').length;
         if (power >= 3 || (power >= 2 && t.evasion) || !others) roles.add('beater');
       }
       if (!roles.size) roles.add('other');
@@ -233,8 +242,8 @@
 
     // 役割
     const labels = Object.fromEntries(ROLES.map(r => [r.id, r.label]));
-    labels.interaction = '干渉（除去・全体除去・打ち消し・手札破壊）';
-    labels.pressure = '勝ち手段（打点・エンジン・フィニッシャー）';
+    labels.interaction = '干渉（除去・全体除去・打ち消し・手札破壊・妨害）';
+    labels.pressure = '勝ち手段（打点・エンジン・フィニッシャー・本体火力）';
     // 上位デッキ比較のときは四分位の範囲から1枚ずれるまでは許容する
     const tol = a.bench ? 1 : 0;
     const src = a.bench ? `上位デッキ（${a.bench.label}）の中央50%` : '目安';

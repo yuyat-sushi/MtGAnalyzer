@@ -287,8 +287,8 @@
         </div>
         <span class="rb-val">${v} <span class="t">/ ${t[0]}–${t[1]}</span></span>
       </div>` : '';
-    const interRow = sumRow('干渉 合計', '単体除去・全体除去・打ち消し・手札破壊', a.interaction, a.targets.interaction, 'linear-gradient(90deg,#d0503c,#5a6fd6)') +
-      sumRow('勝ち手段 合計', '打点・エンジン・フィニッシャー', a.pressure, a.targets.pressure, 'linear-gradient(90deg,#e07a2e,#c4569a)');
+    const interRow = sumRow('干渉 合計', '単体除去・全体除去・打ち消し・手札破壊・妨害', a.interaction, a.targets.interaction, 'linear-gradient(90deg,#d0503c,#5a6fd6)') +
+      sumRow('勝ち手段 合計', '打点・エンジン・フィニッシャー・本体火力', a.pressure, a.targets.pressure, 'linear-gradient(90deg,#e07a2e,#c4569a)');
     // 主役割の構成比
     const stack = a.total ? `<div class="stack" title="主役割の構成比">${Roles.ROLES.map(r => {
       const v = a.primaryCount[r.id];
@@ -397,7 +397,7 @@
     if (cmp.status !== 'ok') { box.innerHTML = `<p class="hint">集計データを読み込めませんでした（${esc(cmp.message || '')}）</p>`; return; }
     const { bench, detected, group } = cmp;
     const det = detected ? `<div class="meta-detect">このデッキの判定：<b>${esc(detected.name)}</b>${detected.kind === 'fallback' ? '（近い構成から推定）' : ''}${detected.conflicts.length ? `<span class="muted">（他の候補: ${detected.conflicts.map(esc).join(', ')}）</span>` : ''}</div>` : '';
-    const rows = ['land', 'ramp', 'draw', 'removal', 'wipe', 'counter', 'discard', 'tutor', 'recursion', 'protection', 'finisher', 'engine', 'beater', 'interaction', 'pressure'].map(k => {
+    const rows = ['land', 'ramp', 'draw', 'removal', 'wipe', 'counter', 'discard', 'hate', 'tutor', 'recursion', 'protection', 'combo', 'finisher', 'engine', 'reach', 'beater', 'enhance', 'other', 'interaction', 'pressure'].map(k => {
       const s = group.roles[k];
       if (!s) return '';
       const v = k === 'interaction' ? a.interaction : k === 'pressure' ? a.pressure : (a.roleCount[k] || 0);
