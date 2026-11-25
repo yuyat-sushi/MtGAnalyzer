@@ -137,36 +137,8 @@
   }
 
   // ---------- カードデータの圧縮（必要な項目だけ保存） ----------
-  function slim(c) {
-    const faces = c.card_faces || [];
-    const img = c.image_uris || (faces[0] && faces[0].image_uris) || {};
-    const oracle = c.oracle_text != null
-      ? c.oracle_text
-      : faces.map(f => f.oracle_text || '').join('\n//\n');
-    return {
-      id: c.id,
-      name: c.name,
-      printedName: c.printed_name || (faces[0] && faces[0].printed_name) || null,
-      faceNames: faces.map(f => f.name),
-      cmc: c.cmc || 0,
-      manaCost: c.mana_cost != null ? c.mana_cost : faces.map(f => f.mana_cost || '').join(' // '),
-      typeLine: c.type_line || faces.map(f => f.type_line).join(' // '),
-      oracle,
-      colors: c.colors || (faces[0] && faces[0].colors) || [],
-      colorIdentity: c.color_identity || [],
-      producedMana: c.produced_mana || [],
-      keywords: c.keywords || [],
-      power: c.power != null ? c.power : (faces[0] && faces[0].power) || null,
-      layout: c.layout,
-      mtgoId: c.mtgo_id || null,
-      set: c.set,
-      rarity: c.rarity,
-      legalities: c.legalities || {},
-      img: img.normal || null,
-      imgSmall: img.small || null,
-      uri: c.scryfall_uri
-    };
-  }
+  // 変換処理は js/cardmodel.js（集計スクリプトと共通）
+  const slim = global.CardModel.slim;
 
   // ---------- 公開API ----------
 

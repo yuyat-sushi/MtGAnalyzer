@@ -12,7 +12,7 @@
   let groupMode = 'role';
 
   function blankDeck() {
-    return { name: '', format: 'constructed', archetype: 'midrange', main: [], side: [] };
+    return { name: '', format: 'constructed', archetype: 'midrange', meta: '', metaArch: 'auto', main: [], side: [] };
   }
 
   function rolesOf(e) {
@@ -24,7 +24,7 @@
   function serialize(deck) {
     // カードデータ本体は Scryfall キャッシュ側にあるので、名前と手動役割だけ保存
     const z = l => l.map(e => ({ name: e.name, qty: e.qty, manualRoles: e.manualRoles || null }));
-    return { name: deck.name, format: deck.format, archetype: deck.archetype, main: z(deck.main), side: z(deck.side) };
+    return { name: deck.name, format: deck.format, archetype: deck.archetype, meta: deck.meta || '', metaArch: deck.metaArch || 'auto', main: z(deck.main), side: z(deck.side) };
   }
   function saveCurrent() {
     try { localStorage.setItem(STORE_CURRENT, JSON.stringify(serialize(state))); } catch (e) { /* noop */ }
@@ -185,6 +185,9 @@
     $('#format').value = state.format;
     $('#archetype').value = state.archetype;
     $('#archetype').disabled = state.format !== 'constructed';
+    $('#metaFormat').value = state.meta || '';
+    if (!state.metaArch) state.metaArch = 'auto';
+    fillArchSelect();
 
     const mainN = state.main.reduce((s, e) => s + e.qty, 0);
     const sideN = state.side.reduce((s, e) => s + e.qty, 0);
@@ -251,11 +254,13 @@
 
   function renderAnalysis() {
     const entries = state.main.map(e => ({ qty: e.qty, card: e.card, roles: rolesOf(e) }));
-    const a = Roles.analyze(entries, state.format, state.archetype);
+    const cmp = metaComparison();
+    const a = Roles.analyze(entries, state.format, state.archetype, cmp && cmp.group ? { targets: cmp.targets, label: cmp.label } : null);
+    renderMeta(cmp, a);
 
     // 役割バー
     const maxScale = Math.max(a.size * 0.45, ...Object.values(a.roleCount));
-    const tgtFor = id => id === 'land' ? [Math.floor(a.recLand - 1), Math.ceil(a.recLand + 1)] : a.targets[id];
+    const tgtFor = id => (id === 'land' && !(cmp && cmp.group)) ? [Math.floor(a.recLand - 1), Math.ceil(a.recLand + 1)] : a.targets[id];
     const rows = Roles.ROLES.filter(r => r.id !== 'other' || a.roleCount.other).map(r => {
       const v = a.roleCount[r.id] || 0;
       const t = a.total ? tgtFor(r.id) : null;
@@ -284,7 +289,7 @@
       return v ? `<div style="width:${v / a.total * 100}%;background:${r.color}" title="${r.label} ${v}枚 (${(v / a.total * 100).toFixed(0)}%)"></div>` : '';
     }).join('')}</div>` : '';
     $('#roleBars').innerHTML = stack + rows + interRow +
-      '<p class="hint">点線の枠＝フォーマット/アーキタイプ別の目安。1枚が複数の役割を持つ場合はそれぞれに数えます。</p>';
+      `<p class="hint">点線の枠＝${cmp && cmp.group ? `上位デッキ（${esc(cmp.label)}）の中央50%の範囲` : 'フォーマット/アーキタイプ別の目安'}。1枚が複数の役割を持つ場合はそれぞれに数えます。</p>`;
 
     // マナカーブ
     const cmax = Math.max(1, ...a.curve);
@@ -313,6 +318,96 @@
 
     // アドバイス
     $('#advice').innerHTML = a.advice.map(x => `<li class="${x.level}">${esc(x.text)}</li>`).join('');
+  }
+
+  // ---------- 上位デッキとの比較（benchmarks/ の集計データ） ----------
+  const META_FORMATS = { standard: 'Standard', pioneer: 'Pioneer', modern: 'Modern', legacy: 'Legacy', vintage: 'Vintage', pauper: 'Pauper' };
+  const metaStore = {}; // fmt -> { status: 'loading'|'ok'|'missing'|'error', bench, defs }
+
+  async function loadMeta(fmt) {
+    if (metaStore[fmt]) return;
+    metaStore[fmt] = { status: 'loading' };
+    try {
+      const [b, d] = await Promise.all([fetch(`benchmarks/${fmt}.json`), fetch(`benchmarks/archetypes/${fmt}.json`)]);
+      if (!b.ok || !d.ok) { metaStore[fmt] = { status: 'missing' }; }
+      else metaStore[fmt] = { status: 'ok', bench: await b.json(), defs: await d.json() };
+    } catch (e) {
+      metaStore[fmt] = { status: 'error', message: e.message };
+    }
+    renderAnalysis();
+    fillArchSelect();
+  }
+
+  function deckColors() {
+    const set = new Set();
+    state.main.forEach(e => {
+      if (e.card && !rolesOf(e).includes('land')) (e.card.colors || []).forEach(c => set.add(c));
+    });
+    return set;
+  }
+
+  /** 比較対象のグループ（アーキタイプ or 全体）と、役割ごとの目安範囲を返す */
+  function metaComparison() {
+    const fmt = state.meta;
+    if (!fmt) return null;
+    const m = metaStore[fmt];
+    if (!m) { loadMeta(fmt); return { status: 'loading' }; }
+    if (m.status !== 'ok') return { status: m.status, message: m.message };
+    const bench = m.bench;
+    let detected = null, group = null, how = '';
+    if (state.main.length) {
+      detected = Archetype.classify({ main: state.main, side: state.side }, m.defs, deckColors());
+    }
+    if (state.metaArch === 'auto') {
+      if (detected) group = bench.archetypes.find(a => a.name === detected.name) || bench.archetypes.find(a => a.base === detected.base && a.kind === detected.kind && detected.kind !== 'unknown');
+      how = group ? '自動判定' : '自動判定できなかったのでフォーマット全体';
+    } else if (state.metaArch !== 'all') {
+      group = bench.archetypes.find(a => a.name === state.metaArch);
+      how = '手動で選択';
+    }
+    if (!group) { group = { name: `${bench.format} 全体`, ...bench.overall, keyCards: null }; if (!how) how = 'フォーマット全体'; }
+    const targets = {};
+    for (const [k, s] of Object.entries(group.roles)) targets[k] = [Math.floor(s.q1), Math.ceil(s.q3)];
+    return { status: 'ok', bench, detected, group, how, targets, label: group.name };
+  }
+
+  function fillArchSelect() {
+    const sel = $('#metaArch');
+    const m = state.meta && metaStore[state.meta];
+    const archs = m && m.status === 'ok' ? m.bench.archetypes : [];
+    sel.disabled = !state.meta;
+    sel.innerHTML = `<option value="auto">アーキタイプ: 自動判定</option><option value="all">フォーマット全体</option>` +
+      archs.map(a => `<option value="${esc(a.name)}">${esc(a.name)}（${a.n}${a.reference ? '・参考値' : ''}）</option>`).join('');
+    sel.value = [...sel.options].some(o => o.value === state.metaArch) ? state.metaArch : 'auto';
+  }
+
+  function renderMeta(cmp, a) {
+    const box = $('#metaInfo');
+    if (!cmp) { box.innerHTML = '<p class="hint">フォーマットを選ぶと、MTGOで勝っているデッキの役割の枚数と比べられるよ。</p>'; return; }
+    if (cmp.status === 'loading') { box.innerHTML = '<p class="hint">集計データを読み込み中…</p>'; return; }
+    if (cmp.status === 'missing') { box.innerHTML = '<p class="hint">まだ集計データがありません。GitHub の Actions タブで「Build benchmarks」を実行してね。</p>'; return; }
+    if (cmp.status !== 'ok') { box.innerHTML = `<p class="hint">集計データを読み込めませんでした（${esc(cmp.message || '')}）</p>`; return; }
+    const { bench, detected, group } = cmp;
+    const det = detected ? `<div class="meta-detect">このデッキの判定：<b>${esc(detected.name)}</b>${detected.kind === 'fallback' ? '（近い構成から推定）' : ''}${detected.conflicts.length ? `<span class="muted">（他の候補: ${detected.conflicts.map(esc).join(', ')}）</span>` : ''}</div>` : '';
+    const rows = ['land', 'ramp', 'draw', 'removal', 'wipe', 'counter', 'tutor', 'recursion', 'protection', 'threat', 'interaction'].map(k => {
+      const s = group.roles[k];
+      if (!s) return '';
+      const v = k === 'interaction' ? a.interaction : (a.roleCount[k] || 0);
+      const [lo, hi] = cmp.targets[k];
+      const cls = v < lo - 1 ? 'low' : v > hi + 1 ? 'high' : (v < lo || v > hi) ? 'near' : 'ok';
+      const label = k === 'interaction' ? '干渉 合計' : Roles.ROLE_MAP[k].label;
+      if (!v && !s.q3) return '';
+      return `<tr class="${cls}"><td>${label}</td><td class="num">${v}</td><td class="num">${s.median}</td><td class="num muted">${s.q1}–${s.q3}</td></tr>`;
+    }).join('');
+    const keys = group.keyCards ? `<details class="meta-keys"><summary>このアーキタイプでよく使われるカード（役割の判定確認用）</summary>
+      <ul>${group.keyCards.map(c => `<li><span class="kc-name">${esc(c.name)}</span><span class="muted">${Math.round(c.rate * 100)}%・平均${c.avg}枚</span><span class="kc-roles">${c.roles.map(r => `<span class="chip" style="background:${Roles.ROLE_MAP[r].color}">${Roles.ROLE_MAP[r].label}</span>`).join('')}</span></li>`).join('')}</ul></details>` : '';
+    box.innerHTML = `${det}
+      <div class="meta-group">比較対象：<b>${esc(group.name)}</b>（${esc(cmp.how)}）・${group.n} デッキ${group.reference ? '・<span class="warn-text">サンプル少なめの参考値</span>' : ''}</div>
+      <table class="meta-table"><thead><tr><th>役割</th><th class="num">あなた</th><th class="num">中央値</th><th class="num">中央50%</th></tr></thead><tbody>${rows}</tbody></table>
+      ${keys}
+      <p class="hint">${esc(bench.window.from)}〜${esc(bench.window.to)} の MTGO 公開デッキリスト（Challenge上位・リーグ5-0、${bench.events} 大会）を集計。
+      出典: <a href="https://github.com/fbettega/MTG_decklistcache" target="_blank" rel="noopener">MTG_decklistcache</a> /
+      アーキタイプ定義: <a href="https://github.com/Badaro/MTGOFormatData" target="_blank" rel="noopener">MTGOFormatData</a>（MIT）</p>`;
   }
 
   function renderSaved() {
@@ -451,6 +546,9 @@
     $('#archetype').innerHTML = Object.entries(Roles.ARCHETYPES).map(([k, v]) => `<option value="${k}">${v}</option>`).join('');
     $('#format').onchange = e => { state.format = e.target.value; render(); };
     $('#archetype').onchange = e => { state.archetype = e.target.value; render(); };
+    $('#metaFormat').innerHTML = '<option value="">比較なし</option>' + Object.entries(META_FORMATS).map(([k, v]) => `<option value="${k}">${v}</option>`).join('');
+    $('#metaFormat').onchange = e => { state.meta = e.target.value; state.metaArch = 'auto'; fillArchSelect(); render(); };
+    $('#metaArch').onchange = e => { state.metaArch = e.target.value; render(); };
     $('#deckName').oninput = e => { state.name = e.target.value; saveCurrent(); };
 
     // メニュー
