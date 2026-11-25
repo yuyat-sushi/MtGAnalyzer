@@ -1,6 +1,6 @@
 {
  "format": "Modern",
- "generatedAt": "2026-11-25T19:24:51.686Z",
+ "generatedAt": "2026-11-25T19:26:19.365Z",
  "decks": 5064,
  "otherOnly": [
   {
@@ -931,18 +931,6 @@
    ]
   },
   {
-   "name": "Nihil Spellbomb",
-   "decks": 323,
-   "roles": [
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "gyhate@activated_once",
-    "draw@death_trigger"
-   ]
-  },
-  {
    "name": "Ugin, Eye of the Storms",
    "decks": 318,
    "roles": [
@@ -1351,6 +1339,18 @@
     "lifegain@etb",
     "lifegain@activated",
     "mana@activated"
+   ]
+  },
+  {
+   "name": "Samwise Gamgee",
+   "decks": 65,
+   "roles": [
+    "recursion",
+    "engine"
+   ],
+   "tags": [
+    "lifegain@creature_enters",
+    "recursion@activated"
    ]
   }
  ],

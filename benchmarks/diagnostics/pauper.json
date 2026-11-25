@@ -1,6 +1,6 @@
 {
  "format": "Pauper",
- "generatedAt": "2026-11-25T19:24:51.686Z",
+ "generatedAt": "2026-11-25T19:26:19.365Z",
  "decks": 2806,
  "otherOnly": [
   {
@@ -570,19 +570,6 @@
    ]
   },
   {
-   "name": "Chromatic Star",
-   "decks": 4,
-   "roles": [
-    "ramp",
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "mana@activated_once",
-    "draw@death_trigger"
-   ]
-  },
-  {
    "name": "Fang Dragon // Forktail Sweep",
    "decks": 2,
    "roles": [
@@ -635,18 +622,6 @@
    ]
   },
   {
-   "name": "Nihil Spellbomb",
-   "decks": 446,
-   "roles": [
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "gyhate@activated_once",
-    "draw@death_trigger"
-   ]
-  },
-  {
    "name": "Campfire",
    "decks": 354,
    "roles": [
@@ -676,18 +651,6 @@
    "tags": [
     "drain@activated",
     "removal@activated"
-   ]
-  },
-  {
-   "name": "Ichor Wellspring",
-   "decks": 282,
-   "roles": [
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "draw@etb",
-    "draw@death_trigger"
    ]
   },
   {
@@ -818,18 +781,6 @@
     "lifegain@etb",
     "drain@etb",
     "recursion@activated"
-   ]
-  },
-  {
-   "name": "Nutrient Block",
-   "decks": 22,
-   "roles": [
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "lifegain@activated_once",
-    "draw@death_trigger"
    ]
   },
   {
@@ -1057,19 +1008,6 @@
    ]
   },
   {
-   "name": "Chromatic Star",
-   "decks": 4,
-   "roles": [
-    "ramp",
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "mana@activated_once",
-    "draw@death_trigger"
-   ]
-  },
-  {
    "name": "Lys Alana Huntmaster",
    "decks": 4,
    "roles": [
@@ -1078,6 +1016,47 @@
    ],
    "tags": [
     "token@cast_trigger"
+   ]
+  },
+  {
+   "name": "Essence Warden",
+   "decks": 2,
+   "roles": [
+    "engine"
+   ],
+   "tags": [
+    "lifegain@creature_enters"
+   ]
+  },
+  {
+   "name": "Hissing Iguanar",
+   "decks": 2,
+   "roles": [
+    "engine",
+    "beater"
+   ],
+   "tags": [
+    "drain@death_trigger"
+   ]
+  },
+  {
+   "name": "Impact Tremors",
+   "decks": 2,
+   "roles": [
+    "engine"
+   ],
+   "tags": [
+    "drain@creature_enters"
+   ]
+  },
+  {
+   "name": "Raphael, Tough Turtle",
+   "decks": 2,
+   "roles": [
+    "engine"
+   ],
+   "tags": [
+    "drain@creature_enters"
    ]
   }
  ],

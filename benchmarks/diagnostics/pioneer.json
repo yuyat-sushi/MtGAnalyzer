@@ -1,6 +1,6 @@
 {
  "format": "Pioneer",
- "generatedAt": "2026-11-25T19:24:51.686Z",
+ "generatedAt": "2026-11-25T19:26:19.365Z",
  "decks": 1183,
  "otherOnly": [
   {
@@ -1288,17 +1288,6 @@
    ]
   },
   {
-   "name": "Polukranos Reborn // Polukranos, Engine of Ruin",
-   "decks": 29,
-   "roles": [
-    "engine",
-    "beater"
-   ],
-   "tags": [
-    "token@death_trigger"
-   ]
-  },
-  {
    "name": "Esika's Chariot",
    "decks": 28,
    "roles": [
@@ -1342,6 +1331,17 @@
    ],
    "tags": [
     "recursion@landfall"
+   ]
+  },
+  {
+   "name": "Anthropological Mission",
+   "decks": 20,
+   "roles": [
+    "draw",
+    "engine"
+   ],
+   "tags": [
+    "draw@cast_trigger"
    ]
   }
  ],

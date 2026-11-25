@@ -1,6 +1,6 @@
 {
  "format": "Vintage",
- "generatedAt": "2026-11-25T19:24:51.686Z",
+ "generatedAt": "2026-11-25T19:26:19.365Z",
  "decks": 1268,
  "otherOnly": [
   {
@@ -896,18 +896,6 @@
    ]
   },
   {
-   "name": "Nihil Spellbomb",
-   "decks": 113,
-   "roles": [
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "gyhate@activated_once",
-    "draw@death_trigger"
-   ]
-  },
-  {
    "name": "Stinkweed Imp",
    "decks": 69,
    "roles": [
@@ -1279,6 +1267,20 @@
     "engine"
    ],
    "tags": [
+    "drain@activated",
+    "removal@activated"
+   ]
+  },
+  {
+   "name": "Walking Ballista",
+   "decks": 3,
+   "roles": [
+    "removal",
+    "engine"
+   ],
+   "tags": [
+    "pump@static",
+    "pump@activated",
     "drain@activated",
     "removal@activated"
    ]

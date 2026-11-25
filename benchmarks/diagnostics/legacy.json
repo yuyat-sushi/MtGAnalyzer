@@ -1,6 +1,6 @@
 {
  "format": "Legacy",
- "generatedAt": "2026-11-25T19:24:51.686Z",
+ "generatedAt": "2026-11-25T19:26:19.365Z",
  "decks": 2846,
  "otherOnly": [
   {
@@ -582,19 +582,6 @@
    ]
   },
   {
-   "name": "Chromatic Star",
-   "decks": 83,
-   "roles": [
-    "ramp",
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "mana@activated_once",
-    "draw@death_trigger"
-   ]
-  },
-  {
    "name": "Overlord of the Balemurk",
    "decks": 79,
    "roles": [
@@ -821,6 +808,19 @@
    "tags": [
     "drain@activated",
     "removal@activated"
+   ]
+  },
+  {
+   "name": "Loran of the Third Path",
+   "decks": 20,
+   "roles": [
+    "removal",
+    "draw",
+    "engine"
+   ],
+   "tags": [
+    "removal@etb",
+    "draw@activated"
    ]
   }
  ],
@@ -1059,19 +1059,6 @@
    ],
    "tags": [
     "token@attack"
-   ]
-  },
-  {
-   "name": "Chromatic Star",
-   "decks": 83,
-   "roles": [
-    "ramp",
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "mana@activated_once",
-    "draw@death_trigger"
    ]
   },
   {
@@ -1354,6 +1341,16 @@
     "recursion@static",
     "token@landfall",
     "selfmill@landfall"
+   ]
+  },
+  {
+   "name": "Agate Instigator",
+   "decks": 18,
+   "roles": [
+    "engine"
+   ],
+   "tags": [
+    "drain@creature_enters"
    ]
   }
  ],
