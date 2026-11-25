@@ -80,7 +80,8 @@
       /search your library for (a|an|up to [\w ]+?|two|any number of) (basic )?(land|forest|plains|island|swamp|mountain)[^.]*?onto the battlefield/,
       /put (a|up to \w+) land cards? from your hand onto the battlefield/,
       /you may play (an )?additional lands?/,
-      /costs? \{\d\} less to cast/
+      // 他の呪文を軽くするもの（"This spell costs {1} less" のような自身の軽減は含めない）
+      /\b(?<!this )spells?( you cast)?[^.]*? costs? \{\d\} less to cast/
     ],
     protection: [
       /prevent all (combat )?damage/,
