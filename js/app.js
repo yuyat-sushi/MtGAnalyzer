@@ -23,10 +23,20 @@
     return Roles.classify(e.card);
   }
 
+  /** 大カテゴリ（主な採用理由）: 手動指定 ＞ 手動の小カテゴリから決めたもの ＞ 自動判定（例外リスト込み） */
+  function catOf(e) {
+    if (e.manualCat && Roles.CAT_MAP[e.manualCat]) return e.manualCat;
+    if (e.manualRoles && e.manualRoles.length) {
+      const r = Roles.normalizeRoles(e.manualRoles);
+      if (r.length) return Roles.categoryOf(r);
+    }
+    return Roles.inspect(e.card).cat;
+  }
+
   // ---------- 永続化 ----------
   function serialize(deck) {
     // カードデータ本体は Scryfall キャッシュ側にあるので、名前と手動役割だけ保存
-    const z = l => l.map(e => ({ name: e.name, qty: e.qty, manualRoles: e.manualRoles || null }));
+    const z = l => l.map(e => ({ name: e.name, qty: e.qty, manualRoles: e.manualRoles || null, manualCat: e.manualCat || null }));
     return { name: deck.name, format: deck.format, archetype: deck.archetype, meta: deck.meta || '', metaArch: deck.metaArch || 'auto', main: z(deck.main), side: z(deck.side) };
   }
   function saveCurrent() {
@@ -164,7 +174,7 @@
   }
   function chipsHTML(e) {
     const roles = rolesOf(e);
-    const manual = !!(e.manualRoles && e.manualRoles.length);
+    const manual = !!((e.manualRoles && e.manualRoles.length) || e.manualCat);
     return roles.map(r => {
       const R = Roles.ROLE_MAP[r];
       return `<span class="chip ${manual ? 'manual' : ''}" style="background:${R.color}">${R.label}</span>`;
@@ -211,9 +221,9 @@
     let groups;
     if (!grouped) groups = [{ key: 'side', label: '', color: null, items: list }];
     else if (groupMode === 'role') {
-      groups = Roles.PRIORITY.map(r => ({
-        key: r, label: Roles.ROLE_MAP[r].label, color: Roles.ROLE_MAP[r].color,
-        items: list.filter(e => Roles.primary(rolesOf(e)) === r)
+      groups = Roles.CATEGORIES.map(c => ({
+        key: c.id, label: c.label, color: c.color,
+        items: list.filter(e => catOf(e) === c.id)
       }));
     } else if (groupMode === 'type') {
       const order = ['クリーチャー', 'プレインズウォーカー', 'バトル', 'インスタント', 'ソーサリー', 'アーティファクト', 'エンチャント', 'その他', '土地', '不明'];
@@ -255,47 +265,44 @@
     </div>`;
   }
 
+  const openCats = new Set();
   function renderAnalysis() {
-    const entries = state.main.map(e => ({ qty: e.qty, card: e.card, roles: rolesOf(e) }));
+    const entries = state.main.map(e => ({ qty: e.qty, card: e.card, roles: rolesOf(e), cat: catOf(e) }));
     const cmp = metaComparison();
     const a = Roles.analyze(entries, state.format, state.archetype, cmp && cmp.group ? { targets: cmp.targets, label: cmp.label } : null);
     renderMeta(cmp, a);
     renderTags(a, cmp && cmp.group);
 
-    // 役割バー
-    const maxScale = Math.max(a.size * 0.45, ...Object.values(a.roleCount));
+    // カテゴリ構成（大カテゴリ → 小カテゴリ）
+    const maxScale = Math.max(a.size * 0.45, ...Object.values(a.catCount), ...Object.values(a.roleCount));
+    const pct = x => Math.min(100, (x / maxScale) * 100);
     const tgtFor = id => (id === 'land' && !(cmp && cmp.group)) ? [Math.floor(a.recLand - 1), Math.ceil(a.recLand + 1)] : a.targets[id];
-    const rows = Roles.ROLES.filter(r => r.id !== 'other' || a.roleCount.other).map(r => {
-      const v = a.roleCount[r.id] || 0;
-      const t = a.total ? tgtFor(r.id) : null;
-      const pct = x => Math.min(100, (x / maxScale) * 100);
-      return `<div class="rb">
-        <span>${r.label}</span>
+    const bar = (label, v, t, color, cls = '') => `<div class="rb ${cls}">
+        <span>${label}</span>
         <div class="rb-track">
           ${t ? `<div class="rb-target" style="left:${pct(t[0])}%;width:${Math.max(0.5, pct(t[1]) - pct(t[0]))}%"></div>` : ''}
-          <div class="rb-fill" style="width:${pct(v)}%;background:${r.color}"></div>
+          <div class="rb-fill" style="width:${pct(v)}%;background:${color}"></div>
         </div>
         <span class="rb-val">${v}${t ? ` <span class="t">/ ${t[0]}–${t[1]}</span>` : ''}</span>
       </div>`;
+    const cats = Roles.CATEGORIES.filter(c => c.id !== 'other' || a.catCount.other).map(c => {
+      const subs = Roles.ROLES.filter(r => r.cat === c.id && r.id !== 'other');
+      const subRows = subs.filter(r => (a.roleCount[r.id] || 0) || (a.total && tgtFor(r.id) && tgtFor(r.id)[1] > 0)).map(r =>
+        bar(r.label, a.roleCount[r.id] || 0, a.total ? tgtFor(r.id) : null, r.color, 'sub')).join('');
+      const head = bar(`<b>${c.label}</b>`, a.catCount[c.id] || 0, a.total ? a.targets['cat:' + c.id] : null, c.color, 'cat');
+      return subRows
+        ? `<details class="cat-detail" data-cat="${c.id}" ${openCats.has(c.id) ? 'open' : ''}><summary>${head}</summary>${subRows}</details>`
+        : `<div class="cat-detail">${head}</div>`;
     }).join('');
-    // 合計の行（干渉・勝ち手段）。1枚が複数の役割を持っていても1枚として数える
-    const sumRow = (label, title, v, t, bg) => t ? `<div class="rb" title="${title}">
-        <span><b>${label}</b></span>
-        <div class="rb-track">
-          <div class="rb-target" style="left:${Math.min(100, t[0] / maxScale * 100)}%;width:${Math.max(0.5, (t[1] - t[0]) / maxScale * 100)}%"></div>
-          <div class="rb-fill" style="width:${Math.min(100, v / maxScale * 100)}%;background:${bg}"></div>
-        </div>
-        <span class="rb-val">${v} <span class="t">/ ${t[0]}–${t[1]}</span></span>
-      </div>` : '';
-    const interRow = sumRow('干渉 合計', '単体除去・全体除去・打ち消し・手札破壊', a.interaction, a.targets.interaction, 'linear-gradient(90deg,#d0503c,#5a6fd6)') +
-      sumRow('勝ち手段 合計', '打点・エンジン・フィニッシャー', a.pressure, a.targets.pressure, 'linear-gradient(90deg,#e07a2e,#c4569a)');
-    // 主役割の構成比
-    const stack = a.total ? `<div class="stack" title="主役割の構成比">${Roles.ROLES.map(r => {
-      const v = a.primaryCount[r.id];
-      return v ? `<div style="width:${v / a.total * 100}%;background:${r.color}" title="${r.label} ${v}枚 (${(v / a.total * 100).toFixed(0)}%)"></div>` : '';
+    const stack = a.total ? `<div class="stack" title="大カテゴリの構成比">${Roles.CATEGORIES.map(c => {
+      const v = a.catCount[c.id];
+      return v ? `<div style="width:${v / a.total * 100}%;background:${c.color}" title="${c.label} ${v}枚 (${(v / a.total * 100).toFixed(0)}%)"></div>` : '';
     }).join('')}</div>` : '';
-    $('#roleBars').innerHTML = stack + rows + interRow +
-      `<p class="hint">点線の枠＝${cmp && cmp.group ? `上位デッキ（${esc(cmp.label)}）の中央50%の範囲` : 'フォーマット/アーキタイプ別の目安'}。1枚が複数の役割を持つ場合はそれぞれに数えます。</p>`;
+    $('#roleBars').innerHTML = stack + cats +
+      `<p class="hint">太字＝大カテゴリ（主な採用理由。1枚につき1つ）、押すと小カテゴリ（1枚に複数可）を表示。点線の枠＝${cmp && cmp.group ? `上位デッキ（${esc(cmp.label)}）の中央50%の範囲` : 'フォーマット/アーキタイプ別の目安'}。</p>`;
+    $('#roleBars').querySelectorAll('details.cat-detail').forEach(d => d.addEventListener('toggle', () => {
+      if (d.open) openCats.add(d.dataset.cat); else openCats.delete(d.dataset.cat);
+    }));
 
     // マナカーブ
     const cmax = Math.max(1, ...a.curve);
@@ -373,8 +380,11 @@
     }
     if (!group) { group = { name: `${bench.format} 全体`, ...bench.overall, keyCards: null }; if (!how) how = 'フォーマット全体'; }
     const targets = {};
-    for (const [k, s] of Object.entries(group.roles)) {
-      if (Roles.ROLE_MAP[k] || k === 'interaction' || k === 'pressure') targets[k] = [Math.floor(s.q1), Math.ceil(s.q3)];
+    for (const [k, s] of Object.entries(group.roles || {})) {
+      if (Roles.ROLE_MAP[k]) targets[k] = [Math.floor(s.q1), Math.ceil(s.q3)];
+    }
+    for (const [k, s] of Object.entries(group.cats || {})) {
+      if (Roles.CAT_MAP[k]) targets['cat:' + k] = [Math.floor(s.q1), Math.ceil(s.q3)];
     }
     return { status: 'ok', bench, detected, group, how, targets, label: group.name };
   }
@@ -397,21 +407,24 @@
     if (cmp.status !== 'ok') { box.innerHTML = `<p class="hint">集計データを読み込めませんでした（${esc(cmp.message || '')}）</p>`; return; }
     const { bench, detected, group } = cmp;
     const det = detected ? `<div class="meta-detect">このデッキの判定：<b>${esc(detected.name)}</b>${detected.kind === 'fallback' ? '（近い構成から推定）' : ''}${detected.conflicts.length ? `<span class="muted">（他の候補: ${detected.conflicts.map(esc).join(', ')}）</span>` : ''}</div>` : '';
-    const rows = ['land', 'ramp', 'draw', 'removal', 'wipe', 'counter', 'discard', 'tutor', 'recursion', 'protection', 'finisher', 'engine', 'beater', 'interaction', 'pressure'].map(k => {
-      const s = group.roles[k];
+    // 大カテゴリ → その小カテゴリ の順に並べる
+    const row = (key, label, v, s, cls) => {
       if (!s) return '';
-      const v = k === 'interaction' ? a.interaction : k === 'pressure' ? a.pressure : (a.roleCount[k] || 0);
-      const [lo, hi] = cmp.targets[k];
-      const cls = v < lo - 1 ? 'low' : v > hi + 1 ? 'high' : (v < lo || v > hi) ? 'near' : 'ok';
-      const label = k === 'interaction' ? '干渉 合計' : k === 'pressure' ? '勝ち手段 合計' : Roles.ROLE_MAP[k].label;
-      if (!v && !s.q3) return '';
-      return `<tr class="${cls}"><td>${label}</td><td class="num">${v}</td><td class="num">${s.median}</td><td class="num muted">${s.q1}–${s.q3}</td></tr>`;
-    }).join('');
+      const t = cmp.targets[key];
+      if (!t || (!v && !s.q3)) return '';
+      const [lo, hi] = t;
+      const st = v < lo - 1 ? 'low' : v > hi + 1 ? 'high' : (v < lo || v > hi) ? 'near' : 'ok';
+      return `<tr class="${st} ${cls}"><td>${label}</td><td class="num">${v}</td><td class="num">${s.median}</td><td class="num muted">${s.q1}–${s.q3}</td></tr>`;
+    };
+    const rows = Roles.CATEGORIES.map(c =>
+      row('cat:' + c.id, `<b>${c.label}</b>`, a.catCount[c.id] || 0, (group.cats || {})[c.id], 'cat') +
+      Roles.ROLES.filter(r => r.cat === c.id && r.id !== 'other').map(r => row(r.id, r.label, a.roleCount[r.id] || 0, (group.roles || {})[r.id], 'sub')).join('')
+    ).join('');
     const keys = group.keyCards ? `<details class="meta-keys"><summary>このアーキタイプでよく使われるカード（役割の判定確認用）</summary>
-      <ul>${group.keyCards.map(c => `<li><span class="kc-name">${esc(c.name)}</span><span class="muted">${Math.round(c.rate * 100)}%・平均${c.avg}枚</span><span class="kc-roles">${Roles.normalizeRoles(c.roles).map(r => `<span class="chip" style="background:${Roles.ROLE_MAP[r].color}">${Roles.ROLE_MAP[r].label}</span>`).join('')}</span></li>`).join('')}</ul></details>` : '';
+      <ul>${group.keyCards.map(c => `<li><span class="kc-name">${esc(c.name)}</span><span class="muted">${Math.round(c.rate * 100)}%・平均${c.avg}枚</span><span class="kc-roles">${c.cat && Roles.CAT_MAP[c.cat] ? `<span class="chip cat-chip" style="background:${Roles.CAT_MAP[c.cat].color}">${Roles.CAT_MAP[c.cat].label}</span>` : ''}${Roles.normalizeRoles(c.roles).map(r => `<span class="chip" style="background:${Roles.ROLE_MAP[r].color}">${Roles.ROLE_MAP[r].label}</span>`).join('')}</span></li>`).join('')}</ul></details>` : '';
     box.innerHTML = `${det}
       <div class="meta-group">比較対象：<b>${esc(group.name)}</b>（${esc(cmp.how)}）・${group.n} デッキ${group.reference ? '・<span class="warn-text">サンプル少なめの参考値</span>' : ''}</div>
-      <table class="meta-table"><thead><tr><th>役割</th><th class="num">あなた</th><th class="num">中央値</th><th class="num">中央50%</th></tr></thead><tbody>${rows}</tbody></table>
+      <table class="meta-table"><thead><tr><th>カテゴリ</th><th class="num">あなた</th><th class="num">中央値</th><th class="num">中央50%</th></tr></thead><tbody>${rows}</tbody></table>
       ${keys}
       <p class="hint">${esc(bench.window.from)}〜${esc(bench.window.to)} の MTGO 公開デッキリスト（Challenge上位・リーグ5-0、${bench.events} 大会）を集計。
       出典: <a href="https://github.com/fbettega/MTG_decklistcache" target="_blank" rel="noopener">MTG_decklistcache</a> /
@@ -457,13 +470,26 @@
     const e = state[zone].find(x => x.name === name);
     if (!e) return;
     const pop = $('#rolePop');
-    const current = new Set(rolesOf(e));
-    const auto = Roles.classify(e.card);
-    pop.innerHTML = `<h4>${esc(e.card ? displayName(e.card) : e.name)}</h4>
-      ${Roles.ROLES.map(r => `<label><input type="checkbox" value="${r.id}" ${current.has(r.id) ? 'checked' : ''}>
-        <span class="sw" style="background:${r.color}"></span>${r.label}${auto.includes(r.id) ? ' <span class="muted">自動</span>' : ''}</label>`).join('')}
-      ${tagListHTML(e.card)}
-      <div class="pop-actions"><button data-pop="reset">自動判定に戻す</button><button data-pop="close" class="primary">OK</button></div>`;
+    const info = Roles.inspect(e.card);
+    const auto = info.roles;
+    const draw = () => {
+      const current = new Set(rolesOf(e));
+      const autoCat = (e.manualRoles && e.manualRoles.length) ? Roles.categoryOf(Roles.normalizeRoles(e.manualRoles)) : info.cat;
+      pop.innerHTML = `<h4>${esc(e.card ? displayName(e.card) : e.name)}</h4>
+        <label class="pop-cat">主な採用理由
+          <select data-pop="cat">
+            <option value="">自動（${esc(Roles.CAT_MAP[autoCat].label)}）</option>
+            ${Roles.CATEGORIES.map(c => `<option value="${c.id}" ${e.manualCat === c.id ? 'selected' : ''}>${c.label}</option>`).join('')}
+          </select>
+        </label>
+        ${info.override ? `<div class="muted pop-note">例外リストで指定${info.override.note ? `：${esc(info.override.note)}` : ''}</div>` : ''}
+        ${Roles.CATEGORIES.filter(c => c.id !== 'other').map(c => `<div class="pop-group"><div class="pop-group-head" style="color:${c.color}">${c.label}</div>
+          ${Roles.ROLES.filter(r => r.cat === c.id).map(r => `<label><input type="checkbox" value="${r.id}" ${current.has(r.id) ? 'checked' : ''}>
+            <span class="sw" style="background:${r.color}"></span>${r.label}${auto.includes(r.id) ? ' <span class="muted">自動</span>' : ''}</label>`).join('')}</div>`).join('')}
+        ${tagListHTML(e.card)}
+        <div class="pop-actions"><button data-pop="reset">自動判定に戻す</button><button data-pop="close" class="primary">OK</button></div>`;
+    };
+    draw();
     const rect = anchor.getBoundingClientRect();
     pop.hidden = false;
     const top = Math.min(window.innerHeight - pop.offsetHeight - 8, rect.bottom + 4);
@@ -471,15 +497,20 @@
     pop.style.top = Math.max(8, top) + 'px';
     pop.style.left = Math.max(8, left) + 'px';
 
-    pop.onchange = () => {
-      const checked = [...pop.querySelectorAll('input:checked')].map(i => i.value);
-      const same = checked.length === auto.length && checked.every(r => auto.includes(r));
-      e.manualRoles = same || !checked.length ? null : Roles.PRIORITY.filter(r => checked.includes(r));
+    pop.onchange = ev => {
+      if (ev.target.dataset.pop === 'cat') {
+        e.manualCat = ev.target.value || null;
+      } else {
+        const checked = [...pop.querySelectorAll('input[type=checkbox]:checked')].map(i => i.value);
+        const same = checked.length === auto.length && checked.every(r => auto.includes(r));
+        e.manualRoles = same || !checked.length ? null : Roles.PRIORITY.filter(r => checked.includes(r));
+      }
       render();
+      draw();
     };
     pop.onclick = ev => {
       const act = ev.target.dataset.pop;
-      if (act === 'reset') { e.manualRoles = null; render(); pop.hidden = true; }
+      if (act === 'reset') { e.manualRoles = null; e.manualCat = null; render(); pop.hidden = true; }
       if (act === 'close') pop.hidden = true;
     };
   }
@@ -767,7 +798,16 @@
     };
   }
 
+  // 例外リスト（カード名で採用理由を指定）を読み込む
+  async function loadOverrides() {
+    try {
+      const res = await fetch('data/overrides.json');
+      if (res.ok) { Roles.setOverrides(await res.json()); render(); }
+    } catch (e) { /* file:// で開いた場合などは自動判定だけで動く */ }
+  }
+
   bind();
   render();
+  loadOverrides();
   resolveCards();
 })();
