@@ -1,6 +1,6 @@
 {
  "format": "Pioneer",
- "generatedAt": "2026-11-25T20:14:44.975Z",
+ "generatedAt": "2026-11-25T20:17:05.834Z",
  "decks": 1183,
  "otherOnly": [
   {
@@ -31,6 +31,12 @@
    "name": "Ensoul Artifact",
    "decks": 5,
    "typeLine": "Enchantment — Aura",
+   "tags": []
+  },
+  {
+   "name": "Hidden Strings",
+   "decks": 4,
+   "typeLine": "Sorcery",
    "tags": []
   },
   {
@@ -92,12 +98,6 @@
    "decks": 1,
    "typeLine": "Sorcery",
    "tags": []
-  },
-  {
-   "name": "Shimmerwilds Growth",
-   "decks": 1,
-   "typeLine": "Enchantment — Aura",
-   "tags": []
   }
  ],
  "manyRoles": [
@@ -138,6 +138,7 @@
     "tokens"
    ],
    "tags": [
+    "lifegain@each_turn",
     "draw@each_turn",
     "drain@each_turn",
     "token@once_trigger"
@@ -152,10 +153,10 @@
     "beater"
    ],
    "tags": [
-    "drain@etb",
-    "drain@attack",
     "lifegain@etb",
-    "lifegain@attack"
+    "drain@etb",
+    "lifegain@attack",
+    "drain@attack"
    ]
   },
   {
@@ -194,7 +195,6 @@
    "decks": 87,
    "roles": [
     "draw",
-    "ramp",
     "engine",
     "tokens"
    ],
@@ -210,7 +210,6 @@
    "decks": 84,
    "roles": [
     "draw",
-    "ramp",
     "engine",
     "reach"
    ],
@@ -272,32 +271,6 @@
    "tags": [
     "mana@etb",
     "draw@creature_enters"
-   ]
-  },
-  {
-   "name": "Kiora, Behemoth Beckoner",
-   "decks": 68,
-   "roles": [
-    "untap",
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "draw@creature_enters",
-    "untap@loyalty"
-   ]
-  },
-  {
-   "name": "Old-Growth Troll",
-   "decks": 68,
-   "roles": [
-    "ramp",
-    "tokens",
-    "beater"
-   ],
-   "tags": [
-    "token@dies",
-    "mana@dies"
    ]
   },
   {
@@ -451,11 +424,13 @@
    "decks": 51,
    "roles": [
     "removal",
+    "untap",
     "draw",
     "engine"
    ],
    "tags": [
     "draw@loyalty",
+    "untap@loyalty",
     "removal@loyalty"
    ]
   },
@@ -482,6 +457,7 @@
     "reach"
    ],
    "tags": [
+    "lifegain@etb",
     "drain@etb",
     "recursion@activated"
    ]
@@ -515,6 +491,34 @@
     "draw@other_trigger",
     "mana@other_trigger",
     "drain@other_trigger"
+   ]
+  },
+  {
+   "name": "Prismari Command",
+   "decks": 39,
+   "roles": [
+    "removal",
+    "draw",
+    "ramp",
+    "reach"
+   ],
+   "tags": [
+    "drain@spell",
+    "removal@spell",
+    "draw@spell",
+    "mana@spell"
+   ]
+  },
+  {
+   "name": "Gran-Gran",
+   "decks": 38,
+   "roles": [
+    "draw",
+    "ramp",
+    "engine"
+   ],
+   "tags": [
+    "draw@other_trigger"
    ]
   }
  ],
@@ -812,7 +816,6 @@
     "decks": 87,
     "roles": [
      "draw",
-     "ramp",
      "engine",
      "tokens"
     ]
@@ -830,7 +833,6 @@
     "decks": 84,
     "roles": [
      "draw",
-     "ramp",
      "engine",
      "reach"
     ]
@@ -854,6 +856,13 @@
    {
     "name": "Consult the Star Charts",
     "decks": 78,
+    "roles": [
+     "draw"
+    ]
+   },
+   {
+    "name": "Fear of Missing Out",
+    "decks": 70,
     "roles": [
      "draw"
     ]
@@ -885,6 +894,14 @@
     ]
    },
    {
+    "name": "Kiora, Behemoth Beckoner",
+    "decks": 68,
+    "roles": [
+     "draw",
+     "engine"
+    ]
+   },
+   {
     "name": "Flashback",
     "decks": 67,
     "roles": [
@@ -906,22 +923,6 @@
      "draw",
      "ramp",
      "engine"
-    ]
-   },
-   {
-    "name": "Deduce",
-    "decks": 60,
-    "roles": [
-     "draw"
-    ]
-   },
-   {
-    "name": "Hearth Elemental // Stoke Genius",
-    "decks": 59,
-    "roles": [
-     "draw",
-     "finisher",
-     "beater"
     ]
    }
   ],
@@ -1003,12 +1004,27 @@
     ]
    },
    {
+    "name": "Old-Growth Troll",
+    "decks": 68,
+    "roles": [
+     "tokens",
+     "beater"
+    ]
+   },
+   {
     "name": "Biotech Specialist",
     "decks": 66,
     "roles": [
      "engine",
      "reach",
      "tokens"
+    ]
+   },
+   {
+    "name": "Greedy Freebooter",
+    "decks": 59,
+    "roles": [
+     "beater"
     ]
    },
    {
@@ -1100,20 +1116,6 @@
     "roles": [
      "engine",
      "tokens",
-     "beater"
-    ]
-   },
-   {
-    "name": "Eyetwitch",
-    "decks": 28,
-    "roles": [
-     "beater"
-    ]
-   },
-   {
-    "name": "Ornithopter",
-    "decks": 26,
-    "roles": [
      "beater"
     ]
    }
@@ -1300,23 +1302,6 @@
   ],
   "combo": [
    {
-    "name": "Fear of Missing Out",
-    "decks": 70,
-    "roles": [
-     "untap",
-     "draw"
-    ]
-   },
-   {
-    "name": "Kiora, Behemoth Beckoner",
-    "decks": 68,
-    "roles": [
-     "untap",
-     "draw",
-     "engine"
-    ]
-   },
-   {
     "name": "Raph & Mikey, Troublemakers",
     "decks": 63,
     "roles": [
@@ -1343,35 +1328,10 @@
     ]
    },
    {
-    "name": "Formidable Speaker",
-    "decks": 38,
-    "roles": [
-     "untap",
-     "tutor"
-    ]
-   },
-   {
-    "name": "Arboreal Grazer",
-    "decks": 36,
-    "roles": [
-     "cheat",
-     "ramp"
-    ]
-   },
-   {
     "name": "Scapeshift",
     "decks": 32,
     "roles": [
      "cheat",
-     "ramp"
-    ]
-   },
-   {
-    "name": "Spelunking",
-    "decks": 32,
-    "roles": [
-     "cheat",
-     "draw",
      "ramp"
     ]
    },
@@ -1460,14 +1420,6 @@
     ]
    },
    {
-    "name": "Sewer-veillance Cam",
-    "decks": 5,
-    "roles": [
-     "untap",
-     "draw"
-    ]
-   },
-   {
     "name": "Bramble Familiar // Fetch Quest",
     "decks": 5,
     "roles": [
@@ -1484,17 +1436,18 @@
     ]
    },
    {
-    "name": "Hidden Strings",
-    "decks": 4,
-    "roles": [
-     "untap"
-    ]
-   },
-   {
     "name": "Omniscience",
     "decks": 4,
     "roles": [
      "cheat"
+    ]
+   },
+   {
+    "name": "Pore Over the Pages",
+    "decks": 4,
+    "roles": [
+     "untap",
+     "draw"
     ]
    },
    {
@@ -1503,6 +1456,57 @@
     "roles": [
      "cheat",
      "enhance"
+    ]
+   },
+   {
+    "name": "Vastlands Scavenger // Bind to Life",
+    "decks": 3,
+    "roles": [
+     "cheat",
+     "beater"
+    ]
+   },
+   {
+    "name": "Enigmatic Incarnation",
+    "decks": 3,
+    "roles": [
+     "cheat",
+     "tutor"
+    ]
+   },
+   {
+    "name": "Torrential Gearhulk",
+    "decks": 3,
+    "roles": [
+     "cheat",
+     "recursion",
+     "finisher",
+     "beater"
+    ]
+   },
+   {
+    "name": "Bring to Light",
+    "decks": 2,
+    "roles": [
+     "cheat",
+     "tutor"
+    ]
+   },
+   {
+    "name": "Kasmina, Enigma Sage",
+    "decks": 2,
+    "roles": [
+     "cheat",
+     "tutor",
+     "engine",
+     "enhance"
+    ]
+   },
+   {
+    "name": "Earth's Mightiest Heroes",
+    "decks": 2,
+    "roles": [
+     "cheat"
     ]
    }
   ],
@@ -1538,6 +1542,13 @@
    {
     "name": "Ensoul Artifact",
     "decks": 5,
+    "roles": [
+     "other"
+    ]
+   },
+   {
+    "name": "Hidden Strings",
+    "decks": 4,
     "roles": [
      "other"
     ]
@@ -1611,13 +1622,6 @@
     "roles": [
      "other"
     ]
-   },
-   {
-    "name": "Shimmerwilds Growth",
-    "decks": 1,
-    "roles": [
-     "other"
-    ]
    }
   ]
  },
@@ -1670,6 +1674,7 @@
     "tokens"
    ],
    "tags": [
+    "lifegain@each_turn",
     "draw@each_turn",
     "drain@each_turn",
     "token@once_trigger"
@@ -1684,10 +1689,10 @@
     "beater"
    ],
    "tags": [
-    "drain@etb",
-    "drain@attack",
     "lifegain@etb",
-    "lifegain@attack"
+    "drain@etb",
+    "lifegain@attack",
+    "drain@attack"
    ]
   },
   {
@@ -1738,7 +1743,6 @@
    "decks": 87,
    "roles": [
     "draw",
-    "ramp",
     "engine",
     "tokens"
    ],
@@ -1754,7 +1758,6 @@
    "decks": 84,
    "roles": [
     "draw",
-    "ramp",
     "engine",
     "reach"
    ],
@@ -1819,13 +1822,11 @@
    "name": "Kiora, Behemoth Beckoner",
    "decks": 68,
    "roles": [
-    "untap",
     "draw",
     "engine"
    ],
    "tags": [
-    "draw@creature_enters",
-    "untap@loyalty"
+    "draw@creature_enters"
    ]
   },
   {
@@ -1916,11 +1917,13 @@
    "decks": 51,
    "roles": [
     "removal",
+    "untap",
     "draw",
     "engine"
    ],
    "tags": [
     "draw@loyalty",
+    "untap@loyalty",
     "removal@loyalty"
    ]
   },
@@ -1947,6 +1950,7 @@
     "reach"
    ],
    "tags": [
+    "lifegain@etb",
     "drain@etb",
     "recursion@activated"
    ]
@@ -2459,6 +2463,14 @@
    "typeLine": "Creature — Spirit"
   },
   {
+   "name": "Arboreal Grazer",
+   "decks": 36,
+   "roles": [
+    "ramp"
+   ],
+   "typeLine": "Creature — Sloth Beast"
+  },
+  {
    "name": "Mockingbird",
    "decks": 35,
    "roles": [
@@ -2656,6 +2668,14 @@
    "typeLine": "Creature — Siren Pirate"
   },
   {
+   "name": "Hidden Strings",
+   "decks": 4,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery"
+  },
+  {
    "name": "Ulamog, the Ceaseless Hunger",
    "decks": 4,
    "roles": [
@@ -2663,22 +2683,6 @@
     "beater"
    ],
    "typeLine": "Legendary Creature — Eldrazi"
-  },
-  {
-   "name": "The Blackstaff of Waterdeep",
-   "decks": 3,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Legendary Artifact"
-  },
-  {
-   "name": "Zoetic Glyph",
-   "decks": 3,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Enchantment — Aura"
   }
  ],
  "unknownCards": [

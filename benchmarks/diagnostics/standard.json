@@ -1,6 +1,6 @@
 {
  "format": "Standard",
- "generatedAt": "2026-11-25T20:14:44.975Z",
+ "generatedAt": "2026-11-25T20:17:05.834Z",
  "decks": 2486,
  "otherOnly": [
   {
@@ -25,12 +25,6 @@
    "name": "Multiply by Zero",
    "decks": 10,
    "typeLine": "Instant",
-   "tags": []
-  },
-  {
-   "name": "Shimmerwilds Growth",
-   "decks": 9,
-   "typeLine": "Enchantment — Aura",
    "tags": []
   },
   {
@@ -148,7 +142,6 @@
    "decks": 278,
    "roles": [
     "removal",
-    "ramp",
     "engine",
     "reach",
     "beater"
@@ -208,7 +201,6 @@
    "decks": 230,
    "roles": [
     "draw",
-    "ramp",
     "engine",
     "reach"
    ],
@@ -619,7 +611,6 @@
     "decks": 278,
     "roles": [
      "removal",
-     "ramp",
      "engine",
      "reach",
      "beater"
@@ -801,7 +792,6 @@
     "decks": 230,
     "roles": [
      "draw",
-     "ramp",
      "engine",
      "reach"
     ]
@@ -969,6 +959,13 @@
     ]
    },
    {
+    "name": "Greedy Freebooter",
+    "decks": 230,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
     "name": "Spyglass Siren",
     "decks": 228,
     "roles": [
@@ -1060,6 +1057,13 @@
     ]
    },
    {
+    "name": "Magda, the Hoardmaster",
+    "decks": 123,
+    "roles": [
+     "engine"
+    ]
+   },
+   {
     "name": "Sunderflock",
     "decks": 116,
     "roles": [
@@ -1097,34 +1101,18 @@
     ]
    },
    {
+    "name": "Sarkhan, Dragon Ascendant",
+    "decks": 100,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
     "name": "Ajani Resolute",
     "decks": 96,
     "roles": [
      "engine",
      "enhance"
-    ]
-   },
-   {
-    "name": "Elusive Otter // Grove's Bounty",
-    "decks": 95,
-    "roles": [
-     "beater"
-    ]
-   },
-   {
-    "name": "Captain Marvel, Earth's Protector",
-    "decks": 88,
-    "roles": [
-     "finisher",
-     "beater"
-    ]
-   },
-   {
-    "name": "Hired Claw",
-    "decks": 88,
-    "roles": [
-     "engine",
-     "reach"
     ]
    }
   ],
@@ -1339,14 +1327,6 @@
     ]
    },
    {
-    "name": "Formidable Speaker",
-    "decks": 37,
-    "roles": [
-     "untap",
-     "tutor"
-    ]
-   },
-   {
     "name": "Kona, Rescue Beastie",
     "decks": 26,
     "roles": [
@@ -1359,14 +1339,6 @@
     "decks": 25,
     "roles": [
      "cheat"
-    ]
-   },
-   {
-    "name": "Fear of Missing Out",
-    "decks": 21,
-    "roles": [
-     "untap",
-     "draw"
     ]
    },
    {
@@ -1484,30 +1456,12 @@
     ]
    },
    {
-    "name": "Elite Interceptor // Rejoinder",
-    "decks": 1,
-    "roles": [
-     "untap",
-     "draw"
-    ]
-   },
-   {
     "name": "Malcolm, Alluring Scoundrel",
     "decks": 1,
     "roles": [
      "cheat",
      "draw",
      "engine",
-     "beater"
-    ]
-   },
-   {
-    "name": "Anticausal Vestige",
-    "decks": 1,
-    "roles": [
-     "cheat",
-     "draw",
-     "finisher",
      "beater"
     ]
    },
@@ -1524,6 +1478,25 @@
     "decks": 1,
     "roles": [
      "copy"
+    ]
+   },
+   {
+    "name": "The Dawning Archaic",
+    "decks": 1,
+    "roles": [
+     "cheat",
+     "recursion",
+     "ramp",
+     "finisher",
+     "engine",
+     "beater"
+    ]
+   },
+   {
+    "name": "Brazen Bluff",
+    "decks": 1,
+    "roles": [
+     "cheat"
     ]
    }
   ],
@@ -1552,13 +1525,6 @@
    {
     "name": "Multiply by Zero",
     "decks": 10,
-    "roles": [
-     "other"
-    ]
-   },
-   {
-    "name": "Shimmerwilds Growth",
-    "decks": 9,
     "roles": [
      "other"
     ]
@@ -1679,7 +1645,6 @@
    "decks": 278,
    "roles": [
     "removal",
-    "ramp",
     "engine",
     "reach",
     "beater"
@@ -1725,7 +1690,6 @@
    "decks": 230,
    "roles": [
     "draw",
-    "ramp",
     "engine",
     "reach"
    ],
@@ -1918,7 +1882,6 @@
    "name": "Magda, the Hoardmaster",
    "decks": 123,
    "roles": [
-    "ramp",
     "engine"
    ],
    "tags": [
@@ -2629,14 +2592,6 @@
    "typeLine": "Creature — Goblin Sorcerer"
   },
   {
-   "name": "Shimmerwilds Growth",
-   "decks": 9,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Enchantment — Aura"
-  },
-  {
    "name": "Traveling Chocobo",
    "decks": 8,
    "roles": [
@@ -2703,6 +2658,14 @@
     "beater"
    ],
    "typeLine": "Legendary Creature — Human Noble"
+  },
+  {
+   "name": "Mathemagics",
+   "decks": 5,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery"
   }
  ],
  "unknownCards": [

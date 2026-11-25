@@ -1,6 +1,6 @@
 {
  "format": "Vintage",
- "generatedAt": "2026-11-25T20:14:44.975Z",
+ "generatedAt": "2026-11-25T20:17:05.834Z",
  "decks": 1268,
  "otherOnly": [
   {
@@ -169,20 +169,6 @@
    ]
   },
   {
-   "name": "Glaring Fleshraker",
-   "decks": 132,
-   "roles": [
-    "ramp",
-    "engine",
-    "reach"
-   ],
-   "tags": [
-    "token@cast_trigger",
-    "mana@cast_trigger",
-    "drain@creature_enters"
-   ]
-  },
-  {
    "name": "Lodestone Golem",
    "decks": 121,
    "roles": [
@@ -296,19 +282,6 @@
    ],
    "tags": [
     "cheat@attack"
-   ]
-  },
-  {
-   "name": "Hullbreacher",
-   "decks": 23,
-   "roles": [
-    "draw",
-    "ramp",
-    "beater"
-   ],
-   "tags": [
-    "draw@static",
-    "mana@static"
    ]
   },
   {
@@ -439,7 +412,6 @@
    "name": "Uro, Titan of Nature's Wrath",
    "decks": 6,
    "roles": [
-    "cheat",
     "draw",
     "recursion",
     "ramp",
@@ -450,10 +422,8 @@
    "tags": [
     "lifegain@etb",
     "draw@etb",
-    "cheat@etb",
     "lifegain@attack",
     "draw@attack",
-    "cheat@attack",
     "recursion@static"
    ]
   },
@@ -494,6 +464,32 @@
    "tags": [
     "gyhate@etb",
     "mana@activated"
+   ]
+  },
+  {
+   "name": "Boromir, Warden of the Tower",
+   "decks": 4,
+   "roles": [
+    "counter",
+    "beater",
+    "protection"
+   ],
+   "tags": [
+    "counter@cast_trigger",
+    "protection@activated_once"
+   ]
+  },
+  {
+   "name": "Displacer Kitten",
+   "decks": 4,
+   "roles": [
+    "removal",
+    "engine",
+    "protection"
+   ],
+   "tags": [
+    "removal@cast_trigger",
+    "protection@cast_trigger"
    ]
   }
  ],
@@ -902,6 +898,21 @@
     ]
    },
    {
+    "name": "Glaring Fleshraker",
+    "decks": 132,
+    "roles": [
+     "engine",
+     "reach"
+    ]
+   },
+   {
+    "name": "White Plume Adventurer",
+    "decks": 113,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
     "name": "Seasoned Dungeoneer",
     "decks": 111,
     "roles": [
@@ -1023,6 +1034,13 @@
     ]
    },
    {
+    "name": "Ragavan, Nimble Pilferer",
+    "decks": 15,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
     "name": "Phyrexian Dreadnought",
     "decks": 14,
     "roles": [
@@ -1035,28 +1053,6 @@
     "decks": 14,
     "roles": [
      "engine"
-    ]
-   },
-   {
-    "name": "Murktide Regent",
-    "decks": 12,
-    "roles": [
-     "beater"
-    ]
-   },
-   {
-    "name": "Fury",
-    "decks": 11,
-    "roles": [
-     "beater"
-    ]
-   },
-   {
-    "name": "Eater of Days",
-    "decks": 9,
-    "roles": [
-     "finisher",
-     "beater"
     ]
    }
   ],
@@ -1132,6 +1128,13 @@
     ]
    },
    {
+    "name": "Vow to Erebor",
+    "decks": 1,
+    "roles": [
+     "enhance"
+    ]
+   },
+   {
     "name": "Well-Worn Spatula",
     "decks": 1,
     "roles": [
@@ -1176,14 +1179,6 @@
     "roles": [
      "cheat",
      "tutor"
-    ]
-   },
-   {
-    "name": "White Plume Adventurer",
-    "decks": 113,
-    "roles": [
-     "untap",
-     "beater"
     ]
    },
    {
@@ -1276,19 +1271,6 @@
     ]
    },
    {
-    "name": "Uro, Titan of Nature's Wrath",
-    "decks": 6,
-    "roles": [
-     "cheat",
-     "draw",
-     "recursion",
-     "ramp",
-     "finisher",
-     "engine",
-     "beater"
-    ]
-   },
-   {
     "name": "Dauthi Voidwalker",
     "decks": 6,
     "roles": [
@@ -1302,13 +1284,6 @@
     "roles": [
      "untap",
      "tutor"
-    ]
-   },
-   {
-    "name": "Scryb Ranger",
-    "decks": 3,
-    "roles": [
-     "untap"
     ]
    },
    {
@@ -1328,19 +1303,27 @@
     ]
    },
    {
-    "name": "Stoneforge Mystic",
+    "name": "Wood Elves",
     "decks": 1,
     "roles": [
      "cheat",
-     "tutor"
+     "ramp"
     ]
    },
    {
-    "name": "Little Bear",
+    "name": "Winota, Joiner of Forces",
     "decks": 1,
     "roles": [
-     "untap",
-     "beater"
+     "cheat",
+     "beater",
+     "protection"
+    ]
+   },
+   {
+    "name": "Goblin Lackey",
+    "decks": 1,
+    "roles": [
+     "cheat"
     ]
    }
   ],
@@ -1523,7 +1506,6 @@
    "name": "Glaring Fleshraker",
    "decks": 132,
    "roles": [
-    "ramp",
     "engine",
     "reach"
    ],
@@ -1853,7 +1835,6 @@
    "name": "Uro, Titan of Nature's Wrath",
    "decks": 6,
    "roles": [
-    "cheat",
     "draw",
     "recursion",
     "ramp",
@@ -1864,10 +1845,8 @@
    "tags": [
     "lifegain@etb",
     "draw@etb",
-    "cheat@etb",
     "lifegain@attack",
     "draw@attack",
-    "cheat@attack",
     "recursion@static"
    ]
   },
@@ -2059,7 +2038,6 @@
    "name": "Uro, Titan of Nature's Wrath",
    "decks": 6,
    "roles": [
-    "cheat",
     "draw",
     "recursion",
     "ramp",
@@ -2167,6 +2145,14 @@
     "protection"
    ],
    "typeLine": "Creature — Goblin Sorcerer"
+  },
+  {
+   "name": "White Plume Adventurer",
+   "decks": 113,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Orc Cleric"
   },
   {
    "name": "Hollow One",
@@ -2375,6 +2361,14 @@
    "typeLine": "Creature — Kor Nomad Soldier"
   },
   {
+   "name": "Scryb Ranger",
+   "decks": 3,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Faerie Ranger"
+  },
+  {
    "name": "Step Through",
    "decks": 2,
    "roles": [
@@ -2454,22 +2448,6 @@
     "beater"
    ],
    "typeLine": "Creature — Human Soldier"
-  },
-  {
-   "name": "Goblin-town Flunkies",
-   "decks": 1,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Goblin Soldier"
-  },
-  {
-   "name": "Great Fierce Bee",
-   "decks": 1,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Insect"
   }
  ],
  "unknownCards": [

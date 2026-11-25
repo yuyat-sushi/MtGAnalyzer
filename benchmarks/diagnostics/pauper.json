@@ -1,24 +1,12 @@
 {
  "format": "Pauper",
- "generatedAt": "2026-11-25T20:14:44.975Z",
+ "generatedAt": "2026-11-25T20:17:05.834Z",
  "decks": 2806,
  "otherOnly": [
-  {
-   "name": "Utopia Sprawl",
-   "decks": 166,
-   "typeLine": "Enchantment — Aura",
-   "tags": []
-  },
   {
    "name": "Breath Weapon",
    "decks": 80,
    "typeLine": "Instant",
-   "tags": []
-  },
-  {
-   "name": "Wild Growth",
-   "decks": 39,
-   "typeLine": "Enchantment — Aura",
    "tags": []
   },
   {
@@ -65,12 +53,6 @@
    "name": "Gigadrowse",
    "decks": 3,
    "typeLine": "Instant",
-   "tags": []
-  },
-  {
-   "name": "Fertile Ground",
-   "decks": 3,
-   "typeLine": "Enchantment — Aura",
    "tags": []
   },
   {
@@ -304,47 +286,6 @@
    ]
   },
   {
-   "name": "Growth Spiral",
-   "decks": 35,
-   "roles": [
-    "cheat",
-    "draw",
-    "ramp"
-   ],
-   "tags": [
-    "draw@spell",
-    "cheat@spell"
-   ]
-  },
-  {
-   "name": "Eldrazi Repurposer",
-   "decks": 33,
-   "roles": [
-    "ramp",
-    "tokens",
-    "beater"
-   ],
-   "tags": [
-    "token@cast_self",
-    "mana@cast_self",
-    "token@dies",
-    "mana@dies"
-   ]
-  },
-  {
-   "name": "Embrace the Paradox",
-   "decks": 30,
-   "roles": [
-    "cheat",
-    "draw",
-    "ramp"
-   ],
-   "tags": [
-    "draw@spell",
-    "cheat@spell"
-   ]
-  },
-  {
    "name": "Cauldron Familiar",
    "decks": 23,
    "roles": [
@@ -353,6 +294,7 @@
     "reach"
    ],
    "tags": [
+    "lifegain@etb",
     "drain@etb",
     "recursion@activated"
    ]
@@ -361,7 +303,6 @@
    "name": "Warped Tusker",
    "decks": 13,
    "roles": [
-    "ramp",
     "finisher",
     "engine",
     "beater"
@@ -395,19 +336,6 @@
     "drain@static",
     "removal@static",
     "pump@static"
-   ]
-  },
-  {
-   "name": "Eureka Moment",
-   "decks": 6,
-   "roles": [
-    "cheat",
-    "draw",
-    "ramp"
-   ],
-   "tags": [
-    "draw@spell",
-    "cheat@spell"
    ]
   },
   {
@@ -490,17 +418,70 @@
    ]
   },
   {
-   "name": "Make It So",
-   "decks": 3,
+   "name": "Firebolt",
+   "decks": 2,
    "roles": [
-    "untap",
-    "draw",
-    "tokens"
+    "removal",
+    "recursion",
+    "reach"
    ],
    "tags": [
-    "draw@spell",
-    "untap@spell",
-    "token@spell"
+    "drain@spell",
+    "removal@spell",
+    "recursion@spell"
+   ]
+  },
+  {
+   "name": "Fang Dragon // Forktail Sweep",
+   "decks": 2,
+   "roles": [
+    "wipe",
+    "finisher",
+    "beater"
+   ],
+   "tags": [
+    "wipe@spell"
+   ]
+  },
+  {
+   "name": "Hissing Iguanar",
+   "decks": 2,
+   "roles": [
+    "removal",
+    "engine",
+    "reach",
+    "beater"
+   ],
+   "tags": [
+    "drain@death_trigger",
+    "removal@death_trigger"
+   ]
+  },
+  {
+   "name": "Talons of Wildwood",
+   "decks": 2,
+   "roles": [
+    "recursion",
+    "engine",
+    "enhance"
+   ],
+   "tags": [
+    "pump@static",
+    "recursion@activated"
+   ]
+  },
+  {
+   "name": "Needle Drop",
+   "decks": 1,
+   "roles": [
+    "removal",
+    "draw",
+    "reach"
+   ],
+   "tags": [
+    "drain@spell",
+    "removal@spell",
+    "draw@spell"
    ]
   }
  ],
@@ -947,6 +928,13 @@
     ]
    },
    {
+    "name": "Quirion Ranger",
+    "decks": 256,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
     "name": "Utrom Monitor",
     "decks": 231,
     "roles": [
@@ -1014,6 +1002,13 @@
     ]
    },
    {
+    "name": "Writhing Chrysalis",
+    "decks": 137,
+    "roles": [
+     "tokens"
+    ]
+   },
+   {
     "name": "Armadillo Cloak",
     "decks": 136,
     "roles": [
@@ -1055,21 +1050,6 @@
     "roles": [
      "tokens",
      "enhance"
-    ]
-   },
-   {
-    "name": "Black Mage's Rod",
-    "decks": 130,
-    "roles": [
-     "reach",
-     "enhance"
-    ]
-   },
-   {
-    "name": "Goblin Tomb Raider",
-    "decks": 121,
-    "roles": [
-     "beater"
     ]
    }
   ],
@@ -1253,21 +1233,6 @@
   ],
   "combo": [
    {
-    "name": "Quirion Ranger",
-    "decks": 256,
-    "roles": [
-     "untap"
-    ]
-   },
-   {
-    "name": "Sewer-veillance Cam",
-    "decks": 120,
-    "roles": [
-     "untap",
-     "draw"
-    ]
-   },
-   {
     "name": "Crop Rotation",
     "decks": 115,
     "roles": [
@@ -1280,32 +1245,6 @@
     "decks": 85,
     "roles": [
      "copy"
-    ]
-   },
-   {
-    "name": "Growth Spiral",
-    "decks": 35,
-    "roles": [
-     "cheat",
-     "draw",
-     "ramp"
-    ]
-   },
-   {
-    "name": "Embrace the Paradox",
-    "decks": 30,
-    "roles": [
-     "cheat",
-     "draw",
-     "ramp"
-    ]
-   },
-   {
-    "name": "Elite Interceptor // Rejoinder",
-    "decks": 28,
-    "roles": [
-     "untap",
-     "draw"
     ]
    },
    {
@@ -1325,57 +1264,17 @@
     ]
    },
    {
-    "name": "Eureka Moment",
-    "decks": 6,
-    "roles": [
-     "cheat",
-     "draw",
-     "ramp"
-    ]
-   },
-   {
     "name": "Teach by Example",
     "decks": 5,
     "roles": [
      "copy"
     ]
-   },
-   {
-    "name": "Make It So",
-    "decks": 3,
-    "roles": [
-     "untap",
-     "draw",
-     "tokens"
-    ]
-   },
-   {
-    "name": "Arboreal Grazer",
-    "decks": 2,
-    "roles": [
-     "cheat",
-     "ramp"
-    ]
    }
   ],
   "other": [
    {
-    "name": "Utopia Sprawl",
-    "decks": 166,
-    "roles": [
-     "other"
-    ]
-   },
-   {
     "name": "Breath Weapon",
     "decks": 80,
-    "roles": [
-     "other"
-    ]
-   },
-   {
-    "name": "Wild Growth",
-    "decks": 39,
     "roles": [
      "other"
     ]
@@ -1424,13 +1323,6 @@
    },
    {
     "name": "Gigadrowse",
-    "decks": 3,
-    "roles": [
-     "other"
-    ]
-   },
-   {
-    "name": "Fertile Ground",
     "decks": 3,
     "roles": [
      "other"
@@ -1649,6 +1541,7 @@
     "reach"
    ],
    "tags": [
+    "lifegain@etb",
     "drain@etb",
     "recursion@activated"
    ]
@@ -1700,7 +1593,6 @@
    "name": "Warped Tusker",
    "decks": 13,
    "roles": [
-    "ramp",
     "finisher",
     "engine",
     "beater"
@@ -2088,7 +1980,6 @@
    "name": "Warped Tusker",
    "decks": 13,
    "roles": [
-    "ramp",
     "finisher",
     "engine",
     "beater"
@@ -2128,6 +2019,14 @@
     "beater"
    ],
    "typeLine": "Creature — Faerie Wizard"
+  },
+  {
+   "name": "Quirion Ranger",
+   "decks": 256,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Elf Ranger"
   },
   {
    "name": "Tolarian Terror",
@@ -2215,14 +2114,6 @@
     "ramp"
    ],
    "typeLine": "Sorcery"
-  },
-  {
-   "name": "Utopia Sprawl",
-   "decks": 166,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Enchantment — Aura"
   },
   {
    "name": "Goblin Anarchomancer",
@@ -2321,14 +2212,6 @@
     "protection"
    ],
    "typeLine": "Instant"
-  },
-  {
-   "name": "Wild Growth",
-   "decks": 39,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Enchantment — Aura"
   },
   {
    "name": "Arbor Elf",
@@ -2446,6 +2329,14 @@
     "beater"
    ],
    "typeLine": "Creature — Rhino Soldier"
+  },
+  {
+   "name": "Guardian of the Guildpact",
+   "decks": 15,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Spirit"
   }
  ],
  "unknownCards": [

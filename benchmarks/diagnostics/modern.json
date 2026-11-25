@@ -1,6 +1,6 @@
 {
  "format": "Modern",
- "generatedAt": "2026-11-25T20:14:44.975Z",
+ "generatedAt": "2026-11-25T20:17:05.834Z",
  "decks": 5064,
  "otherOnly": [
   {
@@ -10,12 +10,6 @@
    "tags": [
     "lifegain@spell"
    ]
-  },
-  {
-   "name": "Utopia Sprawl",
-   "decks": 44,
-   "typeLine": "Enchantment — Aura",
-   "tags": []
   },
   {
    "name": "Plunge into Darkness",
@@ -47,6 +41,12 @@
    "name": "Loading Zone",
    "decks": 14,
    "typeLine": "Enchantment",
+   "tags": []
+  },
+  {
+   "name": "Aether Vial",
+   "decks": 10,
+   "typeLine": "Artifact",
    "tags": []
   },
   {
@@ -409,47 +409,6 @@
    ]
   },
   {
-   "name": "Spelunking",
-   "decks": 249,
-   "roles": [
-    "cheat",
-    "draw",
-    "ramp"
-   ],
-   "tags": [
-    "lifegain@etb",
-    "draw@etb",
-    "cheat@etb"
-   ]
-  },
-  {
-   "name": "Cultivator Colossus",
-   "decks": 247,
-   "roles": [
-    "cheat",
-    "draw",
-    "ramp"
-   ],
-   "tags": [
-    "draw@etb",
-    "cheat@etb"
-   ]
-  },
-  {
-   "name": "Glaring Fleshraker",
-   "decks": 246,
-   "roles": [
-    "ramp",
-    "engine",
-    "reach"
-   ],
-   "tags": [
-    "token@cast_trigger",
-    "mana@cast_trigger",
-    "drain@creature_enters"
-   ]
-  },
-  {
    "name": "Ranger-Captain of Eos",
    "decks": 236,
    "roles": [
@@ -501,6 +460,19 @@
    ],
    "tags": [
     "draw@activated"
+   ]
+  },
+  {
+   "name": "Thought-Knot Seer",
+   "decks": 218,
+   "roles": [
+    "discard",
+    "draw",
+    "beater"
+   ],
+   "tags": [
+    "discard@etb",
+    "draw@once_trigger"
    ]
   },
   {
@@ -649,6 +621,40 @@
     "lifegain@etb",
     "draw@etb",
     "mana@activated"
+   ]
+  },
+  {
+   "name": "Archon of Cruelty",
+   "decks": 144,
+   "roles": [
+    "removal",
+    "draw",
+    "finisher",
+    "engine",
+    "beater"
+   ],
+   "tags": [
+    "lifegain@etb",
+    "draw@etb",
+    "removal@etb",
+    "lifegain@attack",
+    "draw@attack",
+    "removal@attack"
+   ]
+  },
+  {
+   "name": "Fable of the Mirror-Breaker // Reflection of Kiki-Jiki",
+   "decks": 138,
+   "roles": [
+    "draw",
+    "engine",
+    "tokens"
+   ],
+   "tags": [
+    "token@chapter",
+    "mana@chapter",
+    "draw@chapter",
+    "token@activated"
    ]
   }
  ],
@@ -921,6 +927,13 @@
     ]
    },
    {
+    "name": "Fear of Missing Out",
+    "decks": 446,
+    "roles": [
+     "draw"
+    ]
+   },
+   {
     "name": "Ancient Stirrings",
     "decks": 438,
     "roles": [
@@ -995,6 +1008,22 @@
     ]
    },
    {
+    "name": "Spelunking",
+    "decks": 249,
+    "roles": [
+     "draw",
+     "ramp"
+    ]
+   },
+   {
+    "name": "Cultivator Colossus",
+    "decks": 247,
+    "roles": [
+     "draw",
+     "ramp"
+    ]
+   },
+   {
     "name": "Tamiyo, Inquisitive Student // Tamiyo, Seasoned Scholar",
     "decks": 226,
     "roles": [
@@ -1019,35 +1048,16 @@
      "finisher",
      "beater"
     ]
-   },
-   {
-    "name": "Griselbrand",
-    "decks": 219,
-    "roles": [
-     "draw",
-     "finisher",
-     "engine",
-     "beater"
-    ]
-   },
-   {
-    "name": "Territorial Kavu",
-    "decks": 196,
-    "roles": [
-     "draw",
-     "engine"
-    ]
-   },
-   {
-    "name": "Manamorphose",
-    "decks": 195,
-    "roles": [
-     "draw",
-     "ramp"
-    ]
    }
   ],
   "win": [
+   {
+    "name": "Ragavan, Nimble Pilferer",
+    "decks": 721,
+    "roles": [
+     "beater"
+    ]
+   },
    {
     "name": "Street Wraith",
     "decks": 604,
@@ -1091,6 +1101,13 @@
     "roles": [
      "selfmill",
      "beater"
+    ]
+   },
+   {
+    "name": "Basking Broodscale",
+    "decks": 409,
+    "roles": [
+     "engine"
     ]
    },
    {
@@ -1161,6 +1178,14 @@
     ]
    },
    {
+    "name": "Glaring Fleshraker",
+    "decks": 246,
+    "roles": [
+     "engine",
+     "reach"
+    ]
+   },
+   {
     "name": "Generous Ent",
     "decks": 236,
     "roles": [
@@ -1207,30 +1232,6 @@
    {
     "name": "Oliphaunt",
     "decks": 138,
-    "roles": [
-     "finisher",
-     "beater"
-    ]
-   },
-   {
-    "name": "Tyvar, the Pummeler",
-    "decks": 134,
-    "roles": [
-     "beater",
-     "protection"
-    ]
-   },
-   {
-    "name": "Craterhoof Behemoth",
-    "decks": 130,
-    "roles": [
-     "finisher",
-     "beater"
-    ]
-   },
-   {
-    "name": "Striped Riverwinder",
-    "decks": 109,
     "roles": [
      "finisher",
      "beater"
@@ -1416,22 +1417,6 @@
   ],
   "combo": [
    {
-    "name": "Fear of Missing Out",
-    "decks": 446,
-    "roles": [
-     "untap",
-     "draw"
-    ]
-   },
-   {
-    "name": "Arboreal Grazer",
-    "decks": 282,
-    "roles": [
-     "cheat",
-     "ramp"
-    ]
-   },
-   {
     "name": "Scapeshift",
     "decks": 255,
     "roles": [
@@ -1440,28 +1425,10 @@
     ]
    },
    {
-    "name": "Spelunking",
-    "decks": 249,
-    "roles": [
-     "cheat",
-     "draw",
-     "ramp"
-    ]
-   },
-   {
     "name": "Amulet of Vigor",
     "decks": 248,
     "roles": [
      "untap",
-     "ramp"
-    ]
-   },
-   {
-    "name": "Cultivator Colossus",
-    "decks": 247,
-    "roles": [
-     "cheat",
-     "draw",
      "ramp"
     ]
    },
@@ -1484,30 +1451,12 @@
     ]
    },
    {
-    "name": "Formidable Speaker",
-    "decks": 168,
-    "roles": [
-     "untap",
-     "tutor"
-    ]
-   },
-   {
     "name": "Living End",
     "decks": 165,
     "roles": [
      "wipe",
      "cheat",
      "recursion"
-    ]
-   },
-   {
-    "name": "Tyvar, Jubilant Brawler",
-    "decks": 137,
-    "roles": [
-     "untap",
-     "recursion",
-     "selfmill",
-     "engine"
     ]
    },
    {
@@ -1595,14 +1544,6 @@
     ]
    },
    {
-    "name": "Sewer-veillance Cam",
-    "decks": 29,
-    "roles": [
-     "untap",
-     "draw"
-    ]
-   },
-   {
     "name": "Sakura-Tribe Elder",
     "decks": 25,
     "roles": [
@@ -1625,19 +1566,70 @@
      "cheat",
      "enhance"
     ]
+   },
+   {
+    "name": "Through the Breach",
+    "decks": 15,
+    "roles": [
+     "cheat"
+    ]
+   },
+   {
+    "name": "Improvisation Capstone",
+    "decks": 9,
+    "roles": [
+     "cheat"
+    ]
+   },
+   {
+    "name": "Urza, Lord High Artificer",
+    "decks": 9,
+    "roles": [
+     "cheat",
+     "ramp",
+     "tokens"
+    ]
+   },
+   {
+    "name": "Stormscale Scion",
+    "decks": 8,
+    "roles": [
+     "copy",
+     "finisher",
+     "beater"
+    ]
+   },
+   {
+    "name": "Mwonvuli Acid-Moss",
+    "decks": 6,
+    "roles": [
+     "cheat",
+     "ramp"
+    ]
+   },
+   {
+    "name": "Simulacrum Shaper",
+    "decks": 5,
+    "roles": [
+     "cheat",
+     "draw",
+     "ramp"
+    ]
+   },
+   {
+    "name": "Turntimber Symbiosis // Turntimber, Serpentine Wood",
+    "decks": 5,
+    "roles": [
+     "cheat",
+     "ramp",
+     "enhance"
+    ]
    }
   ],
   "other": [
    {
     "name": "Nourishing Shoal",
     "decks": 45,
-    "roles": [
-     "other"
-    ]
-   },
-   {
-    "name": "Utopia Sprawl",
-    "decks": 44,
     "roles": [
      "other"
     ]
@@ -1673,6 +1665,13 @@
    {
     "name": "Loading Zone",
     "decks": 14,
+    "roles": [
+     "other"
+    ]
+   },
+   {
+    "name": "Aether Vial",
+    "decks": 10,
     "roles": [
      "other"
     ]
@@ -1887,7 +1886,6 @@
    "name": "Basking Broodscale",
    "decks": 409,
    "roles": [
-    "ramp",
     "engine"
    ],
    "tags": [
@@ -1981,7 +1979,6 @@
    "name": "Glaring Fleshraker",
    "decks": 246,
    "roles": [
-    "ramp",
     "engine",
     "reach"
    ],
@@ -2150,7 +2147,6 @@
    "decks": 138,
    "roles": [
     "draw",
-    "ramp",
     "engine",
     "tokens"
    ],
@@ -2165,13 +2161,11 @@
    "name": "Tyvar, Jubilant Brawler",
    "decks": 137,
    "roles": [
-    "untap",
     "recursion",
     "selfmill",
     "engine"
    ],
    "tags": [
-    "untap@loyalty",
     "recursion@loyalty",
     "selfmill@loyalty"
    ]
@@ -2337,6 +2331,7 @@
     "reach"
    ],
    "tags": [
+    "lifegain@etb",
     "drain@etb",
     "recursion@activated"
    ]
@@ -2609,6 +2604,14 @@
    "typeLine": "Creature — Elemental Incarnation"
   },
   {
+   "name": "Arboreal Grazer",
+   "decks": 282,
+   "roles": [
+    "ramp"
+   ],
+   "typeLine": "Creature — Sloth Beast"
+  },
+  {
    "name": "Primeval Titan",
    "decks": 282,
    "roles": [
@@ -2785,14 +2788,6 @@
     "beater"
    ],
    "typeLine": "Creature — Spirit Knight"
-  },
-  {
-   "name": "Utopia Sprawl",
-   "decks": 44,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Enchantment — Aura"
   },
   {
    "name": "Curator of Mysteries",

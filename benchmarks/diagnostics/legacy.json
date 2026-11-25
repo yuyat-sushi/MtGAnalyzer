@@ -1,11 +1,17 @@
 {
  "format": "Legacy",
- "generatedAt": "2026-11-25T20:14:44.975Z",
+ "generatedAt": "2026-11-25T20:17:05.834Z",
  "decks": 2846,
  "otherOnly": [
   {
    "name": "Mystic Forge",
    "decks": 98,
+   "typeLine": "Artifact",
+   "tags": []
+  },
+  {
+   "name": "Aether Vial",
+   "decks": 86,
    "typeLine": "Artifact",
    "tags": []
   },
@@ -306,20 +312,6 @@
    ]
   },
   {
-   "name": "Glaring Fleshraker",
-   "decks": 239,
-   "roles": [
-    "ramp",
-    "engine",
-    "reach"
-   ],
-   "tags": [
-    "token@cast_trigger",
-    "mana@cast_trigger",
-    "drain@creature_enters"
-   ]
-  },
-  {
    "name": "Ajani, Nacatl Pariah // Ajani, Nacatl Avenger",
    "decks": 198,
    "roles": [
@@ -395,6 +387,19 @@
     "token@spell",
     "draw@spell",
     "mana@spell"
+   ]
+  },
+  {
+   "name": "Thought-Knot Seer",
+   "decks": 154,
+   "roles": [
+    "discard",
+    "draw",
+    "beater"
+   ],
+   "tags": [
+    "discard@etb",
+    "draw@once_trigger"
    ]
   },
   {
@@ -834,6 +839,7 @@
     "decks": 154,
     "roles": [
      "discard",
+     "draw",
      "beater"
     ]
    }
@@ -1055,6 +1061,14 @@
     ]
    },
    {
+    "name": "Glaring Fleshraker",
+    "decks": 239,
+    "roles": [
+     "engine",
+     "reach"
+    ]
+   },
+   {
     "name": "Thassa's Oracle",
     "decks": 211,
     "roles": [
@@ -1187,6 +1201,20 @@
     ]
    },
    {
+    "name": "Quirion Ranger",
+    "decks": 80,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
+    "name": "Wirewood Symbiote",
+    "decks": 75,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
     "name": "Kappa Cannoneer",
     "decks": 73,
     "roles": [
@@ -1199,28 +1227,6 @@
     "decks": 72,
     "roles": [
      "engine",
-     "beater"
-    ]
-   },
-   {
-    "name": "Temur Sabertooth",
-    "decks": 72,
-    "roles": [
-     "beater",
-     "protection"
-    ]
-   },
-   {
-    "name": "Cloak and Dagger, Entwined",
-    "decks": 71,
-    "roles": [
-     "beater"
-    ]
-   },
-   {
-    "name": "Barrowgoyf",
-    "decks": 62,
-    "roles": [
      "beater"
     ]
    }
@@ -1485,28 +1491,12 @@
     ]
    },
    {
-    "name": "Stoneforge Mystic",
-    "decks": 99,
-    "roles": [
-     "cheat",
-     "tutor"
-    ]
-   },
-   {
     "name": "Raph & Mikey, Troublemakers",
     "decks": 98,
     "roles": [
      "cheat",
      "finisher",
      "beater"
-    ]
-   },
-   {
-    "name": "Sewer-veillance Cam",
-    "decks": 94,
-    "roles": [
-     "untap",
-     "draw"
     ]
    },
    {
@@ -1517,39 +1507,10 @@
     ]
    },
    {
-    "name": "Aether Vial",
-    "decks": 86,
-    "roles": [
-     "cheat"
-    ]
-   },
-   {
     "name": "Aluren",
     "decks": 85,
     "roles": [
      "cheat"
-    ]
-   },
-   {
-    "name": "Formidable Speaker",
-    "decks": 85,
-    "roles": [
-     "untap",
-     "tutor"
-    ]
-   },
-   {
-    "name": "Quirion Ranger",
-    "decks": 80,
-    "roles": [
-     "untap"
-    ]
-   },
-   {
-    "name": "Wirewood Symbiote",
-    "decks": 75,
-    "roles": [
-     "untap"
     ]
    },
    {
@@ -1579,23 +1540,67 @@
     ]
    },
    {
-    "name": "Uro, Titan of Nature's Wrath",
-    "decks": 28,
-    "roles": [
-     "cheat",
-     "draw",
-     "recursion",
-     "ramp",
-     "finisher",
-     "engine",
-     "beater"
-    ]
-   },
-   {
     "name": "Portent of Calamity",
     "decks": 10,
     "roles": [
      "cheat"
+    ]
+   },
+   {
+    "name": "Creative Technique",
+    "decks": 8,
+    "roles": [
+     "cheat"
+    ]
+   },
+   {
+    "name": "Etali, Primal Conqueror // Etali, Primal Sickness",
+    "decks": 8,
+    "roles": [
+     "cheat",
+     "finisher",
+     "beater"
+    ]
+   },
+   {
+    "name": "Mind's Desire",
+    "decks": 8,
+    "roles": [
+     "cheat",
+     "copy",
+     "draw"
+    ]
+   },
+   {
+    "name": "Time Spiral",
+    "decks": 8,
+    "roles": [
+     "untap",
+     "draw"
+    ]
+   },
+   {
+    "name": "Emrakul, the Exigent Doom",
+    "decks": 8,
+    "roles": [
+     "untap",
+     "ramp",
+     "finisher",
+     "beater"
+    ]
+   },
+   {
+    "name": "Birthing Ritual",
+    "decks": 7,
+    "roles": [
+     "cheat"
+    ]
+   },
+   {
+    "name": "Aphetto Alchemist",
+    "decks": 6,
+    "roles": [
+     "untap"
     ]
    }
   ],
@@ -1603,6 +1608,13 @@
    {
     "name": "Mystic Forge",
     "decks": 98,
+    "roles": [
+     "other"
+    ]
+   },
+   {
+    "name": "Aether Vial",
+    "decks": 86,
     "roles": [
      "other"
     ]
@@ -1767,13 +1779,6 @@
     "roles": [
      "other"
     ]
-   },
-   {
-    "name": "Manabond",
-    "decks": 1,
-    "roles": [
-     "other"
-    ]
    }
   ]
  },
@@ -1840,7 +1845,6 @@
    "name": "Glaring Fleshraker",
    "decks": 239,
    "roles": [
-    "ramp",
     "engine",
     "reach"
    ],
@@ -2236,7 +2240,6 @@
    "decks": 35,
    "roles": [
     "draw",
-    "ramp",
     "engine",
     "tokens"
    ],
@@ -2295,7 +2298,6 @@
    "name": "Uro, Titan of Nature's Wrath",
    "decks": 28,
    "roles": [
-    "cheat",
     "draw",
     "recursion",
     "ramp",
@@ -2306,10 +2308,8 @@
    "tags": [
     "lifegain@etb",
     "draw@etb",
-    "cheat@etb",
     "lifegain@attack",
     "draw@attack",
-    "cheat@attack",
     "recursion@static"
    ]
   },
@@ -2525,7 +2525,6 @@
    "name": "Uro, Titan of Nature's Wrath",
    "decks": 28,
    "roles": [
-    "cheat",
     "draw",
     "recursion",
     "ramp",
@@ -2634,6 +2633,14 @@
    "typeLine": "Creature — Elemental Incarnation"
   },
   {
+   "name": "Aether Vial",
+   "decks": 86,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Artifact"
+  },
+  {
    "name": "Sire of Seven Deaths",
    "decks": 86,
    "roles": [
@@ -2651,12 +2658,28 @@
    "typeLine": "Creature — Illusion"
   },
   {
+   "name": "Quirion Ranger",
+   "decks": 80,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Elf Ranger"
+  },
+  {
    "name": "Allosaurus Shepherd",
    "decks": 79,
    "roles": [
     "protection"
    ],
    "typeLine": "Creature — Elf Shaman"
+  },
+  {
+   "name": "Wirewood Symbiote",
+   "decks": 75,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Insect"
   },
   {
    "name": "Cloak and Dagger, Entwined",
@@ -2837,32 +2860,6 @@
     "other"
    ],
    "typeLine": "Sorcery"
-  },
-  {
-   "name": "Samut, Hazoret's Champion",
-   "decks": 10,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Legendary Creature — Human Warrior Cleric"
-  },
-  {
-   "name": "Apex Devastator",
-   "decks": 8,
-   "roles": [
-    "finisher",
-    "beater"
-   ],
-   "typeLine": "Creature — Chimera Hydra"
-  },
-  {
-   "name": "Maelstrom Wanderer",
-   "decks": 8,
-   "roles": [
-    "finisher",
-    "beater"
-   ],
-   "typeLine": "Legendary Creature — Elemental"
   }
  ],
  "unknownCards": [
