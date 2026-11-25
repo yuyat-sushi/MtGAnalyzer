@@ -1,14 +1,8 @@
 {
  "format": "Vintage",
- "generatedAt": "2026-11-25T19:42:45.913Z",
+ "generatedAt": "2026-11-25T19:44:18.602Z",
  "decks": 1268,
  "otherOnly": [
-  {
-   "name": "Trinisphere",
-   "decks": 225,
-   "typeLine": "Artifact",
-   "tags": []
-  },
   {
    "name": "Mystic Forge",
    "decks": 169,
@@ -994,12 +988,14 @@
    "decks": 3,
    "roles": [
     "engine",
+    "reach",
     "beater"
    ],
    "tags": [
     "token@etb",
     "pump@loyalty",
-    "token@loyalty"
+    "token@loyalty",
+    "drain@loyalty"
    ]
   },
   {
@@ -1199,14 +1195,6 @@
   }
  ],
  "noTags": [
-  {
-   "name": "Trinisphere",
-   "decks": 225,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Artifact"
-  },
   {
    "name": "Mystic Forge",
    "decks": 169,
@@ -1454,14 +1442,6 @@
    "typeLine": "Enchantment — Class"
   },
   {
-   "name": "Broadside Bombardiers",
-   "decks": 2,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Goblin Pirate"
-  },
-  {
    "name": "The Ten Rings",
    "decks": 2,
    "roles": [
@@ -1525,6 +1505,22 @@
     "beater"
    ],
    "typeLine": "Creature — Goblin Soldier"
+  },
+  {
+   "name": "Great Fierce Bee",
+   "decks": 1,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Insect"
+  },
+  {
+   "name": "Iron Hills Stalwart",
+   "decks": 1,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Dwarf Warrior"
   }
  ],
  "unknownCards": [

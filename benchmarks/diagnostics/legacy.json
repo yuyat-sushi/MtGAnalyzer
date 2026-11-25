@@ -1,14 +1,8 @@
 {
  "format": "Legacy",
- "generatedAt": "2026-11-25T19:42:45.913Z",
+ "generatedAt": "2026-11-25T19:44:18.602Z",
  "decks": 2846,
  "otherOnly": [
-  {
-   "name": "Trinisphere",
-   "decks": 113,
-   "typeLine": "Artifact",
-   "tags": []
-  },
   {
    "name": "Mystic Forge",
    "decks": 98,
@@ -226,12 +220,6 @@
    "tags": []
   },
   {
-   "name": "Goblin Charbelcher",
-   "decks": 1,
-   "typeLine": "Artifact",
-   "tags": []
-  },
-  {
    "name": "Enhanced Surveillance",
    "decks": 1,
    "typeLine": "Enchantment",
@@ -368,6 +356,21 @@
     "token@cast_trigger",
     "mana@cast_trigger",
     "drain@creature_enters"
+   ]
+  },
+  {
+   "name": "Ajani, Nacatl Pariah // Ajani, Nacatl Avenger",
+   "decks": 198,
+   "roles": [
+    "engine",
+    "reach",
+    "beater"
+   ],
+   "tags": [
+    "token@etb",
+    "pump@loyalty",
+    "token@loyalty",
+    "drain@loyalty"
    ]
   },
   {
@@ -669,20 +672,6 @@
     "removal@loyalty",
     "drain@loyalty"
    ]
-  },
-  {
-   "name": "Jace, Wielder of Mysteries",
-   "decks": 64,
-   "roles": [
-    "draw",
-    "finisher",
-    "engine"
-   ],
-   "tags": [
-    "draw@static",
-    "draw@loyalty",
-    "selfmill@loyalty"
-   ]
   }
  ],
  "engines": [
@@ -784,12 +773,14 @@
    "decks": 198,
    "roles": [
     "engine",
+    "reach",
     "beater"
    ],
    "tags": [
     "token@etb",
     "pump@loyalty",
-    "token@loyalty"
+    "token@loyalty",
+    "drain@loyalty"
    ]
   },
   {
@@ -1106,6 +1097,18 @@
    ]
   },
   {
+   "name": "Broadside Bombardiers",
+   "decks": 47,
+   "roles": [
+    "engine",
+    "reach",
+    "beater"
+   ],
+   "tags": [
+    "drain@activated"
+   ]
+  },
+  {
    "name": "Poxwalkers",
    "decks": 47,
    "roles": [
@@ -1224,19 +1227,6 @@
     "draw@combat_damage",
     "drain@activated",
     "removal@activated"
-   ]
-  },
-  {
-   "name": "Loran of the Third Path",
-   "decks": 20,
-   "roles": [
-    "removal",
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "removal@etb",
-    "draw@activated"
    ]
   }
  ],
@@ -1490,14 +1480,6 @@
    "typeLine": "Creature — Bird Bard"
   },
   {
-   "name": "Trinisphere",
-   "decks": 113,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Artifact"
-  },
-  {
    "name": "White Orchid Phantom",
    "decks": 107,
    "roles": [
@@ -1587,14 +1569,6 @@
    "typeLine": "Creature — Lhurgoyf"
   },
   {
-   "name": "Broadside Bombardiers",
-   "decks": 47,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Goblin Pirate"
-  },
-  {
    "name": "Eladamri, Korvecdal",
    "decks": 35,
    "roles": [
@@ -1676,14 +1650,6 @@
    "typeLine": "Artifact"
   },
   {
-   "name": "Pyrogoyf",
-   "decks": 19,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Lhurgoyf"
-  },
-  {
    "name": "Frenzied Baloth",
    "decks": 16,
    "roles": [
@@ -1757,6 +1723,32 @@
     "other"
    ],
    "typeLine": "Sorcery"
+  },
+  {
+   "name": "Samut, Hazoret's Champion",
+   "decks": 10,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Legendary Creature — Human Warrior Cleric"
+  },
+  {
+   "name": "Apex Devastator",
+   "decks": 8,
+   "roles": [
+    "finisher",
+    "beater"
+   ],
+   "typeLine": "Creature — Chimera Hydra"
+  },
+  {
+   "name": "Maelstrom Wanderer",
+   "decks": 8,
+   "roles": [
+    "finisher",
+    "beater"
+   ],
+   "typeLine": "Legendary Creature — Elemental"
   }
  ],
  "unknownCards": [

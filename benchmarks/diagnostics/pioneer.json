@@ -1,6 +1,6 @@
 {
  "format": "Pioneer",
- "generatedAt": "2026-11-25T19:42:45.913Z",
+ "generatedAt": "2026-11-25T19:44:18.602Z",
  "decks": 1183,
  "otherOnly": [
   {
@@ -970,6 +970,19 @@
    ]
   },
   {
+   "name": "Thor, God of Thunder",
+   "decks": 35,
+   "roles": [
+    "finisher",
+    "engine",
+    "reach",
+    "beater"
+   ],
+   "tags": [
+    "drain@cast_trigger"
+   ]
+  },
+  {
    "name": "Moon-Circuit Hacker",
    "decks": 33,
    "roles": [
@@ -1079,17 +1092,6 @@
    "tags": [
     "recursion@landfall"
    ]
-  },
-  {
-   "name": "Anthropological Mission",
-   "decks": 20,
-   "roles": [
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "draw@cast_trigger"
-   ]
   }
  ],
  "finishers": [
@@ -1178,6 +1180,8 @@
    "decks": 35,
    "roles": [
     "finisher",
+    "engine",
+    "reach",
     "beater"
    ]
   },
@@ -1384,29 +1388,12 @@
    "typeLine": "Creature — Spirit"
   },
   {
-   "name": "Voldaren Thrillseeker",
-   "decks": 38,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Vampire Warrior"
-  },
-  {
    "name": "Mockingbird",
    "decks": 35,
    "roles": [
     "beater"
    ],
    "typeLine": "Creature — Bird Bard"
-  },
-  {
-   "name": "Thor, God of Thunder",
-   "decks": 35,
-   "roles": [
-    "finisher",
-    "beater"
-   ],
-   "typeLine": "Legendary Creature — God Warrior Hero"
   },
   {
    "name": "Floodpits Drowner",
@@ -1479,14 +1466,6 @@
     "beater"
    ],
    "typeLine": "Creature — Human Knight"
-  },
-  {
-   "name": "Cacophony Scamp",
-   "decks": 14,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Phyrexian Goblin Warrior"
   },
   {
    "name": "Tarmogoyf",
@@ -1603,6 +1582,31 @@
     "beater"
    ],
    "typeLine": "Creature — Beast"
+  },
+  {
+   "name": "Spyglass Siren",
+   "decks": 4,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Siren Pirate"
+  },
+  {
+   "name": "Ulamog, the Ceaseless Hunger",
+   "decks": 4,
+   "roles": [
+    "finisher",
+    "beater"
+   ],
+   "typeLine": "Legendary Creature — Eldrazi"
+  },
+  {
+   "name": "The Blackstaff of Waterdeep",
+   "decks": 3,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Legendary Artifact"
   }
  ],
  "unknownCards": [

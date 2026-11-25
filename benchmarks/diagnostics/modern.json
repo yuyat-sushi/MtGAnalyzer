@@ -1,6 +1,6 @@
 {
  "format": "Modern",
- "generatedAt": "2026-11-25T19:42:45.913Z",
+ "generatedAt": "2026-11-25T19:44:18.602Z",
  "decks": 5064,
  "otherOnly": [
   {
@@ -13,18 +13,6 @@
    "name": "Leyline of the Guildpact",
    "decks": 198,
    "typeLine": "Enchantment",
-   "tags": []
-  },
-  {
-   "name": "Trinisphere",
-   "decks": 102,
-   "typeLine": "Artifact",
-   "tags": []
-  },
-  {
-   "name": "Goblin Charbelcher",
-   "decks": 64,
-   "typeLine": "Artifact",
    "tags": []
   },
   {
@@ -61,12 +49,6 @@
    "name": "Spoils of the Vault",
    "decks": 23,
    "typeLine": "Instant",
-   "tags": []
-  },
-  {
-   "name": "Thud",
-   "decks": 23,
-   "typeLine": "Sorcery",
    "tags": []
   },
   {
@@ -358,6 +340,21 @@
    "tags": [
     "drain@activated",
     "removal@activated"
+   ]
+  },
+  {
+   "name": "Ajani, Nacatl Pariah // Ajani, Nacatl Avenger",
+   "decks": 413,
+   "roles": [
+    "engine",
+    "reach",
+    "beater"
+   ],
+   "tags": [
+    "token@etb",
+    "pump@loyalty",
+    "token@loyalty",
+    "drain@loyalty"
    ]
   },
   {
@@ -675,25 +672,6 @@
     "draw@etb",
     "mana@activated"
    ]
-  },
-  {
-   "name": "Archon of Cruelty",
-   "decks": 144,
-   "roles": [
-    "removal",
-    "draw",
-    "finisher",
-    "engine",
-    "beater"
-   ],
-   "tags": [
-    "lifegain@etb",
-    "draw@etb",
-    "removal@etb",
-    "lifegain@attack",
-    "draw@attack",
-    "removal@attack"
-   ]
   }
  ],
  "engines": [
@@ -762,12 +740,14 @@
    "decks": 413,
    "roles": [
     "engine",
+    "reach",
     "beater"
    ],
    "tags": [
     "token@etb",
     "pump@loyalty",
-    "token@loyalty"
+    "token@loyalty",
+    "drain@loyalty"
    ]
   },
   {
@@ -1579,14 +1559,6 @@
    "typeLine": "Creature — Serpent"
   },
   {
-   "name": "Trinisphere",
-   "decks": 102,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Artifact"
-  },
-  {
    "name": "Azusa, Lost but Seeking",
    "decks": 85,
    "roles": [
@@ -1635,14 +1607,6 @@
     "ramp"
    ],
    "typeLine": "Enchantment Creature — Nymph Dryad"
-  },
-  {
-   "name": "Goblin Charbelcher",
-   "decks": 64,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Artifact"
   },
   {
    "name": "Eyetwitch",
@@ -1759,6 +1723,23 @@
     "beater"
    ],
    "typeLine": "Creature — Elemental Lhurgoyf"
+  },
+  {
+   "name": "Spoils of the Vault",
+   "decks": 23,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Instant"
+  },
+  {
+   "name": "Death's Shadow",
+   "decks": 19,
+   "roles": [
+    "finisher",
+    "beater"
+   ],
+   "typeLine": "Creature — Avatar"
   }
  ],
  "unknownCards": [

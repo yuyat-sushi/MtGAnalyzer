@@ -1,6 +1,6 @@
 {
  "format": "Pauper",
- "generatedAt": "2026-11-25T19:42:45.913Z",
+ "generatedAt": "2026-11-25T19:44:18.602Z",
  "decks": 2806,
  "otherOnly": [
   {
@@ -36,20 +36,6 @@
   {
    "name": "Fiery Cannonade",
    "decks": 12,
-   "typeLine": "Instant",
-   "tags": []
-  },
-  {
-   "name": "Rite of Consumption",
-   "decks": 12,
-   "typeLine": "Sorcery",
-   "tags": [
-    "lifegain@spell"
-   ]
-  },
-  {
-   "name": "Fling",
-   "decks": 11,
    "typeLine": "Instant",
    "tags": []
   },

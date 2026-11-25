@@ -1,6 +1,6 @@
 {
  "format": "Standard",
- "generatedAt": "2026-11-25T19:42:45.913Z",
+ "generatedAt": "2026-11-25T19:44:18.602Z",
  "decks": 2486,
  "otherOnly": [
   {
@@ -193,6 +193,20 @@
     "removal@loyalty",
     "draw@loyalty",
     "pump@loyalty"
+   ]
+  },
+  {
+   "name": "Smaug the Magnificent",
+   "decks": 278,
+   "roles": [
+    "ramp",
+    "engine",
+    "reach",
+    "beater"
+   ],
+   "tags": [
+    "drain@attack",
+    "mana@each_turn"
    ]
   },
   {
@@ -583,18 +597,6 @@
     "token@etb",
     "pump@static"
    ]
-  },
-  {
-   "name": "North Wind Avatar",
-   "decks": 70,
-   "roles": [
-    "tutor",
-    "finisher",
-    "beater"
-   ],
-   "tags": [
-    "tutor@etb"
-   ]
   }
  ],
  "engines": [
@@ -613,6 +615,20 @@
     "removal@loyalty",
     "draw@loyalty",
     "pump@loyalty"
+   ]
+  },
+  {
+   "name": "Smaug the Magnificent",
+   "decks": 278,
+   "roles": [
+    "ramp",
+    "engine",
+    "reach",
+    "beater"
+   ],
+   "tags": [
+    "drain@attack",
+    "mana@each_turn"
    ]
   },
   {
@@ -1043,6 +1059,19 @@
    ]
   },
   {
+   "name": "Thor, God of Thunder",
+   "decks": 46,
+   "roles": [
+    "finisher",
+    "engine",
+    "reach",
+    "beater"
+   ],
+   "tags": [
+    "drain@cast_trigger"
+   ]
+  },
+  {
    "name": "Gev, Scaled Scorch",
    "decks": 46,
    "roles": [
@@ -1086,34 +1115,6 @@
    "tags": [
     "token@attack",
     "draw@attack"
-   ]
-  },
-  {
-   "name": "Chandra, Torch of Defiance",
-   "decks": 38,
-   "roles": [
-    "removal",
-    "ramp",
-    "draw",
-    "engine",
-    "reach"
-   ],
-   "tags": [
-    "draw@loyalty",
-    "drain@loyalty",
-    "mana@loyalty",
-    "removal@loyalty"
-   ]
-  },
-  {
-   "name": "Anthropological Mission",
-   "decks": 37,
-   "roles": [
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "draw@cast_trigger"
    ]
   }
  ],
@@ -1224,6 +1225,8 @@
    "decks": 46,
    "roles": [
     "finisher",
+    "engine",
+    "reach",
     "beater"
    ]
   },
@@ -1453,15 +1456,6 @@
    "typeLine": "Creature — Bird Bard"
   },
   {
-   "name": "Thor, God of Thunder",
-   "decks": 46,
-   "roles": [
-    "finisher",
-    "beater"
-   ],
-   "typeLine": "Legendary Creature — God Warrior Hero"
-  },
-  {
    "name": "Moonshadow",
    "decks": 42,
    "roles": [
@@ -1599,15 +1593,6 @@
    "typeLine": "Artifact — Spacecraft"
   },
   {
-   "name": "Terror of the Peaks",
-   "decks": 8,
-   "roles": [
-    "finisher",
-    "beater"
-   ],
-   "typeLine": "Creature — Dragon"
-  },
-  {
    "name": "Traveling Chocobo",
    "decks": 8,
    "roles": [
@@ -1632,6 +1617,22 @@
     "beater"
    ],
    "typeLine": "Creature — Chimera Horror"
+  },
+  {
+   "name": "Break Out",
+   "decks": 7,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery"
+  },
+  {
+   "name": "Outrageous Robbery",
+   "decks": 6,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Instant"
   }
  ],
  "unknownCards": [
