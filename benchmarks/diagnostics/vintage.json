@@ -1,90 +1,8 @@
 {
  "format": "Vintage",
- "generatedAt": "2026-11-25T19:26:19.365Z",
+ "generatedAt": "2026-11-25T19:38:34.551Z",
  "decks": 1268,
  "otherOnly": [
-  {
-   "name": "Time Walk",
-   "decks": 835,
-   "typeLine": "Sorcery",
-   "tags": []
-  },
-  {
-   "name": "Karn, the Great Creator",
-   "decks": 395,
-   "typeLine": "Legendary Planeswalker — Karn",
-   "tags": []
-  },
-  {
-   "name": "Time Vault",
-   "decks": 338,
-   "typeLine": "Artifact",
-   "tags": []
-  },
-  {
-   "name": "Manifold Key",
-   "decks": 313,
-   "typeLine": "Artifact",
-   "tags": []
-  },
-  {
-   "name": "Chalice of the Void",
-   "decks": 299,
-   "typeLine": "Artifact",
-   "tags": []
-  },
-  {
-   "name": "Trinisphere",
-   "decks": 225,
-   "typeLine": "Artifact",
-   "tags": []
-  },
-  {
-   "name": "Pithing Needle",
-   "decks": 197,
-   "typeLine": "Artifact",
-   "tags": []
-  },
-  {
-   "name": "Null Rod",
-   "decks": 192,
-   "typeLine": "Artifact",
-   "tags": []
-  },
-  {
-   "name": "Mystic Forge",
-   "decks": 169,
-   "typeLine": "Artifact",
-   "tags": []
-  },
-  {
-   "name": "Forth Eorlingas!",
-   "decks": 139,
-   "typeLine": "Sorcery",
-   "tags": [
-    "token@spell"
-   ]
-  },
-  {
-   "name": "Void Mirror",
-   "decks": 122,
-   "typeLine": "Artifact",
-   "tags": []
-  },
-  {
-   "name": "Mindbreak Trap",
-   "decks": 121,
-   "typeLine": "Instant — Trap",
-   "tags": []
-  },
-  {
-   "name": "Bolas's Citadel",
-   "decks": 77,
-   "typeLine": "Legendary Artifact",
-   "tags": [
-    "drain@activated_once"
-   ]
-  },
   {
    "name": "Brain Freeze",
    "decks": 75,
@@ -92,12 +10,6 @@
    "tags": [
     "selfmill@spell"
    ]
-  },
-  {
-   "name": "Paradox Engine",
-   "decks": 75,
-   "typeLine": "Legendary Artifact",
-   "tags": []
   },
   {
    "name": "Creeping Chill",
@@ -115,46 +27,8 @@
    "tags": []
   },
   {
-   "name": "Thorn of Amethyst",
-   "decks": 49,
-   "typeLine": "Artifact",
-   "tags": []
-  },
-  {
-   "name": "Show and Tell",
-   "decks": 46,
-   "typeLine": "Sorcery",
-   "tags": []
-  },
-  {
    "name": "Doomsday",
    "decks": 43,
-   "typeLine": "Sorcery",
-   "tags": []
-  },
-  {
-   "name": "Sphere of Resistance",
-   "decks": 41,
-   "typeLine": "Artifact",
-   "tags": []
-  },
-  {
-   "name": "Flash",
-   "decks": 38,
-   "typeLine": "Instant",
-   "tags": []
-  },
-  {
-   "name": "Nettlecyst",
-   "decks": 38,
-   "typeLine": "Artifact — Equipment",
-   "tags": [
-    "pump@static"
-   ]
-  },
-  {
-   "name": "Timetwister",
-   "decks": 36,
    "typeLine": "Sorcery",
    "tags": []
   },
@@ -162,24 +36,6 @@
    "name": "Misdirection",
    "decks": 34,
    "typeLine": "Instant",
-   "tags": []
-  },
-  {
-   "name": "Voltaic Key",
-   "decks": 27,
-   "typeLine": "Artifact",
-   "tags": []
-  },
-  {
-   "name": "Stony Silence",
-   "decks": 21,
-   "typeLine": "Enchantment",
-   "tags": []
-  },
-  {
-   "name": "Extrapolate the Impossible",
-   "decks": 14,
-   "typeLine": "Sorcery",
    "tags": []
   },
   {
@@ -204,47 +60,15 @@
    "tags": []
   },
   {
-   "name": "Defense Grid",
-   "decks": 5,
-   "typeLine": "Artifact",
-   "tags": []
-  },
-  {
-   "name": "Memory Jar",
-   "decks": 5,
-   "typeLine": "Artifact",
-   "tags": []
-  },
-  {
-   "name": "Unable to Scream",
-   "decks": 5,
-   "typeLine": "Enchantment — Aura",
-   "tags": []
-  },
-  {
    "name": "Balance",
    "decks": 4,
    "typeLine": "Sorcery",
    "tags": []
   },
   {
-   "name": "Deep Space 9",
-   "decks": 4,
-   "typeLine": "Legendary Artifact — Spacecraft",
-   "tags": [
-    "pump@static"
-   ]
-  },
-  {
    "name": "Hurkyl's Recall",
    "decks": 3,
    "typeLine": "Instant",
-   "tags": []
-  },
-  {
-   "name": "Wheel of Fortune",
-   "decks": 2,
-   "typeLine": "Sorcery",
    "tags": []
   },
   {
@@ -254,98 +78,16 @@
    "tags": []
   },
   {
-   "name": "Grafdigger's Cage",
-   "decks": 2,
-   "typeLine": "Artifact",
-   "tags": []
-  },
-  {
-   "name": "Deafening Silence",
-   "decks": 2,
-   "typeLine": "Enchantment",
-   "tags": []
-  },
-  {
    "name": "The Ten Rings",
    "decks": 2,
    "typeLine": "Legendary Artifact",
    "tags": []
   },
   {
-   "name": "Batterskull",
-   "decks": 1,
-   "typeLine": "Artifact — Equipment",
-   "tags": [
-    "pump@static"
-   ]
-  },
-  {
-   "name": "Leyline Axe",
-   "decks": 1,
-   "typeLine": "Artifact — Equipment",
-   "tags": [
-    "pump@static"
-   ]
-  },
-  {
-   "name": "Animate Dead",
-   "decks": 1,
-   "typeLine": "Enchantment — Aura",
-   "tags": []
-  },
-  {
-   "name": "Dwarven Shortsword",
-   "decks": 1,
-   "typeLine": "Artifact — Equipment",
-   "tags": [
-    "token@etb",
-    "pump@static"
-   ]
-  },
-  {
-   "name": "Enchanted River's Grasp",
-   "decks": 1,
-   "typeLine": "Enchantment — Aura",
-   "tags": []
-  },
-  {
-   "name": "Goblin Plate Mail",
-   "decks": 1,
-   "typeLine": "Artifact — Equipment",
-   "tags": [
-    "pump@static"
-   ]
-  },
-  {
    "name": "Quarrel",
    "decks": 1,
    "typeLine": "Instant",
    "tags": []
-  },
-  {
-   "name": "Smaug's Fury",
-   "decks": 1,
-   "typeLine": "Instant",
-   "tags": [
-    "pump@spell"
-   ]
-  },
-  {
-   "name": "Vow to Erebor",
-   "decks": 1,
-   "typeLine": "Instant",
-   "tags": [
-    "pump@spell"
-   ]
-  },
-  {
-   "name": "Well-Worn Spatula",
-   "decks": 1,
-   "typeLine": "Artifact — Equipment",
-   "tags": [
-    "lifegain@etb",
-    "pump@static"
-   ]
   },
   {
    "name": "Sculpting Steel",
@@ -366,18 +108,6 @@
    "tags": [
     "selfmill@activated"
    ]
-  },
-  {
-   "name": "Blood Moon",
-   "decks": 1,
-   "typeLine": "Enchantment",
-   "tags": []
-  },
-  {
-   "name": "Strategic Betrayal",
-   "decks": 1,
-   "typeLine": "Sorcery",
-   "tags": []
   },
   {
    "name": "Redirect Lightning",
@@ -453,6 +183,18 @@
    ]
   },
   {
+   "name": "Lodestone Golem",
+   "decks": 121,
+   "roles": [
+    "hate",
+    "finisher",
+    "beater"
+   ],
+   "tags": [
+    "hate@static"
+   ]
+  },
+  {
    "name": "Chancellor of the Annex",
    "decks": 109,
    "roles": [
@@ -463,6 +205,18 @@
    "tags": [
     "counter@static",
     "counter@cast_trigger"
+   ]
+  },
+  {
+   "name": "Atraxa, Grand Unifier",
+   "decks": 63,
+   "roles": [
+    "draw",
+    "finisher",
+    "beater"
+   ],
+   "tags": [
+    "draw@etb"
    ]
   },
   {
@@ -522,11 +276,26 @@
    "roles": [
     "ramp",
     "draw",
+    "combo",
     "engine",
     "beater"
    ],
    "tags": [
-    "draw@activated"
+    "draw@activated",
+    "cheat@activated"
+   ]
+  },
+  {
+   "name": "Raph & Mikey, Troublemakers",
+   "decks": 24,
+   "roles": [
+    "draw",
+    "finisher",
+    "engine",
+    "beater"
+   ],
+   "tags": [
+    "draw@attack"
    ]
   },
   {
@@ -554,6 +323,19 @@
     "recursion@loyalty",
     "drain@loyalty",
     "removal@loyalty"
+   ]
+  },
+  {
+   "name": "Narset, Parter of Veils",
+   "decks": 15,
+   "roles": [
+    "hate",
+    "draw",
+    "engine"
+   ],
+   "tags": [
+    "hate@static",
+    "draw@loyalty"
    ]
   },
   {
@@ -644,6 +426,45 @@
    ]
   },
   {
+   "name": "Griselbrand",
+   "decks": 5,
+   "roles": [
+    "draw",
+    "finisher",
+    "engine",
+    "beater"
+   ],
+   "tags": [
+    "draw@activated"
+   ]
+  },
+  {
+   "name": "Boggart Trawler // Boggart Bog",
+   "decks": 5,
+   "roles": [
+    "hate",
+    "ramp",
+    "beater"
+   ],
+   "tags": [
+    "gyhate@etb",
+    "mana@activated"
+   ]
+  },
+  {
+   "name": "Boromir, Warden of the Tower",
+   "decks": 4,
+   "roles": [
+    "counter",
+    "protection",
+    "beater"
+   ],
+   "tags": [
+    "counter@cast_trigger",
+    "protection@activated_once"
+   ]
+  },
+  {
    "name": "Minsc & Boo, Timeless Heroes",
    "decks": 4,
    "roles": [
@@ -693,104 +514,6 @@
    "tags": [
     "removal@etb",
     "draw@activated"
-   ]
-  },
-  {
-   "name": "Thief of Existence",
-   "decks": 3,
-   "roles": [
-    "removal",
-    "draw",
-    "beater"
-   ],
-   "tags": [
-    "draw@cast_self",
-    "removal@cast_self"
-   ]
-  },
-  {
-   "name": "Argentum Masticore",
-   "decks": 2,
-   "roles": [
-    "removal",
-    "finisher",
-    "engine",
-    "beater"
-   ],
-   "tags": [
-    "removal@each_turn"
-   ]
-  },
-  {
-   "name": "Nulldrifter",
-   "decks": 2,
-   "roles": [
-    "draw",
-    "finisher",
-    "beater"
-   ],
-   "tags": [
-    "draw@cast_self"
-   ]
-  },
-  {
-   "name": "Cityscape Leveler",
-   "decks": 2,
-   "roles": [
-    "removal",
-    "recursion",
-    "finisher",
-    "engine",
-    "beater"
-   ],
-   "tags": [
-    "removal@attack",
-    "removal@cast_self",
-    "recursion@static"
-   ]
-  },
-  {
-   "name": "Kozilek's Command",
-   "decks": 2,
-   "roles": [
-    "removal",
-    "ramp",
-    "draw"
-   ],
-   "tags": [
-    "token@spell",
-    "mana@spell",
-    "draw@spell",
-    "removal@spell"
-   ]
-  },
-  {
-   "name": "Thought-Knot Seer",
-   "decks": 2,
-   "roles": [
-    "discard",
-    "draw",
-    "beater"
-   ],
-   "tags": [
-    "discard@etb",
-    "draw@once_trigger"
-   ]
-  },
-  {
-   "name": "Tamiyo, Inquisitive Student // Tamiyo, Seasoned Scholar",
-   "decks": 2,
-   "roles": [
-    "ramp",
-    "draw",
-    "recursion",
-    "engine"
-   ],
-   "tags": [
-    "draw@attack",
-    "mana@loyalty",
-    "recursion@loyalty",
-    "draw@loyalty"
    ]
   }
  ],
@@ -995,11 +718,13 @@
    "roles": [
     "ramp",
     "draw",
+    "combo",
     "engine",
     "beater"
    ],
    "tags": [
-    "draw@activated"
+    "draw@activated",
+    "cheat@activated"
    ]
   },
   {
@@ -1011,6 +736,19 @@
    ],
    "tags": [
     "draw@activated"
+   ]
+  },
+  {
+   "name": "Raph & Mikey, Troublemakers",
+   "decks": 24,
+   "roles": [
+    "draw",
+    "finisher",
+    "engine",
+    "beater"
+   ],
+   "tags": [
+    "draw@attack"
    ]
   },
   {
@@ -1052,10 +790,12 @@
    "name": "Narset, Parter of Veils",
    "decks": 15,
    "roles": [
+    "hate",
     "draw",
     "engine"
    ],
    "tags": [
+    "hate@static",
     "draw@loyalty"
    ]
   },
@@ -1222,6 +962,19 @@
    ]
   },
   {
+   "name": "Griselbrand",
+   "decks": 5,
+   "roles": [
+    "draw",
+    "finisher",
+    "engine",
+    "beater"
+   ],
+   "tags": [
+    "draw@activated"
+   ]
+  },
+  {
    "name": "Displacer Kitten",
    "decks": 4,
    "roles": [
@@ -1258,32 +1011,6 @@
     "pump@loyalty",
     "token@loyalty"
    ]
-  },
-  {
-   "name": "Goblin Bombardment",
-   "decks": 3,
-   "roles": [
-    "removal",
-    "engine"
-   ],
-   "tags": [
-    "drain@activated",
-    "removal@activated"
-   ]
-  },
-  {
-   "name": "Walking Ballista",
-   "decks": 3,
-   "roles": [
-    "removal",
-    "engine"
-   ],
-   "tags": [
-    "pump@static",
-    "pump@activated",
-    "drain@activated",
-    "removal@activated"
-   ]
   }
  ],
  "finishers": [
@@ -1300,6 +1027,7 @@
    "name": "Lodestone Golem",
    "decks": 121,
    "roles": [
+    "hate",
     "finisher",
     "beater"
    ]
@@ -1325,6 +1053,7 @@
    "name": "Atraxa, Grand Unifier",
    "decks": 63,
    "roles": [
+    "draw",
     "finisher",
     "beater"
    ]
@@ -1340,7 +1069,9 @@
    "name": "Raph & Mikey, Troublemakers",
    "decks": 24,
    "roles": [
+    "draw",
     "finisher",
+    "engine",
     "beater"
    ]
   },
@@ -1394,7 +1125,9 @@
    "name": "Griselbrand",
    "decks": 5,
    "roles": [
+    "draw",
     "finisher",
+    "engine",
     "beater"
    ]
   },
@@ -1464,125 +1197,12 @@
  ],
  "noTags": [
   {
-   "name": "Time Walk",
-   "decks": 835,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Sorcery"
-  },
-  {
-   "name": "Karn, the Great Creator",
-   "decks": 395,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Legendary Planeswalker — Karn"
-  },
-  {
-   "name": "Time Vault",
-   "decks": 338,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Artifact"
-  },
-  {
-   "name": "Manifold Key",
-   "decks": 313,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Artifact"
-  },
-  {
-   "name": "Chalice of the Void",
-   "decks": 299,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Artifact"
-  },
-  {
-   "name": "Trinisphere",
-   "decks": 225,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Artifact"
-  },
-  {
-   "name": "Pithing Needle",
-   "decks": 197,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Artifact"
-  },
-  {
-   "name": "Null Rod",
-   "decks": 192,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Artifact"
-  },
-  {
-   "name": "Mystic Forge",
-   "decks": 169,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Artifact"
-  },
-  {
    "name": "Phyrexian Metamorph",
    "decks": 136,
    "roles": [
     "beater"
    ],
    "typeLine": "Artifact Creature — Phyrexian Shapeshifter"
-  },
-  {
-   "name": "Void Mirror",
-   "decks": 122,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Artifact"
-  },
-  {
-   "name": "Mindbreak Trap",
-   "decks": 121,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Instant — Trap"
-  },
-  {
-   "name": "Lodestone Golem",
-   "decks": 121,
-   "roles": [
-    "finisher",
-    "beater"
-   ],
-   "typeLine": "Artifact Creature — Golem"
-  },
-  {
-   "name": "Archon of Emeria",
-   "decks": 116,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Archon"
-  },
-  {
-   "name": "Clarion Conqueror",
-   "decks": 115,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Dragon"
   },
   {
    "name": "Hexing Squelcher",
@@ -1608,22 +1228,6 @@
     "beater"
    ],
    "typeLine": "Artifact Creature — Golem"
-  },
-  {
-   "name": "Anointed Peacekeeper",
-   "decks": 108,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Human Cleric"
-  },
-  {
-   "name": "Paradox Engine",
-   "decks": 75,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Legendary Artifact"
   },
   {
    "name": "Chaos Defiler",
@@ -1659,15 +1263,6 @@
    "typeLine": "Creature — Human Warrior"
   },
   {
-   "name": "Atraxa, Grand Unifier",
-   "decks": 63,
-   "roles": [
-    "finisher",
-    "beater"
-   ],
-   "typeLine": "Legendary Creature — Phyrexian Angel"
-  },
-  {
    "name": "Oath of Druids",
    "decks": 61,
    "roles": [
@@ -1684,56 +1279,8 @@
    "typeLine": "Creature — Merfolk Wizard"
   },
   {
-   "name": "Thorn of Amethyst",
-   "decks": 49,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Artifact"
-  },
-  {
-   "name": "Show and Tell",
-   "decks": 46,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Sorcery"
-  },
-  {
    "name": "Doomsday",
    "decks": 43,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Sorcery"
-  },
-  {
-   "name": "Collector Ouphe",
-   "decks": 41,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Ouphe"
-  },
-  {
-   "name": "Sphere of Resistance",
-   "decks": 41,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Artifact"
-  },
-  {
-   "name": "Flash",
-   "decks": 38,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Instant"
-  },
-  {
-   "name": "Timetwister",
-   "decks": 36,
    "roles": [
     "other"
    ],
@@ -1756,23 +1303,6 @@
    "typeLine": "Instant"
   },
   {
-   "name": "Voltaic Key",
-   "decks": 27,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Artifact"
-  },
-  {
-   "name": "Raph & Mikey, Troublemakers",
-   "decks": 24,
-   "roles": [
-    "finisher",
-    "beater"
-   ],
-   "typeLine": "Legendary Creature — Mutant Ninja Turtle"
-  },
-  {
    "name": "Subtlety",
    "decks": 22,
    "roles": [
@@ -1781,12 +1311,217 @@
    "typeLine": "Creature — Elemental Incarnation"
   },
   {
-   "name": "Stony Silence",
-   "decks": 21,
+   "name": "Phyrexian Dreadnought",
+   "decks": 14,
+   "roles": [
+    "finisher",
+    "beater"
+   ],
+   "typeLine": "Artifact Creature — Phyrexian Dreadnought"
+  },
+  {
+   "name": "Karn, Argent Defender",
+   "decks": 13,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Legendary Artifact Creature — Golem"
+  },
+  {
+   "name": "Torpor Orb",
+   "decks": 12,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Artifact"
+  },
+  {
+   "name": "Fastbond",
+   "decks": 11,
    "roles": [
     "other"
    ],
    "typeLine": "Enchantment"
+  },
+  {
+   "name": "Fury",
+   "decks": 11,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Elemental Incarnation"
+  },
+  {
+   "name": "Eater of Days",
+   "decks": 9,
+   "roles": [
+    "finisher",
+    "beater"
+   ],
+   "typeLine": "Artifact Creature — Leviathan"
+  },
+  {
+   "name": "Troll of Khazad-dûm",
+   "decks": 7,
+   "roles": [
+    "finisher",
+    "beater"
+   ],
+   "typeLine": "Creature — Troll"
+  },
+  {
+   "name": "Sowing Mycospawn",
+   "decks": 5,
+   "roles": [
+    "ramp",
+    "beater"
+   ],
+   "typeLine": "Creature — Eldrazi Fungus"
+  },
+  {
+   "name": "Unable to Scream",
+   "decks": 5,
+   "roles": [
+    "pump"
+   ],
+   "typeLine": "Enchantment — Aura"
+  },
+  {
+   "name": "Balance",
+   "decks": 4,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery"
+  },
+  {
+   "name": "Mai, Scornful Striker",
+   "decks": 4,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Legendary Creature — Human Noble Ally"
+  },
+  {
+   "name": "Geist of Saint Thalia",
+   "decks": 4,
+   "roles": [
+    "ramp"
+   ],
+   "typeLine": "Legendary Creature — Spirit Cleric"
+  },
+  {
+   "name": "Endurance",
+   "decks": 4,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Elemental Incarnation"
+  },
+  {
+   "name": "Hurkyl's Recall",
+   "decks": 3,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Instant"
+  },
+  {
+   "name": "Barrowgoyf",
+   "decks": 3,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Lhurgoyf"
+  },
+  {
+   "name": "Nomads en-Kor",
+   "decks": 3,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Kor Nomad Soldier"
+  },
+  {
+   "name": "Scryb Ranger",
+   "decks": 3,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Faerie Ranger"
+  },
+  {
+   "name": "Crop Rotation",
+   "decks": 3,
+   "roles": [
+    "ramp"
+   ],
+   "typeLine": "Instant"
+  },
+  {
+   "name": "Doorkeeper Thrull",
+   "decks": 2,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Thrull"
+  },
+  {
+   "name": "Step Through",
+   "decks": 2,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery"
+  },
+  {
+   "name": "Theorist's Proxy",
+   "decks": 2,
+   "roles": [
+    "protection"
+   ],
+   "typeLine": "Creature — Illusion"
+  },
+  {
+   "name": "Broadside Bombardiers",
+   "decks": 2,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Goblin Pirate"
+  },
+  {
+   "name": "The Ten Rings",
+   "decks": 2,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Legendary Artifact"
+  },
+  {
+   "name": "Exploration",
+   "decks": 2,
+   "roles": [
+    "ramp"
+   ],
+   "typeLine": "Enchantment"
+  },
+  {
+   "name": "Mockingbird",
+   "decks": 2,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Bird Bard"
+  },
+  {
+   "name": "Darksteel Angel",
+   "decks": 1,
+   "roles": [
+    "finisher",
+    "beater"
+   ],
+   "typeLine": "Artifact Creature — Angel"
   }
  ],
  "unknownCards": [
