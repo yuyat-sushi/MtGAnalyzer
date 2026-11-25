@@ -1,24 +1,12 @@
 {
  "format": "Standard",
- "generatedAt": "2026-11-25T19:26:19.365Z",
+ "generatedAt": "2026-11-25T19:42:45.913Z",
  "decks": 2486,
  "otherOnly": [
-  {
-   "name": "Strategic Betrayal",
-   "decks": 345,
-   "typeLine": "Sorcery",
-   "tags": []
-  },
   {
    "name": "Jace's Machinations",
    "decks": 194,
    "typeLine": "Instant",
-   "tags": []
-  },
-  {
-   "name": "Impractical Joke",
-   "decks": 167,
-   "typeLine": "Sorcery",
    "tags": []
   },
   {
@@ -28,140 +16,15 @@
    "tags": []
   },
   {
-   "name": "Wild Ride",
-   "decks": 91,
-   "typeLine": "Sorcery",
-   "tags": [
-    "pump@spell"
-   ]
-  },
-  {
-   "name": "Clay-Fired Bricks // Cosmium Kiln",
-   "decks": 80,
-   "typeLine": "Artifact // Artifact",
-   "tags": [
-    "lifegain@etb",
-    "token@etb",
-    "pump@static"
-   ]
-  },
-  {
-   "name": "Lavaspur Boots",
-   "decks": 60,
-   "typeLine": "Artifact — Equipment",
-   "tags": [
-    "pump@static"
-   ]
-  },
-  {
-   "name": "Chainsaw",
-   "decks": 59,
-   "typeLine": "Artifact — Equipment",
-   "tags": [
-    "pump@static"
-   ]
-  },
-  {
-   "name": "Leyline Axe",
-   "decks": 59,
-   "typeLine": "Artifact — Equipment",
-   "tags": [
-    "pump@static"
-   ]
-  },
-  {
-   "name": "Basilisk Collar",
-   "decks": 58,
-   "typeLine": "Artifact — Equipment",
-   "tags": []
-  },
-  {
-   "name": "Skateboard",
-   "decks": 57,
-   "typeLine": "Artifact — Equipment",
-   "tags": [
-    "pump@static"
-   ]
-  },
-  {
-   "name": "Full Bore",
-   "decks": 50,
-   "typeLine": "Instant",
-   "tags": [
-    "pump@spell"
-   ]
-  },
-  {
-   "name": "Hard-Hitting Question",
-   "decks": 49,
-   "typeLine": "Sorcery",
-   "tags": []
-  },
-  {
-   "name": "Turn Inside Out",
-   "decks": 38,
-   "typeLine": "Instant",
-   "tags": [
-    "pump@spell"
-   ]
-  },
-  {
    "name": "Day of Black Sun",
    "decks": 35,
    "typeLine": "Sorcery",
    "tags": []
   },
   {
-   "name": "Torpor Orb",
-   "decks": 31,
-   "typeLine": "Artifact",
-   "tags": []
-  },
-  {
-   "name": "Omniscience",
-   "decks": 25,
-   "typeLine": "Enchantment",
-   "tags": []
-  },
-  {
    "name": "Combustion Technique",
    "decks": 22,
    "typeLine": "Instant — Lesson",
-   "tags": []
-  },
-  {
-   "name": "Improvisation Capstone",
-   "decks": 18,
-   "typeLine": "Sorcery — Lesson",
-   "tags": []
-  },
-  {
-   "name": "Settle the Wreckage",
-   "decks": 16,
-   "typeLine": "Instant",
-   "tags": []
-  },
-  {
-   "name": "Corpses of the Lost",
-   "decks": 13,
-   "typeLine": "Enchantment",
-   "tags": [
-    "pump@static",
-    "token@etb"
-   ]
-  },
-  {
-   "name": "Stinging Vitriol",
-   "decks": 13,
-   "typeLine": "Sorcery",
-   "tags": [
-    "drain@spell"
-   ]
-  },
-  {
-   "name": "Leyline of Resonance",
-   "decks": 10,
-   "typeLine": "Enchantment",
    "tags": []
   },
   {
@@ -186,54 +49,11 @@
    "tags": []
   },
   {
-   "name": "Shimmerwilds Growth",
-   "decks": 9,
-   "typeLine": "Enchantment — Aura",
-   "tags": []
-  },
-  {
-   "name": "Extrapolate the Impossible",
-   "decks": 8,
-   "typeLine": "Sorcery",
-   "tags": []
-  },
-  {
-   "name": "The Last Ronin's Technique",
-   "decks": 7,
-   "typeLine": "Instant",
-   "tags": [
-    "token@spell"
-   ]
-  },
-  {
    "name": "Riverchurn Monument",
    "decks": 7,
    "typeLine": "Artifact",
    "tags": [
     "selfmill@activated"
-   ]
-  },
-  {
-   "name": "Analyze the Pollen",
-   "decks": 7,
-   "typeLine": "Sorcery",
-   "tags": []
-  },
-  {
-   "name": "Doc Ock's Tentacles",
-   "decks": 7,
-   "typeLine": "Artifact — Equipment",
-   "tags": [
-    "pump@static"
-   ]
-  },
-  {
-   "name": "Carrot Cake",
-   "decks": 7,
-   "typeLine": "Artifact — Food",
-   "tags": [
-    "token@etb",
-    "lifegain@activated_once"
    ]
   },
   {
@@ -243,74 +63,16 @@
    "tags": []
   },
   {
-   "name": "Song of Totentanz",
-   "decks": 6,
-   "typeLine": "Sorcery",
-   "tags": [
-    "token@spell"
-   ]
-  },
-  {
-   "name": "Iron Man Armor",
-   "decks": 6,
-   "typeLine": "Artifact — Equipment",
-   "tags": [
-    "pump@static",
-    "pump@activated"
-   ]
-  },
-  {
    "name": "Outrageous Robbery",
    "decks": 6,
    "typeLine": "Instant",
    "tags": []
   },
   {
-   "name": "Faebloom Trick",
-   "decks": 6,
-   "typeLine": "Instant",
-   "tags": [
-    "token@spell"
-   ]
-  },
-  {
-   "name": "Frontline Rush",
-   "decks": 5,
-   "typeLine": "Instant",
-   "tags": [
-    "token@spell",
-    "pump@spell"
-   ]
-  },
-  {
-   "name": "Rest in Peace",
-   "decks": 5,
-   "typeLine": "Enchantment",
-   "tags": [
-    "gyhate@etb"
-   ]
-  },
-  {
-   "name": "Devastating Onslaught",
-   "decks": 5,
-   "typeLine": "Sorcery",
-   "tags": [
-    "token@spell"
-   ]
-  },
-  {
    "name": "Mathemagics",
    "decks": 5,
    "typeLine": "Sorcery",
    "tags": []
-  },
-  {
-   "name": "Innkeeper's Talent",
-   "decks": 5,
-   "typeLine": "Enchantment — Class",
-   "tags": [
-    "pump@each_turn"
-   ]
   },
   {
    "name": "Something Worth Saving",
@@ -328,26 +90,10 @@
    "tags": []
   },
   {
-   "name": "Violent Urge",
-   "decks": 4,
-   "typeLine": "Instant",
-   "tags": [
-    "pump@spell"
-   ]
-  },
-  {
    "name": "Harmless Offering",
    "decks": 4,
    "typeLine": "Sorcery",
    "tags": []
-  },
-  {
-   "name": "Hop to It",
-   "decks": 3,
-   "typeLine": "Sorcery",
-   "tags": [
-    "token@spell"
-   ]
   },
   {
    "name": "Michelangelo's Technique",
@@ -387,26 +133,6 @@
    ]
   },
   {
-   "name": "End of the Hunt",
-   "decks": 2,
-   "typeLine": "Sorcery",
-   "tags": []
-  },
-  {
-   "name": "Wizard's Staff",
-   "decks": 2,
-   "typeLine": "Artifact — Equipment",
-   "tags": []
-  },
-  {
-   "name": "Repulsive Mutation",
-   "decks": 2,
-   "typeLine": "Instant",
-   "tags": [
-    "pump@spell"
-   ]
-  },
-  {
    "name": "Tinybones Joins Up",
    "decks": 2,
    "typeLine": "Legendary Enchantment",
@@ -415,28 +141,40 @@
    ]
   },
   {
-   "name": "Super-Soldier Serum",
-   "decks": 2,
-   "typeLine": "Enchantment — Aura",
-   "tags": [
-    "pump@static"
-   ]
+   "name": "Inside Information",
+   "decks": 1,
+   "typeLine": "Sorcery",
+   "tags": []
   },
   {
-   "name": "Overprotect",
-   "decks": 2,
+   "name": "Jace, Reality Sculptor",
+   "decks": 1,
+   "typeLine": "Legendary Planeswalker — Jace",
+   "tags": []
+  },
+  {
+   "name": "Desolation of Smaug",
+   "decks": 1,
+   "typeLine": "Sorcery",
+   "tags": []
+  },
+  {
+   "name": "Hide on the Ceiling",
+   "decks": 1,
    "typeLine": "Instant",
-   "tags": [
-    "pump@spell"
-   ]
+   "tags": []
   },
   {
-   "name": "Lost Jitte",
-   "decks": 2,
-   "typeLine": "Legendary Artifact — Equipment",
-   "tags": [
-    "pump@activated"
-   ]
+   "name": "U.S.S. Discovery, at Black Alert",
+   "decks": 1,
+   "typeLine": "Legendary Artifact — Spacecraft",
+   "tags": []
+  },
+  {
+   "name": "Hit It!",
+   "decks": 1,
+   "typeLine": "Enchantment",
+   "tags": []
   }
  ],
  "manyRoles": [
@@ -446,7 +184,8 @@
    "roles": [
     "removal",
     "draw",
-    "engine"
+    "engine",
+    "enhance"
    ],
    "tags": [
     "draw@each_turn",
@@ -457,12 +196,27 @@
    ]
   },
   {
+   "name": "Three Steps Ahead",
+   "decks": 249,
+   "roles": [
+    "counter",
+    "draw",
+    "beater"
+   ],
+   "tags": [
+    "counter@spell",
+    "token@spell",
+    "draw@spell"
+   ]
+  },
+  {
    "name": "Kaito, Bane of Nightmares",
    "decks": 236,
    "roles": [
     "draw",
     "protection",
-    "engine"
+    "engine",
+    "enhance"
    ],
    "tags": [
     "protection@static",
@@ -490,11 +244,25 @@
    "roles": [
     "ramp",
     "draw",
-    "engine"
+    "engine",
+    "reach"
    ],
    "tags": [
     "draw@once_trigger",
     "mana@once_trigger",
+    "drain@other_trigger"
+   ]
+  },
+  {
+   "name": "Biotech Specialist",
+   "decks": 226,
+   "roles": [
+    "engine",
+    "reach",
+    "beater"
+   ],
+   "tags": [
+    "token@etb",
     "drain@other_trigger"
    ]
   },
@@ -542,6 +310,32 @@
    ]
   },
   {
+   "name": "Lunar Convocation",
+   "decks": 201,
+   "roles": [
+    "draw",
+    "engine",
+    "reach"
+   ],
+   "tags": [
+    "drain@each_turn",
+    "token@each_turn",
+    "draw@activated"
+   ]
+  },
+  {
+   "name": "Starscape Cleric",
+   "decks": 191,
+   "roles": [
+    "engine",
+    "reach",
+    "beater"
+   ],
+   "tags": [
+    "drain@lifegain_trigger"
+   ]
+  },
+  {
    "name": "Theorix Charm",
    "decks": 185,
    "roles": [
@@ -557,6 +351,19 @@
    ]
   },
   {
+   "name": "Carnivorous Cultivator // Enroot",
+   "decks": 160,
+   "roles": [
+    "tutor",
+    "recursion",
+    "engine"
+   ],
+   "tags": [
+    "recursion@combat_damage",
+    "tutor@spell"
+   ]
+  },
+  {
    "name": "Eddymurk Crab",
    "decks": 153,
    "roles": [
@@ -565,6 +372,37 @@
     "beater"
    ],
    "tags": []
+  },
+  {
+   "name": "Traumatic Critique",
+   "decks": 147,
+   "roles": [
+    "removal",
+    "draw",
+    "reach"
+   ],
+   "tags": [
+    "draw@spell",
+    "drain@spell",
+    "removal@spell"
+   ]
+  },
+  {
+   "name": "Jeskai Revelation",
+   "decks": 142,
+   "roles": [
+    "removal",
+    "draw",
+    "reach",
+    "beater"
+   ],
+   "tags": [
+    "token@spell",
+    "lifegain@spell",
+    "draw@spell",
+    "drain@spell",
+    "removal@spell"
+   ]
   },
   {
    "name": "Deceit",
@@ -607,15 +445,47 @@
    ]
   },
   {
+   "name": "Daydream",
+   "decks": 124,
+   "roles": [
+    "removal",
+    "recursion",
+    "protection",
+    "enhance"
+   ],
+   "tags": [
+    "removal@spell",
+    "pump@spell",
+    "protection@spell",
+    "recursion@spell"
+   ]
+  },
+  {
    "name": "Uldaros Theorix",
    "decks": 115,
    "roles": [
     "recursion",
+    "combo",
     "finisher",
     "beater"
    ],
    "tags": [
-    "recursion@etb"
+    "recursion@etb",
+    "cheat@etb"
+   ]
+  },
+  {
+   "name": "The Mind Stone",
+   "decks": 114,
+   "roles": [
+    "removal",
+    "ramp",
+    "protection"
+   ],
+   "tags": [
+    "mana@activated",
+    "removal@static",
+    "protection@static"
    ]
   },
   {
@@ -628,6 +498,21 @@
    ],
    "tags": [
     "draw@spell"
+   ]
+  },
+  {
+   "name": "Together as One",
+   "decks": 106,
+   "roles": [
+    "removal",
+    "draw",
+    "reach"
+   ],
+   "tags": [
+    "lifegain@spell",
+    "draw@spell",
+    "drain@spell",
+    "removal@spell"
    ]
   },
   {
@@ -657,12 +542,26 @@
    ]
   },
   {
+   "name": "Braided Net // Braided Quipu",
+   "decks": 94,
+   "roles": [
+    "hate",
+    "draw",
+    "engine"
+   ],
+   "tags": [
+    "hate@activated",
+    "draw@activated"
+   ]
+  },
+  {
    "name": "Rottenmouth Viper",
    "decks": 83,
    "roles": [
     "ramp",
     "finisher",
     "engine",
+    "reach",
     "beater"
    ],
    "tags": [
@@ -671,181 +570,30 @@
    ]
   },
   {
-   "name": "Sphinx of False Conclusions",
-   "decks": 52,
+   "name": "Clay-Fired Bricks // Cosmium Kiln",
+   "decks": 80,
    "roles": [
-    "draw",
-    "engine",
-    "beater"
-   ],
-   "tags": [
-    "draw@attack",
-    "token@dies"
-   ]
-  },
-  {
-   "name": "Professor Dellian Fel",
-   "decks": 51,
-   "roles": [
-    "removal",
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "lifegain@loyalty",
-    "draw@loyalty",
-    "removal@loyalty"
-   ]
-  },
-  {
-   "name": "Chandra, Chill of Compliance",
-   "decks": 49,
-   "roles": [
-    "ramp",
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "selfmill@loyalty",
-    "mana@loyalty",
-    "draw@loyalty"
-   ]
-  },
-  {
-   "name": "Flamecache Gecko",
-   "decks": 47,
-   "roles": [
-    "ramp",
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "mana@etb",
-    "draw@activated"
-   ]
-  },
-  {
-   "name": "Chandra, Torch of Defiance",
-   "decks": 38,
-   "roles": [
-    "removal",
-    "ramp",
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "draw@loyalty",
-    "drain@loyalty",
-    "mana@loyalty",
-    "removal@loyalty"
-   ]
-  },
-  {
-   "name": "Leatherhead, Swamp Stalker",
-   "decks": 36,
-   "roles": [
-    "removal",
-    "finisher",
-    "engine",
-    "beater"
-   ],
-   "tags": [
-    "removal@combat_damage"
-   ]
-  },
-  {
-   "name": "Zoraline, Cosmos Caller",
-   "decks": 36,
-   "roles": [
-    "recursion",
-    "engine",
-    "beater"
-   ],
-   "tags": [
-    "lifegain@attack",
-    "recursion@etb",
-    "recursion@attack"
-   ]
-  },
-  {
-   "name": "Ajani Unrelenting",
-   "decks": 35,
-   "roles": [
-    "wipe",
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "token@other_trigger",
-    "pump@loyalty",
-    "draw@loyalty",
-    "wipe@loyalty"
-   ]
-  },
-  {
-   "name": "Marang River Regent // Coil and Catch",
-   "decks": 31,
-   "roles": [
-    "draw",
-    "finisher",
-    "beater"
-   ],
-   "tags": [
-    "draw@spell"
-   ]
-  },
-  {
-   "name": "Harvester of Misery",
-   "decks": 27,
-   "roles": [
-    "removal",
-    "finisher",
-    "engine",
-    "beater"
-   ],
-   "tags": [
-    "removal@activated"
-   ]
-  },
-  {
-   "name": "Georgiou, Terran Emperor",
-   "decks": 27,
-   "roles": [
-    "draw",
-    "finisher",
-    "engine",
-    "beater"
-   ],
-   "tags": [
-    "token@each_turn",
-    "draw@each_turn"
-   ]
-  },
-  {
-   "name": "Vraska, the Cutting Glare",
-   "decks": 22,
-   "roles": [
-    "removal",
-    "ramp",
-    "beater"
-   ],
-   "tags": [
-    "removal@etb",
-    "mana@etb"
-   ]
-  },
-  {
-   "name": "Cool but Rude",
-   "decks": 21,
-   "roles": [
-    "draw",
     "tutor",
-    "engine"
+    "beater",
+    "enhance"
    ],
    "tags": [
-    "draw@attack",
-    "drain@other_trigger",
-    "tutor@once_trigger"
+    "lifegain@etb",
+    "tutor@etb",
+    "token@etb",
+    "pump@static"
+   ]
+  },
+  {
+   "name": "North Wind Avatar",
+   "decks": 70,
+   "roles": [
+    "tutor",
+    "finisher",
+    "beater"
+   ],
+   "tags": [
+    "tutor@etb"
    ]
   }
  ],
@@ -856,7 +604,8 @@
    "roles": [
     "removal",
     "draw",
-    "engine"
+    "engine",
+    "enhance"
    ],
    "tags": [
     "draw@each_turn",
@@ -872,7 +621,8 @@
    "roles": [
     "draw",
     "protection",
-    "engine"
+    "engine",
+    "enhance"
    ],
    "tags": [
     "protection@static",
@@ -900,7 +650,8 @@
    "roles": [
     "ramp",
     "draw",
-    "engine"
+    "engine",
+    "reach"
    ],
    "tags": [
     "draw@once_trigger",
@@ -912,7 +663,9 @@
    "name": "Biotech Specialist",
    "decks": 226,
    "roles": [
-    "engine"
+    "engine",
+    "reach",
+    "beater"
    ],
    "tags": [
     "token@etb",
@@ -997,7 +750,8 @@
    "decks": 201,
    "roles": [
     "draw",
-    "engine"
+    "engine",
+    "reach"
    ],
    "tags": [
     "drain@each_turn",
@@ -1046,6 +800,7 @@
    "decks": 191,
    "roles": [
     "engine",
+    "reach",
     "beater"
    ],
    "tags": [
@@ -1056,11 +811,13 @@
    "name": "Carnivorous Cultivator // Enroot",
    "decks": 160,
    "roles": [
+    "tutor",
     "recursion",
     "engine"
    ],
    "tags": [
-    "recursion@combat_damage"
+    "recursion@combat_damage",
+    "tutor@spell"
    ]
   },
   {
@@ -1095,7 +852,8 @@
    "name": "Simulacrum Synthesizer",
    "decks": 102,
    "roles": [
-    "engine"
+    "engine",
+    "enhance"
    ],
    "tags": [
     "token@creature_enters",
@@ -1130,7 +888,8 @@
    "name": "Ajani Resolute",
    "decks": 96,
    "roles": [
-    "engine"
+    "engine",
+    "enhance"
    ],
    "tags": [
     "lifegain@loyalty",
@@ -1142,10 +901,12 @@
    "name": "Braided Net // Braided Quipu",
    "decks": 94,
    "roles": [
+    "hate",
     "draw",
     "engine"
    ],
    "tags": [
+    "hate@activated",
     "draw@activated"
    ]
   },
@@ -1153,7 +914,8 @@
    "name": "Hired Claw",
    "decks": 88,
    "roles": [
-    "engine"
+    "engine",
+    "reach"
    ],
    "tags": [
     "drain@attack",
@@ -1167,6 +929,7 @@
     "ramp",
     "finisher",
     "engine",
+    "reach",
     "beater"
    ],
    "tags": [
@@ -1179,7 +942,8 @@
    "decks": 62,
    "roles": [
     "removal",
-    "engine"
+    "engine",
+    "enhance"
    ],
    "tags": [
     "token@loyalty",
@@ -1191,7 +955,8 @@
    "name": "Iridescent Vinelasher",
    "decks": 61,
    "roles": [
-    "engine"
+    "engine",
+    "reach"
    ],
    "tags": [
     "drain@landfall"
@@ -1229,11 +994,13 @@
    "decks": 51,
    "roles": [
     "draw",
+    "combo",
     "engine"
    ],
    "tags": [
     "token@loyalty",
-    "draw@loyalty"
+    "draw@loyalty",
+    "copy@loyalty"
    ]
   },
   {
@@ -1254,7 +1021,8 @@
    "name": "Ingris Stingerquill",
    "decks": 47,
    "roles": [
-    "engine"
+    "engine",
+    "reach"
    ],
    "tags": [
     "drain@attack",
@@ -1279,6 +1047,7 @@
    "decks": 46,
    "roles": [
     "engine",
+    "reach",
     "beater"
    ],
    "tags": [
@@ -1326,7 +1095,8 @@
     "removal",
     "ramp",
     "draw",
-    "engine"
+    "engine",
+    "reach"
    ],
    "tags": [
     "draw@loyalty",
@@ -1398,6 +1168,7 @@
    "decks": 115,
    "roles": [
     "recursion",
+    "combo",
     "finisher",
     "beater"
    ]
@@ -1435,6 +1206,7 @@
     "ramp",
     "finisher",
     "engine",
+    "reach",
     "beater"
    ]
   },
@@ -1442,6 +1214,7 @@
    "name": "North Wind Avatar",
    "decks": 70,
    "roles": [
+    "tutor",
     "finisher",
     "beater"
    ]
@@ -1533,14 +1306,6 @@
  ],
  "noTags": [
   {
-   "name": "Strategic Betrayal",
-   "decks": 345,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Sorcery"
-  },
-  {
    "name": "Mightform Harmonizer",
    "decks": 275,
    "roles": [
@@ -1589,22 +1354,6 @@
    "typeLine": "Instant"
   },
   {
-   "name": "Impractical Joke",
-   "decks": 167,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Sorcery"
-  },
-  {
-   "name": "Starfield Shepherd",
-   "decks": 157,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Angel"
-  },
-  {
    "name": "Eddymurk Crab",
    "decks": 153,
    "roles": [
@@ -1621,22 +1370,6 @@
     "beater"
    ],
    "typeLine": "Creature — Human Monk"
-  },
-  {
-   "name": "Voice of Victory",
-   "decks": 147,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Human Bard"
-  },
-  {
-   "name": "Superior Spider-Man",
-   "decks": 131,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Legendary Creature — Spider Human Hero"
   },
   {
    "name": "Sunderflock",
@@ -1656,14 +1389,6 @@
    "typeLine": "Sorcery"
   },
   {
-   "name": "Clarion Conqueror",
-   "decks": 108,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Dragon"
-  },
-  {
    "name": "Wolverine, Fierce Fighter",
    "decks": 106,
    "roles": [
@@ -1678,23 +1403,6 @@
     "beater"
    ],
    "typeLine": "Creature — Dragon"
-  },
-  {
-   "name": "Spring-Loaded Sawblades // Bladewheel Chariot",
-   "decks": 87,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Artifact // Artifact — Vehicle"
-  },
-  {
-   "name": "North Wind Avatar",
-   "decks": 70,
-   "roles": [
-    "finisher",
-    "beater"
-   ],
-   "typeLine": "Creature — Dragon Spirit Avatar"
   },
   {
    "name": "Shared Roots",
@@ -1729,36 +1437,12 @@
    "typeLine": "Legendary Creature — Dwarf Warrior"
   },
   {
-   "name": "Basilisk Collar",
-   "decks": 58,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Artifact — Equipment"
-  },
-  {
    "name": "Lumbering Worldwagon",
    "decks": 55,
    "roles": [
     "ramp"
    ],
    "typeLine": "Artifact — Vehicle"
-  },
-  {
-   "name": "Doorkeeper Thrull",
-   "decks": 51,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Thrull"
-  },
-  {
-   "name": "Hard-Hitting Question",
-   "decks": 49,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Sorcery"
   },
   {
    "name": "Mockingbird",
@@ -1803,30 +1487,6 @@
    "typeLine": "Sorcery"
   },
   {
-   "name": "Torpor Orb",
-   "decks": 31,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Artifact"
-  },
-  {
-   "name": "Kona, Rescue Beastie",
-   "decks": 26,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Legendary Creature — Beast Survivor"
-  },
-  {
-   "name": "Omniscience",
-   "decks": 25,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Enchantment"
-  },
-  {
    "name": "Combustion Technique",
    "decks": 22,
    "roles": [
@@ -1857,6 +1517,121 @@
     "beater"
    ],
    "typeLine": "Creature — Goblin Warrior"
+  },
+  {
+   "name": "Sentinel of the Nameless City",
+   "decks": 17,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Merfolk Warrior Scout"
+  },
+  {
+   "name": "Thought-Stalker Warlock",
+   "decks": 14,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Lizard Warlock"
+  },
+  {
+   "name": "Samut, Hazoret's Champion",
+   "decks": 14,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Legendary Creature — Human Warrior Cleric"
+  },
+  {
+   "name": "Tiger-Seal",
+   "decks": 14,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Cat Seal"
+  },
+  {
+   "name": "Tarmogoyf",
+   "decks": 12,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Lhurgoyf"
+  },
+  {
+   "name": "Tifa Lockhart",
+   "decks": 12,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Legendary Creature — Human Monk"
+  },
+  {
+   "name": "Q, Stacking the Deck",
+   "decks": 12,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Legendary Creature — Q"
+  },
+  {
+   "name": "Multiply by Zero",
+   "decks": 10,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Instant"
+  },
+  {
+   "name": "Hexing Squelcher",
+   "decks": 10,
+   "roles": [
+    "protection"
+   ],
+   "typeLine": "Creature — Goblin Sorcerer"
+  },
+  {
+   "name": "Warmaker Gunship",
+   "decks": 9,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Artifact — Spacecraft"
+  },
+  {
+   "name": "Terror of the Peaks",
+   "decks": 8,
+   "roles": [
+    "finisher",
+    "beater"
+   ],
+   "typeLine": "Creature — Dragon"
+  },
+  {
+   "name": "Traveling Chocobo",
+   "decks": 8,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Bird"
+  },
+  {
+   "name": "Qarsi Revenant",
+   "decks": 7,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Vampire"
+  },
+  {
+   "name": "Hexhaven Invigorator",
+   "decks": 7,
+   "roles": [
+    "ramp",
+    "finisher",
+    "beater"
+   ],
+   "typeLine": "Creature — Chimera Horror"
   }
  ],
  "unknownCards": [

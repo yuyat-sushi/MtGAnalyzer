@@ -1,157 +1,13 @@
 {
  "format": "Pauper",
- "generatedAt": "2026-11-25T19:26:19.365Z",
+ "generatedAt": "2026-11-25T19:42:45.913Z",
  "decks": 2806,
  "otherOnly": [
-  {
-   "name": "Suffocating Fumes",
-   "decks": 345,
-   "typeLine": "Instant",
-   "tags": []
-  },
-  {
-   "name": "Winding Way",
-   "decks": 284,
-   "typeLine": "Sorcery",
-   "tags": []
-  },
-  {
-   "name": "Land Grant",
-   "decks": 218,
-   "typeLine": "Sorcery",
-   "tags": []
-  },
-  {
-   "name": "Arms of Hadar",
-   "decks": 172,
-   "typeLine": "Sorcery",
-   "tags": []
-  },
-  {
-   "name": "Utopia Sprawl",
-   "decks": 166,
-   "typeLine": "Enchantment — Aura",
-   "tags": []
-  },
-  {
-   "name": "First Day of Class",
-   "decks": 151,
-   "typeLine": "Instant",
-   "tags": [
-    "pump@spell"
-   ]
-  },
-  {
-   "name": "Rancor",
-   "decks": 140,
-   "typeLine": "Enchantment — Aura",
-   "tags": [
-    "pump@static"
-   ]
-  },
-  {
-   "name": "Ethereal Armor",
-   "decks": 137,
-   "typeLine": "Enchantment — Aura",
-   "tags": [
-    "pump@static"
-   ]
-  },
-  {
-   "name": "Ancestral Mask",
-   "decks": 135,
-   "typeLine": "Enchantment — Aura",
-   "tags": [
-    "pump@static"
-   ]
-  },
-  {
-   "name": "Cartouche of Solidarity",
-   "decks": 132,
-   "typeLine": "Enchantment — Aura Cartouche",
-   "tags": [
-    "token@etb",
-    "pump@static"
-   ]
-  },
-  {
-   "name": "Black Mage's Rod",
-   "decks": 130,
-   "typeLine": "Artifact — Equipment",
-   "tags": [
-    "drain@static",
-    "pump@static"
-   ]
-  },
-  {
-   "name": "Expedition Map",
-   "decks": 127,
-   "typeLine": "Artifact",
-   "tags": []
-  },
-  {
-   "name": "Lifelink",
-   "decks": 121,
-   "typeLine": "Enchantment — Aura",
-   "tags": []
-  },
-  {
-   "name": "Rally at the Hornburg",
-   "decks": 115,
-   "typeLine": "Sorcery",
-   "tags": [
-    "token@spell"
-   ]
-  },
-  {
-   "name": "Kruphix's Insight",
-   "decks": 109,
-   "typeLine": "Sorcery",
-   "tags": []
-  },
-  {
-   "name": "Ghostly Flicker",
-   "decks": 107,
-   "typeLine": "Instant",
-   "tags": []
-  },
-  {
-   "name": "Ramosian Rally",
-   "decks": 89,
-   "typeLine": "Instant",
-   "tags": [
-    "pump@spell"
-   ]
-  },
-  {
-   "name": "Weather the Storm",
-   "decks": 85,
-   "typeLine": "Instant",
-   "tags": [
-    "lifegain@spell"
-   ]
-  },
   {
    "name": "Breath Weapon",
    "decks": 80,
    "typeLine": "Instant",
    "tags": []
-  },
-  {
-   "name": "End the Festivities",
-   "decks": 64,
-   "typeLine": "Sorcery",
-   "tags": [
-    "drain@spell"
-   ]
-  },
-  {
-   "name": "Guardians' Pledge",
-   "decks": 61,
-   "typeLine": "Instant",
-   "tags": [
-    "pump@spell"
-   ]
   },
   {
    "name": "Stream of Thought",
@@ -162,72 +18,11 @@
    ]
   },
   {
-   "name": "Spinning Darkness",
-   "decks": 46,
-   "typeLine": "Instant",
-   "tags": [
-    "lifegain@spell"
-   ]
-  },
-  {
-   "name": "Inventor's Axe",
-   "decks": 43,
-   "typeLine": "Artifact — Equipment",
-   "tags": [
-    "energy@etb",
-    "pump@static"
-   ]
-  },
-  {
-   "name": "Wild Growth",
-   "decks": 39,
-   "typeLine": "Enchantment — Aura",
-   "tags": []
-  },
-  {
    "name": "Navigator's Compass",
    "decks": 32,
    "typeLine": "Artifact",
    "tags": [
     "lifegain@etb"
-   ]
-  },
-  {
-   "name": "Pinnacle Kill-Ship",
-   "decks": 30,
-   "typeLine": "Artifact — Spacecraft",
-   "tags": []
-  },
-  {
-   "name": "Alms of the Vein",
-   "decks": 28,
-   "typeLine": "Sorcery",
-   "tags": [
-    "lifegain@spell",
-    "drain@spell"
-   ]
-  },
-  {
-   "name": "Vampire's Kiss",
-   "decks": 28,
-   "typeLine": "Sorcery",
-   "tags": [
-    "lifegain@spell",
-    "drain@spell"
-   ]
-  },
-  {
-   "name": "Barbed Batterfist",
-   "decks": 23,
-   "typeLine": "Artifact — Equipment",
-   "tags": []
-  },
-  {
-   "name": "Vines of Vastwood",
-   "decks": 20,
-   "typeLine": "Instant",
-   "tags": [
-    "pump@spell"
    ]
   },
   {
@@ -237,34 +32,6 @@
    "tags": [
     "lifegain@spell"
    ]
-  },
-  {
-   "name": "Clowning Around",
-   "decks": 20,
-   "typeLine": "Sorcery",
-   "tags": [
-    "token@spell"
-   ]
-  },
-  {
-   "name": "Rites of Initiation",
-   "decks": 18,
-   "typeLine": "Instant",
-   "tags": [
-    "pump@spell"
-   ]
-  },
-  {
-   "name": "Mycosynth Wellspring",
-   "decks": 17,
-   "typeLine": "Artifact",
-   "tags": []
-  },
-  {
-   "name": "Cryoshatter",
-   "decks": 16,
-   "typeLine": "Enchantment — Aura",
-   "tags": []
   },
   {
    "name": "Fiery Cannonade",
@@ -281,29 +48,7 @@
    ]
   },
   {
-   "name": "Supernatural Stamina",
-   "decks": 12,
-   "typeLine": "Instant",
-   "tags": [
-    "pump@spell"
-   ]
-  },
-  {
-   "name": "Unexpected Fangs",
-   "decks": 11,
-   "typeLine": "Instant",
-   "tags": [
-    "pump@spell"
-   ]
-  },
-  {
    "name": "Fling",
-   "decks": 11,
-   "typeLine": "Instant",
-   "tags": []
-  },
-  {
-   "name": "Ram Through",
    "decks": 11,
    "typeLine": "Instant",
    "tags": []
@@ -321,45 +66,10 @@
    "tags": []
   },
   {
-   "name": "Pieces of the Puzzle",
-   "decks": 7,
-   "typeLine": "Sorcery",
-   "tags": []
-  },
-  {
-   "name": "Teach by Example",
-   "decks": 5,
-   "typeLine": "Instant",
-   "tags": []
-  },
-  {
-   "name": "Thirsting Roots",
-   "decks": 5,
-   "typeLine": "Sorcery",
-   "tags": []
-  },
-  {
-   "name": "Squire's Devotion",
-   "decks": 4,
-   "typeLine": "Enchantment — Aura",
-   "tags": [
-    "pump@static",
-    "token@etb"
-   ]
-  },
-  {
    "name": "Exhume",
    "decks": 4,
    "typeLine": "Sorcery",
    "tags": []
-  },
-  {
-   "name": "Sadistic Glee",
-   "decks": 4,
-   "typeLine": "Enchantment — Aura",
-   "tags": [
-    "pump@death_trigger"
-   ]
   },
   {
    "name": "Freed from the Real",
@@ -368,70 +78,57 @@
    "tags": []
   },
   {
-   "name": "Mutagenic Growth",
-   "decks": 4,
-   "typeLine": "Instant",
-   "tags": [
-    "pump@spell"
-   ]
-  },
-  {
-   "name": "Colossal Dreadmask",
-   "decks": 4,
-   "typeLine": "Artifact — Equipment",
-   "tags": [
-    "pump@static"
-   ]
-  },
-  {
-   "name": "Temur Battle Rage",
-   "decks": 3,
-   "typeLine": "Instant",
-   "tags": []
-  },
-  {
-   "name": "Embiggen",
-   "decks": 3,
-   "typeLine": "Instant",
-   "tags": [
-    "pump@spell"
-   ]
-  },
-  {
-   "name": "Go Forth",
-   "decks": 3,
-   "typeLine": "Instant",
-   "tags": [
-    "pump@spell"
-   ]
-  },
-  {
-   "name": "Might of Old Krosa",
-   "decks": 3,
-   "typeLine": "Instant",
-   "tags": [
-    "pump@spell"
-   ]
-  },
-  {
    "name": "Gigadrowse",
    "decks": 3,
    "typeLine": "Instant",
    "tags": []
   },
   {
-   "name": "Fertile Ground",
-   "decks": 3,
+   "name": "Molten Rain",
+   "decks": 2,
+   "typeLine": "Sorcery",
+   "tags": []
+  },
+  {
+   "name": "Renewed Faith",
+   "decks": 1,
+   "typeLine": "Instant",
+   "tags": [
+    "lifegain@spell"
+   ]
+  },
+  {
+   "name": "Goblin War Drums",
+   "decks": 1,
+   "typeLine": "Enchantment",
+   "tags": []
+  },
+  {
+   "name": "Bind the Monster",
+   "decks": 1,
    "typeLine": "Enchantment — Aura",
    "tags": []
   },
   {
-   "name": "Greatsword of Tyr",
-   "decks": 2,
-   "typeLine": "Artifact — Equipment",
+   "name": "Unable to Scream",
+   "decks": 1,
+   "typeLine": "Enchantment — Aura",
+   "tags": []
+  },
+  {
+   "name": "Cache Grab",
+   "decks": 1,
+   "typeLine": "Instant",
    "tags": [
-    "pump@attack"
+    "lifegain@spell",
+    "selfmill@spell"
    ]
+  },
+  {
+   "name": "Monstrous Emergence",
+   "decks": 1,
+   "typeLine": "Sorcery",
+   "tags": []
   }
  ],
  "manyRoles": [
@@ -449,6 +146,33 @@
    ]
   },
   {
+   "name": "Lava Dart",
+   "decks": 293,
+   "roles": [
+    "removal",
+    "recursion",
+    "reach"
+   ],
+   "tags": [
+    "drain@spell",
+    "removal@spell",
+    "recursion@spell"
+   ]
+  },
+  {
+   "name": "Makeshift Munitions",
+   "decks": 287,
+   "roles": [
+    "removal",
+    "engine",
+    "reach"
+   ],
+   "tags": [
+    "drain@activated",
+    "removal@activated"
+   ]
+  },
+  {
    "name": "Tolarian Terror",
    "decks": 243,
    "roles": [
@@ -457,6 +181,20 @@
     "beater"
    ],
    "tags": []
+  },
+  {
+   "name": "Malevolent Rumble",
+   "decks": 220,
+   "roles": [
+    "ramp",
+    "draw",
+    "beater"
+   ],
+   "tags": [
+    "token@spell",
+    "draw@spell",
+    "mana@spell"
+   ]
   },
   {
    "name": "Cryptic Serpent",
@@ -482,6 +220,48 @@
    ]
   },
   {
+   "name": "Tithing Blade // Consuming Sepulcher",
+   "decks": 165,
+   "roles": [
+    "removal",
+    "engine",
+    "reach"
+   ],
+   "tags": [
+    "removal@etb",
+    "lifegain@each_turn",
+    "drain@each_turn"
+   ]
+  },
+  {
+   "name": "Glimpse the Impossible",
+   "decks": 155,
+   "roles": [
+    "ramp",
+    "draw",
+    "beater"
+   ],
+   "tags": [
+    "token@spell",
+    "draw@spell",
+    "mana@spell"
+   ]
+  },
+  {
+   "name": "Lotleth Giant",
+   "decks": 145,
+   "roles": [
+    "removal",
+    "finisher",
+    "reach",
+    "beater"
+   ],
+   "tags": [
+    "drain@etb",
+    "removal@etb"
+   ]
+  },
+  {
    "name": "Bramble Wurm",
    "decks": 117,
    "roles": [
@@ -504,6 +284,89 @@
    ],
    "tags": [
     "draw@etb"
+   ]
+  },
+  {
+   "name": "Unfathomable Truths",
+   "decks": 53,
+   "roles": [
+    "ramp",
+    "draw",
+    "beater"
+   ],
+   "tags": [
+    "token@spell",
+    "draw@spell",
+    "mana@spell"
+   ]
+  },
+  {
+   "name": "Kaervek's Torch",
+   "decks": 46,
+   "roles": [
+    "removal",
+    "hate",
+    "reach"
+   ],
+   "tags": [
+    "hate@spell",
+    "drain@spell",
+    "removal@spell"
+   ]
+  },
+  {
+   "name": "Relic of Progenitus",
+   "decks": 46,
+   "roles": [
+    "removal",
+    "hate",
+    "draw",
+    "engine"
+   ],
+   "tags": [
+    "removal@activated",
+    "draw@activated",
+    "gyhate@activated"
+   ]
+  },
+  {
+   "name": "Growth Spiral",
+   "decks": 35,
+   "roles": [
+    "ramp",
+    "draw",
+    "combo"
+   ],
+   "tags": [
+    "draw@spell",
+    "cheat@spell"
+   ]
+  },
+  {
+   "name": "Embrace the Paradox",
+   "decks": 30,
+   "roles": [
+    "ramp",
+    "draw",
+    "combo"
+   ],
+   "tags": [
+    "draw@spell",
+    "cheat@spell"
+   ]
+  },
+  {
+   "name": "Cauldron Familiar",
+   "decks": 23,
+   "roles": [
+    "recursion",
+    "engine",
+    "reach"
+   ],
+   "tags": [
+    "lifegain@etb",
+    "drain@etb",
+    "recursion@activated"
    ]
   },
   {
@@ -533,16 +396,58 @@
    ]
   },
   {
+   "name": "Viridian Longbow",
+   "decks": 9,
+   "roles": [
+    "removal",
+    "reach",
+    "enhance"
+   ],
+   "tags": [
+    "drain@static",
+    "removal@static",
+    "pump@static"
+   ]
+  },
+  {
+   "name": "Eureka Moment",
+   "decks": 6,
+   "roles": [
+    "ramp",
+    "draw",
+    "combo"
+   ],
+   "tags": [
+    "draw@spell",
+    "cheat@spell"
+   ]
+  },
+  {
+   "name": "Molten Gatekeeper",
+   "decks": 6,
+   "roles": [
+    "recursion",
+    "engine",
+    "reach"
+   ],
+   "tags": [
+    "drain@creature_enters",
+    "recursion@static"
+   ]
+  },
+  {
    "name": "Pegasus Guardian // Rescue the Foal",
    "decks": 5,
    "roles": [
     "removal",
+    "protection",
     "engine",
     "beater"
    ],
    "tags": [
     "token@each_turn",
-    "removal@spell"
+    "removal@spell",
+    "protection@spell"
    ]
   },
   {
@@ -570,43 +475,58 @@
    ]
   },
   {
-   "name": "Fang Dragon // Forktail Sweep",
-   "decks": 2,
-   "roles": [
-    "wipe",
-    "finisher",
-    "beater"
-   ],
-   "tags": [
-    "wipe@spell"
-   ]
-  },
-  {
-   "name": "Drownyard Lurker",
-   "decks": 1,
-   "roles": [
-    "ramp",
-    "finisher",
-    "engine",
-    "beater"
-   ],
-   "tags": [
-    "token@cast_trigger",
-    "mana@cast_trigger"
-   ]
-  },
-  {
-   "name": "Dinrova Horror",
-   "decks": 1,
+   "name": "Flame Jab",
+   "decks": 4,
    "roles": [
     "removal",
-    "discard",
-    "finisher",
+    "recursion",
+    "reach"
+   ],
+   "tags": [
+    "drain@spell",
+    "removal@spell",
+    "recursion@spell"
+   ]
+  },
+  {
+   "name": "Valakut Invoker",
+   "decks": 4,
+   "roles": [
+    "removal",
+    "engine",
+    "reach"
+   ],
+   "tags": [
+    "drain@activated",
+    "removal@activated"
+   ]
+  },
+  {
+   "name": "Make It So",
+   "decks": 3,
+   "roles": [
+    "draw",
+    "combo",
     "beater"
    ],
    "tags": [
-    "removal@etb",
-    "discard@etb"
+    "draw@spell",
+    "untap@spell",
+    "token@spell"
+   ]
+  },
+  {
+   "name": "Firebolt",
+   "decks": 2,
+   "roles": [
+    "removal",
+    "recursion",
+    "reach"
+   ],
+   "tags": [
+    "drain@spell",
+    "removal@spell",
+    "recursion@spell"
    ]
   }
  ],
@@ -635,7 +555,8 @@
    "name": "Guttersnipe",
    "decks": 294,
    "roles": [
-    "engine"
+    "engine",
+    "reach"
    ],
    "tags": [
     "drain@cast_trigger"
@@ -646,7 +567,8 @@
    "decks": 287,
    "roles": [
     "removal",
-    "engine"
+    "engine",
+    "reach"
    ],
    "tags": [
     "drain@activated",
@@ -668,7 +590,8 @@
    "name": "Kessig Flamebreather",
    "decks": 218,
    "roles": [
-    "engine"
+    "engine",
+    "reach"
    ],
    "tags": [
     "drain@cast_trigger"
@@ -703,7 +626,8 @@
    "decks": 165,
    "roles": [
     "removal",
-    "engine"
+    "engine",
+    "reach"
    ],
    "tags": [
     "removal@etb",
@@ -715,7 +639,8 @@
    "name": "Armadillo Cloak",
    "decks": 136,
    "roles": [
-    "engine"
+    "engine",
+    "enhance"
    ],
    "tags": [
     "pump@static",
@@ -762,10 +687,13 @@
    "name": "Relic of Progenitus",
    "decks": 46,
    "roles": [
+    "removal",
+    "hate",
     "draw",
     "engine"
    ],
    "tags": [
+    "removal@activated",
     "draw@activated",
     "gyhate@activated"
    ]
@@ -775,7 +703,8 @@
    "decks": 23,
    "roles": [
     "recursion",
-    "engine"
+    "engine",
+    "reach"
    ],
    "tags": [
     "lifegain@etb",
@@ -887,7 +816,8 @@
    "name": "Drannith Stinger",
    "decks": 9,
    "roles": [
-    "engine"
+    "engine",
+    "reach"
    ],
    "tags": [
     "drain@other_trigger"
@@ -907,7 +837,8 @@
    "name": "Magmakin Artillerist",
    "decks": 7,
    "roles": [
-    "engine"
+    "engine",
+    "reach"
    ],
    "tags": [
     "drain@other_trigger",
@@ -930,7 +861,8 @@
    "decks": 6,
    "roles": [
     "recursion",
-    "engine"
+    "engine",
+    "reach"
    ],
    "tags": [
     "drain@creature_enters",
@@ -942,12 +874,14 @@
    "decks": 5,
    "roles": [
     "removal",
+    "protection",
     "engine",
     "beater"
    ],
    "tags": [
     "token@each_turn",
-    "removal@spell"
+    "removal@spell",
+    "protection@spell"
    ]
   },
   {
@@ -1000,7 +934,8 @@
    "decks": 4,
    "roles": [
     "removal",
-    "engine"
+    "engine",
+    "reach"
    ],
    "tags": [
     "drain@activated",
@@ -1032,18 +967,22 @@
    "name": "Hissing Iguanar",
    "decks": 2,
    "roles": [
+    "removal",
     "engine",
+    "reach",
     "beater"
    ],
    "tags": [
-    "drain@death_trigger"
+    "drain@death_trigger",
+    "removal@death_trigger"
    ]
   },
   {
    "name": "Impact Tremors",
    "decks": 2,
    "roles": [
-    "engine"
+    "engine",
+    "reach"
    ],
    "tags": [
     "drain@creature_enters"
@@ -1053,7 +992,8 @@
    "name": "Raphael, Tough Turtle",
    "decks": 2,
    "roles": [
-    "engine"
+    "engine",
+    "reach"
    ],
    "tags": [
     "drain@creature_enters"
@@ -1115,7 +1055,9 @@
    "name": "Lotleth Giant",
    "decks": 145,
    "roles": [
+    "removal",
     "finisher",
+    "reach",
     "beater"
    ]
   },
@@ -1239,36 +1181,12 @@
    "typeLine": "Creature — Human Assassin"
   },
   {
-   "name": "Suffocating Fumes",
-   "decks": 345,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Instant"
-  },
-  {
-   "name": "Winding Way",
-   "decks": 284,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Sorcery"
-  },
-  {
    "name": "Faerie Seer",
    "decks": 274,
    "roles": [
     "beater"
    ],
    "typeLine": "Creature — Faerie Wizard"
-  },
-  {
-   "name": "Quirion Ranger",
-   "decks": 256,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Elf Ranger"
   },
   {
    "name": "Tolarian Terror",
@@ -1312,14 +1230,6 @@
     "beater"
    ],
    "typeLine": "Artifact Creature — Myr"
-  },
-  {
-   "name": "Land Grant",
-   "decks": 218,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Sorcery"
   },
   {
    "name": "Cryptic Serpent",
@@ -1366,22 +1276,6 @@
    "typeLine": "Sorcery"
   },
   {
-   "name": "Arms of Hadar",
-   "decks": 172,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Sorcery"
-  },
-  {
-   "name": "Utopia Sprawl",
-   "decks": 166,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Enchantment — Aura"
-  },
-  {
    "name": "Goblin Anarchomancer",
    "decks": 153,
    "roles": [
@@ -1396,14 +1290,6 @@
     "ramp"
    ],
    "typeLine": "Creature — Insect"
-  },
-  {
-   "name": "Gatecreeper Vine",
-   "decks": 137,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Plant"
   },
   {
    "name": "Gladecover Scout",
@@ -1430,52 +1316,12 @@
    "typeLine": "Creature — Beast"
   },
   {
-   "name": "Expedition Map",
-   "decks": 127,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Artifact"
-  },
-  {
-   "name": "Lifelink",
-   "decks": 121,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Enchantment — Aura"
-  },
-  {
    "name": "Delver of Secrets // Insectile Aberration",
    "decks": 119,
    "roles": [
     "beater"
    ],
    "typeLine": "Creature — Human Wizard // Creature — Human Insect"
-  },
-  {
-   "name": "Crop Rotation",
-   "decks": 115,
-   "roles": [
-    "ramp"
-   ],
-   "typeLine": "Instant"
-  },
-  {
-   "name": "Kruphix's Insight",
-   "decks": 109,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Sorcery"
-  },
-  {
-   "name": "Ghostly Flicker",
-   "decks": 107,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Instant"
   },
   {
    "name": "Breath Weapon",
@@ -1528,14 +1374,6 @@
    "typeLine": "Instant"
   },
   {
-   "name": "Wild Growth",
-   "decks": 39,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Enchantment — Aura"
-  },
-  {
    "name": "Arbor Elf",
    "decks": 37,
    "roles": [
@@ -1553,12 +1391,120 @@
    "typeLine": "Artifact Creature — Golem"
   },
   {
-   "name": "Pinnacle Kill-Ship",
+   "name": "Ornithopter",
    "decks": 30,
    "roles": [
-    "other"
+    "beater"
    ],
-   "typeLine": "Artifact — Spacecraft"
+   "typeLine": "Artifact Creature — Thopter"
+  },
+  {
+   "name": "Fortress Kin-Guard",
+   "decks": 30,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Dog Soldier"
+  },
+  {
+   "name": "Frogmite",
+   "decks": 29,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Artifact Creature — Frog"
+  },
+  {
+   "name": "Annoyed Altisaur",
+   "decks": 28,
+   "roles": [
+    "finisher",
+    "beater"
+   ],
+   "typeLine": "Creature — Dinosaur"
+  },
+  {
+   "name": "Gigantosaurus",
+   "decks": 27,
+   "roles": [
+    "finisher",
+    "beater"
+   ],
+   "typeLine": "Creature — Dinosaur"
+  },
+  {
+   "name": "Kitchen Imp",
+   "decks": 27,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Imp"
+  },
+  {
+   "name": "Halo Hopper",
+   "decks": 26,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Artifact Creature — Frog"
+  },
+  {
+   "name": "Crimson Fleet Commodore",
+   "decks": 25,
+   "roles": [
+    "finisher",
+    "beater"
+   ],
+   "typeLine": "Creature — Ogre Pirate"
+  },
+  {
+   "name": "Gearseeker Serpent",
+   "decks": 25,
+   "roles": [
+    "finisher",
+    "beater"
+   ],
+   "typeLine": "Creature — Serpent"
+  },
+  {
+   "name": "Azure Fleet Admiral",
+   "decks": 24,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Human Pirate"
+  },
+  {
+   "name": "Phyrexian Walker",
+   "decks": 23,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Artifact Creature — Phyrexian Construct"
+  },
+  {
+   "name": "Stonehorn Dignitary",
+   "decks": 22,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Rhino Soldier"
+  },
+  {
+   "name": "Guardian of the Guildpact",
+   "decks": 15,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Spirit"
+  },
+  {
+   "name": "Spider-Man, Web-Slinger",
+   "decks": 14,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Legendary Creature — Spider Human Hero"
   }
  ],
  "unknownCards": [
