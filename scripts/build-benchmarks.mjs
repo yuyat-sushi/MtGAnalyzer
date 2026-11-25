@@ -55,11 +55,24 @@ const iso = d => d.toISOString().slice(0, 10);
 async function loadOracle() {
   if (args.cards) return JSON.parse(fs.readFileSync(args.cards, 'utf8'));
   const headers = { 'User-Agent': USER_AGENT, 'Accept': 'application/json' };
-  const meta = await (await fetch('https://api.scryfall.com/bulk-data/oracle-cards', { headers })).json();
-  console.log(`Scryfall bulk: ${meta.download_uri} (${(meta.size / 1e6).toFixed(0)}MB, updated ${meta.updated_at})`);
-  const res = await fetch(meta.download_uri, { headers });
-  if (!res.ok) throw new Error('bulk download failed: ' + res.status);
-  return await res.json();
+  // 一覧から oracle_cards を探す（ダウンロードURLは毎日変わる）
+  const listRes = await fetch('https://api.scryfall.com/bulk-data', { headers });
+  const list = await listRes.json().catch(() => null);
+  const items = (list && list.data) || [];
+  const item = items.find(x => x.type === 'oracle_cards');
+  if (!item) {
+    throw new Error(`oracle_cards が見つかりません (HTTP ${listRes.status}): ${JSON.stringify(list).slice(0, 500)}`);
+  }
+  const url = item.download_uri || item.download_url || item.downloadUri;
+  console.log(`Scryfall bulk item keys: ${Object.keys(item).join(', ')}`);
+  if (!url) throw new Error('ダウンロードURLが見つかりません: ' + JSON.stringify(item).slice(0, 800));
+  console.log(`Scryfall bulk: ${url} (${item.size ? (item.size / 1e6).toFixed(0) + 'MB' : 'size unknown'}, updated ${item.updated_at})`);
+  const res = await fetch(url, { headers });
+  if (!res.ok) throw new Error(`bulk download failed: HTTP ${res.status} ${(await res.text()).slice(0, 300)}`);
+  const data = await res.json();
+  if (!Array.isArray(data)) throw new Error('bulk data が配列ではありません: ' + JSON.stringify(data).slice(0, 300));
+  console.log(`Scryfall cards: ${data.length}`);
+  return data;
 }
 
 const NON_GAME = new Set(['token', 'double_faced_token', 'art_series', 'emblem', 'planar', 'scheme', 'vanguard']);
