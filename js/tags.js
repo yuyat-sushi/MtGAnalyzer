@@ -20,6 +20,8 @@
     dies:             { label: '死亡時',               repeat: false },
     chapter:          { label: '章能力',               repeat: false },
     once_trigger:     { label: '条件を満たしたとき',   repeat: false },
+    cast_self:        { label: '唱えたとき（誘発）',   repeat: false },
+    activated_once:   { label: '起動型（使い切り）',   repeat: false },
     activated:        { label: '起動型',               repeat: true },
     loyalty:          { label: '忠誠度能力',           repeat: true },
     each_turn:        { label: '毎ターン',             repeat: true },
@@ -41,7 +43,7 @@
     { id: 'draw',      label: 'ドロー',       re: [/\bdraws? (a|an|one|two|three|four|five|x|that many|cards equal)\b[^.]*\bcards?\b/, /\binvestigate\b/, /\bclue tokens?\b/,
                                                  /exile the top [^.]*cards? of your library[\s\S]{0,120}?you may (play|cast)/, /look at the top [\s\S]{0,140}?into your hand/, /top cards? of your library[\s\S]{0,80}?into your hand/, /\bconnives?\b/] },
     { id: 'drain',     label: 'ダメージ/ドレイン', re: [/deals? [^.]*?damage to (each opponent|target player|target opponent|that player|each player|any target|target player or planeswalker)/, /(each opponent|target opponent|target player|that player) loses (\d+|x) life/, /\beach opponent loses\b/] },
-    { id: 'removal',   label: '除去',         re: [/(destroy|exile) (target|another target|up to (one|two|three) target|that) (?!card)[^.]*?(creature|artifact|enchantment|planeswalker|permanent|battle)/,
+    { id: 'removal',   label: '除去',         re: [/(destroy|exile) (target|another target|up to (one|two|three) (other )?target|that) (?!card)[^.]*?(creature|artifact|enchantment|planeswalker|permanent|battle)/,
                                                  /deals? [^.]*?damage to (any target|target (creature|planeswalker|attacking|blocking|permanent)|that (creature|permanent|planeswalker))/,
                                                  /target creature (an opponent controls )?gets -(\d+|x)\/-(\d+|x)/, /\bfights? (target|another target|up to one target)/,
                                                  /return (target|up to \w+ target) (nonland )?(creature|permanent|artifact|enchantment)[^.]*to (its|their) owner'?s'? hand/,
@@ -84,7 +86,8 @@
       }
       if (/\battacks?\b/.test(clause)) out.push('attack');
       if (/deals combat damage/.test(clause)) out.push('combat_damage');
-      if (/\b(you|a player|an opponent) casts?\b/.test(clause)) out.push('cast_trigger');
+      if (/\byou cast this spell\b/.test(clause)) out.push('cast_self');
+      else if (/\b(you|a player|an opponent) casts?\b/.test(clause)) out.push('cast_trigger');
       if (/\byou gain life\b/.test(clause)) out.push('lifegain_trigger');
       if (/\bdies\b|put into (a|your) graveyard from the battlefield/.test(clause)) {
         out.push(/\b(another|a|an|one or more|each|nontoken)\b/.test(clause) ? 'death_trigger' : 'dies');
@@ -96,7 +99,11 @@
     const colon = line.indexOf(':');
     if (colon > 0 && colon < 90 && !line.slice(0, colon).includes('"')) {
       const cost = line.slice(0, colon);
-      if (/\{|\bsacrifice\b|\bdiscard\b|\bpay\b|\bremove\b|\btap\b|\bexile\b|\breturn\b/.test(cost)) return ['activated'];
+      if (/\{|\bsacrifice\b|\bdiscard\b|\bpay\b|\bremove\b|\btap\b|\bexile\b|\breturn\b/.test(cost)) {
+        // 自分自身を生け贄に捧げる起動型能力は1回きり（"sacrifice a creature" などは繰り返せる）
+        const selfSac = /\bsacrifice (?!(a|an|another|two|three|x|one or more|any number|that|target)\b)/.test(cost);
+        return [selfSac ? 'activated_once' : 'activated'];
+      }
     }
     return ['static'];
   }
