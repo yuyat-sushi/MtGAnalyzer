@@ -2,7 +2,13 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#14131a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="MtG Analyzer">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%2314131a'/%3E%3Cpath d='M50 14 80 50 50 86 20 50Z' fill='%23d9b35b'/%3E%3C/svg%3E">
   <title>MtG Analyzer — 役割で考えるデッキ構築</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -39,6 +45,7 @@
         <button class="ghost" data-menu="saveMenu">保存 ▾</button>
         <div id="saveMenu" class="menu-pop">
           <button id="btnSave">このデッキを保存</button>
+          <button id="btnNewMobile" class="mobile-new">新しいデッキを作る</button>
           <div class="menu-label">保存済みデッキ</div>
           <div id="savedList"></div>
         </div>
@@ -52,10 +59,14 @@
     <section class="panel search-panel">
       <h2>カード検索</h2>
       <div class="search-box">
-        <input id="searchInput" placeholder="カード名（日本語OK）や Scryfall 構文 例: t:creature c:r mv<=2" autocomplete="off">
+        <div class="search-row">
+          <input id="searchInput" type="search" enterkeyhint="search" placeholder="カード名（日本語OK）や Scryfall 構文 例: t:creature c:r mv<=2" autocomplete="off">
+          <button id="btnSearch" class="primary" type="button">検索</button>
+        </div>
         <ul id="autocomplete" class="autocomplete"></ul>
       </div>
-      <p class="hint">Enterで検索。結果をクリックでメイン、右クリック（長押し）でサイドへ追加。</p>
+      <p class="hint only-desktop">Enterで検索。結果をクリックでメイン、右クリックでサイドへ追加。</p>
+      <p class="hint only-touch">検索で結果表示。カードをタップで拡大、下のボタンでメイン／サイドへ追加。</p>
       <div id="searchResults" class="results"></div>
     </section>
 
@@ -95,8 +106,24 @@
     <span class="muted">カードデータ: <a href="https://scryfall.com" target="_blank" rel="noopener">Scryfall</a></span>
   </footer>
 
-  <!-- カードプレビュー -->
+  <!-- スマホ用タブバー -->
+  <nav class="tabbar" aria-label="画面切り替え">
+    <button data-tab="search-panel">検索</button>
+    <button data-tab="deck-panel" class="active">デッキ <span id="tabCount" class="badge">0</span></button>
+    <button data-tab="analysis-panel">分析</button>
+  </nav>
+
+  <!-- カードプレビュー（PC: ホバー） -->
   <div id="preview" class="preview" hidden><img alt=""></div>
+  <!-- カード拡大表示（スマホ: タップ） -->
+  <div id="zoom" class="zoom" hidden>
+    <img alt="">
+    <div class="zoom-actions">
+      <button data-zoom="main" class="primary">＋メイン</button>
+      <button data-zoom="side">＋サイド</button>
+      <button data-zoom="close">閉じる</button>
+    </div>
+  </div>
 
   <!-- 役割エディタ -->
   <div id="rolePop" class="role-pop" hidden></div>

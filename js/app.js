@@ -189,6 +189,7 @@
     const mainN = state.main.reduce((s, e) => s + e.qty, 0);
     const sideN = state.side.reduce((s, e) => s + e.qty, 0);
     $('#mainCount').textContent = mainN;
+    $('#tabCount').textContent = mainN;
     $('#sideCount').textContent = 'SB ' + sideN;
 
     renderList($('#deckList'), state.main, 'main', true);
@@ -367,6 +368,7 @@
       else res.innerHTML = cards.map((c, i) => `<div class="result" data-i="${i}" title="${esc(c.name)}${c.printedName ? ' / ' + esc(c.printedName) : ''}">
           ${c.imgSmall ? `<img src="${c.imgSmall}" alt="${esc(c.name)}" loading="lazy">` : `<div class="noimg">${esc(c.name)}</div>`}
           <div class="r-name">${esc(displayName(c))}</div>
+          <div class="r-add"><button data-add="main" title="メインに追加">メイン</button><button data-add="side" title="サイドに追加">サイド</button></div>
         </div>`).join('');
       res._cards = cards;
       setStatus(`${cards.length} 件ヒット`);
@@ -417,6 +419,28 @@
     pv.style.top = Math.max(8, Math.min(window.innerHeight - h - 8, y - h / 2)) + 'px';
   }
   function hidePreview() { $('#preview').hidden = true; }
+
+  // ---------- スマホ向け ----------
+  const touchQuery = window.matchMedia('(hover: none)');
+  const isTouch = () => touchQuery.matches;
+
+  let zoomCard = null;
+  function openZoom(card, allowAdd) {
+    if (!card) return;
+    zoomCard = card;
+    const z = $('#zoom');
+    z.querySelector('img').src = card.img || card.imgSmall || '';
+    z.querySelector('img').alt = card.name;
+    z.querySelectorAll('[data-zoom="main"],[data-zoom="side"]').forEach(b => { b.hidden = !allowAdd; });
+    z.hidden = false;
+  }
+  function closeZoom() { $('#zoom').hidden = true; zoomCard = null; }
+
+  function showTab(panelClass) {
+    document.querySelectorAll('.layout > .panel').forEach(p => p.classList.toggle('active', p.classList.contains(panelClass)));
+    document.querySelectorAll('.tabbar button').forEach(b => b.classList.toggle('active', b.dataset.tab === panelClass));
+    window.scrollTo({ top: 0 });
+  }
 
   function findEntry(zone, name) { return state[zone].find(x => x.name === name); }
 
@@ -522,6 +546,10 @@
       else if (act === 'dec') changeQty(zone, name, -1);
       else if (act === 'move') moveZone(zone, name);
       else if (act === 'roles') openRoleEditor(zone, name, actEl);
+      else if (ev.target.closest('[data-preview]') && isTouch()) {
+        const e = findEntry(zone, name);
+        if (e && e.card) openZoom(e.card, false);
+      }
     };
     $('#deckList').onclick = onList;
     $('#sideList').onclick = onList;
@@ -559,7 +587,12 @@
     const results = $('#searchResults');
     results.onclick = ev => {
       const r = ev.target.closest('.result');
-      if (r) addCard(results._cards[+r.dataset.i], 'main');
+      if (!r) return;
+      const card = results._cards[+r.dataset.i];
+      const add = ev.target.closest('[data-add]');
+      if (add) addCard(card, add.dataset.add);
+      else if (isTouch()) openZoom(card, true);   // スマホ: タップで拡大
+      else addCard(card, 'main');
     };
     results.oncontextmenu = ev => {
       const r = ev.target.closest('.result');
@@ -573,6 +606,24 @@
       showPreview(results._cards[+r.dataset.i], ev.clientX, ev.clientY);
     });
     results.addEventListener('mouseleave', hidePreview);
+
+    $('#btnSearch').onclick = () => { clearTimeout(acTimer); acSeq++; input.blur(); doSearch(input.value); };
+    $('#btnNewMobile').onclick = () => { closeMenus(); $('#btnNew').onclick(); };
+
+    // タブバー（スマホ幅のみ表示）
+    document.querySelector('.tabbar').onclick = ev => {
+      const b = ev.target.closest('[data-tab]');
+      if (b) showTab(b.dataset.tab);
+    };
+    showTab('deck-panel');
+
+    // 拡大表示
+    $('#zoom').onclick = ev => {
+      const act = ev.target.dataset.zoom;
+      if (act === 'main' || act === 'side') { if (zoomCard) addCard(zoomCard, act); closeZoom(); }
+      else if (act === 'close' || ev.target === $('#zoom')) closeZoom();
+    };
+    document.addEventListener('keydown', ev => { if (ev.key === 'Escape') closeZoom(); });
 
     // API統計
     Scryfall.onStats(s => {
