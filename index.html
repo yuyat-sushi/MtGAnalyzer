@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MtG Analyzer — 役割で考えるデッキ構築</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">◆</span>
+      <span class="brand-name">MtG Analyzer</span>
+      <span class="brand-sub">役割で考えるデッキ構築</span>
+    </div>
+    <div class="deck-meta">
+      <input id="deckName" class="deck-name" placeholder="デッキ名" maxlength="60">
+      <select id="format" title="フォーマット"></select>
+      <select id="archetype" title="アーキタイプ"></select>
+    </div>
+    <div class="actions">
+      <button id="btnNew" class="ghost" title="新しいデッキ">新規</button>
+      <div class="menu">
+        <button class="ghost" data-menu="importMenu">インポート ▾</button>
+        <div id="importMenu" class="menu-pop">
+          <button id="btnImportFile">ファイルを開く (.txt / .dek)</button>
+          <button id="btnImportPaste">テキストを貼り付け</button>
+        </div>
+      </div>
+      <div class="menu">
+        <button class="ghost" data-menu="exportMenu">エクスポート ▾</button>
+        <div id="exportMenu" class="menu-pop">
+          <button id="btnExportTxt">MTGO テキスト (.txt)</button>
+          <button id="btnExportDek">MTGO デッキ (.dek)</button>
+          <button id="btnCopyTxt">テキストをクリップボードにコピー</button>
+        </div>
+      </div>
+      <div class="menu">
+        <button class="ghost" data-menu="saveMenu">保存 ▾</button>
+        <div id="saveMenu" class="menu-pop">
+          <button id="btnSave">このデッキを保存</button>
+          <div class="menu-label">保存済みデッキ</div>
+          <div id="savedList"></div>
+        </div>
+      </div>
+      <input type="file" id="fileInput" accept=".txt,.dek,text/plain,application/xml" hidden>
+    </div>
+  </header>
+
+  <main class="layout">
+    <!-- 検索 -->
+    <section class="panel search-panel">
+      <h2>カード検索</h2>
+      <div class="search-box">
+        <input id="searchInput" placeholder="カード名（日本語OK）や Scryfall 構文 例: t:creature c:r mv<=2" autocomplete="off">
+        <ul id="autocomplete" class="autocomplete"></ul>
+      </div>
+      <p class="hint">Enterで検索。結果をクリックでメイン、右クリック（長押し）でサイドへ追加。</p>
+      <div id="searchResults" class="results"></div>
+    </section>
+
+    <!-- デッキリスト -->
+    <section class="panel deck-panel">
+      <div class="deck-head">
+        <h2>デッキ <span id="mainCount" class="count">0</span><span class="count-sep">/</span><span id="sideCount" class="count side">SB 0</span></h2>
+        <div class="seg" role="tablist">
+          <button class="seg-btn active" data-group="role">役割別</button>
+          <button class="seg-btn" data-group="type">タイプ別</button>
+          <button class="seg-btn" data-group="mv">MV別</button>
+        </div>
+      </div>
+      <div id="deckList" class="deck-list"></div>
+      <h3 class="side-title">サイドボード</h3>
+      <div id="sideList" class="deck-list side-list"></div>
+    </section>
+
+    <!-- 分析 -->
+    <section class="panel analysis-panel">
+      <h2>役割バランス</h2>
+      <div id="roleBars" class="role-bars"></div>
+      <h2>マナカーブ <span id="avgMV" class="muted"></span></h2>
+      <div id="curve" class="curve"></div>
+      <h2>色シンボルと色源</h2>
+      <div id="colors" class="colors"></div>
+      <h2>アドバイス</h2>
+      <ul id="advice" class="advice"></ul>
+    </section>
+  </main>
+
+  <footer class="statusbar">
+    <span id="status">準備OK</span>
+    <span class="spacer"></span>
+    <span id="apiStats" class="muted"></span>
+    <button id="btnClearCache" class="link">キャッシュ削除</button>
+    <span class="muted">カードデータ: <a href="https://scryfall.com" target="_blank" rel="noopener">Scryfall</a></span>
+  </footer>
+
+  <!-- カードプレビュー -->
+  <div id="preview" class="preview" hidden><img alt=""></div>
+
+  <!-- 役割エディタ -->
+  <div id="rolePop" class="role-pop" hidden></div>
+
+  <!-- 貼り付けダイアログ -->
+  <dialog id="pasteDialog">
+    <form method="dialog" class="dialog-body">
+      <h3>MTGO 形式のテキストを貼り付け</h3>
+      <p class="hint">「4 Lightning Bolt」形式。空行より下はサイドボードとして読み込みます。.dek の XML もそのまま貼れます。</p>
+      <textarea id="pasteText" rows="16" placeholder="4 Lightning Bolt&#10;4 Monastery Swiftspear&#10;20 Mountain&#10;&#10;2 Smash to Smithereens"></textarea>
+      <div class="dialog-actions">
+        <label class="check"><input type="checkbox" id="pasteAppend"> 現在のデッキに追加</label>
+        <span class="spacer"></span>
+        <button value="cancel" class="ghost">キャンセル</button>
+        <button value="ok" id="pasteOk" class="primary">読み込む</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="js/scryfall.js"></script>
+  <script src="js/deckio.js"></script>
+  <script src="js/roles.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
