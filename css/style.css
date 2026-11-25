@@ -307,3 +307,11 @@ dialog::backdrop { background: rgba(0,0,0,.6); }
   background: var(--panel-2); border: 1px solid var(--gold-dim); padding: 10px 16px; border-radius: 10px;
   box-shadow: 0 10px 30px rgba(0,0,0,.5); max-width: 80vw;
 }
+
+/* ---- 効果タグ ---- */
+.tag-list { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 4px; font-size: 12px; }
+.tag { display: flex; gap: 6px; align-items: baseline; }
+.tag-kind { font-size: 10px; padding: 0 6px; border-radius: 999px; white-space: nowrap; }
+.tag.rep .tag-kind { background: #c4569a; color: #fff; }
+.tag.once .tag-kind { background: var(--panel-2); color: var(--muted); border: 1px solid var(--line); }
+.role-pop { max-height: 80vh; overflow: auto; }

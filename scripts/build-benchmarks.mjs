@@ -161,6 +161,14 @@ function summarizeGroup(decks) {
   const out = { n: decks.length, roles: {} };
   for (const r of ROLE_IDS) out.roles[r] = summarize(decks.map(d => d.roles[r] || 0));
   out.roles.interaction = summarize(decks.map(d => d.interaction));
+  out.roles.pressure = summarize(decks.map(d => d.pressure));
+  // 効果タグ（"effect:r" = 繰り返し / "effect:o" = 1回）。どのデッキにもほぼ無いものは省く
+  out.tags = {};
+  const keys = new Set(decks.flatMap(d => Object.keys(d.tagCounts)));
+  for (const k of keys) {
+    const s = summarize(decks.map(d => d.tagCounts[k] || 0));
+    if (s.q3 > 0 || s.mean >= 0.5) out.tags[k] = s;
+  }
   out.avgMV = summarize(decks.map(d => d.avgMV));
   out.mainCount = summarize(decks.map(d => d.mainCount));
   return out;
@@ -211,7 +219,8 @@ async function main() {
       const roles = Object.fromEntries(ROLE_IDS.map(r => [r, 0]));
       const colors = new Set();
       const cards = [];
-      let mvSum = 0, nonLand = 0, missing = 0;
+      let mvSum = 0, nonLand = 0, missing = 0, interaction = 0, pressure = 0;
+      const tagCounts = {};
       for (const e of main) {
         const card = lookup(e.name);
         if (!card) {
@@ -219,9 +228,13 @@ async function main() {
           unknownCards[fmt].set(e.name, (unknownCards[fmt].get(e.name) || 0) + 1);
           continue;
         }
-        const r = Roles.classify(card);
+        const info = Roles.inspect(card);
+        const r = info.roles;
         r.forEach(x => { roles[x] += e.qty; });
-        cards.push({ name: card.name, qty: e.qty, roles: r, power: card.power, typeLine: card.typeLine });
+        if (r.some(x => Roles.INTERACTION.includes(x))) interaction += e.qty;
+        if (r.some(x => Roles.PRESSURE.includes(x))) pressure += e.qty;
+        new Set(info.tags.map(t => `${t.effect}:${t.repeat ? 'r' : 'o'}`)).forEach(k => { tagCounts[k] = (tagCounts[k] || 0) + e.qty; });
+        cards.push({ name: card.name, qty: e.qty, roles: r, tags: info.tags, power: card.power, typeLine: card.typeLine });
         if (!r.includes('land')) {
           nonLand += e.qty; mvSum += card.cmc * e.qty;
           (card.colors || []).forEach(c => colors.add(c));
@@ -237,7 +250,7 @@ async function main() {
 
       decksBy[fmt].push({
         archetype: arch.name, archetypeBase: arch.base, kind: arch.kind,
-        roles, interaction: roles.removal + roles.wipe + roles.counter,
+        roles, interaction, pressure, tagCounts,
         avgMV: nonLand ? +(mvSum / nonLand).toFixed(2) : 0, mainCount, cards
       });
       events[fmt].add(eventId);
@@ -287,17 +300,21 @@ async function main() {
     const usage = new Map();
     decks.forEach(d => d.cards.forEach(c => {
       const e = usage.get(c.name) || { name: c.name, decks: 0, roles: c.roles, typeLine: c.typeLine, power: c.power };
-      e.decks++; usage.set(c.name, e);
+      e.decks++; e.tags = c.tags; usage.set(c.name, e);
     }));
+    const tagText = c => c.tags.map(t => `${t.effect}@${t.trigger}`);
     const all = [...usage.values()].sort((a, b) => b.decks - a.decks);
     const diag = {
       format: FORMATS[fmt], generatedAt: index.generatedAt, decks: decks.length,
       // 「その他」としか判定されなかった採用率の高いカード → ルール追加の候補
-      otherOnly: all.filter(c => c.roles.length === 1 && c.roles[0] === 'other').slice(0, 60),
+      otherOnly: all.filter(c => c.roles.length === 1 && c.roles[0] === 'other').slice(0, 60).map(c => ({ name: c.name, decks: c.decks, typeLine: c.typeLine, tags: tagText(c) })),
       // 役割を3つ以上持つカード → 判定が広すぎる可能性
-      manyRoles: all.filter(c => c.roles.length >= 3).slice(0, 30),
-      // 脅威と判定された低パワーのクリーチャー → 過剰判定の候補
-      weakThreats: all.filter(c => c.roles.includes('threat') && /Creature/.test(c.typeLine) && Number(c.power) <= 1).slice(0, 30),
+      manyRoles: all.filter(c => c.roles.length >= 3).slice(0, 30).map(c => ({ name: c.name, decks: c.decks, roles: c.roles, tags: tagText(c) })),
+      // エンジン・フィニッシャーと判定されたカード（判定の確認用）
+      engines: all.filter(c => c.roles.includes('engine')).slice(0, 40).map(c => ({ name: c.name, decks: c.decks, roles: c.roles, tags: tagText(c) })),
+      finishers: all.filter(c => c.roles.includes('finisher')).slice(0, 20).map(c => ({ name: c.name, decks: c.decks, roles: c.roles })),
+      // タグが1つも付かなかった土地以外のカード → 効果の判定漏れの候補
+      noTags: all.filter(c => !c.roles.includes('land') && !c.tags.length).slice(0, 40).map(c => ({ name: c.name, decks: c.decks, roles: c.roles, typeLine: c.typeLine })),
       unknownCards: [...unknownCards[fmt].entries()].sort((a, b) => b[1] - a[1]).slice(0, 30).map(([name, decks]) => ({ name, decks })),
       unclassifiedDecks: decks.filter(d => d.kind === 'unknown').length
     };
