@@ -18,6 +18,7 @@
  * 生のデッキリストは再配布せず、集計値だけを出力する。
  */
 import fs from 'node:fs';
+import zlib from 'node:zlib';
 import path from 'node:path';
 import { createRequire } from 'node:module';
 
@@ -63,14 +64,20 @@ async function loadOracle() {
   if (!item) {
     throw new Error(`oracle_cards が見つかりません (HTTP ${listRes.status}): ${JSON.stringify(list).slice(0, 500)}`);
   }
-  const url = item.download_uri || item.download_url || item.downloadUri;
   console.log(`Scryfall bulk item keys: ${Object.keys(item).join(', ')}`);
+  // 2026年時点の形式は gzip 圧縮の JSON Lines（jsonl_download_uri）。旧形式の download_uri（JSON配列）にも対応
+  const url = item.jsonl_download_uri || item.download_uri;
   if (!url) throw new Error('ダウンロードURLが見つかりません: ' + JSON.stringify(item).slice(0, 800));
-  console.log(`Scryfall bulk: ${url} (${item.size ? (item.size / 1e6).toFixed(0) + 'MB' : 'size unknown'}, updated ${item.updated_at})`);
+  const size = item.compressed_size || item.size;
+  console.log(`Scryfall bulk: ${url} (${size ? (size / 1e6).toFixed(0) + 'MB' : 'size unknown'}, updated ${item.updated_at})`);
   const res = await fetch(url, { headers });
   if (!res.ok) throw new Error(`bulk download failed: HTTP ${res.status} ${(await res.text()).slice(0, 300)}`);
-  const data = await res.json();
-  if (!Array.isArray(data)) throw new Error('bulk data が配列ではありません: ' + JSON.stringify(data).slice(0, 300));
+  const buf = Buffer.from(await res.arrayBuffer());
+  // fetch が自動で展開している場合もあるので、gzip のマジックバイトで判定する
+  const text = (buf[0] === 0x1f && buf[1] === 0x8b ? zlib.gunzipSync(buf) : buf).toString('utf8');
+  let data;
+  if (text.trimStart().startsWith('[')) data = JSON.parse(text);
+  else data = text.split('\n').filter(l => l.trim()).map(l => JSON.parse(l));
   console.log(`Scryfall cards: ${data.length}`);
   return data;
 }
