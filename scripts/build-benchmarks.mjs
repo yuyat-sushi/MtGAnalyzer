@@ -33,6 +33,10 @@ const FORMATS = {
   legacy: 'Legacy', vintage: 'Vintage', pauper: 'Pauper'
 };
 const ROLE_IDS = Roles.ROLES.map(r => r.id);
+const CAT_IDS = Roles.CATEGORIES.map(c => c.id);
+// 例外リスト（カード名で採用理由を指定）。アプリと同じファイルを使う
+const OVERRIDES = path.join(ROOT, 'data/overrides.json');
+if (fs.existsSync(OVERRIDES)) Roles.setOverrides(JSON.parse(fs.readFileSync(OVERRIDES, 'utf8')));
 const MAX_PER_EVENT_ARCHETYPE = 3;   // 1つの大会の同一アーキタイプは最大3デッキまで数える
 const REFERENCE_THRESHOLD = 10;      // これ未満のサンプル数は「参考値」
 const USER_AGENT = 'MtGAnalyzer/1.0 (+https://github.com/yuyat-sushi/MtGAnalyzer)';
@@ -160,8 +164,8 @@ function summarize(values) {
 function summarizeGroup(decks) {
   const out = { n: decks.length, roles: {} };
   for (const r of ROLE_IDS) out.roles[r] = summarize(decks.map(d => d.roles[r] || 0));
-  out.roles.interaction = summarize(decks.map(d => d.interaction));
-  out.roles.pressure = summarize(decks.map(d => d.pressure));
+  out.cats = {};
+  for (const c of CAT_IDS) out.cats[c] = summarize(decks.map(d => d.cats[c] || 0));
   // 効果タグ（"effect:r" = 繰り返し / "effect:o" = 1回）。どのデッキにもほぼ無いものは省く
   out.tags = {};
   const keys = new Set(decks.flatMap(d => Object.keys(d.tagCounts)));
@@ -177,11 +181,11 @@ function keyCards(decks, limit) {
   const m = new Map();
   for (const d of decks) for (const c of d.cards) {
     if (c.roles.includes('land')) continue;
-    const e = m.get(c.name) || { name: c.name, decks: 0, copies: 0, roles: c.roles };
+    const e = m.get(c.name) || { name: c.name, decks: 0, copies: 0, roles: c.roles, cat: c.cat };
     e.decks++; e.copies += c.qty; m.set(c.name, e);
   }
   return [...m.values()].sort((a, b) => b.decks - a.decks || b.copies - a.copies).slice(0, limit)
-    .map(e => ({ name: e.name, rate: +(e.decks / decks.length).toFixed(2), avg: +(e.copies / e.decks).toFixed(2), roles: e.roles }));
+    .map(e => ({ name: e.name, rate: +(e.decks / decks.length).toFixed(2), avg: +(e.copies / e.decks).toFixed(2), cat: e.cat, roles: e.roles }));
 }
 
 // ---------- メイン ----------
@@ -219,7 +223,8 @@ async function main() {
       const roles = Object.fromEntries(ROLE_IDS.map(r => [r, 0]));
       const colors = new Set();
       const cards = [];
-      let mvSum = 0, nonLand = 0, missing = 0, interaction = 0, pressure = 0;
+      let mvSum = 0, nonLand = 0, missing = 0;
+      const cats = Object.fromEntries(CAT_IDS.map(c => [c, 0]));
       const tagCounts = {};
       for (const e of main) {
         const card = lookup(e.name);
@@ -231,10 +236,9 @@ async function main() {
         const info = Roles.inspect(card);
         const r = info.roles;
         r.forEach(x => { roles[x] += e.qty; });
-        if (r.some(x => Roles.INTERACTION.includes(x))) interaction += e.qty;
-        if (r.some(x => Roles.PRESSURE.includes(x))) pressure += e.qty;
+        cats[info.cat] += e.qty;
         new Set(info.tags.map(t => `${t.effect}:${t.repeat ? 'r' : 'o'}`)).forEach(k => { tagCounts[k] = (tagCounts[k] || 0) + e.qty; });
-        cards.push({ name: card.name, qty: e.qty, roles: r, tags: info.tags, power: card.power, typeLine: card.typeLine });
+        cards.push({ name: card.name, qty: e.qty, roles: r, cat: info.cat, tags: info.tags, power: card.power, typeLine: card.typeLine });
         if (!r.includes('land')) {
           nonLand += e.qty; mvSum += card.cmc * e.qty;
           (card.colors || []).forEach(c => colors.add(c));
@@ -250,7 +254,7 @@ async function main() {
 
       decksBy[fmt].push({
         archetype: arch.name, archetypeBase: arch.base, kind: arch.kind,
-        roles, interaction, pressure, tagCounts,
+        roles, cats, tagCounts,
         avgMV: nonLand ? +(mvSum / nonLand).toFixed(2) : 0, mainCount, cards
       });
       events[fmt].add(eventId);
@@ -299,7 +303,7 @@ async function main() {
     // 役割判定の見直し用
     const usage = new Map();
     decks.forEach(d => d.cards.forEach(c => {
-      const e = usage.get(c.name) || { name: c.name, decks: 0, roles: c.roles, typeLine: c.typeLine, power: c.power };
+      const e = usage.get(c.name) || { name: c.name, decks: 0, roles: c.roles, cat: c.cat, typeLine: c.typeLine, power: c.power };
       e.decks++; e.tags = c.tags; usage.set(c.name, e);
     }));
     const tagText = c => c.tags.map(t => `${t.effect}@${t.trigger}`);
@@ -307,9 +311,11 @@ async function main() {
     const diag = {
       format: FORMATS[fmt], generatedAt: index.generatedAt, decks: decks.length,
       // 「その他」としか判定されなかった採用率の高いカード → ルール追加の候補
-      otherOnly: all.filter(c => c.roles.length === 1 && c.roles[0] === 'other').slice(0, 60).map(c => ({ name: c.name, decks: c.decks, typeLine: c.typeLine, tags: tagText(c) })),
+      otherOnly: all.filter(c => c.cat === 'other').slice(0, 60).map(c => ({ name: c.name, decks: c.decks, typeLine: c.typeLine, tags: tagText(c) })),
       // 役割を3つ以上持つカード → 判定が広すぎる可能性
       manyRoles: all.filter(c => c.roles.length >= 3).slice(0, 30).map(c => ({ name: c.name, decks: c.decks, roles: c.roles, tags: tagText(c) })),
+      // 大カテゴリごとの採用率上位（主な採用理由の判定確認用）
+      byCategory: Object.fromEntries(CAT_IDS.map(cat => [cat, all.filter(c => c.cat === cat && cat !== 'mana').slice(0, 25).map(c => ({ name: c.name, decks: c.decks, roles: c.roles }))]).filter(([cat]) => cat !== 'mana')),
       // エンジン・フィニッシャーと判定されたカード（判定の確認用）
       engines: all.filter(c => c.roles.includes('engine')).slice(0, 40).map(c => ({ name: c.name, decks: c.decks, roles: c.roles, tags: tagText(c) })),
       finishers: all.filter(c => c.roles.includes('finisher')).slice(0, 20).map(c => ({ name: c.name, decks: c.decks, roles: c.roles })),

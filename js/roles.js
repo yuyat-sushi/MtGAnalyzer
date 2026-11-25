@@ -8,41 +8,68 @@
   // 効果タグ（js/tags.js）。Node.js では require、ブラウザでは window.Tags
   const Tags = (typeof module !== 'undefined' && module.exports) ? require('./tags.js') : global.Tags;
 
+  // ---------- 大カテゴリ（主な採用理由。1枚につき1つ） ----------
+  const CATEGORIES = [
+    { id: 'mana',     label: '土地・マナ',   color: '#8d7b62' },
+    { id: 'disrupt',  label: '妨害',         color: '#d0503c' },
+    { id: 'resource', label: 'リソース',     color: '#3b82c4' },
+    { id: 'win',      label: '勝ち手段',     color: '#e07a2e' },
+    { id: 'support',  label: '補助',         color: '#d8b13a' },
+    { id: 'combo',    label: 'コンボ/展開',  color: '#2f8f8f' },
+    { id: 'other',    label: 'その他',       color: '#777' }
+  ];
+  const CAT_MAP = Object.fromEntries(CATEGORIES.map(c => [c.id, c]));
+
+  // ---------- 小カテゴリ（1枚に複数可。大カテゴリをまたいでもよい） ----------
   const ROLES = [
-    { id: 'land',       label: '土地',         color: '#8d7b62' },
-    { id: 'ramp',       label: 'マナ加速',     color: '#3fa36b' },
-    { id: 'draw',       label: 'ドロー/アド',  color: '#3b82c4' },
-    { id: 'removal',    label: '単体除去',     color: '#d0503c' },
-    { id: 'wipe',       label: '全体除去',     color: '#9b2f2f' },
-    { id: 'counter',    label: '打ち消し',     color: '#5a6fd6' },
-    { id: 'discard',    label: '手札破壊',     color: '#7a4fa0' },
-    { id: 'hate',       label: '妨害',         color: '#5e7480' },
-    { id: 'tutor',      label: 'サーチ',       color: '#8a5cc7' },
-    { id: 'recursion',  label: '墓地回収',     color: '#4a4a6a' },
-    { id: 'protection', label: '保護',         color: '#d8b13a' },
-    { id: 'combo',      label: 'コンボ/展開',  color: '#2f8f8f' },
-    { id: 'finisher',   label: 'フィニッシャー', color: '#c0392b' },
-    { id: 'engine',     label: 'エンジン',     color: '#c4569a' },
-    { id: 'reach',      label: '本体火力',     color: '#a8324a' },
-    { id: 'beater',     label: '打点',         color: '#e07a2e' },
-    { id: 'enhance',    label: '強化',         color: '#b5835a' },
-    { id: 'other',      label: 'その他',       color: '#777' }
+    { id: 'land',       cat: 'mana',     label: '土地',         color: '#8d7b62' },
+    { id: 'ramp',       cat: 'mana',     label: 'マナ加速',     color: '#3fa36b' },
+    { id: 'removal',    cat: 'disrupt',  label: '単体除去',     color: '#d0503c' },
+    { id: 'wipe',       cat: 'disrupt',  label: '全体除去',     color: '#9b2f2f' },
+    { id: 'counter',    cat: 'disrupt',  label: '打ち消し',     color: '#5a6fd6' },
+    { id: 'discard',    cat: 'disrupt',  label: '手札破壊',     color: '#7a4fa0' },
+    { id: 'hate',       cat: 'disrupt',  label: 'ヘイト（ロック・課税）', color: '#5e7480' },
+    { id: 'gyhate',     cat: 'disrupt',  label: '墓地対策',     color: '#6b6b80' },
+    { id: 'draw',       cat: 'resource', label: 'ドロー',       color: '#3b82c4' },
+    { id: 'tutor',      cat: 'resource', label: 'サーチ',       color: '#8a5cc7' },
+    { id: 'recursion',  cat: 'resource', label: '墓地回収',     color: '#4a4a6a' },
+    { id: 'selfmill',   cat: 'resource', label: '墓地肥やし',   color: '#5b6f5b' },
+    { id: 'finisher',   cat: 'win',      label: 'フィニッシャー', color: '#c0392b' },
+    { id: 'engine',     cat: 'win',      label: 'エンジン',     color: '#c4569a' },
+    { id: 'reach',      cat: 'win',      label: '本体火力',     color: '#a8324a' },
+    { id: 'tokens',     cat: 'win',      label: 'トークン展開', color: '#d98b4a' },
+    { id: 'beater',     cat: 'win',      label: '打点',         color: '#e07a2e' },
+    { id: 'enhance',    cat: 'support',  label: '強化',         color: '#b5835a' },
+    { id: 'protection', cat: 'support',  label: '保護',         color: '#d8b13a' },
+    { id: 'cheat',      cat: 'combo',    label: '踏み倒し',     color: '#2f8f8f' },
+    { id: 'extraturn',  cat: 'combo',    label: '追加ターン',   color: '#3a9f9a' },
+    { id: 'untap',      cat: 'combo',    label: 'アンタップ',   color: '#4aa5a0' },
+    { id: 'copy',       cat: 'combo',    label: 'コピー/ストーム', color: '#5ab0a8' },
+    { id: 'other',      cat: 'other',    label: 'その他',       color: '#777' }
   ];
   const ROLE_MAP = Object.fromEntries(ROLES.map(r => [r.id, r]));
-  // 主役割を決める優先順位
-  const PRIORITY = ['land', 'wipe', 'removal', 'counter', 'discard', 'hate', 'ramp', 'draw', 'tutor', 'recursion', 'protection', 'combo', 'finisher', 'engine', 'reach', 'beater', 'enhance', 'other'];
-  // 「勝ち手段」としてまとめて数える役割
-  const PRESSURE = ['finisher', 'engine', 'reach', 'beater'];
-  // 旧バージョンの役割IDの読み替え
-  const LEGACY = { threat: 'beater' };
-  // 「干渉」としてまとめて数える役割
-  const INTERACTION = ['removal', 'wipe', 'counter', 'discard', 'hate'];
 
-  // 効果タグ → 役割
+  /*
+   * 主な採用理由（大カテゴリ）を決める優先順位
+   *   土地 ＞ 妨害 ＞ コンボ/展開 ＞ リソース ＞ マナ加速 ＞ 勝ち手段 ＞ 補助
+   * 妨害に使えるカードは、打点やドローを兼ねていても主に妨害として数える（プレイヤーの感覚に合わせる）
+   */
+  const PRIORITY = ['land',
+    'removal', 'wipe', 'counter', 'discard', 'hate', 'gyhate',
+    'cheat', 'extraturn', 'untap', 'copy',
+    'draw', 'tutor', 'recursion', 'selfmill',
+    'ramp',
+    'finisher', 'engine', 'reach', 'tokens', 'beater',
+    'enhance', 'protection',
+    'other'];
+  // 旧バージョンの役割IDの読み替え
+  const LEGACY = { threat: 'beater', combo: 'cheat' };
+
+  // 効果タグ → 小カテゴリ
   const EFFECT_ROLE = {
     mana: 'ramp', draw: 'draw', removal: 'removal', wipe: 'wipe', counter: 'counter', discard: 'discard',
-    tutor: 'tutor', recursion: 'recursion', protection: 'protection', gyhate: 'hate', hate: 'hate',
-    cheat: 'combo', extraturn: 'combo', untap: 'combo', copy: 'combo', drain: 'reach'
+    tutor: 'tutor', recursion: 'recursion', selfmill: 'selfmill', protection: 'protection', gyhate: 'gyhate', hate: 'hate',
+    cheat: 'cheat', extraturn: 'extraturn', untap: 'untap', copy: 'copy', drain: 'reach'
   };
   // 繰り返し起きるとき「エンジン」とみなす効果（自己強化やマナは除く）
   const ENGINE_EFFECTS = new Set(['token', 'draw', 'lifegain', 'drain', 'removal', 'energy', 'recursion', 'discard']);
@@ -50,7 +77,7 @@
   // タグでは拾いにくい、文全体で判定する追加ルール
   const EXTRA = {
     ramp: [
-      /search your library for (a|an|up to [\w ]+?|two) (basic )?(land|forest|plains|island|swamp|mountain)[^.]*?onto the battlefield/,
+      /search your library for (a|an|up to [\w ]+?|two|any number of) (basic )?(land|forest|plains|island|swamp|mountain)[^.]*?onto the battlefield/,
       /put (a|up to \w+) land cards? from your hand onto the battlefield/,
       /you may play (an )?additional lands?/,
       /costs? \{\d\} less to cast/
@@ -61,61 +88,92 @@
     ]
   };
 
+  // ---------- 例外リスト（カード名で大カテゴリ・小カテゴリを指定） ----------
+  let overrides = {};
+  const okey = n => String(n || '').trim().toLowerCase();
+  /** data/overrides.json の内容を設定する（{ "Card Name": { category, roles?, note? } }） */
+  function setOverrides(obj) {
+    overrides = {};
+    for (const [name, v] of Object.entries(obj || {})) {
+      if (name.startsWith('_') || !v) continue;
+      overrides[okey(name)] = v;
+    }
+    cache = new WeakMap();
+  }
+  function overrideOf(card) {
+    if (!card) return null;
+    return overrides[okey(card.name)] || overrides[okey(String(card.name).split(' // ')[0])] || null;
+  }
+
   function frontType(card) {
     return String(card.typeLine || '').split('//')[0];
   }
 
-  const cache = new WeakMap();
+  let cache = new WeakMap();
 
-  /** card → { roles, tags, abilities }（自動判定。結果はカードごとにキャッシュ） */
+  /** 小カテゴリの配列 → 主な小カテゴリ */
+  function primary(roles) {
+    return PRIORITY.find(r => roles.includes(r)) || 'other';
+  }
+  /** 小カテゴリの配列 → 大カテゴリ */
+  function categoryOf(roles) {
+    return ROLE_MAP[primary(roles)].cat;
+  }
+
+  /** card → { roles(小カテゴリ), cat(大カテゴリ), tags, abilities, override }（結果はカードごとにキャッシュ） */
   function inspect(card) {
-    if (!card) return { roles: ['other'], tags: [], abilities: [] };
+    if (!card) return { roles: ['other'], cat: 'other', tags: [], abilities: [], override: null };
     if (cache.has(card)) return cache.get(card);
     const tl = String(card.typeLine || '');
     const front = frontType(card);
-    let result;
+    let roles, tags = [], abilities = [];
     if (/\bLand\b/.test(front)) {
-      result = { roles: ['land'], tags: [], abilities: [] };
+      roles = ['land'];
     } else {
       const t = Tags.analyze(card);
-      const roles = new Set();
-      t.tags.forEach(x => { if (EFFECT_ROLE[x.effect]) roles.add(EFFECT_ROLE[x.effect]); });
+      tags = t.tags; abilities = t.abilities;
+      const set = new Set();
+      t.tags.forEach(x => { if (EFFECT_ROLE[x.effect]) set.add(EFFECT_ROLE[x.effect]); });
       const text = String(card.oracle || '').toLowerCase().replace(/\([^)]*\)/g, ' ');
-      for (const [role, regs] of Object.entries(EXTRA)) if (regs.some(r => r.test(text))) roles.add(role);
+      for (const [role, regs] of Object.entries(EXTRA)) if (regs.some(r => r.test(text))) set.add(role);
 
       const isSpell = /\b(Instant|Sorcery)\b/.test(front);
       const isCreature = /\bCreature\b/.test(tl);
       const power = parseInt(card.power, 10);
-      // 1回きりのトークン生成は「打点を出す」とみなす（繰り返しならエンジン側で数える）
-      if (t.tags.some(x => x.effect === 'token' && !x.repeat)) roles.add('beater');
+      // 1回きりのトークン生成は「トークン展開」（繰り返しならエンジン）
+      if (t.tags.some(x => x.effect === 'token' && !x.repeat)) set.add('tokens');
       // クリーチャー以外の強化（装備品・オーラ・パンプ呪文）
-      if (!isCreature && t.tags.some(x => x.effect === 'pump')) roles.add('enhance');
+      if (!isCreature && t.tags.some(x => x.effect === 'pump')) set.add('enhance');
       // エンジン：繰り返し起きる価値のある効果を持つパーマネント
-      if (!isSpell && t.tags.some(x => x.repeat && x.trigger !== 'static' && ENGINE_EFFECTS.has(x.effect))) roles.add('engine');
+      if (!isSpell && t.tags.some(x => x.repeat && x.trigger !== 'static' && ENGINE_EFFECTS.has(x.effect))) set.add('engine');
       // フィニッシャー：勝利条件、または大型の打点
-      if (/you win the game/.test(text) || (isCreature && (power >= 5 || (card.cmc >= 6 && power >= 4)))) roles.add('finisher');
+      if (/you win the game/.test(text) || (isCreature && (power >= 5 || (card.cmc >= 6 && power >= 4)))) set.add('finisher');
       // 打点：本体で殴るクリーチャー（パワー3以上、回避能力つきのパワー2以上、または他に役割のないクリーチャー）
       if (isCreature || /\bVehicle\b/.test(tl)) {
-        const others = [...roles].filter(r => r !== 'reach' && r !== 'beater').length;
-        if (power >= 3 || (power >= 2 && t.evasion) || !others) roles.add('beater');
+        const others = [...set].filter(r => r !== 'reach' && r !== 'beater').length;
+        if (power >= 3 || (power >= 2 && t.evasion) || !others) set.add('beater');
       }
-      if (!roles.size) roles.add('other');
-      result = { roles: PRIORITY.filter(r => roles.has(r)), tags: t.tags, abilities: t.abilities };
+      if (!set.size) set.add('other');
+      roles = PRIORITY.filter(r => set.has(r));
     }
+    let cat = categoryOf(roles);
+    const ov = overrideOf(card);
+    if (ov) {
+      if (Array.isArray(ov.roles) && ov.roles.length) roles = normalizeRoles(ov.roles);
+      if (ov.category && CAT_MAP[ov.category]) cat = ov.category; else cat = categoryOf(roles);
+    }
+    const result = { roles, cat, tags, abilities, override: ov };
     cache.set(card, result);
     return result;
   }
 
-  /** card → 役割IDの配列（自動判定） */
+  /** card → 小カテゴリの配列（自動判定） */
   function classify(card) { return inspect(card).roles; }
 
-  /** 保存済みの手動役割を現在のIDに読み替える */
+  /** 保存済みの手動設定を現在のIDに読み替える */
   function normalizeRoles(list) {
-    return [...new Set((list || []).map(r => LEGACY[r] || r).filter(r => ROLE_MAP[r]))];
-  }
-
-  function primary(roles) {
-    return PRIORITY.find(r => roles.includes(r)) || 'other';
+    const ids = (list || []).map(r => LEGACY[r] || r).filter(r => ROLE_MAP[r]);
+    return PRIORITY.filter(r => ids.includes(r));
   }
 
   // ---------- フォーマット別の目安 ----------
@@ -128,22 +186,22 @@
     aggro: 'アグロ', midrange: 'ミッドレンジ', control: 'コントロール', combo: 'コンボ'
   };
 
-  // [min, max]。interaction = removal + wipe + counter の合算
+  // [min, max]。"cat:xxx" は大カテゴリ（主な採用理由）の枚数、それ以外は小カテゴリの枚数
   function targets(format, archetype) {
     if (format === 'commander') {
       return {
-        ramp: [10, 14], draw: [10, 14], interaction: [10, 16], wipe: [2, 4],
-        protection: [2, 6], pressure: [12, 25], tutor: [0, 8]
+        ramp: [10, 14], draw: [10, 14], 'cat:disrupt': [10, 16], wipe: [2, 4],
+        protection: [2, 6], 'cat:win': [12, 25], tutor: [0, 8]
       };
     }
     if (format === 'limited') {
-      return { pressure: [14, 18], interaction: [3, 8], draw: [1, 4], ramp: [0, 3], wipe: [0, 2] };
+      return { 'cat:win': [14, 18], 'cat:disrupt': [3, 8], 'cat:resource': [1, 4], wipe: [0, 2] };
     }
     const t = {
-      aggro:    { pressure: [20, 30], interaction: [4, 10],  draw: [0, 4],  ramp: [0, 2],  wipe: [0, 1] },
-      midrange: { pressure: [12, 20], interaction: [8, 14],  draw: [3, 8],  ramp: [0, 6],  wipe: [0, 3] },
-      control:  { pressure: [3, 10],  interaction: [14, 22], draw: [6, 12], ramp: [0, 4],  wipe: [2, 5] },
-      combo:    { pressure: [2, 12],  interaction: [4, 12],  draw: [6, 14], tutor: [2, 10], protection: [2, 8] }
+      aggro:    { 'cat:win': [22, 32], 'cat:disrupt': [4, 10],  'cat:resource': [0, 4] },
+      midrange: { 'cat:win': [12, 20], 'cat:disrupt': [8, 14],  'cat:resource': [3, 8] },
+      control:  { 'cat:win': [3, 10],  'cat:disrupt': [14, 22], 'cat:resource': [6, 12], wipe: [2, 5] },
+      combo:    { 'cat:combo': [4, 14], 'cat:resource': [6, 14], 'cat:disrupt': [4, 12], protection: [2, 8] }
     };
     return t[archetype] || t.midrange;
   }
@@ -158,7 +216,7 @@
   const COLORS = ['W', 'U', 'B', 'R', 'G'];
 
   /**
-   * entries: [{qty, card, roles}]（メインデッキのみ）
+   * entries: [{qty, card, roles, cat}]（メインデッキのみ。cat を省くと roles から決める）
    */
   /**
    * bench（任意）: 上位デッキ集計から作った目安 { targets: {role: [min,max]}, label }
@@ -167,20 +225,18 @@
   function analyze(entries, format, archetype, bench) {
     const total = entries.reduce((s, e) => s + e.qty, 0);
     const roleCount = Object.fromEntries(ROLES.map(r => [r.id, 0]));
-    const primaryCount = Object.fromEntries(ROLES.map(r => [r.id, 0]));
+    const catCount = Object.fromEntries(CATEGORIES.map(c => [c.id, 0]));
     const curve = [0, 0, 0, 0, 0, 0, 0, 0]; // 0..6, 7+
     const pips = { W: 0, U: 0, B: 0, R: 0, G: 0 };
     const sources = { W: 0, U: 0, B: 0, R: 0, G: 0 };
-    let nonLand = 0, mvSum = 0, cheapRampDraw = 0, lands = 0, mdfcLands = 0, interaction = 0, pressure = 0;
+    let nonLand = 0, mvSum = 0, cheapRampDraw = 0, lands = 0, mdfcLands = 0;
     const tagCounts = {}; // "effect:r" / "effect:o"（繰り返し / 1回）→ 枚数
 
     for (const e of entries) {
       const roles = e.roles || ['other'];
       roles.forEach(r => { roleCount[r] = (roleCount[r] || 0) + e.qty; });
-      primaryCount[primary(roles)] += e.qty;
-      // 1枚で複数の役割を持っていても、合計では1枚として数える
-      if (roles.some(r => INTERACTION.includes(r))) interaction += e.qty;
-      if (roles.some(r => PRESSURE.includes(r))) pressure += e.qty;
+      // 大カテゴリは1枚につき1つなので、合計がデッキ枚数と一致する
+      catCount[e.cat || categoryOf(roles)] += e.qty;
       const c = e.card;
       if (!c) continue;
       const keys = new Set(inspect(c).tags.map(t => `${t.effect}:${t.repeat ? 'r' : 'o'}`));
@@ -210,9 +266,9 @@
     const size = FORMATS[format] ? FORMATS[format].size : 60;
 
     return {
-      total, size, roleCount, primaryCount, curve, pips, sources, lands, nonLand, mdfcLands,
-      avgMV, recLand, interaction, pressure, tagCounts, cheapRampDraw, targets: tgt,
-      advice: buildAdvice({ total, size, roleCount, lands, recLand, avgMV, interaction, pressure, tgt, curve, pips, sources, format, nonLand, mdfcLands, bench })
+      total, size, roleCount, catCount, curve, pips, sources, lands, nonLand, mdfcLands,
+      avgMV, recLand, tagCounts, cheapRampDraw, targets: tgt,
+      advice: buildAdvice({ total, size, roleCount, catCount, lands, recLand, avgMV, tgt, curve, pips, sources, format, nonLand, mdfcLands, bench })
     };
   }
 
@@ -240,19 +296,18 @@
     else if (diff < 0) push('bad', `土地が少なめかも…平均MV ${a.avgMV.toFixed(2)} なら目安は ${rec} 枚（いま ${a.lands} 枚${a.mdfcLands ? `＋両面土地 ${a.mdfcLands}` : ''}）。土地事故が怖いよ！`);
     else push('warn', `土地が多めかも。目安 ${rec} 枚に対して ${a.lands} 枚。マナフラッド対策に土地を減らすか、マナの使い道を足してみて。`);
 
-    // 役割
+    // カテゴリ
     const labels = Object.fromEntries(ROLES.map(r => [r.id, r.label]));
-    labels.interaction = '干渉（除去・全体除去・打ち消し・手札破壊・妨害）';
-    labels.pressure = '勝ち手段（打点・エンジン・フィニッシャー・本体火力）';
+    CATEGORIES.forEach(c => { labels['cat:' + c.id] = `【${c.label}】`; });
     // 上位デッキ比較のときは四分位の範囲から1枚ずれるまでは許容する
     const tol = a.bench ? 1 : 0;
     const src = a.bench ? `上位デッキ（${a.bench.label}）の中央50%` : '目安';
     for (const [key, [min, max]] of Object.entries(a.tgt)) {
-      if (key === 'land' || key === 'other') continue; // 土地は上の推奨枚数で判定
-      const v = key === 'interaction' ? a.interaction : key === 'pressure' ? a.pressure : (a.roleCount[key] || 0);
+      if (key === 'land' || key === 'other' || key === 'cat:mana' || key === 'cat:other') continue; // 土地は上の推奨枚数で判定
+      const v = key.startsWith('cat:') ? (a.catCount[key.slice(4)] || 0) : (a.roleCount[key] || 0);
       if (a.bench && max === 0 && v === 0) continue; // どちらも0なら言及しない
       const name = labels[key] || key;
-      if (v < min - tol) push(key === 'pressure' || key === 'interaction' ? 'bad' : 'warn', `${name} が ${v} 枚。${src}は ${min}〜${max} 枚だから、あと ${min - v} 枚くらい欲しいな。`);
+      if (v < min - tol) push(key === 'cat:win' || key === 'cat:disrupt' ? 'bad' : 'warn', `${name} が ${v} 枚。${src}は ${min}〜${max} 枚だから、あと ${min - v} 枚くらい欲しいな。`);
       else if (v > max + tol) push('warn', `${name} が ${v} 枚で${src}（${min}〜${max}）より多め。他の役割に枠を回せないか考えてみよう。`);
       else if (v < min || v > max) push('info', `${name} ${v} 枚は${src}（${min}〜${max}）から1枚ずれてるけど、許容範囲かな。`);
       else push('good', `${name} ${v} 枚は${src}（${min}〜${max}）の範囲内！`);
@@ -286,7 +341,7 @@
 
   const COLOR_JA = { W: '白', U: '青', B: '黒', R: '赤', G: '緑' };
 
-  const api = { ROLES, ROLE_MAP, PRIORITY, PRESSURE, INTERACTION, inspect, normalizeRoles, FORMATS, ARCHETYPES, COLOR_JA, classify, primary, analyze, targets };
+  const api = { CATEGORIES, CAT_MAP, ROLES, ROLE_MAP, PRIORITY, inspect, normalizeRoles, categoryOf, setOverrides, FORMATS, ARCHETYPES, COLOR_JA, classify, primary, analyze, targets };
   // ブラウザでは window.Roles、Node.js（集計スクリプト）では require で使う
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else global.Roles = api;

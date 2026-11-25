@@ -50,7 +50,7 @@
     { id: 'removal',   label: '除去',         re: [/(destroy|exile) (target|another target|up to (one|two|three) (other )?target|that) (?!card)[^.]*?(creature|artifact|enchantment|planeswalker|permanent|battle)/,
                                                  /deals? [^.]*?damage to (any target|(up to (one|two) )?(another )?target [^.]*?(creature|planeswalker|permanent|battle)|that (creature|permanent|planeswalker))/,
                                                  /target [^.]*?creature[^.]*? gets -(\d+|x)\/-(\d+|x)/, /\bfights? (target|another target|up to one target)/,
-                                                 /target creature you control deals damage equal to its power to (another )?target/,
+                                                 /target creature you control deals damage equal to its power to (another )?target/, /deals damage equal to [^.]*? to (any target|target creature|target planeswalker|up to one target)/,
                                                  /return (target|up to \w+ target) (spell or )?(nonland )?(creature|permanent|artifact|enchantment)[^.]*to (its|their) owner'?s'? hand/,
                                                  /(target|each) (player|opponent) (sacrifices|exiles) (a|an|two)/, /gain control of target/, /put target [^.]*on (the )?(top|bottom) of its owner's library/] },
     { id: 'wipe',      label: '全体除去',     re: [/(destroy|exile) (all|each) [^.]*?(creatures?|nonland|permanents?|artifacts?|enchantments?)\b/, /(all|each) [^.]*?creatures?[^.]*? gets? -/,
@@ -83,6 +83,10 @@
                                                  /exile [^.]*?(target|any number of target) [^.]*?(creature|permanent|nonland)[^.]*?(you control|you own)[\s\S]{0,60}?return (it|that card|them|those cards)/] }
   ];
   const EFFECT_MAP = Object.fromEntries(EFFECTS.map(e => [e.id, e]));
+
+  // 自分が得をする効果（相手が主語の文では数えない）
+  const SELF_BENEFIT = new Set(['token', 'lifegain', 'draw', 'mana', 'pump', 'energy', 'tutor', 'recursion', 'cheat']);
+  const OPPONENT_SUBJECT = /^(that player|its controller|its owner|target opponent|each opponent|an opponent|that creature's controller|that permanent's controller|that spell's controller|their controller|they)\b/;
 
   // キーワード能力（墓地から使えるもの）は墓地回収として扱う
   const RECURSION_KEYWORDS = /\b(flashback|unearth|escape|disturb|embalm|eternalize|retrace|jump-start)\b/;
@@ -149,7 +153,9 @@
         // モードの選択肢（• ...）は直前の能力の発動条件を引き継ぐ
         const triggers = /^•/.test(line) && prev ? prev : triggerOf(line, isSpell);
         if (!/^•/.test(line)) prev = triggers;
-        const effects = EFFECTS.filter(e => e.re.some(r => r.test(line))).map(e => e.id);
+        // 相手が得をする文（"that player draws" "its controller creates" など）は、自分の利益になる効果の判定から外す
+        const selfLine = line.split(/(?<=\.)\s+/).filter(sentence => !OPPONENT_SUBJECT.test(sentence.replace(/^(when|whenever|at|if|then)\b[^,]*,\s*/, ''))).join(' ');
+        const effects = EFFECTS.filter(e => e.re.some(r => r.test(SELF_BENEFIT.has(e.id) ? selfLine : line))).map(e => e.id);
         // トレジャーだけを作るならマナ、クルーだけならドロー（トークン生成としては数えない）
         if (effects.includes('token') && /\b(treasure|clue|food|blood|map|powerstone)\b tokens?/.test(line) &&
             !/creature tokens?|\d+\/\d+/.test(line)) effects.splice(effects.indexOf('token'), 1);
