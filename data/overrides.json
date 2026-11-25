@@ -1,10 +1,71 @@
 {
   "_comment": "自動判定では採用理由を決めきれないカードの例外リスト。category は大カテゴリ（mana / disrupt / resource / win / support / combo / other）、roles は小カテゴリの配列（省略すると自動判定のまま）。note は理由のメモ。",
-  "Amulet of Vigor": { "category": "combo", "roles": ["untap", "ramp"], "note": "タップインの土地を起こして大量のマナを出すコンボパーツ" },
-  "Leyline of the Guildpact": { "category": "mana", "roles": ["ramp"], "note": "土地をすべての基本土地タイプにする色・版図の支援" },
-  "Indomitable Creativity": { "category": "combo", "roles": ["cheat"], "note": "大型を踏み倒すコンボの核" },
-  "Living End": { "category": "combo", "roles": ["cheat", "recursion", "wipe"], "note": "続唱から墓地のクリーチャーを一斉に戻すコンボの核" },
-  "Scapeshift": { "category": "combo", "roles": ["ramp", "cheat"], "note": "Valakut などと組み合わせるコンボの核" },
-  "Dragon's Rage Channeler": { "category": "win", "roles": ["beater", "selfmill"], "note": "諜報はおまけで、主に序盤の打点" },
-  "The Ozolith": { "category": "support", "roles": ["enhance"], "note": "+1/+1カウンターを引き継ぐ強化" }
+  "Amulet of Vigor": {
+    "category": "combo",
+    "roles": [
+      "untap",
+      "ramp"
+    ],
+    "note": "タップインの土地を起こして大量のマナを出すコンボパーツ"
+  },
+  "Leyline of the Guildpact": {
+    "category": "mana",
+    "roles": [
+      "ramp"
+    ],
+    "note": "土地をすべての基本土地タイプにする色・版図の支援"
+  },
+  "Indomitable Creativity": {
+    "category": "combo",
+    "roles": [
+      "cheat"
+    ],
+    "note": "大型を踏み倒すコンボの核"
+  },
+  "Living End": {
+    "category": "combo",
+    "roles": [
+      "cheat",
+      "recursion",
+      "wipe"
+    ],
+    "note": "続唱から墓地のクリーチャーを一斉に戻すコンボの核"
+  },
+  "Scapeshift": {
+    "category": "combo",
+    "roles": [
+      "ramp",
+      "cheat"
+    ],
+    "note": "Valakut などと組み合わせるコンボの核"
+  },
+  "Dragon's Rage Channeler": {
+    "category": "win",
+    "roles": [
+      "beater",
+      "selfmill"
+    ],
+    "note": "諜報はおまけで、主に序盤の打点"
+  },
+  "The Ozolith": {
+    "category": "support",
+    "roles": [
+      "enhance"
+    ],
+    "note": "+1/+1カウンターを引き継ぐ強化"
+  },
+  "Day of Black Sun": {
+    "category": "disrupt",
+    "roles": [
+      "wipe"
+    ],
+    "note": "指定したマナ総量以下のクリーチャーの能力を失わせてから-X/-Xする、実質的な全体除去（書式が一般的な全体除去と異なる）"
+  },
+  "Multiply by Zero": {
+    "category": "disrupt",
+    "roles": [
+      "removal"
+    ],
+    "note": "パワー/タフネスを0/0に固定する、実質的な単体除去"
+  }
 }
