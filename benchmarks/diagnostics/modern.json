@@ -1,6 +1,6 @@
 {
  "format": "Modern",
- "generatedAt": "2026-11-25T20:17:05.834Z",
+ "generatedAt": "2026-11-25T20:18:41.407Z",
  "decks": 5064,
  "otherOnly": [
   {
@@ -297,7 +297,6 @@
    "decks": 523,
    "roles": [
     "removal",
-    "ramp",
     "finisher",
     "beater"
    ],
@@ -504,16 +503,6 @@
    ]
   },
   {
-   "name": "Scion of Draco",
-   "decks": 198,
-   "roles": [
-    "ramp",
-    "finisher",
-    "beater"
-   ],
-   "tags": []
-  },
-  {
    "name": "Ral, Monsoon Mage // Ral, Leyline Prodigy",
    "decks": 191,
    "roles": [
@@ -656,6 +645,19 @@
     "draw@chapter",
     "token@activated"
    ]
+  },
+  {
+   "name": "Tyvar, Jubilant Brawler",
+   "decks": 137,
+   "roles": [
+    "recursion",
+    "selfmill",
+    "engine"
+   ],
+   "tags": [
+    "recursion@loyalty",
+    "selfmill@loyalty"
+   ]
   }
  ],
  "byCategory": {
@@ -780,7 +782,6 @@
     "decks": 523,
     "roles": [
      "removal",
-     "ramp",
      "finisher",
      "beater"
     ]
@@ -1201,6 +1202,14 @@
     ]
    },
    {
+    "name": "Scion of Draco",
+    "decks": 198,
+    "roles": [
+     "finisher",
+     "beater"
+    ]
+   },
+   {
     "name": "Shardless Agent",
     "decks": 189,
     "roles": [
@@ -1226,14 +1235,6 @@
     "name": "Vizier of Remedies",
     "decks": 139,
     "roles": [
-     "beater"
-    ]
-   },
-   {
-    "name": "Oliphaunt",
-    "decks": 138,
-    "roles": [
-     "finisher",
      "beater"
     ]
    }
@@ -2365,7 +2366,6 @@
    "decks": 523,
    "roles": [
     "removal",
-    "ramp",
     "finisher",
     "beater"
    ]
@@ -2452,7 +2452,6 @@
    "name": "Scion of Draco",
    "decks": 198,
    "roles": [
-    "ramp",
     "finisher",
     "beater"
    ]
@@ -2651,7 +2650,6 @@
    "name": "Scion of Draco",
    "decks": 198,
    "roles": [
-    "ramp",
     "finisher",
     "beater"
    ],
@@ -2801,7 +2799,6 @@
    "name": "Hollow One",
    "decks": 38,
    "roles": [
-    "ramp",
     "beater"
    ],
    "typeLine": "Artifact Creature — Golem"

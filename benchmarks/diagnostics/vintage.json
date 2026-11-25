@@ -1,6 +1,6 @@
 {
  "format": "Vintage",
- "generatedAt": "2026-11-25T20:17:05.834Z",
+ "generatedAt": "2026-11-25T20:18:41.407Z",
  "decks": 1268,
  "otherOnly": [
   {
@@ -67,6 +67,12 @@
    "name": "Enchanted River's Grasp",
    "decks": 1,
    "typeLine": "Enchantment — Aura",
+   "tags": []
+  },
+  {
+   "name": "Uneasy Partings",
+   "decks": 1,
+   "typeLine": "Instant",
    "tags": []
   },
   {
@@ -913,6 +919,13 @@
     ]
    },
    {
+    "name": "Hollow One",
+    "decks": 112,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
     "name": "Seasoned Dungeoneer",
     "decks": 111,
     "roles": [
@@ -1046,13 +1059,6 @@
     "roles": [
      "finisher",
      "beater"
-    ]
-   },
-   {
-    "name": "Monastery Mentor",
-    "decks": 14,
-    "roles": [
-     "engine"
     ]
    }
   ],
@@ -1400,6 +1406,13 @@
    },
    {
     "name": "Enchanted River's Grasp",
+    "decks": 1,
+    "roles": [
+     "other"
+    ]
+   },
+   {
+    "name": "Uneasy Partings",
     "decks": 1,
     "roles": [
      "other"
@@ -2158,7 +2171,6 @@
    "name": "Hollow One",
    "decks": 112,
    "roles": [
-    "ramp",
     "beater"
    ],
    "typeLine": "Artifact Creature — Golem"

@@ -1,6 +1,6 @@
 {
  "format": "Pioneer",
- "generatedAt": "2026-11-25T20:17:05.834Z",
+ "generatedAt": "2026-11-25T20:18:41.407Z",
  "decks": 1183,
  "otherOnly": [
   {
@@ -382,16 +382,6 @@
    ]
   },
   {
-   "name": "Eddymurk Crab",
-   "decks": 58,
-   "roles": [
-    "ramp",
-    "finisher",
-    "beater"
-   ],
-   "tags": []
-  },
-  {
    "name": "Atraxa, Grand Unifier",
    "decks": 54,
    "roles": [
@@ -520,6 +510,23 @@
    "tags": [
     "draw@other_trigger"
    ]
+  },
+  {
+   "name": "Overlord of the Balemurk",
+   "decks": 37,
+   "roles": [
+    "recursion",
+    "selfmill",
+    "finisher",
+    "engine",
+    "beater"
+   ],
+   "tags": [
+    "recursion@etb",
+    "selfmill@etb",
+    "recursion@attack",
+    "selfmill@attack"
+   ]
   }
  ],
  "byCategory": {
@@ -628,8 +635,7 @@
     "name": "March of Otherworldly Light",
     "decks": 91,
     "roles": [
-     "removal",
-     "ramp"
+     "removal"
     ]
    },
    {
@@ -702,8 +708,7 @@
     "name": "This Town Ain't Big Enough",
     "decks": 63,
     "roles": [
-     "removal",
-     "ramp"
+     "removal"
     ]
    },
    {
@@ -1036,6 +1041,14 @@
     ]
    },
    {
+    "name": "Eddymurk Crab",
+    "decks": 58,
+    "roles": [
+     "finisher",
+     "beater"
+    ]
+   },
+   {
     "name": "Sunderflock",
     "decks": 57,
     "roles": [
@@ -1106,15 +1119,6 @@
     "name": "Polukranos Reborn // Polukranos, Engine of Ruin",
     "decks": 29,
     "roles": [
-     "tokens",
-     "beater"
-    ]
-   },
-   {
-    "name": "Esika's Chariot",
-    "decks": 28,
-    "roles": [
-     "engine",
      "tokens",
      "beater"
     ]
@@ -2207,7 +2211,6 @@
    "name": "Eddymurk Crab",
    "decks": 58,
    "roles": [
-    "ramp",
     "finisher",
     "beater"
    ]
@@ -2314,7 +2317,6 @@
    "name": "Rottenmouth Viper",
    "decks": 10,
    "roles": [
-    "ramp",
     "finisher",
     "engine",
     "reach",
@@ -2422,7 +2424,6 @@
    "name": "Eddymurk Crab",
    "decks": 58,
    "roles": [
-    "ramp",
     "finisher",
     "beater"
    ],

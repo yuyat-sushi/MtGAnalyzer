@@ -1,6 +1,6 @@
 {
  "format": "Standard",
- "generatedAt": "2026-11-25T20:17:05.834Z",
+ "generatedAt": "2026-11-25T20:18:41.407Z",
  "decks": 2486,
  "otherOnly": [
   {
@@ -324,16 +324,6 @@
    ]
   },
   {
-   "name": "Eddymurk Crab",
-   "decks": 153,
-   "roles": [
-    "ramp",
-    "finisher",
-    "beater"
-   ],
-   "tags": []
-  },
-  {
    "name": "Prismari Charm",
    "decks": 148,
    "roles": [
@@ -527,6 +517,20 @@
    "tags": [
     "hate@activated",
     "draw@activated"
+   ]
+  },
+  {
+   "name": "Rottenmouth Viper",
+   "decks": 83,
+   "roles": [
+    "finisher",
+    "engine",
+    "reach",
+    "beater"
+   ],
+   "tags": [
+    "drain@etb",
+    "drain@attack"
    ]
   }
  ],
@@ -1043,6 +1047,14 @@
     ]
    },
    {
+    "name": "Eddymurk Crab",
+    "decks": 153,
+    "roles": [
+     "finisher",
+     "beater"
+    ]
+   },
+   {
     "name": "Nurturing Pixie",
     "decks": 152,
     "roles": [
@@ -1105,14 +1117,6 @@
     "decks": 100,
     "roles": [
      "beater"
-    ]
-   },
-   {
-    "name": "Ajani Resolute",
-    "decks": 96,
-    "roles": [
-     "engine",
-     "enhance"
     ]
    }
   ],
@@ -1486,7 +1490,6 @@
     "roles": [
      "cheat",
      "recursion",
-     "ramp",
      "finisher",
      "engine",
      "beater"
@@ -1967,7 +1970,6 @@
    "name": "Rottenmouth Viper",
    "decks": 83,
    "roles": [
-    "ramp",
     "finisher",
     "engine",
     "reach",
@@ -2152,7 +2154,6 @@
    "name": "Eddymurk Crab",
    "decks": 153,
    "roles": [
-    "ramp",
     "finisher",
     "beater"
    ]
@@ -2234,7 +2235,6 @@
    "name": "Rottenmouth Viper",
    "decks": 83,
    "roles": [
-    "ramp",
     "finisher",
     "engine",
     "reach",
@@ -2391,7 +2391,6 @@
    "name": "Eddymurk Crab",
    "decks": 153,
    "roles": [
-    "ramp",
     "finisher",
     "beater"
    ],
@@ -2645,7 +2644,6 @@
    "name": "Huskburster Swarm",
    "decks": 5,
    "roles": [
-    "ramp",
     "finisher",
     "beater"
    ],

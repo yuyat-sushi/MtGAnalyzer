@@ -1,8 +1,14 @@
 {
  "format": "Pauper",
- "generatedAt": "2026-11-25T20:17:05.834Z",
+ "generatedAt": "2026-11-25T20:18:41.407Z",
  "decks": 2806,
  "otherOnly": [
+  {
+   "name": "Deem Inferior",
+   "decks": 181,
+   "typeLine": "Sorcery",
+   "tags": []
+  },
   {
    "name": "Breath Weapon",
    "decks": 80,
@@ -130,16 +136,6 @@
    ]
   },
   {
-   "name": "Tolarian Terror",
-   "decks": 243,
-   "roles": [
-    "ramp",
-    "finisher",
-    "beater"
-   ],
-   "tags": []
-  },
-  {
    "name": "Malevolent Rumble",
    "decks": 220,
    "roles": [
@@ -152,16 +148,6 @@
     "draw@spell",
     "mana@spell"
    ]
-  },
-  {
-   "name": "Cryptic Serpent",
-   "decks": 216,
-   "roles": [
-    "ramp",
-    "finisher",
-    "beater"
-   ],
-   "tags": []
   },
   {
    "name": "Bonder's Ornament",
@@ -482,6 +468,33 @@
     "drain@spell",
     "removal@spell",
     "draw@spell"
+   ]
+  },
+  {
+   "name": "Drownyard Lurker",
+   "decks": 1,
+   "roles": [
+    "finisher",
+    "engine",
+    "beater"
+   ],
+   "tags": [
+    "token@cast_trigger",
+    "mana@cast_trigger"
+   ]
+  },
+  {
+   "name": "Dinrova Horror",
+   "decks": 1,
+   "roles": [
+    "removal",
+    "discard",
+    "finisher",
+    "beater"
+   ],
+   "tags": [
+    "removal@etb",
+    "discard@etb"
    ]
   }
  ],
@@ -935,6 +948,14 @@
     ]
    },
    {
+    "name": "Tolarian Terror",
+    "decks": 243,
+    "roles": [
+     "finisher",
+     "beater"
+    ]
+   },
+   {
     "name": "Utrom Monitor",
     "decks": 231,
     "roles": [
@@ -969,6 +990,14 @@
     "roles": [
      "engine",
      "reach"
+    ]
+   },
+   {
+    "name": "Cryptic Serpent",
+    "decks": 216,
+    "roles": [
+     "finisher",
+     "beater"
     ]
    },
    {
@@ -1035,21 +1064,6 @@
     "decks": 135,
     "roles": [
      "beater"
-    ]
-   },
-   {
-    "name": "Timberwatch Elf",
-    "decks": 133,
-    "roles": [
-     "beater"
-    ]
-   },
-   {
-    "name": "Cartouche of Solidarity",
-    "decks": 132,
-    "roles": [
-     "tokens",
-     "enhance"
     ]
    }
   ],
@@ -1272,6 +1286,13 @@
    }
   ],
   "other": [
+   {
+    "name": "Deem Inferior",
+    "decks": 181,
+    "roles": [
+     "other"
+    ]
+   },
    {
     "name": "Breath Weapon",
     "decks": 80,
@@ -1846,7 +1867,6 @@
    "name": "Tolarian Terror",
    "decks": 243,
    "roles": [
-    "ramp",
     "finisher",
     "beater"
    ]
@@ -1863,7 +1883,6 @@
    "name": "Cryptic Serpent",
    "decks": 216,
    "roles": [
-    "ramp",
     "finisher",
     "beater"
    ]
@@ -2032,7 +2051,6 @@
    "name": "Tolarian Terror",
    "decks": 243,
    "roles": [
-    "ramp",
     "finisher",
     "beater"
    ],
@@ -2075,7 +2093,6 @@
    "name": "Cryptic Serpent",
    "decks": 216,
    "roles": [
-    "ramp",
     "finisher",
     "beater"
    ],
@@ -2111,7 +2128,7 @@
    "name": "Deem Inferior",
    "decks": 181,
    "roles": [
-    "ramp"
+    "other"
    ],
    "typeLine": "Sorcery"
   },
