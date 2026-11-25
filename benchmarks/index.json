@@ -1,0 +1,63 @@
+{
+ "generatedAt": "2026-11-25T19:08:55.350Z",
+ "window": {
+  "from": "2026-09-26",
+  "to": "2026-11-25",
+  "days": 60
+ },
+ "sources": [
+  {
+   "name": "MTGO公開デッキリスト（fbettega/MTG_decklistcache 経由）",
+   "url": "https://github.com/fbettega/MTG_decklistcache",
+   "license": "GPL-3.0（集計値のみ使用・生データは再配布しない）"
+  },
+  {
+   "name": "MTGOFormatData（アーキタイプ定義）",
+   "url": "https://github.com/Badaro/MTGOFormatData",
+   "license": "MIT"
+  },
+  {
+   "name": "Scryfall（カードテキスト）",
+   "url": "https://scryfall.com",
+   "license": "Scryfall API利用規約"
+  }
+ ],
+ "formats": {
+  "standard": {
+   "label": "Standard",
+   "decks": 2486,
+   "events": 131,
+   "archetypes": 112
+  },
+  "pioneer": {
+   "label": "Pioneer",
+   "decks": 1183,
+   "events": 94,
+   "archetypes": 77
+  },
+  "modern": {
+   "label": "Modern",
+   "decks": 5064,
+   "events": 175,
+   "archetypes": 145
+  },
+  "legacy": {
+   "label": "Legacy",
+   "decks": 2846,
+   "events": 114,
+   "archetypes": 117
+  },
+  "vintage": {
+   "label": "Vintage",
+   "decks": 1268,
+   "events": 96,
+   "archetypes": 33
+  },
+  "pauper": {
+   "label": "Pauper",
+   "decks": 2806,
+   "events": 120,
+   "archetypes": 94
+  }
+ }
+}

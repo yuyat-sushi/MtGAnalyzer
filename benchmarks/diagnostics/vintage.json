@@ -1,0 +1,974 @@
+{
+ "format": "Vintage",
+ "generatedAt": "2026-11-25T19:08:55.350Z",
+ "decks": 1268,
+ "otherOnly": [
+  {
+   "name": "Time Walk",
+   "decks": 835,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery",
+   "power": null
+  },
+  {
+   "name": "Stock Up",
+   "decks": 446,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery",
+   "power": null
+  },
+  {
+   "name": "Flow State",
+   "decks": 391,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery",
+   "power": null
+  },
+  {
+   "name": "Time Vault",
+   "decks": 338,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Artifact",
+   "power": null
+  },
+  {
+   "name": "Manifold Key",
+   "decks": 313,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Artifact",
+   "power": null
+  },
+  {
+   "name": "Chalice of the Void",
+   "decks": 299,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Artifact",
+   "power": null
+  },
+  {
+   "name": "Trinisphere",
+   "decks": 225,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Artifact",
+   "power": null
+  },
+  {
+   "name": "Thoughtseize",
+   "decks": 209,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery",
+   "power": null
+  },
+  {
+   "name": "Pithing Needle",
+   "decks": 197,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Artifact",
+   "power": null
+  },
+  {
+   "name": "Null Rod",
+   "decks": 192,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Artifact",
+   "power": null
+  },
+  {
+   "name": "Mystic Forge",
+   "decks": 169,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Artifact",
+   "power": null
+  },
+  {
+   "name": "Forth Eorlingas!",
+   "decks": 139,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery",
+   "power": null
+  },
+  {
+   "name": "Void Mirror",
+   "decks": 122,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Artifact",
+   "power": null
+  },
+  {
+   "name": "Mindbreak Trap",
+   "decks": 121,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Instant — Trap",
+   "power": null
+  },
+  {
+   "name": "Dig Through Time",
+   "decks": 110,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Instant",
+   "power": null
+  },
+  {
+   "name": "Bolas's Citadel",
+   "decks": 77,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Legendary Artifact",
+   "power": null
+  },
+  {
+   "name": "Brain Freeze",
+   "decks": 75,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Instant",
+   "power": null
+  },
+  {
+   "name": "Paradox Engine",
+   "decks": 75,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Legendary Artifact",
+   "power": null
+  },
+  {
+   "name": "Creeping Chill",
+   "decks": 65,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery",
+   "power": null
+  },
+  {
+   "name": "Oath of Druids",
+   "decks": 61,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Enchantment",
+   "power": null
+  },
+  {
+   "name": "Thorn of Amethyst",
+   "decks": 49,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Artifact",
+   "power": null
+  },
+  {
+   "name": "Show and Tell",
+   "decks": 46,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery",
+   "power": null
+  },
+  {
+   "name": "Doomsday",
+   "decks": 43,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery",
+   "power": null
+  },
+  {
+   "name": "Sphere of Resistance",
+   "decks": 41,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Artifact",
+   "power": null
+  },
+  {
+   "name": "Flash",
+   "decks": 38,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Instant",
+   "power": null
+  },
+  {
+   "name": "Nettlecyst",
+   "decks": 38,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Artifact — Equipment",
+   "power": null
+  },
+  {
+   "name": "Timetwister",
+   "decks": 36,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery",
+   "power": null
+  },
+  {
+   "name": "Misdirection",
+   "decks": 34,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Instant",
+   "power": null
+  },
+  {
+   "name": "Voltaic Key",
+   "decks": 27,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Artifact",
+   "power": null
+  },
+  {
+   "name": "Necropotence",
+   "decks": 26,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Enchantment",
+   "power": null
+  },
+  {
+   "name": "Stony Silence",
+   "decks": 21,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Enchantment",
+   "power": null
+  },
+  {
+   "name": "Extrapolate the Impossible",
+   "decks": 14,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery",
+   "power": null
+  },
+  {
+   "name": "Tendrils of Agony",
+   "decks": 14,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery",
+   "power": null
+  },
+  {
+   "name": "Once Upon a Time",
+   "decks": 13,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Instant",
+   "power": null
+  },
+  {
+   "name": "Torpor Orb",
+   "decks": 12,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Artifact",
+   "power": null
+  },
+  {
+   "name": "Fastbond",
+   "decks": 11,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Enchantment",
+   "power": null
+  },
+  {
+   "name": "Bridge from Below",
+   "decks": 8,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Enchantment",
+   "power": null
+  },
+  {
+   "name": "Unmask",
+   "decks": 7,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery",
+   "power": null
+  },
+  {
+   "name": "Duress",
+   "decks": 7,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery",
+   "power": null
+  },
+  {
+   "name": "Simulacrum Synthesizer",
+   "decks": 7,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Artifact",
+   "power": null
+  },
+  {
+   "name": "Defense Grid",
+   "decks": 5,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Artifact",
+   "power": null
+  },
+  {
+   "name": "Memory Jar",
+   "decks": 5,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Artifact",
+   "power": null
+  },
+  {
+   "name": "Unable to Scream",
+   "decks": 5,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Enchantment — Aura",
+   "power": null
+  },
+  {
+   "name": "Balance",
+   "decks": 4,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery",
+   "power": null
+  },
+  {
+   "name": "Deep Space 9",
+   "decks": 4,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Legendary Artifact — Spacecraft",
+   "power": null
+  },
+  {
+   "name": "Hurkyl's Recall",
+   "decks": 3,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Instant",
+   "power": null
+  },
+  {
+   "name": "Wheel of Fortune",
+   "decks": 2,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery",
+   "power": null
+  },
+  {
+   "name": "Step Through",
+   "decks": 2,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Sorcery",
+   "power": null
+  },
+  {
+   "name": "Grafdigger's Cage",
+   "decks": 2,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Artifact",
+   "power": null
+  },
+  {
+   "name": "The Antiquities War",
+   "decks": 2,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Enchantment — Saga",
+   "power": null
+  },
+  {
+   "name": "Deafening Silence",
+   "decks": 2,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Enchantment",
+   "power": null
+  },
+  {
+   "name": "The Ten Rings",
+   "decks": 2,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Legendary Artifact",
+   "power": null
+  },
+  {
+   "name": "Batterskull",
+   "decks": 1,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Artifact — Equipment",
+   "power": null
+  },
+  {
+   "name": "Kaldra Compleat",
+   "decks": 1,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Legendary Artifact — Equipment",
+   "power": null
+  },
+  {
+   "name": "Leyline Axe",
+   "decks": 1,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Artifact — Equipment",
+   "power": null
+  },
+  {
+   "name": "Impulse",
+   "decks": 1,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Instant",
+   "power": null
+  },
+  {
+   "name": "Animate Dead",
+   "decks": 1,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Enchantment — Aura",
+   "power": null
+  },
+  {
+   "name": "Dwarven Shortsword",
+   "decks": 1,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Artifact — Equipment",
+   "power": null
+  },
+  {
+   "name": "Enchanted River's Grasp",
+   "decks": 1,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Enchantment — Aura",
+   "power": null
+  },
+  {
+   "name": "Goblin Plate Mail",
+   "decks": 1,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Artifact — Equipment",
+   "power": null
+  }
+ ],
+ "manyRoles": [
+  {
+   "name": "Wrenn and Six",
+   "decks": 22,
+   "roles": [
+    "removal",
+    "recursion",
+    "threat"
+   ],
+   "typeLine": "Legendary Planeswalker — Wrenn",
+   "power": null
+  },
+  {
+   "name": "Dack Fayden",
+   "decks": 10,
+   "roles": [
+    "removal",
+    "draw",
+    "threat"
+   ],
+   "typeLine": "Legendary Planeswalker — Dack",
+   "power": null
+  },
+  {
+   "name": "Wistfulness",
+   "decks": 9,
+   "roles": [
+    "removal",
+    "draw",
+    "threat"
+   ],
+   "typeLine": "Creature — Elemental Incarnation",
+   "power": "6"
+  },
+  {
+   "name": "Uro, Titan of Nature's Wrath",
+   "decks": 6,
+   "roles": [
+    "ramp",
+    "draw",
+    "recursion",
+    "threat"
+   ],
+   "typeLine": "Legendary Creature — Elder Giant",
+   "power": "6"
+  },
+  {
+   "name": "Minsc & Boo, Timeless Heroes",
+   "decks": 4,
+   "roles": [
+    "removal",
+    "draw",
+    "threat"
+   ],
+   "typeLine": "Legendary Planeswalker — Minsc",
+   "power": null
+  },
+  {
+   "name": "Cityscape Leveler",
+   "decks": 2,
+   "roles": [
+    "removal",
+    "recursion",
+    "threat"
+   ],
+   "typeLine": "Artifact Creature — Construct",
+   "power": "8"
+  },
+  {
+   "name": "Kozilek's Command",
+   "decks": 2,
+   "roles": [
+    "removal",
+    "ramp",
+    "draw"
+   ],
+   "typeLine": "Kindred Instant — Eldrazi",
+   "power": null
+  },
+  {
+   "name": "Tamiyo, Inquisitive Student // Tamiyo, Seasoned Scholar",
+   "decks": 2,
+   "roles": [
+    "ramp",
+    "draw",
+    "recursion",
+    "threat"
+   ],
+   "typeLine": "Legendary Creature — Moonfolk Wizard // Legendary Planeswalker — Tamiyo",
+   "power": "0"
+  },
+  {
+   "name": "Chandra, Chill of Compliance",
+   "decks": 2,
+   "roles": [
+    "ramp",
+    "draw",
+    "threat"
+   ],
+   "typeLine": "Legendary Planeswalker — Chandra",
+   "power": null
+  },
+  {
+   "name": "Malevolent Hermit // Benevolent Geist",
+   "decks": 1,
+   "roles": [
+    "counter",
+    "recursion",
+    "protection",
+    "threat"
+   ],
+   "typeLine": "Creature — Human Wizard // Creature — Spirit Wizard",
+   "power": "2"
+  },
+  {
+   "name": "Teferi, Time Raveler",
+   "decks": 1,
+   "roles": [
+    "removal",
+    "draw",
+    "threat"
+   ],
+   "typeLine": "Legendary Planeswalker — Teferi",
+   "power": null
+  },
+  {
+   "name": "Hullbreaker Horror",
+   "decks": 1,
+   "roles": [
+    "removal",
+    "protection",
+    "threat"
+   ],
+   "typeLine": "Creature — Kraken Horror",
+   "power": "7"
+  }
+ ],
+ "weakThreats": [
+  {
+   "name": "Thundertrap Trainer",
+   "decks": 202,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Otter Wizard",
+   "power": "1"
+  },
+  {
+   "name": "Phyrexian Metamorph",
+   "decks": 136,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Artifact Creature — Phyrexian Shapeshifter",
+   "power": "0"
+  },
+  {
+   "name": "Narcomoeba",
+   "decks": 71,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Illusion",
+   "power": "1"
+  },
+  {
+   "name": "Golgari Grave-Troll",
+   "decks": 69,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Troll Skeleton",
+   "power": "0"
+  },
+  {
+   "name": "Stinkweed Imp",
+   "decks": 69,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Imp",
+   "power": "1"
+  },
+  {
+   "name": "Golgari Thug",
+   "decks": 66,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Human Warrior",
+   "power": "1"
+  },
+  {
+   "name": "Stonecoil Serpent",
+   "decks": 56,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Artifact Creature — Snake",
+   "power": "0"
+  },
+  {
+   "name": "Thassa's Oracle",
+   "decks": 51,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Merfolk Wizard",
+   "power": "1"
+  },
+  {
+   "name": "Basking Rootwalla",
+   "decks": 50,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Lizard",
+   "power": "1"
+  },
+  {
+   "name": "Blazing Rootwalla",
+   "decks": 49,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Lizard",
+   "power": "1"
+  },
+  {
+   "name": "Patchwork Automaton",
+   "decks": 48,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Artifact Creature — Construct",
+   "power": "1"
+  },
+  {
+   "name": "Karn, Argent Defender",
+   "decks": 13,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Legendary Artifact Creature — Golem",
+   "power": "1"
+  },
+  {
+   "name": "Guide of Souls",
+   "decks": 7,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Human Cleric",
+   "power": "1"
+  },
+  {
+   "name": "Ocelot Pride",
+   "decks": 7,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Cat",
+   "power": "1"
+  },
+  {
+   "name": "Questing Druid // Seek the Beast",
+   "decks": 6,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Human Druid // Instant — Adventure",
+   "power": "1"
+  },
+  {
+   "name": "Voice of Victory",
+   "decks": 5,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Human Bard",
+   "power": "1"
+  },
+  {
+   "name": "Ajani, Nacatl Pariah // Ajani, Nacatl Avenger",
+   "decks": 3,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Legendary Creature — Cat Warrior // Legendary Planeswalker — Ajani",
+   "power": "1"
+  },
+  {
+   "name": "Dark Matter Manipulator",
+   "decks": 3,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Human Warlock",
+   "power": "1"
+  },
+  {
+   "name": "Nomads en-Kor",
+   "decks": 3,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Kor Nomad Soldier",
+   "power": "1"
+  },
+  {
+   "name": "Scryb Ranger",
+   "decks": 3,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Faerie Ranger",
+   "power": "1"
+  },
+  {
+   "name": "Doorkeeper Thrull",
+   "decks": 2,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Thrull",
+   "power": "1"
+  },
+  {
+   "name": "Tamiyo, Inquisitive Student // Tamiyo, Seasoned Scholar",
+   "decks": 2,
+   "roles": [
+    "ramp",
+    "draw",
+    "recursion",
+    "threat"
+   ],
+   "typeLine": "Legendary Creature — Moonfolk Wizard // Legendary Planeswalker — Tamiyo",
+   "power": "0"
+  },
+  {
+   "name": "Stitcher's Supplier",
+   "decks": 2,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Zombie",
+   "power": "1"
+  },
+  {
+   "name": "Springheart Nantuko",
+   "decks": 2,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Enchantment Creature — Insect Monk",
+   "power": "1"
+  },
+  {
+   "name": "Mockingbird",
+   "decks": 2,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Bird Bard",
+   "power": "1"
+  },
+  {
+   "name": "Goblin-town Flunkies",
+   "decks": 1,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Goblin Soldier",
+   "power": "1"
+  },
+  {
+   "name": "Jolrael, Mwonvuli Recluse",
+   "decks": 1,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Legendary Creature — Human Druid",
+   "power": "1"
+  },
+  {
+   "name": "Lake-town Lookout",
+   "decks": 1,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Human Scout",
+   "power": "1"
+  },
+  {
+   "name": "Lakeshore Apothecary",
+   "decks": 1,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Human Cleric",
+   "power": "1"
+  },
+  {
+   "name": "Old Thrush",
+   "decks": 1,
+   "roles": [
+    "threat"
+   ],
+   "typeLine": "Creature — Bird",
+   "power": "1"
+  }
+ ],
+ "unknownCards": [
+  {
+   "name": "Rick, Steadfast Leader",
+   "decks": 1
+  },
+  {
+   "name": "Reality Fulcrum",
+   "decks": 1
+  },
+  {
+   "name": "Spectral Restitching",
+   "decks": 1
+  }
+ ],
+ "unclassifiedDecks": 2
+}
