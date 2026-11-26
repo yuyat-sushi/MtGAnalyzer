@@ -78,7 +78,8 @@
                                                  /(lands|creatures|artifacts|permanents) (your opponents control )?enter (the battlefield )?tapped/, /\bdon't untap during/, /players skip/,
                                                  // 攻撃の制限（Ensnaring Bridge、Propaganda、Moat、Peacekeeper など）
                                                  /\bcreatures (with [^.]*?|without [^.]*?|your opponents control )?can't attack\b/, /no more than (one|two) creatures? can attack/] },
-    { id: 'cheat',     label: '踏み倒し',     re: [/put (a|an|up to \w+|any number of|that|those|target) [^.]*?(creature|artifact|enchantment|permanent|nonland)[^.]*?cards? (from (your hand|your library|their hand|a graveyard|among them)[^.]*?)?onto the battlefield/,
+    { id: 'cheat',     label: '踏み倒し',     re: [/put (a|an|up to \w+|any number of|that|those|target)\b[^.]*?\b(creature|artifact|enchantment|permanent|planeswalker|nonland)\b[^.]*?\bcards?\b[^.]*?onto the battlefield/,
+                                                 /search your library for [^.]*?\b(creature|artifact|enchantment|planeswalker|permanent)\b[^.]*?\bcards?\b[^.]*?put (it|them|that card|those cards) onto the battlefield/,
                                                  /(artifact|creature|enchantment|planeswalker|permanent)( cards?|, (artifact|creature|enchantment|planeswalker|land)[\w, ]*? cards?) from (their|your) hand onto the battlefield/, /puts? that (creature )?card onto the battlefield/, /(?<!this spell )without paying (its|their) mana costs?/] },
     { id: 'extraturn', label: '追加ターン',   re: [/take an extra turn/] },
     { id: 'untap',     label: 'アンタップ',   re: [/\buntap (target|all|up to \w+ target|another target|up to \w+) (artifacts?|lands?|nonland permanents?)\b/] },

@@ -42,7 +42,8 @@
     { id: 'beater',     cat: 'win',      label: '打点',         color: '#e07a2e' },
     { id: 'enhance',    cat: 'support',  label: '強化',         color: '#b5835a' },
     { id: 'protection', cat: 'support',  label: '保護',         color: '#d8b13a' },
-    { id: 'cheat',      cat: 'combo',    label: '踏み倒し',     color: '#2f8f8f' },
+    { id: 'cheatloop',  cat: 'combo',    label: '継続的な踏み倒し', color: '#1f7f7f' },
+    { id: 'cheat',      cat: 'combo',    label: '踏み倒し（1回）', color: '#2f8f8f' },
     { id: 'extraturn',  cat: 'combo',    label: '追加ターン',   color: '#3a9f9a' },
     { id: 'untap',      cat: 'combo',    label: 'アンタップ',   color: '#4aa5a0' },
     { id: 'copy',       cat: 'combo',    label: 'コピー/ストーム', color: '#5ab0a8' },
@@ -57,7 +58,7 @@
    */
   const PRIORITY = ['land',
     'removal', 'wipe', 'counter', 'redirect', 'discard', 'hate', 'gyhate',
-    'cheat', 'extraturn', 'untap', 'copy',
+    'cheatloop', 'cheat', 'extraturn', 'untap', 'copy',
     'draw', 'tutor', 'recursion', 'selfmill',
     'ramp',
     'finisher', 'engine', 'reach', 'tokens', 'beater',
@@ -137,6 +138,11 @@
       const set = new Set();
       const isCreature = /\bCreature\b/.test(tl);
       t.tags.forEach(x => { if (EFFECT_ROLE[x.effect] && x.effect !== 'mana') set.add(EFFECT_ROLE[x.effect]); });
+      // 踏み倒し：起動型・誘発型・常在型で何度も使えるものは「継続的な踏み倒し」（Aether Vial、Sneak Attack、Omniscience など）
+      if (t.tags.some(x => x.effect === 'cheat' && x.repeat)) {
+        set.add('cheatloop');
+        if (!t.tags.some(x => x.effect === 'cheat' && !x.repeat)) set.delete('cheat');
+      }
       // マナ加速：クリーチャーがトークン（宝物・落とし子など）経由でマナを出すだけなら、主な役割はマナ加速ではない
       if (t.abilities.some(ab => ab.effects.includes('mana') && !(isCreature && /\btokens?\b|treasure/.test(ab.text)))) set.add('ramp');
       const text = String(card.oracle || '').toLowerCase().replace(/\([^)]*\)/g, ' ');
