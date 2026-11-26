@@ -17,12 +17,7 @@
 
   function rolesOf(e) {
     if (e.manualRoles && e.manualRoles.length) {
-      // 旧バージョンの「単体除去」は、自動判定の除去の種類（追放・破壊など）に読み替える
-      const auto = Roles.classify(e.card);
-      const list = e.manualRoles.flatMap(r => r === 'removal'
-        ? (auto.filter(x => Roles.ROLE_MAP[x] && Roles.ROLE_MAP[x].cat === 'disrupt' && x.startsWith('rm_')).length ? auto.filter(x => x.startsWith('rm_')) : ['rm_destroy'])
-        : [r]);
-      const r = Roles.normalizeRoles(list);
+      const r = Roles.normalizeRoles(e.manualRoles); // 旧バージョンの小カテゴリは新しいIDに読み替える
       if (r.length) return r;
     }
     return Roles.classify(e.card);
@@ -271,6 +266,16 @@
   }
 
   const openCats = new Set();
+  /** 小カテゴリの横に添える大事な属性（例: 単体除去 12（追放 4）、呪文への干渉 6（継続 2）） */
+  function subNote(id) {
+    const count = pred => state.main.filter(e => e.card && rolesOf(e).includes(id) && Roles.inspect(e.card).tags.some(pred)).reduce((s, e) => s + e.qty, 0);
+    const d = t => t.detail || {};
+    let n = 0, label = '';
+    if (id === 'removal' || id === 'wipe') { n = count(t => (t.effect === 'removal' || t.effect === 'wipe') && d(t).action === 'exile'); label = '追放'; }
+    else if (['spell', 'ability', 'manalock', 'combat'].includes(id)) { n = count(t => t.detail && t.repeat); label = '継続'; }
+    else if (id === 'discard' || id === 'gyhate') { n = count(t => t.detail && t.speed === 'instant'); label = 'インスタント'; }
+    return n ? `<span class="muted">（${label} ${n}）</span>` : '';
+  }
   function renderAnalysis() {
     const entries = state.main.map(e => ({ qty: e.qty, card: e.card, roles: rolesOf(e), cat: catOf(e) }));
     const cmp = metaComparison();
@@ -293,7 +298,7 @@
     const cats = Roles.CATEGORIES.filter(c => c.id !== 'other' || a.catCount.other).map(c => {
       const subs = Roles.ROLES.filter(r => r.cat === c.id && r.id !== 'other');
       const subRows = subs.filter(r => (a.roleCount[r.id] || 0) || (a.total && tgtFor(r.id) && tgtFor(r.id)[1] > 0)).map(r =>
-        bar(r.label, a.roleCount[r.id] || 0, a.total ? tgtFor(r.id) : null, r.color, 'sub')).join('');
+        bar(r.label + subNote(r.id), a.roleCount[r.id] || 0, a.total ? tgtFor(r.id) : null, r.color, 'sub')).join('');
       const head = bar(`<b>${c.label}</b>`, a.catCount[c.id] || 0, a.total ? a.targets['cat:' + c.id] : null, c.color, 'cat');
       return subRows
         ? `<details class="cat-detail" data-cat="${c.id}" ${openCats.has(c.id) ? 'open' : ''}><summary>${head}</summary>${subRows}</details>`
@@ -507,7 +512,7 @@
   function renderDisrupt(main, side, group) {
     const L = Roles.DISRUPT_LABELS;
     const bd = group && group.disrupt;
-    const sections = [['action', '処理・移動先'], ['types', '触れられる対象'], ['targeting', '選び方'], ['speed', '速度']];
+    const sections = [['form', '形態'], ['action', '処理・移動先'], ['types', '触れられる対象'], ['targeting', '選び方'], ['speed', '速度']];
     const rows = sections.map(([key, title]) => {
       const keys = [...new Set([...Object.keys(main[key] || {}), ...Object.keys(side[key] || {}), ...Object.keys(bd || {}).filter(k => k.startsWith(key + ':')).map(k => k.slice(key.length + 1))])]
         .filter(k => k !== 'trigger' && k !== 'static' && k !== 'player')

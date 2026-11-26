@@ -24,23 +24,14 @@
   const ROLES = [
     { id: 'land',       cat: 'mana',     label: '土地',         color: '#8d7b62' },
     { id: 'ramp',       cat: 'mana',     label: 'マナ加速',     color: '#3fa36b' },
-    { id: 'rm_exile',   cat: 'disrupt',  label: '追放除去',     color: '#e0614a' },
-    { id: 'rm_destroy', cat: 'disrupt',  label: '破壊除去',     color: '#d0503c' },
-    { id: 'rm_damage',  cat: 'disrupt',  label: '火力・マイナス修整', color: '#c2452f' },
-    { id: 'edict',      cat: 'disrupt',  label: 'エディクト',   color: '#a84a3a' },
-    { id: 'bounce',     cat: 'disrupt',  label: 'バウンス・ライブラリー送り', color: '#5f8fd0' },
-    { id: 'steal',      cat: 'disrupt',  label: 'コントロール奪取', color: '#8a4fd0' },
-    { id: 'neutralize', cat: 'disrupt',  label: '無力化',       color: '#9a7a6a' },
-    { id: 'landdestroy', cat: 'disrupt', label: '土地破壊',     color: '#7a6040' },
+    { id: 'removal',    cat: 'disrupt',  label: '単体除去',     color: '#d0503c' },
     { id: 'wipe',       cat: 'disrupt',  label: '全体除去',     color: '#9b2f2f' },
-    { id: 'counter',    cat: 'disrupt',  label: '打ち消し',     color: '#5a6fd6' },
-    { id: 'redirect',   cat: 'disrupt',  label: '対象変更',     color: '#7385d9' },
-    { id: 'counterlock', cat: 'disrupt', label: '条件付き打ち消し（置物）', color: '#4a5fb6' },
+    { id: 'spell',      cat: 'disrupt',  label: '呪文への干渉', color: '#5a6fd6' },
+    { id: 'ability',    cat: 'disrupt',  label: '能力への干渉', color: '#4f6470' },
     { id: 'discard',    cat: 'disrupt',  label: '手札破壊',     color: '#7a4fa0' },
-    { id: 'abilitylock', cat: 'disrupt', label: '能力封じ',     color: '#4f6470' },
-    { id: 'hate',       cat: 'disrupt',  label: 'ヘイト（ロック・課税）', color: '#5e7480' },
-    { id: 'attacklock', cat: 'disrupt',  label: '攻撃制限',     color: '#6e8490' },
     { id: 'gyhate',     cat: 'disrupt',  label: '墓地対策',     color: '#6b6b80' },
+    { id: 'manalock',   cat: 'disrupt',  label: 'マナ妨害',     color: '#7a6040' },
+    { id: 'combat',     cat: 'disrupt',  label: '戦闘妨害',     color: '#6e8490' },
     { id: 'draw',       cat: 'resource', label: 'ドロー',       color: '#3b82c4' },
     { id: 'tutor',      cat: 'resource', label: 'サーチ',       color: '#8a5cc7' },
     { id: 'recursion',  cat: 'resource', label: '墓地回収',     color: '#4a4a6a' },
@@ -67,8 +58,7 @@
    * 妨害に使えるカードは、打点やドローを兼ねていても主に妨害として数える（プレイヤーの感覚に合わせる）
    */
   const PRIORITY = ['land',
-    'rm_exile', 'rm_destroy', 'rm_damage', 'edict', 'bounce', 'steal', 'neutralize', 'landdestroy', 'wipe',
-    'counter', 'redirect', 'counterlock', 'discard', 'abilitylock', 'hate', 'attacklock', 'gyhate',
+    'removal', 'wipe', 'spell', 'ability', 'discard', 'gyhate', 'manalock', 'combat',
     'cheatloop', 'cheat', 'extraturn', 'untap', 'copy',
     'draw', 'tutor', 'recursion', 'selfmill',
     'ramp',
@@ -76,15 +66,17 @@
     'enhance', 'protection',
     'other'];
   // 旧バージョンの役割IDの読み替え
-  const LEGACY = { threat: 'beater', combo: 'cheat', removal: 'rm_destroy' };
-  // 除去の処理 → 小カテゴリ
-  const REMOVAL_ROLE = { exile: 'rm_exile', destroy: 'rm_destroy', damage: 'rm_damage', minus: 'rm_damage', sacrifice: 'edict',
-    bounce: 'bounce', library: 'bounce', steal: 'steal', neutralize: 'neutralize', other: 'rm_destroy' };
+  const LEGACY = {
+    threat: 'beater', combo: 'cheat',
+    // 妨害の小カテゴリを処理別（17個）から干渉する場所別（8個）にまとめたときの読み替え
+    rm_exile: 'removal', rm_destroy: 'removal', rm_damage: 'removal', edict: 'removal', bounce: 'removal', steal: 'removal', neutralize: 'removal',
+    landdestroy: 'manalock', counter: 'spell', redirect: 'spell', counterlock: 'spell', hate: 'spell', abilitylock: 'ability', attacklock: 'combat'
+  };
 
   // 効果タグ → 小カテゴリ
   const EFFECT_ROLE = {
-    mana: 'ramp', draw: 'draw', wipe: 'wipe', counter: 'counter', redirect: 'redirect', discard: 'discard', attacklock: 'attacklock',
-    tutor: 'tutor', recursion: 'recursion', selfmill: 'selfmill', protection: 'protection', gyhate: 'gyhate', hate: 'hate',
+    mana: 'ramp', draw: 'draw', redirect: 'spell', discard: 'discard', attacklock: 'combat',
+    tutor: 'tutor', recursion: 'recursion', selfmill: 'selfmill', protection: 'protection', gyhate: 'gyhate',
     cheat: 'cheat', extraturn: 'extraturn', untap: 'untap', copy: 'copy', drain: 'reach'
   };
   // 繰り返し起きるとき「エンジン」とみなす効果（自己強化やマナは除く）
@@ -152,24 +144,27 @@
       const set = new Set();
       const isCreature = /\bCreature\b/.test(tl);
       t.tags.forEach(x => { if (EFFECT_ROLE[x.effect] && x.effect !== 'mana') set.add(EFFECT_ROLE[x.effect]); });
-      // 起動型・誘発型能力を封じるもの（Null Rod、Torpor Orb、Pithing Needle など）は「能力封じ」
-      t.tags.filter(x => x.effect === 'hate' && x.detail).forEach(x => {
-        const ty = x.detail.types;
-        if (ty.some(y => /ability/.test(y))) {
-          set.add('abilitylock');
-          if (!ty.some(y => !/ability/.test(y))) set.delete('hate');
+      // 妨害は「どこに干渉するか」で小カテゴリを決める（処理・形態・条件は属性として tags.detail に残す）
+      const NONLAND = ['creature', 'artifact', 'enchantment', 'planeswalker', 'battle', 'player'];
+      for (const x of t.tags) {
+        const d = x.detail;
+        if (!d) continue;
+        if (x.effect === 'removal' || x.effect === 'wipe') {
+          // 土地以外を巻き込めば除去、土地を巻き込めばマナ妨害（両方なら両方。Armageddon はマナ妨害だけ）
+          if (d.types.some(y => NONLAND.includes(y))) set.add(x.effect === 'wipe' ? 'wipe' : 'removal');
+          if (d.types.includes('land')) set.add('manalock');
+        } else if (x.effect === 'counter') {
+          if (d.types.some(y => /spell/.test(y))) set.add('spell');
+          if (d.types.some(y => /ability/.test(y))) set.add('ability');
+        } else if (x.effect === 'hate') {
+          const ty = d.types;
+          if (ty.some(y => /ability/.test(y))) set.add('ability');
+          if (ty.some(y => ['spell', 'tax', 'library', 'other'].includes(y))) set.add('spell');
+          if (ty.some(y => ['mana', 'untap'].includes(y))) set.add('manalock');
+          if (ty.includes('graveyard')) set.add('gyhate');
+          if (ty.includes('attack')) set.add('combat');
         }
-      });
-      // 条件付きで呪文を打ち消し続ける置物は、普通の打ち消しと分ける
-      t.tags.filter(x => x.effect === 'counter' && x.detail && x.detail.counterCond).forEach(() => {
-        set.add('counterlock');
-        if (!t.tags.some(x => x.effect === 'counter' && x.detail && !x.detail.counterCond)) set.delete('counter');
-      });
-      // 除去は処理（移動先）ごとに分ける。土地だけを対象にするものは土地破壊
-      t.tags.filter(x => x.effect === 'removal').forEach(x => {
-        const d = x.detail || {};
-        set.add(d.types && d.types.length === 1 && d.types[0] === 'land' ? 'landdestroy' : (REMOVAL_ROLE[d.action] || 'rm_destroy'));
-      });
+      }
       // 踏み倒し：起動型・誘発型・常在型で何度も使えるものは「継続的な踏み倒し」（Aether Vial、Sneak Attack、Omniscience など）
       if (t.tags.some(x => x.effect === 'cheat' && x.repeat)) {
         set.add('cheatloop');
@@ -218,6 +213,7 @@
       hand: '手札', graveyard: '墓地', player: 'プレイヤー', 'activated ability': '起動型能力', 'triggered ability': '誘発型能力',
       tax: 'コスト増加', mana: 'マナ', library: 'ライブラリー', attack: '攻撃', untap: 'アンタップ', other: 'その他' },
     targeting: { target: '対象を取る', nontarget: '対象を取らない', edict: '相手が選ぶ（エディクト）' },
+    form: { once: '1回きり', ongoing: '継続（置物・常在・繰り返し）' },
     speed: { instant: 'インスタント速度', sorcery: 'ソーサリー速度', trigger: '誘発', static: '常在' }
   };
 
@@ -226,7 +222,7 @@
    *   action/types/targeting/speed: その性質を持つ妨害カードの枚数（1枚が複数に数えられることもある）
    */
   function disruptProfile(entries) {
-    const out = { total: 0, action: {}, types: {}, targeting: {}, speed: {}, gives: {} };
+    const out = { total: 0, form: {}, action: {}, types: {}, targeting: {}, speed: {}, gives: {} };
     for (const e of entries) {
       if (!e.card) continue;
       const info = inspect(e.card);
@@ -234,6 +230,8 @@
       if (!ds.length) continue;
       out.total += e.qty;
       const add = (bucket, keys) => new Set(keys.filter(Boolean)).forEach(k => { bucket[k] = (bucket[k] || 0) + e.qty; });
+      // 形態：1回きり（呪文・出たとき）か、継続（置物・常在・繰り返し）か
+      add(out.form, ds.map(t => t.repeat ? 'ongoing' : 'once'));
       add(out.action, ds.map(t => t.detail.action));
       add(out.types, ds.flatMap(t => t.detail.types));
       add(out.targeting, ds.map(t => t.detail.targeting));

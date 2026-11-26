@@ -53,7 +53,7 @@
                                                  /target creature you control deals damage equal to its power to (another )?target/, /deals damage equal to [^.]*? to (any target|target creature|target planeswalker|up to one target)/,
                                                  /return (target|up to \w+ target) (spell or )?(nonland )?(creature|permanent|artifact|enchantment)[^.]*to (its|their) owner'?s'? hand/,
                                                  /(target|each) (player|opponent) (sacrifices|exiles) (a|an|two)/, /gain control of target/, /enchanted creature can't attack\b/, /enchanted creature doesn't untap/, /put target [^.]*on (the )?(top|bottom) of its owner's library/] },
-    { id: 'wipe',      label: '全体除去',     re: [/(destroy|exile) (all|each) [^.]*?(creatures?|nonland|permanents?|artifacts?|enchantments?)\b/, /(all|each) [^.]*?creatures?[^.]*? gets? -/,
+    { id: 'wipe',      label: '全体除去',     re: [/(destroy|exile) (all|each) [^.]*?(creatures?|nonland|permanents?|artifacts?|enchantments?|lands?)\b/, /(all|each) [^.]*?creatures?[^.]*? gets? -/,
                                                  /creatures (your opponents|target player|that player) controls? gets? -/, /deals? (\d+|x) damage to each (\w+ )?(creature|other creature|creature and)/,
                                                  /damage to each opponent and each creature/, /damage to [^.]*?each creature (they|your opponents) control/, /put all [^.]*creatures [^.]*on the bottom/,
                                                  /return all (nonland |creatures|permanents)[^.]*to (its|their) owners?'? hands?/] },
@@ -276,7 +276,7 @@
 
     // 対象の種類（影響範囲）
     const clause = (line.match(/(target|each|all|up to [\w ]+?|another target|sacrifices? (a|an|two)|that|other)\b[^.]*?(creature|artifact|enchantment|planeswalker|permanent|battle|land|spell)s?\b[^.]*/) || [line])[0];
-    if (/nonland permanent/.test(clause)) d.types = ALL_PERMANENTS.filter(t => t !== 'land');
+    if (/nonland permanent|colored permanent/.test(clause)) d.types = ALL_PERMANENTS.filter(t => t !== 'land');
     else if (/\bpermanents?\b/.test(clause) && !/\bcreature\b|\bartifact\b|\benchantment\b/.test(clause.split(/permanent/)[0].slice(-25))) d.types = ALL_PERMANENTS.slice();
     else if (/any target/.test(line)) d.types = ['creature', 'planeswalker', 'battle', 'player'];
     else d.types = TYPE_WORDS.filter(([, re]) => re.test(clause)).map(([t]) => t);
