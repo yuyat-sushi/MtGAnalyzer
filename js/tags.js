@@ -47,7 +47,7 @@
                                                  /(play lands and )?cast spells from the top of your library/, /you may (play|cast) [^.]*the top card of your library/] },
     { id: 'drain',     label: 'ダメージ/ドレイン', re: [/deals? [^.]*?damage to (each opponent|target player|target opponent|that player|each player|any target|target player or planeswalker)/,
                                                  /(each opponent|target opponent|target player|that player) loses (\d+|x) life/, /deals damage equal to [^.]*? to (target player|each opponent|any target|target opponent)/, /\beach opponent loses\b/] },
-    { id: 'removal',   label: '除去',         re: [/(destroy|exile) (target|another target|up to (one|two|three) (other )?target|that) (?!card)[^.]*?(creature|artifact|enchantment|planeswalker|permanent|battle|land)/,
+    { id: 'removal',   label: '除去',         re: [/(destroy|exile) (target|another target|up to (one|two|three) (other )?target|that) (?!card)(?![^.]*\bcards? (from|in) [^.]*graveyard)[^.]*?(creature|artifact|enchantment|planeswalker|permanent|battle|land)/,
                                                  /deals? [^.]*?damage to (any target|(up to (one|two) )?(another )?target [^.]*?(creature|planeswalker|permanent|battle)|that (creature|permanent|planeswalker))/,
                                                  /target [^.]*?creature[^.]*? gets -(\d+|x)\/-(\d+|x)/, /\bfights? (target|another target|up to one target)/,
                                                  /target creature you control deals damage equal to its power to (another )?target/, /deals damage equal to [^.]*? to (any target|target creature|target planeswalker|up to one target)/,
@@ -55,7 +55,7 @@
                                                  /(target|each) (player|opponent) (sacrifices|exiles) (a|an|two)/, /gain control of target/, /enchanted creature can't attack\b/, /enchanted creature doesn't untap/, /put target [^.]*on (the )?(top|bottom) of its owner's library/] },
     { id: 'wipe',      label: '全体除去',     re: [/(destroy|exile) (all|each) [^.]*?(creatures?|nonland|permanents?|artifacts?|enchantments?|lands?)\b/, /(all|each) [^.]*?creatures?[^.]*? gets? -/,
                                                  /creatures (your opponents|target player|that player) controls? gets? -/, /deals? (\d+|x) damage to each (\w+ )?(creature|other creature|creature and)/,
-                                                 /damage to each opponent and each creature/, /damage to [^.]*?each creature (they|your opponents) control/, /put all [^.]*creatures [^.]*on the bottom/,
+                                                 /damage to each opponent and each creature/, /(each|target) (player|opponent) sacrifices all\b/, /damage to [^.]*?each creature (they|your opponents) control/, /put all [^.]*creatures [^.]*on the bottom/,
                                                  /return all (nonland |creatures|permanents)[^.]*to (its|their) owners?'? hands?/] },
     { id: 'counter',   label: '打ち消し',     re: [/\bcounter target\b/, /\bexile target spell\b/, /\bcounter (it|that spell)\b/, /exile any number of target spells/, /\bcounter all\b/] },
     { id: 'redirect',  label: '対象変更',     re: [/change the targets? of target (spell|ability|spell or ability|instant)/, /choose new targets for target (spell|ability|instant)/] },
@@ -72,7 +72,7 @@
                                                  /(cast|play) [^.]*from your graveyard/, /return enchanted creature card to the battlefield/, /creature card in a graveyard/] },
     { id: 'selfmill',  label: '墓地肥やし',   re: [/\bsurveil \d/, /\byou mill\b/, /\bmills? (a|one|two|three|four|\d+|x) cards?\b/] },
     { id: 'gyhate',    label: '墓地対策',     re: [/exile (all cards from )?(target player's|each opponent's|each player's|all) graveyards?/, /exile (all )?(target )?cards? from (all |a |an opponent's )?graveyards?/, /exile target card from a graveyard/,
-                                                 /\btarget card in a graveyard\b/, /would be put into an opponent's graveyard[^.]*?exile it\b/, /search its owner's graveyard[^.]*?and exile them/] },
+                                                 /\btarget card in a graveyard\b/, /exile target [a-z ]*?card from a graveyard/, /would be put into an opponent's graveyard[^.]*?exile it\b/, /search its owner's graveyard[^.]*?and exile them/] },
     { id: 'hate',      label: '妨害（ロック）', re: [/\bcosts? \{\d\} more\b/, /would cost less than \w+ mana to cast costs/, /\bcost \{\d\} more\b/, /nonbasic lands (are|don't untap)/, /\bcan't cast (spells|noncreature|creature|instant|sorcery)/,
                                                  /can't be activated/, /(each player|players|your opponents|target player) can't (cast|activate|search|gain life|draw)/, /don't cause abilities to trigger/,
                                                  /(lands|creatures|artifacts|permanents) (your opponents control )?enter (the battlefield )?tapped/, /\bdon't untap during/, /players skip/, /tap for more than one mana produce/] },
@@ -276,9 +276,9 @@
 
     // 対象の種類（影響範囲）
     const clause = (line.match(/(target|each|all|up to [\w ]+?|another target|sacrifices? (a|an|two)|that|other)\b[^.]*?(creature|artifact|enchantment|planeswalker|permanent|battle|land|spell)s?\b[^.]*/) || [line])[0];
-    if (/nonland permanent|colored permanent/.test(clause)) d.types = ALL_PERMANENTS.filter(t => t !== 'land');
+    if (/any target/.test(line)) d.types = ['creature', 'planeswalker', 'battle', 'player'];
+    else if (/nonland permanent|colored permanent/.test(clause)) d.types = ALL_PERMANENTS.filter(t => t !== 'land');
     else if (/\bpermanents?\b/.test(clause) && !/\bcreature\b|\bartifact\b|\benchantment\b/.test(clause.split(/permanent/)[0].slice(-25))) d.types = ALL_PERMANENTS.slice();
-    else if (/any target/.test(line)) d.types = ['creature', 'planeswalker', 'battle', 'player'];
     else d.types = TYPE_WORDS.filter(([, re]) => re.test(clause)).map(([t]) => t);
     if (/target player or planeswalker/.test(line) && !d.types.includes('planeswalker')) d.types.push('planeswalker');
     if (!d.types.length) d.types = ['creature'];
