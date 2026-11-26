@@ -1,29 +1,11 @@
 {
  "format": "Standard",
- "generatedAt": "2026-11-25T20:18:41.407Z",
- "decks": 2486,
+ "generatedAt": "2026-11-26T06:55:56.138Z",
+ "decks": 2462,
  "otherOnly": [
   {
    "name": "Jace's Machinations",
    "decks": 194,
-   "typeLine": "Instant",
-   "tags": []
-  },
-  {
-   "name": "United Battlefront",
-   "decks": 111,
-   "typeLine": "Sorcery",
-   "tags": []
-  },
-  {
-   "name": "Day of Black Sun",
-   "decks": 35,
-   "typeLine": "Sorcery",
-   "tags": []
-  },
-  {
-   "name": "Multiply by Zero",
-   "decks": 10,
    "typeLine": "Instant",
    "tags": []
   },
@@ -54,12 +36,6 @@
   {
    "name": "Harmless Offering",
    "decks": 4,
-   "typeLine": "Sorcery",
-   "tags": []
-  },
-  {
-   "name": "Michelangelo's Technique",
-   "decks": 3,
    "typeLine": "Sorcery",
    "tags": []
   },
@@ -126,7 +102,7 @@
   },
   {
    "name": "Icetill Explorer",
-   "decks": 284,
+   "decks": 280,
    "roles": [
     "recursion",
     "selfmill",
@@ -139,7 +115,7 @@
   },
   {
    "name": "Smaug the Magnificent",
-   "decks": 278,
+   "decks": 277,
    "roles": [
     "removal",
     "engine",
@@ -154,7 +130,7 @@
   },
   {
    "name": "Three Steps Ahead",
-   "decks": 249,
+   "decks": 245,
    "roles": [
     "counter",
     "draw",
@@ -167,8 +143,21 @@
    ]
   },
   {
+   "name": "Haliya, Guided by Light",
+   "decks": 235,
+   "roles": [
+    "draw",
+    "engine",
+    "beater"
+   ],
+   "tags": [
+    "lifegain@creature_enters",
+    "draw@each_turn"
+   ]
+  },
+  {
    "name": "Kaito, Bane of Nightmares",
-   "decks": 236,
+   "decks": 232,
    "roles": [
     "draw",
     "selfmill",
@@ -184,21 +173,8 @@
    ]
   },
   {
-   "name": "Haliya, Guided by Light",
-   "decks": 236,
-   "roles": [
-    "draw",
-    "engine",
-    "beater"
-   ],
-   "tags": [
-    "lifegain@creature_enters",
-    "draw@each_turn"
-   ]
-  },
-  {
    "name": "The Sackville-Bagginses",
-   "decks": 230,
+   "decks": 227,
    "roles": [
     "draw",
     "engine",
@@ -212,7 +188,7 @@
   },
   {
    "name": "Biotech Specialist",
-   "decks": 226,
+   "decks": 223,
    "roles": [
     "engine",
     "reach",
@@ -225,7 +201,7 @@
   },
   {
    "name": "Enduring Curiosity",
-   "decks": 226,
+   "decks": 222,
    "roles": [
     "draw",
     "engine",
@@ -237,7 +213,7 @@
   },
   {
    "name": "Esper Origins // Summon: Esper Maduin",
-   "decks": 208,
+   "decks": 204,
    "roles": [
     "draw",
     "recursion",
@@ -325,7 +301,7 @@
   },
   {
    "name": "Prismari Charm",
-   "decks": 148,
+   "decks": 144,
    "roles": [
     "removal",
     "draw",
@@ -339,7 +315,7 @@
   },
   {
    "name": "Traumatic Critique",
-   "decks": 147,
+   "decks": 144,
    "roles": [
     "removal",
     "draw",
@@ -353,7 +329,7 @@
   },
   {
    "name": "Jeskai Revelation",
-   "decks": 142,
+   "decks": 141,
    "roles": [
     "removal",
     "draw",
@@ -366,18 +342,6 @@
     "draw@spell",
     "drain@spell",
     "removal@spell"
-   ]
-  },
-  {
-   "name": "Deceit",
-   "decks": 140,
-   "roles": [
-    "discard",
-    "finisher",
-    "beater"
-   ],
-   "tags": [
-    "discard@etb"
    ]
   },
   {
@@ -398,8 +362,20 @@
    ]
   },
   {
+   "name": "Deceit",
+   "decks": 138,
+   "roles": [
+    "discard",
+    "finisher",
+    "beater"
+   ],
+   "tags": [
+    "discard@etb"
+   ]
+  },
+  {
    "name": "Hearth Elemental // Stoke Genius",
-   "decks": 127,
+   "decks": 124,
    "roles": [
     "draw",
     "finisher",
@@ -411,7 +387,7 @@
   },
   {
    "name": "Daydream",
-   "decks": 124,
+   "decks": 123,
    "roles": [
     "removal",
     "recursion",
@@ -441,7 +417,7 @@
   },
   {
    "name": "The Mind Stone",
-   "decks": 114,
+   "decks": 113,
    "roles": [
     "removal",
     "ramp",
@@ -455,7 +431,7 @@
   },
   {
    "name": "Emeritus of Ideation // Ancestral Recall",
-   "decks": 111,
+   "decks": 110,
    "roles": [
     "draw",
     "finisher",
@@ -467,7 +443,7 @@
   },
   {
    "name": "Together as One",
-   "decks": 106,
+   "decks": 105,
    "roles": [
     "removal",
     "draw",
@@ -478,19 +454,6 @@
     "draw@spell",
     "drain@spell",
     "removal@spell"
-   ]
-  },
-  {
-   "name": "Surrak, Elusive Hunter",
-   "decks": 99,
-   "roles": [
-    "draw",
-    "engine",
-    "beater",
-    "protection"
-   ],
-   "tags": [
-    "draw@other_trigger"
    ]
   },
   {
@@ -507,8 +470,21 @@
    ]
   },
   {
+   "name": "Surrak, Elusive Hunter",
+   "decks": 97,
+   "roles": [
+    "draw",
+    "engine",
+    "beater",
+    "protection"
+   ],
+   "tags": [
+    "draw@other_trigger"
+   ]
+  },
+  {
    "name": "Braided Net // Braided Quipu",
-   "decks": 94,
+   "decks": 93,
    "roles": [
     "hate",
     "draw",
@@ -521,7 +497,7 @@
   },
   {
    "name": "Rottenmouth Viper",
-   "decks": 83,
+   "decks": 81,
    "roles": [
     "finisher",
     "engine",
@@ -538,42 +514,42 @@
   "disrupt": [
    {
     "name": "Erode",
-    "decks": 673,
+    "decks": 670,
     "roles": [
      "removal"
     ]
    },
    {
     "name": "Requiting Hex",
-    "decks": 657,
+    "decks": 649,
     "roles": [
      "removal"
     ]
    },
    {
     "name": "Spell Snare",
-    "decks": 636,
+    "decks": 626,
     "roles": [
      "counter"
     ]
    },
    {
     "name": "Bitter Triumph",
-    "decks": 509,
+    "decks": 504,
     "roles": [
      "removal"
     ]
    },
    {
     "name": "Seam Rip",
-    "decks": 419,
+    "decks": 415,
     "roles": [
      "removal"
     ]
    },
    {
     "name": "Burst Lightning",
-    "decks": 416,
+    "decks": 410,
     "roles": [
      "removal",
      "reach"
@@ -591,28 +567,28 @@
    },
    {
     "name": "Shoot the Sheriff",
-    "decks": 350,
+    "decks": 346,
     "roles": [
      "removal"
     ]
    },
    {
     "name": "Strategic Betrayal",
-    "decks": 345,
+    "decks": 340,
     "roles": [
      "removal"
     ]
    },
    {
     "name": "Day of Judgment",
-    "decks": 298,
+    "decks": 296,
     "roles": [
      "wipe"
     ]
    },
    {
     "name": "Smaug the Magnificent",
-    "decks": 278,
+    "decks": 277,
     "roles": [
      "removal",
      "engine",
@@ -622,14 +598,15 @@
    },
    {
     "name": "Deadly Cover-Up",
-    "decks": 254,
+    "decks": 253,
     "roles": [
-     "wipe"
+     "wipe",
+     "gyhate"
     ]
    },
    {
     "name": "Three Steps Ahead",
-    "decks": 249,
+    "decks": 245,
     "roles": [
      "counter",
      "draw",
@@ -638,7 +615,7 @@
    },
    {
     "name": "No More Lies",
-    "decks": 247,
+    "decks": 244,
     "roles": [
      "counter"
     ]
@@ -652,14 +629,14 @@
    },
    {
     "name": "We Say Thee Nay!",
-    "decks": 226,
+    "decks": 221,
     "roles": [
      "counter"
     ]
    },
    {
     "name": "Pinnacle Starcage",
-    "decks": 223,
+    "decks": 219,
     "roles": [
      "wipe",
      "engine"
@@ -674,7 +651,7 @@
    },
    {
     "name": "Get Lost",
-    "decks": 213,
+    "decks": 210,
     "roles": [
      "removal"
     ]
@@ -698,23 +675,23 @@
    },
    {
     "name": "Impractical Joke",
-    "decks": 167,
+    "decks": 165,
     "roles": [
      "removal"
     ]
    },
    {
-    "name": "Spell Pierce",
-    "decks": 164,
+    "name": "Duress",
+    "decks": 161,
     "roles": [
-     "counter"
+     "discard"
     ]
    },
    {
-    "name": "Duress",
-    "decks": 162,
+    "name": "Spell Pierce",
+    "decks": 158,
     "roles": [
-     "discard"
+     "counter"
     ]
    },
    {
@@ -728,14 +705,14 @@
   "resource": [
    {
     "name": "Consult the Star Charts",
-    "decks": 395,
+    "decks": 391,
     "roles": [
      "draw"
     ]
    },
    {
     "name": "Icetill Explorer",
-    "decks": 284,
+    "decks": 280,
     "roles": [
      "recursion",
      "selfmill",
@@ -744,21 +721,30 @@
    },
    {
     "name": "Stock Up",
-    "decks": 248,
+    "decks": 244,
     "roles": [
      "draw"
     ]
    },
    {
     "name": "Sleight of Hand",
-    "decks": 239,
+    "decks": 236,
     "roles": [
      "draw"
     ]
    },
    {
+    "name": "Haliya, Guided by Light",
+    "decks": 235,
+    "roles": [
+     "draw",
+     "engine",
+     "beater"
+    ]
+   },
+   {
     "name": "Kaito, Bane of Nightmares",
-    "decks": 236,
+    "decks": 232,
     "roles": [
      "draw",
      "selfmill",
@@ -768,24 +754,15 @@
     ]
    },
    {
-    "name": "Haliya, Guided by Light",
-    "decks": 236,
-    "roles": [
-     "draw",
-     "engine",
-     "beater"
-    ]
-   },
-   {
     "name": "Opt",
-    "decks": 235,
+    "decks": 232,
     "roles": [
      "draw"
     ]
    },
    {
     "name": "Practiced Offense",
-    "decks": 232,
+    "decks": 229,
     "roles": [
      "recursion",
      "enhance"
@@ -793,7 +770,7 @@
    },
    {
     "name": "The Sackville-Bagginses",
-    "decks": 230,
+    "decks": 227,
     "roles": [
      "draw",
      "engine",
@@ -802,7 +779,7 @@
    },
    {
     "name": "Obsessive Pursuit",
-    "decks": 229,
+    "decks": 226,
     "roles": [
      "draw",
      "enhance"
@@ -810,7 +787,7 @@
    },
    {
     "name": "Umbral Collar Zealot",
-    "decks": 228,
+    "decks": 225,
     "roles": [
      "selfmill",
      "beater"
@@ -818,7 +795,7 @@
    },
    {
     "name": "Enduring Curiosity",
-    "decks": 226,
+    "decks": 222,
     "roles": [
      "draw",
      "engine",
@@ -827,7 +804,7 @@
    },
    {
     "name": "Lively Dirge",
-    "decks": 223,
+    "decks": 220,
     "roles": [
      "tutor",
      "recursion"
@@ -835,7 +812,7 @@
    },
    {
     "name": "Wan Shi Tong, Librarian",
-    "decks": 214,
+    "decks": 209,
     "roles": [
      "draw",
      "engine"
@@ -843,7 +820,7 @@
    },
    {
     "name": "Esper Origins // Summon: Esper Maduin",
-    "decks": 208,
+    "decks": 204,
     "roles": [
      "draw",
      "recursion",
@@ -887,13 +864,6 @@
     ]
    },
    {
-    "name": "Winternight Stories",
-    "decks": 195,
-    "roles": [
-     "draw"
-    ]
-   },
-   {
     "name": "Enlightened Confidant",
     "decks": 193,
     "roles": [
@@ -901,8 +871,15 @@
     ]
    },
    {
+    "name": "Winternight Stories",
+    "decks": 191,
+    "roles": [
+     "draw"
+    ]
+   },
+   {
     "name": "Flashback",
-    "decks": 167,
+    "decks": 164,
     "roles": [
      "recursion"
     ]
@@ -918,7 +895,7 @@
    },
    {
     "name": "Starfield Shepherd",
-    "decks": 157,
+    "decks": 156,
     "roles": [
      "tutor",
      "beater"
@@ -926,7 +903,7 @@
    },
    {
     "name": "Tablet of Discovery",
-    "decks": 154,
+    "decks": 152,
     "roles": [
      "selfmill",
      "ramp"
@@ -936,49 +913,49 @@
   "win": [
    {
     "name": "Sazh's Chocobo",
-    "decks": 277,
+    "decks": 273,
     "roles": [
      "beater"
     ]
    },
    {
     "name": "Mightform Harmonizer",
-    "decks": 275,
+    "decks": 271,
     "roles": [
      "beater"
     ]
    },
    {
     "name": "Mossborn Hydra",
-    "decks": 255,
-    "roles": [
-     "beater"
-    ]
-   },
-   {
-    "name": "The Wondrous Wasp",
     "decks": 252,
     "roles": [
      "beater"
     ]
    },
    {
+    "name": "The Wondrous Wasp",
+    "decks": 248,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
     "name": "Greedy Freebooter",
-    "decks": 230,
+    "decks": 227,
     "roles": [
      "beater"
     ]
    },
    {
     "name": "Spyglass Siren",
-    "decks": 228,
+    "decks": 224,
     "roles": [
      "beater"
     ]
    },
    {
     "name": "Biotech Specialist",
-    "decks": 226,
+    "decks": 223,
     "roles": [
      "engine",
      "reach",
@@ -987,23 +964,16 @@
    },
    {
     "name": "Floodpits Drowner",
-    "decks": 226,
+    "decks": 222,
     "roles": [
      "beater"
     ]
    },
    {
     "name": "Dream Beavers",
-    "decks": 223,
+    "decks": 219,
     "roles": [
      "reach",
-     "beater"
-    ]
-   },
-   {
-    "name": "Tishana's Tidebinder",
-    "decks": 203,
-    "roles": [
      "beater"
     ]
    },
@@ -1023,8 +993,15 @@
     ]
    },
    {
-    "name": "Sapling Nursery",
+    "name": "Tishana's Tidebinder",
     "decks": 199,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
+    "name": "Sapling Nursery",
+    "decks": 196,
     "roles": [
      "engine",
      "protection"
@@ -1047,62 +1024,54 @@
     ]
    },
    {
+    "name": "Nurturing Pixie",
+    "decks": 151,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
     "name": "Eddymurk Crab",
-    "decks": 153,
+    "decks": 150,
     "roles": [
      "finisher",
      "beater"
     ]
    },
    {
-    "name": "Nurturing Pixie",
-    "decks": 152,
-    "roles": [
-     "beater"
-    ]
-   },
-   {
     "name": "Sage of the Skies",
-    "decks": 150,
+    "decks": 149,
     "roles": [
      "beater"
     ]
    },
    {
     "name": "Magda, the Hoardmaster",
-    "decks": 123,
+    "decks": 122,
     "roles": [
      "engine"
     ]
    },
    {
+    "name": "Slickshot Show-Off",
+    "decks": 115,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
     "name": "Sunderflock",
-    "decks": 116,
+    "decks": 112,
     "roles": [
      "finisher",
      "beater"
     ]
    },
    {
-    "name": "Slickshot Show-Off",
-    "decks": 116,
-    "roles": [
-     "beater"
-    ]
-   },
-   {
     "name": "Wolverine, Fierce Fighter",
-    "decks": 106,
+    "decks": 105,
     "roles": [
      "beater"
-    ]
-   },
-   {
-    "name": "Simulacrum Synthesizer",
-    "decks": 102,
-    "roles": [
-     "engine",
-     "enhance"
     ]
    },
    {
@@ -1110,6 +1079,14 @@
     "decks": 102,
     "roles": [
      "beater"
+    ]
+   },
+   {
+    "name": "Simulacrum Synthesizer",
+    "decks": 101,
+    "roles": [
+     "engine",
+     "enhance"
     ]
    },
    {
@@ -1180,7 +1157,7 @@
    },
    {
     "name": "Snakeskin Veil",
-    "decks": 42,
+    "decks": 40,
     "roles": [
      "enhance",
      "protection"
@@ -1260,17 +1237,17 @@
     ]
    },
    {
-    "name": "Restoration Magic",
-    "decks": 5,
-    "roles": [
-     "protection"
-    ]
-   },
-   {
     "name": "Innkeeper's Talent",
     "decks": 5,
     "roles": [
      "enhance"
+    ]
+   },
+   {
+    "name": "Restoration Magic",
+    "decks": 4,
+    "roles": [
+     "protection"
     ]
    },
    {
@@ -1314,11 +1291,10 @@
     ]
    },
    {
-    "name": "Repurposing Bay",
-    "decks": 102,
+    "name": "United Battlefront",
+    "decks": 110,
     "roles": [
-     "cheat",
-     "tutor"
+     "cheat"
     ]
    },
    {
@@ -1334,7 +1310,7 @@
     "name": "Kona, Rescue Beastie",
     "decks": 26,
     "roles": [
-     "cheat",
+     "cheatloop",
      "beater"
     ]
    },
@@ -1342,30 +1318,12 @@
     "name": "Omniscience",
     "decks": 25,
     "roles": [
-     "cheat"
-    ]
-   },
-   {
-    "name": "Simulacrum Shaper",
-    "decks": 20,
-    "roles": [
-     "cheat",
-     "draw",
-     "ramp"
-    ]
-   },
-   {
-    "name": "Glimpse the Core",
-    "decks": 19,
-    "roles": [
-     "cheat",
-     "recursion",
-     "ramp"
+     "cheatloop"
     ]
    },
    {
     "name": "Improvisation Capstone",
-    "decks": 18,
+    "decks": 17,
     "roles": [
      "cheat"
     ]
@@ -1405,6 +1363,21 @@
     ]
    },
    {
+    "name": "Aang, at the Crossroads // Aang, Destined Savior",
+    "decks": 4,
+    "roles": [
+     "cheat",
+     "beater"
+    ]
+   },
+   {
+    "name": "Michelangelo's Technique",
+    "decks": 3,
+    "roles": [
+     "cheat"
+    ]
+   },
+   {
     "name": "Kitsa, Otterball Elite",
     "decks": 2,
     "roles": [
@@ -1436,7 +1409,7 @@
     "name": "Buster Sword",
     "decks": 2,
     "roles": [
-     "cheat",
+     "cheatloop",
      "draw",
      "engine",
      "enhance"
@@ -1463,9 +1436,19 @@
     "name": "Malcolm, Alluring Scoundrel",
     "decks": 1,
     "roles": [
-     "cheat",
+     "cheatloop",
      "draw",
      "engine",
+     "beater"
+    ]
+   },
+   {
+    "name": "Anticausal Vestige",
+    "decks": 1,
+    "roles": [
+     "cheat",
+     "draw",
+     "finisher",
      "beater"
     ]
    },
@@ -1485,12 +1468,12 @@
     ]
    },
    {
-    "name": "The Dawning Archaic",
+    "name": "Eddie Brock // Venom, Lethal Protector",
     "decks": 1,
     "roles": [
-     "cheat",
+     "cheatloop",
+     "draw",
      "recursion",
-     "finisher",
      "engine",
      "beater"
     ]
@@ -1501,33 +1484,19 @@
     "roles": [
      "cheat"
     ]
+   },
+   {
+    "name": "Kinscaer Sentry",
+    "decks": 1,
+    "roles": [
+     "cheatloop"
+    ]
    }
   ],
   "other": [
    {
     "name": "Jace's Machinations",
     "decks": 194,
-    "roles": [
-     "other"
-    ]
-   },
-   {
-    "name": "United Battlefront",
-    "decks": 111,
-    "roles": [
-     "other"
-    ]
-   },
-   {
-    "name": "Day of Black Sun",
-    "decks": 35,
-    "roles": [
-     "other"
-    ]
-   },
-   {
-    "name": "Multiply by Zero",
-    "decks": 10,
     "roles": [
      "other"
     ]
@@ -1563,13 +1532,6 @@
    {
     "name": "Harmless Offering",
     "decks": 4,
-    "roles": [
-     "other"
-    ]
-   },
-   {
-    "name": "Michelangelo's Technique",
-    "decks": 3,
     "roles": [
      "other"
     ]
@@ -1645,7 +1607,7 @@
   },
   {
    "name": "Smaug the Magnificent",
-   "decks": 278,
+   "decks": 277,
    "roles": [
     "removal",
     "engine",
@@ -1659,8 +1621,21 @@
    ]
   },
   {
+   "name": "Haliya, Guided by Light",
+   "decks": 235,
+   "roles": [
+    "draw",
+    "engine",
+    "beater"
+   ],
+   "tags": [
+    "lifegain@creature_enters",
+    "draw@each_turn"
+   ]
+  },
+  {
    "name": "Kaito, Bane of Nightmares",
-   "decks": 236,
+   "decks": 232,
    "roles": [
     "draw",
     "selfmill",
@@ -1676,21 +1651,8 @@
    ]
   },
   {
-   "name": "Haliya, Guided by Light",
-   "decks": 236,
-   "roles": [
-    "draw",
-    "engine",
-    "beater"
-   ],
-   "tags": [
-    "lifegain@creature_enters",
-    "draw@each_turn"
-   ]
-  },
-  {
    "name": "The Sackville-Bagginses",
-   "decks": 230,
+   "decks": 227,
    "roles": [
     "draw",
     "engine",
@@ -1704,7 +1666,7 @@
   },
   {
    "name": "Biotech Specialist",
-   "decks": 226,
+   "decks": 223,
    "roles": [
     "engine",
     "reach",
@@ -1717,7 +1679,7 @@
   },
   {
    "name": "Enduring Curiosity",
-   "decks": 226,
+   "decks": 222,
    "roles": [
     "draw",
     "engine",
@@ -1729,7 +1691,7 @@
   },
   {
    "name": "Pinnacle Starcage",
-   "decks": 223,
+   "decks": 219,
    "roles": [
     "wipe",
     "engine"
@@ -1741,7 +1703,7 @@
   },
   {
    "name": "Wan Shi Tong, Librarian",
-   "decks": 214,
+   "decks": 209,
    "roles": [
     "draw",
     "engine"
@@ -1817,7 +1779,7 @@
   },
   {
    "name": "Sapling Nursery",
-   "decks": 199,
+   "decks": 196,
    "roles": [
     "engine",
     "protection"
@@ -1883,7 +1845,7 @@
   },
   {
    "name": "Magda, the Hoardmaster",
-   "decks": 123,
+   "decks": 122,
    "roles": [
     "engine"
    ],
@@ -1894,7 +1856,7 @@
   },
   {
    "name": "Simulacrum Synthesizer",
-   "decks": 102,
+   "decks": 101,
    "roles": [
     "engine",
     "enhance"
@@ -1906,7 +1868,7 @@
   },
   {
    "name": "The Fire Crystal",
-   "decks": 101,
+   "decks": 100,
    "roles": [
     "ramp",
     "engine"
@@ -1917,7 +1879,7 @@
   },
   {
    "name": "Surrak, Elusive Hunter",
-   "decks": 99,
+   "decks": 97,
    "roles": [
     "draw",
     "engine",
@@ -1943,7 +1905,7 @@
   },
   {
    "name": "Braided Net // Braided Quipu",
-   "decks": 94,
+   "decks": 93,
    "roles": [
     "hate",
     "draw",
@@ -1956,7 +1918,7 @@
   },
   {
    "name": "Hired Claw",
-   "decks": 88,
+   "decks": 87,
    "roles": [
     "engine",
     "reach"
@@ -1968,7 +1930,7 @@
   },
   {
    "name": "Rottenmouth Viper",
-   "decks": 83,
+   "decks": 81,
    "roles": [
     "finisher",
     "engine",
@@ -1982,7 +1944,7 @@
   },
   {
    "name": "Elspeth, Storm Slayer",
-   "decks": 62,
+   "decks": 61,
    "roles": [
     "removal",
     "engine",
@@ -2088,21 +2050,6 @@
    ]
   },
   {
-   "name": "Thor, God of Thunder",
-   "decks": 46,
-   "roles": [
-    "removal",
-    "finisher",
-    "engine",
-    "reach",
-    "beater"
-   ],
-   "tags": [
-    "drain@cast_trigger",
-    "removal@cast_trigger"
-   ]
-  },
-  {
    "name": "Gev, Scaled Scorch",
    "decks": 46,
    "roles": [
@@ -2113,6 +2060,21 @@
    "tags": [
     "pump@static",
     "drain@cast_trigger"
+   ]
+  },
+  {
+   "name": "Thor, God of Thunder",
+   "decks": 45,
+   "roles": [
+    "removal",
+    "finisher",
+    "engine",
+    "reach",
+    "beater"
+   ],
+   "tags": [
+    "drain@cast_trigger",
+    "removal@cast_trigger"
    ]
   },
   {
@@ -2138,7 +2100,7 @@
   },
   {
    "name": "Preacher of the Schism",
-   "decks": 41,
+   "decks": 40,
    "roles": [
     "draw",
     "engine"
@@ -2152,17 +2114,8 @@
  "finishers": [
   {
    "name": "Eddymurk Crab",
-   "decks": 153,
+   "decks": 150,
    "roles": [
-    "finisher",
-    "beater"
-   ]
-  },
-  {
-   "name": "Deceit",
-   "decks": 140,
-   "roles": [
-    "discard",
     "finisher",
     "beater"
    ]
@@ -2179,18 +2132,19 @@
    ]
   },
   {
-   "name": "Hearth Elemental // Stoke Genius",
-   "decks": 127,
+   "name": "Deceit",
+   "decks": 138,
    "roles": [
-    "draw",
+    "discard",
     "finisher",
     "beater"
    ]
   },
   {
-   "name": "Sunderflock",
-   "decks": 116,
+   "name": "Hearth Elemental // Stoke Genius",
+   "decks": 124,
    "roles": [
+    "draw",
     "finisher",
     "beater"
    ]
@@ -2206,8 +2160,16 @@
    ]
   },
   {
+   "name": "Sunderflock",
+   "decks": 112,
+   "roles": [
+    "finisher",
+    "beater"
+   ]
+  },
+  {
    "name": "Emeritus of Ideation // Ancestral Recall",
-   "decks": 111,
+   "decks": 110,
    "roles": [
     "draw",
     "finisher",
@@ -2225,7 +2187,7 @@
   },
   {
    "name": "Captain Marvel, Earth's Protector",
-   "decks": 88,
+   "decks": 86,
    "roles": [
     "finisher",
     "beater"
@@ -2233,7 +2195,7 @@
   },
   {
    "name": "Rottenmouth Viper",
-   "decks": 83,
+   "decks": 81,
    "roles": [
     "finisher",
     "engine",
@@ -2252,7 +2214,7 @@
   },
   {
    "name": "Thor, God of Thunder",
-   "decks": 46,
+   "decks": 45,
    "roles": [
     "removal",
     "finisher",
@@ -2271,7 +2233,7 @@
   },
   {
    "name": "Leatherhead, Swamp Stalker",
-   "decks": 36,
+   "decks": 34,
    "roles": [
     "removal",
     "finisher",
@@ -2281,7 +2243,7 @@
   },
   {
    "name": "Marang River Regent // Coil and Catch",
-   "decks": 31,
+   "decks": 30,
    "roles": [
     "draw",
     "finisher",
@@ -2318,16 +2280,6 @@
    ]
   },
   {
-   "name": "Wistfulness",
-   "decks": 14,
-   "roles": [
-    "removal",
-    "draw",
-    "finisher",
-    "beater"
-   ]
-  },
-  {
    "name": "Lorehold, the Historian",
    "decks": 14,
    "roles": [
@@ -2336,12 +2288,22 @@
     "engine",
     "beater"
    ]
+  },
+  {
+   "name": "Wistfulness",
+   "decks": 12,
+   "roles": [
+    "removal",
+    "draw",
+    "finisher",
+    "beater"
+   ]
   }
  ],
  "noTags": [
   {
    "name": "Mightform Harmonizer",
-   "decks": 275,
+   "decks": 271,
    "roles": [
     "beater"
    ],
@@ -2349,7 +2311,7 @@
   },
   {
    "name": "The Wondrous Wasp",
-   "decks": 252,
+   "decks": 248,
    "roles": [
     "beater"
    ],
@@ -2357,7 +2319,7 @@
   },
   {
    "name": "Spyglass Siren",
-   "decks": 228,
+   "decks": 224,
    "roles": [
     "beater"
    ],
@@ -2365,7 +2327,7 @@
   },
   {
    "name": "Floodpits Drowner",
-   "decks": 226,
+   "decks": 222,
    "roles": [
     "beater"
    ],
@@ -2373,7 +2335,7 @@
   },
   {
    "name": "Tishana's Tidebinder",
-   "decks": 203,
+   "decks": 199,
    "roles": [
     "beater"
    ],
@@ -2389,7 +2351,7 @@
   },
   {
    "name": "Eddymurk Crab",
-   "decks": 153,
+   "decks": 150,
    "roles": [
     "finisher",
     "beater"
@@ -2398,7 +2360,7 @@
   },
   {
    "name": "Sage of the Skies",
-   "decks": 150,
+   "decks": 149,
    "roles": [
     "beater"
    ],
@@ -2406,7 +2368,7 @@
   },
   {
    "name": "Sunderflock",
-   "decks": 116,
+   "decks": 112,
    "roles": [
     "finisher",
     "beater"
@@ -2414,16 +2376,8 @@
    "typeLine": "Creature — Elemental"
   },
   {
-   "name": "United Battlefront",
-   "decks": 111,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Sorcery"
-  },
-  {
    "name": "Wolverine, Fierce Fighter",
-   "decks": 106,
+   "decks": 105,
    "roles": [
     "beater"
    ],
@@ -2436,14 +2390,6 @@
     "beater"
    ],
    "typeLine": "Creature — Dragon"
-  },
-  {
-   "name": "Shared Roots",
-   "decks": 60,
-   "roles": [
-    "ramp"
-   ],
-   "typeLine": "Sorcery — Lesson"
   },
   {
    "name": "Dwarven Mauler",
@@ -2462,8 +2408,16 @@
    "typeLine": "Legendary Creature — Dwarf Warrior"
   },
   {
+   "name": "Shared Roots",
+   "decks": 57,
+   "roles": [
+    "ramp"
+   ],
+   "typeLine": "Sorcery — Lesson"
+  },
+  {
    "name": "Lumbering Worldwagon",
-   "decks": 55,
+   "decks": 53,
    "roles": [
     "ramp"
    ],
@@ -2498,7 +2452,7 @@
    "name": "Day of Black Sun",
    "decks": 35,
    "roles": [
-    "other"
+    "wipe"
    ],
    "typeLine": "Sorcery"
   },
@@ -2520,7 +2474,7 @@
   },
   {
    "name": "Sentinel of the Nameless City",
-   "decks": 17,
+   "decks": 16,
    "roles": [
     "beater"
    ],
@@ -2578,7 +2532,7 @@
    "name": "Multiply by Zero",
    "decks": 10,
    "roles": [
-    "other"
+    "removal"
    ],
    "typeLine": "Instant"
   },
@@ -2664,12 +2618,20 @@
     "other"
    ],
    "typeLine": "Sorcery"
+  },
+  {
+   "name": "Mabel, Bitter Recluse",
+   "decks": 5,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Legendary Creature — Mouse Warlock"
   }
  ],
  "unknownCards": [
   {
    "name": "Kavaero, Mind-Bitten",
-   "decks": 101
+   "decks": 100
   },
   {
    "name": "Zora, Spider Fancier",
@@ -2688,12 +2650,12 @@
    "decks": 13
   },
   {
-   "name": "Detect Intrusion",
+   "name": "Leyline Weaver",
    "decks": 7
   },
   {
-   "name": "Leyline Weaver",
-   "decks": 7
+   "name": "Detect Intrusion",
+   "decks": 6
   },
   {
    "name": "Giantcraft Helm",
@@ -2740,5 +2702,5 @@
    "decks": 1
   }
  ],
- "unclassifiedDecks": 208
+ "unclassifiedDecks": 207
 }

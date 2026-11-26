@@ -27,6 +27,7 @@
     { id: 'removal',    cat: 'disrupt',  label: '単体除去',     color: '#d0503c' },
     { id: 'wipe',       cat: 'disrupt',  label: '全体除去',     color: '#9b2f2f' },
     { id: 'counter',    cat: 'disrupt',  label: '打ち消し',     color: '#5a6fd6' },
+    { id: 'redirect',   cat: 'disrupt',  label: '対象変更',     color: '#7385d9' },
     { id: 'discard',    cat: 'disrupt',  label: '手札破壊',     color: '#7a4fa0' },
     { id: 'hate',       cat: 'disrupt',  label: 'ヘイト（ロック・課税）', color: '#5e7480' },
     { id: 'gyhate',     cat: 'disrupt',  label: '墓地対策',     color: '#6b6b80' },
@@ -41,7 +42,8 @@
     { id: 'beater',     cat: 'win',      label: '打点',         color: '#e07a2e' },
     { id: 'enhance',    cat: 'support',  label: '強化',         color: '#b5835a' },
     { id: 'protection', cat: 'support',  label: '保護',         color: '#d8b13a' },
-    { id: 'cheat',      cat: 'combo',    label: '踏み倒し',     color: '#2f8f8f' },
+    { id: 'cheatloop',  cat: 'combo',    label: '継続的な踏み倒し', color: '#1f7f7f' },
+    { id: 'cheat',      cat: 'combo',    label: '踏み倒し（1回）', color: '#2f8f8f' },
     { id: 'extraturn',  cat: 'combo',    label: '追加ターン',   color: '#3a9f9a' },
     { id: 'untap',      cat: 'combo',    label: 'アンタップ',   color: '#4aa5a0' },
     { id: 'copy',       cat: 'combo',    label: 'コピー/ストーム', color: '#5ab0a8' },
@@ -55,8 +57,8 @@
    * 妨害に使えるカードは、打点やドローを兼ねていても主に妨害として数える（プレイヤーの感覚に合わせる）
    */
   const PRIORITY = ['land',
-    'removal', 'wipe', 'counter', 'discard', 'hate', 'gyhate',
-    'cheat', 'extraturn', 'untap', 'copy',
+    'removal', 'wipe', 'counter', 'redirect', 'discard', 'hate', 'gyhate',
+    'cheatloop', 'cheat', 'extraturn', 'untap', 'copy',
     'draw', 'tutor', 'recursion', 'selfmill',
     'ramp',
     'finisher', 'engine', 'reach', 'tokens', 'beater',
@@ -67,7 +69,7 @@
 
   // 効果タグ → 小カテゴリ
   const EFFECT_ROLE = {
-    mana: 'ramp', draw: 'draw', removal: 'removal', wipe: 'wipe', counter: 'counter', discard: 'discard',
+    mana: 'ramp', draw: 'draw', removal: 'removal', wipe: 'wipe', counter: 'counter', redirect: 'redirect', discard: 'discard',
     tutor: 'tutor', recursion: 'recursion', selfmill: 'selfmill', protection: 'protection', gyhate: 'gyhate', hate: 'hate',
     cheat: 'cheat', extraturn: 'extraturn', untap: 'untap', copy: 'copy', drain: 'reach'
   };
@@ -136,6 +138,11 @@
       const set = new Set();
       const isCreature = /\bCreature\b/.test(tl);
       t.tags.forEach(x => { if (EFFECT_ROLE[x.effect] && x.effect !== 'mana') set.add(EFFECT_ROLE[x.effect]); });
+      // 踏み倒し：起動型・誘発型・常在型で何度も使えるものは「継続的な踏み倒し」（Aether Vial、Sneak Attack、Omniscience など）
+      if (t.tags.some(x => x.effect === 'cheat' && x.repeat)) {
+        set.add('cheatloop');
+        if (!t.tags.some(x => x.effect === 'cheat' && !x.repeat)) set.delete('cheat');
+      }
       // マナ加速：クリーチャーがトークン（宝物・落とし子など）経由でマナを出すだけなら、主な役割はマナ加速ではない
       if (t.abilities.some(ab => ab.effects.includes('mana') && !(isCreature && /\btokens?\b|treasure/.test(ab.text)))) set.add('ramp');
       const text = String(card.oracle || '').toLowerCase().replace(/\([^)]*\)/g, ' ');
