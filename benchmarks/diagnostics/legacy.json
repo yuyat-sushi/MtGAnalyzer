@@ -118,7 +118,7 @@
   }
  ],
  "format": "Legacy",
- "generatedAt": "2026-11-26T08:02:04.342Z",
+ "generatedAt": "2026-11-26T08:19:51.695Z",
  "decks": 2762,
  "otherOnly": [
   {
@@ -819,7 +819,7 @@
     "name": "Chalice of the Void",
     "decks": 228,
     "roles": [
-     "counter"
+     "counterlock"
     ]
    },
    {
