@@ -51,7 +51,7 @@
                                                  /deals? [^.]*?damage to (any target|(up to (one|two) )?(another )?target [^.]*?(creature|planeswalker|permanent|battle)|that (creature|permanent|planeswalker))/,
                                                  /target [^.]*?creature[^.]*? gets -(\d+|x)\/-(\d+|x)/, /\bfights? (target|another target|up to one target)/,
                                                  /target creature you control deals damage equal to its power to (another )?target/, /deals damage equal to [^.]*? to (any target|target creature|target planeswalker|up to one target)/,
-                                                 /return (target|up to \w+ target) (spell or )?(nonland )?(creature|permanent|artifact|enchantment)[^.]*to (its|their) owner'?s'? hand/,
+                                                 /return (target|up to \w+ target) (spell or )?(nonland )?(creature|permanent|artifact|enchantment)(?![^.]*\bcards?\b)[^.]*to (its|their) owner'?s'? hand/,
                                                  /(target|each) (player|opponent) (sacrifices|exiles) (a|an|two)/, /gain control of target/, /enchanted creature can't attack\b/, /enchanted creature doesn't untap/, /put target [^.]*on (the )?(top|bottom) of its owner's library/] },
     { id: 'wipe',      label: '全体除去',     re: [/(destroy|exile) (all|each) [^.]*?(creatures?|nonland|permanents?|artifacts?|enchantments?|lands?)\b/, /(all|each) [^.]*?creatures?[^.]*? gets? -/,
                                                  /creatures (your opponents|target player|that player) controls? gets? -/, /deals? (\d+|x) damage to each (\w+ )?(creature|other creature|creature and)/,
@@ -68,14 +68,14 @@
     { id: 'tutor',     label: 'サーチ',       re: [{ test: t => (t.match(/search your library( and graveyard)? for [^.]*?cards?[^.]*/g) || [])
                                                    .some(s => !/\b(land|forest|plains|island|swamp|mountain)\b/.test(s) || !/onto the battlefield/.test(s)) },
                                                  /from outside the game/] },
-    { id: 'recursion', label: '墓地回収',     re: [/return [^.]*cards? from (your|a|any|target player's) graveyards? to (your hand|the battlefield)/, /return [^.]*from your graveyard (to|onto)/,
+    { id: 'recursion', label: '墓地回収',     re: [/return [^.]*cards? from (your|a|any|target player's) graveyards? to (your hand|the battlefield|its owner's hand)/, /return [^.]*from your graveyard (to|onto)/,
                                                  /(cast|play) [^.]*from your graveyard/, /return enchanted creature card to the battlefield/, /creature card in a graveyard/] },
     { id: 'selfmill',  label: '墓地肥やし',   re: [/\bsurveil \d/, /\byou mill\b/, /\bmills? (a|one|two|three|four|\d+|x) cards?\b/] },
     { id: 'gyhate',    label: '墓地対策',     re: [/exile (all cards from )?(target player's|each opponent's|each player's|all) graveyards?/, /exile (all )?(target )?cards? from (all |a |an opponent's )?graveyards?/, /exile target card from a graveyard/,
                                                  /\btarget card in a graveyard\b/, /exile target [a-z ]*?card from a graveyard/, /would be put into an opponent's graveyard[^.]*?exile it\b/, /search its owner's graveyard[^.]*?and exile them/] },
     { id: 'hate',      label: '妨害（ロック）', re: [/\bcosts? \{\d\} more\b/, /would cost less than \w+ mana to cast costs/, /\bcost \{\d\} more\b/, /nonbasic lands (are|don't untap)/, /\bcan't cast (spells|noncreature|creature|instant|sorcery)/,
                                                  /can't be activated/, /(each player|players|your opponents|target player) can't (cast|activate|search|gain life|draw)/, /don't cause abilities to trigger/,
-                                                 /(lands|creatures|artifacts|permanents) (your opponents control )?enter (the battlefield )?tapped/, /\bdon't untap during/, /players skip/, /tap for more than one mana produce/] },
+                                                 /(lands|creatures|artifacts|permanents) (your opponents control )?enter (the battlefield )?tapped/, /\bdon't untap during/, /players skip/, /tap for more than one mana produce/, /can't untap more than/] },
     // 攻撃の制限（Ensnaring Bridge、Propaganda、Moat、Peacekeeper など）
     { id: 'attacklock', label: '攻撃制限',    re: [/\bcreatures (with [^.]*?|without [^.]*?|your opponents control )?can't attack\b/, /no more than (one|two) creatures? can attack/] },
     { id: 'cheat',     label: '踏み倒し',     re: [/put (a|an|up to \w+|any number of|that|those|target)\b[^.]*?\b(creature|artifact|enchantment|permanent|planeswalker|nonland)\b[^.]*?\bcards?\b[^.]*?onto the battlefield/,
@@ -169,7 +169,7 @@
         if (effects.includes('token') && /\b(treasure|clue|food|blood|map|powerstone)\b tokens?/.test(line) &&
             !/creature tokens?|\d+\/\d+/.test(line)) effects.splice(effects.indexOf('token'), 1);
         // 全体除去だけの能力は単体除去から外す
-        if (effects.includes('wipe') && effects.includes('removal') && !/\b(target|that)\b/.test(line)) effects.splice(effects.indexOf('removal'), 1);
+        if (effects.includes('wipe') && effects.includes('removal') && !/\btarget\b/.test(line)) effects.splice(effects.indexOf('removal'), 1);
         if (RECURSION_KEYWORDS.test(line) && !effects.includes('recursion')) effects.push('recursion');
         const tokens = tokensOf(line);
         if (effects.length || tokens.length) abilities.push({ text: line, triggers, effects, tokens, isInstant: /\bInstant\b/.test(type) });
@@ -221,7 +221,11 @@
       if (/nonbasic lands|tap for more than one mana|produce \{c\}/.test(line)) t.push('mana');
       if (/can't search/.test(line)) t.push('library');
       if (/can't attack|can attack/.test(line)) t.push('attack');
-      if (/don't untap|doesn't untap|enter (the battlefield )?tapped/.test(line)) t.push('untap');
+      // 「タップ状態で出る」「アンタップしない」：土地ならマナ、クリーチャーなら戦闘への妨害
+      if (/don't untap|doesn't untap|can't untap more than|enter (the battlefield )?tapped/.test(line)) {
+        if (/\blands?\b/.test(line)) t.push('mana');
+        if (/\bcreatures?\b|\bpermanents?\b/.test(line)) t.push('untap');
+      }
       if (/can't (gain life|draw)/.test(line)) t.push('other');
       d.types = t.length ? t : ['other'];
       d.lock = lockScope(line);
@@ -280,7 +284,8 @@
     const np = line.match(new RegExp(`\\b(target|each|all|another target|that|up to (?:one|two|three|x)(?: other)? target|sacrifices? (?:a|an|two|all))\\b((?: (?!(?:you|an opponent|your opponents|their|its)\\b)[a-z'-]+,?){0,4}? ${TYPE_NOUN}(?:(?:,| or| and|, or|, and) (?:non[a-z]+ )?${TYPE_NOUN})*)`));
     const nouns = np ? np[2] : line;
     if (/any target/.test(line)) d.types = ['creature', 'planeswalker', 'battle', 'player'];
-    else if (/nonland permanent|colored permanent|that's one or more colors/.test(nouns + ' ' + (np ? line.slice(line.indexOf(np[0]), line.indexOf(np[0]) + np[0].length + 30) : ''))) d.types = ALL_PERMANENTS.filter(t => t !== 'land');
+    // 土地を含まない指定（nonland、色の指定、「if it's blue」など）
+    else if (/\bnonland\b|\b(colored|multicolored|white|blue|black|red|green) permanents?|(that's|that are) one or more colors|if it's (white|blue|black|red|green)/.test(nouns + ' ' + (np ? line.slice(line.indexOf(np[0]), line.indexOf(np[0]) + np[0].length + 60) : ''))) d.types = ALL_PERMANENTS.filter(t => t !== 'land');
     else if (/\bpermanents?\b/.test(nouns)) d.types = ALL_PERMANENTS.slice();
     else d.types = TYPE_WORDS.filter(([, re]) => re.test(nouns)).map(([t]) => t);
     if (/target player or planeswalker/.test(line) && !d.types.includes('planeswalker')) d.types.push('planeswalker');

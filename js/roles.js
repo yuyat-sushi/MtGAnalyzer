@@ -161,7 +161,8 @@
           const ty = d.types;
           if (ty.some(y => /ability/.test(y))) set.add('ability');
           if (ty.some(y => ['spell', 'tax', 'library', 'other'].includes(y))) set.add('spell');
-          if (ty.some(y => ['mana', 'untap'].includes(y))) set.add('manalock');
+          if (ty.includes('mana')) set.add('manalock');
+          if (ty.includes('untap')) set.add('combat');   // クリーチャーがタップ状態で出る・アンタップしない
           if (ty.includes('graveyard')) set.add('gyhate');
           if (ty.includes('attack')) set.add('combat');
         }
