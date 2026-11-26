@@ -33,7 +33,7 @@
   }
  ],
  "format": "Standard",
- "generatedAt": "2026-11-26T08:46:01.493Z",
+ "generatedAt": "2026-11-26T08:48:02.611Z",
  "decks": 2462,
  "otherOnly": [
   {
@@ -116,6 +116,19 @@
   }
  ],
  "manyRoles": [
+  {
+   "name": "Burst Lightning",
+   "decks": 410,
+   "roles": [
+    "removal",
+    "spell",
+    "reach"
+   ],
+   "tags": [
+    "drain@spell",
+    "removal@spell"
+   ]
+  },
   {
    "name": "The Theorist, Jace Beleren",
    "decks": 401,
@@ -365,6 +378,7 @@
    "decks": 141,
    "roles": [
     "removal",
+    "spell",
     "draw",
     "reach",
     "tokens"
@@ -422,13 +436,11 @@
    "name": "Daydream",
    "decks": 123,
    "roles": [
-    "removal",
     "recursion",
     "enhance",
     "protection"
    ],
    "tags": [
-    "removal@spell",
     "pump@spell",
     "protection@spell",
     "recursion@spell"
@@ -438,7 +450,7 @@
    "name": "Uldaros Theorix",
    "decks": 115,
    "roles": [
-    "removal",
+    "spell",
     "cheat",
     "recursion",
     "finisher",
@@ -448,20 +460,6 @@
     "removal@etb",
     "recursion@etb",
     "cheat@etb"
-   ]
-  },
-  {
-   "name": "The Mind Stone",
-   "decks": 113,
-   "roles": [
-    "removal",
-    "ramp",
-    "protection"
-   ],
-   "tags": [
-    "mana@activated",
-    "removal@static",
-    "protection@static"
    ]
   },
   {
@@ -481,6 +479,7 @@
    "decks": 105,
    "roles": [
     "removal",
+    "spell",
     "draw",
     "reach"
    ],
@@ -587,6 +586,7 @@
     "decks": 410,
     "roles": [
      "removal",
+     "spell",
      "reach"
     ]
    },
@@ -1287,6 +1287,13 @@
     ]
    },
    {
+    "name": "Airbender Ascension",
+    "decks": 4,
+    "roles": [
+     "protection"
+    ]
+   },
+   {
     "name": "Violent Urge",
     "decks": 4,
     "roles": [
@@ -1302,13 +1309,6 @@
    },
    {
     "name": "Wizard's Staff",
-    "decks": 2,
-    "roles": [
-     "enhance"
-    ]
-   },
-   {
-    "name": "Repulsive Mutation",
     "decks": 2,
     "roles": [
      "enhance"
@@ -2093,6 +2093,7 @@
    "decks": 45,
    "roles": [
     "removal",
+    "spell",
     "finisher",
     "engine",
     "reach",
@@ -2179,7 +2180,7 @@
    "name": "Uldaros Theorix",
    "decks": 115,
    "roles": [
-    "removal",
+    "spell",
     "cheat",
     "recursion",
     "finisher",
@@ -2244,6 +2245,7 @@
    "decks": 45,
    "roles": [
     "removal",
+    "spell",
     "finisher",
     "engine",
     "reach",

@@ -80,7 +80,7 @@
   }
  ],
  "format": "Pioneer",
- "generatedAt": "2026-11-26T08:46:01.493Z",
+ "generatedAt": "2026-11-26T08:48:02.611Z",
  "decks": 1178,
  "otherOnly": [
   {
@@ -163,6 +163,19 @@
     "token@etb",
     "recursion@once_trigger",
     "token@cast_trigger"
+   ]
+  },
+  {
+   "name": "Burst Lightning",
+   "decks": 164,
+   "roles": [
+    "removal",
+    "spell",
+    "reach"
+   ],
+   "tags": [
+    "drain@spell",
+    "removal@spell"
    ]
   },
   {
@@ -558,23 +571,6 @@
     "mana@other_trigger",
     "drain@other_trigger"
    ]
-  },
-  {
-   "name": "Prismari Command",
-   "decks": 39,
-   "roles": [
-    "removal",
-    "draw",
-    "ramp",
-    "reach"
-   ],
-   "tags": [
-    "drain@spell",
-    "removal@spell",
-    "draw@spell",
-    "mana@spell",
-    "removal@spell"
-   ]
   }
  ],
  "byCategory": {
@@ -590,8 +586,7 @@
     "name": "Fatal Push",
     "decks": 305,
     "roles": [
-     "removal",
-     "manalock"
+     "removal"
     ]
    },
    {
@@ -628,6 +623,7 @@
     "decks": 164,
     "roles": [
      "removal",
+     "spell",
      "reach"
     ]
    },
@@ -1298,6 +1294,13 @@
     ]
    },
    {
+    "name": "Airbender Ascension",
+    "decks": 3,
+    "roles": [
+     "protection"
+    ]
+   },
+   {
     "name": "Tail Swipe",
     "decks": 3,
     "roles": [
@@ -1343,13 +1346,6 @@
    {
     "name": "Gather Courage",
     "decks": 2,
-    "roles": [
-     "enhance"
-    ]
-   },
-   {
-    "name": "Innkeeper's Talent",
-    "decks": 1,
     "roles": [
      "enhance"
     ]
@@ -2038,6 +2034,7 @@
    "decks": 35,
    "roles": [
     "removal",
+    "spell",
     "finisher",
     "engine",
     "reach",
@@ -2266,6 +2263,7 @@
    "decks": 35,
    "roles": [
     "removal",
+    "spell",
     "finisher",
     "engine",
     "reach",

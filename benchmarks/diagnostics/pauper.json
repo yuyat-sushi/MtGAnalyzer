@@ -31,7 +31,7 @@
   }
  ],
  "format": "Pauper",
- "generatedAt": "2026-11-26T08:46:01.493Z",
+ "generatedAt": "2026-11-26T08:48:02.611Z",
  "decks": 2757,
  "otherOnly": [
   {
@@ -326,20 +326,6 @@
    ]
   },
   {
-   "name": "Rancid Earth",
-   "decks": 14,
-   "roles": [
-    "removal",
-    "wipe",
-    "manalock"
-   ],
-   "tags": [
-    "removal@spell",
-    "removal@spell",
-    "wipe@spell"
-   ]
-  },
-  {
    "name": "Oroku Saki, Shredder Rising",
    "decks": 12,
    "roles": [
@@ -395,14 +381,12 @@
    "name": "Pegasus Guardian // Rescue the Foal",
    "decks": 5,
    "roles": [
-    "removal",
     "engine",
     "beater",
     "protection"
    ],
    "tags": [
     "token@each_turn",
-    "removal@spell",
     "protection@spell"
    ]
   },
@@ -458,20 +442,6 @@
    ]
   },
   {
-   "name": "Searing Blaze",
-   "decks": 3,
-   "roles": [
-    "removal",
-    "manalock",
-    "reach"
-   ],
-   "tags": [
-    "drain@spell",
-    "removal@spell",
-    "removal@spell"
-   ]
-  },
-  {
    "name": "Firebolt",
    "decks": 2,
    "roles": [
@@ -522,6 +492,33 @@
    "tags": [
     "pump@static",
     "recursion@activated"
+   ]
+  },
+  {
+   "name": "Needle Drop",
+   "decks": 1,
+   "roles": [
+    "removal",
+    "draw",
+    "reach"
+   ],
+   "tags": [
+    "drain@spell",
+    "removal@spell",
+    "draw@spell"
+   ]
+  },
+  {
+   "name": "Drownyard Lurker",
+   "decks": 1,
+   "roles": [
+    "finisher",
+    "engine",
+    "beater"
+   ],
+   "tags": [
+    "token@cast_trigger",
+    "mana@cast_trigger"
    ]
   }
  ],
@@ -1133,6 +1130,13 @@
     ]
    },
    {
+    "name": "Ephemerate",
+    "decks": 115,
+    "roles": [
+     "protection"
+    ]
+   },
+   {
     "name": "Ghostly Flicker",
     "decks": 103,
     "roles": [
@@ -1264,13 +1268,6 @@
     "decks": 4,
     "roles": [
      "protection"
-    ]
-   },
-   {
-    "name": "Mutagenic Growth",
-    "decks": 4,
-    "roles": [
-     "enhance"
     ]
    }
   ],
@@ -1733,14 +1730,12 @@
    "name": "Pegasus Guardian // Rescue the Foal",
    "decks": 5,
    "roles": [
-    "removal",
     "engine",
     "beater",
     "protection"
    ],
    "tags": [
     "token@each_turn",
-    "removal@spell",
     "protection@spell"
    ]
   },

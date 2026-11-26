@@ -118,7 +118,7 @@
   }
  ],
  "format": "Legacy",
- "generatedAt": "2026-11-26T08:46:01.493Z",
+ "generatedAt": "2026-11-26T08:48:02.611Z",
  "decks": 2762,
  "otherOnly": [
   {
@@ -416,7 +416,6 @@
    "decks": 190,
    "roles": [
     "removal",
-    "manalock",
     "cheatloop",
     "draw",
     "tutor",
@@ -471,6 +470,19 @@
     "token@spell",
     "draw@spell",
     "mana@spell"
+   ]
+  },
+  {
+   "name": "Sink into Stupor // Soporific Springs",
+   "decks": 156,
+   "roles": [
+    "removal",
+    "spell",
+    "ramp"
+   ],
+   "tags": [
+    "removal@spell",
+    "mana@activated"
    ]
   },
   {
@@ -685,18 +697,6 @@
     "removal@etb",
     "pump@static"
    ]
-  },
-  {
-   "name": "Acererak the Archlich",
-   "decks": 81,
-   "roles": [
-    "finisher",
-    "engine",
-    "beater"
-   ],
-   "tags": [
-    "token@attack"
-   ]
   }
  ],
  "byCategory": {
@@ -759,8 +759,7 @@
     "name": "Fatal Push",
     "decks": 313,
     "roles": [
-     "removal",
-     "manalock"
+     "removal"
     ]
    },
    {
@@ -847,7 +846,6 @@
     "decks": 190,
     "roles": [
      "removal",
-     "manalock",
      "cheatloop",
      "draw",
      "tutor",
@@ -885,6 +883,7 @@
     "decks": 156,
     "roles": [
      "removal",
+     "spell",
      "ramp"
     ]
    },
@@ -1370,6 +1369,13 @@
    {
     "name": "Flare of Fortitude",
     "decks": 3,
+    "roles": [
+     "protection"
+    ]
+   },
+   {
+    "name": "Ephemerate",
+    "decks": 2,
     "roles": [
      "protection"
     ]
@@ -1967,7 +1973,6 @@
    "decks": 190,
    "roles": [
     "removal",
-    "manalock",
     "cheatloop",
     "draw",
     "tutor",

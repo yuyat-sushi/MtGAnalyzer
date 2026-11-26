@@ -66,7 +66,7 @@
   }
  ],
  "format": "Vintage",
- "generatedAt": "2026-11-26T08:46:01.493Z",
+ "generatedAt": "2026-11-26T08:48:02.611Z",
  "decks": 1186,
  "otherOnly": [
   {
@@ -186,6 +186,19 @@
     "pump@loyalty",
     "untap@loyalty",
     "tutor@loyalty"
+   ]
+  },
+  {
+   "name": "Sink into Stupor // Soporific Springs",
+   "decks": 202,
+   "roles": [
+    "removal",
+    "spell",
+    "ramp"
+   ],
+   "tags": [
+    "removal@spell",
+    "mana@activated"
    ]
   },
   {
@@ -525,18 +538,6 @@
    "tags": [
     "recursion@cast_trigger"
    ]
-  },
-  {
-   "name": "Sowing Mycospawn",
-   "decks": 5,
-   "roles": [
-    "manalock",
-    "ramp",
-    "beater"
-   ],
-   "tags": [
-    "removal@cast_self"
-   ]
   }
  ],
  "byCategory": {
@@ -635,6 +636,7 @@
     "decks": 202,
     "roles": [
      "removal",
+     "spell",
      "ramp"
     ]
    },
@@ -1125,6 +1127,13 @@
     "decks": 35,
     "roles": [
      "enhance"
+    ]
+   },
+   {
+    "name": "Displacer Kitten",
+    "decks": 4,
+    "roles": [
+     "protection"
     ]
    },
    {
@@ -1843,19 +1852,6 @@
    ]
   },
   {
-   "name": "Displacer Kitten",
-   "decks": 4,
-   "roles": [
-    "removal",
-    "engine",
-    "protection"
-   ],
-   "tags": [
-    "removal@cast_trigger",
-    "protection@cast_trigger"
-   ]
-  },
-  {
    "name": "Minsc & Boo, Timeless Heroes",
    "decks": 4,
    "roles": [
@@ -1908,6 +1904,17 @@
    ],
    "tags": [
     "recursion@each_turn"
+   ]
+  },
+  {
+   "name": "Undercity Informer",
+   "decks": 3,
+   "roles": [
+    "discard",
+    "engine"
+   ],
+   "tags": [
+    "discard@activated"
    ]
   }
  ],

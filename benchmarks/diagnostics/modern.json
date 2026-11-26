@@ -84,7 +84,7 @@
   }
  ],
  "format": "Modern",
- "generatedAt": "2026-11-26T08:46:01.493Z",
+ "generatedAt": "2026-11-26T08:48:02.611Z",
  "decks": 4966,
  "otherOnly": [
   {
@@ -286,6 +286,19 @@
  ],
  "manyRoles": [
   {
+   "name": "Sink into Stupor // Soporific Springs",
+   "decks": 797,
+   "roles": [
+    "removal",
+    "spell",
+    "ramp"
+   ],
+   "tags": [
+    "removal@spell",
+    "mana@activated"
+   ]
+  },
+  {
    "name": "Kozilek's Command",
    "decks": 773,
    "roles": [
@@ -333,7 +346,6 @@
    "decks": 685,
    "roles": [
     "removal",
-    "manalock",
     "finisher",
     "beater"
    ],
@@ -357,7 +369,7 @@
    "name": "Emrakul, the Promised End",
    "decks": 512,
    "roles": [
-    "removal",
+    "spell",
     "finisher",
     "beater"
    ],
@@ -428,7 +440,6 @@
    "decks": 310,
    "roles": [
     "removal",
-    "manalock",
     "cheatloop",
     "draw",
     "tutor",
@@ -692,21 +703,6 @@
     "draw@attack",
     "removal@attack"
    ]
-  },
-  {
-   "name": "Fable of the Mirror-Breaker // Reflection of Kiki-Jiki",
-   "decks": 134,
-   "roles": [
-    "draw",
-    "engine",
-    "tokens"
-   ],
-   "tags": [
-    "token@chapter",
-    "mana@chapter",
-    "draw@chapter",
-    "token@activated"
-   ]
   }
  ],
  "byCategory": {
@@ -730,8 +726,7 @@
     "name": "Fatal Push",
     "decks": 902,
     "roles": [
-     "removal",
-     "manalock"
+     "removal"
     ]
    },
    {
@@ -754,6 +749,7 @@
     "decks": 797,
     "roles": [
      "removal",
+     "spell",
      "ramp"
     ]
    },
@@ -781,7 +777,6 @@
     "decks": 685,
     "roles": [
      "removal",
-     "manalock",
      "finisher",
      "beater"
     ]
@@ -842,7 +837,7 @@
     "name": "Emrakul, the Promised End",
     "decks": 512,
     "roles": [
-     "removal",
+     "spell",
      "finisher",
      "beater"
     ]
@@ -859,14 +854,6 @@
     "decks": 490,
     "roles": [
      "removal"
-    ]
-   },
-   {
-    "name": "Ephemerate",
-    "decks": 482,
-    "roles": [
-     "removal",
-     "protection"
     ]
    },
    {
@@ -906,6 +893,16 @@
      "removal",
      "engine",
      "reach"
+    ]
+   },
+   {
+    "name": "Ajani, Nacatl Pariah // Ajani, Nacatl Avenger",
+    "decks": 403,
+    "roles": [
+     "removal",
+     "engine",
+     "reach",
+     "tokens"
     ]
    }
   ],
@@ -1293,6 +1290,13 @@
   ],
   "support": [
    {
+    "name": "Ephemerate",
+    "decks": 482,
+    "roles": [
+     "protection"
+    ]
+   },
+   {
     "name": "Blade of the Bloodchief",
     "decks": 400,
     "roles": [
@@ -1360,6 +1364,13 @@
     "decks": 25,
     "roles": [
      "enhance"
+    ]
+   },
+   {
+    "name": "Flickering Hound",
+    "decks": 19,
+    "roles": [
+     "protection"
     ]
    },
    {
@@ -1433,6 +1444,13 @@
     ]
    },
    {
+    "name": "Felidar Guardian",
+    "decks": 7,
+    "roles": [
+     "protection"
+    ]
+   },
+   {
     "name": "Temur Battle Rage",
     "decks": 6,
     "roles": [
@@ -1444,27 +1462,6 @@
     "decks": 5,
     "roles": [
      "enhance"
-    ]
-   },
-   {
-    "name": "Battlefield Improvisation",
-    "decks": 5,
-    "roles": [
-     "enhance"
-    ]
-   },
-   {
-    "name": "Kami of False Hope",
-    "decks": 4,
-    "roles": [
-     "protection"
-    ]
-   },
-   {
-    "name": "Cecil, Dark Knight // Cecil, Redeemed Paladin",
-    "decks": 3,
-    "roles": [
-     "protection"
     ]
    }
   ],
@@ -1960,7 +1957,6 @@
    "decks": 310,
    "roles": [
     "removal",
-    "manalock",
     "cheatloop",
     "draw",
     "tutor",
@@ -2406,7 +2402,6 @@
    "decks": 685,
    "roles": [
     "removal",
-    "manalock",
     "finisher",
     "beater"
    ]
@@ -2415,7 +2410,7 @@
    "name": "Emrakul, the Promised End",
    "decks": 512,
    "roles": [
-    "removal",
+    "spell",
     "finisher",
     "beater"
    ]
