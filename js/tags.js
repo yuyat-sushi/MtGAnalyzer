@@ -47,7 +47,7 @@
                                                  /(play lands and )?cast spells from the top of your library/, /you may (play|cast) [^.]*the top card of your library/] },
     { id: 'drain',     label: 'ダメージ/ドレイン', re: [/deals? [^.]*?damage to (each opponent|target player|target opponent|that player|each player|any target|target player or planeswalker)/,
                                                  /(each opponent|target opponent|target player|that player) loses (\d+|x) life/, /deals damage equal to [^.]*? to (target player|each opponent|any target|target opponent)/, /\beach opponent loses\b/] },
-    { id: 'removal',   label: '除去',         re: [/(destroy|exile) (target|another target|up to (one|two|three) (other )?target|that) (?!card)(?![^.]*\bcards? (from|in) [^.]*graveyard)[^.]*?(creature|artifact|enchantment|planeswalker|permanent|battle|land)/,
+    { id: 'removal',   label: '除去',         re: [/(destroy|exile) (target|another target|up to (one|two|three) (other )?target|that) (?!card)(?![^.]*\bcards? (from|in) [^.]*graveyard)(?![^.]*\byou (control|own)\b)[^.]*?(creature|artifact|enchantment|planeswalker|permanent|battle|land)/,
                                                  /deals? [^.]*?damage to (any target|(up to (one|two) )?(another )?target [^.]*?(creature|planeswalker|permanent|battle)|that (creature|permanent|planeswalker))/,
                                                  /target [^.]*?creature[^.]*? gets -(\d+|x)\/-(\d+|x)/, /\bfights? (target|another target|up to one target)/,
                                                  /target creature you control deals damage equal to its power to (another )?target/, /deals damage equal to [^.]*? to (any target|target creature|target planeswalker|up to one target)/,
@@ -262,7 +262,7 @@
       /\bdestroy\b/.test(line) ? 'destroy' :
       /\bsacrifices?\b/.test(line) && /(player|opponent)s? sacrifices?/.test(line) ? 'sacrifice' :
       /gain control of/.test(line) ? 'steal' :
-      /return [^.]*?to (its|their) owners?'? hands?/.test(line) ? 'bounce' :
+      /return [^.]*?to (its|their) owner'?s'? hands?/.test(line) ? 'bounce' :
       /on (the )?(top|bottom) of (its|their) owners?'? librar/.test(line) ? 'library' :
       /gets? -(\d+|x)\/-(\d+|x)|get -(\d+|x)\/-(\d+|x)/.test(line) ? 'minus' :
       /\bdamage\b/.test(line) ? 'damage' :
@@ -274,13 +274,17 @@
     if (effect === 'wipe') d.scope = 'all';
     else if (/up to (two|three|x|four)|(two|three|any number of) target|divided/.test(line)) d.scope = 'multi';
 
-    // 対象の種類（影響範囲）
-    const clause = (line.match(/(target|each|all|up to [\w ]+?|another target|sacrifices? (a|an|two)|that|other)\b[^.]*?(creature|artifact|enchantment|planeswalker|permanent|battle|land|spell)s?\b[^.]*/) || [line])[0];
+    // 対象の種類（影響範囲）：最初の「target / each / all ...」のすぐ後ろの名詞だけを見る
+    //   （後ろの文の "a permanent you controlled left the battlefield" などを巻き込まないため）
+    const TYPE_NOUN = '(?:creature|artifact|enchantment|planeswalker|permanent|battle|land|spell)s?';
+    const np = line.match(new RegExp(`\\b(target|each|all|another target|that|up to (?:one|two|three|x)(?: other)? target|sacrifices? (?:a|an|two|all))\\b((?: (?!(?:you|an opponent|your opponents|their|its)\\b)[a-z'-]+,?){0,4}? ${TYPE_NOUN}(?:(?:,| or| and|, or|, and) (?:non[a-z]+ )?${TYPE_NOUN})*)`));
+    const nouns = np ? np[2] : line;
     if (/any target/.test(line)) d.types = ['creature', 'planeswalker', 'battle', 'player'];
-    else if (/nonland permanent|colored permanent/.test(clause)) d.types = ALL_PERMANENTS.filter(t => t !== 'land');
-    else if (/\bpermanents?\b/.test(clause) && !/\bcreature\b|\bartifact\b|\benchantment\b/.test(clause.split(/permanent/)[0].slice(-25))) d.types = ALL_PERMANENTS.slice();
-    else d.types = TYPE_WORDS.filter(([, re]) => re.test(clause)).map(([t]) => t);
+    else if (/nonland permanent|colored permanent|that's one or more colors/.test(nouns + ' ' + (np ? line.slice(line.indexOf(np[0]), line.indexOf(np[0]) + np[0].length + 30) : ''))) d.types = ALL_PERMANENTS.filter(t => t !== 'land');
+    else if (/\bpermanents?\b/.test(nouns)) d.types = ALL_PERMANENTS.slice();
+    else d.types = TYPE_WORDS.filter(([, re]) => re.test(nouns)).map(([t]) => t);
     if (/target player or planeswalker/.test(line) && !d.types.includes('planeswalker')) d.types.push('planeswalker');
+    if (/\bspells?\b/.test(nouns) && !d.types.includes('spell')) d.types.push('spell');   // Divide by Zero のように呪文も戻せるもの
     if (!d.types.length) d.types = ['creature'];
 
     // 条件

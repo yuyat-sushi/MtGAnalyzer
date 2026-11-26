@@ -153,6 +153,7 @@
           // 土地以外を巻き込めば除去、土地を巻き込めばマナ妨害（両方なら両方。Armageddon はマナ妨害だけ）
           if (d.types.some(y => NONLAND.includes(y))) set.add(x.effect === 'wipe' ? 'wipe' : 'removal');
           if (d.types.includes('land')) set.add('manalock');
+          if (d.types.includes('spell')) set.add('spell');
         } else if (x.effect === 'counter') {
           if (d.types.some(y => /spell/.test(y))) set.add('spell');
           if (d.types.some(y => /ability/.test(y))) set.add('ability');
