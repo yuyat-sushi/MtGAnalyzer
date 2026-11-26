@@ -1,6 +1,6 @@
 {
  "format": "Pauper",
- "generatedAt": "2026-11-26T06:53:46.480Z",
+ "generatedAt": "2026-11-26T06:55:56.138Z",
  "decks": 2757,
  "otherOnly": [
   {
@@ -1241,26 +1241,10 @@
   ],
   "combo": [
    {
-    "name": "Crop Rotation",
-    "decks": 110,
-    "roles": [
-     "cheat",
-     "ramp"
-    ]
-   },
-   {
     "name": "Weather the Storm",
     "decks": 83,
     "roles": [
      "copy"
-    ]
-   },
-   {
-    "name": "Mwonvuli Acid-Moss",
-    "decks": 20,
-    "roles": [
-     "cheat",
-     "ramp"
     ]
    },
    {
@@ -2168,6 +2152,14 @@
    "typeLine": "Creature — Human Wizard // Creature — Human Insect"
   },
   {
+   "name": "Crop Rotation",
+   "decks": 110,
+   "roles": [
+    "ramp"
+   ],
+   "typeLine": "Instant"
+  },
+  {
    "name": "Breath Weapon",
    "decks": 77,
    "roles": [
@@ -2333,14 +2325,6 @@
     "beater"
    ],
    "typeLine": "Creature — Rhino Soldier"
-  },
-  {
-   "name": "Guardian of the Guildpact",
-   "decks": 15,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Spirit"
   }
  ],
  "unknownCards": [

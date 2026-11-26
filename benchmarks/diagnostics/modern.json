@@ -1,6 +1,6 @@
 {
  "format": "Modern",
- "generatedAt": "2026-11-26T06:53:46.480Z",
+ "generatedAt": "2026-11-26T06:55:56.138Z",
  "decks": 4966,
  "otherOnly": [
   {
@@ -891,6 +891,13 @@
     ]
    },
    {
+    "name": "Green Sun's Zenith",
+    "decks": 458,
+    "roles": [
+     "tutor"
+    ]
+   },
+   {
     "name": "Fear of Missing Out",
     "decks": 443,
     "roles": [
@@ -1010,16 +1017,6 @@
     "roles": [
      "draw",
      "finisher",
-     "beater"
-    ]
-   },
-   {
-    "name": "Griselbrand",
-    "decks": 213,
-    "roles": [
-     "draw",
-     "finisher",
-     "engine",
      "beater"
     ]
    }
@@ -1392,14 +1389,6 @@
   ],
   "combo": [
    {
-    "name": "Green Sun's Zenith",
-    "decks": 458,
-    "roles": [
-     "cheat",
-     "tutor"
-    ]
-   },
-   {
     "name": "Emperor of Bones",
     "decks": 305,
     "roles": [
@@ -1450,22 +1439,6 @@
     ]
    },
    {
-    "name": "Nature's Rhythm",
-    "decks": 139,
-    "roles": [
-     "cheat",
-     "tutor"
-    ]
-   },
-   {
-    "name": "Fiend Artisan",
-    "decks": 135,
-    "roles": [
-     "cheatloop",
-     "tutor"
-    ]
-   },
-   {
     "name": "Birthing Ritual",
     "decks": 113,
     "roles": [
@@ -1499,34 +1472,10 @@
     ]
    },
    {
-    "name": "Chord of Calling",
-    "decks": 73,
-    "roles": [
-     "cheat",
-     "tutor"
-    ]
-   },
-   {
-    "name": "Whir of Invention",
-    "decks": 60,
-    "roles": [
-     "cheat",
-     "tutor"
-    ]
-   },
-   {
     "name": "Indomitable Creativity",
     "decks": 49,
     "roles": [
      "cheat"
-    ]
-   },
-   {
-    "name": "Dauthi Voidwalker",
-    "decks": 40,
-    "roles": [
-     "cheat",
-     "beater"
     ]
    },
    {
@@ -1566,22 +1515,6 @@
     ]
    },
    {
-    "name": "Sakura-Tribe Elder",
-    "decks": 25,
-    "roles": [
-     "cheat",
-     "ramp"
-    ]
-   },
-   {
-    "name": "Halo Forager",
-    "decks": 21,
-    "roles": [
-     "cheat",
-     "beater"
-    ]
-   },
-   {
     "name": "Fight Rigging",
     "decks": 16,
     "roles": [
@@ -1594,6 +1527,70 @@
     "decks": 14,
     "roles": [
      "cheat"
+    ]
+   },
+   {
+    "name": "Aether Vial",
+    "decks": 10,
+    "roles": [
+     "cheatloop"
+    ]
+   },
+   {
+    "name": "Improvisation Capstone",
+    "decks": 9,
+    "roles": [
+     "cheat"
+    ]
+   },
+   {
+    "name": "Urza, Lord High Artificer",
+    "decks": 9,
+    "roles": [
+     "cheatloop",
+     "ramp",
+     "tokens"
+    ]
+   },
+   {
+    "name": "Stormscale Scion",
+    "decks": 8,
+    "roles": [
+     "copy",
+     "finisher",
+     "beater"
+    ]
+   },
+   {
+    "name": "Turntimber Symbiosis // Turntimber, Serpentine Wood",
+    "decks": 5,
+    "roles": [
+     "cheat",
+     "ramp",
+     "enhance"
+    ]
+   },
+   {
+    "name": "Temporal Mastery",
+    "decks": 4,
+    "roles": [
+     "extraturn"
+    ]
+   },
+   {
+    "name": "Aang, at the Crossroads // Aang, Destined Savior",
+    "decks": 2,
+    "roles": [
+     "cheat",
+     "beater"
+    ]
+   },
+   {
+    "name": "Mind into Matter",
+    "decks": 2,
+    "roles": [
+     "cheat",
+     "draw"
     ]
    }
   ],
@@ -2790,15 +2787,6 @@
    "typeLine": "Creature — Goblin Scout"
   },
   {
-   "name": "Valgavoth, Terror Eater",
-   "decks": 28,
-   "roles": [
-    "finisher",
-    "beater"
-   ],
-   "typeLine": "Legendary Creature — Elder Demon"
-  },
-  {
    "name": "Hexhaven Invigorator",
    "decks": 27,
    "roles": [
@@ -2807,6 +2795,14 @@
     "beater"
    ],
    "typeLine": "Creature — Chimera Horror"
+  },
+  {
+   "name": "Sakura-Tribe Elder",
+   "decks": 25,
+   "roles": [
+    "ramp"
+   ],
+   "typeLine": "Creature — Snake Shaman"
   },
   {
    "name": "Viscera Seer",

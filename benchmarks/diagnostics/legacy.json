@@ -1,6 +1,6 @@
 {
  "format": "Legacy",
- "generatedAt": "2026-11-26T06:53:46.480Z",
+ "generatedAt": "2026-11-26T06:55:56.138Z",
  "decks": 2762,
  "otherOnly": [
   {
@@ -49,12 +49,6 @@
    "name": "Bonus Round",
    "decks": 4,
    "typeLine": "Sorcery",
-   "tags": []
-  },
-  {
-   "name": "Leyline of the Void",
-   "decks": 4,
-   "typeLine": "Enchantment",
    "tags": []
   },
   {
@@ -928,10 +922,24 @@
     ]
    },
    {
+    "name": "Once Upon a Time",
+    "decks": 233,
+    "roles": [
+     "draw"
+    ]
+   },
+   {
     "name": "Life from the Loam",
     "decks": 182,
     "roles": [
      "recursion"
+    ]
+   },
+   {
+    "name": "Green Sun's Zenith",
+    "decks": 178,
+    "roles": [
+     "tutor"
     ]
    },
    {
@@ -996,21 +1004,6 @@
      "recursion",
      "ramp",
      "engine"
-    ]
-   },
-   {
-    "name": "Sand Scout",
-    "decks": 128,
-    "roles": [
-     "tutor",
-     "engine"
-    ]
-   },
-   {
-    "name": "Personal Tutor",
-    "decks": 118,
-    "roles": [
-     "tutor"
     ]
    }
   ],
@@ -1373,14 +1366,6 @@
   ],
   "combo": [
    {
-    "name": "Crop Rotation",
-    "decks": 263,
-    "roles": [
-     "cheat",
-     "ramp"
-    ]
-   },
-   {
     "name": "Show and Tell",
     "decks": 238,
     "roles": [
@@ -1388,26 +1373,10 @@
     ]
    },
    {
-    "name": "Once Upon a Time",
-    "decks": 233,
-    "roles": [
-     "cheat",
-     "draw"
-    ]
-   },
-   {
     "name": "Omniscience",
     "decks": 200,
     "roles": [
      "cheatloop"
-    ]
-   },
-   {
-    "name": "Green Sun's Zenith",
-    "decks": 178,
-    "roles": [
-     "cheat",
-     "tutor"
     ]
    },
    {
@@ -1514,14 +1483,6 @@
     ]
    },
    {
-    "name": "Dauthi Voidwalker",
-    "decks": 32,
-    "roles": [
-     "cheat",
-     "beater"
-    ]
-   },
-   {
     "name": "Paradox Engine",
     "decks": 30,
     "roles": [
@@ -1571,6 +1532,36 @@
      "ramp",
      "finisher",
      "beater"
+    ]
+   },
+   {
+    "name": "Birthing Ritual",
+    "decks": 7,
+    "roles": [
+     "cheatloop"
+    ]
+   },
+   {
+    "name": "Creative Technique",
+    "decks": 7,
+    "roles": [
+     "cheat"
+    ]
+   },
+   {
+    "name": "Etali, Primal Conqueror // Etali, Primal Sickness",
+    "decks": 7,
+    "roles": [
+     "cheat",
+     "finisher",
+     "beater"
+    ]
+   },
+   {
+    "name": "Aphetto Alchemist",
+    "decks": 5,
+    "roles": [
+     "untap"
     ]
    }
   ],
@@ -1626,13 +1617,6 @@
    },
    {
     "name": "Bonus Round",
-    "decks": 4,
-    "roles": [
-     "other"
-    ]
-   },
-   {
-    "name": "Leyline of the Void",
     "decks": 4,
     "roles": [
      "other"
@@ -1745,6 +1729,13 @@
    },
    {
     "name": "Copy Artifact",
+    "decks": 1,
+    "roles": [
+     "other"
+    ]
+   },
+   {
+    "name": "Transwarp Hub",
     "decks": 1,
     "roles": [
      "other"
@@ -2515,6 +2506,14 @@
    "typeLine": "Creature — Elemental"
   },
   {
+   "name": "Crop Rotation",
+   "decks": 263,
+   "roles": [
+    "ramp"
+   ],
+   "typeLine": "Instant"
+  },
+  {
    "name": "Thassa's Oracle",
    "decks": 204,
    "roles": [
@@ -2822,14 +2821,6 @@
     "beater"
    ],
    "typeLine": "Creature — Human Scout"
-  },
-  {
-   "name": "Curie, Emergent Intelligence",
-   "decks": 8,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Legendary Artifact Creature — Robot"
   }
  ],
  "unknownCards": [

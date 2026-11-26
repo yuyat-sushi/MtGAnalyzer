@@ -1,6 +1,6 @@
 {
  "format": "Standard",
- "generatedAt": "2026-11-26T06:53:46.480Z",
+ "generatedAt": "2026-11-26T06:55:56.138Z",
  "decks": 2462,
  "otherOnly": [
   {
@@ -1298,14 +1298,6 @@
     ]
    },
    {
-    "name": "Repurposing Bay",
-    "decks": 101,
-    "roles": [
-     "cheatloop",
-     "tutor"
-    ]
-   },
-   {
     "name": "Ral, Crackling Wit",
     "decks": 51,
     "roles": [
@@ -1327,24 +1319,6 @@
     "decks": 25,
     "roles": [
      "cheatloop"
-    ]
-   },
-   {
-    "name": "Simulacrum Shaper",
-    "decks": 20,
-    "roles": [
-     "cheat",
-     "draw",
-     "ramp"
-    ]
-   },
-   {
-    "name": "Glimpse the Core",
-    "decks": 19,
-    "roles": [
-     "cheat",
-     "recursion",
-     "ramp"
     ]
    },
    {
@@ -1491,6 +1465,31 @@
     "decks": 1,
     "roles": [
      "copy"
+    ]
+   },
+   {
+    "name": "Eddie Brock // Venom, Lethal Protector",
+    "decks": 1,
+    "roles": [
+     "cheatloop",
+     "draw",
+     "recursion",
+     "engine",
+     "beater"
+    ]
+   },
+   {
+    "name": "Brazen Bluff",
+    "decks": 1,
+    "roles": [
+     "cheat"
+    ]
+   },
+   {
+    "name": "Kinscaer Sentry",
+    "decks": 1,
+    "roles": [
+     "cheatloop"
     ]
    }
   ],

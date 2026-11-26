@@ -1,6 +1,6 @@
 {
  "format": "Pioneer",
- "generatedAt": "2026-11-26T06:53:46.480Z",
+ "generatedAt": "2026-11-26T06:55:56.138Z",
  "decks": 1178,
  "otherOnly": [
   {
@@ -370,6 +370,18 @@
    ]
   },
   {
+   "name": "Valgavoth, Terror Eater",
+   "decks": 53,
+   "roles": [
+    "gyhate",
+    "finisher",
+    "beater"
+   ],
+   "tags": [
+    "gyhate@static"
+   ]
+  },
+  {
    "name": "Garruk, Curse Breaker",
    "decks": 53,
    "roles": [
@@ -490,18 +502,6 @@
     "selfmill@etb",
     "recursion@attack",
     "selfmill@attack"
-   ]
-  },
-  {
-   "name": "Gran-Gran",
-   "decks": 37,
-   "roles": [
-    "draw",
-    "ramp",
-    "engine"
-   ],
-   "tags": [
-    "draw@other_trigger"
    ]
   }
  ],
@@ -1040,14 +1040,6 @@
     ]
    },
    {
-    "name": "Valgavoth, Terror Eater",
-    "decks": 53,
-    "roles": [
-     "finisher",
-     "beater"
-    ]
-   },
-   {
     "name": "Witch's Oven",
     "decks": 47,
     "roles": [
@@ -1095,6 +1087,15 @@
     "name": "Polukranos Reborn // Polukranos, Engine of Ruin",
     "decks": 29,
     "roles": [
+     "tokens",
+     "beater"
+    ]
+   },
+   {
+    "name": "Esika's Chariot",
+    "decks": 28,
+    "roles": [
+     "engine",
      "tokens",
      "beater"
     ]
@@ -1331,22 +1332,6 @@
     ]
    },
    {
-    "name": "Spell Queller",
-    "decks": 16,
-    "roles": [
-     "cheat",
-     "beater"
-    ]
-   },
-   {
-    "name": "Nature's Rhythm",
-    "decks": 16,
-    "roles": [
-     "cheat",
-     "tutor"
-    ]
-   },
-   {
     "name": "Temporal Trespass",
     "decks": 14,
     "roles": [
@@ -1421,14 +1406,6 @@
     ]
    },
    {
-    "name": "Fiend Artisan",
-    "decks": 6,
-    "roles": [
-     "cheatloop",
-     "tutor"
-    ]
-   },
-   {
     "name": "Bramble Familiar // Fetch Quest",
     "decks": 5,
     "roles": [
@@ -1468,20 +1445,41 @@
     ]
    },
    {
-    "name": "Rona, Herald of Invasion // Rona, Tolarian Obliterator",
-    "decks": 4,
-    "roles": [
-     "cheatloop",
-     "draw",
-     "engine"
-    ]
-   },
-   {
     "name": "Vastlands Scavenger // Bind to Life",
     "decks": 3,
     "roles": [
      "cheat",
      "beater"
+    ]
+   },
+   {
+    "name": "Enigmatic Incarnation",
+    "decks": 3,
+    "roles": [
+     "cheatloop",
+     "tutor"
+    ]
+   },
+   {
+    "name": "Kayla's Reconstruction",
+    "decks": 2,
+    "roles": [
+     "cheat"
+    ]
+   },
+   {
+    "name": "Aang, at the Crossroads // Aang, Destined Savior",
+    "decks": 2,
+    "roles": [
+     "cheat",
+     "beater"
+    ]
+   },
+   {
+    "name": "United Battlefront",
+    "decks": 2,
+    "roles": [
+     "cheat"
     ]
    }
   ],
@@ -2179,6 +2177,7 @@
    "name": "Valgavoth, Terror Eater",
    "decks": 53,
    "roles": [
+    "gyhate",
     "finisher",
     "beater"
    ]
@@ -2372,15 +2371,6 @@
     "beater"
    ],
    "typeLine": "Creature — Elemental"
-  },
-  {
-   "name": "Valgavoth, Terror Eater",
-   "decks": 53,
-   "roles": [
-    "finisher",
-    "beater"
-   ],
-   "typeLine": "Legendary Creature — Elder Demon"
   },
   {
    "name": "Leyline of the Guildpact",
@@ -2627,6 +2617,14 @@
     "other"
    ],
    "typeLine": "Legendary Artifact"
+  },
+  {
+   "name": "Zoetic Glyph",
+   "decks": 3,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Enchantment — Aura"
   }
  ],
  "unknownCards": [

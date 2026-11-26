@@ -1,18 +1,12 @@
 {
  "format": "Vintage",
- "generatedAt": "2026-11-26T06:53:46.480Z",
+ "generatedAt": "2026-11-26T06:55:56.138Z",
  "decks": 1186,
  "otherOnly": [
   {
    "name": "Mystic Forge",
    "decks": 155,
    "typeLine": "Artifact",
-   "tags": []
-  },
-  {
-   "name": "Oath of Druids",
-   "decks": 57,
-   "typeLine": "Enchantment",
    "tags": []
   },
   {
@@ -249,14 +243,12 @@
    "decks": 39,
    "roles": [
     "cheatloop",
-    "cheat",
     "draw",
     "ramp",
     "engine",
     "beater"
    ],
    "tags": [
-    "cheat@etb",
     "draw@activated",
     "cheat@activated"
    ]
@@ -405,6 +397,19 @@
    ]
   },
   {
+   "name": "Dauthi Voidwalker",
+   "decks": 6,
+   "roles": [
+    "gyhate",
+    "cheat",
+    "beater"
+   ],
+   "tags": [
+    "gyhate@static",
+    "cheat@activated_once"
+   ]
+  },
+  {
    "name": "Icetill Explorer",
    "decks": 6,
    "roles": [
@@ -415,20 +420,6 @@
    "tags": [
     "recursion@static",
     "selfmill@landfall"
-   ]
-  },
-  {
-   "name": "Tezzeret the Seeker",
-   "decks": 5,
-   "roles": [
-    "cheatloop",
-    "untap",
-    "tutor"
-   ],
-   "tags": [
-    "untap@loyalty",
-    "tutor@loyalty",
-    "cheat@loyalty"
    ]
   },
   {
@@ -745,6 +736,13 @@
     ]
    },
    {
+    "name": "Tinker",
+    "decks": 234,
+    "roles": [
+     "tutor"
+    ]
+   },
+   {
     "name": "Treasure Cruise",
     "decks": 209,
     "roles": [
@@ -855,13 +853,6 @@
     "roles": [
      "draw",
      "reach"
-    ]
-   },
-   {
-    "name": "Underworld Breach",
-    "decks": 72,
-    "roles": [
-     "recursion"
     ]
    }
   ],
@@ -1151,14 +1142,6 @@
     ]
    },
    {
-    "name": "Tinker",
-    "decks": 234,
-    "roles": [
-     "cheat",
-     "tutor"
-    ]
-   },
-   {
     "name": "Brain Freeze",
     "decks": 71,
     "roles": [
@@ -1174,6 +1157,13 @@
     ]
    },
    {
+    "name": "Oath of Druids",
+    "decks": 57,
+    "roles": [
+     "cheatloop"
+    ]
+   },
+   {
     "name": "Show and Tell",
     "decks": 43,
     "roles": [
@@ -1185,7 +1175,6 @@
     "decks": 39,
     "roles": [
      "cheatloop",
-     "cheat",
      "draw",
      "ramp",
      "engine",
@@ -1232,14 +1221,6 @@
     ]
    },
    {
-    "name": "Once Upon a Time",
-    "decks": 13,
-    "roles": [
-     "cheat",
-     "draw"
-    ]
-   },
-   {
     "name": "Grave Researcher // Reanimate",
     "decks": 10,
     "roles": [
@@ -1249,52 +1230,11 @@
     ]
    },
    {
-    "name": "Dauthi Voidwalker",
-    "decks": 6,
-    "roles": [
-     "cheat",
-     "beater"
-    ]
-   },
-   {
     "name": "Tezzeret the Seeker",
     "decks": 5,
     "roles": [
-     "cheatloop",
      "untap",
      "tutor"
-    ]
-   },
-   {
-    "name": "Green Sun's Zenith",
-    "decks": 3,
-    "roles": [
-     "cheat",
-     "tutor"
-    ]
-   },
-   {
-    "name": "Crop Rotation",
-    "decks": 3,
-    "roles": [
-     "cheat",
-     "ramp"
-    ]
-   },
-   {
-    "name": "Repurposing Bay",
-    "decks": 2,
-    "roles": [
-     "cheatloop",
-     "tutor"
-    ]
-   },
-   {
-    "name": "Wood Elves",
-    "decks": 1,
-    "roles": [
-     "cheat",
-     "ramp"
     ]
    },
    {
@@ -1325,13 +1265,6 @@
    {
     "name": "Mystic Forge",
     "decks": 155,
-    "roles": [
-     "other"
-    ]
-   },
-   {
-    "name": "Oath of Druids",
-    "decks": 57,
     "roles": [
      "other"
     ]
@@ -1594,14 +1527,12 @@
    "decks": 39,
    "roles": [
     "cheatloop",
-    "cheat",
     "draw",
     "ramp",
     "engine",
     "beater"
    ],
    "tags": [
-    "cheat@etb",
     "draw@activated",
     "cheat@activated"
    ]
@@ -2171,7 +2102,7 @@
    "name": "Oath of Druids",
    "decks": 57,
    "roles": [
-    "other"
+    "cheatloop"
    ],
    "typeLine": "Enchantment"
   },
@@ -2324,6 +2255,14 @@
    "typeLine": "Creature — Faerie Ranger"
   },
   {
+   "name": "Crop Rotation",
+   "decks": 3,
+   "roles": [
+    "ramp"
+   ],
+   "typeLine": "Instant"
+  },
+  {
    "name": "Theorist's Proxy",
    "decks": 2,
    "roles": [
@@ -2411,14 +2350,6 @@
     "beater"
    ],
    "typeLine": "Creature — Insect"
-  },
-  {
-   "name": "Iron Hills Stalwart",
-   "decks": 1,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Dwarf Warrior"
   }
  ],
  "unknownCards": [
