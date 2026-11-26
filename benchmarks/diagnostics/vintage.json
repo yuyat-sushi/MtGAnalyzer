@@ -1,6 +1,6 @@
 {
  "format": "Vintage",
- "generatedAt": "2026-11-26T06:55:56.138Z",
+ "generatedAt": "2026-11-26T07:22:17.363Z",
  "decks": 1186,
  "otherOnly": [
   {
@@ -123,6 +123,20 @@
    ]
   },
   {
+   "name": "Flame of Anor",
+   "decks": 150,
+   "roles": [
+    "rm_destroy",
+    "rm_damage",
+    "draw"
+   ],
+   "tags": [
+    "draw@spell",
+    "removal@spell",
+    "removal@spell"
+   ]
+  },
+  {
    "name": "Scrawling Crawler",
    "decks": 137,
    "roles": [
@@ -140,7 +154,7 @@
    "name": "Orcish Bowmasters",
    "decks": 126,
    "roles": [
-    "removal",
+    "rm_damage",
     "draw",
     "reach"
    ],
@@ -282,7 +296,7 @@
    "name": "Wrenn and Six",
    "decks": 21,
    "roles": [
-    "removal",
+    "rm_damage",
     "recursion",
     "engine",
     "reach"
@@ -297,12 +311,14 @@
    "name": "Deathrite Shaman",
    "decks": 14,
    "roles": [
-    "removal",
+    "rm_exile",
+    "landdestroy",
     "ramp",
     "engine",
     "reach"
    ],
    "tags": [
+    "removal@activated",
     "mana@activated",
     "drain@activated",
     "lifegain@activated",
@@ -340,7 +356,7 @@
    "name": "Dack Fayden",
    "decks": 9,
    "roles": [
-    "removal",
+    "steal",
     "draw",
     "engine"
    ],
@@ -367,7 +383,7 @@
    "name": "Wistfulness",
    "decks": 9,
    "roles": [
-    "removal",
+    "rm_exile",
     "draw",
     "finisher",
     "beater"
@@ -435,6 +451,18 @@
    ]
   },
   {
+   "name": "Sowing Mycospawn",
+   "decks": 5,
+   "roles": [
+    "landdestroy",
+    "ramp",
+    "beater"
+   ],
+   "tags": [
+    "removal@cast_self"
+   ]
+  },
+  {
    "name": "Boggart Trawler // Boggart Bog",
    "decks": 5,
    "roles": [
@@ -445,32 +473,6 @@
    "tags": [
     "gyhate@etb",
     "mana@activated"
-   ]
-  },
-  {
-   "name": "Boromir, Warden of the Tower",
-   "decks": 4,
-   "roles": [
-    "counter",
-    "beater",
-    "protection"
-   ],
-   "tags": [
-    "counter@cast_trigger",
-    "protection@activated_once"
-   ]
-  },
-  {
-   "name": "Griselbrand",
-   "decks": 4,
-   "roles": [
-    "draw",
-    "finisher",
-    "engine",
-    "beater"
-   ],
-   "tags": [
-    "draw@activated"
    ]
   }
  ],
@@ -525,7 +527,7 @@
     "name": "Swords to Plowshares",
     "decks": 314,
     "roles": [
-     "removal"
+     "rm_exile"
     ]
    },
    {
@@ -569,7 +571,7 @@
     "name": "Sink into Stupor // Soporific Springs",
     "decks": 202,
     "roles": [
-     "removal",
+     "rm_destroy",
      "ramp"
     ]
    },
@@ -598,14 +600,15 @@
     "name": "Prismatic Ending",
     "decks": 162,
     "roles": [
-     "removal"
+     "rm_exile"
     ]
    },
    {
     "name": "Flame of Anor",
     "decks": 150,
     "roles": [
-     "removal",
+     "rm_destroy",
+     "rm_damage",
      "draw"
     ]
    },
@@ -613,14 +616,14 @@
     "name": "Portable Hole",
     "decks": 147,
     "roles": [
-     "removal"
+     "rm_exile"
     ]
    },
    {
     "name": "Orcish Bowmasters",
     "decks": 126,
     "roles": [
-     "removal",
+     "rm_damage",
      "draw",
      "reach"
     ]
@@ -629,7 +632,7 @@
     "name": "Pyroblast",
     "decks": 117,
     "roles": [
-     "removal",
+     "rm_destroy",
      "counter"
     ]
    },
@@ -1432,7 +1435,7 @@
    "name": "Stinkweed Imp",
    "decks": 65,
    "roles": [
-    "removal",
+    "rm_destroy",
     "engine"
    ],
    "tags": [
@@ -1565,7 +1568,7 @@
    "name": "Wrenn and Six",
    "decks": 21,
    "roles": [
-    "removal",
+    "rm_damage",
     "recursion",
     "engine",
     "reach"
@@ -1590,12 +1593,14 @@
    "name": "Deathrite Shaman",
    "decks": 14,
    "roles": [
-    "removal",
+    "rm_exile",
+    "landdestroy",
     "ramp",
     "engine",
     "reach"
    ],
    "tags": [
+    "removal@activated",
     "mana@activated",
     "drain@activated",
     "lifegain@activated",
@@ -1664,7 +1669,7 @@
    "name": "Dack Fayden",
    "decks": 9,
    "roles": [
-    "removal",
+    "steal",
     "draw",
     "engine"
    ],
@@ -1779,7 +1784,7 @@
    "name": "Displacer Kitten",
    "decks": 4,
    "roles": [
-    "removal",
+    "rm_exile",
     "engine",
     "protection"
    ],
@@ -1792,7 +1797,7 @@
    "name": "Minsc & Boo, Timeless Heroes",
    "decks": 4,
    "roles": [
-    "removal",
+    "rm_damage",
     "draw",
     "engine",
     "reach",
@@ -1809,7 +1814,7 @@
    "name": "Walking Ballista",
    "decks": 3,
    "roles": [
-    "removal",
+    "rm_damage",
     "engine",
     "reach"
    ],
@@ -1917,7 +1922,7 @@
    "name": "Wistfulness",
    "decks": 9,
    "roles": [
-    "removal",
+    "rm_exile",
     "draw",
     "finisher",
     "beater"
@@ -1999,7 +2004,7 @@
    "name": "Cityscape Leveler",
    "decks": 2,
    "roles": [
-    "removal",
+    "rm_destroy",
     "recursion",
     "finisher",
     "engine",
@@ -2182,15 +2187,6 @@
    "typeLine": "Creature — Troll"
   },
   {
-   "name": "Sowing Mycospawn",
-   "decks": 5,
-   "roles": [
-    "ramp",
-    "beater"
-   ],
-   "typeLine": "Creature — Eldrazi Fungus"
-  },
-  {
    "name": "Unable to Scream",
    "decks": 5,
    "roles": [
@@ -2350,6 +2346,14 @@
     "beater"
    ],
    "typeLine": "Creature — Insect"
+  },
+  {
+   "name": "Iron Hills Stalwart",
+   "decks": 1,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Dwarf Warrior"
   }
  ],
  "unknownCards": [

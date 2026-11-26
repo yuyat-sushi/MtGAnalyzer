@@ -1,6 +1,6 @@
 {
  "format": "Legacy",
- "generatedAt": "2026-11-26T06:55:56.138Z",
+ "generatedAt": "2026-11-26T07:22:17.363Z",
  "decks": 2762,
  "otherOnly": [
   {
@@ -13,12 +13,6 @@
    "name": "Shallow Grave",
    "decks": 70,
    "typeLine": "Instant",
-   "tags": []
-  },
-  {
-   "name": "Destroy the Evidence",
-   "decks": 13,
-   "typeLine": "Sorcery",
    "tags": []
   },
   {
@@ -55,12 +49,6 @@
    "name": "Leyline of Anticipation",
    "decks": 3,
    "typeLine": "Enchantment",
-   "tags": []
-  },
-  {
-   "name": "Sinkhole",
-   "decks": 2,
-   "typeLine": "Sorcery",
    "tags": []
   },
   {
@@ -179,7 +167,7 @@
    "name": "Orcish Bowmasters",
    "decks": 506,
    "roles": [
-    "removal",
+    "rm_damage",
     "draw",
     "reach"
    ],
@@ -221,7 +209,7 @@
    "name": "Kozilek's Command",
    "decks": 357,
    "roles": [
-    "removal",
+    "rm_exile",
     "draw",
     "ramp",
     "tokens"
@@ -279,7 +267,7 @@
    "name": "Ajani, Nacatl Pariah // Ajani, Nacatl Avenger",
    "decks": 192,
    "roles": [
-    "removal",
+    "rm_damage",
     "engine",
     "reach",
     "tokens"
@@ -296,7 +284,7 @@
    "name": "Goblin Bombardment",
    "decks": 190,
    "roles": [
-    "removal",
+    "rm_damage",
     "engine",
     "reach"
    ],
@@ -309,7 +297,7 @@
    "name": "Ugin, Eye of the Storms",
    "decks": 190,
    "roles": [
-    "removal",
+    "rm_exile",
     "cheatloop",
     "draw",
     "tutor",
@@ -407,7 +395,7 @@
    "name": "Eldrazi Confluence",
    "decks": 129,
    "roles": [
-    "removal",
+    "rm_exile",
     "ramp",
     "tokens"
    ],
@@ -474,7 +462,7 @@
    "name": "Prismari Charm",
    "decks": 106,
    "roles": [
-    "removal",
+    "rm_destroy",
     "draw",
     "selfmill"
    ],
@@ -488,7 +476,7 @@
    "name": "Archon of Cruelty",
    "decks": 106,
    "roles": [
-    "removal",
+    "edict",
     "draw",
     "finisher",
     "engine",
@@ -519,7 +507,7 @@
    "name": "Teferi, Time Raveler",
    "decks": 91,
    "roles": [
-    "removal",
+    "rm_destroy",
     "draw",
     "engine"
    ],
@@ -561,7 +549,7 @@
    "name": "Phlage, Titan of Fire's Fury",
    "decks": 76,
    "roles": [
-    "removal",
+    "rm_damage",
     "recursion",
     "finisher",
     "engine",
@@ -582,7 +570,7 @@
    "name": "Grist, the Hunger Tide",
    "decks": 70,
    "roles": [
-    "removal",
+    "rm_destroy",
     "selfmill",
     "engine",
     "reach"
@@ -635,14 +623,14 @@
     "name": "Swords to Plowshares",
     "decks": 690,
     "roles": [
-     "removal"
+     "rm_exile"
     ]
    },
    {
     "name": "Orcish Bowmasters",
     "decks": 506,
     "roles": [
-     "removal",
+     "rm_damage",
      "draw",
      "reach"
     ]
@@ -658,7 +646,7 @@
     "name": "Kozilek's Command",
     "decks": 357,
     "roles": [
-     "removal",
+     "rm_exile",
      "draw",
      "ramp",
      "tokens"
@@ -668,14 +656,14 @@
     "name": "Fatal Push",
     "decks": 313,
     "roles": [
-     "removal"
+     "rm_destroy"
     ]
    },
    {
     "name": "Phelia, Exuberant Shepherd",
     "decks": 296,
     "roles": [
-     "removal",
+     "rm_exile",
      "engine"
     ]
    },
@@ -698,7 +686,7 @@
     "name": "Brazen Borrower // Petty Theft",
     "decks": 249,
     "roles": [
-     "removal",
+     "rm_destroy",
      "beater"
     ]
    },
@@ -706,7 +694,7 @@
     "name": "Prismatic Ending",
     "decks": 233,
     "roles": [
-     "removal"
+     "rm_exile"
     ]
    },
    {
@@ -728,7 +716,7 @@
     "name": "Ajani, Nacatl Pariah // Ajani, Nacatl Avenger",
     "decks": 192,
     "roles": [
-     "removal",
+     "rm_damage",
      "engine",
      "reach",
      "tokens"
@@ -745,7 +733,7 @@
     "name": "Goblin Bombardment",
     "decks": 190,
     "roles": [
-     "removal",
+     "rm_damage",
      "engine",
      "reach"
     ]
@@ -754,7 +742,7 @@
     "name": "Ugin, Eye of the Storms",
     "decks": 190,
     "roles": [
-     "removal",
+     "rm_exile",
      "cheatloop",
      "draw",
      "tutor",
@@ -773,7 +761,7 @@
     "name": "Giant's Boulder",
     "decks": 167,
     "roles": [
-     "removal",
+     "rm_destroy",
      "ramp"
     ]
    },
@@ -781,7 +769,7 @@
     "name": "Lightning Bolt",
     "decks": 166,
     "roles": [
-     "removal",
+     "rm_damage",
      "reach"
     ]
    },
@@ -789,7 +777,7 @@
     "name": "Sink into Stupor // Soporific Springs",
     "decks": 156,
     "roles": [
-     "removal",
+     "rm_destroy",
      "ramp"
     ]
    },
@@ -1104,13 +1092,6 @@
     ]
    },
    {
-    "name": "White Orchid Phantom",
-    "decks": 101,
-    "roles": [
-     "beater"
-    ]
-   },
-   {
     "name": "Craterhoof Behemoth",
     "decks": 96,
     "roles": [
@@ -1190,6 +1171,13 @@
     "decks": 71,
     "roles": [
      "finisher",
+     "beater"
+    ]
+   },
+   {
+    "name": "Cloak and Dagger, Entwined",
+    "decks": 68,
+    "roles": [
      "beater"
     ]
    }
@@ -1581,13 +1569,6 @@
     ]
    },
    {
-    "name": "Destroy the Evidence",
-    "decks": 13,
-    "roles": [
-     "other"
-    ]
-   },
-   {
     "name": "Step Through",
     "decks": 12,
     "roles": [
@@ -1625,13 +1606,6 @@
    {
     "name": "Leyline of Anticipation",
     "decks": 3,
-    "roles": [
-     "other"
-    ]
-   },
-   {
-    "name": "Sinkhole",
-    "decks": 2,
     "roles": [
      "other"
     ]
@@ -1740,6 +1714,20 @@
     "roles": [
      "other"
     ]
+   },
+   {
+    "name": "Enhanced Surveillance",
+    "decks": 1,
+    "roles": [
+     "other"
+    ]
+   },
+   {
+    "name": "Dream Halls",
+    "decks": 1,
+    "roles": [
+     "other"
+    ]
    }
   ]
  },
@@ -1781,7 +1769,7 @@
    "name": "Phelia, Exuberant Shepherd",
    "decks": 296,
    "roles": [
-    "removal",
+    "rm_exile",
     "engine"
    ],
    "tags": [
@@ -1841,7 +1829,7 @@
    "name": "Ajani, Nacatl Pariah // Ajani, Nacatl Avenger",
    "decks": 192,
    "roles": [
-    "removal",
+    "rm_damage",
     "engine",
     "reach",
     "tokens"
@@ -1858,7 +1846,7 @@
    "name": "Goblin Bombardment",
    "decks": 190,
    "roles": [
-    "removal",
+    "rm_damage",
     "engine",
     "reach"
    ],
@@ -1871,7 +1859,7 @@
    "name": "Ugin, Eye of the Storms",
    "decks": 190,
    "roles": [
-    "removal",
+    "rm_exile",
     "cheatloop",
     "draw",
     "tutor",
@@ -1954,7 +1942,7 @@
    "name": "Archon of Cruelty",
    "decks": 106,
    "roles": [
-    "removal",
+    "edict",
     "draw",
     "finisher",
     "engine",
@@ -1985,7 +1973,7 @@
    "name": "Teferi, Time Raveler",
    "decks": 91,
    "roles": [
-    "removal",
+    "rm_destroy",
     "draw",
     "engine"
    ],
@@ -2027,7 +2015,7 @@
    "name": "Phlage, Titan of Fire's Fury",
    "decks": 76,
    "roles": [
-    "removal",
+    "rm_damage",
     "recursion",
     "finisher",
     "engine",
@@ -2048,7 +2036,7 @@
    "name": "Grist, the Hunger Tide",
    "decks": 70,
    "roles": [
-    "removal",
+    "rm_destroy",
     "selfmill",
     "engine",
     "reach"
@@ -2077,7 +2065,7 @@
    "name": "Legion Extruder",
    "decks": 70,
    "roles": [
-    "removal",
+    "rm_damage",
     "engine",
     "reach"
    ],
@@ -2186,7 +2174,7 @@
    "name": "Broadside Bombardiers",
    "decks": 45,
    "roles": [
-    "removal",
+    "rm_damage",
     "engine",
     "reach",
     "beater"
@@ -2278,7 +2266,7 @@
    "name": "Stinkweed Imp",
    "decks": 27,
    "roles": [
-    "removal",
+    "rm_destroy",
     "engine"
    ],
    "tags": [
@@ -2289,7 +2277,7 @@
    "name": "Borborygmos Enraged",
    "decks": 21,
    "roles": [
-    "removal",
+    "rm_damage",
     "draw",
     "finisher",
     "engine",
@@ -2370,7 +2358,7 @@
    "name": "Archon of Cruelty",
    "decks": 106,
    "roles": [
-    "removal",
+    "edict",
     "draw",
     "finisher",
     "engine",
@@ -2426,7 +2414,7 @@
    "name": "Phlage, Titan of Fire's Fury",
    "decks": 76,
    "roles": [
-    "removal",
+    "rm_damage",
     "recursion",
     "finisher",
     "engine",
@@ -2560,14 +2548,6 @@
     "ramp"
    ],
    "typeLine": "Sorcery"
-  },
-  {
-   "name": "White Orchid Phantom",
-   "decks": 101,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Spirit Knight"
   },
   {
    "name": "Mystic Forge",
@@ -2767,14 +2747,6 @@
    "typeLine": "Artifact Creature — Demon Construct"
   },
   {
-   "name": "Destroy the Evidence",
-   "decks": 13,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Sorcery"
-  },
-  {
    "name": "Opposition Agent",
    "decks": 12,
    "roles": [
@@ -2821,6 +2793,22 @@
     "beater"
    ],
    "typeLine": "Creature — Human Scout"
+  },
+  {
+   "name": "Curie, Emergent Intelligence",
+   "decks": 8,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Legendary Artifact Creature — Robot"
+  },
+  {
+   "name": "Turnabout",
+   "decks": 7,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Instant"
   }
  ],
  "unknownCards": [
