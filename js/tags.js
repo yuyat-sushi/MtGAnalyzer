@@ -222,7 +222,8 @@
       if (/can't search/.test(line)) t.push('library');
       if (/can't attack|can attack/.test(line)) t.push('attack');
       // 「タップ状態で出る」「アンタップしない」：土地ならマナ、クリーチャーなら戦闘への妨害
-      if (/don't untap|doesn't untap|can't untap more than|enter (the battlefield )?tapped/.test(line)) {
+      // 自分のパーマネントにかかるデメリット（Bontu's Last Reckoning など）は除く
+      if (/don't untap|doesn't untap|can't untap more than|enter (the battlefield )?tapped/.test(line) && !/\byou control (don't|doesn't|enter)\b/.test(line)) {
         if (/\blands?\b/.test(line)) t.push('mana');
         if (/\bcreatures?\b|\bpermanents?\b/.test(line)) t.push('untap');
       }
@@ -285,7 +286,7 @@
     const nouns = np ? np[2] : line;
     if (/any target/.test(line)) d.types = ['creature', 'planeswalker', 'battle', 'player'];
     // 土地を含まない指定（nonland、色の指定、「if it's blue」など）
-    else if (/\bnonland\b|\b(colored|multicolored|white|blue|black|red|green) permanents?|(that's|that are) one or more colors|if it's (white|blue|black|red|green)/.test(nouns + ' ' + (np ? line.slice(line.indexOf(np[0]), line.indexOf(np[0]) + np[0].length + 60) : ''))) d.types = ALL_PERMANENTS.filter(t => t !== 'land');
+    else if (/\bnonland\b|\b(colored|multicolored|monocolored|white|blue|black|red|green) permanents?|(that's|that are) one or more colors|if it's (white|blue|black|red|green)/.test(nouns + ' ' + (np ? line.slice(line.indexOf(np[0]), line.indexOf(np[0]) + np[0].length + 60) : ''))) d.types = ALL_PERMANENTS.filter(t => t !== 'land');
     else if (/\bpermanents?\b/.test(nouns)) d.types = ALL_PERMANENTS.slice();
     else d.types = TYPE_WORDS.filter(([, re]) => re.test(nouns)).map(([t]) => t);
     if (/target player or planeswalker/.test(line) && !d.types.includes('planeswalker')) d.types.push('planeswalker');
