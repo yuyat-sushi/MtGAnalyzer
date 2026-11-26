@@ -343,6 +343,41 @@
 
   const COLORS = ['W', 'U', 'B', 'R', 'G'];
 
+  // ---- 土地サーチ（フェッチランド・土地を戦場に出すカード）----
+  const LAND_TYPES = ['Plains', 'Island', 'Swamp', 'Mountain', 'Forest'];
+  const LAND_TYPE_JA = { Plains: '平地', Island: '島', Swamp: '沼', Mountain: '山', Forest: '森' };
+  /**
+   * 「ライブラリーから土地を探して戦場に出す」カードなら探せる条件を返す
+   * { basic: 基本土地限定か, types: 土地タイプ指定（null なら指定なし） }
+   */
+  function fetchSpec(card) {
+    const text = String(card && card.oracle || '').replace(/\([^)]*\)/g, '');
+    for (const sentence of text.split(/\.\s+|\n/)) {
+      if (!/onto the battlefield/i.test(sentence)) continue;
+      const m = sentence.match(/search your library for (.+?)(?:,? (?:and )?put |,? reveal|, then|\.|$)/i);
+      if (!m) continue;
+      const phrase = m[1];
+      if (/creature|artifact|enchantment|instant|sorcery|planeswalker|nonbasic/i.test(phrase)) continue;
+      const types = LAND_TYPES.filter(t => new RegExp(`\\b${t}\\b`).test(phrase));
+      if (!types.length && !/\bland\b/i.test(phrase)) continue;
+      return { basic: /\bbasic\b/i.test(phrase), types: types.length ? types : null };
+    }
+    return null;
+  }
+  // デッキの土地のうち spec で探せるもの
+  function fetchTargets(spec, lands) {
+    return lands.filter(c => {
+      const t = frontType(c);
+      if (spec.basic && !/\bBasic\b/.test(t)) return false;
+      if (spec.types && !spec.types.some(x => new RegExp(`\\b${x}\\b`).test(t))) return false;
+      return true;
+    });
+  }
+  function fetchNeedLabel(spec) {
+    const types = spec.types ? spec.types.map(t => LAND_TYPE_JA[t]).join('か') : '土地';
+    return spec.basic ? (spec.types ? `基本の${types}` : '基本土地') : types;
+  }
+
   /**
    * entries: [{qty, card, roles, cat}]（メインデッキのみ。cat を省くと roles から決める）
    */
@@ -360,6 +395,9 @@
     let nonLand = 0, mvSum = 0, cheapRampDraw = 0, lands = 0, mdfcLands = 0;
     const tagCounts = {}; // "effect:r" / "effect:o"（繰り返し / 1回）→ 枚数
     const roleCards = {}; // 小カテゴリ → [{name, qty, others}]（アドバイスで兼任カードを見分ける用）
+    // フェッチ対象になるデッキ内の土地（土地を戦場に出すカードの色源の計算用）
+    const deckLands = entries.filter(e => e.card && /\bLand\b/.test(frontType(e.card))).map(e => e.card);
+    const fetchMiss = []; // 探せる土地がデッキにないカード
 
     for (const e of entries) {
       const roles = e.roles || ['other'];
@@ -373,9 +411,17 @@
       const keys = new Set(inspect(c).tags.map(t => `${t.effect}:${t.repeat ? 'r' : 'o'}`));
       keys.forEach(k => { tagCounts[k] = (tagCounts[k] || 0) + e.qty; });
       const isLand = roles.includes('land');
+      // 土地を探して戦場に出すカードは、デッキ内で探せる土地の色も色源にする
+      const spec = fetchSpec(c);
+      const fetchCols = new Set();
+      if (spec) {
+        const tg = fetchTargets(spec, deckLands.filter(x => x !== c));
+        tg.forEach(x => (x.producedMana || []).forEach(col => fetchCols.add(col)));
+        if (!tg.length) fetchMiss.push({ name: c.printedName || c.name, need: fetchNeedLabel(spec) });
+      }
       if (isLand) {
         lands += e.qty;
-        (c.producedMana || []).forEach(col => { if (sources[col] != null) sources[col] += e.qty; });
+        new Set([...(c.producedMana || []), ...fetchCols]).forEach(col => { if (sources[col] != null) sources[col] += e.qty; });
       } else {
         nonLand += e.qty;
         mvSum += c.cmc * e.qty;
@@ -383,7 +429,7 @@
         if (c.cmc <= 2 && (roles.includes('ramp') || roles.includes('draw'))) cheapRampDraw += e.qty;
         if (/\bLand\b/.test(String(c.typeLine).split('//')[1] || '')) mdfcLands += e.qty;
         // マナ加速の生産色も色源として数える（半分の重み）
-        if (roles.includes('ramp')) (c.producedMana || []).forEach(col => { if (sources[col] != null) sources[col] += e.qty * 0.5; });
+        new Set([...(roles.includes('ramp') ? (c.producedMana || []) : []), ...fetchCols]).forEach(col => { if (sources[col] != null) sources[col] += e.qty * 0.5; });
       }
       const front = String(c.manaCost || '').split('//')[0];
       (front.match(/\{[^}]+\}/g) || []).forEach(sym => {
@@ -398,8 +444,8 @@
 
     return {
       total, size, roleCount, catCount, curve, pips, sources, lands, nonLand, mdfcLands,
-      avgMV, recLand, tagCounts, cheapRampDraw, targets: tgt,
-      advice: buildAdvice({ total, size, roleCount, roleCards, catCount, lands, recLand, avgMV, tgt, curve, pips, sources, format, nonLand, mdfcLands, bench })
+      avgMV, recLand, tagCounts, cheapRampDraw, targets: tgt, fetchMiss,
+      advice: buildAdvice({ total, size, roleCount, roleCards, fetchMiss, catCount, lands, recLand, avgMV, tgt, curve, pips, sources, format, nonLand, mdfcLands, bench })
     };
   }
 
@@ -479,6 +525,9 @@
       if (a.format === 'commander' && topShare > 0.35) push('warn', `MV5以上が ${top} 枚。マナ加速をもう少し増やすと安定するよ。`);
       if (a.format !== 'commander' && low / a.nonLand < 0.35) push('warn', `MV2以下が ${low} 枚と少なめ。序盤の受けや展開が薄いかも。`);
     }
+
+    // 土地サーチ先
+    (a.fetchMiss || []).forEach(f => push('warn', `${f.name}で探せる土地がデッキにないよ（${f.need}が必要）。`));
 
     // 色
     const totalPips = COLORS.reduce((s, c) => s + a.pips[c], 0);
