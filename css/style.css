@@ -254,7 +254,10 @@ dialog::backdrop { background: rgba(0,0,0,.6); }
 
 /* ---- スマホ幅 ---- */
 @media (max-width: 720px) {
-  body { padding-bottom: calc(58px + env(safe-area-inset-bottom)); }
+  /* 下に固定したタブバー（52px）＋ステータスバー（約28px）＋ゆとり16px の分だけ余白を空ける */
+  /* body の高さを画面に固定していると下の余白がスクロール範囲に入らないので、内容に合わせて伸びるようにする */
+  html, body { height: auto; min-height: 100%; }
+  body { padding-bottom: calc(100px + env(safe-area-inset-bottom)); }
   input, select, textarea { font-size: 16px; } /* iOSの自動ズーム防止 */
   /* backdrop-filter があると fixed の基準がヘッダーになるので外す */
   .topbar { gap: 8px; padding: 8px 10px; padding-top: max(8px, env(safe-area-inset-top)); backdrop-filter: none; background: var(--bg); }
@@ -270,7 +273,7 @@ dialog::backdrop { background: rgba(0,0,0,.6); }
   .menu-pop .mobile-new { display: block; }
 
   .layout { display: block; padding: 8px; }
-  .panel { display: none; max-height: none; overflow: visible; border-radius: 12px; }
+  .panel { display: none; max-height: none; overflow: visible; border-radius: 12px; padding-bottom: 20px; }
   .panel.active { display: block; }
 
   .row { grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "qty name" "meta meta"; row-gap: 4px; padding: 6px 2px; border-bottom: 1px solid var(--line); border-radius: 0; }
