@@ -330,7 +330,12 @@
       : '<p class="hint">色のあるカードがまだありません</p>';
 
     // アドバイス
-    $('#advice').innerHTML = a.advice.map(x => `<li class="${x.level}">${esc(x.text)}</li>`).join('');
+    // 妨害の内訳と、メタに応じたアドバイス
+    const toEntries = l => l.map(e => ({ qty: e.qty, card: e.card }));
+    const dMain = Roles.disruptProfile(toEntries(state.main)), dSide = Roles.disruptProfile(toEntries(state.side));
+    renderDisrupt(dMain, dSide, cmp && cmp.group);
+    const metaTips = cmp && cmp.bench && cmp.bench.meta ? Roles.metaAdvice(dMain, dSide, cmp.bench.meta, cmp.group) : [];
+    $('#advice').innerHTML = [...a.advice, ...metaTips].map(x => `<li class="${x.level}">${esc(x.text)}</li>`).join('');
   }
 
   // ---------- 上位デッキとの比較（benchmarks/ の集計データ） ----------
@@ -436,8 +441,40 @@
     if (!card) return '';
     const info = Roles.inspect(card);
     if (!info.tags.length) return '<div class="tag-list"><div class="muted">検出した効果タグはありません</div></div>';
-    return `<div class="tag-list"><div class="muted">検出した効果タグ</div>${info.tags.map(t =>
-      `<div class="tag ${t.repeat ? 'rep' : 'once'}"><span class="tag-kind">${t.repeat ? '繰り返し' : '1回'}</span>${esc(Tags.tagLabel(t))}</div>`).join('')}</div>`;
+    const L = Roles.DISRUPT_LABELS;
+    const detail = t => {
+      if (!t.detail) return '';
+      const d = t.detail;
+      const parts = [L.action[d.action] || d.action, d.types.map(x => L.types[x] || x).join('・'), L.targeting[d.targeting],
+        d.scope === 'all' ? '全体' : d.scope === 'multi' ? '複数' : '', d.cond ? `条件: ${d.cond}` : '',
+        d.gives ? `相手に${d.gives === 'token' ? 'トークン' : d.gives === 'land' ? '土地' : 'ライフ'}` : '', L.speed[t.speed] || ''];
+      return `<div class="tag-detail">${parts.filter(Boolean).map(esc).join(' ／ ')}</div>`;
+    };
+    const TOKEN_JA = { creature: 'クリーチャー', treasure: '宝物', clue: '手掛かり', food: '食物', blood: '血', map: '地図', powerstone: 'パワーストーン', incubator: 'インキュベーター', role: '役割', copy: 'コピー', other: 'その他' };
+    const tokens = info.tokens.length ? `<div class="muted" style="margin-top:4px">生成するトークン</div>${info.tokens.map(k =>
+      `<div class="tag ${k.who === 'opponent' ? 'once' : 'rep'}"><span class="tag-kind">${k.who === 'opponent' ? '相手' : '自分'}</span>${esc(TOKEN_JA[k.kind] || k.kind)}${k.pt ? ` ${esc(k.pt)}` : ''}</div>`).join('')}` : '';
+    return `<div class="tag-list"><div class="muted">検出した効果タグ（${info.speed === 'instant' ? 'インスタント速度で動ける' : 'ソーサリー速度'}）</div>${info.tags.map(t =>
+      `<div class="tag ${t.repeat ? 'rep' : 'once'}"><span class="tag-kind">${t.repeat ? '繰り返し' : '1回'}</span><span>${esc(Tags.tagLabel(t))}${detail(t)}</span></div>`).join('')}${tokens}</div>`;
+  }
+
+  /** 妨害の内訳（処理・対象の種類・選び方・速度）。サイドボードと上位デッキの中央値も並べる */
+  function renderDisrupt(main, side, group) {
+    const L = Roles.DISRUPT_LABELS;
+    const bd = group && group.disrupt;
+    const sections = [['action', '処理・移動先'], ['types', '触れられる対象'], ['targeting', '選び方'], ['speed', '速度']];
+    const rows = sections.map(([key, title]) => {
+      const keys = [...new Set([...Object.keys(main[key] || {}), ...Object.keys(side[key] || {}), ...Object.keys(bd || {}).filter(k => k.startsWith(key + ':')).map(k => k.slice(key.length + 1))])]
+        .filter(k => k !== 'trigger' && k !== 'static' && k !== 'player');
+      if (!keys.length) return '';
+      return `<tr class="cat"><td colspan="4"><b>${title}</b></td></tr>` + keys.map(k => {
+        const b = bd && bd[`${key}:${k}`];
+        return `<tr class="sub"><td>${esc(L[key][k] || k)}</td><td class="num">${(main[key] || {})[k] || 0}</td><td class="num muted">${(side[key] || {})[k] || 0}</td><td class="num muted">${b ? b.median : '–'}</td></tr>`;
+      }).join('');
+    }).join('');
+    $('#disruptTable').innerHTML = main.total || side.total
+      ? `<table class="meta-table"><thead><tr><th>妨害カード ${main.total}枚</th><th class="num">メイン</th><th class="num">サイド</th><th class="num">上位中央値</th></tr></thead><tbody>${rows}</tbody></table>
+         <p class="hint">妨害カードの枚数を性質ごとに数えたもの（1枚が複数に入ることがあります）。「追放」かどうか、アーティファクトやエンチャントに触れられるか、相手のターンに使えるかが見られます。</p>`
+      : '<p class="hint">妨害カードがまだありません</p>';
   }
 
   /** デッキ全体の効果タグを「繰り返し／1回」で集計して表示（上位デッキの中央値があれば並べる） */

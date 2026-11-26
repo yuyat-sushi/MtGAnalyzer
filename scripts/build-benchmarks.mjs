@@ -173,6 +173,13 @@ function summarizeGroup(decks) {
     const s = summarize(decks.map(d => d.tagCounts[k] || 0));
     if (s.q3 > 0 || s.mean >= 0.5) out.tags[k] = s;
   }
+  out.disrupt = {};
+  for (const k of new Set(decks.flatMap(d => Object.keys(d.disrupt)))) {
+    const s = summarize(decks.map(d => d.disrupt[k] || 0));
+    if (s.q3 > 0 || s.mean >= 0.5) out.disrupt[k] = s;
+  }
+  out.perm = {};
+  for (const k of ['creature', 'artifact', 'enchantment', 'planeswalker']) out.perm[k] = summarize(decks.map(d => d.perm[k] || 0));
   out.avgMV = summarize(decks.map(d => d.avgMV));
   out.mainCount = summarize(decks.map(d => d.mainCount));
   return out;
@@ -238,13 +245,28 @@ async function main() {
         r.forEach(x => { roles[x] += e.qty; });
         cats[info.cat] += e.qty;
         new Set(info.tags.map(t => `${t.effect}:${t.repeat ? 'r' : 'o'}`)).forEach(k => { tagCounts[k] = (tagCounts[k] || 0) + e.qty; });
-        cards.push({ name: card.name, qty: e.qty, roles: r, cat: info.cat, tags: info.tags, power: card.power, typeLine: card.typeLine });
+        // インスタント速度のコンボパーツ（Goryo's Vengeance のような瞬間リアニメイト、インスタントの踏み倒しなど）
+        const instantCombo = info.speed === 'instant' && info.abilities.some(a =>
+          a.effects.some(x => ['cheat', 'extraturn', 'copy'].includes(x)) ||
+          (a.effects.includes('recursion') && /to the battlefield/.test(a.text)));
+        cards.push({ name: card.name, qty: e.qty, roles: r, cat: info.cat, tags: info.tags, power: card.power, typeLine: card.typeLine, instantCombo });
         if (!r.includes('land')) {
           nonLand += e.qty; mvSum += card.cmc * e.qty;
           (card.colors || []).forEach(c => colors.add(c));
         }
       }
       if (missing > 3) continue; // 判定できないカードが多いデッキは除外
+
+      // 妨害の内訳（処理・対象の種類・選び方・速度）と、土地以外のパーマネントの構成
+      const dp = Roles.disruptProfile(main.map(e => ({ qty: e.qty, card: lookup(e.name) })));
+      const disrupt = {};
+      for (const [k, v] of Object.entries(dp)) if (k !== 'total') for (const [kk, n] of Object.entries(v)) disrupt[`${k}:${kk}`] = n;
+      const perm = { creature: 0, artifact: 0, enchantment: 0, planeswalker: 0 };
+      for (const c of cards) {
+        if (c.roles.includes('land')) continue;
+        const front = String(c.typeLine).split(' // ')[0];
+        for (const t of Object.keys(perm)) if (new RegExp(`\\b${t}\\b`, 'i').test(front)) perm[t] += c.qty;
+      }
 
       const arch = Archetype.classify({ main, side }, defs[fmt], colors);
       const capKey = arch.name;
@@ -254,7 +276,7 @@ async function main() {
 
       decksBy[fmt].push({
         archetype: arch.name, archetypeBase: arch.base, kind: arch.kind,
-        roles, cats, tagCounts,
+        roles, cats, tagCounts, disrupt, perm,
         avgMV: nonLand ? +(mvSum / nonLand).toFixed(2) : 0, mainCount, cards
       });
       events[fmt].add(eventId);
@@ -291,11 +313,27 @@ async function main() {
       }))
       .sort((a, b) => b.n - a.n);
 
+    // メタの特徴（アドバイス用）：アーキタイプごとに、何に頼っているデッキか
+    const meta = archetypes.filter(a => a.n >= 5).map(a => {
+      const ds = groups.get(a.name);
+      const comboCards = [...new Set(ds.flatMap(d => d.cards.filter(c => c.instantCombo).map(c => c.name)))]
+        .filter(n => ds.filter(d => d.cards.some(c => c.name === n)).length / ds.length >= 0.5);
+      return {
+        name: a.name, share: a.share,
+        artifact: a.perm.artifact.median >= 8,
+        enchantment: a.perm.enchantment.median >= 4,
+        planeswalker: a.perm.planeswalker.median >= 2,
+        graveyard: (a.roles.recursion.median + a.roles.selfmill.median) >= 6,
+        instantCombo: comboCards
+      };
+    });
+
     const bench = {
       format: FORMATS[fmt], generatedAt: index.generatedAt, window: index.window,
       events: events[fmt].size, sources,
       note: 'MTGOのChallenge上位とリーグ5-0のデッキのみ（フィールド全体ではなく「勝ったデッキ」の分布）',
       overall: summarizeGroup(decks),
+      meta,
       archetypes
     };
     fs.writeFileSync(path.join(OUT, fmt + '.json'), JSON.stringify(bench));
