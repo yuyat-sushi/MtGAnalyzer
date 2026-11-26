@@ -228,7 +228,7 @@
         if (/\bcreatures?\b|\bpermanents?\b/.test(line)) t.push('untap');
       }
       if (/can't (gain life|draw)/.test(line)) t.push('other');
-      d.types = t.length ? t : ['other'];
+      d.types = t.length ? t : ['none'];   // none: 自分へのデメリットなど、相手への妨害ではないもの
       d.lock = lockScope(line);
       if (d.lock.length) d.cond = d.lock.map(lockLabel).join('、');
       return d;
