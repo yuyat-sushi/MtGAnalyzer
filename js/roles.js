@@ -36,6 +36,7 @@
     { id: 'counter',    cat: 'disrupt',  label: '打ち消し',     color: '#5a6fd6' },
     { id: 'redirect',   cat: 'disrupt',  label: '対象変更',     color: '#7385d9' },
     { id: 'discard',    cat: 'disrupt',  label: '手札破壊',     color: '#7a4fa0' },
+    { id: 'abilitylock', cat: 'disrupt', label: '能力封じ',     color: '#4f6470' },
     { id: 'hate',       cat: 'disrupt',  label: 'ヘイト（ロック・課税）', color: '#5e7480' },
     { id: 'attacklock', cat: 'disrupt',  label: '攻撃制限',     color: '#6e8490' },
     { id: 'gyhate',     cat: 'disrupt',  label: '墓地対策',     color: '#6b6b80' },
@@ -66,7 +67,7 @@
    */
   const PRIORITY = ['land',
     'rm_exile', 'rm_destroy', 'rm_damage', 'edict', 'bounce', 'steal', 'neutralize', 'landdestroy', 'wipe',
-    'counter', 'redirect', 'discard', 'hate', 'attacklock', 'gyhate',
+    'counter', 'redirect', 'discard', 'abilitylock', 'hate', 'attacklock', 'gyhate',
     'cheatloop', 'cheat', 'extraturn', 'untap', 'copy',
     'draw', 'tutor', 'recursion', 'selfmill',
     'ramp',
@@ -150,6 +151,14 @@
       const set = new Set();
       const isCreature = /\bCreature\b/.test(tl);
       t.tags.forEach(x => { if (EFFECT_ROLE[x.effect] && x.effect !== 'mana') set.add(EFFECT_ROLE[x.effect]); });
+      // 起動型・誘発型能力を封じるもの（Null Rod、Torpor Orb、Pithing Needle など）は「能力封じ」
+      t.tags.filter(x => x.effect === 'hate' && x.detail).forEach(x => {
+        const ty = x.detail.types;
+        if (ty.some(y => /ability/.test(y))) {
+          set.add('abilitylock');
+          if (!ty.some(y => !/ability/.test(y))) set.delete('hate');
+        }
+      });
       // 除去は処理（移動先）ごとに分ける。土地だけを対象にするものは土地破壊
       t.tags.filter(x => x.effect === 'removal').forEach(x => {
         const d = x.detail || {};
@@ -197,10 +206,11 @@
   // ---------- 妨害の内訳 ----------
   const DISRUPT_LABELS = {
     action: { exile: '追放', destroy: '破壊', damage: 'ダメージ', minus: 'マイナス修整', sacrifice: '生け贄（エディクト）', bounce: '手札に戻す', library: 'ライブラリーに戻す',
-      steal: 'コントロール奪取', neutralize: '無力化', counter: '打ち消し', counter_exile: '打ち消し（追放）', redirect: '対象変更', discard: '捨てさせる', other: 'その他' },
+      steal: 'コントロール奪取', neutralize: '無力化', counter: '打ち消し', counter_exile: '打ち消し（追放）', redirect: '対象変更', discard: '捨てさせる', lock: 'ロック・封じ', other: 'その他' },
     types: { creature: 'クリーチャー', artifact: 'アーティファクト', enchantment: 'エンチャント', planeswalker: 'プレインズウォーカー', battle: 'バトル', land: '土地',
       spell: '呪文', 'noncreature spell': '非クリーチャー呪文', 'creature spell': 'クリーチャー呪文', 'instant/sorcery': 'インスタント・ソーサリー', ability: '能力',
-      hand: '手札', graveyard: '墓地', player: 'プレイヤー' },
+      hand: '手札', graveyard: '墓地', player: 'プレイヤー', 'activated ability': '起動型能力', 'triggered ability': '誘発型能力',
+      tax: 'コスト増加', mana: 'マナ', library: 'ライブラリー', attack: '攻撃', untap: 'アンタップ', other: 'その他' },
     targeting: { target: '対象を取る', nontarget: '対象を取らない', edict: '相手が選ぶ（エディクト）' },
     speed: { instant: 'インスタント速度', sorcery: 'ソーサリー速度', trigger: '誘発', static: '常在' }
   };

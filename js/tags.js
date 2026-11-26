@@ -75,7 +75,7 @@
                                                  /\btarget card in a graveyard\b/, /would be put into an opponent's graveyard[^.]*?exile it\b/, /search its owner's graveyard[^.]*?and exile them/] },
     { id: 'hate',      label: '妨害（ロック）', re: [/\bcosts? \{\d\} more\b/, /would cost less than \w+ mana to cast costs/, /\bcost \{\d\} more\b/, /nonbasic lands (are|don't untap)/, /\bcan't cast (spells|noncreature|creature|instant|sorcery)/,
                                                  /can't be activated/, /(each player|players|your opponents|target player) can't (cast|activate|search|gain life|draw)/, /don't cause abilities to trigger/,
-                                                 /(lands|creatures|artifacts|permanents) (your opponents control )?enter (the battlefield )?tapped/, /\bdon't untap during/, /players skip/] },
+                                                 /(lands|creatures|artifacts|permanents) (your opponents control )?enter (the battlefield )?tapped/, /\bdon't untap during/, /players skip/, /tap for more than one mana produce/] },
     // 攻撃の制限（Ensnaring Bridge、Propaganda、Moat、Peacekeeper など）
     { id: 'attacklock', label: '攻撃制限',    re: [/\bcreatures (with [^.]*?|without [^.]*?|your opponents control )?can't attack\b/, /no more than (one|two) creatures? can attack/] },
     { id: 'cheat',     label: '踏み倒し',     re: [/put (a|an|up to \w+|any number of|that|those|target)\b[^.]*?\b(creature|artifact|enchantment|permanent|planeswalker|nonland)\b[^.]*?\bcards?\b[^.]*?onto the battlefield/,
@@ -199,7 +199,7 @@
   }
 
   // ---------- 妨害の詳細（選択先・影響範囲・処理/移動先・相手に与えるもの） ----------
-  const DISRUPT_EFFECTS = new Set(['removal', 'wipe', 'counter', 'redirect', 'discard', 'gyhate']);
+  const DISRUPT_EFFECTS = new Set(['removal', 'wipe', 'counter', 'redirect', 'discard', 'gyhate', 'hate', 'attacklock']);
   const TYPE_WORDS = [
     ['creature', /\bcreatures?\b/], ['artifact', /\bartifacts?\b/], ['enchantment', /\benchantments?\b/],
     ['planeswalker', /\bplaneswalkers?\b/], ['battle', /\bbattles?\b/], ['land', /\blands?\b/]
@@ -209,13 +209,34 @@
   /** 除去などの能力の文から、処理・対象の種類・選び方・範囲・条件・相手に与えるものを取り出す */
   function detailOf(line, effect) {
     const d = { action: null, types: [], targeting: null, scope: 'single', cond: null, gives: null };
+    // ロック・封じ・課税：何を封じるか
+    if (effect === 'hate' || effect === 'attacklock') {
+      d.action = 'lock'; d.targeting = 'nontarget'; d.scope = 'all';
+      const t = [];
+      if (/can't be activated/.test(line)) t.push('activated ability');
+      if (/don't cause abilities to trigger|abilities (can't|don't) trigger/.test(line)) t.push('triggered ability');
+      if (/can't cast|can't be cast/.test(line)) t.push('spell');
+      if (/from graveyards|in graveyards/.test(line)) t.push('graveyard');
+      if (/costs? \{\d\} more|cost \{\d\} more|would cost less than/.test(line)) t.push('tax');
+      if (/nonbasic lands|tap for more than one mana|produce \{c\}/.test(line)) t.push('mana');
+      if (/can't search/.test(line)) t.push('library');
+      if (/can't attack|can attack/.test(line)) t.push('attack');
+      if (/don't untap|doesn't untap|enter (the battlefield )?tapped/.test(line)) t.push('untap');
+      if (/can't (gain life|draw)/.test(line)) t.push('other');
+      d.types = t.length ? t : ['other'];
+      if (/chosen name|choose a card name|choose any card name/.test(line)) d.cond = 'カード名を指定';
+      else { const m = line.match(/abilities of ([a-z ,]+?) (can't|your opponents)/); if (m) d.cond = m[1]; }
+      return d;
+    }
     if (effect === 'counter') {
       d.action = /\bexile (it|that spell|target spell)\b|counter target[^.]*?\. (if|exile)[^.]*?exile/.test(line) || /\bexile target spell\b/.test(line) ? 'counter_exile' : 'counter';
       d.types = [/counter target (noncreature )?spell/.test(line) ? (/noncreature/.test(line) ? 'noncreature spell' : 'spell') :
         /creature spell/.test(line) ? 'creature spell' : /(instant|sorcery)/.test(line) && /counter target (instant|sorcery)/.test(line) ? 'instant/sorcery' :
-        /(activated|triggered) ability/.test(line) ? 'ability' : 'spell'];
+        /(activated|triggered) ability/.test(line) ? null : 'spell'].filter(Boolean);
       d.targeting = /\btarget\b/.test(line) ? 'target' : 'nontarget';
-      if (/(activated|triggered) ability/.test(line) && !d.types.includes('ability')) d.types.push('ability');
+      if (/activated (or triggered )?ability/.test(line)) d.types.push('activated ability');
+      if (/(triggered ability|activated or triggered)/.test(line)) d.types.push('triggered ability');
+      if (/legendary spell|or [a-z]+ spell/.test(line) && !d.types.includes('spell')) d.types.push('spell');
       return d;
     }
     if (effect === 'redirect') { d.action = 'redirect'; d.types = ['spell']; d.targeting = 'target'; return d; }
