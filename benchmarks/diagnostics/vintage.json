@@ -66,7 +66,7 @@
   }
  ],
  "format": "Vintage",
- "generatedAt": "2026-11-26T08:19:51.695Z",
+ "generatedAt": "2026-11-26T08:44:05.914Z",
  "decks": 1186,
  "otherOnly": [
   {
@@ -189,20 +189,6 @@
    ]
   },
   {
-   "name": "Flame of Anor",
-   "decks": 150,
-   "roles": [
-    "rm_destroy",
-    "rm_damage",
-    "draw"
-   ],
-   "tags": [
-    "draw@spell",
-    "removal@spell",
-    "removal@spell"
-   ]
-  },
-  {
    "name": "Scrawling Crawler",
    "decks": 137,
    "roles": [
@@ -220,7 +206,7 @@
    "name": "Orcish Bowmasters",
    "decks": 126,
    "roles": [
-    "rm_damage",
+    "removal",
     "draw",
     "reach"
    ],
@@ -231,10 +217,23 @@
    ]
   },
   {
+   "name": "Pyroblast",
+   "decks": 117,
+   "roles": [
+    "removal",
+    "spell",
+    "manalock"
+   ],
+   "tags": [
+    "counter@spell",
+    "removal@spell"
+   ]
+  },
+  {
    "name": "Lodestone Golem",
    "decks": 114,
    "roles": [
-    "hate",
+    "spell",
     "finisher",
     "beater"
    ],
@@ -243,10 +242,23 @@
    ]
   },
   {
+   "name": "Archon of Emeria",
+   "decks": 108,
+   "roles": [
+    "spell",
+    "manalock",
+    "beater"
+   ],
+   "tags": [
+    "hate@static",
+    "hate@static"
+   ]
+  },
+  {
    "name": "Chancellor of the Annex",
    "decks": 101,
    "roles": [
-    "counter",
+    "spell",
     "finisher",
     "beater"
    ],
@@ -362,7 +374,7 @@
    "name": "Wrenn and Six",
    "decks": 21,
    "roles": [
-    "rm_damage",
+    "removal",
     "recursion",
     "engine",
     "reach"
@@ -377,8 +389,8 @@
    "name": "Deathrite Shaman",
    "decks": 14,
    "roles": [
-    "rm_exile",
-    "landdestroy",
+    "removal",
+    "manalock",
     "ramp",
     "engine",
     "reach"
@@ -422,7 +434,7 @@
    "name": "Dack Fayden",
    "decks": 9,
    "roles": [
-    "steal",
+    "removal",
     "draw",
     "engine"
    ],
@@ -449,7 +461,7 @@
    "name": "Wistfulness",
    "decks": 9,
    "roles": [
-    "rm_exile",
+    "removal",
     "draw",
     "finisher",
     "beater"
@@ -520,25 +532,12 @@
    "name": "Sowing Mycospawn",
    "decks": 5,
    "roles": [
-    "landdestroy",
+    "manalock",
     "ramp",
     "beater"
    ],
    "tags": [
     "removal@cast_self"
-   ]
-  },
-  {
-   "name": "Boggart Trawler // Boggart Bog",
-   "decks": 5,
-   "roles": [
-    "gyhate",
-    "ramp",
-    "beater"
-   ],
-   "tags": [
-    "gyhate@etb",
-    "mana@activated"
    ]
   }
  ],
@@ -548,14 +547,14 @@
     "name": "Force of Will",
     "decks": 879,
     "roles": [
-     "counter"
+     "spell"
     ]
    },
    {
     "name": "Vexing Bauble",
     "decks": 769,
     "roles": [
-     "counterlock",
+     "spell",
      "draw"
     ]
    },
@@ -563,14 +562,14 @@
     "name": "Mental Misstep",
     "decks": 760,
     "roles": [
-     "counter"
+     "spell"
     ]
    },
    {
     "name": "Force of Negation",
     "decks": 641,
     "roles": [
-     "counter"
+     "spell"
     ]
    },
    {
@@ -585,7 +584,7 @@
     "name": "Karn, the Great Creator",
     "decks": 370,
     "roles": [
-     "abilitylock",
+     "ability",
      "tutor"
     ]
    },
@@ -593,14 +592,14 @@
     "name": "Swords to Plowshares",
     "decks": 314,
     "roles": [
-     "rm_exile"
+     "removal"
     ]
    },
    {
     "name": "Flusterstorm",
     "decks": 305,
     "roles": [
-     "counter",
+     "spell",
      "copy"
     ]
    },
@@ -608,14 +607,14 @@
     "name": "Chalice of the Void",
     "decks": 277,
     "roles": [
-     "counterlock"
+     "spell"
     ]
    },
    {
     "name": "Spell Pierce",
     "decks": 232,
     "roles": [
-     "counter"
+     "spell"
     ]
    },
    {
@@ -630,14 +629,14 @@
     "name": "Trinisphere",
     "decks": 211,
     "roles": [
-     "hate"
+     "spell"
     ]
    },
    {
     "name": "Sink into Stupor // Soporific Springs",
     "decks": 202,
     "roles": [
-     "rm_destroy",
+     "removal",
      "ramp"
     ]
    },
@@ -652,29 +651,28 @@
     "name": "Null Rod",
     "decks": 186,
     "roles": [
-     "abilitylock"
+     "ability"
     ]
    },
    {
     "name": "Pithing Needle",
     "decks": 184,
     "roles": [
-     "abilitylock"
+     "ability"
     ]
    },
    {
     "name": "Prismatic Ending",
     "decks": 162,
     "roles": [
-     "rm_exile"
+     "removal"
     ]
    },
    {
     "name": "Flame of Anor",
     "decks": 150,
     "roles": [
-     "rm_destroy",
-     "rm_damage",
+     "removal",
      "draw"
     ]
    },
@@ -682,14 +680,14 @@
     "name": "Portable Hole",
     "decks": 147,
     "roles": [
-     "rm_exile"
+     "removal"
     ]
    },
    {
     "name": "Orcish Bowmasters",
     "decks": 126,
     "roles": [
-     "rm_damage",
+     "removal",
      "draw",
      "reach"
     ]
@@ -698,22 +696,23 @@
     "name": "Pyroblast",
     "decks": 117,
     "roles": [
-     "rm_destroy",
-     "counter"
+     "removal",
+     "spell",
+     "manalock"
     ]
    },
    {
     "name": "Mindbreak Trap",
     "decks": 116,
     "roles": [
-     "counter"
+     "spell"
     ]
    },
    {
     "name": "Lodestone Golem",
     "decks": 114,
     "roles": [
-     "hate",
+     "spell",
      "finisher",
      "beater"
     ]
@@ -722,14 +721,15 @@
     "name": "Void Mirror",
     "decks": 112,
     "roles": [
-     "counterlock"
+     "spell"
     ]
    },
    {
     "name": "Archon of Emeria",
     "decks": 108,
     "roles": [
-     "hate",
+     "spell",
+     "manalock",
      "beater"
     ]
    }
@@ -1501,7 +1501,7 @@
    "name": "Stinkweed Imp",
    "decks": 65,
    "roles": [
-    "rm_destroy",
+    "removal",
     "engine"
    ],
    "tags": [
@@ -1634,7 +1634,7 @@
    "name": "Wrenn and Six",
    "decks": 21,
    "roles": [
-    "rm_damage",
+    "removal",
     "recursion",
     "engine",
     "reach"
@@ -1659,8 +1659,8 @@
    "name": "Deathrite Shaman",
    "decks": 14,
    "roles": [
-    "rm_exile",
-    "landdestroy",
+    "removal",
+    "manalock",
     "ramp",
     "engine",
     "reach"
@@ -1735,7 +1735,7 @@
    "name": "Dack Fayden",
    "decks": 9,
    "roles": [
-    "steal",
+    "removal",
     "draw",
     "engine"
    ],
@@ -1850,7 +1850,7 @@
    "name": "Displacer Kitten",
    "decks": 4,
    "roles": [
-    "rm_exile",
+    "removal",
     "engine",
     "protection"
    ],
@@ -1863,7 +1863,7 @@
    "name": "Minsc & Boo, Timeless Heroes",
    "decks": 4,
    "roles": [
-    "rm_damage",
+    "removal",
     "draw",
     "engine",
     "reach",
@@ -1880,7 +1880,7 @@
    "name": "Walking Ballista",
    "decks": 3,
    "roles": [
-    "rm_damage",
+    "removal",
     "engine",
     "reach"
    ],
@@ -1929,7 +1929,7 @@
    "name": "Lodestone Golem",
    "decks": 114,
    "roles": [
-    "hate",
+    "spell",
     "finisher",
     "beater"
    ]
@@ -1938,7 +1938,7 @@
    "name": "Chancellor of the Annex",
    "decks": 101,
    "roles": [
-    "counter",
+    "spell",
     "finisher",
     "beater"
    ]
@@ -1988,7 +1988,7 @@
    "name": "Wistfulness",
    "decks": 9,
    "roles": [
-    "rm_exile",
+    "removal",
     "draw",
     "finisher",
     "beater"
@@ -2070,7 +2070,7 @@
    "name": "Cityscape Leveler",
    "decks": 2,
    "roles": [
-    "rm_destroy",
+    "removal",
     "recursion",
     "finisher",
     "engine",

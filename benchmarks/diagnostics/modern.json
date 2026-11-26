@@ -84,7 +84,7 @@
   }
  ],
  "format": "Modern",
- "generatedAt": "2026-11-26T08:19:51.695Z",
+ "generatedAt": "2026-11-26T08:44:05.914Z",
  "decks": 4966,
  "otherOnly": [
   {
@@ -289,7 +289,7 @@
    "name": "Kozilek's Command",
    "decks": 773,
    "roles": [
-    "rm_exile",
+    "removal",
     "draw",
     "ramp",
     "tokens"
@@ -305,7 +305,7 @@
    "name": "Teferi, Time Raveler",
    "decks": 734,
    "roles": [
-    "rm_destroy",
+    "removal",
     "draw",
     "engine"
    ],
@@ -332,7 +332,8 @@
    "name": "Devourer of Destiny",
    "decks": 685,
    "roles": [
-    "rm_exile",
+    "removal",
+    "manalock",
     "finisher",
     "beater"
    ],
@@ -344,7 +345,7 @@
    "name": "Sowing Mycospawn",
    "decks": 534,
    "roles": [
-    "landdestroy",
+    "manalock",
     "ramp",
     "beater"
    ],
@@ -356,7 +357,7 @@
    "name": "Emrakul, the Promised End",
    "decks": 512,
    "roles": [
-    "steal",
+    "removal",
     "finisher",
     "beater"
    ],
@@ -368,7 +369,7 @@
    "name": "Goblin Bombardment",
    "decks": 409,
    "roles": [
-    "rm_damage",
+    "removal",
     "engine",
     "reach"
    ],
@@ -381,7 +382,7 @@
    "name": "Ajani, Nacatl Pariah // Ajani, Nacatl Avenger",
    "decks": 403,
    "roles": [
-    "rm_damage",
+    "removal",
     "engine",
     "reach",
     "tokens"
@@ -398,7 +399,7 @@
    "name": "Orcish Bowmasters",
    "decks": 348,
    "roles": [
-    "rm_damage",
+    "removal",
     "draw",
     "reach"
    ],
@@ -412,7 +413,7 @@
    "name": "Lava Dart",
    "decks": 332,
    "roles": [
-    "rm_damage",
+    "removal",
     "recursion",
     "reach"
    ],
@@ -426,7 +427,8 @@
    "name": "Ugin, Eye of the Storms",
    "decks": 310,
    "roles": [
-    "rm_exile",
+    "removal",
+    "manalock",
     "cheatloop",
     "draw",
     "tutor",
@@ -471,7 +473,7 @@
    "name": "Ranger-Captain of Eos",
    "decks": 231,
    "roles": [
-    "hate",
+    "spell",
     "tutor",
     "beater"
    ],
@@ -538,7 +540,7 @@
    "name": "Weapons Manufacturing",
    "decks": 207,
    "roles": [
-    "rm_damage",
+    "removal",
     "engine",
     "reach"
    ],
@@ -552,7 +554,7 @@
    "name": "Wistfulness",
    "decks": 200,
    "roles": [
-    "rm_exile",
+    "removal",
     "draw",
     "finisher",
     "beater"
@@ -647,7 +649,7 @@
    "name": "Colossal Skyturtle",
    "decks": 162,
    "roles": [
-    "rm_destroy",
+    "removal",
     "recursion",
     "finisher",
     "engine",
@@ -676,7 +678,7 @@
    "name": "Archon of Cruelty",
    "decks": 144,
    "roles": [
-    "edict",
+    "removal",
     "draw",
     "finisher",
     "engine",
@@ -713,7 +715,7 @@
     "name": "Lightning Bolt",
     "decks": 1435,
     "roles": [
-     "rm_damage",
+     "removal",
      "reach"
     ]
    },
@@ -728,14 +730,15 @@
     "name": "Fatal Push",
     "decks": 902,
     "roles": [
-     "rm_destroy"
+     "removal",
+     "manalock"
     ]
    },
    {
     "name": "Solitude",
     "decks": 896,
     "roles": [
-     "rm_exile",
+     "removal",
      "beater"
     ]
    },
@@ -743,14 +746,14 @@
     "name": "Force of Negation",
     "decks": 799,
     "roles": [
-     "counter"
+     "spell"
     ]
    },
    {
     "name": "Sink into Stupor // Soporific Springs",
     "decks": 797,
     "roles": [
-     "rm_destroy",
+     "removal",
      "ramp"
     ]
    },
@@ -758,7 +761,7 @@
     "name": "Kozilek's Command",
     "decks": 773,
     "roles": [
-     "rm_exile",
+     "removal",
      "draw",
      "ramp",
      "tokens"
@@ -768,7 +771,7 @@
     "name": "Teferi, Time Raveler",
     "decks": 734,
     "roles": [
-     "rm_destroy",
+     "removal",
      "draw",
      "engine"
     ]
@@ -777,7 +780,8 @@
     "name": "Devourer of Destiny",
     "decks": 685,
     "roles": [
-     "rm_exile",
+     "removal",
+     "manalock",
      "finisher",
      "beater"
     ]
@@ -786,42 +790,43 @@
     "name": "Prismatic Ending",
     "decks": 676,
     "roles": [
-     "rm_exile"
+     "removal"
     ]
    },
    {
     "name": "Dismember",
     "decks": 639,
     "roles": [
-     "rm_damage"
+     "removal"
     ]
    },
    {
     "name": "Consign to Memory",
     "decks": 622,
     "roles": [
-     "counter"
+     "spell",
+     "ability"
     ]
    },
    {
     "name": "Spell Snare",
     "decks": 584,
     "roles": [
-     "counter"
+     "spell"
     ]
    },
    {
     "name": "Galvanic Discharge",
     "decks": 534,
     "roles": [
-     "rm_damage"
+     "removal"
     ]
    },
    {
     "name": "Sowing Mycospawn",
     "decks": 534,
     "roles": [
-     "landdestroy",
+     "manalock",
      "ramp",
      "beater"
     ]
@@ -830,14 +835,14 @@
     "name": "Haywire Mite",
     "decks": 530,
     "roles": [
-     "rm_exile"
+     "removal"
     ]
    },
    {
     "name": "Emrakul, the Promised End",
     "decks": 512,
     "roles": [
-     "steal",
+     "removal",
      "finisher",
      "beater"
     ]
@@ -853,14 +858,14 @@
     "name": "Unholy Heat",
     "decks": 490,
     "roles": [
-     "rm_damage"
+     "removal"
     ]
    },
    {
     "name": "Ephemerate",
     "decks": 482,
     "roles": [
-     "rm_exile",
+     "removal",
      "protection"
     ]
    },
@@ -868,7 +873,7 @@
     "name": "Vexing Bauble",
     "decks": 481,
     "roles": [
-     "counterlock",
+     "spell",
      "draw"
     ]
    },
@@ -883,7 +888,7 @@
     "name": "Blood Moon",
     "decks": 421,
     "roles": [
-     "hate"
+     "manalock"
     ]
    },
    {
@@ -898,7 +903,7 @@
     "name": "Goblin Bombardment",
     "decks": 409,
     "roles": [
-     "rm_damage",
+     "removal",
      "engine",
      "reach"
     ]
@@ -1853,7 +1858,7 @@
    "name": "Teferi, Time Raveler",
    "decks": 734,
    "roles": [
-    "rm_destroy",
+    "removal",
     "draw",
     "engine"
    ],
@@ -1900,7 +1905,7 @@
    "name": "Goblin Bombardment",
    "decks": 409,
    "roles": [
-    "rm_damage",
+    "removal",
     "engine",
     "reach"
    ],
@@ -1913,7 +1918,7 @@
    "name": "Ajani, Nacatl Pariah // Ajani, Nacatl Avenger",
    "decks": 403,
    "roles": [
-    "rm_damage",
+    "removal",
     "engine",
     "reach",
     "tokens"
@@ -1954,7 +1959,8 @@
    "name": "Ugin, Eye of the Storms",
    "decks": 310,
    "roles": [
-    "rm_exile",
+    "removal",
+    "manalock",
     "cheatloop",
     "draw",
     "tutor",
@@ -2024,7 +2030,7 @@
    "name": "Phelia, Exuberant Shepherd",
    "decks": 239,
    "roles": [
-    "rm_exile",
+    "removal",
     "engine"
    ],
    "tags": [
@@ -2075,7 +2081,7 @@
    "name": "Weapons Manufacturing",
    "decks": 207,
    "roles": [
-    "rm_damage",
+    "removal",
     "engine",
     "reach"
    ],
@@ -2156,7 +2162,7 @@
    "name": "Colossal Skyturtle",
    "decks": 162,
    "roles": [
-    "rm_destroy",
+    "removal",
     "recursion",
     "finisher",
     "engine",
@@ -2171,7 +2177,7 @@
    "name": "Archon of Cruelty",
    "decks": 144,
    "roles": [
-    "edict",
+    "removal",
     "draw",
     "finisher",
     "engine",
@@ -2218,7 +2224,7 @@
    "name": "Relic of Progenitus",
    "decks": 125,
    "roles": [
-    "rm_destroy",
+    "removal",
     "gyhate",
     "draw",
     "engine"
@@ -2260,7 +2266,7 @@
    "name": "Wrenn and Six",
    "decks": 103,
    "roles": [
-    "rm_damage",
+    "removal",
     "recursion",
     "engine",
     "reach"
@@ -2304,7 +2310,7 @@
    "name": "Walking Ballista",
    "decks": 83,
    "roles": [
-    "rm_damage",
+    "removal",
     "engine",
     "reach"
    ],
@@ -2399,7 +2405,8 @@
    "name": "Devourer of Destiny",
    "decks": 685,
    "roles": [
-    "rm_exile",
+    "removal",
+    "manalock",
     "finisher",
     "beater"
    ]
@@ -2408,7 +2415,7 @@
    "name": "Emrakul, the Promised End",
    "decks": 512,
    "roles": [
-    "steal",
+    "removal",
     "finisher",
     "beater"
    ]
@@ -2485,7 +2492,7 @@
    "name": "Wistfulness",
    "decks": 200,
    "roles": [
-    "rm_exile",
+    "removal",
     "draw",
     "finisher",
     "beater"
@@ -2514,7 +2521,7 @@
    "name": "Colossal Skyturtle",
    "decks": 162,
    "roles": [
-    "rm_destroy",
+    "removal",
     "recursion",
     "finisher",
     "engine",
@@ -2533,7 +2540,7 @@
    "name": "Archon of Cruelty",
    "decks": 144,
    "roles": [
-    "edict",
+    "removal",
     "draw",
     "finisher",
     "engine",

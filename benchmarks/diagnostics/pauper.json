@@ -31,9 +31,17 @@
   }
  ],
  "format": "Pauper",
- "generatedAt": "2026-11-26T08:19:51.695Z",
+ "generatedAt": "2026-11-26T08:44:05.914Z",
  "decks": 2757,
  "otherOnly": [
+  {
+   "name": "Dispel",
+   "decks": 476,
+   "typeLine": "Instant",
+   "tags": [
+    "counter@spell"
+   ]
+  },
   {
    "name": "Deem Inferior",
    "decks": 180,
@@ -59,6 +67,14 @@
    "decks": 12,
    "typeLine": "Instant",
    "tags": []
+  },
+  {
+   "name": "Envelop",
+   "decks": 8,
+   "typeLine": "Instant",
+   "tags": [
+    "counter@spell"
+   ]
   },
   {
    "name": "Rolling Thunder",
@@ -123,7 +139,7 @@
    "name": "Lava Dart",
    "decks": 288,
    "roles": [
-    "rm_damage",
+    "removal",
     "recursion",
     "reach"
    ],
@@ -137,13 +153,26 @@
    "name": "Makeshift Munitions",
    "decks": 284,
    "roles": [
-    "rm_damage",
+    "removal",
     "engine",
     "reach"
    ],
    "tags": [
     "drain@activated",
     "removal@activated"
+   ]
+  },
+  {
+   "name": "Giant's Boulder",
+   "decks": 230,
+   "roles": [
+    "removal",
+    "manalock",
+    "ramp"
+   ],
+   "tags": [
+    "mana@activated",
+    "removal@activated_once"
    ]
   },
   {
@@ -177,7 +206,7 @@
    "name": "Tithing Blade // Consuming Sepulcher",
    "decks": 161,
    "roles": [
-    "edict",
+    "removal",
     "engine",
     "reach"
    ],
@@ -204,7 +233,7 @@
    "name": "Lotleth Giant",
    "decks": 142,
    "roles": [
-    "rm_damage",
+    "removal",
     "finisher",
     "reach",
     "beater"
@@ -240,6 +269,19 @@
    ]
   },
   {
+   "name": "Chain Lightning",
+   "decks": 72,
+   "roles": [
+    "removal",
+    "manalock",
+    "reach"
+   ],
+   "tags": [
+    "drain@spell",
+    "removal@spell"
+   ]
+  },
+  {
    "name": "Unfathomable Truths",
    "decks": 50,
    "roles": [
@@ -257,7 +299,7 @@
    "name": "Relic of Progenitus",
    "decks": 46,
    "roles": [
-    "rm_destroy",
+    "removal",
     "gyhate",
     "draw",
     "engine"
@@ -272,8 +314,8 @@
    "name": "Kaervek's Torch",
    "decks": 45,
    "roles": [
-    "rm_damage",
-    "hate",
+    "removal",
+    "spell",
     "reach"
    ],
    "tags": [
@@ -300,9 +342,9 @@
    "name": "Rancid Earth",
    "decks": 14,
    "roles": [
-    "rm_destroy",
-    "landdestroy",
-    "wipe"
+    "removal",
+    "wipe",
+    "manalock"
    ],
    "tags": [
     "removal@spell",
@@ -339,7 +381,7 @@
    "name": "Viridian Longbow",
    "decks": 9,
    "roles": [
-    "rm_damage",
+    "removal",
     "reach",
     "enhance"
    ],
@@ -366,7 +408,7 @@
    "name": "Pegasus Guardian // Rescue the Foal",
    "decks": 5,
    "roles": [
-    "rm_exile",
+    "removal",
     "engine",
     "beater",
     "protection"
@@ -405,7 +447,7 @@
    "name": "Flame Jab",
    "decks": 4,
    "roles": [
-    "rm_damage",
+    "removal",
     "recursion",
     "reach"
    ],
@@ -419,7 +461,7 @@
    "name": "Valakut Invoker",
    "decks": 4,
    "roles": [
-    "rm_damage",
+    "removal",
     "engine",
     "reach"
    ],
@@ -429,10 +471,24 @@
    ]
   },
   {
+   "name": "Searing Blaze",
+   "decks": 3,
+   "roles": [
+    "removal",
+    "manalock",
+    "reach"
+   ],
+   "tags": [
+    "drain@spell",
+    "removal@spell",
+    "removal@spell"
+   ]
+  },
+  {
    "name": "Firebolt",
    "decks": 2,
    "roles": [
-    "rm_damage",
+    "removal",
     "recursion",
     "reach"
    ],
@@ -458,7 +514,7 @@
    "name": "Hissing Iguanar",
    "decks": 2,
    "roles": [
-    "rm_damage",
+    "removal",
     "engine",
     "reach",
     "beater"
@@ -466,46 +522,6 @@
    "tags": [
     "drain@death_trigger",
     "removal@death_trigger"
-   ]
-  },
-  {
-   "name": "Talons of Wildwood",
-   "decks": 2,
-   "roles": [
-    "recursion",
-    "engine",
-    "enhance"
-   ],
-   "tags": [
-    "pump@static",
-    "recursion@activated"
-   ]
-  },
-  {
-   "name": "Needle Drop",
-   "decks": 1,
-   "roles": [
-    "rm_damage",
-    "draw",
-    "reach"
-   ],
-   "tags": [
-    "drain@spell",
-    "removal@spell",
-    "draw@spell"
-   ]
-  },
-  {
-   "name": "Drownyard Lurker",
-   "decks": 1,
-   "roles": [
-    "finisher",
-    "engine",
-    "beater"
-   ],
-   "tags": [
-    "token@cast_trigger",
-    "mana@cast_trigger"
    ]
   }
  ],
@@ -515,21 +531,21 @@
     "name": "Counterspell",
     "decks": 780,
     "roles": [
-     "counter"
+     "spell"
     ]
    },
    {
     "name": "Cast Down",
     "decks": 686,
     "roles": [
-     "rm_destroy"
+     "removal"
     ]
    },
    {
     "name": "Lightning Bolt",
     "decks": 606,
     "roles": [
-     "rm_damage",
+     "removal",
      "reach"
     ]
    },
@@ -537,14 +553,7 @@
     "name": "Snuff Out",
     "decks": 565,
     "roles": [
-     "rm_destroy"
-    ]
-   },
-   {
-    "name": "Dispel",
-    "decks": 476,
-    "roles": [
-     "counter"
+     "removal"
     ]
    },
    {
@@ -559,14 +568,14 @@
     "name": "Extract a Confession",
     "decks": 387,
     "roles": [
-     "edict"
+     "removal"
     ]
    },
    {
     "name": "Galvanic Blast",
     "decks": 378,
     "roles": [
-     "rm_damage",
+     "removal",
      "reach"
     ]
    },
@@ -590,7 +599,7 @@
     "name": "Fireblast",
     "decks": 321,
     "roles": [
-     "rm_damage",
+     "removal",
      "reach"
     ]
    },
@@ -598,7 +607,7 @@
     "name": "Fiery Temper",
     "decks": 319,
     "roles": [
-     "rm_damage",
+     "removal",
      "reach"
     ]
    },
@@ -606,14 +615,14 @@
     "name": "Dispatch",
     "decks": 291,
     "roles": [
-     "rm_exile"
+     "removal"
     ]
    },
    {
     "name": "Lava Dart",
     "decks": 288,
     "roles": [
-     "rm_damage",
+     "removal",
      "recursion",
      "reach"
     ]
@@ -622,14 +631,14 @@
     "name": "Cut Down",
     "decks": 285,
     "roles": [
-     "rm_destroy"
+     "removal"
     ]
    },
    {
     "name": "Makeshift Munitions",
     "decks": 284,
     "roles": [
-     "rm_damage",
+     "removal",
      "engine",
      "reach"
     ]
@@ -638,21 +647,22 @@
     "name": "Spellstutter Sprite",
     "decks": 271,
     "roles": [
-     "counter"
+     "spell"
     ]
    },
    {
     "name": "Masked Vandal",
     "decks": 252,
     "roles": [
-     "rm_exile"
+     "removal"
     ]
    },
    {
     "name": "Giant's Boulder",
     "decks": 230,
     "roles": [
-     "rm_destroy",
+     "removal",
+     "manalock",
      "ramp"
     ]
    },
@@ -660,7 +670,7 @@
     "name": "Spell Pierce",
     "decks": 211,
     "roles": [
-     "counter"
+     "spell"
     ]
    },
    {
@@ -681,7 +691,7 @@
     "name": "Tithing Blade // Consuming Sepulcher",
     "decks": 161,
     "roles": [
-     "edict",
+     "removal",
      "engine",
      "reach"
     ]
@@ -690,17 +700,24 @@
     "name": "Thraben Charm",
     "decks": 143,
     "roles": [
-     "rm_destroy",
-     "rm_damage"
+     "removal"
     ]
    },
    {
     "name": "Lotleth Giant",
     "decks": 142,
     "roles": [
-     "rm_damage",
+     "removal",
      "finisher",
      "reach",
+     "beater"
+    ]
+   },
+   {
+    "name": "Balustrade Spy",
+    "decks": 136,
+    "roles": [
+     "discard",
      "beater"
     ]
    }
@@ -1283,6 +1300,13 @@
   ],
   "other": [
    {
+    "name": "Dispel",
+    "decks": 476,
+    "roles": [
+     "other"
+    ]
+   },
+   {
     "name": "Deem Inferior",
     "decks": 180,
     "roles": [
@@ -1306,6 +1330,13 @@
    {
     "name": "Fiery Cannonade",
     "decks": 12,
+    "roles": [
+     "other"
+    ]
+   },
+   {
+    "name": "Envelop",
+    "decks": 8,
     "roles": [
      "other"
     ]
@@ -1397,7 +1428,7 @@
    "name": "Makeshift Munitions",
    "decks": 284,
    "roles": [
-    "rm_damage",
+    "removal",
     "engine",
     "reach"
    ],
@@ -1456,7 +1487,7 @@
    "name": "Tithing Blade // Consuming Sepulcher",
    "decks": 161,
    "roles": [
-    "edict",
+    "removal",
     "engine",
     "reach"
    ],
@@ -1507,7 +1538,7 @@
    "name": "Relic of Progenitus",
    "decks": 46,
    "roles": [
-    "rm_destroy",
+    "removal",
     "gyhate",
     "draw",
     "engine"
@@ -1678,7 +1709,7 @@
    "name": "Stinkweed Imp",
    "decks": 6,
    "roles": [
-    "rm_destroy",
+    "removal",
     "engine"
    ],
    "tags": [
@@ -1702,7 +1733,7 @@
    "name": "Pegasus Guardian // Rescue the Foal",
    "decks": 5,
    "roles": [
-    "rm_exile",
+    "removal",
     "engine",
     "beater",
     "protection"
@@ -1751,7 +1782,7 @@
    "name": "Valakut Invoker",
    "decks": 4,
    "roles": [
-    "rm_damage",
+    "removal",
     "engine",
     "reach"
    ],
@@ -1775,7 +1806,7 @@
    "name": "Gorilla Shaman",
    "decks": 2,
    "roles": [
-    "rm_destroy",
+    "removal",
     "engine"
    ],
    "tags": [
@@ -1796,7 +1827,7 @@
    "name": "Hissing Iguanar",
    "decks": 2,
    "roles": [
-    "rm_damage",
+    "removal",
     "engine",
     "reach",
     "beater"
@@ -1882,7 +1913,7 @@
    "name": "Lotleth Giant",
    "decks": 142,
    "roles": [
-    "rm_damage",
+    "removal",
     "finisher",
     "reach",
     "beater"

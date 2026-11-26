@@ -80,7 +80,7 @@
   }
  ],
  "format": "Pioneer",
- "generatedAt": "2026-11-26T08:19:51.695Z",
+ "generatedAt": "2026-11-26T08:44:05.914Z",
  "decks": 1178,
  "otherOnly": [
   {
@@ -213,7 +213,7 @@
    "name": "Professor Dellian Fel",
    "decks": 121,
    "roles": [
-    "rm_destroy",
+    "removal",
     "draw",
     "engine"
    ],
@@ -227,7 +227,7 @@
    "name": "The Theorist, Jace Beleren",
    "decks": 93,
    "roles": [
-    "rm_destroy",
+    "removal",
     "draw",
     "engine",
     "enhance"
@@ -273,7 +273,7 @@
    "name": "Sunspine Lynx",
    "decks": 80,
    "roles": [
-    "hate",
+    "spell",
     "finisher",
     "reach",
     "beater"
@@ -281,6 +281,19 @@
    "tags": [
     "hate@static",
     "drain@etb"
+   ]
+  },
+  {
+   "name": "Skyclave Apparition",
+   "decks": 75,
+   "roles": [
+    "removal",
+    "manalock",
+    "tokens"
+   ],
+   "tags": [
+    "removal@etb",
+    "token@once_trigger"
    ]
   },
   {
@@ -340,7 +353,7 @@
    "name": "Elspeth, Storm Slayer",
    "decks": 66,
    "roles": [
-    "rm_destroy",
+    "removal",
     "engine",
     "enhance"
    ],
@@ -354,7 +367,7 @@
    "name": "Three Steps Ahead",
    "decks": 64,
    "roles": [
-    "counter",
+    "spell",
     "draw",
     "tokens"
    ],
@@ -380,7 +393,7 @@
    "name": "The Wandering Emperor",
    "decks": 62,
    "roles": [
-    "rm_exile",
+    "removal",
     "engine",
     "enhance"
    ],
@@ -421,7 +434,7 @@
    "name": "Prismari Charm",
    "decks": 59,
    "roles": [
-    "rm_destroy",
+    "removal",
     "draw",
     "selfmill"
    ],
@@ -475,7 +488,8 @@
    "name": "Teferi, Hero of Dominaria",
    "decks": 51,
    "roles": [
-    "rm_exile",
+    "removal",
+    "manalock",
     "untap",
     "draw",
     "engine"
@@ -490,7 +504,8 @@
    "name": "Mayhem Devil",
    "decks": 50,
    "roles": [
-    "edict",
+    "removal",
+    "manalock",
     "engine",
     "reach",
     "beater"
@@ -518,7 +533,7 @@
    "name": "Vibrance",
    "decks": 45,
    "roles": [
-    "rm_damage",
+    "removal",
     "tutor",
     "reach",
     "beater"
@@ -549,8 +564,7 @@
    "name": "Prismari Command",
    "decks": 39,
    "roles": [
-    "rm_destroy",
-    "rm_damage",
+    "removal",
     "draw",
     "ramp",
     "reach"
@@ -561,23 +575,6 @@
     "draw@spell",
     "mana@spell",
     "removal@spell"
-   ]
-  },
-  {
-   "name": "Overlord of the Balemurk",
-   "decks": 37,
-   "roles": [
-    "recursion",
-    "selfmill",
-    "finisher",
-    "engine",
-    "beater"
-   ],
-   "tags": [
-    "recursion@etb",
-    "selfmill@etb",
-    "recursion@attack",
-    "selfmill@attack"
    ]
   }
  ],
@@ -594,21 +591,22 @@
     "name": "Fatal Push",
     "decks": 305,
     "roles": [
-     "rm_destroy"
+     "removal",
+     "manalock"
     ]
    },
    {
     "name": "Bitter Triumph",
     "decks": 189,
     "roles": [
-     "rm_destroy"
+     "removal"
     ]
    },
    {
     "name": "Boomerang Basics",
     "decks": 181,
     "roles": [
-     "rm_destroy",
+     "removal",
      "draw"
     ]
    },
@@ -616,21 +614,21 @@
     "name": "Reckless Rage",
     "decks": 171,
     "roles": [
-     "rm_damage"
+     "removal"
     ]
    },
    {
     "name": "Fiery Impulse",
     "decks": 169,
     "roles": [
-     "rm_damage"
+     "removal"
     ]
    },
    {
     "name": "Burst Lightning",
     "decks": 164,
     "roles": [
-     "rm_damage",
+     "removal",
      "reach"
     ]
    },
@@ -638,14 +636,14 @@
     "name": "Torch the Tower",
     "decks": 124,
     "roles": [
-     "rm_damage"
+     "removal"
     ]
    },
    {
     "name": "Professor Dellian Fel",
     "decks": 121,
     "roles": [
-     "rm_destroy",
+     "removal",
      "draw",
      "engine"
     ]
@@ -654,7 +652,7 @@
     "name": "Abrupt Decay",
     "decks": 118,
     "roles": [
-     "rm_destroy",
+     "removal",
      "protection"
     ]
    },
@@ -677,7 +675,7 @@
     "name": "The Theorist, Jace Beleren",
     "decks": 93,
     "roles": [
-     "rm_destroy",
+     "removal",
      "draw",
      "engine",
      "enhance"
@@ -687,14 +685,14 @@
     "name": "March of Otherworldly Light",
     "decks": 91,
     "roles": [
-     "rm_exile"
+     "removal"
     ]
    },
    {
     "name": "Sheltered by Ghosts",
     "decks": 84,
     "roles": [
-     "rm_exile",
+     "removal",
      "enhance"
     ]
    },
@@ -702,7 +700,7 @@
     "name": "Sunspine Lynx",
     "decks": 80,
     "roles": [
-     "hate",
+     "spell",
      "finisher",
      "reach",
      "beater"
@@ -712,7 +710,8 @@
     "name": "Skyclave Apparition",
     "decks": 75,
     "roles": [
-     "rm_exile",
+     "removal",
+     "manalock",
      "tokens"
     ]
    },
@@ -720,7 +719,7 @@
     "name": "Elspeth, Storm Slayer",
     "decks": 66,
     "roles": [
-     "rm_destroy",
+     "removal",
      "engine",
      "enhance"
     ]
@@ -729,7 +728,7 @@
     "name": "Get Lost",
     "decks": 65,
     "roles": [
-     "rm_destroy"
+     "removal"
     ]
    },
    {
@@ -744,14 +743,14 @@
     "name": "Get Out",
     "decks": 64,
     "roles": [
-     "counter"
+     "spell"
     ]
    },
    {
     "name": "Three Steps Ahead",
     "decks": 64,
     "roles": [
-     "counter",
+     "spell",
      "draw",
      "tokens"
     ]
@@ -760,7 +759,7 @@
     "name": "Volcanic Spite",
     "decks": 63,
     "roles": [
-     "rm_damage",
+     "removal",
      "draw"
     ]
    },
@@ -768,14 +767,14 @@
     "name": "Thalia, Guardian of Thraben",
     "decks": 62,
     "roles": [
-     "hate"
+     "spell"
     ]
    },
    {
     "name": "This Town Ain't Big Enough",
     "decks": 62,
     "roles": [
-     "bounce"
+     "removal"
     ]
    }
   ],
@@ -1713,7 +1712,7 @@
    "name": "Professor Dellian Fel",
    "decks": 121,
    "roles": [
-    "rm_destroy",
+    "removal",
     "draw",
     "engine"
    ],
@@ -1727,7 +1726,7 @@
    "name": "The Theorist, Jace Beleren",
    "decks": 93,
    "roles": [
-    "rm_destroy",
+    "removal",
     "draw",
     "engine",
     "enhance"
@@ -1860,7 +1859,7 @@
    "name": "Elspeth, Storm Slayer",
    "decks": 66,
    "roles": [
-    "rm_destroy",
+    "removal",
     "engine",
     "enhance"
    ],
@@ -1885,7 +1884,7 @@
    "name": "The Wandering Emperor",
    "decks": 62,
    "roles": [
-    "rm_exile",
+    "removal",
     "engine",
     "enhance"
    ],
@@ -1930,7 +1929,8 @@
    "name": "Teferi, Hero of Dominaria",
    "decks": 51,
    "roles": [
-    "rm_exile",
+    "removal",
+    "manalock",
     "untap",
     "draw",
     "engine"
@@ -1945,7 +1945,8 @@
    "name": "Mayhem Devil",
    "decks": 50,
    "roles": [
-    "edict",
+    "removal",
+    "manalock",
     "engine",
     "reach",
     "beater"
@@ -2038,7 +2039,7 @@
    "name": "Thor, God of Thunder",
    "decks": 35,
    "roles": [
-    "rm_damage",
+    "removal",
     "finisher",
     "engine",
     "reach",
@@ -2145,8 +2146,8 @@
    "name": "Jennifer Walters // The Sensational She-Hulk",
    "decks": 26,
    "roles": [
-    "rm_damage",
-    "hate",
+    "removal",
+    "spell",
     "engine",
     "reach",
     "beater"
@@ -2185,7 +2186,7 @@
    "name": "Sunspine Lynx",
    "decks": 80,
    "roles": [
-    "hate",
+    "spell",
     "finisher",
     "reach",
     "beater"
@@ -2266,7 +2267,7 @@
    "name": "Thor, God of Thunder",
    "decks": 35,
    "roles": [
-    "rm_damage",
+    "removal",
     "finisher",
     "engine",
     "reach",

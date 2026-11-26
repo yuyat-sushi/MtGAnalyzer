@@ -33,7 +33,7 @@
   }
  ],
  "format": "Standard",
- "generatedAt": "2026-11-26T08:19:51.695Z",
+ "generatedAt": "2026-11-26T08:44:05.914Z",
  "decks": 2462,
  "otherOnly": [
   {
@@ -120,7 +120,7 @@
    "name": "The Theorist, Jace Beleren",
    "decks": 401,
    "roles": [
-    "rm_destroy",
+    "removal",
     "draw",
     "engine",
     "enhance"
@@ -150,7 +150,7 @@
    "name": "Smaug the Magnificent",
    "decks": 277,
    "roles": [
-    "rm_damage",
+    "removal",
     "engine",
     "reach",
     "beater"
@@ -165,7 +165,7 @@
    "name": "Three Steps Ahead",
    "decks": 245,
    "roles": [
-    "counter",
+    "spell",
     "draw",
     "tokens"
    ],
@@ -307,8 +307,8 @@
    "name": "Theorix Charm",
    "decks": 185,
    "roles": [
-    "rm_damage",
-    "counter",
+    "removal",
+    "spell",
     "draw",
     "selfmill"
    ],
@@ -336,7 +336,7 @@
    "name": "Prismari Charm",
    "decks": 144,
    "roles": [
-    "rm_destroy",
+    "removal",
     "draw",
     "selfmill"
    ],
@@ -350,7 +350,7 @@
    "name": "Traumatic Critique",
    "decks": 144,
    "roles": [
-    "rm_damage",
+    "removal",
     "draw",
     "reach"
    ],
@@ -364,7 +364,8 @@
    "name": "Jeskai Revelation",
    "decks": 141,
    "roles": [
-    "rm_damage",
+    "removal",
+    "manalock",
     "draw",
     "reach",
     "tokens"
@@ -422,7 +423,7 @@
    "name": "Daydream",
    "decks": 123,
    "roles": [
-    "rm_exile",
+    "removal",
     "recursion",
     "enhance",
     "protection"
@@ -438,7 +439,7 @@
    "name": "Uldaros Theorix",
    "decks": 115,
    "roles": [
-    "rm_exile",
+    "removal",
     "cheat",
     "recursion",
     "finisher",
@@ -454,7 +455,7 @@
    "name": "The Mind Stone",
    "decks": 113,
    "roles": [
-    "rm_exile",
+    "removal",
     "ramp",
     "protection"
    ],
@@ -480,7 +481,7 @@
    "name": "Together as One",
    "decks": 105,
    "roles": [
-    "rm_damage",
+    "removal",
     "draw",
     "reach"
    ],
@@ -495,7 +496,7 @@
    "name": "Twinmaw Stormbrood // Charring Bite",
    "decks": 97,
    "roles": [
-    "rm_damage",
+    "removal",
     "finisher",
     "beater"
    ],
@@ -521,7 +522,7 @@
    "name": "Braided Net // Braided Quipu",
    "decks": 93,
    "roles": [
-    "abilitylock",
+    "ability",
     "draw",
     "engine"
    ],
@@ -551,42 +552,42 @@
     "name": "Erode",
     "decks": 670,
     "roles": [
-     "rm_destroy"
+     "removal"
     ]
    },
    {
     "name": "Requiting Hex",
     "decks": 649,
     "roles": [
-     "rm_destroy"
+     "removal"
     ]
    },
    {
     "name": "Spell Snare",
     "decks": 626,
     "roles": [
-     "counter"
+     "spell"
     ]
    },
    {
     "name": "Bitter Triumph",
     "decks": 504,
     "roles": [
-     "rm_destroy"
+     "removal"
     ]
    },
    {
     "name": "Seam Rip",
     "decks": 415,
     "roles": [
-     "rm_exile"
+     "removal"
     ]
    },
    {
     "name": "Burst Lightning",
     "decks": 410,
     "roles": [
-     "rm_damage",
+     "removal",
      "reach"
     ]
    },
@@ -594,7 +595,7 @@
     "name": "The Theorist, Jace Beleren",
     "decks": 401,
     "roles": [
-     "rm_destroy",
+     "removal",
      "draw",
      "engine",
      "enhance"
@@ -604,14 +605,14 @@
     "name": "Shoot the Sheriff",
     "decks": 346,
     "roles": [
-     "rm_destroy"
+     "removal"
     ]
    },
    {
     "name": "Strategic Betrayal",
     "decks": 340,
     "roles": [
-     "rm_destroy"
+     "removal"
     ]
    },
    {
@@ -625,7 +626,7 @@
     "name": "Smaug the Magnificent",
     "decks": 277,
     "roles": [
-     "rm_damage",
+     "removal",
      "engine",
      "reach",
      "beater"
@@ -643,7 +644,7 @@
     "name": "Three Steps Ahead",
     "decks": 245,
     "roles": [
-     "counter",
+     "spell",
      "draw",
      "tokens"
     ]
@@ -652,21 +653,21 @@
     "name": "No More Lies",
     "decks": 244,
     "roles": [
-     "counter"
+     "spell"
     ]
    },
    {
     "name": "Torch the Tower",
     "decks": 234,
     "roles": [
-     "rm_damage"
+     "removal"
     ]
    },
    {
     "name": "We Say Thee Nay!",
     "decks": 221,
     "roles": [
-     "counter"
+     "spell"
     ]
    },
    {
@@ -681,14 +682,14 @@
     "name": "Countersculpt",
     "decks": 214,
     "roles": [
-     "counter"
+     "spell"
     ]
    },
    {
     "name": "Get Lost",
     "decks": 210,
     "roles": [
-     "rm_destroy"
+     "removal"
     ]
    },
    {
@@ -702,8 +703,8 @@
     "name": "Theorix Charm",
     "decks": 185,
     "roles": [
-     "rm_damage",
-     "counter",
+     "removal",
+     "spell",
      "draw",
      "selfmill"
     ]
@@ -712,7 +713,7 @@
     "name": "Impractical Joke",
     "decks": 165,
     "roles": [
-     "rm_damage"
+     "removal"
     ]
    },
    {
@@ -726,14 +727,14 @@
     "name": "Spell Pierce",
     "decks": 158,
     "roles": [
-     "counter"
+     "spell"
     ]
    },
    {
     "name": "Sear",
     "decks": 149,
     "roles": [
-     "rm_damage"
+     "removal"
     ]
    }
   ],
@@ -1618,7 +1619,7 @@
    "name": "The Theorist, Jace Beleren",
    "decks": 401,
    "roles": [
-    "rm_destroy",
+    "removal",
     "draw",
     "engine",
     "enhance"
@@ -1635,7 +1636,7 @@
    "name": "Smaug the Magnificent",
    "decks": 277,
    "roles": [
-    "rm_damage",
+    "removal",
     "engine",
     "reach",
     "beater"
@@ -1933,7 +1934,7 @@
    "name": "Braided Net // Braided Quipu",
    "decks": 93,
    "roles": [
-    "abilitylock",
+    "ability",
     "draw",
     "engine"
    ],
@@ -1972,7 +1973,7 @@
    "name": "Elspeth, Storm Slayer",
    "decks": 61,
    "roles": [
-    "rm_destroy",
+    "removal",
     "engine",
     "enhance"
    ],
@@ -2011,7 +2012,7 @@
    "name": "Professor Dellian Fel",
    "decks": 51,
    "roles": [
-    "rm_destroy",
+    "removal",
     "draw",
     "engine"
    ],
@@ -2092,7 +2093,7 @@
    "name": "Thor, God of Thunder",
    "decks": 45,
    "roles": [
-    "rm_damage",
+    "removal",
     "finisher",
     "engine",
     "reach",
@@ -2179,7 +2180,7 @@
    "name": "Uldaros Theorix",
    "decks": 115,
    "roles": [
-    "rm_exile",
+    "removal",
     "cheat",
     "recursion",
     "finisher",
@@ -2207,7 +2208,7 @@
    "name": "Twinmaw Stormbrood // Charring Bite",
    "decks": 97,
    "roles": [
-    "rm_damage",
+    "removal",
     "finisher",
     "beater"
    ]
@@ -2243,7 +2244,7 @@
    "name": "Thor, God of Thunder",
    "decks": 45,
    "roles": [
-    "rm_damage",
+    "removal",
     "finisher",
     "engine",
     "reach",
@@ -2262,7 +2263,7 @@
    "name": "Leatherhead, Swamp Stalker",
    "decks": 34,
    "roles": [
-    "rm_destroy",
+    "removal",
     "finisher",
     "engine",
     "beater"
@@ -2281,7 +2282,7 @@
    "name": "Harvester of Misery",
    "decks": 27,
    "roles": [
-    "rm_damage",
+    "removal",
     "finisher",
     "engine",
     "beater"
@@ -2320,7 +2321,7 @@
    "name": "Wistfulness",
    "decks": 12,
    "roles": [
-    "rm_exile",
+    "removal",
     "draw",
     "finisher",
     "beater"
@@ -2551,7 +2552,7 @@
    "name": "Multiply by Zero",
    "decks": 10,
    "roles": [
-    "rm_destroy"
+    "removal"
    ],
    "typeLine": "Instant"
   },

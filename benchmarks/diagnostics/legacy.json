@@ -118,7 +118,7 @@
   }
  ],
  "format": "Legacy",
- "generatedAt": "2026-11-26T08:19:51.695Z",
+ "generatedAt": "2026-11-26T08:44:05.914Z",
  "decks": 2762,
  "otherOnly": [
   {
@@ -285,7 +285,7 @@
    "name": "Orcish Bowmasters",
    "decks": 506,
    "roles": [
-    "rm_damage",
+    "removal",
     "draw",
     "reach"
    ],
@@ -327,7 +327,7 @@
    "name": "Kozilek's Command",
    "decks": 357,
    "roles": [
-    "rm_exile",
+    "removal",
     "draw",
     "ramp",
     "tokens"
@@ -385,7 +385,7 @@
    "name": "Ajani, Nacatl Pariah // Ajani, Nacatl Avenger",
    "decks": 192,
    "roles": [
-    "rm_damage",
+    "removal",
     "engine",
     "reach",
     "tokens"
@@ -402,7 +402,7 @@
    "name": "Goblin Bombardment",
    "decks": 190,
    "roles": [
-    "rm_damage",
+    "removal",
     "engine",
     "reach"
    ],
@@ -415,7 +415,8 @@
    "name": "Ugin, Eye of the Storms",
    "decks": 190,
    "roles": [
-    "rm_exile",
+    "removal",
+    "manalock",
     "cheatloop",
     "draw",
     "tutor",
@@ -443,6 +444,19 @@
    ],
    "tags": [
     "extraturn@cast_self"
+   ]
+  },
+  {
+   "name": "Giant's Boulder",
+   "decks": 167,
+   "roles": [
+    "removal",
+    "manalock",
+    "ramp"
+   ],
+   "tags": [
+    "mana@activated",
+    "removal@activated_once"
    ]
   },
   {
@@ -476,7 +490,7 @@
    "name": "Reality Smasher",
    "decks": 140,
    "roles": [
-    "counter",
+    "spell",
     "finisher",
     "beater"
    ],
@@ -513,7 +527,7 @@
    "name": "Eldrazi Confluence",
    "decks": 129,
    "roles": [
-    "rm_exile",
+    "removal",
     "ramp",
     "tokens"
    ],
@@ -580,7 +594,7 @@
    "name": "Prismari Charm",
    "decks": 106,
    "roles": [
-    "rm_destroy",
+    "removal",
     "draw",
     "selfmill"
    ],
@@ -594,7 +608,7 @@
    "name": "Archon of Cruelty",
    "decks": 106,
    "roles": [
-    "edict",
+    "removal",
     "draw",
     "finisher",
     "engine",
@@ -625,13 +639,51 @@
    "name": "Teferi, Time Raveler",
    "decks": 91,
    "roles": [
-    "rm_destroy",
+    "removal",
     "draw",
     "engine"
    ],
    "tags": [
     "draw@loyalty",
     "removal@loyalty"
+   ]
+  },
+  {
+   "name": "Skyclave Apparition",
+   "decks": 85,
+   "roles": [
+    "removal",
+    "manalock",
+    "tokens"
+   ],
+   "tags": [
+    "removal@etb",
+    "token@once_trigger"
+   ]
+  },
+  {
+   "name": "Flickerwisp",
+   "decks": 84,
+   "roles": [
+    "removal",
+    "manalock",
+    "beater"
+   ],
+   "tags": [
+    "removal@etb"
+   ]
+  },
+  {
+   "name": "Meteor Sword",
+   "decks": 84,
+   "roles": [
+    "removal",
+    "manalock",
+    "enhance"
+   ],
+   "tags": [
+    "removal@etb",
+    "pump@static"
    ]
   },
   {
@@ -645,73 +697,6 @@
    "tags": [
     "token@attack"
    ]
-  },
-  {
-   "name": "Overlord of the Balemurk",
-   "decks": 76,
-   "roles": [
-    "recursion",
-    "selfmill",
-    "finisher",
-    "engine",
-    "beater"
-   ],
-   "tags": [
-    "recursion@etb",
-    "selfmill@etb",
-    "recursion@attack",
-    "selfmill@attack"
-   ]
-  },
-  {
-   "name": "Phlage, Titan of Fire's Fury",
-   "decks": 76,
-   "roles": [
-    "rm_damage",
-    "recursion",
-    "finisher",
-    "engine",
-    "reach",
-    "beater"
-   ],
-   "tags": [
-    "lifegain@etb",
-    "drain@etb",
-    "removal@etb",
-    "lifegain@attack",
-    "drain@attack",
-    "removal@attack",
-    "recursion@static"
-   ]
-  },
-  {
-   "name": "Grist, the Hunger Tide",
-   "decks": 70,
-   "roles": [
-    "rm_destroy",
-    "selfmill",
-    "engine",
-    "reach"
-   ],
-   "tags": [
-    "token@loyalty",
-    "selfmill@loyalty",
-    "removal@loyalty",
-    "drain@loyalty"
-   ]
-  },
-  {
-   "name": "Goblin Engineer",
-   "decks": 70,
-   "roles": [
-    "tutor",
-    "recursion",
-    "engine"
-   ],
-   "tags": [
-    "tutor@etb",
-    "recursion@activated"
-   ]
   }
  ],
  "byCategory": {
@@ -720,7 +705,7 @@
     "name": "Force of Will",
     "decks": 1363,
     "roles": [
-     "counter"
+     "spell"
     ]
    },
    {
@@ -734,21 +719,21 @@
     "name": "Daze",
     "decks": 775,
     "roles": [
-     "counter"
+     "spell"
     ]
    },
    {
     "name": "Swords to Plowshares",
     "decks": 690,
     "roles": [
-     "rm_exile"
+     "removal"
     ]
    },
    {
     "name": "Orcish Bowmasters",
     "decks": 506,
     "roles": [
-     "rm_damage",
+     "removal",
      "draw",
      "reach"
     ]
@@ -757,14 +742,14 @@
     "name": "Force of Negation",
     "decks": 387,
     "roles": [
-     "counter"
+     "spell"
     ]
    },
    {
     "name": "Kozilek's Command",
     "decks": 357,
     "roles": [
-     "rm_exile",
+     "removal",
      "draw",
      "ramp",
      "tokens"
@@ -774,14 +759,15 @@
     "name": "Fatal Push",
     "decks": 313,
     "roles": [
-     "rm_destroy"
+     "removal",
+     "manalock"
     ]
    },
    {
     "name": "Phelia, Exuberant Shepherd",
     "decks": 296,
     "roles": [
-     "rm_exile",
+     "removal",
      "engine"
     ]
    },
@@ -789,7 +775,7 @@
     "name": "Pithing Needle",
     "decks": 286,
     "roles": [
-     "abilitylock"
+     "ability"
     ]
    },
    {
@@ -804,7 +790,7 @@
     "name": "Brazen Borrower // Petty Theft",
     "decks": 249,
     "roles": [
-     "rm_destroy",
+     "removal",
      "beater"
     ]
    },
@@ -812,21 +798,21 @@
     "name": "Prismatic Ending",
     "decks": 233,
     "roles": [
-     "rm_exile"
+     "removal"
     ]
    },
    {
     "name": "Chalice of the Void",
     "decks": 228,
     "roles": [
-     "counterlock"
+     "spell"
     ]
    },
    {
     "name": "Karn, the Great Creator",
     "decks": 218,
     "roles": [
-     "abilitylock",
+     "ability",
      "tutor"
     ]
    },
@@ -834,7 +820,7 @@
     "name": "Ajani, Nacatl Pariah // Ajani, Nacatl Avenger",
     "decks": 192,
     "roles": [
-     "rm_damage",
+     "removal",
      "engine",
      "reach",
      "tokens"
@@ -844,14 +830,14 @@
     "name": "Voice of Victory",
     "decks": 192,
     "roles": [
-     "hate"
+     "spell"
     ]
    },
    {
     "name": "Goblin Bombardment",
     "decks": 190,
     "roles": [
-     "rm_damage",
+     "removal",
      "engine",
      "reach"
     ]
@@ -860,7 +846,8 @@
     "name": "Ugin, Eye of the Storms",
     "decks": 190,
     "roles": [
-     "rm_exile",
+     "removal",
+     "manalock",
      "cheatloop",
      "draw",
      "tutor",
@@ -872,14 +859,16 @@
     "name": "Disruptor Flute",
     "decks": 184,
     "roles": [
-     "abilitylock"
+     "spell",
+     "ability"
     ]
    },
    {
     "name": "Giant's Boulder",
     "decks": 167,
     "roles": [
-     "rm_destroy",
+     "removal",
+     "manalock",
      "ramp"
     ]
    },
@@ -887,7 +876,7 @@
     "name": "Lightning Bolt",
     "decks": 166,
     "roles": [
-     "rm_damage",
+     "removal",
      "reach"
     ]
    },
@@ -895,7 +884,7 @@
     "name": "Sink into Stupor // Soporific Springs",
     "decks": 156,
     "roles": [
-     "rm_destroy",
+     "removal",
      "ramp"
     ]
    },
@@ -903,7 +892,7 @@
     "name": "Stifle",
     "decks": 149,
     "roles": [
-     "counter"
+     "ability"
     ]
    },
    {
@@ -1887,7 +1876,7 @@
    "name": "Phelia, Exuberant Shepherd",
    "decks": 296,
    "roles": [
-    "rm_exile",
+    "removal",
     "engine"
    ],
    "tags": [
@@ -1947,7 +1936,7 @@
    "name": "Ajani, Nacatl Pariah // Ajani, Nacatl Avenger",
    "decks": 192,
    "roles": [
-    "rm_damage",
+    "removal",
     "engine",
     "reach",
     "tokens"
@@ -1964,7 +1953,7 @@
    "name": "Goblin Bombardment",
    "decks": 190,
    "roles": [
-    "rm_damage",
+    "removal",
     "engine",
     "reach"
    ],
@@ -1977,7 +1966,8 @@
    "name": "Ugin, Eye of the Storms",
    "decks": 190,
    "roles": [
-    "rm_exile",
+    "removal",
+    "manalock",
     "cheatloop",
     "draw",
     "tutor",
@@ -2060,7 +2050,7 @@
    "name": "Archon of Cruelty",
    "decks": 106,
    "roles": [
-    "edict",
+    "removal",
     "draw",
     "finisher",
     "engine",
@@ -2091,7 +2081,7 @@
    "name": "Teferi, Time Raveler",
    "decks": 91,
    "roles": [
-    "rm_destroy",
+    "removal",
     "draw",
     "engine"
    ],
@@ -2133,7 +2123,7 @@
    "name": "Phlage, Titan of Fire's Fury",
    "decks": 76,
    "roles": [
-    "rm_damage",
+    "removal",
     "recursion",
     "finisher",
     "engine",
@@ -2154,7 +2144,7 @@
    "name": "Grist, the Hunger Tide",
    "decks": 70,
    "roles": [
-    "rm_destroy",
+    "removal",
     "selfmill",
     "engine",
     "reach"
@@ -2183,7 +2173,7 @@
    "name": "Legion Extruder",
    "decks": 70,
    "roles": [
-    "rm_damage",
+    "removal",
     "engine",
     "reach"
    ],
@@ -2292,7 +2282,8 @@
    "name": "Broadside Bombardiers",
    "decks": 45,
    "roles": [
-    "rm_damage",
+    "removal",
+    "manalock",
     "engine",
     "reach",
     "beater"
@@ -2384,7 +2375,7 @@
    "name": "Stinkweed Imp",
    "decks": 27,
    "roles": [
-    "rm_destroy",
+    "removal",
     "engine"
    ],
    "tags": [
@@ -2395,7 +2386,7 @@
    "name": "Borborygmos Enraged",
    "decks": 21,
    "roles": [
-    "rm_damage",
+    "removal",
     "draw",
     "finisher",
     "engine",
@@ -2457,7 +2448,7 @@
    "name": "Reality Smasher",
    "decks": 140,
    "roles": [
-    "counter",
+    "spell",
     "finisher",
     "beater"
    ]
@@ -2476,7 +2467,7 @@
    "name": "Archon of Cruelty",
    "decks": 106,
    "roles": [
-    "edict",
+    "removal",
     "draw",
     "finisher",
     "engine",
@@ -2532,7 +2523,7 @@
    "name": "Phlage, Titan of Fire's Fury",
    "decks": 76,
    "roles": [
-    "rm_damage",
+    "removal",
     "recursion",
     "finisher",
     "engine",
@@ -2595,7 +2586,7 @@
    "name": "Chancellor of the Annex",
    "decks": 27,
    "roles": [
-    "counter",
+    "spell",
     "finisher",
     "beater"
    ]
