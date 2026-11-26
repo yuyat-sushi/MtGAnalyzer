@@ -355,15 +355,6 @@
     ]
    },
    {
-    "name": "All Is Dust",
-    "decks": 115,
-    "oracle": "Each player sacrifices all permanents they control that are one or more colors.",
-    "detail": [
-     "removal:sacrifice:creature/artifact/enchantment/planeswalker/battle/land",
-     "wipe:sacrifice:creature/artifact/enchantment/planeswalker/battle/land"
-    ]
-   },
-   {
     "name": "Wrenn and Six",
     "decks": 103,
     "oracle": "+1: Return up to one target land card from your graveyard to your hand.\n−1: Wrenn and Six deals 1 damage to any target.\n−7: You get an emblem with \"Instant and sorcery cards in your graveyard have retrace.\" (You may cast instant and sorcery cards from your graveyard by discarding a land card in addition to paying their other costs.)",
@@ -411,6 +402,14 @@
     "detail": [
      "removal:damage:creature/planeswalker/battle/player"
     ]
+   },
+   {
+    "name": "Bridgeworks Battle // Tanglespan Bridgeworks",
+    "decks": 77,
+    "oracle": "Target creature you control gets +2/+2 until end of turn. It fights up to one target creature you don't control. (Each deals damage equal to its power to the other.)\n//\nAs this land enters, you may pay 3 life. If you don't, it enters tapped.\n{T}: Add {G}.",
+    "detail": [
+     "removal:damage:creature"
+    ]
    }
   ],
   "wipe": [
@@ -451,8 +450,7 @@
     "decks": 115,
     "oracle": "Each player sacrifices all permanents they control that are one or more colors.",
     "detail": [
-     "removal:sacrifice:creature/artifact/enchantment/planeswalker/battle/land",
-     "wipe:sacrifice:creature/artifact/enchantment/planeswalker/battle/land"
+     "wipe:sacrifice:creature/artifact/enchantment/planeswalker/battle"
     ]
    },
    {
@@ -579,7 +577,7 @@
     "oracle": "+2: Ugin deals 3 damage to any target.\n−X: Exile each permanent with mana value X or less that's one or more colors.\n−10: You gain 7 life, draw seven cards, then put up to seven permanent cards from your hand onto the battlefield.",
     "detail": [
      "removal:damage:creature/planeswalker/battle/player",
-     "wipe:exile:creature/artifact/enchantment/planeswalker/battle/land"
+     "wipe:exile:creature/artifact/enchantment/planeswalker/battle"
     ]
    },
    {
@@ -1458,15 +1456,6 @@
     ]
    },
    {
-    "name": "All Is Dust",
-    "decks": 115,
-    "oracle": "Each player sacrifices all permanents they control that are one or more colors.",
-    "detail": [
-     "removal:sacrifice:creature/artifact/enchantment/planeswalker/battle/land",
-     "wipe:sacrifice:creature/artifact/enchantment/planeswalker/battle/land"
-    ]
-   },
-   {
     "name": "Harbinger of the Seas",
     "decks": 76,
     "oracle": "Nonbasic lands are Islands.",
@@ -1505,14 +1494,6 @@
     "detail": [
      "wipe:damage:creature",
      "removal:destroy:land"
-    ]
-   },
-   {
-    "name": "Skyclave Apparition",
-    "decks": 32,
-    "oracle": "When this creature enters, exile up to one target nonland, nontoken permanent you don't control with mana value 4 or less.\nWhen this creature leaves the battlefield, the exiled card's owner creates an X/X blue Illusion creature token, where X is the mana value of the exiled card.",
-    "detail": [
-     "removal:exile:creature/artifact/enchantment/planeswalker/battle/land"
     ]
    },
    {
@@ -1588,15 +1569,6 @@
     "detail": [
      "counter:counter:spell",
      "removal:bounce:creature/artifact/enchantment/planeswalker/battle/land"
-    ]
-   },
-   {
-    "name": "Ugin, the Spirit Dragon",
-    "decks": 4,
-    "oracle": "+2: Ugin deals 3 damage to any target.\n−X: Exile each permanent with mana value X or less that's one or more colors.\n−10: You gain 7 life, draw seven cards, then put up to seven permanent cards from your hand onto the battlefield.",
-    "detail": [
-     "removal:damage:creature/planeswalker/battle/player",
-     "wipe:exile:creature/artifact/enchantment/planeswalker/battle/land"
     ]
    },
    {
@@ -1679,7 +1651,7 @@
   ]
  },
  "format": "Modern",
- "generatedAt": "2026-11-26T08:49:47.317Z",
+ "generatedAt": "2026-11-26T08:51:53.703Z",
  "decks": 4966,
  "otherOnly": [
   {

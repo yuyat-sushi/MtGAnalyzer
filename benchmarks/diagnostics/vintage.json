@@ -122,7 +122,7 @@
     "oracle": "Choose one —\n• Counter target spell if it's blue.\n• Destroy target permanent if it's blue.",
     "detail": [
      "counter:counter:spell",
-     "removal:destroy:creature/artifact/enchantment/planeswalker/battle/land"
+     "removal:destroy:creature/artifact/enchantment/planeswalker/battle"
     ]
    },
    {
@@ -483,7 +483,7 @@
     "oracle": "Choose one —\n• Counter target spell if it's blue.\n• Destroy target permanent if it's blue.",
     "detail": [
      "counter:counter:spell",
-     "removal:destroy:creature/artifact/enchantment/planeswalker/battle/land"
+     "removal:destroy:creature/artifact/enchantment/planeswalker/battle"
     ]
    },
    {
@@ -516,7 +516,7 @@
     "oracle": "Flying\nEach player can't cast more than one spell each turn.\nNonbasic lands your opponents control enter tapped.",
     "detail": [
      "hate:lock:spell",
-     "hate:lock:mana/untap"
+     "hate:lock:mana/mana"
     ]
    },
    {
@@ -947,21 +947,12 @@
   ],
   "manalock": [
    {
-    "name": "Pyroblast",
-    "decks": 117,
-    "oracle": "Choose one —\n• Counter target spell if it's blue.\n• Destroy target permanent if it's blue.",
-    "detail": [
-     "counter:counter:spell",
-     "removal:destroy:creature/artifact/enchantment/planeswalker/battle/land"
-    ]
-   },
-   {
     "name": "Archon of Emeria",
     "decks": 108,
     "oracle": "Flying\nEach player can't cast more than one spell each turn.\nNonbasic lands your opponents control enter tapped.",
     "detail": [
      "hate:lock:spell",
-     "hate:lock:mana/untap"
+     "hate:lock:mana/mana"
     ]
    },
    {
@@ -969,7 +960,7 @@
     "decks": 6,
     "oracle": "First strike\nCreatures and nonbasic lands your opponents control enter tapped.",
     "detail": [
-     "hate:lock:mana/untap"
+     "hate:lock:mana/mana/untap"
     ]
    },
    {
@@ -978,14 +969,6 @@
     "oracle": "Devoid (This card has no color.)\nKicker {1}{C} (You may pay an additional {1}{C} as you cast this spell.)\nWhen you cast this spell, search your library for a land card, put it onto the battlefield, then shuffle.\nWhen you cast this spell, if it was kicked, exile target land.",
     "detail": [
      "removal:exile:land"
-    ]
-   },
-   {
-    "name": "Spider-Woman, Stunning Savior",
-    "decks": 2,
-    "oracle": "Flying\nVenom Blast — Artifacts and creatures your opponents control enter tapped.",
-    "detail": [
-     "hate:lock:untap"
     ]
    },
    {
@@ -1039,6 +1022,22 @@
   ],
   "combat": [
    {
+    "name": "Thalia, Heretic Cathar",
+    "decks": 6,
+    "oracle": "First strike\nCreatures and nonbasic lands your opponents control enter tapped.",
+    "detail": [
+     "hate:lock:mana/mana/untap"
+    ]
+   },
+   {
+    "name": "Spider-Woman, Stunning Savior",
+    "decks": 2,
+    "oracle": "Flying\nVenom Blast — Artifacts and creatures your opponents control enter tapped.",
+    "detail": [
+     "hate:lock:untap"
+    ]
+   },
+   {
     "name": "Dáin, Lord of the Iron Hills",
     "decks": 1,
     "oracle": "Vigilance\nStoried (If you control three or more artifacts, legendaries, and/or Sagas, you have an enduring story for the rest of the game.)\nAs long as you have an enduring story, creatures can't attack you unless their controller pays {1} for each of those creatures.",
@@ -1049,7 +1048,7 @@
   ]
  },
  "format": "Vintage",
- "generatedAt": "2026-11-26T08:49:47.317Z",
+ "generatedAt": "2026-11-26T08:51:53.703Z",
  "decks": 1186,
  "otherOnly": [
   {
@@ -1210,19 +1209,6 @@
     "draw@etb",
     "drain@etb",
     "removal@etb"
-   ]
-  },
-  {
-   "name": "Pyroblast",
-   "decks": 117,
-   "roles": [
-    "removal",
-    "spell",
-    "manalock"
-   ],
-   "tags": [
-    "counter@spell",
-    "removal@spell"
    ]
   },
   {
@@ -1498,6 +1484,18 @@
    ]
   },
   {
+   "name": "Thalia, Heretic Cathar",
+   "decks": 6,
+   "roles": [
+    "manalock",
+    "combat",
+    "beater"
+   ],
+   "tags": [
+    "hate@static"
+   ]
+  },
+  {
    "name": "Icetill Explorer",
    "decks": 6,
    "roles": [
@@ -1680,8 +1678,7 @@
     "decks": 117,
     "roles": [
      "removal",
-     "spell",
-     "manalock"
+     "spell"
     ]
    },
    {

@@ -319,7 +319,7 @@
     "decks": 85,
     "oracle": "When this creature enters, exile up to one target nonland, nontoken permanent you don't control with mana value 4 or less.\nWhen this creature leaves the battlefield, the exiled card's owner creates an X/X blue Illusion creature token, where X is the mana value of the exiled card.",
     "detail": [
-     "removal:exile:creature/artifact/enchantment/planeswalker/battle/land"
+     "removal:exile:creature/artifact/enchantment/planeswalker/battle"
     ]
    },
    {
@@ -524,8 +524,7 @@
     "decks": 2,
     "oracle": "Each player sacrifices all permanents they control that are one or more colors.",
     "detail": [
-     "removal:sacrifice:creature/artifact/enchantment/planeswalker/battle/land",
-     "wipe:sacrifice:creature/artifact/enchantment/planeswalker/battle/land"
+     "wipe:sacrifice:creature/artifact/enchantment/planeswalker/battle"
     ]
    },
    {
@@ -756,7 +755,7 @@
     "oracle": "Choose one —\n• Counter target spell if it's blue.\n• Destroy target permanent if it's blue.",
     "detail": [
      "counter:counter:spell",
-     "removal:destroy:creature/artifact/enchantment/planeswalker/battle/land"
+     "removal:destroy:creature/artifact/enchantment/planeswalker/battle"
     ]
    },
    {
@@ -765,7 +764,7 @@
     "oracle": "Choose one —\n• Counter target blue spell.\n• Destroy target blue permanent.",
     "detail": [
      "counter:counter:spell",
-     "removal:destroy:creature/artifact/enchantment/planeswalker/battle/land"
+     "removal:destroy:creature/artifact/enchantment/planeswalker/battle"
     ]
    },
    {
@@ -774,7 +773,7 @@
     "oracle": "Flying\nEach player can't cast more than one spell each turn.\nNonbasic lands your opponents control enter tapped.",
     "detail": [
      "hate:lock:spell",
-     "hate:lock:mana/untap"
+     "hate:lock:mana/mana"
     ]
    },
    {
@@ -873,7 +872,7 @@
     "oracle": "Choose one —\n• Counter target spell if it's red.\n• Destroy target permanent if it's red.",
     "detail": [
      "counter:counter:spell",
-     "removal:destroy:creature/artifact/enchantment/planeswalker/battle/land"
+     "removal:destroy:creature/artifact/enchantment/planeswalker/battle"
     ]
    },
    {
@@ -1271,14 +1270,6 @@
     ]
    },
    {
-    "name": "Skyclave Apparition",
-    "decks": 85,
-    "oracle": "When this creature enters, exile up to one target nonland, nontoken permanent you don't control with mana value 4 or less.\nWhen this creature leaves the battlefield, the exiled card's owner creates an X/X blue Illusion creature token, where X is the mana value of the exiled card.",
-    "detail": [
-     "removal:exile:creature/artifact/enchantment/planeswalker/battle/land"
-    ]
-   },
-   {
     "name": "Flickerwisp",
     "decks": 84,
     "oracle": "Flying\nWhen this creature enters, exile another target permanent. Return that card to the battlefield under its owner's control at the beginning of the next end step.",
@@ -1299,7 +1290,7 @@
     "decks": 64,
     "oracle": "Nonbasic lands don't untap during their controllers' untap steps.",
     "detail": [
-     "hate:lock:mana/untap"
+     "hate:lock:mana/mana"
     ]
    },
    {
@@ -1336,28 +1327,10 @@
     ]
    },
    {
-    "name": "Pyroblast",
-    "decks": 15,
-    "oracle": "Choose one —\n• Counter target spell if it's blue.\n• Destroy target permanent if it's blue.",
-    "detail": [
-     "counter:counter:spell",
-     "removal:destroy:creature/artifact/enchantment/planeswalker/battle/land"
-    ]
-   },
-   {
     "name": "Alpha Deathclaw",
     "decks": 13,
     "oracle": "Menace, trample\nWhen this creature enters or becomes monstrous, destroy target permanent.\n{5}{B}{G}: Monstrosity 4. (If this creature isn't monstrous, put four +1/+1 counters on it and it becomes monstrous.)",
     "detail": [
-     "removal:destroy:creature/artifact/enchantment/planeswalker/battle/land"
-    ]
-   },
-   {
-    "name": "Red Elemental Blast",
-    "decks": 13,
-    "oracle": "Choose one —\n• Counter target blue spell.\n• Destroy target blue permanent.",
-    "detail": [
-     "counter:counter:spell",
      "removal:destroy:creature/artifact/enchantment/planeswalker/battle/land"
     ]
    },
@@ -1367,7 +1340,7 @@
     "oracle": "Flying\nEach player can't cast more than one spell each turn.\nNonbasic lands your opponents control enter tapped.",
     "detail": [
      "hate:lock:spell",
-     "hate:lock:mana/untap"
+     "hate:lock:mana/mana"
     ]
    },
    {
@@ -1419,15 +1392,6 @@
     ]
    },
    {
-    "name": "All Is Dust",
-    "decks": 2,
-    "oracle": "Each player sacrifices all permanents they control that are one or more colors.",
-    "detail": [
-     "removal:sacrifice:creature/artifact/enchantment/planeswalker/battle/land",
-     "wipe:sacrifice:creature/artifact/enchantment/planeswalker/battle/land"
-    ]
-   },
-   {
     "name": "Vindicate",
     "decks": 1,
     "oracle": "Destroy target permanent.",
@@ -1436,20 +1400,11 @@
     ]
    },
    {
-    "name": "Hydroblast",
-    "decks": 1,
-    "oracle": "Choose one —\n• Counter target spell if it's red.\n• Destroy target permanent if it's red.",
-    "detail": [
-     "counter:counter:spell",
-     "removal:destroy:creature/artifact/enchantment/planeswalker/battle/land"
-    ]
-   },
-   {
     "name": "Thalia, Heretic Cathar",
     "decks": 1,
     "oracle": "First strike\nCreatures and nonbasic lands your opponents control enter tapped.",
     "detail": [
-     "hate:lock:mana/untap"
+     "hate:lock:mana/mana/untap"
     ]
    },
    {
@@ -1486,11 +1441,19 @@
      "hate:lock:spell/attack",
      "attacklock:lock:spell/attack"
     ]
+   },
+   {
+    "name": "Thalia, Heretic Cathar",
+    "decks": 1,
+    "oracle": "First strike\nCreatures and nonbasic lands your opponents control enter tapped.",
+    "detail": [
+     "hate:lock:mana/mana/untap"
+    ]
    }
   ]
  },
  "format": "Legacy",
- "generatedAt": "2026-11-26T08:49:47.317Z",
+ "generatedAt": "2026-11-26T08:51:53.703Z",
  "decks": 2762,
  "otherOnly": [
   {
@@ -2033,19 +1996,6 @@
    ]
   },
   {
-   "name": "Skyclave Apparition",
-   "decks": 85,
-   "roles": [
-    "removal",
-    "manalock",
-    "tokens"
-   ],
-   "tags": [
-    "removal@etb",
-    "token@once_trigger"
-   ]
-  },
-  {
    "name": "Flickerwisp",
    "decks": 84,
    "roles": [
@@ -2068,6 +2018,18 @@
    "tags": [
     "removal@etb",
     "pump@static"
+   ]
+  },
+  {
+   "name": "Acererak the Archlich",
+   "decks": 81,
+   "roles": [
+    "finisher",
+    "engine",
+    "beater"
+   ],
+   "tags": [
+    "token@attack"
    ]
   }
  ],

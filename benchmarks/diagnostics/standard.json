@@ -196,6 +196,14 @@
     ]
    },
    {
+    "name": "Uldaros Theorix",
+    "decks": 115,
+    "oracle": "Flying\nWhen Uldaros Theorix enters, if you cast him, exile up to one target nonland card of each card type from your graveyard. Copy those cards. You may cast any number of spells with total mana value 6 or less from among the copies without paying their mana costs. (Permanent spells cast this way become tokens.)",
+    "detail": [
+     "removal:exile:creature/artifact/enchantment/planeswalker/battle/spell"
+    ]
+   },
+   {
     "name": "Firebending Lesson",
     "decks": 114,
     "oracle": "Kicker {4} (You may pay an additional {4} as you cast this spell.)\nFirebending Lesson deals 2 damage to target creature. If this spell was kicked, it deals 5 damage to that creature instead.",
@@ -346,14 +354,6 @@
     "detail": [
      "removal:damage:creature/planeswalker/battle/player"
     ]
-   },
-   {
-    "name": "Into the Flood Maw",
-    "decks": 53,
-    "oracle": "Gift a tapped Fish (You may promise an opponent a gift as you cast this spell. If you do, they create a tapped 1/1 blue Fish creature token before its other effects.)\nReturn target creature an opponent controls to its owner's hand. If the gift was promised, instead return target nonland permanent an opponent controls to its owner's hand.",
-    "detail": [
-     "removal:bounce:creature"
-    ]
    }
   ],
   "wipe": [
@@ -474,7 +474,6 @@
     "decks": 8,
     "oracle": "Flying\nWhen this creature enters, if you cast it, each player sacrifices all other creatures they control. Then each player returns all creature cards from their graveyard that weren't put there this way to the battlefield.",
     "detail": [
-     "removal:sacrifice:creature",
      "wipe:sacrifice:creature"
     ]
    },
@@ -632,7 +631,7 @@
     "decks": 115,
     "oracle": "Flying\nWhen Uldaros Theorix enters, if you cast him, exile up to one target nonland card of each card type from your graveyard. Copy those cards. You may cast any number of spells with total mana value 6 or less from among the copies without paying their mana costs. (Permanent spells cast this way become tokens.)",
     "detail": [
-     "removal:exile:spell"
+     "removal:exile:creature/artifact/enchantment/planeswalker/battle/spell"
     ]
    },
    {
@@ -1079,14 +1078,6 @@
     ]
    },
    {
-    "name": "Authority of the Consuls",
-    "decks": 32,
-    "oracle": "Creatures your opponents control enter tapped.\nWhenever a creature an opponent controls enters, you gain 1 life.",
-    "detail": [
-     "hate:lock:untap"
-    ]
-   },
-   {
     "name": "Vraska, the Cutting Glare",
     "decks": 22,
     "oracle": "Deathtouch\nWhen Vraska enters, if you control six or more lands, destroy target permanent an opponent controls. They create a Treasure token. (It's an artifact with \"{T}, Sacrifice this token: Add one mana of any color.\")",
@@ -1124,15 +1115,24 @@
     "decks": 2,
     "oracle": "Menace\nNonbasic lands enter tapped.\n{7}: Put a conqueror counter on Zhao.\nAs long as Zhao has a conqueror counter on him, nonbasic lands are Mountains. (They lose all other land types and abilities and have \"{T}: Add {R}.\")",
     "detail": [
-     "hate:lock:mana/untap",
+     "hate:lock:mana/mana",
      "hate:lock:mana"
     ]
    }
   ],
-  "combat": []
+  "combat": [
+   {
+    "name": "Authority of the Consuls",
+    "decks": 32,
+    "oracle": "Creatures your opponents control enter tapped.\nWhenever a creature an opponent controls enters, you gain 1 life.",
+    "detail": [
+     "hate:lock:untap"
+    ]
+   }
+  ]
  },
  "format": "Standard",
- "generatedAt": "2026-11-26T08:49:47.317Z",
+ "generatedAt": "2026-11-26T08:51:53.703Z",
  "decks": 2462,
  "otherOnly": [
   {
@@ -1549,6 +1549,7 @@
    "name": "Uldaros Theorix",
    "decks": 115,
    "roles": [
+    "removal",
     "spell",
     "cheat",
     "recursion",
@@ -3279,6 +3280,7 @@
    "name": "Uldaros Theorix",
    "decks": 115,
    "roles": [
+    "removal",
     "spell",
     "cheat",
     "recursion",

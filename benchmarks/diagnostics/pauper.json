@@ -162,14 +162,6 @@
     ]
    },
    {
-    "name": "Pulse of Murasa",
-    "decks": 99,
-    "oracle": "Return target creature or land card from a graveyard to its owner's hand. You gain 6 life.",
-    "detail": [
-     "removal:bounce:creature/land"
-    ]
-   },
-   {
     "name": "Barrels of Blasting Jelly",
     "decks": 98,
     "oracle": "{1}: Add one mana of any color. Activate only once each turn.\n{5}, {T}, Sacrifice this artifact: It deals 5 damage to target creature.",
@@ -355,6 +347,14 @@
     "oracle": "Choose one —\n• Cast into the Fire deals 1 damage to each of up to two target creatures.\n• Exile target artifact.",
     "detail": [
      "removal:exile:artifact"
+    ]
+   },
+   {
+    "name": "Shambling Ghast",
+    "decks": 12,
+    "oracle": "When this creature dies, choose one —\n• Target creature an opponent controls gets -1/-1 until end of turn.\n• Create a Treasure token. (It's an artifact with \"{T}, Sacrifice this token: Add one mana of any color.\")",
+    "detail": [
+     "removal:minus:creature"
     ]
    }
   ],
@@ -672,7 +672,7 @@
     "oracle": "Choose one —\n• Counter target spell if it's blue.\n• Destroy target permanent if it's blue.",
     "detail": [
      "counter:counter:spell",
-     "removal:destroy:creature/artifact/enchantment/planeswalker/battle/land"
+     "removal:destroy:creature/artifact/enchantment/planeswalker/battle"
     ]
    },
    {
@@ -681,7 +681,7 @@
     "oracle": "Choose one —\n• Counter target blue spell.\n• Destroy target blue permanent.",
     "detail": [
      "counter:counter:spell",
-     "removal:destroy:creature/artifact/enchantment/planeswalker/battle/land"
+     "removal:destroy:creature/artifact/enchantment/planeswalker/battle"
     ]
    },
    {
@@ -781,7 +781,6 @@
     "decks": 1,
     "oracle": "When this creature enters, return target permanent to its owner's hand, then that player discards a card.",
     "detail": [
-     "removal:bounce:creature/artifact/enchantment/planeswalker/battle/land",
      "discard:discard:hand"
     ]
    },
@@ -849,14 +848,6 @@
     ]
    },
    {
-    "name": "Pulse of Murasa",
-    "decks": 99,
-    "oracle": "Return target creature or land card from a graveyard to its owner's hand. You gain 6 life.",
-    "detail": [
-     "removal:bounce:creature/land"
-    ]
-   },
-   {
     "name": "Cleansing Wildfire",
     "decks": 83,
     "oracle": "Destroy target land. Its controller may search their library for a basic land card, put it onto the battlefield tapped, then shuffle.\nDraw a card.",
@@ -921,39 +912,12 @@
     "detail": [
      "removal:bounce:creature/artifact/enchantment/planeswalker/battle/land"
     ]
-   },
-   {
-    "name": "Dinrova Horror",
-    "decks": 1,
-    "oracle": "When this creature enters, return target permanent to its owner's hand, then that player discards a card.",
-    "detail": [
-     "removal:bounce:creature/artifact/enchantment/planeswalker/battle/land",
-     "discard:discard:hand"
-    ]
-   },
-   {
-    "name": "Pyroblast",
-    "decks": 1,
-    "oracle": "Choose one —\n• Counter target spell if it's blue.\n• Destroy target permanent if it's blue.",
-    "detail": [
-     "counter:counter:spell",
-     "removal:destroy:creature/artifact/enchantment/planeswalker/battle/land"
-    ]
-   },
-   {
-    "name": "Red Elemental Blast",
-    "decks": 1,
-    "oracle": "Choose one —\n• Counter target blue spell.\n• Destroy target blue permanent.",
-    "detail": [
-     "counter:counter:spell",
-     "removal:destroy:creature/artifact/enchantment/planeswalker/battle/land"
-    ]
    }
   ],
   "combat": []
  },
  "format": "Pauper",
- "generatedAt": "2026-11-26T08:49:47.317Z",
+ "generatedAt": "2026-11-26T08:51:53.703Z",
  "decks": 2757,
  "otherOnly": [
   {
