@@ -1,29 +1,29 @@
 {
  "format": "Vintage",
- "generatedAt": "2026-11-25T20:50:40.007Z",
- "decks": 1268,
+ "generatedAt": "2026-11-26T06:45:58.388Z",
+ "decks": 1186,
  "otherOnly": [
   {
    "name": "Mystic Forge",
-   "decks": 169,
+   "decks": 155,
    "typeLine": "Artifact",
    "tags": []
   },
   {
    "name": "Oath of Druids",
-   "decks": 61,
+   "decks": 57,
    "typeLine": "Enchantment",
    "tags": []
   },
   {
    "name": "Demonic Consultation",
-   "decks": 46,
+   "decks": 45,
    "typeLine": "Instant",
    "tags": []
   },
   {
    "name": "Fastbond",
-   "decks": 11,
+   "decks": 10,
    "typeLine": "Enchantment",
    "tags": []
   },
@@ -34,21 +34,9 @@
    "tags": []
   },
   {
-   "name": "Balance",
-   "decks": 4,
-   "typeLine": "Sorcery",
-   "tags": []
-  },
-  {
    "name": "Hurkyl's Recall",
    "decks": 3,
    "typeLine": "Instant",
-   "tags": []
-  },
-  {
-   "name": "Step Through",
-   "decks": 2,
-   "typeLine": "Sorcery",
    "tags": []
   },
   {
@@ -70,6 +58,12 @@
    "tags": []
   },
   {
+   "name": "Step Through",
+   "decks": 1,
+   "typeLine": "Sorcery",
+   "tags": []
+  },
+  {
    "name": "Sculpting Steel",
    "decks": 1,
    "typeLine": "Artifact",
@@ -80,12 +74,18 @@
    "decks": 1,
    "typeLine": "Artifact",
    "tags": []
+  },
+  {
+   "name": "Balance",
+   "decks": 1,
+   "typeLine": "Sorcery",
+   "tags": []
   }
  ],
  "manyRoles": [
   {
    "name": "Emeritus of Ideation // Ancestral Recall",
-   "decks": 838,
+   "decks": 787,
    "roles": [
     "draw",
     "finisher",
@@ -97,7 +97,7 @@
   },
   {
    "name": "The One Ring",
-   "decks": 305,
+   "decks": 283,
    "roles": [
     "draw",
     "engine",
@@ -110,7 +110,7 @@
   },
   {
    "name": "Bilbo, Thief in the Night",
-   "decks": 298,
+   "decks": 273,
    "roles": [
     "recursion",
     "ramp",
@@ -122,7 +122,7 @@
   },
   {
    "name": "Tezzeret, Cruel Captain",
-   "decks": 275,
+   "decks": 257,
    "roles": [
     "untap",
     "tutor",
@@ -136,7 +136,7 @@
   },
   {
    "name": "Scrawling Crawler",
-   "decks": 150,
+   "decks": 137,
    "roles": [
     "draw",
     "engine",
@@ -150,7 +150,7 @@
   },
   {
    "name": "Orcish Bowmasters",
-   "decks": 136,
+   "decks": 126,
    "roles": [
     "removal",
     "draw",
@@ -164,7 +164,7 @@
   },
   {
    "name": "Lodestone Golem",
-   "decks": 121,
+   "decks": 114,
    "roles": [
     "hate",
     "finisher",
@@ -176,7 +176,7 @@
   },
   {
    "name": "Chancellor of the Annex",
-   "decks": 109,
+   "decks": 101,
    "roles": [
     "counter",
     "finisher",
@@ -188,20 +188,8 @@
    ]
   },
   {
-   "name": "Atraxa, Grand Unifier",
-   "decks": 63,
-   "roles": [
-    "draw",
-    "finisher",
-    "beater"
-   ],
-   "tags": [
-    "draw@etb"
-   ]
-  },
-  {
    "name": "Prized Amalgam",
-   "decks": 62,
+   "decks": 59,
    "roles": [
     "recursion",
     "engine",
@@ -212,8 +200,20 @@
    ]
   },
   {
+   "name": "Atraxa, Grand Unifier",
+   "decks": 59,
+   "roles": [
+    "draw",
+    "finisher",
+    "beater"
+   ],
+   "tags": [
+    "draw@etb"
+   ]
+  },
+  {
    "name": "Silversmote Ghoul",
-   "decks": 54,
+   "decks": 51,
    "roles": [
     "draw",
     "recursion",
@@ -226,8 +226,20 @@
    ]
   },
   {
+   "name": "Vengevine",
+   "decks": 48,
+   "roles": [
+    "recursion",
+    "engine",
+    "beater"
+   ],
+   "tags": [
+    "recursion@cast_trigger"
+   ]
+  },
+  {
    "name": "Relic of Sauron",
-   "decks": 53,
+   "decks": 48,
    "roles": [
     "draw",
     "ramp",
@@ -239,20 +251,8 @@
    ]
   },
   {
-   "name": "Vengevine",
-   "decks": 50,
-   "roles": [
-    "recursion",
-    "engine",
-    "beater"
-   ],
-   "tags": [
-    "recursion@cast_trigger"
-   ]
-  },
-  {
    "name": "Golos, Tireless Pilgrim",
-   "decks": 41,
+   "decks": 39,
    "roles": [
     "cheat",
     "draw",
@@ -293,7 +293,7 @@
   },
   {
    "name": "Wrenn and Six",
-   "decks": 22,
+   "decks": 21,
    "roles": [
     "removal",
     "recursion",
@@ -308,7 +308,7 @@
   },
   {
    "name": "Deathrite Shaman",
-   "decks": 15,
+   "decks": 14,
    "roles": [
     "removal",
     "ramp",
@@ -320,19 +320,6 @@
     "drain@activated",
     "lifegain@activated",
     "removal@activated"
-   ]
-  },
-  {
-   "name": "Dack Fayden",
-   "decks": 10,
-   "roles": [
-    "removal",
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "draw@loyalty",
-    "removal@loyalty"
    ]
   },
   {
@@ -363,6 +350,19 @@
    ]
   },
   {
+   "name": "Dack Fayden",
+   "decks": 9,
+   "roles": [
+    "removal",
+    "draw",
+    "engine"
+   ],
+   "tags": [
+    "draw@loyalty",
+    "removal@loyalty"
+   ]
+  },
+  {
    "name": "Mole Man, Moloid Master",
    "decks": 9,
    "roles": [
@@ -388,18 +388,6 @@
    "tags": [
     "removal@etb",
     "draw@etb"
-   ]
-  },
-  {
-   "name": "Poxwalkers",
-   "decks": 6,
-   "roles": [
-    "recursion",
-    "engine",
-    "beater"
-   ],
-   "tags": [
-    "recursion@cast_trigger"
    ]
   },
   {
@@ -435,16 +423,15 @@
    ]
   },
   {
-   "name": "Griselbrand",
+   "name": "Poxwalkers",
    "decks": 5,
    "roles": [
-    "draw",
-    "finisher",
+    "recursion",
     "engine",
     "beater"
    ],
    "tags": [
-    "draw@activated"
+    "recursion@cast_trigger"
    ]
   },
   {
@@ -474,6 +461,19 @@
    ]
   },
   {
+   "name": "Griselbrand",
+   "decks": 4,
+   "roles": [
+    "draw",
+    "finisher",
+    "engine",
+    "beater"
+   ],
+   "tags": [
+    "draw@activated"
+   ]
+  },
+  {
    "name": "Displacer Kitten",
    "decks": 4,
    "roles": [
@@ -491,14 +491,14 @@
   "disrupt": [
    {
     "name": "Force of Will",
-    "decks": 934,
+    "decks": 879,
     "roles": [
      "counter"
     ]
    },
    {
     "name": "Vexing Bauble",
-    "decks": 828,
+    "decks": 769,
     "roles": [
      "counter",
      "draw"
@@ -506,21 +506,21 @@
    },
    {
     "name": "Mental Misstep",
-    "decks": 809,
+    "decks": 760,
     "roles": [
      "counter"
     ]
    },
    {
     "name": "Force of Negation",
-    "decks": 679,
+    "decks": 641,
     "roles": [
      "counter"
     ]
    },
    {
     "name": "Gitaxian Probe",
-    "decks": 643,
+    "decks": 600,
     "roles": [
      "discard",
      "draw"
@@ -528,7 +528,7 @@
    },
    {
     "name": "Karn, the Great Creator",
-    "decks": 395,
+    "decks": 370,
     "roles": [
      "hate",
      "tutor"
@@ -536,14 +536,14 @@
    },
    {
     "name": "Swords to Plowshares",
-    "decks": 336,
+    "decks": 314,
     "roles": [
      "removal"
     ]
    },
    {
     "name": "Flusterstorm",
-    "decks": 325,
+    "decks": 305,
     "roles": [
      "counter",
      "copy"
@@ -551,21 +551,21 @@
    },
    {
     "name": "Chalice of the Void",
-    "decks": 299,
+    "decks": 277,
     "roles": [
      "counter"
     ]
    },
    {
     "name": "Spell Pierce",
-    "decks": 252,
+    "decks": 232,
     "roles": [
      "counter"
     ]
    },
    {
     "name": "Soul-Guide Lantern",
-    "decks": 230,
+    "decks": 213,
     "roles": [
      "gyhate",
      "draw"
@@ -573,14 +573,14 @@
    },
    {
     "name": "Trinisphere",
-    "decks": 225,
+    "decks": 211,
     "roles": [
      "hate"
     ]
    },
    {
     "name": "Sink into Stupor // Soporific Springs",
-    "decks": 213,
+    "decks": 202,
     "roles": [
      "removal",
      "ramp"
@@ -588,50 +588,50 @@
    },
    {
     "name": "Thoughtseize",
-    "decks": 209,
+    "decks": 195,
     "roles": [
      "discard"
     ]
    },
    {
-    "name": "Pithing Needle",
-    "decks": 197,
+    "name": "Null Rod",
+    "decks": 186,
     "roles": [
      "hate"
     ]
    },
    {
-    "name": "Null Rod",
-    "decks": 192,
+    "name": "Pithing Needle",
+    "decks": 184,
     "roles": [
      "hate"
     ]
    },
    {
     "name": "Prismatic Ending",
-    "decks": 169,
-    "roles": [
-     "removal"
-    ]
-   },
-   {
-    "name": "Portable Hole",
-    "decks": 164,
+    "decks": 162,
     "roles": [
      "removal"
     ]
    },
    {
     "name": "Flame of Anor",
-    "decks": 164,
+    "decks": 150,
     "roles": [
      "removal",
      "draw"
     ]
    },
    {
+    "name": "Portable Hole",
+    "decks": 147,
+    "roles": [
+     "removal"
+    ]
+   },
+   {
     "name": "Orcish Bowmasters",
-    "decks": 136,
+    "decks": 126,
     "roles": [
      "removal",
      "draw",
@@ -639,22 +639,23 @@
     ]
    },
    {
-    "name": "Void Mirror",
-    "decks": 122,
+    "name": "Pyroblast",
+    "decks": 117,
     "roles": [
+     "removal",
      "counter"
     ]
    },
    {
     "name": "Mindbreak Trap",
-    "decks": 121,
+    "decks": 116,
     "roles": [
      "counter"
     ]
    },
    {
     "name": "Lodestone Golem",
-    "decks": 121,
+    "decks": 114,
     "roles": [
      "hate",
      "finisher",
@@ -662,25 +663,25 @@
     ]
    },
    {
-    "name": "Pyroblast",
-    "decks": 121,
+    "name": "Void Mirror",
+    "decks": 112,
     "roles": [
-     "removal",
      "counter"
     ]
    },
    {
-    "name": "Fatal Push",
-    "decks": 117,
+    "name": "Archon of Emeria",
+    "decks": 108,
     "roles": [
-     "removal"
+     "hate",
+     "beater"
     ]
    }
   ],
   "resource": [
    {
     "name": "Emeritus of Ideation // Ancestral Recall",
-    "decks": 838,
+    "decks": 787,
     "roles": [
      "draw",
      "finisher",
@@ -689,42 +690,42 @@
    },
    {
     "name": "Lórien Revealed",
-    "decks": 543,
+    "decks": 503,
     "roles": [
      "draw"
     ]
    },
    {
     "name": "Demonic Tutor",
-    "decks": 451,
+    "decks": 427,
     "roles": [
      "tutor"
     ]
    },
    {
     "name": "Stock Up",
-    "decks": 446,
+    "decks": 416,
     "roles": [
      "draw"
     ]
    },
    {
     "name": "Flow State",
-    "decks": 391,
+    "decks": 361,
     "roles": [
      "draw"
     ]
    },
    {
     "name": "Brainstorm",
-    "decks": 335,
+    "decks": 317,
     "roles": [
      "draw"
     ]
    },
    {
     "name": "The One Ring",
-    "decks": 305,
+    "decks": 283,
     "roles": [
      "draw",
      "engine",
@@ -733,7 +734,7 @@
    },
    {
     "name": "Bilbo, Thief in the Night",
-    "decks": 298,
+    "decks": 273,
     "roles": [
      "recursion",
      "ramp",
@@ -742,29 +743,29 @@
    },
    {
     "name": "Paradoxical Outcome",
-    "decks": 260,
+    "decks": 245,
+    "roles": [
+     "draw"
+    ]
+   },
+   {
+    "name": "Treasure Cruise",
+    "decks": 209,
     "roles": [
      "draw"
     ]
    },
    {
     "name": "Psychic Frog",
-    "decks": 224,
+    "decks": 208,
     "roles": [
      "draw",
      "engine"
     ]
    },
    {
-    "name": "Treasure Cruise",
-    "decks": 221,
-    "roles": [
-     "draw"
-    ]
-   },
-   {
     "name": "Sensei's Divining Top",
-    "decks": 214,
+    "decks": 199,
     "roles": [
      "draw",
      "engine"
@@ -772,21 +773,21 @@
    },
    {
     "name": "Thundertrap Trainer",
-    "decks": 202,
+    "decks": 186,
     "roles": [
      "draw"
     ]
    },
    {
     "name": "Snapcaster Mage",
-    "decks": 156,
+    "decks": 145,
     "roles": [
      "recursion"
     ]
    },
    {
     "name": "Scrawling Crawler",
-    "decks": 150,
+    "decks": 137,
     "roles": [
      "draw",
      "engine",
@@ -796,7 +797,7 @@
    },
    {
     "name": "Coveted Jewel",
-    "decks": 139,
+    "decks": 131,
     "roles": [
      "draw",
      "ramp"
@@ -804,21 +805,21 @@
    },
    {
     "name": "Vampiric Tutor",
-    "decks": 129,
+    "decks": 125,
     "roles": [
      "tutor"
     ]
    },
    {
     "name": "Merchant Scroll",
-    "decks": 121,
+    "decks": 114,
     "roles": [
      "tutor"
     ]
    },
    {
     "name": "Serum Powder",
-    "decks": 117,
+    "decks": 110,
     "roles": [
      "draw",
      "ramp"
@@ -826,23 +827,16 @@
    },
    {
     "name": "Dig Through Time",
-    "decks": 110,
+    "decks": 108,
     "roles": [
      "draw"
     ]
    },
    {
     "name": "Dress Down",
-    "decks": 107,
+    "decks": 105,
     "roles": [
      "draw"
-    ]
-   },
-   {
-    "name": "Transmute Artifact",
-    "decks": 87,
-    "roles": [
-     "tutor"
     ]
    },
    {
@@ -853,8 +847,15 @@
     ]
    },
    {
+    "name": "Transmute Artifact",
+    "decks": 81,
+    "roles": [
+     "tutor"
+    ]
+   },
+   {
     "name": "Bolas's Citadel",
-    "decks": 77,
+    "decks": 73,
     "roles": [
      "draw",
      "reach"
@@ -862,7 +863,7 @@
    },
    {
     "name": "Underworld Breach",
-    "decks": 76,
+    "decks": 72,
     "roles": [
      "recursion"
     ]
@@ -871,7 +872,7 @@
   "win": [
    {
     "name": "The Fantasticar",
-    "decks": 203,
+    "decks": 191,
     "roles": [
      "engine",
      "beater"
@@ -879,129 +880,129 @@
    },
    {
     "name": "Forth Eorlingas!",
-    "decks": 139,
+    "decks": 128,
     "roles": [
      "tokens"
     ]
    },
    {
     "name": "Phyrexian Metamorph",
-    "decks": 136,
+    "decks": 128,
     "roles": [
      "beater"
     ]
    },
    {
     "name": "Glaring Fleshraker",
-    "decks": 132,
+    "decks": 121,
     "roles": [
      "engine",
      "reach"
     ]
    },
    {
-    "name": "White Plume Adventurer",
-    "decks": 113,
+    "name": "Hollow One",
+    "decks": 106,
     "roles": [
      "beater"
     ]
    },
    {
-    "name": "Hollow One",
-    "decks": 112,
+    "name": "White Plume Adventurer",
+    "decks": 105,
     "roles": [
      "beater"
     ]
    },
    {
     "name": "Seasoned Dungeoneer",
-    "decks": 111,
+    "decks": 103,
     "roles": [
      "beater",
      "protection"
     ]
    },
    {
+    "name": "Narcomoeba",
+    "decks": 67,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
     "name": "Chaos Defiler",
-    "decks": 73,
+    "decks": 67,
     "roles": [
      "finisher",
      "beater"
     ]
    },
    {
-    "name": "Narcomoeba",
-    "decks": 71,
-    "roles": [
-     "beater"
-    ]
-   },
-   {
     "name": "Ichorid",
-    "decks": 70,
-    "roles": [
-     "beater"
-    ]
-   },
-   {
-    "name": "Shambling Shell",
-    "decks": 68,
-    "roles": [
-     "beater"
-    ]
-   },
-   {
-    "name": "Golgari Thug",
     "decks": 66,
     "roles": [
      "beater"
     ]
    },
    {
-    "name": "Creeping Chill",
-    "decks": 65,
-    "roles": [
-     "reach"
-    ]
-   },
-   {
-    "name": "Stonecoil Serpent",
-    "decks": 56,
+    "name": "Shambling Shell",
+    "decks": 64,
     "roles": [
      "beater"
     ]
    },
    {
-    "name": "Oko, Thief of Crowns",
+    "name": "Creeping Chill",
+    "decks": 62,
+    "roles": [
+     "reach"
+    ]
+   },
+   {
+    "name": "Golgari Thug",
+    "decks": 62,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
+    "name": "Stonecoil Serpent",
     "decks": 52,
     "roles": [
-     "engine"
+     "beater"
     ]
    },
    {
     "name": "Thassa's Oracle",
-    "decks": 51,
+    "decks": 49,
     "roles": [
      "finisher"
     ]
    },
    {
     "name": "Basking Rootwalla",
-    "decks": 50,
+    "decks": 48,
     "roles": [
      "beater"
     ]
    },
    {
+    "name": "Oko, Thief of Crowns",
+    "decks": 48,
+    "roles": [
+     "engine"
+    ]
+   },
+   {
     "name": "Blazing Rootwalla",
-    "decks": 49,
+    "decks": 47,
     "roles": [
      "beater"
     ]
    },
    {
     "name": "Patchwork Automaton",
-    "decks": 48,
+    "decks": 45,
     "roles": [
      "beater"
     ]
@@ -1021,13 +1022,6 @@
     ]
    },
    {
-    "name": "Subtlety",
-    "decks": 22,
-    "roles": [
-     "beater"
-    ]
-   },
-   {
     "name": "Council of Reeds",
     "decks": 21,
     "roles": [
@@ -1035,15 +1029,22 @@
     ]
    },
    {
+    "name": "Subtlety",
+    "decks": 20,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
     "name": "Ragavan, Nimble Pilferer",
-    "decks": 15,
+    "decks": 14,
     "roles": [
      "beater"
     ]
    },
    {
     "name": "Phyrexian Dreadnought",
-    "decks": 14,
+    "decks": 13,
     "roles": [
      "finisher",
      "beater"
@@ -1053,21 +1054,21 @@
   "support": [
    {
     "name": "Hexing Squelcher",
-    "decks": 114,
+    "decks": 106,
     "roles": [
      "protection"
     ]
    },
    {
     "name": "Golgari Grave-Troll",
-    "decks": 69,
+    "decks": 65,
     "roles": [
      "protection"
     ]
    },
    {
     "name": "Nettlecyst",
-    "decks": 38,
+    "decks": 35,
     "roles": [
      "enhance"
     ]
@@ -1091,20 +1092,6 @@
     "decks": 2,
     "roles": [
      "protection"
-    ]
-   },
-   {
-    "name": "Batterskull",
-    "decks": 1,
-    "roles": [
-     "enhance"
-    ]
-   },
-   {
-    "name": "Leyline Axe",
-    "decks": 1,
-    "roles": [
-     "enhance"
     ]
    },
    {
@@ -1139,28 +1126,28 @@
   "combo": [
    {
     "name": "Time Walk",
-    "decks": 835,
+    "decks": 784,
     "roles": [
      "extraturn"
     ]
    },
    {
     "name": "Time Vault",
-    "decks": 338,
+    "decks": 318,
     "roles": [
      "extraturn"
     ]
    },
    {
     "name": "Manifold Key",
-    "decks": 313,
+    "decks": 293,
     "roles": [
      "untap"
     ]
    },
    {
     "name": "Tezzeret, Cruel Captain",
-    "decks": 275,
+    "decks": 257,
     "roles": [
      "untap",
      "tutor",
@@ -1169,7 +1156,7 @@
    },
    {
     "name": "Tinker",
-    "decks": 248,
+    "decks": 234,
     "roles": [
      "cheat",
      "tutor"
@@ -1177,7 +1164,7 @@
    },
    {
     "name": "Brain Freeze",
-    "decks": 75,
+    "decks": 71,
     "roles": [
      "copy",
      "selfmill"
@@ -1185,21 +1172,21 @@
    },
    {
     "name": "Paradox Engine",
-    "decks": 75,
+    "decks": 69,
     "roles": [
      "untap"
     ]
    },
    {
     "name": "Show and Tell",
-    "decks": 46,
+    "decks": 43,
     "roles": [
      "cheat"
     ]
    },
    {
     "name": "Golos, Tireless Pilgrim",
-    "decks": 41,
+    "decks": 39,
     "roles": [
      "cheat",
      "draw",
@@ -1210,7 +1197,7 @@
    },
    {
     "name": "Flash",
-    "decks": 38,
+    "decks": 35,
     "roles": [
      "cheat"
     ]
@@ -1324,28 +1311,28 @@
   "other": [
    {
     "name": "Mystic Forge",
-    "decks": 169,
+    "decks": 155,
     "roles": [
      "other"
     ]
    },
    {
     "name": "Oath of Druids",
-    "decks": 61,
+    "decks": 57,
     "roles": [
      "other"
     ]
    },
    {
     "name": "Demonic Consultation",
-    "decks": 46,
+    "decks": 45,
     "roles": [
      "other"
     ]
    },
    {
     "name": "Fastbond",
-    "decks": 11,
+    "decks": 10,
     "roles": [
      "other"
     ]
@@ -1358,22 +1345,8 @@
     ]
    },
    {
-    "name": "Balance",
-    "decks": 4,
-    "roles": [
-     "other"
-    ]
-   },
-   {
     "name": "Hurkyl's Recall",
     "decks": 3,
-    "roles": [
-     "other"
-    ]
-   },
-   {
-    "name": "Step Through",
-    "decks": 2,
     "roles": [
      "other"
     ]
@@ -1400,6 +1373,13 @@
     ]
    },
    {
+    "name": "Step Through",
+    "decks": 1,
+    "roles": [
+     "other"
+    ]
+   },
+   {
     "name": "Sculpting Steel",
     "decks": 1,
     "roles": [
@@ -1412,13 +1392,20 @@
     "roles": [
      "other"
     ]
+   },
+   {
+    "name": "Balance",
+    "decks": 1,
+    "roles": [
+     "other"
+    ]
    }
   ]
  },
  "engines": [
   {
    "name": "The One Ring",
-   "decks": 305,
+   "decks": 283,
    "roles": [
     "draw",
     "engine",
@@ -1431,7 +1418,7 @@
   },
   {
    "name": "Bilbo, Thief in the Night",
-   "decks": 298,
+   "decks": 273,
    "roles": [
     "recursion",
     "ramp",
@@ -1443,7 +1430,7 @@
   },
   {
    "name": "Psychic Frog",
-   "decks": 224,
+   "decks": 208,
    "roles": [
     "draw",
     "engine"
@@ -1455,7 +1442,7 @@
   },
   {
    "name": "Sensei's Divining Top",
-   "decks": 214,
+   "decks": 199,
    "roles": [
     "draw",
     "engine"
@@ -1466,7 +1453,7 @@
   },
   {
    "name": "The Fantasticar",
-   "decks": 203,
+   "decks": 191,
    "roles": [
     "engine",
     "beater"
@@ -1477,7 +1464,7 @@
   },
   {
    "name": "Scrawling Crawler",
-   "decks": 150,
+   "decks": 137,
    "roles": [
     "draw",
     "engine",
@@ -1491,7 +1478,7 @@
   },
   {
    "name": "Glaring Fleshraker",
-   "decks": 132,
+   "decks": 121,
    "roles": [
     "engine",
     "reach"
@@ -1504,7 +1491,7 @@
   },
   {
    "name": "Stinkweed Imp",
-   "decks": 69,
+   "decks": 65,
    "roles": [
     "removal",
     "engine"
@@ -1515,7 +1502,7 @@
   },
   {
    "name": "Prized Amalgam",
-   "decks": 62,
+   "decks": 59,
    "roles": [
     "recursion",
     "engine",
@@ -1527,7 +1514,7 @@
   },
   {
    "name": "Silversmote Ghoul",
-   "decks": 54,
+   "decks": 51,
    "roles": [
     "draw",
     "recursion",
@@ -1540,8 +1527,30 @@
    ]
   },
   {
+   "name": "Vengevine",
+   "decks": 48,
+   "roles": [
+    "recursion",
+    "engine",
+    "beater"
+   ],
+   "tags": [
+    "recursion@cast_trigger"
+   ]
+  },
+  {
+   "name": "Oko, Thief of Crowns",
+   "decks": 48,
+   "roles": [
+    "engine"
+   ],
+   "tags": [
+    "lifegain@loyalty"
+   ]
+  },
+  {
    "name": "Relic of Sauron",
-   "decks": 53,
+   "decks": 48,
    "roles": [
     "draw",
     "ramp",
@@ -1553,30 +1562,8 @@
    ]
   },
   {
-   "name": "Oko, Thief of Crowns",
-   "decks": 52,
-   "roles": [
-    "engine"
-   ],
-   "tags": [
-    "lifegain@loyalty"
-   ]
-  },
-  {
-   "name": "Vengevine",
-   "decks": 50,
-   "roles": [
-    "recursion",
-    "engine",
-    "beater"
-   ],
-   "tags": [
-    "recursion@cast_trigger"
-   ]
-  },
-  {
    "name": "Squee, Goblin Nabob",
-   "decks": 47,
+   "decks": 45,
    "roles": [
     "recursion",
     "engine"
@@ -1587,7 +1574,7 @@
   },
   {
    "name": "The Endstone",
-   "decks": 42,
+   "decks": 40,
    "roles": [
     "draw",
     "engine"
@@ -1598,7 +1585,7 @@
   },
   {
    "name": "Golos, Tireless Pilgrim",
-   "decks": 41,
+   "decks": 39,
    "roles": [
     "cheat",
     "draw",
@@ -1638,7 +1625,7 @@
   },
   {
    "name": "Wrenn and Six",
-   "decks": 22,
+   "decks": 21,
    "roles": [
     "removal",
     "recursion",
@@ -1662,19 +1649,8 @@
    ]
   },
   {
-   "name": "Narset, Parter of Veils",
-   "decks": 15,
-   "roles": [
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "draw@loyalty"
-   ]
-  },
-  {
    "name": "Deathrite Shaman",
-   "decks": 15,
+   "decks": 14,
    "roles": [
     "removal",
     "ramp",
@@ -1690,7 +1666,7 @@
   },
   {
    "name": "Monastery Mentor",
-   "decks": 14,
+   "decks": 13,
    "roles": [
     "engine"
    ],
@@ -1710,6 +1686,17 @@
    ]
   },
   {
+   "name": "Narset, Parter of Veils",
+   "decks": 12,
+   "roles": [
+    "draw",
+    "engine"
+   ],
+   "tags": [
+    "draw@loyalty"
+   ]
+  },
+  {
    "name": "Up the Beanstalk",
    "decks": 11,
    "roles": [
@@ -1719,19 +1706,6 @@
    "tags": [
     "draw@etb",
     "draw@cast_trigger"
-   ]
-  },
-  {
-   "name": "Dack Fayden",
-   "decks": 10,
-   "roles": [
-    "removal",
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "draw@loyalty",
-    "removal@loyalty"
    ]
   },
   {
@@ -1746,6 +1720,19 @@
    "tags": [
     "protection@static",
     "recursion@activated"
+   ]
+  },
+  {
+   "name": "Dack Fayden",
+   "decks": 9,
+   "roles": [
+    "removal",
+    "draw",
+    "engine"
+   ],
+   "tags": [
+    "draw@loyalty",
+    "removal@loyalty"
    ]
   },
   {
@@ -1764,34 +1751,12 @@
   },
   {
    "name": "Bridge from Below",
-   "decks": 8,
+   "decks": 7,
    "roles": [
     "engine"
    ],
    "tags": [
     "token@death_trigger"
-   ]
-  },
-  {
-   "name": "Guide of Souls",
-   "decks": 7,
-   "roles": [
-    "engine"
-   ],
-   "tags": [
-    "lifegain@creature_enters",
-    "energy@creature_enters",
-    "pump@attack"
-   ]
-  },
-  {
-   "name": "Ocelot Pride",
-   "decks": 7,
-   "roles": [
-    "engine"
-   ],
-   "tags": [
-    "token@each_turn"
    ]
   },
   {
@@ -1807,15 +1772,25 @@
    ]
   },
   {
-   "name": "Poxwalkers",
+   "name": "Guide of Souls",
    "decks": 6,
    "roles": [
-    "recursion",
-    "engine",
-    "beater"
+    "engine"
    ],
    "tags": [
-    "recursion@cast_trigger"
+    "lifegain@creature_enters",
+    "energy@creature_enters",
+    "pump@attack"
+   ]
+  },
+  {
+   "name": "Ocelot Pride",
+   "decks": 6,
+   "roles": [
+    "engine"
+   ],
+   "tags": [
+    "token@each_turn"
    ]
   },
   {
@@ -1838,8 +1813,20 @@
    ]
   },
   {
-   "name": "Griselbrand",
+   "name": "Poxwalkers",
    "decks": 5,
+   "roles": [
+    "recursion",
+    "engine",
+    "beater"
+   ],
+   "tags": [
+    "recursion@cast_trigger"
+   ]
+  },
+  {
+   "name": "Griselbrand",
+   "decks": 4,
    "roles": [
     "draw",
     "finisher",
@@ -1881,36 +1868,6 @@
    ]
   },
   {
-   "name": "Ajani, Nacatl Pariah // Ajani, Nacatl Avenger",
-   "decks": 3,
-   "roles": [
-    "removal",
-    "engine",
-    "reach",
-    "tokens"
-   ],
-   "tags": [
-    "token@etb",
-    "pump@loyalty",
-    "token@loyalty",
-    "drain@loyalty",
-    "removal@loyalty"
-   ]
-  },
-  {
-   "name": "Goblin Bombardment",
-   "decks": 3,
-   "roles": [
-    "removal",
-    "engine",
-    "reach"
-   ],
-   "tags": [
-    "drain@activated",
-    "removal@activated"
-   ]
-  },
-  {
    "name": "Walking Ballista",
    "decks": 3,
    "roles": [
@@ -1924,12 +1881,35 @@
     "drain@activated",
     "removal@activated"
    ]
+  },
+  {
+   "name": "Bloodghast",
+   "decks": 3,
+   "roles": [
+    "recursion",
+    "engine"
+   ],
+   "tags": [
+    "recursion@landfall"
+   ]
+  },
+  {
+   "name": "Darklight Phoenix",
+   "decks": 3,
+   "roles": [
+    "recursion",
+    "engine",
+    "beater"
+   ],
+   "tags": [
+    "recursion@each_turn"
+   ]
   }
  ],
  "finishers": [
   {
    "name": "Emeritus of Ideation // Ancestral Recall",
-   "decks": 838,
+   "decks": 787,
    "roles": [
     "draw",
     "finisher",
@@ -1938,7 +1918,7 @@
   },
   {
    "name": "Lodestone Golem",
-   "decks": 121,
+   "decks": 114,
    "roles": [
     "hate",
     "finisher",
@@ -1947,7 +1927,7 @@
   },
   {
    "name": "Chancellor of the Annex",
-   "decks": 109,
+   "decks": 101,
    "roles": [
     "counter",
     "finisher",
@@ -1956,7 +1936,7 @@
   },
   {
    "name": "Chaos Defiler",
-   "decks": 73,
+   "decks": 67,
    "roles": [
     "finisher",
     "beater"
@@ -1964,7 +1944,7 @@
   },
   {
    "name": "Atraxa, Grand Unifier",
-   "decks": 63,
+   "decks": 59,
    "roles": [
     "draw",
     "finisher",
@@ -1973,7 +1953,7 @@
   },
   {
    "name": "Thassa's Oracle",
-   "decks": 51,
+   "decks": 49,
    "roles": [
     "finisher"
    ]
@@ -1989,15 +1969,7 @@
   },
   {
    "name": "Phyrexian Dreadnought",
-   "decks": 14,
-   "roles": [
-    "finisher",
-    "beater"
-   ]
-  },
-  {
-   "name": "Eater of Days",
-   "decks": 9,
+   "decks": 13,
    "roles": [
     "finisher",
     "beater"
@@ -2009,6 +1981,14 @@
    "roles": [
     "removal",
     "draw",
+    "finisher",
+    "beater"
+   ]
+  },
+  {
+   "name": "Eater of Days",
+   "decks": 8,
+   "roles": [
     "finisher",
     "beater"
    ]
@@ -2035,7 +2015,7 @@
   },
   {
    "name": "Griselbrand",
-   "decks": 5,
+   "decks": 4,
    "roles": [
     "draw",
     "finisher",
@@ -2069,25 +2049,6 @@
    ]
   },
   {
-   "name": "Argentum Masticore",
-   "decks": 2,
-   "roles": [
-    "removal",
-    "finisher",
-    "engine",
-    "beater"
-   ]
-  },
-  {
-   "name": "Wurmcoil Engine",
-   "decks": 2,
-   "roles": [
-    "finisher",
-    "tokens",
-    "beater"
-   ]
-  },
-  {
    "name": "Nulldrifter",
    "decks": 2,
    "roles": [
@@ -2106,12 +2067,29 @@
     "engine",
     "beater"
    ]
+  },
+  {
+   "name": "Hogaak, Arisen Necropolis",
+   "decks": 2,
+   "roles": [
+    "recursion",
+    "finisher",
+    "beater"
+   ]
+  },
+  {
+   "name": "Darksteel Angel",
+   "decks": 1,
+   "roles": [
+    "finisher",
+    "beater"
+   ]
   }
  ],
  "noTags": [
   {
    "name": "Mystic Forge",
-   "decks": 169,
+   "decks": 155,
    "roles": [
     "other"
    ],
@@ -2119,7 +2097,7 @@
   },
   {
    "name": "Phyrexian Metamorph",
-   "decks": 136,
+   "decks": 128,
    "roles": [
     "beater"
    ],
@@ -2127,31 +2105,39 @@
   },
   {
    "name": "Hexing Squelcher",
-   "decks": 114,
+   "decks": 106,
    "roles": [
     "protection"
    ],
    "typeLine": "Creature — Goblin Sorcerer"
   },
   {
-   "name": "White Plume Adventurer",
-   "decks": 113,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Orc Cleric"
-  },
-  {
    "name": "Hollow One",
-   "decks": 112,
+   "decks": 106,
    "roles": [
     "beater"
    ],
    "typeLine": "Artifact Creature — Golem"
   },
   {
+   "name": "White Plume Adventurer",
+   "decks": 105,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Orc Cleric"
+  },
+  {
+   "name": "Narcomoeba",
+   "decks": 67,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Illusion"
+  },
+  {
    "name": "Chaos Defiler",
-   "decks": 73,
+   "decks": 67,
    "roles": [
     "finisher",
     "beater"
@@ -2159,16 +2145,8 @@
    "typeLine": "Artifact Creature — Demon Construct"
   },
   {
-   "name": "Narcomoeba",
-   "decks": 71,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Illusion"
-  },
-  {
    "name": "Ichorid",
-   "decks": 70,
+   "decks": 66,
    "roles": [
     "beater"
    ],
@@ -2176,7 +2154,7 @@
   },
   {
    "name": "Golgari Thug",
-   "decks": 66,
+   "decks": 62,
    "roles": [
     "beater"
    ],
@@ -2184,7 +2162,7 @@
   },
   {
    "name": "Oath of Druids",
-   "decks": 61,
+   "decks": 57,
    "roles": [
     "other"
    ],
@@ -2192,7 +2170,7 @@
   },
   {
    "name": "Thassa's Oracle",
-   "decks": 51,
+   "decks": 49,
    "roles": [
     "finisher"
    ],
@@ -2200,7 +2178,7 @@
   },
   {
    "name": "Demonic Consultation",
-   "decks": 46,
+   "decks": 45,
    "roles": [
     "other"
    ],
@@ -2216,7 +2194,7 @@
   },
   {
    "name": "Subtlety",
-   "decks": 22,
+   "decks": 20,
    "roles": [
     "beater"
    ],
@@ -2224,20 +2202,12 @@
   },
   {
    "name": "Phyrexian Dreadnought",
-   "decks": 14,
+   "decks": 13,
    "roles": [
     "finisher",
     "beater"
    ],
    "typeLine": "Artifact Creature — Phyrexian Dreadnought"
-  },
-  {
-   "name": "Fastbond",
-   "decks": 11,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Enchantment"
   },
   {
    "name": "Fury",
@@ -2248,8 +2218,16 @@
    "typeLine": "Creature — Elemental Incarnation"
   },
   {
+   "name": "Fastbond",
+   "decks": 10,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Enchantment"
+  },
+  {
    "name": "Eater of Days",
-   "decks": 9,
+   "decks": 8,
    "roles": [
     "finisher",
     "beater"
@@ -2281,14 +2259,6 @@
     "other"
    ],
    "typeLine": "Enchantment — Aura"
-  },
-  {
-   "name": "Balance",
-   "decks": 4,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Sorcery"
   },
   {
    "name": "Mai, Scornful Striker",
@@ -2345,14 +2315,6 @@
     "beater"
    ],
    "typeLine": "Creature — Faerie Ranger"
-  },
-  {
-   "name": "Step Through",
-   "decks": 2,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Sorcery"
   },
   {
    "name": "Theorist's Proxy",
@@ -2434,6 +2396,22 @@
     "beater"
    ],
    "typeLine": "Creature — Goblin Soldier"
+  },
+  {
+   "name": "Great Fierce Bee",
+   "decks": 1,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Insect"
+  },
+  {
+   "name": "Iron Hills Stalwart",
+   "decks": 1,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Dwarf Warrior"
   }
  ],
  "unknownCards": [
