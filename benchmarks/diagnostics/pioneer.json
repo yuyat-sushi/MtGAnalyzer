@@ -571,7 +571,7 @@
     "oracle": "Destroy all creatures. Lands you control don't untap during your next untap step.",
     "detail": [
      "wipe:destroy:creature",
-     "hate:lock:other"
+     "hate:lock:none"
     ]
    },
    {
@@ -1271,7 +1271,7 @@
   "combat": []
  },
  "format": "Pioneer",
- "generatedAt": "2026-11-26T08:53:18.011Z",
+ "generatedAt": "2026-11-26T08:54:31.839Z",
  "decks": 1178,
  "otherOnly": [
   {
