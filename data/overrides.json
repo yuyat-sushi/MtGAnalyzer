@@ -67,5 +67,20 @@
       "removal"
     ],
     "note": "パワー/タフネスを0/0に固定する、実質的な単体除去"
+  },
+  "Natural Order": {
+    "category": "combo",
+    "roles": [
+      "cheat",
+      "tutor"
+    ],
+    "note": "緑のクリーチャー1体を生け贄に、大型クリーチャーを探して直接戦場に出す踏み倒し"
+  },
+  "Oath of Druids": {
+    "category": "combo",
+    "roles": [
+      "cheatloop"
+    ],
+    "note": "毎ターン、ライブラリーのクリーチャーを踏み倒す（対称効果のため自動判定では相手の効果と見なされる）"
   }
 }

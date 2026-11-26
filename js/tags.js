@@ -57,7 +57,7 @@
                                                  /creatures (your opponents|target player|that player) controls? gets? -/, /deals? (\d+|x) damage to each (\w+ )?(creature|other creature|creature and)/,
                                                  /damage to each opponent and each creature/, /damage to [^.]*?each creature (they|your opponents) control/, /put all [^.]*creatures [^.]*on the bottom/,
                                                  /return all (nonland |creatures|permanents)[^.]*to (its|their) owners?'? hands?/] },
-    { id: 'counter',   label: '打ち消し',     re: [/\bcounter target\b/, /\bcounter (it|that spell)\b/, /exile any number of target spells/, /\bcounter all\b/] },
+    { id: 'counter',   label: '打ち消し',     re: [/\bcounter target\b/, /\bexile target spell\b/, /\bcounter (it|that spell)\b/, /exile any number of target spells/, /\bcounter all\b/] },
     { id: 'redirect',  label: '対象変更',     re: [/change the targets? of target (spell|ability|spell or ability|instant)/, /choose new targets for target (spell|ability|instant)/] },
     { id: 'discard',   label: '手札破壊',     re: [/target (player|opponent) (reveals|discards)/, /(each opponent|that player|target opponent) discards/, /look at target (player|opponent)'s hand/] },
     { id: 'mana',      label: 'マナ',         re: [/\badd (\{[wubrgcs]\}|one mana|two mana|three mana|x mana|mana of any|an amount of|\{c\}\{c\})/, /\btreasure tokens?\b/,
@@ -72,15 +72,14 @@
                                                  /(cast|play) [^.]*from your graveyard/, /return enchanted creature card to the battlefield/, /creature card in a graveyard/] },
     { id: 'selfmill',  label: '墓地肥やし',   re: [/\bsurveil \d/, /\byou mill\b/, /\bmills? (a|one|two|three|four|\d+|x) cards?\b/] },
     { id: 'gyhate',    label: '墓地対策',     re: [/exile (all cards from )?(target player's|each opponent's|each player's|all) graveyards?/, /exile (all )?(target )?cards? from (all |a |an opponent's )?graveyards?/, /exile target card from a graveyard/,
-                                                 /\btarget card in a graveyard\b/, /search its owner's graveyard[^.]*?and exile them/] },
+                                                 /\btarget card in a graveyard\b/, /would be put into an opponent's graveyard[^.]*?exile it\b/, /search its owner's graveyard[^.]*?and exile them/] },
     { id: 'hate',      label: '妨害（ロック）', re: [/\bcosts? \{\d\} more\b/, /would cost less than \w+ mana to cast costs/, /\bcost \{\d\} more\b/, /nonbasic lands (are|don't untap)/, /\bcan't cast (spells|noncreature|creature|instant|sorcery)/,
                                                  /can't be activated/, /(each player|players|your opponents|target player) can't (cast|activate|search|gain life|draw)/, /don't cause abilities to trigger/,
                                                  /(lands|creatures|artifacts|permanents) (your opponents control )?enter (the battlefield )?tapped/, /\bdon't untap during/, /players skip/,
                                                  // 攻撃の制限（Ensnaring Bridge、Propaganda、Moat、Peacekeeper など）
                                                  /\bcreatures (with [^.]*?|without [^.]*?|your opponents control )?can't attack\b/, /no more than (one|two) creatures? can attack/] },
     { id: 'cheat',     label: '踏み倒し',     re: [/put (a|an|up to \w+|any number of|that|those|target)\b[^.]*?\b(creature|artifact|enchantment|permanent|planeswalker|nonland)\b[^.]*?\bcards?\b[^.]*?onto the battlefield/,
-                                                 /search your library for [^.]*?\b(creature|artifact|enchantment|planeswalker|permanent)\b[^.]*?\bcards?\b[^.]*?put (it|them|that card|those cards) onto the battlefield/,
-                                                 /(artifact|creature|enchantment|planeswalker|permanent)( cards?|, (artifact|creature|enchantment|planeswalker|land)[\w, ]*? cards?) from (their|your) hand onto the battlefield/, /puts? that (creature )?card onto the battlefield/, /(?<!this spell )without paying (its|their) mana costs?/] },
+                                                 /(artifact|creature|enchantment|planeswalker|permanent)( cards?|, (artifact|creature|enchantment|planeswalker|land)[\w, ]*? cards?) from (their|your) hand onto the battlefield/, { test: t => /puts? that (creature )?card onto the battlefield/.test(t) && /\bcreature card\b/.test(t) && !/\bland card\b/.test(t) }, { test: t => t.split(/(?<=\.)\s+/).some(x => /(?<!(this spell|cast it|cast this card) )without paying (its|their) mana costs?/.test(x) && !/from (your|a) graveyard/.test(x)) }] },
     { id: 'extraturn', label: '追加ターン',   re: [/take an extra turn/] },
     { id: 'untap',     label: 'アンタップ',   re: [/\buntap (target|all|up to \w+ target|another target|up to \w+) (artifacts?|lands?|nonland permanents?)\b/] },
     { id: 'copy',      label: 'コピー/ストーム', re: [/\bstorm\b/, /copy (target|that|the exiled|it)[^.]*?(instant|sorcery|spell|card)/] },
@@ -91,7 +90,7 @@
 
   // 自分が得をする効果（相手が主語の文では数えない）
   const SELF_BENEFIT = new Set(['token', 'lifegain', 'draw', 'mana', 'pump', 'energy', 'tutor', 'recursion', 'cheat']);
-  const OPPONENT_SUBJECT = /^(that player|its controller|its owner|target opponent|each opponent|an opponent|that creature's controller|that permanent's controller|that spell's controller|their controller|they)\b/;
+  const OPPONENT_SUBJECT = /^(the [a-z' -]*?owner|that player|its controller|its owner|target opponent|each opponent|an opponent|that creature's controller|that permanent's controller|that spell's controller|their controller|they)\b/;
 
   // キーワード能力（墓地から使えるもの）は墓地回収として扱う
   const RECURSION_KEYWORDS = /\b(flashback|unearth|escape|disturb|embalm|eternalize|retrace|jump-start)\b/;
