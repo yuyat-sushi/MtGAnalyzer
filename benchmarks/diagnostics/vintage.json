@@ -1,6 +1,72 @@
 {
+ "comboCandidates": [
+  {
+   "name": "Jewel Shops",
+   "share": 0.102,
+   "comboCards": [
+    "Time Walk"
+   ]
+  },
+  {
+   "name": "Raker Shops",
+   "share": 0.08,
+   "comboCards": [
+    "Tezzeret, Cruel Captain",
+    "Manifold Key"
+   ]
+  },
+  {
+   "name": "PO",
+   "share": 0.049,
+   "comboCards": [
+    "Time Vault"
+   ]
+  },
+  {
+   "name": "Sphere Shops",
+   "share": 0.032,
+   "comboCards": [
+    "Golos, Tireless Pilgrim"
+   ]
+  },
+  {
+   "name": "Other Shops系（推定）",
+   "share": 0.025,
+   "comboCards": []
+  },
+  {
+   "name": "Tinker",
+   "share": 0.02,
+   "comboCards": [
+    "Manifold Key",
+    "Time Vault"
+   ]
+  },
+  {
+   "name": "Beseech Storm",
+   "share": 0.011,
+   "comboCards": [
+    "Beseech the Mirror"
+   ]
+  },
+  {
+   "name": "Scam",
+   "share": 0.008,
+   "comboCards": [
+    "Grave Researcher // Reanimate"
+   ]
+  },
+  {
+   "name": "Other Combo系（推定）",
+   "share": 0.005,
+   "comboCards": [
+    "Time Walk",
+    "Tezzeret, Cruel Captain"
+   ]
+  }
+ ],
  "format": "Vintage",
- "generatedAt": "2026-11-26T07:24:01.204Z",
+ "generatedAt": "2026-11-26T08:02:04.342Z",
  "decks": 1186,
  "otherOnly": [
   {
@@ -519,7 +585,7 @@
     "name": "Karn, the Great Creator",
     "decks": 370,
     "roles": [
-     "hate",
+     "abilitylock",
      "tutor"
     ]
    },
@@ -586,14 +652,14 @@
     "name": "Null Rod",
     "decks": 186,
     "roles": [
-     "hate"
+     "abilitylock"
     ]
    },
    {
     "name": "Pithing Needle",
     "decks": 184,
     "roles": [
-     "hate"
+     "abilitylock"
     ]
    },
    {

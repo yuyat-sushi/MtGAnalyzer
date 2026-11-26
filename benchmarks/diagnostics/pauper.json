@@ -1,6 +1,37 @@
 {
+ "comboCandidates": [
+  {
+   "name": "Turbo Fog",
+   "share": 0.012,
+   "comboCards": [
+    "Weather the Storm"
+   ]
+  },
+  {
+   "name": "Simic Control",
+   "share": 0.006,
+   "comboCards": [
+    "Weather the Storm"
+   ]
+  },
+  {
+   "name": "Cycle Storm",
+   "share": 0.003,
+   "comboCards": [
+    "Reaping the Graves"
+   ]
+  },
+  {
+   "name": "4 Color Proliferate Poison",
+   "share": 0.003,
+   "comboCards": [
+    "Weather the Storm",
+    "Teach by Example"
+   ]
+  }
+ ],
  "format": "Pauper",
- "generatedAt": "2026-11-26T07:24:01.204Z",
+ "generatedAt": "2026-11-26T08:02:04.342Z",
  "decks": 2757,
  "otherOnly": [
   {

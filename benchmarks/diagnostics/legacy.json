@@ -1,6 +1,124 @@
 {
+ "comboCandidates": [
+  {
+   "name": "Mystic Forge Combo",
+   "share": 0.034,
+   "comboCards": [
+    "Manifold Key",
+    "Tezzeret, Cruel Captain",
+    "Voltaic Key"
+   ]
+  },
+  {
+   "name": "Death & Taxes",
+   "share": 0.032,
+   "comboCards": [
+    "Aether Vial"
+   ]
+  },
+  {
+   "name": "5 Color Reanimator",
+   "share": 0.028,
+   "comboCards": [
+    "Grave Researcher // Reanimate",
+    "Raph & Mikey, Troublemakers"
+   ]
+  },
+  {
+   "name": "Elves",
+   "share": 0.028,
+   "comboCards": [
+    "Natural Order"
+   ]
+  },
+  {
+   "name": "Blue Artifacts系（推定）",
+   "share": 0.025,
+   "comboCards": [
+    "Beseech the Mirror",
+    "Tendrils of Agony"
+   ]
+  },
+  {
+   "name": "TES",
+   "share": 0.018,
+   "comboCards": [
+    "Beseech the Mirror",
+    "Tendrils of Agony"
+   ]
+  },
+  {
+   "name": "Naya Stompy系（推定）",
+   "share": 0.009,
+   "comboCards": [
+    "Caves of Chaos Adventurer"
+   ]
+  },
+  {
+   "name": "4 Color Cradle Control系（推定）",
+   "share": 0.007,
+   "comboCards": [
+    "Natural Order"
+   ]
+  },
+  {
+   "name": "4 Color Midrange系（推定）",
+   "share": 0.005,
+   "comboCards": [
+    "Grave Researcher // Reanimate",
+    "Emperor of Bones"
+   ]
+  },
+  {
+   "name": "Post",
+   "share": 0.004,
+   "comboCards": [
+    "Portent of Calamity",
+    "Emrakul, the Exigent Doom"
+   ]
+  },
+  {
+   "name": "Necro Storm",
+   "share": 0.004,
+   "comboCards": [
+    "Beseech the Mirror",
+    "Tendrils of Agony"
+   ]
+  },
+  {
+   "name": "The Epic Gamble",
+   "share": 0.003,
+   "comboCards": []
+  },
+  {
+   "name": "High Tide",
+   "share": 0.003,
+   "comboCards": [
+    "Time Spiral",
+    "Mind's Desire"
+   ]
+  },
+  {
+   "name": "Ad Nauseam Tendrils",
+   "share": 0.003,
+   "comboCards": [
+    "Beseech the Mirror",
+    "Tendrils of Agony"
+   ]
+  },
+  {
+   "name": "Creative combo",
+   "share": 0.003,
+   "comboCards": [
+    "Creative Technique",
+    "Emrakul, the Aeons Torn",
+    "Etali, Primal Conqueror // Etali, Primal Sickness",
+    "Emergent Ultimatum"
+   ]
+  }
+ ],
  "format": "Legacy",
- "generatedAt": "2026-11-26T07:24:01.204Z",
+ "generatedAt": "2026-11-26T08:02:04.342Z",
  "decks": 2762,
  "otherOnly": [
   {
@@ -671,7 +789,7 @@
     "name": "Pithing Needle",
     "decks": 286,
     "roles": [
-     "hate"
+     "abilitylock"
     ]
    },
    {
@@ -708,7 +826,7 @@
     "name": "Karn, the Great Creator",
     "decks": 218,
     "roles": [
-     "hate",
+     "abilitylock",
      "tutor"
     ]
    },
@@ -754,7 +872,7 @@
     "name": "Disruptor Flute",
     "decks": 184,
     "roles": [
-     "hate"
+     "abilitylock"
     ]
    },
    {

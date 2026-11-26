@@ -1,6 +1,86 @@
 {
+ "comboCandidates": [
+  {
+   "name": "Mono Green Devotion",
+   "share": 0.058,
+   "comboCards": [
+    "Storm the Festival",
+    "Garruk, Curse Breaker"
+   ]
+  },
+  {
+   "name": "5 Color Creativity",
+   "share": 0.042,
+   "comboCards": [
+    "Indomitable Creativity",
+    "Raph & Mikey, Troublemakers"
+   ]
+  },
+  {
+   "name": "Selesnya Company",
+   "share": 0.029,
+   "comboCards": [
+    "Collected Company"
+   ]
+  },
+  {
+   "name": "Simic Scapeshift",
+   "share": 0.027,
+   "comboCards": [
+    "Scapeshift",
+    "Kenrith, the Returned King"
+   ]
+  },
+  {
+   "name": "Selesnya Stompy系（推定）",
+   "share": 0.02,
+   "comboCards": [
+    "Collected Company",
+    "Michelangelo's Technique"
+   ]
+  },
+  {
+   "name": "Mono Black Midrange系（推定）",
+   "share": 0.011,
+   "comboCards": [
+    "Baron Helmut Zemo"
+   ]
+  },
+  {
+   "name": "Rakdos Aggro系（推定）",
+   "share": 0.011,
+   "comboCards": [
+    "Leyline of Resonance"
+   ]
+  },
+  {
+   "name": "Temur Creativity",
+   "share": 0.009,
+   "comboCards": [
+    "Indomitable Creativity",
+    "Raph & Mikey, Troublemakers"
+   ]
+  },
+  {
+   "name": "5 Color (Unknown)",
+   "share": 0.005,
+   "comboCards": [
+    "Breaking // Entering",
+    "Founding the Third Path"
+   ]
+  },
+  {
+   "name": "Mono Green Stompy系（推定）",
+   "share": 0.004,
+   "comboCards": [
+    "Fight Rigging",
+    "Turntimber Symbiosis // Turntimber, Serpentine Wood",
+    "Bramble Familiar // Fetch Quest"
+   ]
+  }
+ ],
  "format": "Pioneer",
- "generatedAt": "2026-11-26T07:24:01.204Z",
+ "generatedAt": "2026-11-26T08:02:04.342Z",
  "decks": 1178,
  "otherOnly": [
   {

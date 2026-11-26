@@ -1,6 +1,39 @@
 {
+ "comboCandidates": [
+  {
+   "name": "Jeskai Artifacts系（推定）",
+   "share": 0.04,
+   "comboCards": [
+    "United Battlefront"
+   ]
+  },
+  {
+   "name": "Temur Omniscience",
+   "share": 0.006,
+   "comboCards": [
+    "Kona, Rescue Beastie",
+    "Omniscience"
+   ]
+  },
+  {
+   "name": "4 Color Omniscience",
+   "share": 0.004,
+   "comboCards": [
+    "Kona, Rescue Beastie",
+    "Omniscience"
+   ]
+  },
+  {
+   "name": "Jeskai Manufacturing",
+   "share": 0.003,
+   "comboCards": [
+    "United Battlefront",
+    "Tezzeret, Cruel Captain"
+   ]
+  }
+ ],
  "format": "Standard",
- "generatedAt": "2026-11-26T07:24:01.204Z",
+ "generatedAt": "2026-11-26T08:02:04.342Z",
  "decks": 2462,
  "otherOnly": [
   {
@@ -488,7 +521,7 @@
    "name": "Braided Net // Braided Quipu",
    "decks": 93,
    "roles": [
-    "hate",
+    "abilitylock",
     "draw",
     "engine"
    ],
@@ -1900,7 +1933,7 @@
    "name": "Braided Net // Braided Quipu",
    "decks": 93,
    "roles": [
-    "hate",
+    "abilitylock",
     "draw",
     "engine"
    ],

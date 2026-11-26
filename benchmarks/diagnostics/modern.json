@@ -1,6 +1,90 @@
 {
+ "comboCandidates": [
+  {
+   "name": "Esper Blink",
+   "share": 0.022,
+   "comboCards": [
+    "Emperor of Bones"
+   ]
+  },
+  {
+   "name": "Neobrand",
+   "share": 0.016,
+   "comboCards": [
+    "Eldritch Evolution",
+    "Neoform",
+    "Ghalta, Stampede Tyrant"
+   ]
+  },
+  {
+   "name": "Samwise",
+   "share": 0.013,
+   "comboCards": [
+    "Birthing Ritual"
+   ]
+  },
+  {
+   "name": "Black Eldrazi",
+   "share": 0.01,
+   "comboCards": [
+    "Emperor of Bones"
+   ]
+  },
+  {
+   "name": "5 Color Creativity",
+   "share": 0.009,
+   "comboCards": [
+    "Indomitable Creativity",
+    "Raph & Mikey, Troublemakers"
+   ]
+  },
+  {
+   "name": "Orzhov Blink",
+   "share": 0.003,
+   "comboCards": [
+    "Emperor of Bones"
+   ]
+  },
+  {
+   "name": "Fight Rigging Eldrazi",
+   "share": 0.003,
+   "comboCards": [
+    "Fight Rigging",
+    "Turntimber Symbiosis // Turntimber, Serpentine Wood"
+   ]
+  },
+  {
+   "name": "Simic Ritual",
+   "share": 0.003,
+   "comboCards": [
+    "Birthing Ritual"
+   ]
+  },
+  {
+   "name": "Selesnya Ritual",
+   "share": 0.003,
+   "comboCards": [
+    "Birthing Ritual"
+   ]
+  },
+  {
+   "name": "Omnath Ritual",
+   "share": 0.002,
+   "comboCards": [
+    "Birthing Ritual",
+    "Aang, at the Crossroads // Aang, Destined Savior"
+   ]
+  },
+  {
+   "name": "Merfolk",
+   "share": 0.001,
+   "comboCards": [
+    "Aether Vial"
+   ]
+  }
+ ],
  "format": "Modern",
- "generatedAt": "2026-11-26T07:24:01.204Z",
+ "generatedAt": "2026-11-26T08:02:04.342Z",
  "decks": 4966,
  "otherOnly": [
   {
