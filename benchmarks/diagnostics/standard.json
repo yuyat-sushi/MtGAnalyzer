@@ -1,6 +1,1138 @@
 {
+ "comboCandidates": [
+  {
+   "name": "Jeskai Artifacts系（推定）",
+   "share": 0.04,
+   "comboCards": [
+    "United Battlefront"
+   ]
+  },
+  {
+   "name": "Temur Omniscience",
+   "share": 0.006,
+   "comboCards": [
+    "Kona, Rescue Beastie",
+    "Omniscience"
+   ]
+  },
+  {
+   "name": "4 Color Omniscience",
+   "share": 0.004,
+   "comboCards": [
+    "Kona, Rescue Beastie",
+    "Omniscience"
+   ]
+  },
+  {
+   "name": "Jeskai Manufacturing",
+   "share": 0.003,
+   "comboCards": [
+    "United Battlefront",
+    "Tezzeret, Cruel Captain"
+   ]
+  }
+ ],
+ "disruptEvidence": {
+  "removal": [
+   {
+    "name": "Erode",
+    "decks": 670,
+    "oracle": "Destroy target creature or planeswalker. Its controller may search their library for a basic land card, put it onto the battlefield tapped, then shuffle.",
+    "detail": [
+     "removal:destroy:creature/planeswalker"
+    ]
+   },
+   {
+    "name": "Requiting Hex",
+    "decks": 649,
+    "oracle": "As an additional cost to cast this spell, you may blight 1. (You may put a -1/-1 counter on a creature you control.)\nDestroy target creature with mana value 2 or less. If this spell's additional cost was paid, you gain 2 life.",
+    "detail": [
+     "removal:destroy:creature"
+    ]
+   },
+   {
+    "name": "Bitter Triumph",
+    "decks": 504,
+    "oracle": "As an additional cost to cast this spell, discard a card or pay 3 life.\nDestroy target creature or planeswalker.",
+    "detail": [
+     "removal:destroy:creature/planeswalker"
+    ]
+   },
+   {
+    "name": "Seam Rip",
+    "decks": 415,
+    "oracle": "When this enchantment enters, exile target nonland permanent an opponent controls with mana value 2 or less until this enchantment leaves the battlefield.",
+    "detail": [
+     "removal:exile:creature/artifact/enchantment/planeswalker/battle"
+    ]
+   },
+   {
+    "name": "Burst Lightning",
+    "decks": 410,
+    "oracle": "Kicker {4} (You may pay an additional {4} as you cast this spell.)\nBurst Lightning deals 2 damage to any target. If this spell was kicked, it deals 4 damage instead.",
+    "detail": [
+     "removal:damage:creature/planeswalker/battle/player/spell"
+    ]
+   },
+   {
+    "name": "The Theorist, Jace Beleren",
+    "decks": 401,
+    "oracle": "At the beginning of each opponent's draw step, you draw a card.\n+1: Create a 1/1 blue Illusion creature token.\n−2: For each opponent, return up to one target artifact or creature that player controls to its owner's hand.\n−6: Draw three cards. Then put X +1/+1 counters on each creature you control, where X is the number of cards in your hand.",
+    "detail": [
+     "removal:bounce:creature/artifact"
+    ]
+   },
+   {
+    "name": "Shoot the Sheriff",
+    "decks": 346,
+    "oracle": "Destroy target non-outlaw creature. (Assassins, Mercenaries, Pirates, Rogues, and Warlocks are outlaws. Everyone else is fair game.)",
+    "detail": [
+     "removal:destroy:creature"
+    ]
+   },
+   {
+    "name": "Strategic Betrayal",
+    "decks": 340,
+    "oracle": "Target opponent exiles a creature they control and their graveyard.",
+    "detail": [
+     "removal:other:creature"
+    ]
+   },
+   {
+    "name": "Smaug the Magnificent",
+    "decks": 277,
+    "oracle": "Flying, haste\nWhenever Smaug attacks, he deals damage equal to the number of Treasures you control to any target.\nAt the beginning of your upkeep, create a Treasure token.",
+    "detail": [
+     "removal:damage:creature/planeswalker/battle/player"
+    ]
+   },
+   {
+    "name": "Torch the Tower",
+    "decks": 234,
+    "oracle": "Bargain (You may sacrifice an artifact, enchantment, or token as you cast this spell.)\nTorch the Tower deals 2 damage to target creature or planeswalker. If this spell was bargained, instead it deals 3 damage to that permanent and you scry 1.\nIf a permanent dealt damage by Torch the Tower would die this turn, exile it instead.",
+    "detail": [
+     "removal:damage:creature/planeswalker"
+    ]
+   },
+   {
+    "name": "Get Lost",
+    "decks": 210,
+    "oracle": "Destroy target creature, enchantment, or planeswalker. Its controller creates two Map tokens. (They're artifacts with \"{1}, {T}, Sacrifice this token: Target creature you control explores. Activate only as a sorcery.\")",
+    "detail": [
+     "removal:destroy:creature/enchantment/planeswalker"
+    ]
+   },
+   {
+    "name": "Theorix Charm",
+    "decks": 185,
+    "oracle": "Choose one —\n• Counter target noncreature spell unless its controller pays {2}.\n• Target creature gets -2/-2 until end of turn.\n• Mill three cards, then draw a card. (To mill three cards, put the top three cards of your library into your graveyard.)",
+    "detail": [
+     "counter:counter:noncreature spell",
+     "removal:minus:creature"
+    ]
+   },
+   {
+    "name": "Impractical Joke",
+    "decks": 165,
+    "oracle": "Damage can't be prevented this turn. Impractical Joke deals 3 damage to up to one target creature or planeswalker.",
+    "detail": [
+     "removal:damage:creature/planeswalker"
+    ]
+   },
+   {
+    "name": "Sear",
+    "decks": 149,
+    "oracle": "Sear deals 4 damage to target creature or planeswalker.",
+    "detail": [
+     "removal:damage:creature/planeswalker"
+    ]
+   },
+   {
+    "name": "Prismari Charm",
+    "decks": 144,
+    "oracle": "Choose one —\n• Surveil 2, then draw a card.\n• Prismari Charm deals 1 damage to each of one or two targets.\n• Return target nonland permanent to its owner's hand.",
+    "detail": [
+     "removal:bounce:creature/artifact/enchantment/planeswalker/battle"
+    ]
+   },
+   {
+    "name": "Traumatic Critique",
+    "decks": 144,
+    "oracle": "Traumatic Critique deals X damage to any target. Draw two cards, then discard a card.",
+    "detail": [
+     "removal:damage:creature/planeswalker/battle/player"
+    ]
+   },
+   {
+    "name": "Jeskai Revelation",
+    "decks": 141,
+    "oracle": "Return target spell or permanent to its owner's hand. Jeskai Revelation deals 4 damage to any target. Create two 1/1 white Monk creature tokens with prowess. Draw two cards. You gain 4 life.",
+    "detail": [
+     "removal:bounce:creature/planeswalker/battle/player/spell"
+    ]
+   },
+   {
+    "name": "Nova Hellkite",
+    "decks": 140,
+    "oracle": "Flying, haste\nWhen this creature enters, it deals 1 damage to target creature an opponent controls.\nWarp {2}{R} (You may cast this card from your hand for its warp cost. Exile this creature at the beginning of the next end step, then you may cast it from exile on a later turn.)",
+    "detail": [
+     "removal:damage:creature"
+    ]
+   },
+   {
+    "name": "Meltstrider's Resolve",
+    "decks": 130,
+    "oracle": "Enchant creature you control\nWhen this Aura enters, enchanted creature fights up to one target creature an opponent controls. (Each deals damage equal to its power to the other.)\nEnchanted creature gets +0/+2 and can't be blocked by more than one creature.",
+    "detail": [
+     "removal:damage:creature"
+    ]
+   },
+   {
+    "name": "Inevitable Defeat",
+    "decks": 121,
+    "oracle": "This spell can't be countered.\nExile target nonland permanent. Its controller loses 3 life and you gain 3 life.",
+    "detail": [
+     "removal:exile:creature/artifact/enchantment/planeswalker/battle"
+    ]
+   },
+   {
+    "name": "Uldaros Theorix",
+    "decks": 115,
+    "oracle": "Flying\nWhen Uldaros Theorix enters, if you cast him, exile up to one target nonland card of each card type from your graveyard. Copy those cards. You may cast any number of spells with total mana value 6 or less from among the copies without paying their mana costs. (Permanent spells cast this way become tokens.)",
+    "detail": [
+     "removal:exile:creature/artifact/enchantment/planeswalker/battle/spell"
+    ]
+   },
+   {
+    "name": "Firebending Lesson",
+    "decks": 114,
+    "oracle": "Kicker {4} (You may pay an additional {4} as you cast this spell.)\nFirebending Lesson deals 2 damage to target creature. If this spell was kicked, it deals 5 damage to that creature instead.",
+    "detail": [
+     "removal:damage:creature"
+    ]
+   },
+   {
+    "name": "Together as One",
+    "decks": 105,
+    "oracle": "Converge — Target player draws X cards, Together as One deals X damage to any target, and you gain X life, where X is the number of colors of mana spent to cast this spell.",
+    "detail": [
+     "removal:damage:creature/planeswalker/battle/player/spell"
+    ]
+   },
+   {
+    "name": "Perilous Snare",
+    "decks": 98,
+    "oracle": "Start your engines! (If you have no speed, it starts at 1. It increases once on each of your turns when an opponent loses life. Max speed is 4.)\nWhen this artifact enters, exile target nonland permanent an opponent controls until this artifact leaves the battlefield.\nMax speed — {T}: Put a +1/+1 counter on target creature or Vehicle you control. Activate only as a sorcery.",
+    "detail": [
+     "removal:exile:creature/artifact/enchantment/planeswalker/battle"
+    ]
+   },
+   {
+    "name": "Twinmaw Stormbrood // Charring Bite",
+    "decks": 97,
+    "oracle": "Flying\nWhen this creature enters, you gain 5 life.\n//\nCharring Bite deals 5 damage to target creature without flying. (Then shuffle this card into its owner's library.)",
+    "detail": [
+     "removal:damage:creature"
+    ]
+   },
+   {
+    "name": "Yuriko, Hope from the Shadows",
+    "decks": 93,
+    "oracle": "Flash\nWhen Yuriko enters, choose one —\n• Target creature gets -X/-0 until end of turn, where X is the number of cards in your graveyard.\n• Surveil 2. (Look at the top two cards of your library, then put any number of them into your graveyard and the rest on top of your library in any order.)",
+    "detail": [
+     "removal:minus:creature"
+    ]
+   },
+   {
+    "name": "Spring-Loaded Sawblades // Bladewheel Chariot",
+    "decks": 86,
+    "oracle": "Flash\nWhen this artifact enters, it deals 5 damage to target tapped creature an opponent controls.\nCraft with artifact {3}{W} ({3}{W}, Exile this artifact, Exile another artifact you control or an artifact card from your graveyard: Return this card transformed under its owner's control. Craft only as a sorcery.)\n//\nTap two other untapped artifacts you control: This Vehicle becomes an artifact creature until end of turn.\nCrew 1 (Tap any number of creatures you control with total power 1 or more: This Vehicle becomes an artifact creature until end of turn.)",
+    "detail": [
+     "removal:damage:creature"
+    ]
+   },
+   {
+    "name": "Nowhere to Run",
+    "decks": 83,
+    "oracle": "Flash\nWhen this enchantment enters, target creature an opponent controls gets -3/-3 until end of turn.\nCreatures your opponents control can be the targets of spells and abilities as though they didn't have hexproof. Ward abilities of those creatures don't trigger.",
+    "detail": [
+     "removal:minus:creature"
+    ]
+   },
+   {
+    "name": "White Auracite",
+    "decks": 82,
+    "oracle": "When this artifact enters, exile target nonland permanent an opponent controls until this artifact leaves the battlefield.\n{T}: Add {W}.",
+    "detail": [
+     "removal:exile:creature/artifact/enchantment/planeswalker/battle"
+    ]
+   },
+   {
+    "name": "Stir Up Trouble",
+    "decks": 78,
+    "oracle": "As an additional cost to cast this spell, sacrifice an artifact or creature or pay {4}.\nDestroy target creature.",
+    "detail": [
+     "removal:destroy:creature"
+    ]
+   },
+   {
+    "name": "Lightning Helix",
+    "decks": 73,
+    "oracle": "Lightning Helix deals 3 damage to any target and you gain 3 life.",
+    "detail": [
+     "removal:damage:creature/planeswalker/battle/player"
+    ]
+   },
+   {
+    "name": "Break Under Pressure",
+    "decks": 69,
+    "oracle": "Target opponent sacrifices a creature or planeswalker with the greatest mana value among creatures and planeswalkers they control. You gain 2 life.",
+    "detail": [
+     "removal:sacrifice:creature/planeswalker"
+    ]
+   },
+   {
+    "name": "Curious Farm Animals",
+    "decks": 64,
+    "oracle": "When this creature dies, you gain 3 life.\n{2}, Sacrifice this creature: Destroy up to one target artifact or enchantment.",
+    "detail": [
+     "removal:destroy:artifact/enchantment"
+    ]
+   },
+   {
+    "name": "Witherbloom Charm",
+    "decks": 62,
+    "oracle": "Choose one —\n• You may sacrifice a permanent. If you do, draw two cards.\n• You gain 5 life.\n• Destroy target nonland permanent with mana value 2 or less.",
+    "detail": [
+     "removal:destroy:creature/artifact/enchantment/planeswalker/battle"
+    ]
+   },
+   {
+    "name": "Elspeth, Storm Slayer",
+    "decks": 61,
+    "oracle": "If one or more tokens would be created under your control, twice that many of those tokens are created instead.\n+1: Create a 1/1 white Soldier creature token.\n0: Put a +1/+1 counter on each creature you control. Those creatures gain flying until your next turn.\n−3: Destroy target creature an opponent controls with mana value 3 or greater.",
+    "detail": [
+     "removal:destroy:creature"
+    ]
+   },
+   {
+    "name": "Deadly Precision",
+    "decks": 60,
+    "oracle": "As an additional cost to cast this spell, pay {4} or sacrifice an artifact or creature.\nDestroy target creature.",
+    "detail": [
+     "removal:destroy:creature"
+    ]
+   },
+   {
+    "name": "Feed the Cycle",
+    "decks": 60,
+    "oracle": "As an additional cost to cast this spell, forage or pay {B}. (To forage, exile three cards from your graveyard or sacrifice a Food.)\nDestroy target creature or planeswalker.",
+    "detail": [
+     "removal:destroy:creature/planeswalker"
+    ]
+   },
+   {
+    "name": "Chainsaw",
+    "decks": 59,
+    "oracle": "When this Equipment enters, it deals 3 damage to up to one target creature.\nWhenever one or more creatures die, put a rev counter on this Equipment.\nEquipped creature gets +X/+0, where X is the number of rev counters on this Equipment.\nEquip {3}",
+    "detail": [
+     "removal:damage:creature"
+    ]
+   },
+   {
+    "name": "Thorin, Mountain-king",
+    "decks": 59,
+    "oracle": "Trample\nWhen Thorin enters, attach any number of target Equipment you control to target creature you control. When one or more Equipment become attached to that creature this way, that creature deals damage equal to its power to up to one target creature.",
+    "detail": [
+     "removal:damage:creature"
+    ]
+   },
+   {
+    "name": "Vibrant Outburst",
+    "decks": 57,
+    "oracle": "Vibrant Outburst deals 3 damage to any target. Tap up to one target creature.",
+    "detail": [
+     "removal:damage:creature/planeswalker/battle/player"
+    ]
+   }
+  ],
+  "wipe": [
+   {
+    "name": "Day of Judgment",
+    "decks": 296,
+    "oracle": "Destroy all creatures.",
+    "detail": [
+     "wipe:destroy:creature"
+    ]
+   },
+   {
+    "name": "Deadly Cover-Up",
+    "decks": 253,
+    "oracle": "As an additional cost to cast this spell, you may collect evidence 6.\nDestroy all creatures. If evidence was collected, exile a card from an opponent's graveyard. Then search its owner's graveyard, hand, and library for any number of cards with that name and exile them. That player shuffles, then draws a card for each card exiled from their hand this way.",
+    "detail": [
+     "wipe:exile:creature",
+     "gyhate:exile:graveyard"
+    ]
+   },
+   {
+    "name": "Pinnacle Starcage",
+    "decks": 219,
+    "oracle": "When this artifact enters, exile all artifacts and creatures with mana value 2 or less until this artifact leaves the battlefield.\n{6}{W}{W}: Put each card exiled with this artifact into its owner's graveyard, then create a 2/2 colorless Robot artifact creature token for each card put into a graveyard this way. Sacrifice this artifact.",
+    "detail": [
+     "wipe:exile:creature/artifact"
+    ]
+   },
+   {
+    "name": "Amalia Benavides Aguirre",
+    "decks": 203,
+    "oracle": "Ward—Pay 3 life.\nWhenever you gain life, Amalia Benavides Aguirre explores. Then destroy all other creatures if its power is exactly 20. (To have this creature explore, reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)",
+    "detail": [
+     "wipe:destroy:creature"
+    ]
+   },
+   {
+    "name": "Fire Magic",
+    "decks": 89,
+    "oracle": "Tiered (Choose one additional cost.)\n• Fire — {0} — Fire Magic deals 1 damage to each creature.\n• Fira — {2} — Fire Magic deals 2 damage to each creature.\n• Firaga — {5} — Fire Magic deals 3 damage to each creature.",
+    "detail": [
+     "wipe:damage:creature"
+    ]
+   },
+   {
+    "name": "Engineered Explosives",
+    "decks": 40,
+    "oracle": "Sunburst (This artifact enters with a charge counter on it for each color of mana spent to cast it.)\n{2}, Sacrifice this artifact: Destroy each nonland permanent with mana value equal to the number of charge counters on this artifact.",
+    "detail": [
+     "wipe:destroy:creature/artifact/enchantment/planeswalker/battle"
+    ]
+   },
+   {
+    "name": "Day of Black Sun",
+    "decks": 35,
+    "oracle": "Each creature with mana value X or less loses all abilities until end of turn. Destroy those creatures.",
+    "detail": []
+   },
+   {
+    "name": "Ajani Unrelenting",
+    "decks": 35,
+    "oracle": "Whenever you activate a loyalty ability, create a 2/2 colorless Wizard Soldier creature token named Cadet.\n+1: Creatures you control get +1/+0 and gain haste until end of turn.\n−2: Discard your hand, then draw a card for each creature you control.\n−3: Ajani deals 4 damage to each creature except for tokens you control.",
+    "detail": [
+     "wipe:damage:creature"
+    ]
+   },
+   {
+    "name": "Ill-Timed Explosion",
+    "decks": 20,
+    "oracle": "Draw two cards. Then you may discard two cards. When you do, Ill-Timed Explosion deals X damage to each creature, where X is the greatest mana value among cards discarded this way.",
+    "detail": [
+     "wipe:damage:creature"
+    ]
+   },
+   {
+    "name": "Settle the Wreckage",
+    "decks": 15,
+    "oracle": "Exile all attacking creatures target player controls. That player may search their library for that many basic land cards, put those cards onto the battlefield tapped, then shuffle.",
+    "detail": [
+     "wipe:exile:creature"
+    ]
+   },
+   {
+    "name": "Ultima",
+    "decks": 11,
+    "oracle": "Destroy all artifacts and creatures. End the turn. (Exile all spells and abilities from the stack, including this card. The player whose turn it is discards down to their maximum hand size. Damage wears off, and \"this turn\" and \"until end of turn\" effects end.)",
+    "detail": [
+     "wipe:destroy:creature/artifact"
+    ]
+   },
+   {
+    "name": "Ashling's Command",
+    "decks": 10,
+    "oracle": "Choose two —\n• Create a token that's a copy of target Elemental you control.\n• Target player draws two cards.\n• Ashling's Command deals 2 damage to each creature target player controls.\n• Target player creates two Treasure tokens.",
+    "detail": [
+     "wipe:damage:creature"
+    ]
+   },
+   {
+    "name": "M.O.D.O.K.",
+    "decks": 10,
+    "oracle": "Flying, lifelink\nMental Organism — Pay 3 life: M.O.D.O.K. connives. Activate only during your turn. (Draw a card, then discard a card. If you discarded a nonland card, put a +1/+1 counter on this creature.)\nDesigned Only for Killing — Creatures your opponents control get -1/-1.",
+    "detail": [
+     "wipe:minus:creature"
+    ]
+   },
+   {
+    "name": "Avengers Disassembled",
+    "decks": 10,
+    "oracle": "Choose one or both —\n• Avengers Disassembled deals 3 damage to each creature.\n• Destroy target land. Its controller may search their library for a basic land card, put it onto the battlefield tapped, then shuffle.",
+    "detail": [
+     "wipe:damage:creature",
+     "removal:destroy:land"
+    ]
+   },
+   {
+    "name": "Bringer of the Last Gift",
+    "decks": 8,
+    "oracle": "Flying\nWhen this creature enters, if you cast it, each player sacrifices all other creatures they control. Then each player returns all creature cards from their graveyard that weren't put there this way to the battlefield.",
+    "detail": [
+     "wipe:sacrifice:creature"
+    ]
+   },
+   {
+    "name": "Slagstorm",
+    "decks": 6,
+    "oracle": "Choose one —\n• Slagstorm deals 3 damage to each creature.\n• Slagstorm deals 3 damage to each player.",
+    "detail": [
+     "wipe:damage:creature"
+    ]
+   },
+   {
+    "name": "The Echoverse Fulcrum",
+    "decks": 5,
+    "oracle": "When The Echoverse Fulcrum enters, draw a card, then discard a card.\n{5}, {T}, Exile The Echoverse Fulcrum: Destroy all creatures. Activate only as a sorcery.",
+    "detail": [
+     "wipe:exile:creature"
+    ]
+   },
+   {
+    "name": "Vicious Rivalry",
+    "decks": 5,
+    "oracle": "As an additional cost to cast this spell, pay X life.\nDestroy all artifacts and creatures with mana value X or less.",
+    "detail": [
+     "wipe:destroy:creature/artifact"
+    ]
+   },
+   {
+    "name": "Iroh's Demonstration",
+    "decks": 5,
+    "oracle": "Choose one —\n• Iroh's Demonstration deals 1 damage to each creature your opponents control.\n• Iroh's Demonstration deals 4 damage to target creature.",
+    "detail": [
+     "wipe:damage:creature",
+     "removal:damage:creature"
+    ]
+   },
+   {
+    "name": "Pest Control",
+    "decks": 2,
+    "oracle": "Destroy all nonland permanents with mana value 1 or less.\nCycling {2} ({2}, Discard this card: Draw a card.)",
+    "detail": [
+     "wipe:destroy:creature/artifact/enchantment/planeswalker/battle"
+    ]
+   },
+   {
+    "name": "Fulminous Forte",
+    "decks": 1,
+    "oracle": "Choose one —\n• Fulminous Forte deals 1 damage to each creature and planeswalker your opponents control.\n• Fulminous Forte deals 5 damage to target creature or planeswalker.",
+    "detail": [
+     "wipe:damage:creature/planeswalker",
+     "removal:damage:creature/planeswalker"
+    ]
+   },
+   {
+    "name": "Singularity Rupture",
+    "decks": 1,
+    "oracle": "Destroy all creatures, then any number of target players each mill half their library, rounded down.",
+    "detail": [
+     "wipe:destroy:creature"
+    ]
+   },
+   {
+    "name": "Beyond the Quiet",
+    "decks": 1,
+    "oracle": "Exile all creatures and Spacecraft.",
+    "detail": [
+     "wipe:exile:creature"
+    ]
+   }
+  ],
+  "spell": [
+   {
+    "name": "Spell Snare",
+    "decks": 626,
+    "oracle": "Counter target spell with mana value 2.",
+    "detail": [
+     "counter:counter:spell"
+    ]
+   },
+   {
+    "name": "Burst Lightning",
+    "decks": 410,
+    "oracle": "Kicker {4} (You may pay an additional {4} as you cast this spell.)\nBurst Lightning deals 2 damage to any target. If this spell was kicked, it deals 4 damage instead.",
+    "detail": [
+     "removal:damage:creature/planeswalker/battle/player/spell"
+    ]
+   },
+   {
+    "name": "Three Steps Ahead",
+    "decks": 245,
+    "oracle": "Spree (Choose one or more additional costs.)\n+ {1}{U} — Counter target spell.\n+ {3} — Create a token that's a copy of target artifact or creature you control.\n+ {2} — Draw two cards, then discard a card.",
+    "detail": [
+     "counter:counter:spell"
+    ]
+   },
+   {
+    "name": "No More Lies",
+    "decks": 244,
+    "oracle": "Counter target spell unless its controller pays {3}. If that spell is countered this way, exile it instead of putting it into its owner's graveyard.",
+    "detail": [
+     "counter:counter_exile:spell"
+    ]
+   },
+   {
+    "name": "We Say Thee Nay!",
+    "decks": 221,
+    "oracle": "Teamwork 2 (As an additional cost to cast this spell, you may tap any number of creatures you control with total power 2 or more.)\nCounter target spell unless its controller pays {2}. Counter that spell unless its controller pays {4} instead if this spell was cast using teamwork.",
+    "detail": [
+     "counter:counter:spell"
+    ]
+   },
+   {
+    "name": "Countersculpt",
+    "decks": 214,
+    "oracle": "As an additional cost to cast this spell, behold a Jace or pay {1}. (To behold a Jace, choose a Jace you control or reveal a Jace card from your hand.)\nCounter target spell. Empower Jace 1. (Put a loyalty counter on a Jace token you control. If you don't control one, first create a blue Jace planeswalker token with \"[−1]: Surveil 1\" and \"[−3]: Draw a card.\")",
+    "detail": [
+     "counter:counter:spell"
+    ]
+   },
+   {
+    "name": "Theorix Charm",
+    "decks": 185,
+    "oracle": "Choose one —\n• Counter target noncreature spell unless its controller pays {2}.\n• Target creature gets -2/-2 until end of turn.\n• Mill three cards, then draw a card. (To mill three cards, put the top three cards of your library into your graveyard.)",
+    "detail": [
+     "counter:counter:noncreature spell",
+     "removal:minus:creature"
+    ]
+   },
+   {
+    "name": "Spell Pierce",
+    "decks": 158,
+    "oracle": "Counter target noncreature spell unless its controller pays {2}.",
+    "detail": [
+     "counter:counter:noncreature spell"
+    ]
+   },
+   {
+    "name": "Voice of Victory",
+    "decks": 146,
+    "oracle": "Mobilize 2 (Whenever this creature attacks, create two tapped and attacking 1/1 red Warrior creature tokens. Sacrifice them at the beginning of the next end step.)\nYour opponents can't cast spells during your turn.",
+    "detail": [
+     "hate:lock:spell"
+    ]
+   },
+   {
+    "name": "Jeskai Revelation",
+    "decks": 141,
+    "oracle": "Return target spell or permanent to its owner's hand. Jeskai Revelation deals 4 damage to any target. Create two 1/1 white Monk creature tokens with prowess. Draw two cards. You gain 4 life.",
+    "detail": [
+     "removal:bounce:creature/planeswalker/battle/player/spell"
+    ]
+   },
+   {
+    "name": "Uldaros Theorix",
+    "decks": 115,
+    "oracle": "Flying\nWhen Uldaros Theorix enters, if you cast him, exile up to one target nonland card of each card type from your graveyard. Copy those cards. You may cast any number of spells with total mana value 6 or less from among the copies without paying their mana costs. (Permanent spells cast this way become tokens.)",
+    "detail": [
+     "removal:exile:creature/artifact/enchantment/planeswalker/battle/spell"
+    ]
+   },
+   {
+    "name": "Get Out",
+    "decks": 112,
+    "oracle": "Choose one —\n• Counter target creature or enchantment spell.\n• Return one or two target creatures and/or enchantments you own to your hand.",
+    "detail": [
+     "counter:counter:spell"
+    ]
+   },
+   {
+    "name": "Together as One",
+    "decks": 105,
+    "oracle": "Converge — Target player draws X cards, Together as One deals X damage to any target, and you gain X life, where X is the number of colors of mana spent to cast this spell.",
+    "detail": [
+     "removal:damage:creature/planeswalker/battle/player/spell"
+    ]
+   },
+   {
+    "name": "Fatehold Charm",
+    "decks": 52,
+    "oracle": "Choose one —\n• Draw a card. Empower Jace 2.\n• Return target spell or creature to its owner's hand.\n• Creatures you control get +1/+2 until end of turn.",
+    "detail": [
+     "removal:bounce:creature/spell"
+    ]
+   },
+   {
+    "name": "Thor, God of Thunder",
+    "decks": 45,
+    "oracle": "Flying\nWhen Thor enters, exile target Equipment, instant, or sorcery card from your graveyard. Until the end of your next turn, you may play that card.\nWhenever you cast a noncreature spell, Thor deals damage equal to that spell's mana value to any target.",
+    "detail": [
+     "removal:damage:creature/planeswalker/battle/player/spell"
+    ]
+   },
+   {
+    "name": "Chandra, Torch of Defiance",
+    "decks": 38,
+    "oracle": "+1: Exile the top card of your library. You may cast that card. If you don't, Chandra deals 2 damage to each opponent.\n+1: Add {R}{R}.\n−3: Chandra deals 4 damage to target creature.\n−7: You get an emblem with \"Whenever you cast a spell, this emblem deals 5 damage to any target.\"",
+    "detail": [
+     "removal:damage:creature",
+     "removal:damage:creature/planeswalker/battle/player/spell"
+    ]
+   },
+   {
+    "name": "Long River's Pull",
+    "decks": 30,
+    "oracle": "Gift a card (You may promise an opponent a gift as you cast this spell. If you do, they draw a card before its other effects.)\nCounter target creature spell. If the gift was promised, instead counter target spell.",
+    "detail": [
+     "counter:counter:spell"
+    ]
+   },
+   {
+    "name": "It'll Quench Ya!",
+    "decks": 21,
+    "oracle": "Counter target spell unless its controller pays {2}.",
+    "detail": [
+     "counter:counter:spell"
+    ]
+   },
+   {
+    "name": "Jennifer Walters // The Sensational She-Hulk",
+    "decks": 16,
+    "oracle": "Your opponents can't cast spells during your turn.\n{3}{G}{W}{W}: Transform Jennifer Walters. Activate only as a sorcery.\n//\nReach, trample\nYour opponents can't cast spells during your turn.\nWhenever a creature you control is dealt damage, you may have The Sensational She-Hulk deal that much damage to any target. Do this only once each turn.",
+    "detail": [
+     "hate:lock:spell",
+     "removal:damage:creature/planeswalker/battle/player"
+    ]
+   },
+   {
+    "name": "Negate",
+    "decks": 13,
+    "oracle": "Counter target noncreature spell.",
+    "detail": [
+     "counter:counter:noncreature spell"
+    ]
+   },
+   {
+    "name": "Sunspine Lynx",
+    "decks": 7,
+    "oracle": "Players can't gain life.\nDamage can't be prevented.\nWhen this creature enters, it deals damage to each player equal to the number of nonbasic lands that player controls.",
+    "detail": [
+     "hate:lock:other"
+    ]
+   },
+   {
+    "name": "Dispelling Exhale",
+    "decks": 5,
+    "oracle": "As an additional cost to cast this spell, you may behold a Dragon. (You may choose a Dragon you control or reveal a Dragon card from your hand.)\nCounter target spell unless its controller pays {2}. If a Dragon was beheld, counter that spell unless its controller pays {4} instead.",
+    "detail": [
+     "counter:counter:spell"
+    ]
+   },
+   {
+    "name": "High Noon",
+    "decks": 4,
+    "oracle": "Each player can't cast more than one spell each turn.\n{4}{R}, Sacrifice this enchantment: It deals 5 damage to any target.",
+    "detail": [
+     "hate:lock:spell",
+     "removal:damage:creature/planeswalker/battle/player"
+    ]
+   },
+   {
+    "name": "Essence Scatter",
+    "decks": 3,
+    "oracle": "Counter target creature spell.",
+    "detail": [
+     "counter:counter:creature spell"
+    ]
+   },
+   {
+    "name": "Spectral Interference",
+    "decks": 3,
+    "oracle": "Counter target artifact or creature spell unless its controller pays {4}.",
+    "detail": [
+     "counter:counter:creature spell/spell"
+    ]
+   },
+   {
+    "name": "Phantom Interference",
+    "decks": 2,
+    "oracle": "Spree (Choose one or more additional costs.)\n+ {3} — Create a 2/2 white Spirit creature token with flying.\n+ {1} — Counter target spell unless its controller pays {2}.",
+    "detail": [
+     "counter:counter:spell"
+    ]
+   },
+   {
+    "name": "Lightstall Inquisitor",
+    "decks": 2,
+    "oracle": "Vigilance\nWhen this creature enters, each opponent exiles a card from their hand and may play that card for as long as it remains exiled. Each spell cast this way costs {1} more to cast. Each land played this way enters tapped.",
+    "detail": [
+     "removal:other:spell",
+     "hate:lock:tax"
+    ]
+   },
+   {
+    "name": "Confounding Riddle",
+    "decks": 2,
+    "oracle": "Choose one —\n• Look at the top four cards of your library. Put one of them into your hand and the rest into your graveyard.\n• Counter target spell unless its controller pays {4}.",
+    "detail": [
+     "counter:counter:spell"
+    ]
+   },
+   {
+    "name": "Slick Sequence",
+    "decks": 1,
+    "oracle": "Slick Sequence deals 2 damage to any target. If you've cast another spell this turn, draw a card.",
+    "detail": [
+     "removal:damage:creature/planeswalker/battle/player/spell"
+    ]
+   },
+   {
+    "name": "Flashfreeze",
+    "decks": 1,
+    "oracle": "Counter target red or green spell.",
+    "detail": [
+     "counter:counter:spell"
+    ]
+   },
+   {
+    "name": "Annul",
+    "decks": 1,
+    "oracle": "Counter target artifact or enchantment spell.",
+    "detail": [
+     "counter:counter:spell"
+    ]
+   },
+   {
+    "name": "Wesley Crusher, Starfleet Cadet",
+    "decks": 1,
+    "oracle": "Flash\nWhen Wesley Crusher enters, choose two —\n• Counter target noncreature spell unless its controller pays {2}.\n• Return target creature with mana value 2 or less to its owner's hand.\n• Target creature can't be blocked this turn.\n• Target player draws two cards, then discards two cards.",
+    "detail": [
+     "counter:counter:noncreature spell",
+     "removal:bounce:creature"
+    ]
+   },
+   {
+    "name": "Giant Cindermaw",
+    "decks": 1,
+    "oracle": "Trample (This creature can deal excess combat damage to the player or planeswalker it's attacking.)\nPlayers can't gain life.",
+    "detail": [
+     "hate:lock:other"
+    ]
+   },
+   {
+    "name": "Spider-Man 2099",
+    "decks": 1,
+    "oracle": "From the Future — You can't cast Spider-Man 2099 during your first, second, or third turns of the game.\nDouble strike, vigilance\nAt the beginning of your end step, if you've played a land or cast a spell this turn from anywhere other than your hand, Spider-Man 2099 deals damage equal to his power to any target.",
+    "detail": [
+     "removal:damage:creature/planeswalker/battle/player/spell"
+    ]
+   }
+  ],
+  "ability": [
+   {
+    "name": "Clarion Conqueror",
+    "decks": 108,
+    "oracle": "Flying\nActivated abilities of artifacts, creatures, and planeswalkers can't be activated.",
+    "detail": [
+     "hate:lock:activated ability"
+    ]
+   },
+   {
+    "name": "Braided Net // Braided Quipu",
+    "decks": 93,
+    "oracle": "This artifact enters with three net counters on it.\n{T}, Remove a net counter from this artifact: Tap another target nonland permanent. Its activated abilities can't be activated for as long as it remains tapped.\nCraft with artifact {1}{U}\n//\n{3}{U}, {T}: Draw a card for each artifact you control, then put this artifact into its owner's library third from the top.",
+    "detail": [
+     "hate:lock:activated ability"
+    ]
+   },
+   {
+    "name": "Doorkeeper Thrull",
+    "decks": 50,
+    "oracle": "Flash\nFlying\nArtifacts and creatures entering don't cause abilities to trigger.",
+    "detail": [
+     "hate:lock:triggered ability"
+    ]
+   },
+   {
+    "name": "Torpor Orb",
+    "decks": 30,
+    "oracle": "Creatures entering don't cause abilities to trigger.",
+    "detail": [
+     "hate:lock:triggered ability"
+    ]
+   },
+   {
+    "name": "Spider-Sense",
+    "decks": 9,
+    "oracle": "Web-slinging {U} (You may cast this spell for {U} if you also return a tapped creature you control to its owner's hand.)\nCounter target instant spell, sorcery spell, or triggered ability.",
+    "detail": [
+     "counter:counter:instant/sorcery/triggered ability"
+    ]
+   },
+   {
+    "name": "Karn, Argent Defender",
+    "decks": 3,
+    "oracle": "Artifacts and creatures entering the battlefield don't cause abilities to trigger.",
+    "detail": [
+     "hate:lock:triggered ability"
+    ]
+   },
+   {
+    "name": "Subcommander T'Pol",
+    "decks": 1,
+    "oracle": "Flash\nWhen Subcommander T'Pol enters, choose one —\n• Counter target activated or triggered ability.\n• Tap up to one target artifact or creature. Put a stun counter on it. (If a permanent with a stun counter would become untapped, remove one from it instead.)",
+    "detail": [
+     "counter:counter:activated ability/triggered ability"
+    ]
+   }
+  ],
+  "discard": [
+   {
+    "name": "Duress",
+    "decks": 161,
+    "oracle": "Target opponent reveals their hand. You choose a noncreature, nonland card from it. That player discards that card.",
+    "detail": [
+     "discard:discard:hand"
+    ]
+   },
+   {
+    "name": "Deceit",
+    "decks": 138,
+    "oracle": "When this creature enters, if {U}{U} was spent to cast it, return up to one other target nonland permanent to its owner's hand.\nWhen this creature enters, if {B}{B} was spent to cast it, target opponent reveals their hand. You choose a nonland card from it. That player discards that card.\nEvoke {U/B}{U/B}",
+    "detail": [
+     "discard:discard:hand"
+    ]
+   },
+   {
+    "name": "Deep-Cavern Bat",
+    "decks": 95,
+    "oracle": "Flying, lifelink\nWhen this creature enters, look at target opponent's hand. You may exile a nonland card from it until this creature leaves the battlefield.",
+    "detail": [
+     "discard:exile:hand"
+    ]
+   },
+   {
+    "name": "Salt Vampire",
+    "decks": 26,
+    "oracle": "Lifelink\nWhen this creature enters, look at target opponent's hand. You may choose a nonland card from it. If you do, that player exiles that card, then draws a card.",
+    "detail": [
+     "discard:discard:hand"
+    ]
+   },
+   {
+    "name": "Garruk, Veiled Butcher",
+    "decks": 15,
+    "oracle": "If a creature an opponent controls would die, exile it instead.\n+2: Up to one target creature gets -4/-1 until your next turn.\n−2: Each player sacrifices a creature of their choice. If you sacrificed a creature this way, create a 4/4 green Beast creature token with trample.\n−3: Each opponent discards two cards. For each opponent who didn't discard two nonland cards this way, you draw a card.",
+    "detail": [
+     "removal:minus:creature",
+     "removal:sacrifice:creature",
+     "discard:discard:hand"
+    ]
+   },
+   {
+    "name": "Intimidation Tactics",
+    "decks": 15,
+    "oracle": "Target opponent reveals their hand. You choose an artifact or creature card from it. Exile that card.\nCycling {3} ({3}, Discard this card: Draw a card.)",
+    "detail": [
+     "discard:exile:hand"
+    ]
+   },
+   {
+    "name": "Null Summoner",
+    "decks": 5,
+    "oracle": "When this creature enters, if you cast it, target opponent reveals their hand. You choose a nonland card from it. Exile that card.\nThreshold — As long as there are seven or more cards in your graveyard, you may cast the exiled card, and mana of any type can be spent to cast that spell.",
+    "detail": [
+     "discard:exile:hand"
+    ]
+   },
+   {
+    "name": "Wail of the Forgotten",
+    "decks": 4,
+    "oracle": "Descend 8 — Choose one. If there are eight or more permanent cards in your graveyard as you cast this spell, choose one or more instead.\n• Return target nonland permanent to its owner's hand.\n• Target opponent discards a card.\n• Look at the top three cards of your library. Put one of them into your hand and the rest into your graveyard.",
+    "detail": [
+     "removal:bounce:creature/artifact/enchantment/planeswalker/battle",
+     "discard:discard:hand"
+    ]
+   },
+   {
+    "name": "Cruelclaw's Heist",
+    "decks": 3,
+    "oracle": "Gift a card (You may promise an opponent a gift as you cast this spell. If you do, they draw a card before its other effects.)\nTarget opponent reveals their hand. You choose a nonland card from it. Exile that card. If the gift was promised, you may cast that card for as long as it remains exiled, and mana of any type can be spent to cast it.",
+    "detail": [
+     "discard:exile:hand"
+    ]
+   },
+   {
+    "name": "Armus, Skin of Evil",
+    "decks": 3,
+    "oracle": "Menace\nAt the beginning of your end step, target opponent discards two cards.\n{2}{B}, Discard this card: Target creature gets -4/-4 until end of turn.",
+    "detail": [
+     "discard:discard:hand",
+     "removal:minus:creature"
+    ]
+   },
+   {
+    "name": "Mind Roots",
+    "decks": 1,
+    "oracle": "Target player discards two cards. Put up to one land card discarded this way onto the battlefield tapped under your control.",
+    "detail": [
+     "discard:discard:hand"
+    ]
+   },
+   {
+    "name": "Oildeep Gearhulk",
+    "decks": 1,
+    "oracle": "Lifelink, ward {1}\nWhen this creature enters, look at target player's hand. You may choose a card from it. If you do, that player discards that card, then draws a card.",
+    "detail": [
+     "discard:discard:hand"
+    ]
+   },
+   {
+    "name": "Taster of Wares",
+    "decks": 1,
+    "oracle": "When this creature enters, target opponent reveals X cards from their hand, where X is the number of Goblins you control. You choose one of those cards. That player exiles it. If an instant or sorcery card is exiled this way, you may cast it for as long as you control this creature, and mana of any type can be spent to cast that spell.",
+    "detail": [
+     "discard:discard:hand"
+    ]
+   }
+  ],
+  "gyhate": [
+   {
+    "name": "Deadly Cover-Up",
+    "decks": 253,
+    "oracle": "As an additional cost to cast this spell, you may collect evidence 6.\nDestroy all creatures. If evidence was collected, exile a card from an opponent's graveyard. Then search its owner's graveyard, hand, and library for any number of cards with that name and exile them. That player shuffles, then draws a card for each card exiled from their hand this way.",
+    "detail": [
+     "wipe:exile:creature",
+     "gyhate:exile:graveyard"
+    ]
+   },
+   {
+    "name": "Keen-Eyed Curator",
+    "decks": 77,
+    "oracle": "As long as there are four or more card types among cards exiled with this creature, it gets +4/+4 and has trample.\n{1}: Exile target card from a graveyard.",
+    "detail": [
+     "gyhate:exile:graveyard"
+    ]
+   },
+   {
+    "name": "The Ooze",
+    "decks": 34,
+    "oracle": "Whenever a creature you control with a +1/+1 counter on it leaves the battlefield, create a Mutagen token for each +1/+1 counter on it. (A Mutagen token is an artifact with \"{1}, {T}, Sacrifice this token: Put a +1/+1 counter on target creature. Activate only as a sorcery.\")\n{T}: Exile target card from a graveyard. Create a Mutagen token.",
+    "detail": [
+     "gyhate:exile:graveyard"
+    ]
+   },
+   {
+    "name": "Soul-Guide Lantern",
+    "decks": 10,
+    "oracle": "When this artifact enters, exile target card from a graveyard.\n{T}, Sacrifice this artifact: Exile each opponent's graveyard.\n{1}, {T}, Sacrifice this artifact: Draw a card.",
+    "detail": [
+     "gyhate:exile:graveyard",
+     "gyhate:exile:graveyard"
+    ]
+   },
+   {
+    "name": "Rest in Peace",
+    "decks": 5,
+    "oracle": "When this enchantment enters, exile all graveyards.\nIf a card or token would be put into a graveyard from anywhere, exile it instead.",
+    "detail": [
+     "gyhate:exile:graveyard"
+    ]
+   },
+   {
+    "name": "Kutzil's Flanker",
+    "decks": 5,
+    "oracle": "Flash\nWhen this creature enters, choose one —\n• Put a +1/+1 counter on this creature for each creature that left the battlefield under your control this turn.\n• You gain 2 life and scry 2.\n• Exile target player's graveyard.",
+    "detail": [
+     "gyhate:exile:graveyard"
+    ]
+   },
+   {
+    "name": "Scavenging Ooze",
+    "decks": 2,
+    "oracle": "{G}: Exile target card from a graveyard. If it was a creature card, put a +1/+1 counter on this creature and you gain 1 life.",
+    "detail": [
+     "gyhate:exile:graveyard"
+    ]
+   },
+   {
+    "name": "Dawnhand Dissident",
+    "decks": 1,
+    "oracle": "{T}, Blight 1: Surveil 1.\n{T}, Blight 2: Exile target card from a graveyard.\nDuring your turn, you may cast creature spells from among cards you own exiled with this creature by removing three counters from among creatures you control in addition to paying their other costs.",
+    "detail": [
+     "gyhate:exile:graveyard"
+    ]
+   },
+   {
+    "name": "Lazav, Wearer of Faces",
+    "decks": 1,
+    "oracle": "Whenever Lazav attacks, exile target card from a graveyard, then investigate. (Create a Clue token. It's an artifact with \"{2}, Sacrifice this token: Draw a card.\")\nWhenever you sacrifice a Clue, you may have Lazav become a copy of a creature card exiled with it until end of turn.",
+    "detail": [
+     "gyhate:exile:graveyard"
+    ]
+   }
+  ],
+  "manalock": [
+   {
+    "name": "Magmatic Hellkite",
+    "decks": 102,
+    "oracle": "Flying\nWhen this creature enters, destroy target nonbasic land an opponent controls. Its controller searches their library for a basic land card, puts it onto the battlefield tapped with a stun counter on it, then shuffles. (If a permanent with a stun counter would become untapped, remove one from it instead.)",
+    "detail": [
+     "removal:destroy:land"
+    ]
+   },
+   {
+    "name": "Vraska, the Cutting Glare",
+    "decks": 22,
+    "oracle": "Deathtouch\nWhen Vraska enters, if you control six or more lands, destroy target permanent an opponent controls. They create a Treasure token. (It's an artifact with \"{T}, Sacrifice this token: Add one mana of any color.\")",
+    "detail": [
+     "removal:destroy:creature/artifact/enchantment/planeswalker/battle/land"
+    ]
+   },
+   {
+    "name": "Avengers Disassembled",
+    "decks": 10,
+    "oracle": "Choose one or both —\n• Avengers Disassembled deals 3 damage to each creature.\n• Destroy target land. Its controller may search their library for a basic land card, put it onto the battlefield tapped, then shuffle.",
+    "detail": [
+     "wipe:damage:creature",
+     "removal:destroy:land"
+    ]
+   },
+   {
+    "name": "Assassin's Trophy",
+    "decks": 6,
+    "oracle": "Destroy target permanent an opponent controls. Its controller may search their library for a basic land card, put it onto the battlefield, then shuffle.",
+    "detail": [
+     "removal:destroy:creature/artifact/enchantment/planeswalker/battle/land"
+    ]
+   },
+   {
+    "name": "Giant's Boulder",
+    "decks": 6,
+    "oracle": "When this artifact enters, scry 2. (Look at the top two cards of your library, then put any number of them on the bottom and the rest on top in any order.)\n{1}, {T}: Add one mana of any color.\n{7}, {T}, Sacrifice this artifact: Destroy target permanent.",
+    "detail": [
+     "removal:destroy:creature/artifact/enchantment/planeswalker/battle/land"
+    ]
+   },
+   {
+    "name": "Zhao, the Moon Slayer",
+    "decks": 2,
+    "oracle": "Menace\nNonbasic lands enter tapped.\n{7}: Put a conqueror counter on Zhao.\nAs long as Zhao has a conqueror counter on him, nonbasic lands are Mountains. (They lose all other land types and abilities and have \"{T}: Add {R}.\")",
+    "detail": [
+     "hate:lock:mana/mana",
+     "hate:lock:mana"
+    ]
+   }
+  ],
+  "combat": [
+   {
+    "name": "Authority of the Consuls",
+    "decks": 32,
+    "oracle": "Creatures your opponents control enter tapped.\nWhenever a creature an opponent controls enters, you gain 1 life.",
+    "detail": [
+     "hate:lock:untap"
+    ]
+   }
+  ]
+ },
  "format": "Standard",
- "generatedAt": "2026-11-26T06:55:56.138Z",
+ "generatedAt": "2026-11-26T08:54:31.839Z",
  "decks": 2462,
  "otherOnly": [
   {
@@ -84,6 +1216,19 @@
  ],
  "manyRoles": [
   {
+   "name": "Burst Lightning",
+   "decks": 410,
+   "roles": [
+    "removal",
+    "spell",
+    "reach"
+   ],
+   "tags": [
+    "drain@spell",
+    "removal@spell"
+   ]
+  },
+  {
    "name": "The Theorist, Jace Beleren",
    "decks": 401,
    "roles": [
@@ -132,7 +1277,7 @@
    "name": "Three Steps Ahead",
    "decks": 245,
    "roles": [
-    "counter",
+    "spell",
     "draw",
     "tokens"
    ],
@@ -275,7 +1420,7 @@
    "decks": 185,
    "roles": [
     "removal",
-    "counter",
+    "spell",
     "draw",
     "selfmill"
    ],
@@ -332,6 +1477,7 @@
    "decks": 141,
    "roles": [
     "removal",
+    "spell",
     "draw",
     "reach",
     "tokens"
@@ -389,13 +1535,11 @@
    "name": "Daydream",
    "decks": 123,
    "roles": [
-    "removal",
     "recursion",
     "enhance",
     "protection"
    ],
    "tags": [
-    "removal@spell",
     "pump@spell",
     "protection@spell",
     "recursion@spell"
@@ -405,28 +1549,17 @@
    "name": "Uldaros Theorix",
    "decks": 115,
    "roles": [
+    "removal",
+    "spell",
     "cheat",
     "recursion",
     "finisher",
     "beater"
    ],
    "tags": [
+    "removal@etb",
     "recursion@etb",
     "cheat@etb"
-   ]
-  },
-  {
-   "name": "The Mind Stone",
-   "decks": 113,
-   "roles": [
-    "removal",
-    "ramp",
-    "protection"
-   ],
-   "tags": [
-    "mana@activated",
-    "removal@static",
-    "protection@static"
    ]
   },
   {
@@ -446,6 +1579,7 @@
    "decks": 105,
    "roles": [
     "removal",
+    "spell",
     "draw",
     "reach"
    ],
@@ -486,7 +1620,7 @@
    "name": "Braided Net // Braided Quipu",
    "decks": 93,
    "roles": [
-    "hate",
+    "ability",
     "draw",
     "engine"
    ],
@@ -530,7 +1664,7 @@
     "name": "Spell Snare",
     "decks": 626,
     "roles": [
-     "counter"
+     "spell"
     ]
    },
    {
@@ -552,6 +1686,7 @@
     "decks": 410,
     "roles": [
      "removal",
+     "spell",
      "reach"
     ]
    },
@@ -608,7 +1743,7 @@
     "name": "Three Steps Ahead",
     "decks": 245,
     "roles": [
-     "counter",
+     "spell",
      "draw",
      "tokens"
     ]
@@ -617,7 +1752,7 @@
     "name": "No More Lies",
     "decks": 244,
     "roles": [
-     "counter"
+     "spell"
     ]
    },
    {
@@ -631,7 +1766,7 @@
     "name": "We Say Thee Nay!",
     "decks": 221,
     "roles": [
-     "counter"
+     "spell"
     ]
    },
    {
@@ -646,7 +1781,7 @@
     "name": "Countersculpt",
     "decks": 214,
     "roles": [
-     "counter"
+     "spell"
     ]
    },
    {
@@ -668,7 +1803,7 @@
     "decks": 185,
     "roles": [
      "removal",
-     "counter",
+     "spell",
      "draw",
      "selfmill"
     ]
@@ -691,7 +1826,7 @@
     "name": "Spell Pierce",
     "decks": 158,
     "roles": [
-     "counter"
+     "spell"
     ]
    },
    {
@@ -1075,13 +2210,6 @@
     ]
    },
    {
-    "name": "Magmatic Hellkite",
-    "decks": 102,
-    "roles": [
-     "beater"
-    ]
-   },
-   {
     "name": "Simulacrum Synthesizer",
     "decks": 101,
     "roles": [
@@ -1094,6 +2222,14 @@
     "decks": 100,
     "roles": [
      "beater"
+    ]
+   },
+   {
+    "name": "Ajani Resolute",
+    "decks": 96,
+    "roles": [
+     "engine",
+     "enhance"
     ]
    }
   ],
@@ -1251,6 +2387,13 @@
     ]
    },
    {
+    "name": "Airbender Ascension",
+    "decks": 4,
+    "roles": [
+     "protection"
+    ]
+   },
+   {
     "name": "Violent Urge",
     "decks": 4,
     "roles": [
@@ -1270,26 +2413,9 @@
     "roles": [
      "enhance"
     ]
-   },
-   {
-    "name": "Repulsive Mutation",
-    "decks": 2,
-    "roles": [
-     "enhance"
-    ]
    }
   ],
   "combo": [
-   {
-    "name": "Uldaros Theorix",
-    "decks": 115,
-    "roles": [
-     "cheat",
-     "recursion",
-     "finisher",
-     "beater"
-    ]
-   },
    {
     "name": "United Battlefront",
     "decks": 110,
@@ -1907,7 +3033,7 @@
    "name": "Braided Net // Braided Quipu",
    "decks": 93,
    "roles": [
-    "hate",
+    "ability",
     "draw",
     "engine"
    ],
@@ -2067,6 +3193,7 @@
    "decks": 45,
    "roles": [
     "removal",
+    "spell",
     "finisher",
     "engine",
     "reach",
@@ -2153,6 +3280,8 @@
    "name": "Uldaros Theorix",
    "decks": 115,
    "roles": [
+    "removal",
+    "spell",
     "cheat",
     "recursion",
     "finisher",
@@ -2217,6 +3346,7 @@
    "decks": 45,
    "roles": [
     "removal",
+    "spell",
     "finisher",
     "engine",
     "reach",
@@ -2382,14 +3512,6 @@
     "beater"
    ],
    "typeLine": "Legendary Creature — Mutant Berserker Hero"
-  },
-  {
-   "name": "Magmatic Hellkite",
-   "decks": 102,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Dragon"
   },
   {
    "name": "Dwarven Mauler",
@@ -2626,6 +3748,14 @@
     "beater"
    ],
    "typeLine": "Legendary Creature — Mouse Warlock"
+  },
+  {
+   "name": "Lake-town Lookout",
+   "decks": 4,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Human Scout"
   }
  ],
  "unknownCards": [

@@ -334,3 +334,14 @@ dialog::backdrop { background: rgba(0,0,0,.6); }
 .role-pop { width: 260px; }
 .chip.cat-chip { font-weight: 700; }
 .role-pop .pop-cat { align-items: stretch; }
+.tag-detail { font-size: 11px; color: var(--muted); margin-top: 1px; }
+.tag > span:last-child { display: flex; flex-direction: column; }
+
+/* ---- コンボ ---- */
+.combo-list { list-style: none; margin: 0 0 8px; padding: 0; display: flex; flex-direction: column; gap: 6px; font-size: 13px; }
+.combo-list li { padding: 8px 10px; background: var(--panel-2); border-radius: 8px; }
+.combo-ok { color: var(--good); font-weight: 700; margin-left: 4px; }
+.combo-miss { color: var(--warn); margin-left: 4px; font-size: 12px; }
+.meta-table tr.c-low td:last-child { color: var(--bad); font-weight: 700; }
+.meta-table tr.c-near td:last-child { color: var(--warn); }
+.meta-table tr.c-ok td:last-child { color: var(--good); }

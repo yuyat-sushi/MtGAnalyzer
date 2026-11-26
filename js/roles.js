@@ -26,11 +26,12 @@
     { id: 'ramp',       cat: 'mana',     label: 'マナ加速',     color: '#3fa36b' },
     { id: 'removal',    cat: 'disrupt',  label: '単体除去',     color: '#d0503c' },
     { id: 'wipe',       cat: 'disrupt',  label: '全体除去',     color: '#9b2f2f' },
-    { id: 'counter',    cat: 'disrupt',  label: '打ち消し',     color: '#5a6fd6' },
-    { id: 'redirect',   cat: 'disrupt',  label: '対象変更',     color: '#7385d9' },
+    { id: 'spell',      cat: 'disrupt',  label: '呪文への干渉', color: '#5a6fd6' },
+    { id: 'ability',    cat: 'disrupt',  label: '能力への干渉', color: '#4f6470' },
     { id: 'discard',    cat: 'disrupt',  label: '手札破壊',     color: '#7a4fa0' },
-    { id: 'hate',       cat: 'disrupt',  label: 'ヘイト（ロック・課税）', color: '#5e7480' },
     { id: 'gyhate',     cat: 'disrupt',  label: '墓地対策',     color: '#6b6b80' },
+    { id: 'manalock',   cat: 'disrupt',  label: 'マナ妨害',     color: '#7a6040' },
+    { id: 'combat',     cat: 'disrupt',  label: '戦闘妨害',     color: '#6e8490' },
     { id: 'draw',       cat: 'resource', label: 'ドロー',       color: '#3b82c4' },
     { id: 'tutor',      cat: 'resource', label: 'サーチ',       color: '#8a5cc7' },
     { id: 'recursion',  cat: 'resource', label: '墓地回収',     color: '#4a4a6a' },
@@ -57,7 +58,7 @@
    * 妨害に使えるカードは、打点やドローを兼ねていても主に妨害として数える（プレイヤーの感覚に合わせる）
    */
   const PRIORITY = ['land',
-    'removal', 'wipe', 'counter', 'redirect', 'discard', 'hate', 'gyhate',
+    'removal', 'wipe', 'spell', 'ability', 'discard', 'gyhate', 'manalock', 'combat',
     'cheatloop', 'cheat', 'extraturn', 'untap', 'copy',
     'draw', 'tutor', 'recursion', 'selfmill',
     'ramp',
@@ -65,12 +66,17 @@
     'enhance', 'protection',
     'other'];
   // 旧バージョンの役割IDの読み替え
-  const LEGACY = { threat: 'beater', combo: 'cheat' };
+  const LEGACY = {
+    threat: 'beater', combo: 'cheat',
+    // 妨害の小カテゴリを処理別（17個）から干渉する場所別（8個）にまとめたときの読み替え
+    rm_exile: 'removal', rm_destroy: 'removal', rm_damage: 'removal', edict: 'removal', bounce: 'removal', steal: 'removal', neutralize: 'removal',
+    landdestroy: 'manalock', counter: 'spell', redirect: 'spell', counterlock: 'spell', hate: 'spell', abilitylock: 'ability', attacklock: 'combat'
+  };
 
   // 効果タグ → 小カテゴリ
   const EFFECT_ROLE = {
-    mana: 'ramp', draw: 'draw', removal: 'removal', wipe: 'wipe', counter: 'counter', redirect: 'redirect', discard: 'discard',
-    tutor: 'tutor', recursion: 'recursion', selfmill: 'selfmill', protection: 'protection', gyhate: 'gyhate', hate: 'hate',
+    mana: 'ramp', draw: 'draw', redirect: 'spell', discard: 'discard', attacklock: 'combat',
+    tutor: 'tutor', recursion: 'recursion', selfmill: 'selfmill', protection: 'protection', gyhate: 'gyhate',
     cheat: 'cheat', extraturn: 'extraturn', untap: 'untap', copy: 'copy', drain: 'reach'
   };
   // 繰り返し起きるとき「エンジン」とみなす効果（自己強化やマナは除く）
@@ -125,19 +131,42 @@
 
   /** card → { roles(小カテゴリ), cat(大カテゴリ), tags, abilities, override }（結果はカードごとにキャッシュ） */
   function inspect(card) {
-    if (!card) return { roles: ['other'], cat: 'other', tags: [], abilities: [], override: null };
+    if (!card) return { roles: ['other'], cat: 'other', tags: [], abilities: [], tokens: [], speed: 'sorcery', override: null };
     if (cache.has(card)) return cache.get(card);
     const tl = String(card.typeLine || '');
     const front = frontType(card);
-    let roles, tags = [], abilities = [];
+    let roles, tags = [], abilities = [], tokens = [], speed = 'sorcery';
     if (/\bLand\b/.test(front)) {
       roles = ['land'];
     } else {
       const t = Tags.analyze(card);
-      tags = t.tags; abilities = t.abilities;
+      tags = t.tags; abilities = t.abilities; tokens = t.tokens; speed = t.speed;
       const set = new Set();
       const isCreature = /\bCreature\b/.test(tl);
       t.tags.forEach(x => { if (EFFECT_ROLE[x.effect] && x.effect !== 'mana') set.add(EFFECT_ROLE[x.effect]); });
+      // 妨害は「どこに干渉するか」で小カテゴリを決める（処理・形態・条件は属性として tags.detail に残す）
+      const NONLAND = ['creature', 'artifact', 'enchantment', 'planeswalker', 'battle', 'player'];
+      for (const x of t.tags) {
+        const d = x.detail;
+        if (!d) continue;
+        if (x.effect === 'removal' || x.effect === 'wipe') {
+          // 土地以外を巻き込めば除去、土地を巻き込めばマナ妨害（両方なら両方。Armageddon はマナ妨害だけ）
+          if (d.types.some(y => NONLAND.includes(y))) set.add(x.effect === 'wipe' ? 'wipe' : 'removal');
+          if (d.types.includes('land')) set.add('manalock');
+          if (d.types.includes('spell')) set.add('spell');
+        } else if (x.effect === 'counter') {
+          if (d.types.some(y => /spell/.test(y))) set.add('spell');
+          if (d.types.some(y => /ability/.test(y))) set.add('ability');
+        } else if (x.effect === 'hate') {
+          const ty = d.types;
+          if (ty.some(y => /ability/.test(y))) set.add('ability');
+          if (ty.some(y => ['spell', 'tax', 'library', 'other'].includes(y))) set.add('spell');
+          if (ty.includes('mana')) set.add('manalock');
+          if (ty.includes('untap')) set.add('combat');   // クリーチャーがタップ状態で出る・アンタップしない
+          if (ty.includes('graveyard')) set.add('gyhate');
+          if (ty.includes('attack')) set.add('combat');
+        }
+      }
       // 踏み倒し：起動型・誘発型・常在型で何度も使えるものは「継続的な踏み倒し」（Aether Vial、Sneak Attack、Omniscience など）
       if (t.tags.some(x => x.effect === 'cheat' && x.repeat)) {
         set.add('cheatloop');
@@ -172,9 +201,98 @@
       if (Array.isArray(ov.roles) && ov.roles.length) roles = normalizeRoles(ov.roles);
       if (ov.category && CAT_MAP[ov.category]) cat = ov.category; else cat = categoryOf(roles);
     }
-    const result = { roles, cat, tags, abilities, override: ov };
+    const result = { roles, cat, tags, abilities, tokens, speed, override: ov };
     cache.set(card, result);
     return result;
+  }
+
+  // ---------- 妨害の内訳 ----------
+  const DISRUPT_LABELS = {
+    action: { exile: '追放', destroy: '破壊', damage: 'ダメージ', minus: 'マイナス修整', sacrifice: '生け贄（エディクト）', bounce: '手札に戻す', library: 'ライブラリーに戻す',
+      steal: 'コントロール奪取', neutralize: '無力化', counter: '打ち消し', counter_exile: '打ち消し（追放）', redirect: '対象変更', discard: '捨てさせる', lock: 'ロック・封じ', other: 'その他' },
+    types: { creature: 'クリーチャー', artifact: 'アーティファクト', enchantment: 'エンチャント', planeswalker: 'プレインズウォーカー', battle: 'バトル', land: '土地',
+      spell: '呪文', 'noncreature spell': '非クリーチャー呪文', 'creature spell': 'クリーチャー呪文', 'instant/sorcery': 'インスタント・ソーサリー', ability: '能力',
+      hand: '手札', graveyard: '墓地', player: 'プレイヤー', 'activated ability': '起動型能力', 'triggered ability': '誘発型能力',
+      tax: 'コスト増加', mana: 'マナ', library: 'ライブラリー', attack: '攻撃', untap: 'アンタップ', other: 'その他' },
+    targeting: { target: '対象を取る', nontarget: '対象を取らない', edict: '相手が選ぶ（エディクト）' },
+    form: { once: '1回きり', ongoing: '継続（置物・常在・繰り返し）' },
+    speed: { instant: 'インスタント速度', sorcery: 'ソーサリー速度', trigger: '誘発', static: '常在' }
+  };
+
+  /**
+   * entries: [{qty, card}] → 妨害の内訳（カード単位の枚数）
+   *   action/types/targeting/speed: その性質を持つ妨害カードの枚数（1枚が複数に数えられることもある）
+   */
+  function disruptProfile(entries) {
+    const out = { total: 0, form: {}, action: {}, types: {}, targeting: {}, speed: {}, gives: {} };
+    for (const e of entries) {
+      if (!e.card) continue;
+      const info = inspect(e.card);
+      const ds = info.tags.filter(t => t.detail);
+      if (!ds.length) continue;
+      out.total += e.qty;
+      const add = (bucket, keys) => new Set(keys.filter(Boolean)).forEach(k => { bucket[k] = (bucket[k] || 0) + e.qty; });
+      // 形態：1回きり（呪文・出たとき）か、継続（置物・常在・繰り返し）か
+      add(out.form, ds.map(t => t.repeat ? 'ongoing' : 'once'));
+      add(out.action, ds.map(t => t.detail.action));
+      add(out.types, ds.flatMap(t => t.detail.types));
+      add(out.targeting, ds.map(t => t.detail.targeting));
+      add(out.speed, ds.map(t => t.speed === 'trigger' || t.speed === 'static' ? t.speed : t.speed));
+      add(out.gives, ds.map(t => t.detail.gives));
+    }
+    return out;
+  }
+
+  /**
+   * メタゲームに対する妨害のアドバイス
+   *   main / side: disruptProfile の結果、meta: ベンチマークの meta（アーキタイプごとの特徴）、group: 比較中のアーキタイプ
+   *   サイドボードも含めて「対処手段があるか」を見る
+   */
+  function metaAdvice(main, side, meta, group) {
+    const out = [];
+    const push = (level, text) => out.push({ level, text });
+    if (!meta || !meta.length || !main.total) return out;
+    const both = k => ((main[k[0]] || {})[k[1]] || 0) + ((side[k[0]] || {})[k[1]] || 0);
+    const top = list => list.sort((a, b) => b.share - a.share).slice(0, 3).map(a => `${a.name}（${Math.round(a.share * 100)}%）`).join('、');
+    const shareOf = list => list.reduce((s, a) => s + a.share, 0);
+
+    // 1. パーマネントの種類ごとの対処（サイドボード込み）
+    for (const [type, label, min] of [['artifact', 'アーティファクト', 0.1], ['enchantment', 'エンチャント', 0.1], ['planeswalker', 'プレインズウォーカー', 0.08]]) {
+      const heavy = meta.filter(a => a[type]);
+      if (shareOf(heavy) < min) continue;
+      const n = both(['types', type]);
+      if (!n) push('bad', `${label}を多く使うデッキ（${top(heavy)}）が上位の${Math.round(shareOf(heavy) * 100)}%を占めてるのに、${label}に触れるカードがメインにもサイドにも0枚だよ。`);
+      else if (n <= 2) push('warn', `${label}を多く使うデッキ（${top(heavy)}）が上位の${Math.round(shareOf(heavy) * 100)}%。${label}に触れるカードは${n}枚だけだから、サイドに足しておくと安心かも。`);
+    }
+
+    // 2. 墓地を使うデッキへの備え（追放除去・墓地対策）
+    const gy = meta.filter(a => a.graveyard);
+    if (shareOf(gy) >= 0.25) {
+      const n = both(['action', 'exile']);
+      if (n < 3) push(n ? 'info' : 'warn', `墓地を使うデッキ（${top(gy)}）が上位の${Math.round(shareOf(gy) * 100)}%。追放する妨害（追放除去・墓地対策）が${n}枚だけだから、破壊だと戻ってくる相手に注意してね。`);
+    }
+
+    // 3. インスタント速度のコンボへの備え（その場で止められる妨害）
+    const ic = meta.filter(a => a.instantCombo && a.instantCombo.length);
+    if (shareOf(ic) >= 0.05) {
+      const n = both(['speed', 'instant']);
+      const cards = [...new Set(ic.flatMap(a => a.instantCombo))].slice(0, 4).join('、');
+      if (n < 4) push('warn', `インスタント速度のコンボ（${cards} など。${top(ic)}）が上位の${Math.round(shareOf(ic) * 100)}%。インスタント速度で動ける妨害が${n}枚だけだから、相手のターンに止める手段を確保したいな。`);
+      else push('good', `インスタント速度のコンボ（${top(ic)}）に対して、インスタント速度の妨害が${n}枚あって安心。`);
+    }
+
+    // 4. 追放の比率を、比較中のアーキタイプと比べる
+    if (group && group.disrupt && group.disrupt['action:exile']) {
+      const med = group.disrupt['action:exile'].median;
+      const v = (main.action || {}).exile || 0;
+      if (med >= 2 && v < med - 1) push('info', `上位の${group.name}は追放する妨害を中央値${med}枚入れてるよ（あなたは${v}枚）。`);
+    }
+
+    // 5. 対象を取らない妨害
+    if (main.total >= 6 && !((main.targeting || {}).nontarget || (main.targeting || {}).edict)) {
+      push('info', '妨害がすべて対象を取るタイプだよ。呪禁や護法を持つ相手には通りにくいので、エディクトや全体除去も選択肢に入れてみて。');
+    }
+    return out;
   }
 
   /** card → 小カテゴリの配列（自動判定） */
@@ -315,12 +433,13 @@
     for (const [key, [min, max]] of Object.entries(a.tgt)) {
       if (key === 'land' || key === 'other' || key === 'cat:mana' || key === 'cat:other') continue; // 土地は上の推奨枚数で判定
       const v = key.startsWith('cat:') ? (a.catCount[key.slice(4)] || 0) : (a.roleCount[key] || 0);
+      const isCat = key.startsWith('cat:');
       if (a.bench && max === 0 && v === 0) continue; // どちらも0なら言及しない
       const name = labels[key] || key;
       if (v < min - tol) push(key === 'cat:win' || key === 'cat:disrupt' ? 'bad' : 'warn', `${name} が ${v} 枚。${src}は ${min}〜${max} 枚だから、あと ${min - v} 枚くらい欲しいな。`);
       else if (v > max + tol) push('warn', `${name} が ${v} 枚で${src}（${min}〜${max}）より多め。他の役割に枠を回せないか考えてみよう。`);
-      else if (v < min || v > max) push('info', `${name} ${v} 枚は${src}（${min}〜${max}）から1枚ずれてるけど、許容範囲かな。`);
-      else push('good', `${name} ${v} 枚は${src}（${min}〜${max}）の範囲内！`);
+      else if ((v < min || v > max) && isCat) push('info', `${name} ${v} 枚は${src}（${min}〜${max}）から1枚ずれてるけど、許容範囲かな。`);
+      else if (isCat || !a.bench) push('good', `${name} ${v} 枚は${src}（${min}〜${max}）の範囲内！`); // 小カテゴリは範囲内なら言及しない
     }
 
     // カーブ
@@ -351,7 +470,7 @@
 
   const COLOR_JA = { W: '白', U: '青', B: '黒', R: '赤', G: '緑' };
 
-  const api = { CATEGORIES, CAT_MAP, ROLES, ROLE_MAP, PRIORITY, inspect, normalizeRoles, categoryOf, setOverrides, FORMATS, ARCHETYPES, COLOR_JA, classify, primary, analyze, targets };
+  const api = { CATEGORIES, CAT_MAP, ROLES, ROLE_MAP, PRIORITY, DISRUPT_LABELS, disruptProfile, metaAdvice, inspect, normalizeRoles, categoryOf, setOverrides, FORMATS, ARCHETYPES, COLOR_JA, classify, primary, analyze, targets };
   // ブラウザでは window.Roles、Node.js（集計スクリプト）では require で使う
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else global.Roles = api;

@@ -17,7 +17,7 @@
 
   function rolesOf(e) {
     if (e.manualRoles && e.manualRoles.length) {
-      const r = Roles.normalizeRoles(e.manualRoles);
+      const r = Roles.normalizeRoles(e.manualRoles); // 旧バージョンの小カテゴリは新しいIDに読み替える
       if (r.length) return r;
     }
     return Roles.classify(e.card);
@@ -266,6 +266,16 @@
   }
 
   const openCats = new Set();
+  /** 小カテゴリの横に添える大事な属性（例: 単体除去 12（追放 4）、呪文への干渉 6（継続 2）） */
+  function subNote(id) {
+    const count = pred => state.main.filter(e => e.card && rolesOf(e).includes(id) && Roles.inspect(e.card).tags.some(pred)).reduce((s, e) => s + e.qty, 0);
+    const d = t => t.detail || {};
+    let n = 0, label = '';
+    if (id === 'removal' || id === 'wipe') { n = count(t => (t.effect === 'removal' || t.effect === 'wipe') && d(t).action === 'exile'); label = '追放'; }
+    else if (['spell', 'ability', 'manalock', 'combat'].includes(id)) { n = count(t => t.detail && t.repeat); label = '継続'; }
+    else if (id === 'discard' || id === 'gyhate') { n = count(t => t.detail && t.speed === 'instant'); label = 'インスタント'; }
+    return n ? `<span class="muted">（${label} ${n}）</span>` : '';
+  }
   function renderAnalysis() {
     const entries = state.main.map(e => ({ qty: e.qty, card: e.card, roles: rolesOf(e), cat: catOf(e) }));
     const cmp = metaComparison();
@@ -288,7 +298,7 @@
     const cats = Roles.CATEGORIES.filter(c => c.id !== 'other' || a.catCount.other).map(c => {
       const subs = Roles.ROLES.filter(r => r.cat === c.id && r.id !== 'other');
       const subRows = subs.filter(r => (a.roleCount[r.id] || 0) || (a.total && tgtFor(r.id) && tgtFor(r.id)[1] > 0)).map(r =>
-        bar(r.label, a.roleCount[r.id] || 0, a.total ? tgtFor(r.id) : null, r.color, 'sub')).join('');
+        bar(r.label + subNote(r.id), a.roleCount[r.id] || 0, a.total ? tgtFor(r.id) : null, r.color, 'sub')).join('');
       const head = bar(`<b>${c.label}</b>`, a.catCount[c.id] || 0, a.total ? a.targets['cat:' + c.id] : null, c.color, 'cat');
       return subRows
         ? `<details class="cat-detail" data-cat="${c.id}" ${openCats.has(c.id) ? 'open' : ''}><summary>${head}</summary>${subRows}</details>`
@@ -330,7 +340,13 @@
       : '<p class="hint">色のあるカードがまだありません</p>';
 
     // アドバイス
-    $('#advice').innerHTML = a.advice.map(x => `<li class="${x.level}">${esc(x.text)}</li>`).join('');
+    // 妨害の内訳と、メタに応じたアドバイス
+    const toEntries = l => l.map(e => ({ qty: e.qty, card: e.card }));
+    const dMain = Roles.disruptProfile(toEntries(state.main)), dSide = Roles.disruptProfile(toEntries(state.side));
+    renderDisrupt(dMain, dSide, cmp && cmp.group);
+    const metaTips = cmp && cmp.bench && cmp.bench.meta ? Roles.metaAdvice(dMain, dSide, cmp.bench.meta, cmp.group) : [];
+    metaTips.push(...renderCombos(cmp));
+    $('#advice').innerHTML = [...a.advice, ...metaTips].map(x => `<li class="${x.level}">${esc(x.text)}</li>`).join('');
   }
 
   // ---------- 上位デッキとの比較（benchmarks/ の集計データ） ----------
@@ -436,8 +452,81 @@
     if (!card) return '';
     const info = Roles.inspect(card);
     if (!info.tags.length) return '<div class="tag-list"><div class="muted">検出した効果タグはありません</div></div>';
-    return `<div class="tag-list"><div class="muted">検出した効果タグ</div>${info.tags.map(t =>
-      `<div class="tag ${t.repeat ? 'rep' : 'once'}"><span class="tag-kind">${t.repeat ? '繰り返し' : '1回'}</span>${esc(Tags.tagLabel(t))}</div>`).join('')}</div>`;
+    const L = Roles.DISRUPT_LABELS;
+    const detail = t => {
+      if (!t.detail) return '';
+      const d = t.detail;
+      const parts = [L.action[d.action] || d.action, d.types.map(x => L.types[x] || x).join('・'), L.targeting[d.targeting],
+        d.scope === 'all' ? '全体' : d.scope === 'multi' ? '複数' : '', d.cond ? `条件: ${d.cond}` : '',
+        d.gives ? `相手に${d.gives === 'token' ? 'トークン' : d.gives === 'land' ? '土地' : 'ライフ'}` : '', L.speed[t.speed] || ''];
+      return `<div class="tag-detail">${parts.filter(Boolean).map(esc).join(' ／ ')}</div>`;
+    };
+    const TOKEN_JA = { creature: 'クリーチャー', treasure: '宝物', clue: '手掛かり', food: '食物', blood: '血', map: '地図', powerstone: 'パワーストーン', incubator: 'インキュベーター', role: '役割', copy: 'コピー', other: 'その他' };
+    const tokens = info.tokens.length ? `<div class="muted" style="margin-top:4px">生成するトークン</div>${info.tokens.map(k =>
+      `<div class="tag ${k.who === 'opponent' ? 'once' : 'rep'}"><span class="tag-kind">${k.who === 'opponent' ? '相手' : '自分'}</span>${esc(TOKEN_JA[k.kind] || k.kind)}${k.pt ? ` ${esc(k.pt)}` : ''}</div>`).join('')}` : '';
+    return `<div class="tag-list"><div class="muted">検出した効果タグ（${info.speed === 'instant' ? 'インスタント速度で動ける' : 'ソーサリー速度'}）</div>${info.tags.map(t =>
+      `<div class="tag ${t.repeat ? 'rep' : 'once'}"><span class="tag-kind">${t.repeat ? '繰り返し' : '1回'}</span><span>${esc(Tags.tagLabel(t))}${detail(t)}</span></div>`).join('')}${tokens}</div>`;
+  }
+
+  // ---------- コンボ ----------
+  /** 自分のデッキのコンボと、環境のコンボに対する備えを表示し、アドバイスを返す */
+  function renderCombos(cmp) {
+    const tips = [];
+    const box = $('#comboBox');
+    const lands = state.main.filter(e => rolesOf(e).includes('land')).reduce((s, e) => s + e.qty, 0);
+    const mine = Combos.detect({ main: state.main }, lands);
+    const mineHTML = mine.length ? mine.map(x => {
+      const c = x.combo;
+      const status = x.complete ? '<span class="combo-ok">成立</span>'
+        : x.missing.length ? `<span class="combo-miss">パーツ不足：${x.missing.map(g => esc(g.join(' か '))).join('、')}</span>`
+        : `<span class="combo-miss">条件未達：${x.reqFail.map(esc).join('、')}</span>`;
+      return `<li><b>${esc(c.name)}</b> <span class="muted">${esc(Combos.KIND_JA[c.kind] || c.kind)}</span> ${status}${c.note ? `<div class="muted">${esc(c.note)}</div>` : ''}</li>`;
+    }).join('') : '';
+
+    // 環境のコンボ（アーキタイプの割合 × そのアーキタイプでの採用率）
+    let metaHTML = '';
+    const meta = cmp && cmp.bench && cmp.bench.meta;
+    if (meta) {
+      const share = {};
+      meta.forEach(a => (a.combos || []).forEach(x => { share[x.id] = (share[x.id] || 0) + a.share * x.rate; }));
+      const entries = [...state.main.map(e => ({ ...e, zone: 'メイン' })), ...state.side.map(e => ({ ...e, zone: 'サイド' }))];
+      const rows = Combos.list().filter(c => (share[c.id] || 0) >= 0.02).sort((a, b) => share[b.id] - share[a.id]).map(c => {
+        const ans = Combos.answerCards(entries, c);
+        const n = ans.reduce((s, x) => s + x.qty, 0);
+        const pct = Math.round(share[c.id] * 100);
+        const how = (c.answers || []).map(a => Combos.answerLabel(a)).join('・');
+        if (state.main.length) {
+          if (!n) tips.push({ level: 'bad', text: `環境の${pct}%に「${c.name}」（${Combos.KIND_JA[c.kind] || c.kind}）がいるのに、止められるカードがメインにもサイドにも無いよ。効くのは：${how}。` });
+          else if (n <= 2) tips.push({ level: 'warn', text: `環境の${pct}%に「${c.name}」。止められるカードは${n}枚（${ans.map(x => x.name).join('、')}）だけ。効くのは：${how}。` });
+        }
+        return `<tr class="${!n ? 'c-low' : n <= 2 ? 'c-near' : 'c-ok'}"><td>${esc(c.name)}<div class="muted">${esc(how)}</div></td><td class="num">${pct}%</td><td class="num">${n}</td></tr>`;
+      }).join('');
+      metaHTML = rows ? `<table class="meta-table"><thead><tr><th>環境のコンボ（止め方）</th><th class="num">環境</th><th class="num">止める札</th></tr></thead><tbody>${rows}</tbody></table>` : '';
+    }
+    box.innerHTML = (mineHTML ? `<ul class="combo-list">${mineHTML}</ul>` : '<p class="hint">登録済みのコンボはデッキにありません</p>') + metaHTML +
+      '<p class="hint">コンボの定義は data/combos.json。「止める札」はメイン＋サイドで、そのコンボに効く妨害の枚数です。</p>';
+    return tips;
+  }
+
+  /** 妨害の内訳（処理・対象の種類・選び方・速度）。サイドボードと上位デッキの中央値も並べる */
+  function renderDisrupt(main, side, group) {
+    const L = Roles.DISRUPT_LABELS;
+    const bd = group && group.disrupt;
+    const sections = [['form', '形態'], ['action', '処理・移動先'], ['types', '触れられる対象'], ['targeting', '選び方'], ['speed', '速度']];
+    const rows = sections.map(([key, title]) => {
+      const keys = [...new Set([...Object.keys(main[key] || {}), ...Object.keys(side[key] || {}), ...Object.keys(bd || {}).filter(k => k.startsWith(key + ':')).map(k => k.slice(key.length + 1))])]
+        .filter(k => k !== 'trigger' && k !== 'static' && k !== 'player')
+        .filter(k => ((main[key] || {})[k] || 0) || ((side[key] || {})[k] || 0) || (bd && bd[`${key}:${k}`] && bd[`${key}:${k}`].median));
+      if (!keys.length) return '';
+      return `<tr class="cat"><td colspan="4"><b>${title}</b></td></tr>` + keys.map(k => {
+        const b = bd && bd[`${key}:${k}`];
+        return `<tr class="sub"><td>${esc(L[key][k] || k)}</td><td class="num">${(main[key] || {})[k] || 0}</td><td class="num muted">${(side[key] || {})[k] || 0}</td><td class="num muted">${b ? b.median : '–'}</td></tr>`;
+      }).join('');
+    }).join('');
+    $('#disruptTable').innerHTML = main.total || side.total
+      ? `<table class="meta-table"><thead><tr><th>妨害カード ${main.total}枚</th><th class="num">メイン</th><th class="num">サイド</th><th class="num">上位中央値</th></tr></thead><tbody>${rows}</tbody></table>
+         <p class="hint">妨害カードの枚数を性質ごとに数えたもの（1枚が複数に入ることがあります）。「追放」かどうか、アーティファクトやエンチャントに触れられるか、相手のターンに使えるかが見られます。</p>`
+      : '<p class="hint">妨害カードがまだありません</p>';
   }
 
   /** デッキ全体の効果タグを「繰り返し／1回」で集計して表示（上位デッキの中央値があれば並べる） */
@@ -798,11 +887,13 @@
     };
   }
 
-  // 例外リスト（カード名で採用理由を指定）を読み込む
+  // 例外リスト（カード名で採用理由を指定）とコンボの定義を読み込む
   async function loadOverrides() {
     try {
-      const res = await fetch('data/overrides.json');
-      if (res.ok) { Roles.setOverrides(await res.json()); render(); }
+      const [o, c] = await Promise.all([fetch('data/overrides.json'), fetch('data/combos.json')]);
+      if (o.ok) Roles.setOverrides(await o.json());
+      if (c.ok) Combos.setCombos(await c.json());
+      render();
     } catch (e) { /* file:// で開いた場合などは自動判定だけで動く */ }
   }
 

@@ -1,0 +1,310 @@
+{
+  "_comment": "コンボの定義。pieces は必要なパーツのグループ（各グループのどれか1枚が必要）。requires はデッキの条件（maxLands: メインの土地の上限）。answers は止められる妨害の種類: stack=スタックで止める、hand=手札破壊、graveyard=墓地対策、artifact/enchantment/creature=そのパーマネントへの除去、tax=コスト増加、activated:<種類>=その種類のパーマネントの起動型能力を封じる（例 activated:artifact）、triggered:<出来事>:<種類>=その出来事による誘発を封じる（例 triggered:etb:creature）、triggered:other=誘発を打ち消す（Stifle など）。counter:mv / counter:free / counter:colorless=置物型の条件付き打ち消し（Chalice of the Void・Vexing Bauble・Void Mirror）が効く場合。能力封じや条件付き打ち消しは範囲・条件が合わないと効かない（Null Rod は Oops All Spells にはほぼ効かない）。",
+  "combos": [
+    {
+      "id": "belcher",
+      "name": "Goblin Charbelcher",
+      "kind": "即死",
+      "pieces": [
+        [
+          "Goblin Charbelcher"
+        ]
+      ],
+      "requires": {
+        "maxLands": 3
+      },
+      "speed": "instant",
+      "answers": [
+        "artifact",
+        "stack",
+        "hand",
+        "activated:artifact"
+      ],
+      "note": "ライブラリーに土地がほぼ無いと、起動1回で相手のライフを削り切る"
+    },
+    {
+      "id": "oops",
+      "name": "Oops All Spells（Balustrade Spy）",
+      "kind": "即死",
+      "pieces": [
+        [
+          "Balustrade Spy",
+          "Undercity Informer"
+        ],
+        [
+          "Dread Return"
+        ],
+        [
+          "Thassa's Oracle",
+          "Narcomoeba"
+        ]
+      ],
+      "requires": {
+        "maxLands": 2
+      },
+      "speed": "sorcery",
+      "answers": [
+        "graveyard",
+        "stack",
+        "hand",
+        "triggered:etb:creature",
+        "triggered:other"
+      ],
+      "note": "土地の無いライブラリーを全部墓地に落とし、Narcomoeba と Dread Return から Thassa's Oracle で勝つ。Narcomoeba の誘発（ライブラリーから墓地）は Torpor Orb では止まらず、止まるのは Thassa's Oracle の戦場に出たときの誘発"
+    },
+    {
+      "id": "goryo",
+      "name": "Goryo's Vengeance",
+      "kind": "リアニメイト",
+      "pieces": [
+        [
+          "Goryo's Vengeance",
+          "Persist"
+        ],
+        [
+          "Griselbrand",
+          "Atraxa, Grand Unifier",
+          "Archon of Cruelty",
+          "Emrakul, the Promised End"
+        ]
+      ],
+      "speed": "instant",
+      "answers": [
+        "graveyard",
+        "stack",
+        "hand",
+        "creature"
+      ],
+      "note": "大型の伝説のクリーチャーを墓地に置き、インスタント速度で戦場に戻す"
+    },
+    {
+      "id": "livingend",
+      "name": "Living End",
+      "kind": "全体リアニメイト",
+      "pieces": [
+        [
+          "Living End"
+        ],
+        [
+          "Shardless Agent",
+          "Violent Outburst",
+          "Demonic Dread",
+          "Ardent Plea",
+          "Bloodbraid Elf"
+        ]
+      ],
+      "speed": "instant",
+      "answers": [
+        "graveyard",
+        "stack",
+        "hand",
+        "triggered:other",
+        "counter:free",
+        "counter:mv"
+      ],
+      "note": "続唱で Living End（マナ総量0）を唱え、サイクリングで墓地に置いたクリーチャーを一斉に戻す。続唱の誘発は Stifle などで打ち消せ、続唱で唱えた Living End は Vexing Bauble や X=0 の Chalice of the Void で打ち消せる"
+    },
+    {
+      "id": "rubystorm",
+      "name": "Ruby Storm",
+      "kind": "即死",
+      "pieces": [
+        [
+          "Grapeshot",
+          "Empty the Warrens",
+          "Wish"
+        ],
+        [
+          "Ruby Medallion",
+          "Ral, Monsoon Mage"
+        ]
+      ],
+      "speed": "sorcery",
+      "answers": [
+        "stack",
+        "hand",
+        "tax",
+        "counter:mv"
+      ],
+      "note": "コスト軽減とマナ加速で呪文を連打し、ストームで勝つ。1マナの呪文が多いため X=1 の Chalice of the Void が刺さる"
+    },
+    {
+      "id": "amulet",
+      "name": "Amulet Titan",
+      "kind": "展開",
+      "pieces": [
+        [
+          "Amulet of Vigor"
+        ],
+        [
+          "Primeval Titan",
+          "Cultivator Colossus"
+        ]
+      ],
+      "speed": "sorcery",
+      "answers": [
+        "artifact",
+        "creature",
+        "stack",
+        "hand"
+      ],
+      "note": "バウンスランドと Amulet of Vigor で大量のマナを出し、早いターンに大型を出す"
+    },
+    {
+      "id": "painter",
+      "name": "Painter's Servant + Grindstone",
+      "kind": "即死",
+      "pieces": [
+        [
+          "Painter's Servant"
+        ],
+        [
+          "Grindstone"
+        ]
+      ],
+      "speed": "instant",
+      "answers": [
+        "artifact",
+        "creature",
+        "stack",
+        "activated:artifact",
+        "hand"
+      ],
+      "note": "すべてのカードが同じ色になり、Grindstone の起動1回で相手のライブラリーを全部削る"
+    },
+    {
+      "id": "sneakshow",
+      "name": "Sneak and Show",
+      "kind": "展開",
+      "pieces": [
+        [
+          "Sneak Attack",
+          "Show and Tell"
+        ],
+        [
+          "Emrakul, the Aeons Torn",
+          "Atraxa, Grand Unifier",
+          "Griselbrand",
+          "Omniscience"
+        ]
+      ],
+      "speed": "instant",
+      "answers": [
+        "stack",
+        "hand",
+        "enchantment",
+        "creature",
+        "activated:enchantment"
+      ],
+      "note": "大型クリーチャーや Omniscience をマナ・コストを払わずに戦場に出す"
+    },
+    {
+      "id": "doomsday",
+      "name": "Doomsday",
+      "kind": "即死",
+      "pieces": [
+        [
+          "Doomsday"
+        ],
+        [
+          "Thassa's Oracle",
+          "Laboratory Maniac"
+        ]
+      ],
+      "speed": "instant",
+      "answers": [
+        "stack",
+        "hand",
+        "triggered:etb:creature"
+      ],
+      "note": "ライブラリーを5枚に組み直し、Thassa's Oracle などで勝つ"
+    },
+    {
+      "id": "breach",
+      "name": "Through the Breach",
+      "kind": "展開",
+      "pieces": [
+        [
+          "Through the Breach"
+        ],
+        [
+          "Emrakul, the Aeons Torn",
+          "Emrakul, the Promised End",
+          "Ulamog, the Ceaseless Hunger"
+        ]
+      ],
+      "speed": "instant",
+      "answers": [
+        "stack",
+        "hand"
+      ],
+      "note": "大型のエルドラージをインスタント速度で踏み倒して攻撃する"
+    },
+    {
+      "id": "helm",
+      "name": "Helm of Obedience + Rest in Peace",
+      "kind": "即死",
+      "pieces": [
+        [
+          "Helm of Obedience"
+        ],
+        [
+          "Rest in Peace",
+          "Leyline of the Void"
+        ]
+      ],
+      "speed": "instant",
+      "answers": [
+        "artifact",
+        "enchantment",
+        "stack",
+        "activated:artifact",
+        "hand"
+      ],
+      "note": "墓地に置かれる代わりに追放されるため、Helm の起動1回で相手のライブラリーを全部追放する"
+    },
+    {
+      "id": "cauldron",
+      "name": "Cauldron Familiar + Witch's Oven",
+      "kind": "ループ",
+      "pieces": [
+        [
+          "Cauldron Familiar"
+        ],
+        [
+          "Witch's Oven"
+        ]
+      ],
+      "speed": "instant",
+      "answers": [
+        "graveyard",
+        "artifact",
+        "activated:artifact",
+        "triggered:etb:creature"
+      ],
+      "note": "猫を生け贄に食物を作り、食物を生け贄に猫を戻すループ。Witch's Oven はアーティファクトの起動型能力、Cauldron Familiar の出たときの誘発でドレインする"
+    },
+    {
+      "id": "scepterchant",
+      "name": "Isochron Scepter + Orim's Chant",
+      "kind": "ロック",
+      "pieces": [
+        [
+          "Isochron Scepter"
+        ],
+        [
+          "Orim's Chant",
+          "Silence"
+        ]
+      ],
+      "speed": "instant",
+      "answers": [
+        "artifact",
+        "activated:artifact",
+        "stack",
+        "hand"
+      ],
+      "note": "毎ターン相手が呪文を唱えられなくなる"
+    }
+  ]
+}
