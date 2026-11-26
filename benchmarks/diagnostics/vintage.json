@@ -1,6 +1,6 @@
 {
  "format": "Vintage",
- "generatedAt": "2026-11-26T06:45:58.388Z",
+ "generatedAt": "2026-11-26T06:53:46.480Z",
  "decks": 1186,
  "otherOnly": [
   {
@@ -65,12 +65,6 @@
   },
   {
    "name": "Sculpting Steel",
-   "decks": 1,
-   "typeLine": "Artifact",
-   "tags": []
-  },
-  {
-   "name": "Smelting Vat",
    "decks": 1,
    "typeLine": "Artifact",
    "tags": []
@@ -254,6 +248,7 @@
    "name": "Golos, Tireless Pilgrim",
    "decks": 39,
    "roles": [
+    "cheatloop",
     "cheat",
     "draw",
     "ramp",
@@ -270,7 +265,7 @@
    "name": "Raph & Mikey, Troublemakers",
    "decks": 24,
    "roles": [
-    "cheat",
+    "cheatloop",
     "finisher",
     "beater"
    ],
@@ -423,6 +418,20 @@
    ]
   },
   {
+   "name": "Tezzeret the Seeker",
+   "decks": 5,
+   "roles": [
+    "cheatloop",
+    "untap",
+    "tutor"
+   ],
+   "tags": [
+    "untap@loyalty",
+    "tutor@loyalty",
+    "cheat@loyalty"
+   ]
+  },
+  {
    "name": "Poxwalkers",
    "decks": 5,
    "roles": [
@@ -471,19 +480,6 @@
    ],
    "tags": [
     "draw@activated"
-   ]
-  },
-  {
-   "name": "Displacer Kitten",
-   "decks": 4,
-   "roles": [
-    "removal",
-    "engine",
-    "protection"
-   ],
-   "tags": [
-    "removal@cast_trigger",
-    "protection@cast_trigger"
    ]
   }
  ],
@@ -1188,6 +1184,7 @@
     "name": "Golos, Tireless Pilgrim",
     "decks": 39,
     "roles": [
+     "cheatloop",
      "cheat",
      "draw",
      "ramp",
@@ -1213,7 +1210,7 @@
     "name": "Raph & Mikey, Troublemakers",
     "decks": 24,
     "roles": [
-     "cheat",
+     "cheatloop",
      "finisher",
      "beater"
     ]
@@ -1263,7 +1260,16 @@
     "name": "Tezzeret the Seeker",
     "decks": 5,
     "roles": [
+     "cheatloop",
      "untap",
+     "tutor"
+    ]
+   },
+   {
+    "name": "Green Sun's Zenith",
+    "decks": 3,
+    "roles": [
+     "cheat",
      "tutor"
     ]
    },
@@ -1279,7 +1285,7 @@
     "name": "Repurposing Bay",
     "decks": 2,
     "roles": [
-     "cheat",
+     "cheatloop",
      "tutor"
     ]
    },
@@ -1292,10 +1298,17 @@
     ]
    },
    {
+    "name": "Smelting Vat",
+    "decks": 1,
+    "roles": [
+     "cheatloop"
+    ]
+   },
+   {
     "name": "Winota, Joiner of Forces",
     "decks": 1,
     "roles": [
-     "cheat",
+     "cheatloop",
      "beater",
      "protection"
     ]
@@ -1304,7 +1317,7 @@
     "name": "Goblin Lackey",
     "decks": 1,
     "roles": [
-     "cheat"
+     "cheatloop"
     ]
    }
   ],
@@ -1381,13 +1394,6 @@
    },
    {
     "name": "Sculpting Steel",
-    "decks": 1,
-    "roles": [
-     "other"
-    ]
-   },
-   {
-    "name": "Smelting Vat",
     "decks": 1,
     "roles": [
      "other"
@@ -1587,6 +1593,7 @@
    "name": "Golos, Tireless Pilgrim",
    "decks": 39,
    "roles": [
+    "cheatloop",
     "cheat",
     "draw",
     "ramp",
@@ -1962,7 +1969,7 @@
    "name": "Raph & Mikey, Troublemakers",
    "decks": 24,
    "roles": [
-    "cheat",
+    "cheatloop",
     "finisher",
     "beater"
    ]

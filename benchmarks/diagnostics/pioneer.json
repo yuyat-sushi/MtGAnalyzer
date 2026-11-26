@@ -1,6 +1,6 @@
 {
  "format": "Pioneer",
- "generatedAt": "2026-11-26T06:45:58.388Z",
+ "generatedAt": "2026-11-26T06:53:46.480Z",
  "decks": 1178,
  "otherOnly": [
   {
@@ -10,21 +10,9 @@
    "tags": []
   },
   {
-   "name": "Collected Company",
-   "decks": 61,
-   "typeLine": "Instant",
-   "tags": []
-  },
-  {
    "name": "Sigarda's Aid",
    "decks": 11,
    "typeLine": "Enchantment",
-   "tags": []
-  },
-  {
-   "name": "Michelangelo's Technique",
-   "decks": 6,
-   "typeLine": "Sorcery",
    "tags": []
   },
   {
@@ -60,18 +48,6 @@
   {
    "name": "Break Out",
    "decks": 3,
-   "typeLine": "Sorcery",
-   "tags": []
-  },
-  {
-   "name": "Kayla's Reconstruction",
-   "decks": 2,
-   "typeLine": "Sorcery",
-   "tags": []
-  },
-  {
-   "name": "United Battlefront",
-   "decks": 2,
    "typeLine": "Sorcery",
    "tags": []
   },
@@ -318,7 +294,7 @@
    "name": "Raph & Mikey, Troublemakers",
    "decks": 63,
    "roles": [
-    "cheat",
+    "cheatloop",
     "finisher",
     "beater"
    ],
@@ -892,13 +868,6 @@
     ]
    },
    {
-    "name": "Storm the Festival",
-    "decks": 69,
-    "roles": [
-     "recursion"
-    ]
-   },
-   {
     "name": "Kiora, Behemoth Beckoner",
     "decks": 68,
     "roles": [
@@ -926,6 +895,15 @@
     "decks": 60,
     "roles": [
      "draw"
+    ]
+   },
+   {
+    "name": "The Legend of Roku // Avatar Roku",
+    "decks": 59,
+    "roles": [
+     "draw",
+     "ramp",
+     "engine"
     ]
    }
   ],
@@ -1304,10 +1282,18 @@
   ],
   "combo": [
    {
+    "name": "Storm the Festival",
+    "decks": 69,
+    "roles": [
+     "cheat",
+     "recursion"
+    ]
+   },
+   {
     "name": "Raph & Mikey, Troublemakers",
     "decks": 63,
     "roles": [
-     "cheat",
+     "cheatloop",
      "finisher",
      "beater"
     ]
@@ -1315,6 +1301,13 @@
    {
     "name": "Indomitable Creativity",
     "decks": 62,
+    "roles": [
+     "cheat"
+    ]
+   },
+   {
+    "name": "Collected Company",
+    "decks": 61,
     "roles": [
      "cheat"
     ]
@@ -1346,6 +1339,14 @@
     ]
    },
    {
+    "name": "Nature's Rhythm",
+    "decks": 16,
+    "roles": [
+     "cheat",
+     "tutor"
+    ]
+   },
+   {
     "name": "Temporal Trespass",
     "decks": 14,
     "roles": [
@@ -1371,7 +1372,7 @@
     "name": "Baron Helmut Zemo",
     "decks": 11,
     "roles": [
-     "cheat",
+     "cheatloop",
      "draw",
      "engine",
      "beater"
@@ -1381,7 +1382,7 @@
     "name": "Kenrith, the Returned King",
     "decks": 8,
     "roles": [
-     "cheat",
+     "cheatloop",
      "draw",
      "finisher",
      "engine",
@@ -1413,6 +1414,21 @@
     ]
    },
    {
+    "name": "Michelangelo's Technique",
+    "decks": 6,
+    "roles": [
+     "cheat"
+    ]
+   },
+   {
+    "name": "Fiend Artisan",
+    "decks": 6,
+    "roles": [
+     "cheatloop",
+     "tutor"
+    ]
+   },
+   {
     "name": "Bramble Familiar // Fetch Quest",
     "decks": 5,
     "roles": [
@@ -1432,7 +1448,7 @@
     "name": "Omniscience",
     "decks": 4,
     "roles": [
-     "cheat"
+     "cheatloop"
     ]
    },
    {
@@ -1447,7 +1463,7 @@
     "name": "Fight Rigging",
     "decks": 4,
     "roles": [
-     "cheat",
+     "cheatloop",
      "enhance"
     ]
    },
@@ -1455,7 +1471,7 @@
     "name": "Rona, Herald of Invasion // Rona, Tolarian Obliterator",
     "decks": 4,
     "roles": [
-     "cheat",
+     "cheatloop",
      "draw",
      "engine"
     ]
@@ -1466,49 +1482,6 @@
     "roles": [
      "cheat",
      "beater"
-    ]
-   },
-   {
-    "name": "Enigmatic Incarnation",
-    "decks": 3,
-    "roles": [
-     "cheat",
-     "tutor"
-    ]
-   },
-   {
-    "name": "Torrential Gearhulk",
-    "decks": 3,
-    "roles": [
-     "cheat",
-     "recursion",
-     "finisher",
-     "beater"
-    ]
-   },
-   {
-    "name": "Bring to Light",
-    "decks": 2,
-    "roles": [
-     "cheat",
-     "tutor"
-    ]
-   },
-   {
-    "name": "Kasmina, Enigma Sage",
-    "decks": 2,
-    "roles": [
-     "cheat",
-     "tutor",
-     "engine",
-     "enhance"
-    ]
-   },
-   {
-    "name": "Earth's Mightiest Heroes",
-    "decks": 2,
-    "roles": [
-     "cheat"
     ]
    }
   ],
@@ -1521,22 +1494,8 @@
     ]
    },
    {
-    "name": "Collected Company",
-    "decks": 61,
-    "roles": [
-     "other"
-    ]
-   },
-   {
     "name": "Sigarda's Aid",
     "decks": 11,
-    "roles": [
-     "other"
-    ]
-   },
-   {
-    "name": "Michelangelo's Technique",
-    "decks": 6,
     "roles": [
      "other"
     ]
@@ -1579,20 +1538,6 @@
    {
     "name": "Break Out",
     "decks": 3,
-    "roles": [
-     "other"
-    ]
-   },
-   {
-    "name": "Kayla's Reconstruction",
-    "decks": 2,
-    "roles": [
-     "other"
-    ]
-   },
-   {
-    "name": "United Battlefront",
-    "decks": 2,
     "roles": [
      "other"
     ]
@@ -2191,7 +2136,7 @@
    "name": "Raph & Mikey, Troublemakers",
    "decks": 63,
    "roles": [
-    "cheat",
+    "cheatloop",
     "finisher",
     "beater"
    ]
@@ -2325,7 +2270,7 @@
    "name": "Kenrith, the Returned King",
    "decks": 8,
    "roles": [
-    "cheat",
+    "cheatloop",
     "draw",
     "finisher",
     "engine",
@@ -2409,14 +2354,6 @@
     "cheat"
    ],
    "typeLine": "Sorcery"
-  },
-  {
-   "name": "Collected Company",
-   "decks": 61,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Instant"
   },
   {
    "name": "Eddymurk Crab",
@@ -2616,14 +2553,6 @@
    "typeLine": "Creature — Treefolk Druid"
   },
   {
-   "name": "Michelangelo's Technique",
-   "decks": 6,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Sorcery"
-  },
-  {
    "name": "Hexhaven Invigorator",
    "decks": 6,
    "roles": [
@@ -2682,6 +2611,22 @@
     "beater"
    ],
    "typeLine": "Legendary Creature — Eldrazi"
+  },
+  {
+   "name": "Vizier of Tumbling Sands",
+   "decks": 3,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Human Cleric"
+  },
+  {
+   "name": "The Blackstaff of Waterdeep",
+   "decks": 3,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Legendary Artifact"
   }
  ],
  "unknownCards": [

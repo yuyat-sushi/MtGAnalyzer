@@ -1,17 +1,11 @@
 {
  "format": "Legacy",
- "generatedAt": "2026-11-26T06:45:58.388Z",
+ "generatedAt": "2026-11-26T06:53:46.480Z",
  "decks": 2762,
  "otherOnly": [
   {
    "name": "Mystic Forge",
    "decks": 96,
-   "typeLine": "Artifact",
-   "tags": []
-  },
-  {
-   "name": "Aether Vial",
-   "decks": 83,
    "typeLine": "Artifact",
    "tags": []
   },
@@ -322,7 +316,7 @@
    "decks": 190,
    "roles": [
     "removal",
-    "cheat",
+    "cheatloop",
     "draw",
     "tutor",
     "ramp",
@@ -519,7 +513,7 @@
    "name": "Raph & Mikey, Troublemakers",
    "decks": 97,
    "roles": [
-    "cheat",
+    "cheatloop",
     "finisher",
     "beater"
    ],
@@ -767,7 +761,7 @@
     "decks": 190,
     "roles": [
      "removal",
-     "cheat",
+     "cheatloop",
      "draw",
      "tutor",
      "ramp",
@@ -941,13 +935,6 @@
     ]
    },
    {
-    "name": "Green Sun's Zenith",
-    "decks": 178,
-    "roles": [
-     "tutor"
-    ]
-   },
-   {
     "name": "Veil of Summer",
     "decks": 174,
     "roles": [
@@ -1017,6 +1004,13 @@
     "roles": [
      "tutor",
      "engine"
+    ]
+   },
+   {
+    "name": "Personal Tutor",
+    "decks": 118,
+    "roles": [
+     "tutor"
     ]
    }
   ],
@@ -1405,7 +1399,15 @@
     "name": "Omniscience",
     "decks": 200,
     "roles": [
-     "cheat"
+     "cheatloop"
+    ]
+   },
+   {
+    "name": "Green Sun's Zenith",
+    "decks": 178,
+    "roles": [
+     "cheat",
+     "tutor"
     ]
    },
    {
@@ -1438,7 +1440,7 @@
     "name": "Sneak Attack",
     "decks": 114,
     "roles": [
-     "cheat"
+     "cheatloop"
     ]
    },
    {
@@ -1467,10 +1469,18 @@
     ]
    },
    {
+    "name": "Natural Order",
+    "decks": 100,
+    "roles": [
+     "cheat",
+     "tutor"
+    ]
+   },
+   {
     "name": "Raph & Mikey, Troublemakers",
     "decks": 97,
     "roles": [
-     "cheat",
+     "cheatloop",
      "finisher",
      "beater"
     ]
@@ -1483,10 +1493,24 @@
     ]
    },
    {
+    "name": "Aether Vial",
+    "decks": 83,
+    "roles": [
+     "cheatloop"
+    ]
+   },
+   {
     "name": "Aluren",
     "decks": 81,
     "roles": [
-     "cheat"
+     "cheatloop"
+    ]
+   },
+   {
+    "name": "Emperor of Bones",
+    "decks": 44,
+    "roles": [
+     "cheatloop"
     ]
    },
    {
@@ -1508,7 +1532,7 @@
     "name": "Caves of Chaos Adventurer",
     "decks": 29,
     "roles": [
-     "cheat",
+     "cheatloop",
      "draw",
      "finisher",
      "engine",
@@ -1548,49 +1572,12 @@
      "finisher",
      "beater"
     ]
-   },
-   {
-    "name": "Birthing Ritual",
-    "decks": 7,
-    "roles": [
-     "cheat"
-    ]
-   },
-   {
-    "name": "Creative Technique",
-    "decks": 7,
-    "roles": [
-     "cheat"
-    ]
-   },
-   {
-    "name": "Etali, Primal Conqueror // Etali, Primal Sickness",
-    "decks": 7,
-    "roles": [
-     "cheat",
-     "finisher",
-     "beater"
-    ]
-   },
-   {
-    "name": "Aphetto Alchemist",
-    "decks": 5,
-    "roles": [
-     "untap"
-    ]
    }
   ],
   "other": [
    {
     "name": "Mystic Forge",
     "decks": 96,
-    "roles": [
-     "other"
-    ]
-   },
-   {
-    "name": "Aether Vial",
-    "decks": 83,
     "roles": [
      "other"
     ]
@@ -1755,6 +1742,13 @@
     "roles": [
      "other"
     ]
+   },
+   {
+    "name": "Copy Artifact",
+    "decks": 1,
+    "roles": [
+     "other"
+    ]
    }
   ]
  },
@@ -1887,7 +1881,7 @@
    "decks": 190,
    "roles": [
     "removal",
-    "cheat",
+    "cheatloop",
     "draw",
     "tutor",
     "ramp",
@@ -2245,7 +2239,7 @@
    "name": "Caves of Chaos Adventurer",
    "decks": 29,
    "roles": [
-    "cheat",
+    "cheatloop",
     "draw",
     "finisher",
     "engine",
@@ -2396,7 +2390,7 @@
    "name": "Raph & Mikey, Troublemakers",
    "decks": 97,
    "roles": [
-    "cheat",
+    "cheatloop",
     "finisher",
     "beater"
    ]
@@ -2481,7 +2475,7 @@
    "name": "Caves of Chaos Adventurer",
    "decks": 29,
    "roles": [
-    "cheat",
+    "cheatloop",
     "draw",
     "finisher",
     "engine",
@@ -2607,14 +2601,6 @@
     "beater"
    ],
    "typeLine": "Creature — Human Wizard // Creature — Human Insect"
-  },
-  {
-   "name": "Aether Vial",
-   "decks": 83,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Artifact"
   },
   {
    "name": "Sire of Seven Deaths",
@@ -2836,6 +2822,14 @@
     "beater"
    ],
    "typeLine": "Creature — Human Scout"
+  },
+  {
+   "name": "Curie, Emergent Intelligence",
+   "decks": 8,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Legendary Artifact Creature — Robot"
   }
  ],
  "unknownCards": [

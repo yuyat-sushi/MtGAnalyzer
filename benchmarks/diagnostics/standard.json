@@ -1,18 +1,12 @@
 {
  "format": "Standard",
- "generatedAt": "2026-11-26T06:45:58.388Z",
+ "generatedAt": "2026-11-26T06:53:46.480Z",
  "decks": 2462,
  "otherOnly": [
   {
    "name": "Jace's Machinations",
    "decks": 194,
    "typeLine": "Instant",
-   "tags": []
-  },
-  {
-   "name": "United Battlefront",
-   "decks": 110,
-   "typeLine": "Sorcery",
    "tags": []
   },
   {
@@ -42,12 +36,6 @@
   {
    "name": "Harmless Offering",
    "decks": 4,
-   "typeLine": "Sorcery",
-   "tags": []
-  },
-  {
-   "name": "Michelangelo's Technique",
-   "decks": 3,
    "typeLine": "Sorcery",
    "tags": []
   },
@@ -1303,10 +1291,17 @@
     ]
    },
    {
+    "name": "United Battlefront",
+    "decks": 110,
+    "roles": [
+     "cheat"
+    ]
+   },
+   {
     "name": "Repurposing Bay",
     "decks": 101,
     "roles": [
-     "cheat",
+     "cheatloop",
      "tutor"
     ]
    },
@@ -1323,7 +1318,7 @@
     "name": "Kona, Rescue Beastie",
     "decks": 26,
     "roles": [
-     "cheat",
+     "cheatloop",
      "beater"
     ]
    },
@@ -1331,7 +1326,7 @@
     "name": "Omniscience",
     "decks": 25,
     "roles": [
-     "cheat"
+     "cheatloop"
     ]
    },
    {
@@ -1394,6 +1389,21 @@
     ]
    },
    {
+    "name": "Aang, at the Crossroads // Aang, Destined Savior",
+    "decks": 4,
+    "roles": [
+     "cheat",
+     "beater"
+    ]
+   },
+   {
+    "name": "Michelangelo's Technique",
+    "decks": 3,
+    "roles": [
+     "cheat"
+    ]
+   },
+   {
     "name": "Kitsa, Otterball Elite",
     "decks": 2,
     "roles": [
@@ -1425,7 +1435,7 @@
     "name": "Buster Sword",
     "decks": 2,
     "roles": [
-     "cheat",
+     "cheatloop",
      "draw",
      "engine",
      "enhance"
@@ -1452,9 +1462,19 @@
     "name": "Malcolm, Alluring Scoundrel",
     "decks": 1,
     "roles": [
-     "cheat",
+     "cheatloop",
      "draw",
      "engine",
+     "beater"
+    ]
+   },
+   {
+    "name": "Anticausal Vestige",
+    "decks": 1,
+    "roles": [
+     "cheat",
+     "draw",
+     "finisher",
      "beater"
     ]
    },
@@ -1472,37 +1492,12 @@
     "roles": [
      "copy"
     ]
-   },
-   {
-    "name": "The Dawning Archaic",
-    "decks": 1,
-    "roles": [
-     "cheat",
-     "recursion",
-     "finisher",
-     "engine",
-     "beater"
-    ]
-   },
-   {
-    "name": "Brazen Bluff",
-    "decks": 1,
-    "roles": [
-     "cheat"
-    ]
    }
   ],
   "other": [
    {
     "name": "Jace's Machinations",
     "decks": 194,
-    "roles": [
-     "other"
-    ]
-   },
-   {
-    "name": "United Battlefront",
-    "decks": 110,
     "roles": [
      "other"
     ]
@@ -1538,13 +1533,6 @@
    {
     "name": "Harmless Offering",
     "decks": 4,
-    "roles": [
-     "other"
-    ]
-   },
-   {
-    "name": "Michelangelo's Technique",
-    "decks": 3,
     "roles": [
      "other"
     ]
@@ -2389,14 +2377,6 @@
    "typeLine": "Creature — Elemental"
   },
   {
-   "name": "United Battlefront",
-   "decks": 110,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Sorcery"
-  },
-  {
    "name": "Wolverine, Fierce Fighter",
    "decks": 105,
    "roles": [
@@ -2639,6 +2619,14 @@
     "other"
    ],
    "typeLine": "Sorcery"
+  },
+  {
+   "name": "Mabel, Bitter Recluse",
+   "decks": 5,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Legendary Creature — Mouse Warlock"
   }
  ],
  "unknownCards": [

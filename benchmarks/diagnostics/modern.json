@@ -1,6 +1,6 @@
 {
  "format": "Modern",
- "generatedAt": "2026-11-26T06:45:58.388Z",
+ "generatedAt": "2026-11-26T06:53:46.480Z",
  "decks": 4966,
  "otherOnly": [
   {
@@ -41,12 +41,6 @@
    "name": "Loading Zone",
    "decks": 14,
    "typeLine": "Enchantment",
-   "tags": []
-  },
-  {
-   "name": "Aether Vial",
-   "decks": 10,
-   "typeLine": "Artifact",
    "tags": []
   },
   {
@@ -191,12 +185,6 @@
    "name": "Pym Particles",
    "decks": 1,
    "typeLine": "Card",
-   "tags": []
-  },
-  {
-   "name": "Collected Company",
-   "decks": 1,
-   "typeLine": "Instant",
    "tags": []
   },
   {
@@ -349,7 +337,7 @@
    "decks": 310,
    "roles": [
     "removal",
-    "cheat",
+    "cheatloop",
     "draw",
     "tutor",
     "ramp",
@@ -488,7 +476,7 @@
    "name": "Ral, Monsoon Mage // Ral, Leyline Prodigy",
    "decks": 188,
    "roles": [
-    "cheat",
+    "cheatloop",
     "draw",
     "ramp",
     "engine"
@@ -903,13 +891,6 @@
     ]
    },
    {
-    "name": "Green Sun's Zenith",
-    "decks": 458,
-    "roles": [
-     "tutor"
-    ]
-   },
-   {
     "name": "Fear of Missing Out",
     "decks": 443,
     "roles": [
@@ -1031,6 +1012,16 @@
      "finisher",
      "beater"
     ]
+   },
+   {
+    "name": "Griselbrand",
+    "decks": 213,
+    "roles": [
+     "draw",
+     "finisher",
+     "engine",
+     "beater"
+    ]
    }
   ],
   "win": [
@@ -1131,13 +1122,6 @@
     ]
    },
    {
-    "name": "Emperor of Bones",
-    "decks": 305,
-    "roles": [
-     "beater"
-    ]
-   },
-   {
     "name": "Kappa Cannoneer",
     "decks": 285,
     "roles": [
@@ -1218,6 +1202,13 @@
     "decks": 138,
     "roles": [
      "finisher",
+     "beater"
+    ]
+   },
+   {
+    "name": "Vizier of Remedies",
+    "decks": 132,
+    "roles": [
      "beater"
     ]
    }
@@ -1401,6 +1392,21 @@
   ],
   "combo": [
    {
+    "name": "Green Sun's Zenith",
+    "decks": 458,
+    "roles": [
+     "cheat",
+     "tutor"
+    ]
+   },
+   {
+    "name": "Emperor of Bones",
+    "decks": 305,
+    "roles": [
+     "cheatloop"
+    ]
+   },
+   {
     "name": "Scapeshift",
     "decks": 255,
     "roles": [
@@ -1420,7 +1426,7 @@
     "name": "Isochron Scepter",
     "decks": 215,
     "roles": [
-     "cheat",
+     "cheatloop",
      "copy"
     ]
    },
@@ -1428,7 +1434,7 @@
     "name": "Ral, Monsoon Mage // Ral, Leyline Prodigy",
     "decks": 188,
     "roles": [
-     "cheat",
+     "cheatloop",
      "draw",
      "ramp",
      "engine"
@@ -1444,10 +1450,26 @@
     ]
    },
    {
+    "name": "Nature's Rhythm",
+    "decks": 139,
+    "roles": [
+     "cheat",
+     "tutor"
+    ]
+   },
+   {
+    "name": "Fiend Artisan",
+    "decks": 135,
+    "roles": [
+     "cheatloop",
+     "tutor"
+    ]
+   },
+   {
     "name": "Birthing Ritual",
     "decks": 113,
     "roles": [
-     "cheat"
+     "cheatloop"
     ]
    },
    {
@@ -1474,6 +1496,22 @@
      "cheat",
      "finisher",
      "beater"
+    ]
+   },
+   {
+    "name": "Chord of Calling",
+    "decks": 73,
+    "roles": [
+     "cheat",
+     "tutor"
+    ]
+   },
+   {
+    "name": "Whir of Invention",
+    "decks": 60,
+    "roles": [
+     "cheat",
+     "tutor"
     ]
    },
    {
@@ -1505,7 +1543,7 @@
     "name": "Raph & Mikey, Troublemakers",
     "decks": 34,
     "roles": [
-     "cheat",
+     "cheatloop",
      "finisher",
      "beater"
     ]
@@ -1547,7 +1585,7 @@
     "name": "Fight Rigging",
     "decks": 16,
     "roles": [
-     "cheat",
+     "cheatloop",
      "enhance"
     ]
    },
@@ -1556,57 +1594,6 @@
     "decks": 14,
     "roles": [
      "cheat"
-    ]
-   },
-   {
-    "name": "Improvisation Capstone",
-    "decks": 9,
-    "roles": [
-     "cheat"
-    ]
-   },
-   {
-    "name": "Urza, Lord High Artificer",
-    "decks": 9,
-    "roles": [
-     "cheat",
-     "ramp",
-     "tokens"
-    ]
-   },
-   {
-    "name": "Stormscale Scion",
-    "decks": 8,
-    "roles": [
-     "copy",
-     "finisher",
-     "beater"
-    ]
-   },
-   {
-    "name": "Mwonvuli Acid-Moss",
-    "decks": 6,
-    "roles": [
-     "cheat",
-     "ramp"
-    ]
-   },
-   {
-    "name": "Simulacrum Shaper",
-    "decks": 5,
-    "roles": [
-     "cheat",
-     "draw",
-     "ramp"
-    ]
-   },
-   {
-    "name": "Turntimber Symbiosis // Turntimber, Serpentine Wood",
-    "decks": 5,
-    "roles": [
-     "cheat",
-     "ramp",
-     "enhance"
     ]
    }
   ],
@@ -1649,13 +1636,6 @@
    {
     "name": "Loading Zone",
     "decks": 14,
-    "roles": [
-     "other"
-    ]
-   },
-   {
-    "name": "Aether Vial",
-    "decks": 10,
     "roles": [
      "other"
     ]
@@ -1785,6 +1765,13 @@
     "roles": [
      "other"
     ]
+   },
+   {
+    "name": "Smallpox",
+    "decks": 2,
+    "roles": [
+     "other"
+    ]
    }
   ]
  },
@@ -1895,7 +1882,7 @@
    "decks": 310,
    "roles": [
     "removal",
-    "cheat",
+    "cheatloop",
     "draw",
     "tutor",
     "ramp",
@@ -2040,7 +2027,7 @@
    "name": "Ral, Monsoon Mage // Ral, Leyline Prodigy",
    "decks": 188,
    "roles": [
-    "cheat",
+    "cheatloop",
     "draw",
     "ramp",
     "engine"
