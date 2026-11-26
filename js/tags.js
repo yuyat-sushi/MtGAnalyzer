@@ -224,8 +224,8 @@
       if (/don't untap|doesn't untap|enter (the battlefield )?tapped/.test(line)) t.push('untap');
       if (/can't (gain life|draw)/.test(line)) t.push('other');
       d.types = t.length ? t : ['other'];
-      if (/chosen name|choose a card name|choose any card name/.test(line)) d.cond = 'カード名を指定';
-      else { const m = line.match(/abilities of ([a-z ,]+?) (can't|your opponents)/); if (m) d.cond = m[1]; }
+      d.lock = lockScope(line);
+      if (d.lock.length) d.cond = d.lock.map(lockLabel).join('、');
       return d;
     }
     if (effect === 'counter') {
@@ -237,6 +237,10 @@
       if (/activated (or triggered )?ability/.test(line)) d.types.push('activated ability');
       if (/(triggered ability|activated or triggered)/.test(line)) d.types.push('triggered ability');
       if (/legendary spell|or [a-z]+ spell/.test(line) && !d.types.includes('spell')) d.types.push('spell');
+      // Stifle 型：どの能力でも打ち消せる（範囲は「すべて」）
+      d.lock = [];
+      if (d.types.includes('activated ability')) d.lock.push({ kind: 'activated', sources: ['any'], events: [] });
+      if (d.types.includes('triggered ability')) d.lock.push({ kind: 'triggered', sources: ['any'], events: ['any'] });
       return d;
     }
     if (effect === 'redirect') { d.action = 'redirect'; d.types = ['spell']; d.targeting = 'target'; return d; }
@@ -279,6 +283,36 @@
     if (gt) d.gives = /token/.test(gt[3]) ? 'token' : /land/.test(gt[3]) ? 'land' : 'life';
     return d;
   }
+
+  /**
+   * 能力封じの範囲
+   *   起動型: どのパーマネントの能力を封じるか（artifact / creature / planeswalker / nonland / named=指定したカード名 / any）
+   *   誘発型: どの出来事による誘発を封じるか（etb=戦場に出る / dies=死亡）と、その対象（creature / permanent）
+   */
+  function lockScope(line) {
+    const out = [];
+    const a = line.match(/activated abilities of ([^.]*?) can't be activated/);
+    if (a) {
+      const src = a[1];
+      const sources = /chosen name|named/.test(src) ? ['named'] :
+        [['artifact', /artifacts?/], ['creature', /creatures?/], ['planeswalker', /planeswalkers?/], ['land', /\blands?\b/]]
+          .filter(([, re]) => re.test(src)).map(([k]) => k);
+      if (/nonland permanents?/.test(src)) sources.push('nonland');
+      else if (/\bpermanents?\b/.test(src) && !sources.length) sources.push('permanent');
+      out.push({ kind: 'activated', sources: sources.length ? sources : ['any'], events: [] });
+    }
+    const t = line.match(/(nontoken |other )?(creatures?|permanents?|artifacts?)( your opponents control)? (entering|dying)( or (entering|dying))?[^.]*? don't cause abilities to trigger/);
+    if (t) {
+      const events = [t[4], t[6]].filter(Boolean).map(e => e === 'entering' ? 'etb' : 'dies');
+      out.push({ kind: 'triggered', sources: [/permanent/.test(t[2]) ? 'permanent' : t[2].replace(/s$/, '')], events });
+    }
+    return out;
+  }
+  const LOCK_JA = { artifact: 'アーティファクト', creature: 'クリーチャー', planeswalker: 'PW', land: '土地', nonland: '土地以外のパーマネント',
+    permanent: 'パーマネント', named: '指定した名前のカード', any: 'すべて', etb: '戦場に出たとき', dies: '死亡したとき' };
+  const lockLabel = l => l.kind === 'activated'
+    ? `${l.sources.map(x => LOCK_JA[x] || x).join('・')}の起動型能力`
+    : `${l.sources.map(x => LOCK_JA[x] || x).join('・')}が${(l.events || []).map(x => LOCK_JA[x] || x).join('・')}の誘発`;
 
   // ---------- 生成するトークンの種類 ----------
   const TOKEN_KINDS = ['treasure', 'clue', 'food', 'blood', 'map', 'powerstone', 'incubator', 'gold', 'shard', 'junk', 'lander', 'mutagen'];

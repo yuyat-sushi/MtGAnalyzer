@@ -489,7 +489,7 @@
         const ans = Combos.answerCards(entries, c);
         const n = ans.reduce((s, x) => s + x.qty, 0);
         const pct = Math.round(share[c.id] * 100);
-        const how = (c.answers || []).map(a => Combos.ANSWER_JA[a] || a).join('・');
+        const how = (c.answers || []).map(a => Combos.answerLabel(a)).join('・');
         if (state.main.length) {
           if (!n) tips.push({ level: 'bad', text: `環境の${pct}%に「${c.name}」（${Combos.KIND_JA[c.kind] || c.kind}）がいるのに、止められるカードがメインにもサイドにも無いよ。効くのは：${how}。` });
           else if (n <= 2) tips.push({ level: 'warn', text: `環境の${pct}%に「${c.name}」。止められるカードは${n}枚（${ans.map(x => x.name).join('、')}）だけ。効くのは：${how}。` });

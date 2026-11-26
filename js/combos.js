@@ -18,8 +18,39 @@
   const ANSWER_JA = {
     stack: 'スタックで止める（打ち消しなど）', hand: '手札破壊', graveyard: '墓地対策', artifact: 'アーティファクト除去',
     enchantment: 'エンチャント除去', creature: 'クリーチャー除去', planeswalker: 'PW除去', land: '土地破壊',
-    'activated ability': '起動型能力の封じ', 'triggered ability': '誘発型能力の封じ', tax: 'コスト増加'
+    tax: 'コスト増加'
   };
+  const SRC_JA = { artifact: 'アーティファクト', creature: 'クリーチャー', planeswalker: 'PW', land: '土地', permanent: 'パーマネント', any: '能力' };
+  const EVT_JA = { etb: '戦場に出たとき', dies: '死亡したとき', other: 'その他' };
+  /** answers の表記（"activated:artifact" "triggered:etb:creature" など）を日本語に */
+  function answerLabel(a) {
+    if (ANSWER_JA[a]) return ANSWER_JA[a];
+    const p = a.split(':');
+    if (p[0] === 'activated') return `${SRC_JA[p[1]] || p[1]}の起動型能力の封じ`;
+    if (p[0] === 'triggered') return p[1] === 'other' ? '誘発型能力の打ち消し（Stifle など）' : `${SRC_JA[p[2]] || p[2] || ''}が${EVT_JA[p[1]] || p[1]}の誘発の封じ`;
+    return a;
+  }
+
+  /**
+   * 封じの範囲がコンボのパーツに届くか
+   *   token: "activated:artifact"（アーティファクトの起動型能力）/ "triggered:etb:creature"（クリーチャーのETB誘発）/ "triggered:other"
+   *   lock: { kind, sources, events }
+   *   例: Null Rod（アーティファクトの起動型能力）は Goblin Charbelcher に効くが、Oops All Spells のクリーチャーの誘発には効かない
+   */
+  function lockCovers(token, lock) {
+    const [kind, a, b] = token.split(':');
+    if (kind !== lock.kind) return false;
+    const src = lock.sources || [];
+    if (src.includes('any')) return true;
+    if (kind === 'activated') {
+      const need = a;
+      return src.includes(need) || src.includes('named') || src.includes('permanent') || (src.includes('nonland') && need !== 'land');
+    }
+    // 誘発型: 出来事（etb/dies）と、その対象（creature など）の両方が一致する必要がある
+    const ev = lock.events || [];
+    if (a === 'other') return false;
+    return (ev.includes(a) || ev.includes('any')) && (src.includes(b) || src.includes('permanent'));
+  }
 
   const key = n => String(n || '').trim().toLowerCase().replace(/\s+/g, ' ').replace(/\s*\/\/\s*/g, ' // ');
   // 両面カードは表面の名前でも一致させる
@@ -52,19 +83,21 @@
     return out;
   }
 
-  /** このカードの妨害が、answers のどれかに当てはまるか */
+  /** このカードの妨害の種類（answers の表記）と、能力封じの範囲 */
   function answersOf(card) {
-    if (!card) return new Set();
-    const info = Roles.inspect(card);
     const out = new Set();
+    out.locks = [];
+    if (!card) return out;
+    const info = Roles.inspect(card);
     for (const t of info.tags) {
       const d = t.detail;
       if (!d) continue;
-      if (['counter', 'counter_exile', 'redirect'].includes(d.action)) out.add('stack');
+      // 呪文を止められるものだけ「スタック」（Stifle のような能力だけの打ち消しは、能力封じの範囲として扱う）
+      if (['counter', 'counter_exile'].includes(d.action) && d.types.some(x => /spell/.test(x))) out.add('stack');
+      if (d.action === 'redirect') out.add('stack');
       if (d.types.includes('hand')) out.add('hand');
       if (d.types.includes('graveyard')) out.add('graveyard');
-      if (d.types.includes('activated ability')) out.add('activated ability');
-      if (d.types.includes('triggered ability')) out.add('triggered ability');
+      if (d.lock) out.locks.push(...d.lock);
       if (d.types.includes('tax')) out.add('tax');
       if (d.action !== 'lock') {
         for (const ty of ['artifact', 'enchantment', 'creature', 'planeswalker', 'land']) if (d.types.includes(ty)) out.add(ty);
@@ -78,11 +111,12 @@
     const want = new Set(combo.answers || []);
     const out = [];
     for (const e of entries) {
-      const hit = [...answersOf(e.card)].filter(a => want.has(a));
+      const ans = answersOf(e.card);
+      const hit = [...want].filter(a => /^(activated|triggered):/.test(a) ? ans.locks.some(l => lockCovers(a, l)) : ans.has(a));
       if (hit.length) out.push({ name: e.name, qty: e.qty, zone: e.zone, how: hit });
     }
     return out;
   }
 
-  return { setCombos, detect, answersOf, answerCards, list: () => combos, KIND_JA, ANSWER_JA };
+  return { setCombos, detect, answersOf, answerCards, lockCovers, answerLabel, list: () => combos, KIND_JA, ANSWER_JA };
 });
