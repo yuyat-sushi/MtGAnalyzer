@@ -17,7 +17,12 @@
 
   function rolesOf(e) {
     if (e.manualRoles && e.manualRoles.length) {
-      const r = Roles.normalizeRoles(e.manualRoles);
+      // 旧バージョンの「単体除去」は、自動判定の除去の種類（追放・破壊など）に読み替える
+      const auto = Roles.classify(e.card);
+      const list = e.manualRoles.flatMap(r => r === 'removal'
+        ? (auto.filter(x => Roles.ROLE_MAP[x] && Roles.ROLE_MAP[x].cat === 'disrupt' && x.startsWith('rm_')).length ? auto.filter(x => x.startsWith('rm_')) : ['rm_destroy'])
+        : [r]);
+      const r = Roles.normalizeRoles(list);
       if (r.length) return r;
     }
     return Roles.classify(e.card);
@@ -464,7 +469,8 @@
     const sections = [['action', '処理・移動先'], ['types', '触れられる対象'], ['targeting', '選び方'], ['speed', '速度']];
     const rows = sections.map(([key, title]) => {
       const keys = [...new Set([...Object.keys(main[key] || {}), ...Object.keys(side[key] || {}), ...Object.keys(bd || {}).filter(k => k.startsWith(key + ':')).map(k => k.slice(key.length + 1))])]
-        .filter(k => k !== 'trigger' && k !== 'static' && k !== 'player');
+        .filter(k => k !== 'trigger' && k !== 'static' && k !== 'player')
+        .filter(k => ((main[key] || {})[k] || 0) || ((side[key] || {})[k] || 0) || (bd && bd[`${key}:${k}`] && bd[`${key}:${k}`].median));
       if (!keys.length) return '';
       return `<tr class="cat"><td colspan="4"><b>${title}</b></td></tr>` + keys.map(k => {
         const b = bd && bd[`${key}:${k}`];

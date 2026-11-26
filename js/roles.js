@@ -245,15 +245,15 @@
       const heavy = meta.filter(a => a[type]);
       if (shareOf(heavy) < min) continue;
       const n = both(['types', type]);
-      if (!n) push('bad', `${label}に頼るデッキ（${top(heavy)}）が上位の${Math.round(shareOf(heavy) * 100)}%を占めてるのに、${label}に触れるカードがメインにもサイドにも0枚だよ。`);
-      else if (n <= 2) push('warn', `${label}に頼るデッキ（${top(heavy)}）が上位の${Math.round(shareOf(heavy) * 100)}%。${label}に触れるカードは${n}枚だけだから、サイドに足しておくと安心かも。`);
+      if (!n) push('bad', `${label}を多く使うデッキ（${top(heavy)}）が上位の${Math.round(shareOf(heavy) * 100)}%を占めてるのに、${label}に触れるカードがメインにもサイドにも0枚だよ。`);
+      else if (n <= 2) push('warn', `${label}を多く使うデッキ（${top(heavy)}）が上位の${Math.round(shareOf(heavy) * 100)}%。${label}に触れるカードは${n}枚だけだから、サイドに足しておくと安心かも。`);
     }
 
     // 2. 墓地を使うデッキへの備え（追放除去・墓地対策）
     const gy = meta.filter(a => a.graveyard);
-    if (shareOf(gy) >= 0.15) {
+    if (shareOf(gy) >= 0.25) {
       const n = both(['action', 'exile']);
-      if (n < 3) push('warn', `墓地を使うデッキ（${top(gy)}）が上位の${Math.round(shareOf(gy) * 100)}%。追放する妨害（追放除去・墓地対策）が${n}枚だけだから、破壊だと戻ってくる相手に注意してね。`);
+      if (n < 3) push(n ? 'info' : 'warn', `墓地を使うデッキ（${top(gy)}）が上位の${Math.round(shareOf(gy) * 100)}%。追放する妨害（追放除去・墓地対策）が${n}枚だけだから、破壊だと戻ってくる相手に注意してね。`);
     }
 
     // 3. インスタント速度のコンボへの備え（その場で止められる妨害）
@@ -417,12 +417,13 @@
     for (const [key, [min, max]] of Object.entries(a.tgt)) {
       if (key === 'land' || key === 'other' || key === 'cat:mana' || key === 'cat:other') continue; // 土地は上の推奨枚数で判定
       const v = key.startsWith('cat:') ? (a.catCount[key.slice(4)] || 0) : (a.roleCount[key] || 0);
+      const isCat = key.startsWith('cat:');
       if (a.bench && max === 0 && v === 0) continue; // どちらも0なら言及しない
       const name = labels[key] || key;
       if (v < min - tol) push(key === 'cat:win' || key === 'cat:disrupt' ? 'bad' : 'warn', `${name} が ${v} 枚。${src}は ${min}〜${max} 枚だから、あと ${min - v} 枚くらい欲しいな。`);
       else if (v > max + tol) push('warn', `${name} が ${v} 枚で${src}（${min}〜${max}）より多め。他の役割に枠を回せないか考えてみよう。`);
-      else if (v < min || v > max) push('info', `${name} ${v} 枚は${src}（${min}〜${max}）から1枚ずれてるけど、許容範囲かな。`);
-      else push('good', `${name} ${v} 枚は${src}（${min}〜${max}）の範囲内！`);
+      else if ((v < min || v > max) && isCat) push('info', `${name} ${v} 枚は${src}（${min}〜${max}）から1枚ずれてるけど、許容範囲かな。`);
+      else if (isCat || !a.bench) push('good', `${name} ${v} 枚は${src}（${min}〜${max}）の範囲内！`); // 小カテゴリは範囲内なら言及しない
     }
 
     // カーブ
