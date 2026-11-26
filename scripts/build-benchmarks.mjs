@@ -254,7 +254,7 @@ async function main() {
           info.abilities.some(a => a.effects.some(x => ['cheat', 'extraturn'].includes(x)) ||
             (a.effects.includes('copy') && info.cat === 'combo') ||
             (a.effects.includes('recursion') && /to the battlefield/.test(a.text)));
-        cards.push({ name: card.name, qty: e.qty, roles: r, cat: info.cat, tags: info.tags, power: card.power, typeLine: card.typeLine, instantCombo });
+        cards.push({ name: card.name, qty: e.qty, roles: r, cat: info.cat, tags: info.tags, power: card.power, typeLine: card.typeLine, instantCombo, oracle: card.oracle });
         if (!r.includes('land')) {
           nonLand += e.qty; mvSum += card.cmc * e.qty;
           (card.colors || []).forEach(c => colors.add(c));
@@ -350,7 +350,7 @@ async function main() {
     const usage = new Map();
     decks.forEach(d => d.cards.forEach(c => {
       const e = usage.get(c.name) || { name: c.name, decks: 0, roles: c.roles, cat: c.cat, typeLine: c.typeLine, power: c.power };
-      e.decks++; e.tags = c.tags; usage.set(c.name, e);
+      e.decks++; e.tags = c.tags; e.oracle = c.oracle; usage.set(c.name, e);
     }));
     const tagText = c => c.tags.map(t => `${t.effect}@${t.trigger}`);
     const all = [...usage.values()].sort((a, b) => b.decks - a.decks);
@@ -361,6 +361,10 @@ async function main() {
       .map(a => ({ name: a.name, share: a.share, comboCards: a.keyCards.filter(k => k.cat === 'combo').map(k => k.name).slice(0, 8) }));
     const diag = {
       comboCandidates,
+      // 妨害の小カテゴリごとの判定根拠（オラクルテキストと、処理・対象の種類）。判定ルールの見直し用
+      disruptEvidence: Object.fromEntries(['removal', 'wipe', 'spell', 'ability', 'discard', 'gyhate', 'manalock', 'combat'].map(id => [id,
+        all.filter(c => c.roles.includes(id)).slice(0, 40).map(c => ({ name: c.name, decks: c.decks, oracle: c.oracle,
+          detail: c.tags.filter(t => t.detail).map(t => `${t.effect}:${t.detail.action}:${t.detail.types.join('/')}`) }))])),
       format: FORMATS[fmt], generatedAt: index.generatedAt, decks: decks.length,
       // 「その他」としか判定されなかった採用率の高いカード → ルール追加の候補
       otherOnly: all.filter(c => c.cat === 'other').slice(0, 60).map(c => ({ name: c.name, decks: c.decks, typeLine: c.typeLine, tags: tagText(c) })),
