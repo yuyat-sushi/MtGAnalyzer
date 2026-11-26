@@ -340,6 +340,7 @@
     const dMain = Roles.disruptProfile(toEntries(state.main)), dSide = Roles.disruptProfile(toEntries(state.side));
     renderDisrupt(dMain, dSide, cmp && cmp.group);
     const metaTips = cmp && cmp.bench && cmp.bench.meta ? Roles.metaAdvice(dMain, dSide, cmp.bench.meta, cmp.group) : [];
+    metaTips.push(...renderCombos(cmp));
     $('#advice').innerHTML = [...a.advice, ...metaTips].map(x => `<li class="${x.level}">${esc(x.text)}</li>`).join('');
   }
 
@@ -460,6 +461,46 @@
       `<div class="tag ${k.who === 'opponent' ? 'once' : 'rep'}"><span class="tag-kind">${k.who === 'opponent' ? '相手' : '自分'}</span>${esc(TOKEN_JA[k.kind] || k.kind)}${k.pt ? ` ${esc(k.pt)}` : ''}</div>`).join('')}` : '';
     return `<div class="tag-list"><div class="muted">検出した効果タグ（${info.speed === 'instant' ? 'インスタント速度で動ける' : 'ソーサリー速度'}）</div>${info.tags.map(t =>
       `<div class="tag ${t.repeat ? 'rep' : 'once'}"><span class="tag-kind">${t.repeat ? '繰り返し' : '1回'}</span><span>${esc(Tags.tagLabel(t))}${detail(t)}</span></div>`).join('')}${tokens}</div>`;
+  }
+
+  // ---------- コンボ ----------
+  /** 自分のデッキのコンボと、環境のコンボに対する備えを表示し、アドバイスを返す */
+  function renderCombos(cmp) {
+    const tips = [];
+    const box = $('#comboBox');
+    const lands = state.main.filter(e => rolesOf(e).includes('land')).reduce((s, e) => s + e.qty, 0);
+    const mine = Combos.detect({ main: state.main }, lands);
+    const mineHTML = mine.length ? mine.map(x => {
+      const c = x.combo;
+      const status = x.complete ? '<span class="combo-ok">成立</span>'
+        : x.missing.length ? `<span class="combo-miss">パーツ不足：${x.missing.map(g => esc(g.join(' か '))).join('、')}</span>`
+        : `<span class="combo-miss">条件未達：${x.reqFail.map(esc).join('、')}</span>`;
+      return `<li><b>${esc(c.name)}</b> <span class="muted">${esc(Combos.KIND_JA[c.kind] || c.kind)}</span> ${status}${c.note ? `<div class="muted">${esc(c.note)}</div>` : ''}</li>`;
+    }).join('') : '';
+
+    // 環境のコンボ（アーキタイプの割合 × そのアーキタイプでの採用率）
+    let metaHTML = '';
+    const meta = cmp && cmp.bench && cmp.bench.meta;
+    if (meta) {
+      const share = {};
+      meta.forEach(a => (a.combos || []).forEach(x => { share[x.id] = (share[x.id] || 0) + a.share * x.rate; }));
+      const entries = [...state.main.map(e => ({ ...e, zone: 'メイン' })), ...state.side.map(e => ({ ...e, zone: 'サイド' }))];
+      const rows = Combos.list().filter(c => (share[c.id] || 0) >= 0.02).sort((a, b) => share[b.id] - share[a.id]).map(c => {
+        const ans = Combos.answerCards(entries, c);
+        const n = ans.reduce((s, x) => s + x.qty, 0);
+        const pct = Math.round(share[c.id] * 100);
+        const how = (c.answers || []).map(a => Combos.ANSWER_JA[a] || a).join('・');
+        if (state.main.length) {
+          if (!n) tips.push({ level: 'bad', text: `環境の${pct}%に「${c.name}」（${Combos.KIND_JA[c.kind] || c.kind}）がいるのに、止められるカードがメインにもサイドにも無いよ。効くのは：${how}。` });
+          else if (n <= 2) tips.push({ level: 'warn', text: `環境の${pct}%に「${c.name}」。止められるカードは${n}枚（${ans.map(x => x.name).join('、')}）だけ。効くのは：${how}。` });
+        }
+        return `<tr class="${!n ? 'c-low' : n <= 2 ? 'c-near' : 'c-ok'}"><td>${esc(c.name)}<div class="muted">${esc(how)}</div></td><td class="num">${pct}%</td><td class="num">${n}</td></tr>`;
+      }).join('');
+      metaHTML = rows ? `<table class="meta-table"><thead><tr><th>環境のコンボ（止め方）</th><th class="num">環境</th><th class="num">止める札</th></tr></thead><tbody>${rows}</tbody></table>` : '';
+    }
+    box.innerHTML = (mineHTML ? `<ul class="combo-list">${mineHTML}</ul>` : '<p class="hint">登録済みのコンボはデッキにありません</p>') + metaHTML +
+      '<p class="hint">コンボの定義は data/combos.json。「止める札」はメイン＋サイドで、そのコンボに効く妨害の枚数です。</p>';
+    return tips;
   }
 
   /** 妨害の内訳（処理・対象の種類・選び方・速度）。サイドボードと上位デッキの中央値も並べる */
@@ -841,11 +882,13 @@
     };
   }
 
-  // 例外リスト（カード名で採用理由を指定）を読み込む
+  // 例外リスト（カード名で採用理由を指定）とコンボの定義を読み込む
   async function loadOverrides() {
     try {
-      const res = await fetch('data/overrides.json');
-      if (res.ok) { Roles.setOverrides(await res.json()); render(); }
+      const [o, c] = await Promise.all([fetch('data/overrides.json'), fetch('data/combos.json')]);
+      if (o.ok) Roles.setOverrides(await o.json());
+      if (c.ok) Combos.setCombos(await c.json());
+      render();
     } catch (e) { /* file:// で開いた場合などは自動判定だけで動く */ }
   }
 

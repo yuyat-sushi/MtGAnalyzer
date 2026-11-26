@@ -27,6 +27,9 @@ const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..')
 const Roles = require(path.join(ROOT, 'js/roles.js'));
 const CardModel = require(path.join(ROOT, 'js/cardmodel.js'));
 const Archetype = require(path.join(ROOT, 'js/archetype.js'));
+const Combos = require(path.join(ROOT, 'js/combos.js'));
+const COMBOS = path.join(ROOT, 'data/combos.json');
+if (fs.existsSync(COMBOS)) Combos.setCombos(JSON.parse(fs.readFileSync(COMBOS, 'utf8')));
 
 const FORMATS = {
   standard: 'Standard', pioneer: 'Pioneer', modern: 'Modern',
@@ -279,6 +282,7 @@ async function main() {
       decksBy[fmt].push({
         archetype: arch.name, archetypeBase: arch.base, kind: arch.kind,
         roles, cats, tagCounts, disrupt, perm,
+        combos: Combos.detect({ main }, roles.land).filter(x => x.complete).map(x => x.combo.id),
         avgMV: nonLand ? +(mvSum / nonLand).toFixed(2) : 0, mainCount, cards
       });
       events[fmt].add(eventId);
@@ -326,6 +330,8 @@ async function main() {
         enchantment: a.perm.enchantment.median >= 6,
         planeswalker: a.perm.planeswalker.median >= 3,
         graveyard: a.roles.recursion.median >= 4 || (a.roles.recursion.median + a.roles.selfmill.median) >= 8,
+        // 成立しているコンボと、その採用率（30%以上のもの）
+        combos: Combos.list().map(c => ({ id: c.id, rate: +(ds.filter(d => d.combos.includes(c.id)).length / ds.length).toFixed(2) })).filter(x => x.rate >= 0.3),
         instantCombo: comboCards
       };
     });
@@ -348,7 +354,13 @@ async function main() {
     }));
     const tagText = c => c.tags.map(t => `${t.effect}@${t.trigger}`);
     const all = [...usage.values()].sort((a, b) => b.decks - a.decks);
+    // コンボ/展開のカードが多いのに、どのコンボ定義にも当てはまらないアーキタイプ（combos.json の登録候補）
+    const comboCandidates = meta.filter(m => !m.combos.length)
+      .map(m => archetypes.find(a => a.name === m.name))
+      .filter(a => a && a.cats.combo && a.cats.combo.median >= 3)
+      .map(a => ({ name: a.name, share: a.share, comboCards: a.keyCards.filter(k => k.cat === 'combo').map(k => k.name).slice(0, 8) }));
     const diag = {
+      comboCandidates,
       format: FORMATS[fmt], generatedAt: index.generatedAt, decks: decks.length,
       // 「その他」としか判定されなかった採用率の高いカード → ルール追加の候補
       otherOnly: all.filter(c => c.cat === 'other').slice(0, 60).map(c => ({ name: c.name, decks: c.decks, typeLine: c.typeLine, tags: tagText(c) })),
