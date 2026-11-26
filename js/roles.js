@@ -359,10 +359,13 @@
     const sources = { W: 0, U: 0, B: 0, R: 0, G: 0 };
     let nonLand = 0, mvSum = 0, cheapRampDraw = 0, lands = 0, mdfcLands = 0;
     const tagCounts = {}; // "effect:r" / "effect:o"（繰り返し / 1回）→ 枚数
+    const roleCards = {}; // 小カテゴリ → [{name, qty, others}]（アドバイスで兼任カードを見分ける用）
 
     for (const e of entries) {
       const roles = e.roles || ['other'];
       roles.forEach(r => { roleCount[r] = (roleCount[r] || 0) + e.qty; });
+      const cname = e.card ? (e.card.printedName || e.card.name) : (e.name || '?');
+      roles.forEach(r => (roleCards[r] = roleCards[r] || []).push({ name: cname, qty: e.qty, others: roles.filter(x => x !== r) }));
       // 大カテゴリは1枚につき1つなので、合計がデッキ枚数と一致する
       catCount[e.cat || categoryOf(roles)] += e.qty;
       const c = e.card;
@@ -396,7 +399,7 @@
     return {
       total, size, roleCount, catCount, curve, pips, sources, lands, nonLand, mdfcLands,
       avgMV, recLand, tagCounts, cheapRampDraw, targets: tgt,
-      advice: buildAdvice({ total, size, roleCount, catCount, lands, recLand, avgMV, tgt, curve, pips, sources, format, nonLand, mdfcLands, bench })
+      advice: buildAdvice({ total, size, roleCount, roleCards, catCount, lands, recLand, avgMV, tgt, curve, pips, sources, format, nonLand, mdfcLands, bench })
     };
   }
 
@@ -427,6 +430,21 @@
     // カテゴリ
     const labels = Object.fromEntries(ROLES.map(r => [r.id, r.label]));
     CATEGORIES.forEach(c => { labels['cat:' + c.id] = `【${c.label}】`; });
+    // 小カテゴリの「多め」判定用: その役割だけを持つ専任カードで数え直す
+    // 専任カードだけで上限内に収まるなら、超えた分は兼任カードのおかげなので注意しない
+    function overInfo(role, limit) {
+      const list = (a.roleCards && a.roleCards[role]) || [];
+      if (!list.length) return null;
+      const solo = list.filter(c => !c.others.length).reduce((s, c) => s + c.qty, 0);
+      const multiCards = list.filter(c => c.others.length);
+      const uniq = arr => [...new Set(arr)];
+      return {
+        warn: solo > limit || !multiCards.length,
+        names: uniq(list.map(c => c.name)).join('、'),
+        multi: uniq(multiCards.map(c => c.name)).join('、'),
+        others: uniq(multiCards.flatMap(c => c.others).map(r => labels[r] || r)).join('・')
+      };
+    }
     // 上位デッキ比較のときは四分位の範囲から1枚ずれるまでは許容する
     const tol = a.bench ? 1 : 0;
     const src = a.bench ? `上位デッキ（${a.bench.label}）の中央50%` : '目安';
@@ -437,7 +455,17 @@
       if (a.bench && max === 0 && v === 0) continue; // どちらも0なら言及しない
       const name = labels[key] || key;
       if (v < min - tol) push(key === 'cat:win' || key === 'cat:disrupt' ? 'bad' : 'warn', `${name} が ${v} 枚。${src}は ${min}〜${max} 枚だから、あと ${min - v} 枚くらい欲しいな。`);
-      else if (v > max + tol) push('warn', `${name} が ${v} 枚で${src}（${min}〜${max}）より多め。他の役割に枠を回せないか考えてみよう。`);
+      else if (v > max + tol) {
+        const ov = isCat ? null : overInfo(key, max + tol);
+        if (ov && !ov.warn) {
+          // 多い分はほかの役割も持つカードによるもの → 言い過ぎない
+          const multi = `${ov.multi}は${ov.others}も兼ねているから`;
+          if (max === 0) push('info', `${name}は${src.replace('の中央50%', '')}では普段使われない役割だよ（${ov.names}で ${v} 枚）。${multi}問題ないかも。`);
+          else push('info', `${name} が ${v} 枚で${src}（${min}〜${max}）より多めだけど、${multi}問題ないかも。`);
+        } else if (max === 0 && a.bench) {
+          push('warn', `${name} が ${v} 枚。${src.replace('の中央50%', '')}では普段使われない役割だよ。本当に必要か見直してみよう。`);
+        } else push('warn', `${name} が ${v} 枚で${src}（${min}〜${max}）より多め。他の役割に枠を回せないか考えてみよう。`);
+      }
       else if ((v < min || v > max) && isCat) push('info', `${name} ${v} 枚は${src}（${min}〜${max}）から1枚ずれてるけど、許容範囲かな。`);
       else if (isCat || !a.bench) push('good', `${name} ${v} 枚は${src}（${min}〜${max}）の範囲内！`); // 小カテゴリは範囲内なら言及しない
     }
