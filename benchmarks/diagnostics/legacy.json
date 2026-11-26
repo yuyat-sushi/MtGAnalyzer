@@ -118,7 +118,7 @@
   }
  ],
  "format": "Legacy",
- "generatedAt": "2026-11-26T08:44:05.914Z",
+ "generatedAt": "2026-11-26T08:46:01.493Z",
  "decks": 2762,
  "otherOnly": [
   {
@@ -2283,7 +2283,6 @@
    "decks": 45,
    "roles": [
     "removal",
-    "manalock",
     "engine",
     "reach",
     "beater"

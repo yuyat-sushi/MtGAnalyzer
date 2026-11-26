@@ -31,7 +31,7 @@
   }
  ],
  "format": "Pauper",
- "generatedAt": "2026-11-26T08:44:05.914Z",
+ "generatedAt": "2026-11-26T08:46:01.493Z",
  "decks": 2757,
  "otherOnly": [
   {
@@ -266,19 +266,6 @@
    ],
    "tags": [
     "draw@etb"
-   ]
-  },
-  {
-   "name": "Chain Lightning",
-   "decks": 72,
-   "roles": [
-    "removal",
-    "manalock",
-    "reach"
-   ],
-   "tags": [
-    "drain@spell",
-    "removal@spell"
    ]
   },
   {
@@ -522,6 +509,19 @@
    "tags": [
     "drain@death_trigger",
     "removal@death_trigger"
+   ]
+  },
+  {
+   "name": "Talons of Wildwood",
+   "decks": 2,
+   "roles": [
+    "recursion",
+    "engine",
+    "enhance"
+   ],
+   "tags": [
+    "pump@static",
+    "recursion@activated"
    ]
   }
  ],

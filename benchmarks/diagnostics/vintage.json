@@ -66,7 +66,7 @@
   }
  ],
  "format": "Vintage",
- "generatedAt": "2026-11-26T08:44:05.914Z",
+ "generatedAt": "2026-11-26T08:46:01.493Z",
  "decks": 1186,
  "otherOnly": [
   {
@@ -389,18 +389,16 @@
    "name": "Deathrite Shaman",
    "decks": 14,
    "roles": [
-    "removal",
-    "manalock",
+    "gyhate",
     "ramp",
     "engine",
     "reach"
    ],
    "tags": [
-    "removal@activated",
     "mana@activated",
+    "gyhate@activated",
     "drain@activated",
-    "lifegain@activated",
-    "removal@activated"
+    "lifegain@activated"
    ]
   },
   {
@@ -1659,18 +1657,16 @@
    "name": "Deathrite Shaman",
    "decks": 14,
    "roles": [
-    "removal",
-    "manalock",
+    "gyhate",
     "ramp",
     "engine",
     "reach"
    ],
    "tags": [
-    "removal@activated",
     "mana@activated",
+    "gyhate@activated",
     "drain@activated",
-    "lifegain@activated",
-    "removal@activated"
+    "lifegain@activated"
    ]
   },
   {

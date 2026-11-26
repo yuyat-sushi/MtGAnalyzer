@@ -80,7 +80,7 @@
   }
  ],
  "format": "Pioneer",
- "generatedAt": "2026-11-26T08:44:05.914Z",
+ "generatedAt": "2026-11-26T08:46:01.493Z",
  "decks": 1178,
  "otherOnly": [
   {
@@ -505,7 +505,6 @@
    "decks": 50,
    "roles": [
     "removal",
-    "manalock",
     "engine",
     "reach",
     "beater"
@@ -1946,7 +1945,6 @@
    "decks": 50,
    "roles": [
     "removal",
-    "manalock",
     "engine",
     "reach",
     "beater"
