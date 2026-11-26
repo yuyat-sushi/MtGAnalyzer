@@ -35,6 +35,7 @@
     { id: 'wipe',       cat: 'disrupt',  label: '全体除去',     color: '#9b2f2f' },
     { id: 'counter',    cat: 'disrupt',  label: '打ち消し',     color: '#5a6fd6' },
     { id: 'redirect',   cat: 'disrupt',  label: '対象変更',     color: '#7385d9' },
+    { id: 'counterlock', cat: 'disrupt', label: '条件付き打ち消し（置物）', color: '#4a5fb6' },
     { id: 'discard',    cat: 'disrupt',  label: '手札破壊',     color: '#7a4fa0' },
     { id: 'abilitylock', cat: 'disrupt', label: '能力封じ',     color: '#4f6470' },
     { id: 'hate',       cat: 'disrupt',  label: 'ヘイト（ロック・課税）', color: '#5e7480' },
@@ -67,7 +68,7 @@
    */
   const PRIORITY = ['land',
     'rm_exile', 'rm_destroy', 'rm_damage', 'edict', 'bounce', 'steal', 'neutralize', 'landdestroy', 'wipe',
-    'counter', 'redirect', 'discard', 'abilitylock', 'hate', 'attacklock', 'gyhate',
+    'counter', 'redirect', 'counterlock', 'discard', 'abilitylock', 'hate', 'attacklock', 'gyhate',
     'cheatloop', 'cheat', 'extraturn', 'untap', 'copy',
     'draw', 'tutor', 'recursion', 'selfmill',
     'ramp',
@@ -158,6 +159,11 @@
           set.add('abilitylock');
           if (!ty.some(y => !/ability/.test(y))) set.delete('hate');
         }
+      });
+      // 条件付きで呪文を打ち消し続ける置物は、普通の打ち消しと分ける
+      t.tags.filter(x => x.effect === 'counter' && x.detail && x.detail.counterCond).forEach(() => {
+        set.add('counterlock');
+        if (!t.tags.some(x => x.effect === 'counter' && x.detail && !x.detail.counterCond)) set.delete('counter');
       });
       // 除去は処理（移動先）ごとに分ける。土地だけを対象にするものは土地破壊
       t.tags.filter(x => x.effect === 'removal').forEach(x => {

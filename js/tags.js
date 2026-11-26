@@ -228,6 +228,15 @@
       if (d.lock.length) d.cond = d.lock.map(lockLabel).join('、');
       return d;
     }
+    // 置物型の条件付き打ち消し（Chalice of the Void、Void Mirror、Vexing Bauble など）
+    if (effect === 'counter' && /whenever (a player|an opponent) casts (a|an) [^,]*?spell[^.]*?counter that spell/.test(line)) {
+      d.action = 'counter'; d.targeting = 'nontarget'; d.scope = 'all'; d.types = ['spell']; d.lock = [];
+      d.counterCond = /mana value equal to the number of charge counters|mana value equal to/.test(line) ? 'mv'
+        : /no colored mana was spent/.test(line) ? 'colorless'
+        : /no mana was spent/.test(line) ? 'free' : 'other';
+      d.cond = { mv: 'マナ総量が指定の値の呪文', colorless: '色マナを使わずに唱えた呪文', free: 'マナを使わずに唱えた呪文', other: '条件を満たした呪文' }[d.counterCond];
+      return d;
+    }
     if (effect === 'counter') {
       d.action = /\bexile (it|that spell|target spell)\b|counter target[^.]*?\. (if|exile)[^.]*?exile/.test(line) || /\bexile target spell\b/.test(line) ? 'counter_exile' : 'counter';
       d.types = [/counter target (noncreature )?spell/.test(line) ? (/noncreature/.test(line) ? 'noncreature spell' : 'spell') :

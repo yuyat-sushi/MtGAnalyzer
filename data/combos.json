@@ -1,5 +1,5 @@
 {
-  "_comment": "コンボの定義。pieces は必要なパーツのグループ（各グループのどれか1枚が必要）。requires はデッキの条件（maxLands: メインの土地の上限）。answers は止められる妨害の種類: stack=スタックで止める、hand=手札破壊、graveyard=墓地対策、artifact/enchantment/creature=そのパーマネントへの除去、tax=コスト増加、activated:<種類>=その種類のパーマネントの起動型能力を封じる（例 activated:artifact）、triggered:<出来事>:<種類>=その出来事による誘発を封じる（例 triggered:etb:creature）、triggered:other=誘発を打ち消す（Stifle など）。能力封じは範囲が合わないと効かない（Null Rod は Oops All Spells にはほぼ効かない）。",
+  "_comment": "コンボの定義。pieces は必要なパーツのグループ（各グループのどれか1枚が必要）。requires はデッキの条件（maxLands: メインの土地の上限）。answers は止められる妨害の種類: stack=スタックで止める、hand=手札破壊、graveyard=墓地対策、artifact/enchantment/creature=そのパーマネントへの除去、tax=コスト増加、activated:<種類>=その種類のパーマネントの起動型能力を封じる（例 activated:artifact）、triggered:<出来事>:<種類>=その出来事による誘発を封じる（例 triggered:etb:creature）、triggered:other=誘発を打ち消す（Stifle など）。counter:mv / counter:free / counter:colorless=置物型の条件付き打ち消し（Chalice of the Void・Vexing Bauble・Void Mirror）が効く場合。能力封じや条件付き打ち消しは範囲・条件が合わないと効かない（Null Rod は Oops All Spells にはほぼ効かない）。",
   "combos": [
     {
       "id": "belcher",
@@ -98,9 +98,11 @@
         "graveyard",
         "stack",
         "hand",
-        "triggered:other"
+        "triggered:other",
+        "counter:free",
+        "counter:mv"
       ],
-      "note": "続唱で Living End を唱え、サイクリングで墓地に置いたクリーチャーを一斉に戻す。続唱の誘発は Stifle などで打ち消せる"
+      "note": "続唱で Living End（マナ総量0）を唱え、サイクリングで墓地に置いたクリーチャーを一斉に戻す。続唱の誘発は Stifle などで打ち消せ、続唱で唱えた Living End は Vexing Bauble や X=0 の Chalice of the Void で打ち消せる"
     },
     {
       "id": "rubystorm",
@@ -121,9 +123,10 @@
       "answers": [
         "stack",
         "hand",
-        "tax"
+        "tax",
+        "counter:mv"
       ],
-      "note": "コスト軽減とマナ加速で呪文を連打し、ストームで勝つ"
+      "note": "コスト軽減とマナ加速で呪文を連打し、ストームで勝つ。1マナの呪文が多いため X=1 の Chalice of the Void が刺さる"
     },
     {
       "id": "amulet",

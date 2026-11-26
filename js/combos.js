@@ -18,7 +18,10 @@
   const ANSWER_JA = {
     stack: 'スタックで止める（打ち消しなど）', hand: '手札破壊', graveyard: '墓地対策', artifact: 'アーティファクト除去',
     enchantment: 'エンチャント除去', creature: 'クリーチャー除去', planeswalker: 'PW除去', land: '土地破壊',
-    tax: 'コスト増加'
+    tax: 'コスト増加',
+    'counter:mv': 'マナ総量を指定する打ち消し（Chalice of the Void など）',
+    'counter:free': 'マナを使わずに唱えた呪文の打ち消し（Vexing Bauble など）',
+    'counter:colorless': '色マナを使わずに唱えた呪文の打ち消し（Void Mirror など）'
   };
   const SRC_JA = { artifact: 'アーティファクト', creature: 'クリーチャー', planeswalker: 'PW', land: '土地', permanent: 'パーマネント', any: '能力' };
   const EVT_JA = { etb: '戦場に出たとき', dies: '死亡したとき', other: 'その他' };
@@ -93,7 +96,8 @@
       const d = t.detail;
       if (!d) continue;
       // 呪文を止められるものだけ「スタック」（Stifle のような能力だけの打ち消しは、能力封じの範囲として扱う）
-      if (['counter', 'counter_exile'].includes(d.action) && d.types.some(x => /spell/.test(x))) out.add('stack');
+      if (d.counterCond) out.add('counter:' + d.counterCond);   // 置物型の条件付き打ち消しは、条件に合うコンボにだけ効く
+      else if (['counter', 'counter_exile'].includes(d.action) && d.types.some(x => /spell/.test(x))) out.add('stack');
       if (d.action === 'redirect') out.add('stack');
       if (d.types.includes('hand')) out.add('hand');
       if (d.types.includes('graveyard')) out.add('graveyard');
