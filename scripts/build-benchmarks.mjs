@@ -246,9 +246,11 @@ async function main() {
         cats[info.cat] += e.qty;
         new Set(info.tags.map(t => `${t.effect}:${t.repeat ? 'r' : 'o'}`)).forEach(k => { tagCounts[k] = (tagCounts[k] || 0) + e.qty; });
         // インスタント速度のコンボパーツ（Goryo's Vengeance のような瞬間リアニメイト、インスタントの踏み倒しなど）
-        const instantCombo = info.speed === 'instant' && info.abilities.some(a =>
-          a.effects.some(x => ['cheat', 'extraturn', 'copy'].includes(x)) ||
-          (a.effects.includes('recursion') && /to the battlefield/.test(a.text)));
+        //   主な採用理由がコンボ/展開・リソースのカードに限る（Flusterstorm のような妨害、Aether Vial のような継続的な展開は除く）
+        const instantCombo = info.speed === 'instant' && (info.cat === 'combo' || info.cat === 'resource') && !r.includes('cheatloop') &&
+          info.abilities.some(a => a.effects.some(x => ['cheat', 'extraturn'].includes(x)) ||
+            (a.effects.includes('copy') && info.cat === 'combo') ||
+            (a.effects.includes('recursion') && /to the battlefield/.test(a.text)));
         cards.push({ name: card.name, qty: e.qty, roles: r, cat: info.cat, tags: info.tags, power: card.power, typeLine: card.typeLine, instantCombo });
         if (!r.includes('land')) {
           nonLand += e.qty; mvSum += card.cmc * e.qty;
@@ -321,9 +323,9 @@ async function main() {
       return {
         name: a.name, share: a.share,
         artifact: a.perm.artifact.median >= 8,
-        enchantment: a.perm.enchantment.median >= 4,
-        planeswalker: a.perm.planeswalker.median >= 2,
-        graveyard: (a.roles.recursion.median + a.roles.selfmill.median) >= 6,
+        enchantment: a.perm.enchantment.median >= 6,
+        planeswalker: a.perm.planeswalker.median >= 3,
+        graveyard: a.roles.recursion.median >= 4 || (a.roles.recursion.median + a.roles.selfmill.median) >= 8,
         instantCombo: comboCards
       };
     });
