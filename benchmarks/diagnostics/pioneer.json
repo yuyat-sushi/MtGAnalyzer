@@ -254,7 +254,7 @@
     "decks": 51,
     "oracle": "Exile target monocolored permanent.",
     "detail": [
-     "removal:exile:creature/artifact/enchantment/planeswalker/battle/land"
+     "removal:exile:creature/artifact/enchantment/planeswalker/battle"
     ]
    },
    {
@@ -571,7 +571,7 @@
     "oracle": "Destroy all creatures. Lands you control don't untap during your next untap step.",
     "detail": [
      "wipe:destroy:creature",
-     "hate:lock:mana/untap"
+     "hate:lock:other"
     ]
    },
    {
@@ -1202,14 +1202,6 @@
     ]
    },
    {
-    "name": "Vanishing Verse",
-    "decks": 51,
-    "oracle": "Exile target monocolored permanent.",
-    "detail": [
-     "removal:exile:creature/artifact/enchantment/planeswalker/battle/land"
-    ]
-   },
-   {
     "name": "Divide by Zero",
     "decks": 42,
     "oracle": "Return target spell or permanent with mana value 1 or greater to its owner's hand.\nLearn. (You may reveal a Lesson card you own from outside the game and put it into your hand, or discard a card to draw a card.)",
@@ -1268,15 +1260,6 @@
     ]
    },
    {
-    "name": "Bontu's Last Reckoning",
-    "decks": 1,
-    "oracle": "Destroy all creatures. Lands you control don't untap during your next untap step.",
-    "detail": [
-     "wipe:destroy:creature",
-     "hate:lock:mana/untap"
-    ]
-   },
-   {
     "name": "Crumble to Dust",
     "decks": 1,
     "oracle": "Devoid (This card has no color.)\nExile target nonbasic land. Search its controller's graveyard, hand, and library for any number of cards with the same name as that land and exile them. Then that player shuffles.",
@@ -1285,20 +1268,10 @@
     ]
    }
   ],
-  "combat": [
-   {
-    "name": "Bontu's Last Reckoning",
-    "decks": 1,
-    "oracle": "Destroy all creatures. Lands you control don't untap during your next untap step.",
-    "detail": [
-     "wipe:destroy:creature",
-     "hate:lock:mana/untap"
-    ]
-   }
-  ]
+  "combat": []
  },
  "format": "Pioneer",
- "generatedAt": "2026-11-26T08:51:53.703Z",
+ "generatedAt": "2026-11-26T08:53:18.011Z",
  "decks": 1178,
  "otherOnly": [
   {
