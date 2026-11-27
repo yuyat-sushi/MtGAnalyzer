@@ -208,6 +208,14 @@
     ]
    },
    {
+    "name": "Boseiju, Who Endures",
+    "decks": 1125,
+    "oracle": "{T}: Add {G}.\nChannel — {1}{G}, Discard this card: Destroy target artifact, enchantment, or nonbasic land an opponent controls. That player may search their library for a land card with a basic land type, put it onto the battlefield, then shuffle. This ability costs {1} less to activate for each legendary creature you control.",
+    "detail": [
+     "removal:destroy:artifact/enchantment/land"
+    ]
+   },
+   {
     "name": "Fatal Push",
     "decks": 880,
     "oracle": "Destroy target creature if it has mana value 2 or less.\nRevolt — Destroy that creature if it has mana value 4 or less instead if a permanent left the battlefield under your control this turn.",
@@ -245,6 +253,14 @@
     "oracle": "Each opponent can cast spells only any time they could cast a sorcery.\n+1: Until your next turn, you may cast sorcery spells as though they had flash.\n−3: Return up to one target artifact, creature, or enchantment to its owner's hand. Draw a card.",
     "detail": [
      "removal:bounce:creature/artifact/enchantment"
+    ]
+   },
+   {
+    "name": "Otawara, Soaring City",
+    "decks": 706,
+    "oracle": "{T}: Add {U}.\nChannel — {3}{U}, Discard this card: Return target artifact, creature, enchantment, or planeswalker to its owner's hand. This ability costs {1} less to activate for each legendary creature you control.",
+    "detail": [
+     "removal:bounce:creature/artifact/enchantment/planeswalker"
     ]
    },
    {
@@ -508,22 +524,6 @@
     "detail": [
      "removal:damage:creature/planeswalker/battle/player"
     ]
-   },
-   {
-    "name": "Bridgeworks Battle // Tanglespan Bridgeworks",
-    "decks": 75,
-    "oracle": "Target creature you control gets +2/+2 until end of turn. It fights up to one target creature you don't control. (Each deals damage equal to its power to the other.)\n//\nAs this land enters, you may pay 3 life. If you don't, it enters tapped.\n{T}: Add {G}.",
-    "detail": [
-     "removal:damage:creature"
-    ]
-   },
-   {
-    "name": "Galvanic Blast",
-    "decks": 64,
-    "oracle": "Galvanic Blast deals 2 damage to any target.\nMetalcraft — Galvanic Blast deals 4 damage instead if you control three or more artifacts.",
-    "detail": [
-     "removal:damage:creature/planeswalker/battle/player"
-    ]
    }
   ],
   "wipe": [
@@ -648,6 +648,14 @@
     "detail": [
      "wipe:damage:creature",
      "wipe:destroy:artifact"
+    ]
+   },
+   {
+    "name": "Blast Zone",
+    "decks": 7,
+    "oracle": "This land enters with a charge counter on it.\n{T}: Add {C}.\n{X}{X}, {T}: Put X charge counters on this land.\n{3}, {T}, Sacrifice this land: Destroy each nonland permanent with mana value equal to the number of charge counters on this land.",
+    "detail": [
+     "wipe:destroy:creature/artifact/enchantment/planeswalker/battle"
     ]
    },
    {
@@ -1139,6 +1147,14 @@
     "detail": [
      "hate:lock:triggered ability"
     ]
+   },
+   {
+    "name": "Petrified Hamlet",
+    "decks": 1,
+    "oracle": "When this land enters, choose a land card name.\nActivated abilities of sources with the chosen name can't be activated unless they're mana abilities.\nLands with the chosen name have \"{T}: Add {C}.\"\n{T}: Add {C}.",
+    "detail": [
+     "hate:lock:activated ability"
+    ]
    }
   ],
   "discard": [
@@ -1519,6 +1535,14 @@
   ],
   "manalock": [
    {
+    "name": "Boseiju, Who Endures",
+    "decks": 1125,
+    "oracle": "{T}: Add {G}.\nChannel — {1}{G}, Discard this card: Destroy target artifact, enchantment, or nonbasic land an opponent controls. That player may search their library for a land card with a basic land type, put it onto the battlefield, then shuffle. This ability costs {1} less to activate for each legendary creature you control.",
+    "detail": [
+     "removal:destroy:artifact/enchantment/land"
+    ]
+   },
+   {
     "name": "Sowing Mycospawn",
     "decks": 519,
     "oracle": "Devoid (This card has no color.)\nKicker {1}{C} (You may pay an additional {1}{C} as you cast this spell.)\nWhen you cast this spell, search your library for a land card, put it onto the battlefield, then shuffle.\nWhen you cast this spell, if it was kicked, exile target land.",
@@ -1551,11 +1575,35 @@
     ]
    },
    {
+    "name": "Field of Ruin",
+    "decks": 82,
+    "oracle": "{T}: Add {C}.\n{2}, {T}, Sacrifice this land: Destroy target nonbasic land an opponent controls. Each player searches their library for a basic land card, puts it onto the battlefield, then shuffles.",
+    "detail": [
+     "removal:destroy:land"
+    ]
+   },
+   {
     "name": "Harbinger of the Seas",
     "decks": 76,
     "oracle": "Nonbasic lands are Islands.",
     "detail": [
      "hate:lock:mana"
+    ]
+   },
+   {
+    "name": "Ghost Quarter",
+    "decks": 57,
+    "oracle": "{T}: Add {C}.\n{T}, Sacrifice this land: Destroy target land. Its controller may search their library for a basic land card, put it onto the battlefield, then shuffle.",
+    "detail": [
+     "removal:destroy:land"
+    ]
+   },
+   {
+    "name": "Demolition Field",
+    "decks": 50,
+    "oracle": "{T}: Add {C}.\n{2}, {T}, Sacrifice this land: Destroy target nonbasic land an opponent controls. That land's controller may search their library for a basic land card, put it onto the battlefield, then shuffle. You may search your library for a basic land card, put it onto the battlefield, then shuffle.",
+    "detail": [
+     "removal:destroy:land"
     ]
    },
    {
@@ -1641,6 +1689,14 @@
     ]
    },
    {
+    "name": "Tide Shaper",
+    "decks": 6,
+    "oracle": "Kicker {1} (You may pay an additional {1} as you cast this spell.)\nWhen this creature enters, if it was kicked, target land becomes an Island for as long as this creature remains on the battlefield.\nThis creature gets +1/+1 as long as an opponent controls an Island.",
+    "detail": [
+     "hate:lock:mana"
+    ]
+   },
+   {
     "name": "Mwonvuli Acid-Moss",
     "decks": 6,
     "oracle": "Destroy target land. Search your library for a Forest card, put that card onto the battlefield tapped, then shuffle.",
@@ -1655,6 +1711,15 @@
     "detail": [
      "counter:counter:spell",
      "removal:bounce:creature/artifact/enchantment/planeswalker/battle/land"
+    ]
+   },
+   {
+    "name": "Damping Sphere",
+    "decks": 3,
+    "oracle": "If a land is tapped for two or more mana, it produces {C} instead of any other type and amount.\nEach spell a player casts costs {1} more to cast for each other spell that player has cast this turn.",
+    "detail": [
+     "hate:lock:mana",
+     "hate:lock:tax"
     ]
    },
    {
@@ -1697,6 +1762,14 @@
     "detail": [
      "removal:destroy:land"
     ]
+   },
+   {
+    "name": "Spreading Seas",
+    "decks": 1,
+    "oracle": "Enchant land\nWhen this Aura enters, draw a card.\nEnchanted land is an Island.",
+    "detail": [
+     "hate:lock:mana"
+    ]
    }
   ],
   "combat": [
@@ -1720,7 +1793,7 @@
   ]
  },
  "format": "Modern",
- "generatedAt": "2026-11-27T14:42:25.530Z",
+ "generatedAt": "2026-11-27T15:13:21.832Z",
  "decks": 4870,
  "otherOnly": [
   {
@@ -1893,6 +1966,18 @@
   }
  ],
  "manyRoles": [
+  {
+   "name": "Boseiju, Who Endures",
+   "decks": 1125,
+   "roles": [
+    "land",
+    "removal",
+    "manalock"
+   ],
+   "tags": [
+    "removal@activated"
+   ]
+  },
   {
    "name": "Solitude",
    "decks": 873,
@@ -2292,20 +2377,6 @@
     "wipe@static",
     "topselect@activated",
     "draw@activated"
-   ]
-  },
-  {
-   "name": "Wrenn and Six",
-   "decks": 100,
-   "roles": [
-    "removal",
-    "recursion",
-    "reach"
-   ],
-   "tags": [
-    "recursion@loyalty",
-    "drain@loyalty",
-    "removal@loyalty"
    ]
   }
  ],

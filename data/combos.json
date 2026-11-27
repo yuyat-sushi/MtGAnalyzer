@@ -146,7 +146,8 @@
         "artifact",
         "creature",
         "stack",
-        "hand"
+        "hand",
+        "nonbasic"
       ],
       "note": "バウンスランドと Amulet of Vigor で大量のマナを出し、早いターンに大型を出す"
     },

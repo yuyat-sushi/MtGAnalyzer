@@ -180,6 +180,7 @@
       m = Math.max(m, n - p.count.cost);
     }
     if (p.cond && slot && slot.condOn) m = Math.max(m, p.cond.amt);
+    if (p.cap1 && m >= 2) m = 1; // Damping Sphere: 2マナ以上出る土地は{C}1つ
     return m;
   }
   // 戦場の土地のうち、このターン使えるものから出せるマナの合計
@@ -303,10 +304,20 @@
   function permOf(c) {
     const front = frontType(c);
     if (/\b(Instant|Sorcery)\b/.test(front)) {
-      return { types: [], etbTokens: spellTokens(c), turnTokens: [] };
+      return { types: [], etbTokens: spellTokens(c), turnTokens: [], landFx: null, reduce: [] };
     }
     const types = ['Creature', 'Artifact', 'Enchantment', 'Planeswalker', 'Battle'].filter(t => new RegExp(`\\b${t}\\b`).test(front)).map(t => t.toLowerCase());
-    const out = { types, power: ptOf(c.power), toughness: ptOf(c.toughness), etbTokens: [], turnTokens: [] };
+    const out = { types, power: ptOf(c.power), toughness: ptOf(c.toughness), etbTokens: [], turnTokens: [], landFx: null, reduce: [] };
+    const text = frontOracle(c).toLowerCase();
+    // 土地への常在効果（自分の土地にもかかる）
+    if (/nonbasic lands are mountains/.test(text)) out.landFx = 'moon';
+    else if (/nonbasic lands don't untap/.test(text)) out.landFx = 'b2b';
+    else if (/tapped for two or more mana/.test(text)) out.landFx = 'sphere';
+    // コスト軽減（「インスタントとソーサリー呪文は{1}少なくなる」など。自分自身の軽減は除く）
+    for (const line of text.split('\n')) {
+      const m = line.match(/^([^.]*?)spells you cast cost \{(\d)\} less to cast/);
+      if (m && !/this spell/.test(m[1])) out.reduce.push({ n: +m[2], kw: m[1].replace(/\b(and|or|a|an|the)\b/g, ' ').split(/[\s,]+/).filter(Boolean) });
+    }
     if (Tags) {
       const a = Tags.analyze(c);
       a.abilities.forEach(ab => {
@@ -342,13 +353,46 @@
     const rocks = []; // マナを出すパーマネント {amt, colors, sick, used}
     const perms = []; // 起動型のサーチを持つパーマネント（Expedition Map など）
     const tron = deck.tronTypes;
-    const g = { mana: [], idle: [], unused: [], held: [], inHand: [], cast: {}, seen: {}, board: [], combo: [], names: [] };
+    const g = { mana: [], idle: [], unused: [], held: [], inHand: [], cast: {}, seen: {}, board: [], combo: [], names: [], lands: [], groups: [] };
     // 盤面（土地以外）: クリーチャー {power, toughness}、それ以外のパーマネントの数、毎ターン出るトークン
     const board = { creatures: [], artifact: 0, enchantment: 0, planeswalker: 0, battle: 0, makers: [], names: { artifact: [], enchantment: [], planeswalker: [] } };
     const seenNames = new Set();
+    // 自分の土地にかかる効果（自分の Blood Moon 系）とコスト軽減
+    const fx = { moon: false, b2b: false, sphere: false };
+    const reducers = [];
+    const COLOR_WORD = { white: 'W', blue: 'U', black: 'B', red: 'R', green: 'G' };
+    const effCost = c => {
+      if (!reducers.length || c.land) return c.cost;
+      const front = frontType(c.card).toLowerCase();
+      const mc = String(c.card.manaCost || '').split('//')[0];
+      let less = 0;
+      for (const r of reducers) {
+        const ok = r.kw.every(w => {
+          if (w === 'colorless') return !/[WUBRG]/.test(mc);
+          if (COLOR_WORD[w]) return mc.includes(COLOR_WORD[w]);
+          if (w === 'noncreature') return !/creature/.test(front);
+          if (/^(instant|sorcery|artifact|creature|enchantment|planeswalker)$/.test(w)) return new RegExp(w).test(front) || (r.kw.length > 1 && r.kw.some(x => x !== w && new RegExp(x).test(front)));
+          return true;
+        });
+        if (ok) less += r.n;
+      }
+      return less ? { generic: Math.max(0, c.cost.generic - less), pips: c.cost.pips } : c.cost;
+    };
+    // 土地のプロフィールを効果に合わせて変える（元のプロフィールは orig に残す）
+    const MOON_P = { name: 'Mountain', typeStr: 'Land — Mountain', every: false, base: 1, tron: null, count: null, cond: null, tapped: 'no', bounce: false, fetch: null, colors: ['R'] };
+    const fxProfile = p => {
+      const basic = /\bBasic\b/.test(p.typeStr);
+      if (fx.moon && !basic) p = Object.assign({}, MOON_P, { tapped: p.tapped });
+      if (fx.sphere) p = Object.assign({}, p, { cap1: true });
+      if (fx.b2b && !basic) p = Object.assign({}, p, { noUntap: true });
+      return p;
+    };
+    const applyFx = () => bf.forEach(l => { l.p = fxProfile(l.orig || l.p); });
     const addPerm = c => {
       const pm = c.perm;
       if (!pm) return;
+      if (pm.landFx && !fx[pm.landFx]) { fx[pm.landFx] = true; applyFx(); }
+      (pm.reduce || []).forEach(r => reducers.push(r));
       const front = String(c.name).split(' // ')[0];
       const tokName = t => `${t.power}/${t.toughness} トークン（${front}）`;
       pm.etbTokens.forEach(t => board.creatures.push({ ...t, name: tokName(t) }));
@@ -442,7 +486,7 @@
       return best;
     };
     const takeFromLib = i => { const c = lib.splice(i, 1)[0]; shuffle(lib, rng); return c; };
-    const newSlot = (c, sick) => ({ p: c.p, sick, card: c, used: 0, condOn: !!(c.p.cond && rng() < deck.ratio(c.p.cond.kw)) });
+    const newSlot = (c, sick) => ({ p: fxProfile(c.p), orig: c.p, sick, card: c, used: 0, condOn: !!(c.p.cond && rng() < deck.ratio(c.p.cond.kw)) });
 
     // ---- 土地 ----
     const putLand = c => {
@@ -533,7 +577,7 @@
       if (!(c.name in g.cast)) g.cast[c.name] = turn;
     };
     const castFromHand = c => {
-      if (!pay(c.cost)) return false;
+      if (!pay(effCost(c))) return false;
       hand.splice(hand.indexOf(c), 1);
       record(c);
       // 使い捨てのキャントリップ（Chromatic Star など）と、起動して生け贄にするサーチは盤面に残さない
@@ -547,7 +591,7 @@
       const pi = perms.findIndex(x => x.ready && useful(x.spec) && canPay(GENERIC(x.spec.ability.cost)));
       if (pi >= 0) { const x = perms.splice(pi, 1)[0]; pay(GENERIC(x.spec.ability.cost)); castThisTurn++; doSearch(x.spec); return true; }
       // 2. 手札の土地サーチ
-      const sc = hand.find(c => c.search && useful(c.search) && canPay(c.cost));
+      const sc = hand.find(c => c.search && useful(c.search) && canPay(effCost(c)));
       if (sc) {
         castFromHand(sc);
         if (sc.search.ability) {
@@ -558,10 +602,10 @@
         return true;
       }
       // 3. マナを出すパーマネント
-      const rc = hand.find(c => c.rock && canPay(c.cost));
+      const rc = hand.find(c => c.rock && canPay(effCost(c)));
       if (rc) { castFromHand(rc); rocks.push({ amt: rc.rock.amt, colors: rc.rock.colors, sick: rc.rock.creature, used: 0 }); return true; }
       // 4. 土地がないときの占術・キャントリップ
-      const digs = hand.filter(c => c.dig && !c.search && (c.dig.draw || c.dig.scry || c.dig.dig) && canPay(c.cost));
+      const digs = hand.filter(c => c.dig && !c.search && (c.dig.draw || c.dig.scry || c.dig.dig) && canPay(effCost(c)));
       const castDig = c => {
         castFromHand(c);
         const d = c.dig;
@@ -571,7 +615,7 @@
       };
       if (!landsInHand() && landDrop && digs.length) return castDig(digs[0]);
       // 5. 主力 → それ以外（妨害は構えるので唱えない）。重いものから唱えてマナを使い切る
-      const spells = hand.filter(c => !c.land && !c.disrupt && !c.rock && !c.search && !c.dig && canPay(c.cost));
+      const spells = hand.filter(c => !c.land && !c.disrupt && !c.rock && !c.search && !c.dig && canPay(effCost(c)));
       if (spells.length) {
         spells.sort((a, b) => (b.key - a.key) || (b.cmc - a.cmc));
         const c = spells[0];
@@ -595,7 +639,7 @@
     });
 
     for (turn = 1; turn <= turns; turn++) {
-      bf.forEach(l => { l.sick = false; l.used = 0; l.condOn = !!(l.p.cond && rng() < deck.ratio(l.p.cond.kw)); });
+      bf.forEach(l => { l.sick = !!l.p.noUntap; l.used = 0; l.condOn = !!(l.p.cond && rng() < deck.ratio(l.p.cond.kw)); });
       rocks.forEach(r => { r.sick = false; r.used = 0; });
       perms.forEach(x => { x.ready = true; });
       floated = null; landDrop = true; castThisTurn = 0; otherSpent = 0;
@@ -612,7 +656,7 @@
       const left = avail();
       // 主力以外の呪文を我慢すれば構えられたか（使ったマナを好きな色で戻して判定する近似）
       if (otherSpent) floated = { amt: (floated ? floated.amt - floated.used : 0) + otherSpent, used: 0 };
-      const held = hand.some(c => c.disrupt && canPay(c.cost));
+      const held = hand.some(c => c.disrupt && canPay(effCost(c)));
       if (otherSpent) { floated.amt -= otherSpent; if (floated.amt <= 0) floated = null; }
       hand.forEach(c => { if (!c.land && !(c.name in g.seen)) g.seen[c.name] = turn; });
       hand.forEach(c => seenNames.add(nk(c.name)));
@@ -624,7 +668,30 @@
         t1: cr.filter(x => x.toughness <= 1).length, t2: cr.filter(x => x.toughness <= 2).length, t3: cr.filter(x => x.toughness <= 3).length,
         artifact: board.artifact, enchantment: board.enchantment, planeswalker: board.planeswalker
       });
-      g.names.push({ creature: new Set(cr.map(x => x.name)), artifact: new Set(board.names.artifact), enchantment: new Set(board.names.enchantment), planeswalker: new Set(board.names.planeswalker) });
+      // 土地: 枚数・基本土地・名前と、土地への対策が効いたときのマナ（元のプロフィールで計算）
+      const rockMana = rocks.reduce((s, r) => s + (r.sick ? 0 : r.amt), 0);
+      const origBf = bf.map(l => ({ p: l.orig || l.p, sick: l.sick, condOn: l.condOn }));
+      const isBasic = l => /\bBasic\b/.test(l.p.typeStr);
+      const live = origBf.filter(l => !l.sick);
+      const moonBf = origBf.map(l => isBasic(l) ? l : { p: MOON_P, sick: l.sick });
+      const alt = {
+        normal: manaOf(origBf) + rockMana,
+        moon: manaOf(moonBf) + rockMana,
+        sphere: live.reduce((s, l) => s + Math.min(landMana(l.p, origBf, l), 1), 0) + rockMana,
+        b2b: live.filter(isBasic).reduce((s, l) => s + landMana(l.p, origBf, l), 0) + rockMana,
+        ld: (origBf.length ? Math.min(...origBf.map((_, i) => manaOf(origBf.filter((__, j) => j !== i)))) : 0) + rockMana
+      };
+      g.lands.push({ n: bf.length, basic: origBf.filter(isBasic).length, alt });
+      const landNames = new Set(bf.map(l => String((l.card && l.card.name) || l.p.name).split(' // ')[0]));
+      // 対策札のグループ: そのターンに手札にあって唱えられる（またはすでに唱えた）か
+      const grp = {};
+      for (const [gname, list] of Object.entries(deck.groups || {})) {
+        const set = new Set(list.map(nk));
+        grp[gname] = hand.some(c => set.has(nk(c.name)) && canPay(effCost(c))) || Object.keys(g.cast).some(n => set.has(nk(n))) ||
+          bf.some(l => l.card && set.has(nk(l.card.name)));
+      }
+      g.groups.push(grp);
+      g.names.push({ land: landNames, creature: new Set(cr.map(x => x.name)), artifact: new Set(board.names.artifact), enchantment: new Set(board.names.enchantment), planeswalker: new Set(board.names.planeswalker) });
       g.combo.push((deck.combos || []).some(cb => cb.pieces.every(gr => gr.some(n => seenNames.has(nk(n))))));
       g.mana.push(total);
       g.unused.push(held ? 0 : left);
@@ -643,7 +710,10 @@
     const BK = ['creatures', 'power', 'toughness', 't1', 't2', 't3', 'artifact', 'enchantment', 'planeswalker'];
     const board = Array.from({ length: turns }, () => Object.fromEntries(BK.map(k => [k, 0])));
     const wide = Array(turns).fill(0), combo = Array(turns).fill(0);
-    const NT = ['creature', 'artifact', 'enchantment', 'planeswalker'];
+    const NT = ['land', 'creature', 'artifact', 'enchantment', 'planeswalker'];
+    const AK = ['normal', 'moon', 'sphere', 'b2b', 'ld'];
+    const landsAgg = Array.from({ length: turns }, () => ({ n: 0, basic: 0, alt: Object.fromEntries(AK.map(k => [k, 0])) }));
+    const groupsAgg = {};
     const names = Object.fromEntries(NT.map(k => [k, {}])); // 種類 → カード名 → ターンごとの「戦場にある」回数
     const keys = new Set(keyNames);
     for (let n = 0; n < iters; n++) {
@@ -656,6 +726,8 @@
       r.board.forEach((b, t) => { BK.forEach(k => { board[t][k] += b[k]; }); if (b.creatures >= 3) wide[t]++; });
       r.combo.forEach((x, t) => { if (x) combo[t]++; });
       r.names.forEach((nm, t) => NT.forEach(k => nm[k].forEach(n => { (names[k][n] = names[k][n] || Array(turns).fill(0))[t]++; })));
+      r.lands.forEach((l, t) => { landsAgg[t].n += l.n; landsAgg[t].basic += l.basic; AK.forEach(k => { landsAgg[t].alt[k] += l.alt[k]; }); });
+      r.groups.forEach((gr, t) => Object.entries(gr).forEach(([k, v]) => { (groupsAgg[k] = groupsAgg[k] || Array(turns).fill(0)); if (v) groupsAgg[k][t]++; }));
       for (const [name, t] of Object.entries(r.seen)) {
         (seenBy[name] = seenBy[name] || Array(turns).fill(0));
         for (let k = t - 1; k < turns; k++) seenBy[name][k]++;
@@ -676,7 +748,11 @@
       board: board.map(b => Object.fromEntries(BK.map(k => [k, b[k] / iters]))),
       wide: f(wide), combo: f(combo),
       // 種類ごとに、そのターンに戦場に1枚以上ある確率（カード名・トークンは「P/T トークン（出したカード）」）
-      names: Object.fromEntries(NT.map(k => [k, Object.fromEntries(Object.entries(names[k]).map(([n, v]) => [n, f(v)]))]))
+      names: Object.fromEntries(NT.map(k => [k, Object.fromEntries(Object.entries(names[k]).map(([n, v]) => [n, f(v)]))])),
+      // 土地の平均枚数・基本土地の枚数と、Blood Moon／Damping Sphere／Back to Basics／土地1枚破壊のときの出せるマナ
+      lands: landsAgg.map(l => ({ n: l.n / iters, basic: l.basic / iters, alt: Object.fromEntries(AK.map(k => [k, l.alt[k] / iters])) })),
+      // 対策札のグループを、そのターンまでに手札に持って唱えられる率
+      groups: Object.fromEntries(Object.entries(groupsAgg).map(([k, v]) => [k, f(v)]))
     };
   }
 
@@ -701,6 +777,7 @@
     const autoKey = false;
     const deck = prepare(entries, keyNames);
     deck.combos = opts.combos || []; // [{ name, pieces: [[カード名…], …] }]
+    deck.groups = opts.groups || {};  // { グループ名: [カード名…] }（対策札をそのターンに唱えられる率を見る）
     if (deck.cards.length < 8 || !deck.lands.length) return null;
     const seed = hashStr(entries.filter(e => e.card).map(e => e.qty + e.card.name).sort().join('|') + '#' + keyNames.join('|'));
     const play = run(deck, true, turns, iters, seed, keyNames);

@@ -885,6 +885,14 @@
   ],
   "ability": [
    {
+    "name": "Petrified Hamlet",
+    "decks": 305,
+    "oracle": "When this land enters, choose a land card name.\nActivated abilities of sources with the chosen name can't be activated unless they're mana abilities.\nLands with the chosen name have \"{T}: Add {C}.\"\n{T}: Add {C}.",
+    "detail": [
+     "hate:lock:activated ability"
+    ]
+   },
+   {
     "name": "Clarion Conqueror",
     "decks": 105,
     "oracle": "Flying\nActivated abilities of artifacts, creatures, and planeswalkers can't be activated.",
@@ -1129,6 +1137,14 @@
   ],
   "manalock": [
    {
+    "name": "Demolition Field",
+    "decks": 260,
+    "oracle": "{T}: Add {C}.\n{2}, {T}, Sacrifice this land: Destroy target nonbasic land an opponent controls. That land's controller may search their library for a basic land card, put it onto the battlefield, then shuffle. You may search your library for a basic land card, put it onto the battlefield, then shuffle.",
+    "detail": [
+     "removal:destroy:land"
+    ]
+   },
+   {
     "name": "Magmatic Hellkite",
     "decks": 99,
     "oracle": "Flying\nWhen this creature enters, destroy target nonbasic land an opponent controls. Its controller searches their library for a basic land card, puts it onto the battlefield tapped with a stun counter on it, then shuffles. (If a permanent with a stun counter would become untapped, remove one from it instead.)",
@@ -1191,7 +1207,7 @@
   ]
  },
  "format": "Standard",
- "generatedAt": "2026-11-27T14:42:25.530Z",
+ "generatedAt": "2026-11-27T15:13:21.832Z",
  "decks": 2432,
  "otherOnly": [
   {

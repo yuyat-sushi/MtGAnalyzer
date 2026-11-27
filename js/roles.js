@@ -131,6 +131,32 @@
     return ROLE_MAP[primary(roles)].cat;
   }
 
+  // 妨害は「どこに干渉するか」で小カテゴリを決める（処理・形態・条件は属性として tags.detail に残す）
+  function addDisruptRoles(set, tagList) {
+    const NONLAND = ['creature', 'artifact', 'enchantment', 'planeswalker', 'battle', 'player'];
+    for (const x of tagList) {
+      const d = x.detail;
+      if (!d) continue;
+      if (x.effect === 'removal' || x.effect === 'wipe') {
+        // 土地以外を巻き込めば除去、土地を巻き込めばマナ妨害（両方なら両方。Armageddon はマナ妨害だけ）
+        if (d.types.some(y => NONLAND.includes(y))) set.add(x.effect === 'wipe' ? 'wipe' : 'removal');
+        if (d.types.includes('land')) set.add('manalock');
+        if (d.types.includes('spell')) set.add('spell');
+      } else if (x.effect === 'counter') {
+        if (d.types.some(y => /spell/.test(y))) set.add('spell');
+        if (d.types.some(y => /ability/.test(y))) set.add('ability');
+      } else if (x.effect === 'hate') {
+        const ty = d.types;
+        if (ty.some(y => /ability/.test(y))) set.add('ability');
+        if (ty.some(y => ['spell', 'tax', 'library', 'other'].includes(y))) set.add('spell');
+        if (ty.includes('mana')) set.add('manalock');
+        if (ty.includes('untap')) set.add('combat');   // クリーチャーがタップ状態で出る・アンタップしない
+        if (ty.includes('graveyard')) set.add('gyhate');
+        if (ty.includes('attack')) set.add('combat');
+      }
+    }
+  }
+
   /** card → { roles(小カテゴリ), cat(大カテゴリ), tags, abilities, override }（結果はカードごとにキャッシュ） */
   function inspect(card) {
     if (!card) return { roles: ['other'], cat: 'other', tags: [], abilities: [], tokens: [], speed: 'sorcery', override: null };
@@ -139,36 +165,19 @@
     const front = frontType(card);
     let roles, tags = [], abilities = [], tokens = [], speed = 'sorcery';
     if (/\bLand\b/.test(front)) {
-      roles = ['land'];
+      // 土地も、マナ以外の妨害能力（Wasteland・Boseiju・Otawara など）があれば小カテゴリに付ける。大カテゴリは土地のまま
+      const t = Tags.analyze(card);
+      tags = t.tags.filter(x => x.effect !== 'mana' && x.detail); abilities = t.abilities; speed = t.speed;
+      const set = new Set(['land']);
+      addDisruptRoles(set, tags);
+      roles = PRIORITY.filter(r => set.has(r));
     } else {
       const t = Tags.analyze(card);
       tags = t.tags; abilities = t.abilities; tokens = t.tokens; speed = t.speed;
       const set = new Set();
       const isCreature = /\bCreature\b/.test(tl);
       t.tags.forEach(x => { if (EFFECT_ROLE[x.effect] && x.effect !== 'mana') set.add(EFFECT_ROLE[x.effect]); });
-      // 妨害は「どこに干渉するか」で小カテゴリを決める（処理・形態・条件は属性として tags.detail に残す）
-      const NONLAND = ['creature', 'artifact', 'enchantment', 'planeswalker', 'battle', 'player'];
-      for (const x of t.tags) {
-        const d = x.detail;
-        if (!d) continue;
-        if (x.effect === 'removal' || x.effect === 'wipe') {
-          // 土地以外を巻き込めば除去、土地を巻き込めばマナ妨害（両方なら両方。Armageddon はマナ妨害だけ）
-          if (d.types.some(y => NONLAND.includes(y))) set.add(x.effect === 'wipe' ? 'wipe' : 'removal');
-          if (d.types.includes('land')) set.add('manalock');
-          if (d.types.includes('spell')) set.add('spell');
-        } else if (x.effect === 'counter') {
-          if (d.types.some(y => /spell/.test(y))) set.add('spell');
-          if (d.types.some(y => /ability/.test(y))) set.add('ability');
-        } else if (x.effect === 'hate') {
-          const ty = d.types;
-          if (ty.some(y => /ability/.test(y))) set.add('ability');
-          if (ty.some(y => ['spell', 'tax', 'library', 'other'].includes(y))) set.add('spell');
-          if (ty.includes('mana')) set.add('manalock');
-          if (ty.includes('untap')) set.add('combat');   // クリーチャーがタップ状態で出る・アンタップしない
-          if (ty.includes('graveyard')) set.add('gyhate');
-          if (ty.includes('attack')) set.add('combat');
-        }
-      }
+      addDisruptRoles(set, t.tags);
       // 踏み倒し：起動型・誘発型・常在型で何度も使えるものは「継続的な踏み倒し」（Aether Vial、Sneak Attack、Omniscience など）
       if (t.tags.some(x => x.effect === 'cheat' && x.repeat)) {
         set.add('cheatloop');

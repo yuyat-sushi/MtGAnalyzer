@@ -229,6 +229,14 @@
     ]
    },
    {
+    "name": "Boseiju, Who Endures",
+    "decks": 493,
+    "oracle": "{T}: Add {G}.\nChannel — {1}{G}, Discard this card: Destroy target artifact, enchantment, or nonbasic land an opponent controls. That player may search their library for a land card with a basic land type, put it onto the battlefield, then shuffle. This ability costs {1} less to activate for each legendary creature you control.",
+    "detail": [
+     "removal:destroy:artifact/enchantment/land"
+    ]
+   },
+   {
     "name": "Kozilek's Command",
     "decks": 355,
     "oracle": "Choose two —\n• Target player creates X 0/1 colorless Eldrazi Spawn creature tokens with \"Sacrifice this token: Add {C}.\"\n• Target player scries X, then draws a card.\n• Exile target creature with mana value X or less.\n• Exile up to X target cards from graveyards.",
@@ -299,6 +307,14 @@
     "oracle": "Lightning Bolt deals 3 damage to any target.",
     "detail": [
      "removal:damage:creature/planeswalker/battle/player"
+    ]
+   },
+   {
+    "name": "Lazotep Quarry",
+    "decks": 162,
+    "oracle": "{T}: Add {C}.\n{T}, Sacrifice a creature: Add one mana of any color.\n{X}{2}, {T}, Sacrifice a Desert: Exile target creature card with mana value X from your graveyard. Create a token that's a copy of it, except it's a 4/4 black Zombie. Activate only as a sorcery.",
+    "detail": [
+     "removal:exile:creature"
     ]
    },
    {
@@ -424,6 +440,14 @@
     ]
    },
    {
+    "name": "Otawara, Soaring City",
+    "decks": 82,
+    "oracle": "{T}: Add {U}.\nChannel — {3}{U}, Discard this card: Return target artifact, creature, enchantment, or planeswalker to its owner's hand. This ability costs {1} less to activate for each legendary creature you control.",
+    "detail": [
+     "removal:bounce:creature/artifact/enchantment/planeswalker"
+    ]
+   },
+   {
     "name": "Unholy Heat",
     "decks": 81,
     "oracle": "Unholy Heat deals 2 damage to target creature or planeswalker.\nDelirium — Unholy Heat deals 6 damage instead if there are four or more card types among cards in your graveyard.",
@@ -511,33 +535,6 @@
     "detail": [
      "removal:destroy:creature"
     ]
-   },
-   {
-    "name": "Sheoldred's Edict",
-    "decks": 26,
-    "oracle": "Choose one —\n• Each opponent sacrifices a nontoken creature of their choice.\n• Each opponent sacrifices a creature token of their choice.\n• Each opponent sacrifices a planeswalker of their choice.",
-    "detail": [
-     "removal:sacrifice:creature",
-     "removal:sacrifice:planeswalker"
-    ]
-   },
-   {
-    "name": "Wail of the Forgotten",
-    "decks": 26,
-    "oracle": "Descend 8 — Choose one. If there are eight or more permanent cards in your graveyard as you cast this spell, choose one or more instead.\n• Return target nonland permanent to its owner's hand.\n• Target opponent discards a card.\n• Look at the top three cards of your library. Put one of them into your hand and the rest into your graveyard.",
-    "detail": [
-     "removal:bounce:creature/artifact/enchantment/planeswalker/battle",
-     "discard:discard:hand"
-    ]
-   },
-   {
-    "name": "Ashen Rider",
-    "decks": 25,
-    "oracle": "Flying\nWhen this creature enters or dies, exile target permanent.",
-    "detail": [
-     "removal:exile:creature/artifact/enchantment/planeswalker/battle/land",
-     "removal:exile:creature/artifact/enchantment/planeswalker/battle/land"
-    ]
    }
   ],
   "wipe": [
@@ -547,6 +544,14 @@
     "oracle": "You get X {E} (energy counters), then you may pay any amount of {E}. Destroy each artifact, creature, and enchantment with mana value less than or equal to the amount of {E} paid this way.",
     "detail": [
      "wipe:destroy:creature/artifact/enchantment"
+    ]
+   },
+   {
+    "name": "Blast Zone",
+    "decks": 137,
+    "oracle": "This land enters with a charge counter on it.\n{T}: Add {C}.\n{X}{X}, {T}: Put X charge counters on this land.\n{3}, {T}, Sacrifice this land: Destroy each nonland permanent with mana value equal to the number of charge counters on this land.",
+    "detail": [
+     "wipe:destroy:creature/artifact/enchantment/planeswalker/battle"
     ]
    },
    {
@@ -1046,6 +1051,14 @@
     ]
    },
    {
+    "name": "Petrified Hamlet",
+    "decks": 139,
+    "oracle": "When this land enters, choose a land card name.\nActivated abilities of sources with the chosen name can't be activated unless they're mana abilities.\nLands with the chosen name have \"{T}: Add {C}.\"\n{T}: Add {C}.",
+    "detail": [
+     "hate:lock:activated ability"
+    ]
+   },
+   {
     "name": "Consign to Memory",
     "decks": 100,
     "oracle": "Replicate {1} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.)\nCounter target triggered ability or colorless spell.",
@@ -1348,6 +1361,30 @@
   ],
   "manalock": [
    {
+    "name": "Wasteland",
+    "decks": 1435,
+    "oracle": "{T}: Add {C}.\n{T}, Sacrifice this land: Destroy target nonbasic land.",
+    "detail": [
+     "removal:destroy:land"
+    ]
+   },
+   {
+    "name": "Boseiju, Who Endures",
+    "decks": 493,
+    "oracle": "{T}: Add {G}.\nChannel — {1}{G}, Discard this card: Destroy target artifact, enchantment, or nonbasic land an opponent controls. That player may search their library for a land card with a basic land type, put it onto the battlefield, then shuffle. This ability costs {1} less to activate for each legendary creature you control.",
+    "detail": [
+     "removal:destroy:artifact/enchantment/land"
+    ]
+   },
+   {
+    "name": "Ghost Quarter",
+    "decks": 200,
+    "oracle": "{T}: Add {C}.\n{T}, Sacrifice this land: Destroy target land. Its controller may search their library for a basic land card, put it onto the battlefield, then shuffle.",
+    "detail": [
+     "removal:destroy:land"
+    ]
+   },
+   {
     "name": "Giant's Boulder",
     "decks": 166,
     "oracle": "When this artifact enters, scry 2. (Look at the top two cards of your library, then put any number of them on the bottom and the rest on top in any order.)\n{1}, {T}: Add one mana of any color.\n{7}, {T}, Sacrifice this artifact: Destroy target permanent.",
@@ -1516,6 +1553,22 @@
     "detail": [
      "wipe:exile:creature/artifact/enchantment/planeswalker/battle/land"
     ]
+   },
+   {
+    "name": "Volatile Fault",
+    "decks": 1,
+    "oracle": "{T}: Add {C}.\n{1}, {T}, Sacrifice this land: Destroy target nonbasic land an opponent controls. That player may search their library for a basic land card, put it onto the battlefield, then shuffle. You create a Treasure token.",
+    "detail": [
+     "removal:destroy:land"
+    ]
+   },
+   {
+    "name": "Field of Ruin",
+    "decks": 1,
+    "oracle": "{T}: Add {C}.\n{2}, {T}, Sacrifice this land: Destroy target nonbasic land an opponent controls. Each player searches their library for a basic land card, puts it onto the battlefield, then shuffles.",
+    "detail": [
+     "removal:destroy:land"
+    ]
    }
   ],
   "combat": [
@@ -1547,7 +1600,7 @@
   ]
  },
  "format": "Legacy",
- "generatedAt": "2026-11-27T14:42:25.530Z",
+ "generatedAt": "2026-11-27T15:13:21.832Z",
  "decks": 2746,
  "otherOnly": [
   {
@@ -1702,6 +1755,18 @@
     "draw@etb",
     "drain@etb",
     "removal@etb"
+   ]
+  },
+  {
+   "name": "Boseiju, Who Endures",
+   "decks": 493,
+   "roles": [
+    "land",
+    "removal",
+    "manalock"
+   ],
+   "tags": [
+    "removal@activated"
    ]
   },
   {
@@ -2106,20 +2171,6 @@
    "tags": [
     "drain@activated",
     "removal@activated"
-   ]
-  },
-  {
-   "name": "Pyrite Spellbomb",
-   "decks": 35,
-   "roles": [
-    "removal",
-    "draw",
-    "reach"
-   ],
-   "tags": [
-    "drain@activated_once",
-    "removal@activated_once",
-    "draw@activated_once"
    ]
   }
  ],

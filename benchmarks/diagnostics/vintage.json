@@ -133,6 +133,14 @@
     ]
    },
    {
+    "name": "Otawara, Soaring City",
+    "decks": 107,
+    "oracle": "{T}: Add {U}.\nChannel — {3}{U}, Discard this card: Return target artifact, creature, enchantment, or planeswalker to its owner's hand. This ability costs {1} less to activate for each legendary creature you control.",
+    "detail": [
+     "removal:bounce:creature/artifact/enchantment/planeswalker"
+    ]
+   },
+   {
     "name": "Fatal Push",
     "decks": 105,
     "oracle": "Destroy target creature if it has mana value 2 or less.\nRevolt — Destroy that creature if it has mana value 4 or less instead if a permanent left the battlefield under your control this turn.",
@@ -162,6 +170,14 @@
     "oracle": "Return target nonland permanent to its owner's hand. Then that permanent's controller may sacrifice a land of their choice. If the player does, they may copy this spell and may choose a new target for that copy.",
     "detail": [
      "removal:bounce:creature/artifact/enchantment/planeswalker/battle"
+    ]
+   },
+   {
+    "name": "Boseiju, Who Endures",
+    "decks": 90,
+    "oracle": "{T}: Add {G}.\nChannel — {1}{G}, Discard this card: Destroy target artifact, enchantment, or nonbasic land an opponent controls. That player may search their library for a land card with a basic land type, put it onto the battlefield, then shuffle. This ability costs {1} less to activate for each legendary creature you control.",
+    "detail": [
+     "removal:destroy:artifact/enchantment/land"
     ]
    },
    {
@@ -352,6 +368,14 @@
     ]
    },
    {
+    "name": "Sunscorched Desert",
+    "decks": 4,
+    "oracle": "When this land enters, it deals 1 damage to target player or planeswalker.\n{T}: Add {C}.",
+    "detail": [
+     "removal:damage:planeswalker"
+    ]
+   },
+   {
     "name": "Long Goodbye",
     "decks": 3,
     "oracle": "This spell can't be countered. (This includes by the ward ability.)\nDestroy target creature or planeswalker with mana value 3 or less.",
@@ -374,30 +398,6 @@
     "detail": [
      "removal:damage:creature",
      "removal:destroy:creature/artifact/enchantment/planeswalker/battle"
-    ]
-   },
-   {
-    "name": "Static Prison",
-    "decks": 3,
-    "oracle": "When this enchantment enters, exile target nonland permanent an opponent controls until this enchantment leaves the battlefield. You get {E}{E} (two energy counters).\nAt the beginning of your first main phase, sacrifice this enchantment unless you pay {E}.",
-    "detail": [
-     "removal:exile:creature/artifact/enchantment/planeswalker/battle"
-    ]
-   },
-   {
-    "name": "Loran of the Third Path",
-    "decks": 3,
-    "oracle": "Vigilance\nWhen Loran enters, destroy up to one target artifact or enchantment.\n{T}: You and target opponent each draw a card.",
-    "detail": [
-     "removal:destroy:artifact/enchantment"
-    ]
-   },
-   {
-    "name": "Aether Spellbomb",
-    "decks": 3,
-    "oracle": "{U}, Sacrifice this artifact: Return target creature to its owner's hand.\n{1}, Sacrifice this artifact: Draw a card.",
-    "detail": [
-     "removal:bounce:creature"
     ]
    }
   ],
@@ -763,6 +763,14 @@
     ]
    },
    {
+    "name": "Petrified Hamlet",
+    "decks": 41,
+    "oracle": "When this land enters, choose a land card name.\nActivated abilities of sources with the chosen name can't be activated unless they're mana abilities.\nLands with the chosen name have \"{T}: Add {C}.\"\n{T}: Add {C}.",
+    "detail": [
+     "hate:lock:activated ability"
+    ]
+   },
+   {
     "name": "Collector Ouphe",
     "decks": 40,
     "oracle": "Activated abilities of artifacts can't be activated.",
@@ -954,12 +962,44 @@
   ],
   "manalock": [
    {
+    "name": "Strip Mine",
+    "decks": 520,
+    "oracle": "{T}: Add {C}.\n{T}, Sacrifice this land: Destroy target land.",
+    "detail": [
+     "removal:destroy:land"
+    ]
+   },
+   {
+    "name": "Wasteland",
+    "decks": 489,
+    "oracle": "{T}: Add {C}.\n{T}, Sacrifice this land: Destroy target nonbasic land.",
+    "detail": [
+     "removal:destroy:land"
+    ]
+   },
+   {
     "name": "Archon of Emeria",
     "decks": 107,
     "oracle": "Flying\nEach player can't cast more than one spell each turn.\nNonbasic lands your opponents control enter tapped.",
     "detail": [
      "hate:lock:spell",
      "hate:lock:mana/mana"
+    ]
+   },
+   {
+    "name": "Boseiju, Who Endures",
+    "decks": 90,
+    "oracle": "{T}: Add {G}.\nChannel — {1}{G}, Discard this card: Destroy target artifact, enchantment, or nonbasic land an opponent controls. That player may search their library for a land card with a basic land type, put it onto the battlefield, then shuffle. This ability costs {1} less to activate for each legendary creature you control.",
+    "detail": [
+     "removal:destroy:artifact/enchantment/land"
+    ]
+   },
+   {
+    "name": "Ghost Quarter",
+    "decks": 34,
+    "oracle": "{T}: Add {C}.\n{T}, Sacrifice this land: Destroy target land. Its controller may search their library for a basic land card, put it onto the battlefield, then shuffle.",
+    "detail": [
+     "removal:destroy:land"
     ]
    },
    {
@@ -1055,7 +1095,7 @@
   ]
  },
  "format": "Vintage",
- "generatedAt": "2026-11-27T14:42:25.530Z",
+ "generatedAt": "2026-11-27T15:13:21.832Z",
  "decks": 1179,
  "otherOnly": [
   {
@@ -1185,6 +1225,18 @@
    "tags": [
     "hate@static",
     "hate@static"
+   ]
+  },
+  {
+   "name": "Boseiju, Who Endures",
+   "decks": 90,
+   "roles": [
+    "land",
+    "removal",
+    "manalock"
+   ],
+   "tags": [
+    "removal@activated"
    ]
   },
   {
@@ -1514,20 +1566,6 @@
    "tags": [
     "lifegain@static",
     "recursion@etb"
-   ]
-  },
-  {
-   "name": "Consider",
-   "decks": 3,
-   "roles": [
-    "draw",
-    "selfmill",
-    "topmanip"
-   ],
-   "tags": [
-    "topmanip@spell",
-    "selfmill@spell",
-    "draw@spell"
    ]
   }
  ],

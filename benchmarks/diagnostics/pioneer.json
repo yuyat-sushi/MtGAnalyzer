@@ -213,11 +213,35 @@
  "disruptEvidence": {
   "removal": [
    {
+    "name": "Boseiju, Who Endures",
+    "decks": 321,
+    "oracle": "{T}: Add {G}.\nChannel — {1}{G}, Discard this card: Destroy target artifact, enchantment, or nonbasic land an opponent controls. That player may search their library for a land card with a basic land type, put it onto the battlefield, then shuffle. This ability costs {1} less to activate for each legendary creature you control.",
+    "detail": [
+     "removal:destroy:artifact/enchantment/land"
+    ]
+   },
+   {
     "name": "Fatal Push",
     "decks": 294,
     "oracle": "Destroy target creature if it has mana value 2 or less.\nRevolt — Destroy that creature if it has mana value 4 or less instead if a permanent left the battlefield under your control this turn.",
     "detail": [
      "removal:destroy:creature"
+    ]
+   },
+   {
+    "name": "Otawara, Soaring City",
+    "decks": 273,
+    "oracle": "{T}: Add {U}.\nChannel — {3}{U}, Discard this card: Return target artifact, creature, enchantment, or planeswalker to its owner's hand. This ability costs {1} less to activate for each legendary creature you control.",
+    "detail": [
+     "removal:bounce:creature/artifact/enchantment/planeswalker"
+    ]
+   },
+   {
+    "name": "Eiganjo, Seat of the Empire",
+    "decks": 207,
+    "oracle": "{T}: Add {W}.\nChannel — {2}{W}, Discard this card: It deals 4 damage to target attacking or blocking creature. This ability costs {1} less to activate for each legendary creature you control.",
+    "detail": [
+     "removal:damage:creature"
     ]
    },
    {
@@ -509,31 +533,6 @@
      "removal:sacrifice:creature",
      "removal:sacrifice:planeswalker"
     ]
-   },
-   {
-    "name": "Erode",
-    "decks": 26,
-    "oracle": "Destroy target creature or planeswalker. Its controller may search their library for a basic land card, put it onto the battlefield tapped, then shuffle.",
-    "detail": [
-     "removal:destroy:creature/planeswalker"
-    ]
-   },
-   {
-    "name": "Jennifer Walters // The Sensational She-Hulk",
-    "decks": 25,
-    "oracle": "Your opponents can't cast spells during your turn.\n{3}{G}{W}{W}: Transform Jennifer Walters. Activate only as a sorcery.\n//\nReach, trample\nYour opponents can't cast spells during your turn.\nWhenever a creature you control is dealt damage, you may have The Sensational She-Hulk deal that much damage to any target. Do this only once each turn.",
-    "detail": [
-     "hate:lock:spell",
-     "removal:damage:creature/planeswalker/battle/player"
-    ]
-   },
-   {
-    "name": "Thundering Broodwagon",
-    "decks": 25,
-    "oracle": "Reach, menace\nWhen this Vehicle enters, destroy target nonland permanent an opponent controls with mana value 4 or less.\nCrew 3\nCycling {2} ({2}, Discard this card: Draw a card.)",
-    "detail": [
-     "removal:destroy:creature/artifact/enchantment/planeswalker/battle"
-    ]
    }
   ],
   "wipe": [
@@ -677,6 +676,14 @@
     "oracle": "Exile all attacking creatures target player controls. That player may search their library for that many basic land cards, put those cards onto the battlefield tapped, then shuffle.",
     "detail": [
      "wipe:exile:creature"
+    ]
+   },
+   {
+    "name": "Blast Zone",
+    "decks": 2,
+    "oracle": "This land enters with a charge counter on it.\n{T}: Add {C}.\n{X}{X}, {T}: Put X charge counters on this land.\n{3}, {T}, Sacrifice this land: Destroy each nonland permanent with mana value equal to the number of charge counters on this land.",
+    "detail": [
+     "wipe:destroy:creature/artifact/enchantment/planeswalker/battle"
     ]
    },
    {
@@ -1041,6 +1048,14 @@
   ],
   "ability": [
    {
+    "name": "Petrified Hamlet",
+    "decks": 64,
+    "oracle": "When this land enters, choose a land card name.\nActivated abilities of sources with the chosen name can't be activated unless they're mana abilities.\nLands with the chosen name have \"{T}: Add {C}.\"\n{T}: Add {C}.",
+    "detail": [
+     "hate:lock:activated ability"
+    ]
+   },
+   {
     "name": "Sublime Epiphany",
     "decks": 3,
     "oracle": "Choose one or more —\n• Counter target spell.\n• Counter target activated or triggered ability.\n• Return target nonland permanent to its owner's hand.\n• Create a token that's a copy of target creature you control.\n• Target player draws a card.",
@@ -1317,11 +1332,27 @@
   ],
   "manalock": [
    {
+    "name": "Boseiju, Who Endures",
+    "decks": 321,
+    "oracle": "{T}: Add {G}.\nChannel — {1}{G}, Discard this card: Destroy target artifact, enchantment, or nonbasic land an opponent controls. That player may search their library for a land card with a basic land type, put it onto the battlefield, then shuffle. This ability costs {1} less to activate for each legendary creature you control.",
+    "detail": [
+     "removal:destroy:artifact/enchantment/land"
+    ]
+   },
+   {
     "name": "Divide by Zero",
     "decks": 42,
     "oracle": "Return target spell or permanent with mana value 1 or greater to its owner's hand.\nLearn. (You may reveal a Lesson card you own from outside the game and put it into your hand, or discard a card to draw a card.)",
     "detail": [
      "removal:bounce:creature/artifact/enchantment/planeswalker/battle/land/spell"
+    ]
+   },
+   {
+    "name": "Field of Ruin",
+    "decks": 34,
+    "oracle": "{T}: Add {C}.\n{2}, {T}, Sacrifice this land: Destroy target nonbasic land an opponent controls. Each player searches their library for a basic land card, puts it onto the battlefield, then shuffles.",
+    "detail": [
+     "removal:destroy:land"
     ]
    },
    {
@@ -1331,6 +1362,14 @@
     "detail": [
      "hate:lock:spell",
      "hate:lock:mana/mana"
+    ]
+   },
+   {
+    "name": "Demolition Field",
+    "decks": 10,
+    "oracle": "{T}: Add {C}.\n{2}, {T}, Sacrifice this land: Destroy target nonbasic land an opponent controls. That land's controller may search their library for a basic land card, put it onto the battlefield, then shuffle. You may search your library for a basic land card, put it onto the battlefield, then shuffle.",
+    "detail": [
+     "removal:destroy:land"
     ]
    },
    {
@@ -1386,7 +1425,7 @@
   "combat": []
  },
  "format": "Pioneer",
- "generatedAt": "2026-11-27T14:42:25.530Z",
+ "generatedAt": "2026-11-27T15:13:21.832Z",
  "decks": 1143,
  "otherOnly": [
   {
@@ -1445,6 +1484,18 @@
   }
  ],
  "manyRoles": [
+  {
+   "name": "Boseiju, Who Endures",
+   "decks": 321,
+   "roles": [
+    "land",
+    "removal",
+    "manalock"
+   ],
+   "tags": [
+    "removal@activated"
+   ]
+  },
   {
    "name": "Burst Lightning",
    "decks": 157,
@@ -1858,19 +1909,6 @@
     "topmanip@loyalty",
     "draw@loyalty",
     "selfmill@loyalty"
-   ]
-  },
-  {
-   "name": "Spelunking",
-   "decks": 32,
-   "roles": [
-    "draw",
-    "ramp",
-    "lifegain"
-   ],
-   "tags": [
-    "lifegain@etb",
-    "draw@etb"
    ]
   }
  ],

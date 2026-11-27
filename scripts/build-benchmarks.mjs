@@ -258,6 +258,8 @@ function simOf(ds) {
     mana: r2([3, 4, 5].map(t => s.avg[t - 1])),
     held: r2([3, 4, 5].map(t => s.held[t - 1])),
     combo: r2([3, 4, 5].map(t => s.combo[t - 1])),
+    // 土地の平均枚数・基本土地と、土地への対策（Blood Moon／Damping Sphere／Back to Basics／土地1枚破壊）が効いたときのマナ
+    lands: [3, 4, 5].map(t => ({ n: +s.lands[t - 1].n.toFixed(2), basic: +s.lands[t - 1].basic.toFixed(2), alt: r2o(s.lands[t - 1].alt) })),
     // 3・4・5ターン目に戦場にある確率が高いカード（種類ごとに、4ターン目に5%以上のものを上位8枚）
     cards: Object.fromEntries(Object.entries(s.names).map(([k, m]) => [k,
       Object.entries(m).map(([name, v]) => ({ name, r: r2([3, 4, 5].map(t => v[t - 1])) }))
