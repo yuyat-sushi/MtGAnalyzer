@@ -186,14 +186,6 @@
    "oracle": "If it's not your turn, you may exile a blue card from your hand rather than pay this spell's mana cost.\nCounter target noncreature spell. If that spell is countered this way, exile it instead of putting it into its owner's graveyard."
   },
   {
-   "name": "Thraben Charm",
-   "decks": 343,
-   "roles": [
-    "removal"
-   ],
-   "oracle": "Choose one —\n• Thraben Charm deals damage equal to twice the number of creatures you control to target creature.\n• Destroy target enchantment.\n• Exile any number of target players' graveyards."
-  },
-  {
    "name": "Living End",
    "decks": 170,
    "roles": [
@@ -292,24 +284,6 @@
    "oracle": "Creeping Chill deals 3 damage to each opponent and you gain 3 life.\nWhen Creeping Chill is put into your graveyard from your library, you may exile it. If you do, Creeping Chill deals 3 damage to each opponent and you gain 3 life."
   },
   {
-   "name": "Kaya's Guile",
-   "decks": 10,
-   "roles": [
-    "removal",
-    "tokens",
-    "lifegain"
-   ],
-   "oracle": "Choose two —\n• Each opponent sacrifices a creature of their choice.\n• Exile all opponents' graveyards.\n• Create a 1/1 white and black Spirit creature token with flying.\n• You gain 4 life.\nEntwine {3} (Choose all if you pay the entwine cost.)"
-  },
-  {
-   "name": "Strategic Betrayal",
-   "decks": 10,
-   "roles": [
-    "removal"
-   ],
-   "oracle": "Target opponent exiles a creature they control and their graveyard."
-  },
-  {
    "name": "Enhanced Surveillance",
    "decks": 6,
    "roles": [
@@ -318,36 +292,11 @@
    "oracle": "You may look at an additional two cards each time you surveil.\nExile this enchantment: Shuffle your graveyard into your library."
   },
   {
-   "name": "Sanctifier en-Vec",
-   "decks": 5,
-   "roles": [
-    "beater"
-   ],
-   "oracle": "Protection from black and from red\nWhen this creature enters, exile all cards that are black or red from all graveyards.\nIf a black or red permanent, spell, or card not on the battlefield would be put into a graveyard, exile it instead."
-  },
-  {
-   "name": "The Stone Brain",
-   "decks": 4,
-   "roles": [
-    "other"
-   ],
-   "oracle": "{2}, {T}, Exile The Stone Brain: Choose a card name. Search target opponent's graveyard, hand, and library for up to four cards with that name and exile them. That player shuffles, then draws a card for each card exiled from their hand this way. Activate only as a sorcery."
-  },
-  {
-   "name": "Crypt Incursion",
-   "decks": 3,
-   "roles": [
-    "wipe",
-    "lifegain"
-   ],
-   "oracle": "Exile all creature cards from target player's graveyard. You gain 3 life for each card exiled this way."
-  },
-  {
    "name": "Glimpse the Impossible",
    "decks": 3,
    "roles": [
     "draw",
-    "ramp"
+    "fastmana"
    ],
    "oracle": "Exile the top three cards of your library. You may play those cards this turn. At the beginning of the next end step, if any of those cards remain exiled, put them into your graveyard, then create a 0/1 colorless Eldrazi Spawn creature token for each card put into your graveyard this way. Those tokens have \"Sacrifice this token: Add {C}.\""
   },
@@ -358,14 +307,6 @@
     "beater"
    ],
    "oracle": "This spell costs {1} less to cast for each creature card you own in exile and in your graveyard.\nMenace, deathtouch"
-  },
-  {
-   "name": "Unmoored Ego",
-   "decks": 2,
-   "roles": [
-    "other"
-   ],
-   "oracle": "Choose a card name. Search target opponent's graveyard, hand, and library for up to four cards with that name and exile them. That player shuffles, then draws a card for each card exiled from their hand this way."
   },
   {
    "name": "Bilbo, Thief in the Night",
@@ -429,14 +370,6 @@
     "lifegain"
    ],
    "oracle": "Surveil 2. You gain 2 life. If this spell was cast from a graveyard, exile it, then put it onto the battlefield transformed under its owner's control with a finality counter on it. (If a creature with a finality counter on it would die, exile it instead.)\nFlashback {3}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)\n//\n(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)\nI — Reveal the top card of your library. If it's a permanent card, put it into your hand.\nII — Add {G}{G}.\nIII — Other creatures you control get +2/+2 and gain trample until end of turn."
-  },
-  {
-   "name": "Test of Talents",
-   "decks": 1,
-   "roles": [
-    "spell"
-   ],
-   "oracle": "Counter target instant or sorcery spell. Search its controller's graveyard, hand, and library for any number of cards with the same name as that spell and exile them. That player shuffles, then draws a card for each card exiled from their hand this way."
   },
   {
    "name": "Urabrask // The Great Work",
@@ -604,7 +537,8 @@
     "oracle": "Choose one —\n• Thraben Charm deals damage equal to twice the number of creatures you control to target creature.\n• Destroy target enchantment.\n• Exile any number of target players' graveyards.",
     "detail": [
      "removal:damage:creature",
-     "removal:destroy:enchantment"
+     "removal:destroy:enchantment",
+     "gyhate:exile:graveyard"
     ]
    },
    {
@@ -904,14 +838,6 @@
     ]
    },
    {
-    "name": "Yggdrasil, Rebirth Engine",
-    "decks": 11,
-    "oracle": "When Yggdrasil enters, exile all creature cards from your graveyard.\n{T}: Exile the top three cards of your library.\n{4}, {T}: Put a creature card exiled with Yggdrasil onto the battlefield under your control. It gains haste until end of turn. Activate only as a sorcery.",
-    "detail": [
-     "wipe:exile:creature"
-    ]
-   },
-   {
     "name": "Brotherhood's End",
     "decks": 9,
     "oracle": "Choose one —\n• Brotherhood's End deals 3 damage to each creature and each planeswalker.\n• Destroy all artifacts with mana value 3 or less.",
@@ -977,14 +903,6 @@
     "oracle": "Put all creatures on the bottom of their owners' libraries.\nMiracle {W} (You may cast this card for its miracle cost when you draw it if it's the first card you drew this turn.)",
     "detail": [
      "wipe:library:creature"
-    ]
-   },
-   {
-    "name": "Crypt Incursion",
-    "decks": 3,
-    "oracle": "Exile all creature cards from target player's graveyard. You gain 3 life for each card exiled this way.",
-    "detail": [
-     "wipe:exile:creature"
     ]
    },
    {
@@ -1621,6 +1539,16 @@
     ]
    },
    {
+    "name": "Thraben Charm",
+    "decks": 343,
+    "oracle": "Choose one —\n• Thraben Charm deals damage equal to twice the number of creatures you control to target creature.\n• Destroy target enchantment.\n• Exile any number of target players' graveyards.",
+    "detail": [
+     "removal:damage:creature",
+     "removal:destroy:enchantment",
+     "gyhate:exile:graveyard"
+    ]
+   },
+   {
     "name": "Nihil Spellbomb",
     "decks": 331,
     "oracle": "{T}, Sacrifice this artifact: Exile target player's graveyard.\nWhen this artifact is put into a graveyard from the battlefield, you may pay {B}. If you do, draw a card.",
@@ -1725,6 +1653,32 @@
     ]
    },
    {
+    "name": "Yggdrasil, Rebirth Engine",
+    "decks": 11,
+    "oracle": "When Yggdrasil enters, exile all creature cards from your graveyard.\n{T}: Exile the top three cards of your library.\n{4}, {T}: Put a creature card exiled with Yggdrasil onto the battlefield under your control. It gains haste until end of turn. Activate only as a sorcery.",
+    "detail": [
+     "gyhate:exile:graveyard"
+    ]
+   },
+   {
+    "name": "Kaya's Guile",
+    "decks": 10,
+    "oracle": "Choose two —\n• Each opponent sacrifices a creature of their choice.\n• Exile all opponents' graveyards.\n• Create a 1/1 white and black Spirit creature token with flying.\n• You gain 4 life.\nEntwine {3} (Choose all if you pay the entwine cost.)",
+    "detail": [
+     "removal:sacrifice:creature",
+     "gyhate:exile:graveyard"
+    ]
+   },
+   {
+    "name": "Strategic Betrayal",
+    "decks": 10,
+    "oracle": "Target opponent exiles a creature they control and their graveyard.",
+    "detail": [
+     "removal:other:creature",
+     "gyhate:exile:graveyard"
+    ]
+   },
+   {
     "name": "Surgical Extraction",
     "decks": 9,
     "oracle": "({B/P} can be paid with either {B} or 2 life.)\nChoose target card in a graveyard other than a basic land card. Search its owner's graveyard, hand, and library for any number of cards with the same name as that card and exile them. Then that player shuffles.",
@@ -1776,6 +1730,14 @@
     ]
    },
    {
+    "name": "Sanctifier en-Vec",
+    "decks": 5,
+    "oracle": "Protection from black and from red\nWhen this creature enters, exile all cards that are black or red from all graveyards.\nIf a black or red permanent, spell, or card not on the battlefield would be put into a graveyard, exile it instead.",
+    "detail": [
+     "gyhate:exile:graveyard"
+    ]
+   },
+   {
     "name": "Riveteers Charm",
     "decks": 5,
     "oracle": "Choose one —\n• Target opponent sacrifices a creature or planeswalker they control with the greatest mana value among creatures and planeswalkers they control.\n• Exile the top three cards of your library. Until your next end step, you may play those cards.\n• Exile target player's graveyard.",
@@ -1785,11 +1747,35 @@
     ]
    },
    {
+    "name": "The Stone Brain",
+    "decks": 4,
+    "oracle": "{2}, {T}, Exile The Stone Brain: Choose a card name. Search target opponent's graveyard, hand, and library for up to four cards with that name and exile them. That player shuffles, then draws a card for each card exiled from their hand this way. Activate only as a sorcery.",
+    "detail": [
+     "gyhate:exile:graveyard"
+    ]
+   },
+   {
+    "name": "Crypt Incursion",
+    "decks": 3,
+    "oracle": "Exile all creature cards from target player's graveyard. You gain 3 life for each card exiled this way.",
+    "detail": [
+     "gyhate:exile:graveyard"
+    ]
+   },
+   {
     "name": "Graveyard Trespasser // Graveyard Glutton",
     "decks": 3,
     "oracle": "Ward—Discard a card.\nWhenever this creature enters or attacks, exile up to one target card from a graveyard. If a creature card was exiled this way, each opponent loses 1 life and you gain 1 life.\nDaybound (If a player casts no spells during their own turn, it becomes night next turn.)\n//\nWard—Discard a card.\nWhenever this creature enters or attacks, exile up to two target cards from graveyards. For each creature card exiled this way, each opponent loses 1 life and you gain 1 life.\nNightbound (If a player casts at least two spells during their own turn, it becomes day next turn.)",
     "detail": [
      "gyhate:exile:graveyard",
+     "gyhate:exile:graveyard"
+    ]
+   },
+   {
+    "name": "Unmoored Ego",
+    "decks": 2,
+    "oracle": "Choose a card name. Search target opponent's graveyard, hand, and library for up to four cards with that name and exile them. That player shuffles, then draws a card for each card exiled from their hand this way.",
+    "detail": [
      "gyhate:exile:graveyard"
     ]
    },
@@ -1836,41 +1822,18 @@
     ]
    },
    {
+    "name": "Test of Talents",
+    "decks": 1,
+    "oracle": "Counter target instant or sorcery spell. Search its controller's graveyard, hand, and library for any number of cards with the same name as that spell and exile them. That player shuffles, then draws a card for each card exiled from their hand this way.",
+    "detail": [
+     "counter:counter:instant/sorcery/spell",
+     "gyhate:exile:graveyard"
+    ]
+   },
+   {
     "name": "Klothys, God of Destiny",
     "decks": 1,
     "oracle": "Indestructible\nAs long as your devotion to red and green is less than seven, Klothys isn't a creature.\nAt the beginning of your first main phase, exile target card from a graveyard. If it was a land card, add {R} or {G}. Otherwise, you gain 2 life and Klothys deals 2 damage to each opponent.",
-    "detail": [
-     "gyhate:exile:graveyard"
-    ]
-   },
-   {
-    "name": "Keen-Eyed Curator",
-    "decks": 1,
-    "oracle": "As long as there are four or more card types among cards exiled with this creature, it gets +4/+4 and has trample.\n{1}: Exile target card from a graveyard.",
-    "detail": [
-     "gyhate:exile:graveyard"
-    ]
-   },
-   {
-    "name": "Scavenger Grounds",
-    "decks": 1,
-    "oracle": "{T}: Add {C}.\n{2}, {T}, Sacrifice a Desert: Exile all graveyards.",
-    "detail": [
-     "gyhate:exile:graveyard"
-    ]
-   },
-   {
-    "name": "Extirpate",
-    "decks": 1,
-    "oracle": "Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.)\nChoose target card in a graveyard other than a basic land card. Search its owner's graveyard, hand, and library for all cards with the same name as that card and exile them. Then that player shuffles.",
-    "detail": [
-     "gyhate:exile:graveyard"
-    ]
-   },
-   {
-    "name": "Faerie Macabre",
-    "decks": 1,
-    "oracle": "Flying\nDiscard this card: Exile up to two target cards from graveyards.",
     "detail": [
      "gyhate:exile:graveyard"
     ]
@@ -2144,7 +2107,7 @@
   ]
  },
  "format": "Modern",
- "generatedAt": "2026-11-27T20:28:06.788Z",
+ "generatedAt": "2026-11-27T20:30:58.844Z",
  "decks": 5115,
  "otherOnly": [
   {
@@ -2226,12 +2189,6 @@
    "tags": []
   },
   {
-   "name": "The Stone Brain",
-   "decks": 4,
-   "typeLine": "Legendary Artifact",
-   "tags": []
-  },
-  {
    "name": "Hit It!",
    "decks": 4,
    "typeLine": "Enchantment",
@@ -2252,12 +2209,6 @@
   {
    "name": "Scale Up",
    "decks": 3,
-   "typeLine": "Sorcery",
-   "tags": []
-  },
-  {
-   "name": "Unmoored Ego",
-   "decks": 2,
    "typeLine": "Sorcery",
    "tags": []
   },
@@ -2368,7 +2319,7 @@
     "removal",
     "gyhate",
     "draw",
-    "ramp"
+    "fastmana"
    ],
    "tags": [
     "mana@spell",
@@ -2383,7 +2334,7 @@
    "roles": [
     "draw",
     "topselect",
-    "ramp"
+    "fastmana"
    ],
    "tags": [
     "topselect@spell",
@@ -2667,6 +2618,20 @@
    ]
   },
   {
+   "name": "Fable of the Mirror-Breaker // Reflection of Kiki-Jiki",
+   "decks": 133,
+   "roles": [
+    "tokens",
+    "draw",
+    "fastmana"
+   ],
+   "tags": [
+    "token@chapter",
+    "mana@chapter",
+    "draw@chapter"
+   ]
+  },
+  {
    "name": "Giant's Boulder",
    "decks": 129,
    "roles": [
@@ -2722,20 +2687,6 @@
     "wipe@static",
     "topselect@activated",
     "draw@activated"
-   ]
-  },
-  {
-   "name": "Wrenn and Six",
-   "decks": 104,
-   "roles": [
-    "removal",
-    "recursion",
-    "reach"
-   ],
-   "tags": [
-    "recursion@loyalty",
-    "drain@loyalty",
-    "removal@loyalty"
    ]
   }
  ],
@@ -2795,7 +2746,7 @@
      "removal",
      "gyhate",
      "draw",
-     "ramp"
+     "fastmana"
     ]
    },
    {
@@ -2968,7 +2919,7 @@
     "roles": [
      "draw",
      "topselect",
-     "ramp"
+     "fastmana"
     ]
    },
    {
@@ -3137,7 +3088,8 @@
     "name": "Ragavan, Nimble Pilferer",
     "decks": 725,
     "roles": [
-     "beater"
+     "beater",
+     "fastmana"
     ]
    },
    {
@@ -3165,13 +3117,6 @@
    {
     "name": "Troll of Khazad-dûm",
     "decks": 417,
-    "roles": [
-     "beater"
-    ]
-   },
-   {
-    "name": "Basking Broodscale",
-    "decks": 411,
     "roles": [
      "beater"
     ]
@@ -3217,7 +3162,7 @@
     "decks": 248,
     "roles": [
      "reach",
-     "beater"
+     "fastmana"
     ]
    },
    {
@@ -3309,6 +3254,13 @@
    {
     "name": "Azusa, Lost but Seeking",
     "decks": 86,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
+    "name": "Allosaurus Rider",
+    "decks": 82,
     "roles": [
      "beater"
     ]
@@ -3570,7 +3522,8 @@
     "decks": 133,
     "roles": [
      "tokens",
-     "draw"
+     "draw",
+     "fastmana"
     ]
    },
    {
@@ -3787,13 +3740,6 @@
     ]
    },
    {
-    "name": "The Stone Brain",
-    "decks": 4,
-    "roles": [
-     "other"
-    ]
-   },
-   {
     "name": "Hit It!",
     "decks": 4,
     "roles": [
@@ -3817,13 +3763,6 @@
    {
     "name": "Scale Up",
     "decks": 3,
-    "roles": [
-     "other"
-    ]
-   },
-   {
-    "name": "Unmoored Ego",
-    "decks": 2,
     "roles": [
      "other"
     ]
@@ -3869,6 +3808,20 @@
     "roles": [
      "other"
     ]
+   },
+   {
+    "name": "Abundant Harvest",
+    "decks": 1,
+    "roles": [
+     "other"
+    ]
+   },
+   {
+    "name": "Pym Particles",
+    "decks": 1,
+    "roles": [
+     "other"
+    ]
    }
   ]
  },
@@ -3877,7 +3830,8 @@
    "name": "Ragavan, Nimble Pilferer",
    "decks": 725,
    "roles": [
-    "beater"
+    "beater",
+    "fastmana"
    ],
    "tags": [
     "mana@combat_damage"
@@ -3917,17 +3871,6 @@
     "beater"
    ],
    "tags": []
-  },
-  {
-   "name": "Basking Broodscale",
-   "decks": 411,
-   "roles": [
-    "beater"
-   ],
-   "tags": [
-    "mana@other_trigger",
-    "pump@other_trigger"
-   ]
   },
   {
    "name": "Dragon's Rage Channeler",
@@ -3983,7 +3926,7 @@
    "decks": 248,
    "roles": [
     "reach",
-    "beater"
+    "fastmana"
    ],
    "tags": [
     "mana@cast_trigger",
@@ -4245,6 +4188,16 @@
     "beater"
    ],
    "tags": []
+  },
+  {
+   "name": "Blazing Rootwalla",
+   "decks": 32,
+   "roles": [
+    "beater"
+   ],
+   "tags": [
+    "pump@activated"
+   ]
   }
  ],
  "noTags": [

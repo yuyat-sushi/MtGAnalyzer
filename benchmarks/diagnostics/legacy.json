@@ -332,14 +332,6 @@
    "oracle": "{X}, {T}: Target opponent mills a card, then repeats this process until a creature card or X cards have been put into their graveyard this way, whichever comes first. If one or more creature cards were put into that graveyard this way, sacrifice this artifact and put one of them onto the battlefield under your control. X can't be 0."
   },
   {
-   "name": "Sanctifier en-Vec",
-   "decks": 6,
-   "roles": [
-    "beater"
-   ],
-   "oracle": "Protection from black and from red\nWhen this creature enters, exile all cards that are black or red from all graveyards.\nIf a black or red permanent, spell, or card not on the battlefield would be put into a graveyard, exile it instead."
-  },
-  {
    "name": "Putrid Imp",
    "decks": 5,
    "roles": [
@@ -376,14 +368,6 @@
    "oracle": "Exquisite Firecraft deals 4 damage to any target.\nSpell mastery — If there are two or more instant and/or sorcery cards in your graveyard, this spell can't be countered."
   },
   {
-   "name": "Thraben Charm",
-   "decks": 2,
-   "roles": [
-    "removal"
-   ],
-   "oracle": "Choose one —\n• Thraben Charm deals damage equal to twice the number of creatures you control to target creature.\n• Destroy target enchantment.\n• Exile any number of target players' graveyards."
-  },
-  {
    "name": "Sailors' Bane",
    "decks": 2,
    "roles": [
@@ -405,17 +389,9 @@
    "roles": [
     "tokens",
     "draw",
-    "ramp"
+    "fastmana"
    ],
    "oracle": "Whenever you discard a card, you may exile that card from your graveyard.\n{2}, {T}: Draw a card, then discard a card.\n{T}: Put a card exiled with this artifact into its owner's graveyard. If it's a land card, create a Treasure token. If it's a nonland card, create a 2/2 black Rogue creature token."
-  },
-  {
-   "name": "Strategic Betrayal",
-   "decks": 1,
-   "roles": [
-    "removal"
-   ],
-   "oracle": "Target opponent exiles a creature they control and their graveyard."
   },
   {
    "name": "Ill-Gotten Gains",
@@ -867,14 +843,6 @@
     "detail": [
      "wipe:damage:creature",
      "removal:destroy:artifact"
-    ]
-   },
-   {
-    "name": "Yggdrasil, Rebirth Engine",
-    "decks": 1,
-    "oracle": "When Yggdrasil enters, exile all creature cards from your graveyard.\n{T}: Exile the top three cards of your library.\n{4}, {T}: Put a creature card exiled with Yggdrasil onto the battlefield under your control. It gains haste until end of turn. Activate only as a sorcery.",
-    "detail": [
-     "wipe:exile:creature"
     ]
    },
    {
@@ -1591,6 +1559,14 @@
     ]
    },
    {
+    "name": "Sanctifier en-Vec",
+    "decks": 6,
+    "oracle": "Protection from black and from red\nWhen this creature enters, exile all cards that are black or red from all graveyards.\nIf a black or red permanent, spell, or card not on the battlefield would be put into a graveyard, exile it instead.",
+    "detail": [
+     "gyhate:exile:graveyard"
+    ]
+   },
+   {
     "name": "Unlicensed Hearse",
     "decks": 4,
     "oracle": "{T}: Exile up to two target cards from a single graveyard.\nUnlicensed Hearse's power and toughness are each equal to the number of cards exiled with it.\nCrew 2",
@@ -1638,6 +1614,33 @@
      "gyhate:exile:graveyard",
      "removal:damage:creature/planeswalker/battle/player",
      "removal:destroy:artifact/enchantment"
+    ]
+   },
+   {
+    "name": "Thraben Charm",
+    "decks": 2,
+    "oracle": "Choose one —\n• Thraben Charm deals damage equal to twice the number of creatures you control to target creature.\n• Destroy target enchantment.\n• Exile any number of target players' graveyards.",
+    "detail": [
+     "removal:damage:creature",
+     "removal:destroy:enchantment",
+     "gyhate:exile:graveyard"
+    ]
+   },
+   {
+    "name": "Yggdrasil, Rebirth Engine",
+    "decks": 1,
+    "oracle": "When Yggdrasil enters, exile all creature cards from your graveyard.\n{T}: Exile the top three cards of your library.\n{4}, {T}: Put a creature card exiled with Yggdrasil onto the battlefield under your control. It gains haste until end of turn. Activate only as a sorcery.",
+    "detail": [
+     "gyhate:exile:graveyard"
+    ]
+   },
+   {
+    "name": "Strategic Betrayal",
+    "decks": 1,
+    "oracle": "Target opponent exiles a creature they control and their graveyard.",
+    "detail": [
+     "removal:other:creature",
+     "gyhate:exile:graveyard"
     ]
    },
    {
@@ -1890,7 +1893,7 @@
   ]
  },
  "format": "Legacy",
- "generatedAt": "2026-11-27T20:28:06.788Z",
+ "generatedAt": "2026-11-27T20:30:58.844Z",
  "decks": 2805,
  "otherOnly": [
   {
@@ -2079,7 +2082,7 @@
     "removal",
     "gyhate",
     "draw",
-    "ramp"
+    "fastmana"
    ],
    "tags": [
     "mana@spell",
@@ -2141,7 +2144,7 @@
    "roles": [
     "draw",
     "topselect",
-    "ramp"
+    "fastmana"
    ],
    "tags": [
     "topselect@spell",
@@ -2519,7 +2522,7 @@
      "removal",
      "gyhate",
      "draw",
-     "ramp"
+     "fastmana"
     ]
    },
    {
@@ -2813,7 +2816,7 @@
     "roles": [
      "draw",
      "topselect",
-     "ramp"
+     "fastmana"
     ]
    },
    {
@@ -2885,7 +2888,7 @@
     "decks": 237,
     "roles": [
      "reach",
-     "beater"
+     "fastmana"
     ]
    },
    {
@@ -3421,7 +3424,8 @@
     "decks": 33,
     "roles": [
      "tokens",
-     "draw"
+     "draw",
+     "fastmana"
     ]
    }
   ],
@@ -3614,7 +3618,7 @@
    "decks": 237,
    "roles": [
     "reach",
-    "beater"
+    "fastmana"
    ],
    "tags": [
     "mana@cast_trigger",
@@ -3936,14 +3940,6 @@
    ]
   },
   {
-   "name": "Sanctifier en-Vec",
-   "decks": 6,
-   "roles": [
-    "beater"
-   ],
-   "tags": []
-  },
-  {
    "name": "Hawkeye's Bow",
    "decks": 5,
    "roles": [
@@ -3954,6 +3950,14 @@
     "pump@static",
     "drain@other_trigger"
    ]
+  },
+  {
+   "name": "Memory Guardian",
+   "decks": 5,
+   "roles": [
+    "beater"
+   ],
+   "tags": []
   }
  ],
  "noTags": [
@@ -4240,14 +4244,6 @@
    "typeLine": "Creature — Giant"
   },
   {
-   "name": "Sanctifier en-Vec",
-   "decks": 6,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Human Cleric"
-  },
-  {
    "name": "Memory Guardian",
    "decks": 5,
    "roles": [
@@ -4278,6 +4274,14 @@
     "ramp"
    ],
    "typeLine": "Artifact"
+  },
+  {
+   "name": "Leyline of the Guildpact",
+   "decks": 5,
+   "roles": [
+    "ramp"
+   ],
+   "typeLine": "Enchantment"
   }
  ],
  "unknownCards": [

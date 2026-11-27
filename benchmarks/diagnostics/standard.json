@@ -118,14 +118,6 @@
  ],
  "gyhateCandidates": [
   {
-   "name": "Strategic Betrayal",
-   "decks": 347,
-   "roles": [
-    "removal"
-   ],
-   "oracle": "Target opponent exiles a creature they control and their graveyard."
-  },
-  {
    "name": "No More Lies",
    "decks": 259,
    "roles": [
@@ -233,14 +225,6 @@
    "oracle": "Delirium — This creature can't attack or block unless there are four or more card types among cards in your graveyard.\nAt the beginning of your upkeep, you may mill a card. (You may put the top card of your library into your graveyard.)"
   },
   {
-   "name": "The End",
-   "decks": 5,
-   "roles": [
-    "removal"
-   ],
-   "oracle": "This spell costs {2} less to cast if your life total is 5 or less.\nExile target creature or planeswalker. Search its controller's graveyard, hand, and library for any number of cards with the same name as that permanent and exile them. That player shuffles, then draws a card for each card exiled from their hand this way."
-  },
-  {
    "name": "Gollum the Abandoned",
    "decks": 2,
    "roles": [
@@ -257,14 +241,6 @@
     "beater"
    ],
    "oracle": "Whenever another Rat you control enters, exile up to one target card from an opponent's graveyard.\nAt the beginning of combat on your turn, create a 1/1 black Rat creature token with \"This token can't block.\""
-  },
-  {
-   "name": "Foggy Swamp Visions",
-   "decks": 2,
-   "roles": [
-    "tokens"
-   ],
-   "oracle": "As an additional cost to cast this spell, waterbend {X}. (While paying a waterbend cost, you can tap your artifacts and creatures to help. Each one pays for {1}.)\nExile X target creature cards from graveyards. For each creature card exiled this way, create a token that's a copy of it. At the beginning of your next end step, sacrifice those tokens."
   },
   {
    "name": "Kaya, Spirits' Justice",
@@ -369,7 +345,8 @@
     "decks": 347,
     "oracle": "Target opponent exiles a creature they control and their graveyard.",
     "detail": [
-     "removal:other:creature"
+     "removal:other:creature",
+     "gyhate:exile:graveyard"
     ]
    },
    {
@@ -1267,6 +1244,15 @@
   ],
   "gyhate": [
    {
+    "name": "Strategic Betrayal",
+    "decks": 347,
+    "oracle": "Target opponent exiles a creature they control and their graveyard.",
+    "detail": [
+     "removal:other:creature",
+     "gyhate:exile:graveyard"
+    ]
+   },
+   {
     "name": "Deadly Cover-Up",
     "decks": 269,
     "oracle": "As an additional cost to cast this spell, you may collect evidence 6.\nDestroy all creatures. If evidence was collected, exile a card from an opponent's graveyard. Then search its owner's graveyard, hand, and library for any number of cards with that name and exile them. That player shuffles, then draws a card for each card exiled from their hand this way.",
@@ -1342,9 +1328,26 @@
     ]
    },
    {
+    "name": "The End",
+    "decks": 5,
+    "oracle": "This spell costs {2} less to cast if your life total is 5 or less.\nExile target creature or planeswalker. Search its controller's graveyard, hand, and library for any number of cards with the same name as that permanent and exile them. That player shuffles, then draws a card for each card exiled from their hand this way.",
+    "detail": [
+     "removal:exile:creature/planeswalker",
+     "gyhate:exile:graveyard"
+    ]
+   },
+   {
     "name": "Scavenging Ooze",
     "decks": 2,
     "oracle": "{G}: Exile target card from a graveyard. If it was a creature card, put a +1/+1 counter on this creature and you gain 1 life.",
+    "detail": [
+     "gyhate:exile:graveyard"
+    ]
+   },
+   {
+    "name": "Foggy Swamp Visions",
+    "decks": 2,
+    "oracle": "As an additional cost to cast this spell, waterbend {X}. (While paying a waterbend cost, you can tap your artifacts and creatures to help. Each one pays for {1}.)\nExile X target creature cards from graveyards. For each creature card exiled this way, create a token that's a copy of it. At the beginning of your next end step, sacrifice those tokens.",
     "detail": [
      "gyhate:exile:graveyard"
     ]
@@ -1446,7 +1449,7 @@
   ]
  },
  "format": "Standard",
- "generatedAt": "2026-11-27T20:28:06.788Z",
+ "generatedAt": "2026-11-27T20:30:58.844Z",
  "decks": 2593,
  "otherOnly": [
   {
@@ -1575,7 +1578,8 @@
    "roles": [
     "removal",
     "reach",
-    "beater"
+    "beater",
+    "fastmana"
    ],
    "tags": [
     "drain@attack",
@@ -1626,6 +1630,20 @@
    "tags": [
     "lifegain@creature_enters",
     "draw@each_turn"
+   ]
+  },
+  {
+   "name": "The Sackville-Bagginses",
+   "decks": 239,
+   "roles": [
+    "draw",
+    "reach",
+    "fastmana"
+   ],
+   "tags": [
+    "draw@once_trigger",
+    "mana@once_trigger",
+    "drain@other_trigger"
    ]
   },
   {
@@ -1949,19 +1967,6 @@
     "pump@loyalty",
     "removal@loyalty"
    ]
-  },
-  {
-   "name": "Sphinx of False Conclusions",
-   "decks": 54,
-   "roles": [
-    "tokens",
-    "draw",
-    "beater"
-   ],
-   "tags": [
-    "draw@attack",
-    "token@dies"
-   ]
   }
  ],
  "byCategory": {
@@ -2031,7 +2036,8 @@
     "name": "Strategic Betrayal",
     "decks": 347,
     "roles": [
-     "removal"
+     "removal",
+     "gyhate"
     ]
    },
    {
@@ -2047,7 +2053,8 @@
     "roles": [
      "removal",
      "reach",
-     "beater"
+     "beater",
+     "fastmana"
     ]
    },
    {
@@ -2211,7 +2218,8 @@
     "name": "Greedy Freebooter",
     "decks": 240,
     "roles": [
-     "topmanip"
+     "topmanip",
+     "fastmana"
     ]
    },
    {
@@ -2247,7 +2255,8 @@
     "decks": 239,
     "roles": [
      "draw",
-     "reach"
+     "reach",
+     "fastmana"
     ]
    },
    {
@@ -2480,13 +2489,6 @@
     ]
    },
    {
-    "name": "Sarkhan, Dragon Ascendant",
-    "decks": 97,
-    "roles": [
-     "beater"
-    ]
-   },
-   {
     "name": "Captain Marvel, Earth's Protector",
     "decks": 92,
     "roles": [
@@ -2528,7 +2530,8 @@
     "name": "Bejeweled Warg",
     "decks": 62,
     "roles": [
-     "beater"
+     "beater",
+     "fastmana"
     ]
    },
    {
@@ -2542,6 +2545,13 @@
    {
     "name": "Dwarven Mauler",
     "decks": 61,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
+    "name": "Dwalin, Weaponmaster",
+    "decks": 60,
     "roles": [
      "beater"
     ]
@@ -2772,14 +2782,15 @@
     "decks": 141,
     "roles": [
      "tokens",
-     "ramp"
+     "fastmana"
     ]
    },
    {
     "name": "Magda, the Hoardmaster",
     "decks": 126,
     "roles": [
-     "tokens"
+     "tokens",
+     "fastmana"
     ]
    },
    {
@@ -3178,17 +3189,6 @@
    ]
   },
   {
-   "name": "Sarkhan, Dragon Ascendant",
-   "decks": 97,
-   "roles": [
-    "beater"
-   ],
-   "tags": [
-    "mana@etb",
-    "pump@etb"
-   ]
-  },
-  {
    "name": "Captain Marvel, Earth's Protector",
    "decks": 92,
    "roles": [
@@ -3248,7 +3248,8 @@
    "name": "Bejeweled Warg",
    "decks": 62,
    "roles": [
-    "beater"
+    "beater",
+    "fastmana"
    ],
    "tags": [
     "pump@combat_damage",
@@ -3412,6 +3413,17 @@
     "beater"
    ],
    "tags": []
+  },
+  {
+   "name": "Bristly Bill, Spine Sower",
+   "decks": 17,
+   "roles": [
+    "beater"
+   ],
+   "tags": [
+    "pump@landfall",
+    "pump@activated"
+   ]
   }
  ],
  "noTags": [

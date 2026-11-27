@@ -263,14 +263,6 @@
    "oracle": "If you control two or more other lands, this land enters tapped.\n{T}: Add {B}.\n{3}{B}: Until end of turn, this land becomes a 3/3 black Beholder creature with menace and \"Whenever this creature attacks, exile target card from defending player's graveyard.\" It's still a land."
   },
   {
-   "name": "Test of Talents",
-   "decks": 18,
-   "roles": [
-    "spell"
-   ],
-   "oracle": "Counter target instant or sorcery spell. Search its controller's graveyard, hand, and library for any number of cards with the same name as that spell and exile them. That player shuffles, then draws a card for each card exiled from their hand this way."
-  },
-  {
    "name": "Beacon Bolt",
    "decks": 9,
    "roles": [
@@ -287,14 +279,6 @@
     "lifegain"
    ],
    "oracle": "Creeping Chill deals 3 damage to each opponent and you gain 3 life.\nWhen Creeping Chill is put into your graveyard from your library, you may exile it. If you do, Creeping Chill deals 3 damage to each opponent and you gain 3 life."
-  },
-  {
-   "name": "Go Blank",
-   "decks": 5,
-   "roles": [
-    "discard"
-   ],
-   "oracle": "Target player discards two cards. Then exile that player's graveyard."
   },
   {
    "name": "Lier, Disciple of the Drowned",
@@ -345,14 +329,6 @@
    "oracle": "Surveil 2. You gain 2 life. If this spell was cast from a graveyard, exile it, then put it onto the battlefield transformed under its owner's control with a finality counter on it. (If a creature with a finality counter on it would die, exile it instead.)\nFlashback {3}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)\n//\n(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)\nI — Reveal the top card of your library. If it's a permanent card, put it into your hand.\nII — Add {G}{G}.\nIII — Other creatures you control get +2/+2 and gain trample until end of turn."
   },
   {
-   "name": "Strategic Betrayal",
-   "decks": 2,
-   "roles": [
-    "removal"
-   ],
-   "oracle": "Target opponent exiles a creature they control and their graveyard."
-  },
-  {
    "name": "Patchwork Beastie",
    "decks": 2,
    "roles": [
@@ -396,22 +372,6 @@
     "beater"
    ],
    "oracle": "Devoid (This card has no color.)\nWhen this creature enters, you may put a card an opponent owns from exile into that player's graveyard. If you do, target creature gets -3/-3 until end of turn."
-  },
-  {
-   "name": "Angel of Serenity",
-   "decks": 1,
-   "roles": [
-    "beater"
-   ],
-   "oracle": "Flying\nWhen this creature enters, you may exile up to three other target creatures from the battlefield and/or creature cards from graveyards.\nWhen this creature leaves the battlefield, return the exiled cards to their owners' hands."
-  },
-  {
-   "name": "Crumble to Dust",
-   "decks": 1,
-   "roles": [
-    "manalock"
-   ],
-   "oracle": "Devoid (This card has no color.)\nExile target nonbasic land. Search its controller's graveyard, hand, and library for any number of cards with the same name as that land and exile them. Then that player shuffles."
   }
  ],
  "disruptEvidence": {
@@ -1088,7 +1048,8 @@
     "decks": 18,
     "oracle": "Counter target instant or sorcery spell. Search its controller's graveyard, hand, and library for any number of cards with the same name as that spell and exile them. That player shuffles, then draws a card for each card exiled from their hand this way.",
     "detail": [
-     "counter:counter:instant/sorcery/spell"
+     "counter:counter:instant/sorcery/spell",
+     "gyhate:exile:graveyard"
     ]
    },
    {
@@ -1333,7 +1294,8 @@
     "decks": 5,
     "oracle": "Target player discards two cards. Then exile that player's graveyard.",
     "detail": [
-     "discard:exile:hand"
+     "discard:exile:hand",
+     "gyhate:exile:graveyard"
     ]
    },
    {
@@ -1485,6 +1447,15 @@
     ]
    },
    {
+    "name": "Test of Talents",
+    "decks": 18,
+    "oracle": "Counter target instant or sorcery spell. Search its controller's graveyard, hand, and library for any number of cards with the same name as that spell and exile them. That player shuffles, then draws a card for each card exiled from their hand this way.",
+    "detail": [
+     "counter:counter:instant/sorcery/spell",
+     "gyhate:exile:graveyard"
+    ]
+   },
+   {
     "name": "Deadly Cover-Up",
     "decks": 16,
     "oracle": "As an additional cost to cast this spell, you may collect evidence 6.\nDestroy all creatures. If evidence was collected, exile a card from an opponent's graveyard. Then search its owner's graveyard, hand, and library for any number of cards with that name and exile them. That player shuffles, then draws a card for each card exiled from their hand this way.",
@@ -1510,6 +1481,15 @@
     ]
    },
    {
+    "name": "Go Blank",
+    "decks": 5,
+    "oracle": "Target player discards two cards. Then exile that player's graveyard.",
+    "detail": [
+     "discard:exile:hand",
+     "gyhate:exile:graveyard"
+    ]
+   },
+   {
     "name": "Rest in Peace",
     "decks": 4,
     "oracle": "When this enchantment enters, exile all graveyards.\nIf a card or token would be put into a graveyard from anywhere, exile it instead.",
@@ -1531,6 +1511,15 @@
     "oracle": "When Valki enters, each opponent reveals their hand. For each opponent, exile a creature card they revealed this way until Valki leaves the battlefield.\n{X}: Choose a creature card exiled with Valki with mana value X. Valki becomes a copy of that card.\n//\nAs Tibalt enters, you get an emblem with \"You may play cards exiled with Tibalt, Cosmic Impostor, and you may spend mana as though it were mana of any color to cast those spells.\"\n+2: Exile the top card of each player's library.\n−3: Exile target artifact or creature.\n−8: Exile all graveyards. Add {R}{R}{R}.",
     "detail": [
      "removal:exile:creature/artifact",
+     "gyhate:exile:graveyard"
+    ]
+   },
+   {
+    "name": "Strategic Betrayal",
+    "decks": 2,
+    "oracle": "Target opponent exiles a creature they control and their graveyard.",
+    "detail": [
+     "removal:other:creature",
      "gyhate:exile:graveyard"
     ]
    },
@@ -1564,6 +1553,23 @@
     "decks": 1,
     "oracle": "Flash\nWhen this creature enters, choose one —\n• Put a +1/+1 counter on this creature for each creature that left the battlefield under your control this turn.\n• You gain 2 life and scry 2.\n• Exile target player's graveyard.",
     "detail": [
+     "gyhate:exile:graveyard"
+    ]
+   },
+   {
+    "name": "Angel of Serenity",
+    "decks": 1,
+    "oracle": "Flying\nWhen this creature enters, you may exile up to three other target creatures from the battlefield and/or creature cards from graveyards.\nWhen this creature leaves the battlefield, return the exiled cards to their owners' hands.",
+    "detail": [
+     "gyhate:exile:graveyard"
+    ]
+   },
+   {
+    "name": "Crumble to Dust",
+    "decks": 1,
+    "oracle": "Devoid (This card has no color.)\nExile target nonbasic land. Search its controller's graveyard, hand, and library for any number of cards with the same name as that land and exile them. Then that player shuffles.",
+    "detail": [
+     "removal:exile:land",
      "gyhate:exile:graveyard"
     ]
    }
@@ -1656,14 +1662,15 @@
     "decks": 1,
     "oracle": "Devoid (This card has no color.)\nExile target nonbasic land. Search its controller's graveyard, hand, and library for any number of cards with the same name as that land and exile them. Then that player shuffles.",
     "detail": [
-     "removal:exile:land"
+     "removal:exile:land",
+     "gyhate:exile:graveyard"
     ]
    }
   ],
   "combat": []
  },
  "format": "Pioneer",
- "generatedAt": "2026-11-27T20:28:06.788Z",
+ "generatedAt": "2026-11-27T20:30:58.844Z",
  "decks": 1176,
  "otherOnly": [
   {
@@ -1837,6 +1844,34 @@
    ]
   },
   {
+   "name": "Fable of the Mirror-Breaker // Reflection of Kiki-Jiki",
+   "decks": 83,
+   "roles": [
+    "tokens",
+    "draw",
+    "fastmana"
+   ],
+   "tags": [
+    "token@chapter",
+    "mana@chapter",
+    "draw@chapter"
+   ]
+  },
+  {
+   "name": "The Sackville-Bagginses",
+   "decks": 82,
+   "roles": [
+    "draw",
+    "reach",
+    "fastmana"
+   ],
+   "tags": [
+    "draw@once_trigger",
+    "mana@once_trigger",
+    "drain@other_trigger"
+   ]
+  },
+  {
    "name": "Sunspine Lynx",
    "decks": 77,
    "roles": [
@@ -1888,6 +1923,19 @@
     "topmanip@spell",
     "cheat@spell",
     "recursion@spell"
+   ]
+  },
+  {
+   "name": "Old-Growth Troll",
+   "decks": 68,
+   "roles": [
+    "tokens",
+    "ramp",
+    "beater"
+   ],
+   "tags": [
+    "token@dies",
+    "mana@dies"
    ]
   },
   {
@@ -2008,8 +2056,8 @@
    "decks": 44,
    "roles": [
     "draw",
-    "ramp",
-    "reach"
+    "reach",
+    "fastmana"
    ],
    "tags": [
     "draw@other_trigger",
@@ -2096,8 +2144,8 @@
    "roles": [
     "removal",
     "draw",
-    "ramp",
-    "reach"
+    "reach",
+    "fastmana"
    ],
    "tags": [
     "drain@spell",
@@ -2105,46 +2153,6 @@
     "draw@spell",
     "mana@spell",
     "removal@spell"
-   ]
-  },
-  {
-   "name": "Memory Deluge",
-   "decks": 35,
-   "roles": [
-    "draw",
-    "recursion",
-    "topselect"
-   ],
-   "tags": [
-    "topselect@spell",
-    "draw@spell",
-    "recursion@spell"
-   ]
-  },
-  {
-   "name": "Archon of Emeria",
-   "decks": 34,
-   "roles": [
-    "spell",
-    "manalock",
-    "beater"
-   ],
-   "tags": [
-    "hate@static",
-    "hate@static"
-   ]
-  },
-  {
-   "name": "Spelunking",
-   "decks": 34,
-   "roles": [
-    "draw",
-    "ramp",
-    "lifegain"
-   ],
-   "tags": [
-    "lifegain@etb",
-    "draw@etb"
    ]
   }
  ],
@@ -2242,7 +2250,7 @@
     "decks": 114,
     "roles": [
      "wipe",
-     "ramp"
+     "fastmana"
     ]
    },
    {
@@ -2436,7 +2444,8 @@
     "decks": 82,
     "roles": [
      "draw",
-     "reach"
+     "reach",
+     "fastmana"
     ]
    },
    {
@@ -2452,7 +2461,7 @@
     "decks": 81,
     "roles": [
      "draw",
-     "ramp"
+     "fastmana"
     ]
    },
    {
@@ -2529,7 +2538,8 @@
     "name": "Greedy Freebooter",
     "decks": 60,
     "roles": [
-     "topmanip"
+     "topmanip",
+     "fastmana"
     ]
    },
    {
@@ -2876,13 +2886,6 @@
     ]
    },
    {
-    "name": "Prosperous Innkeeper",
-    "decks": 2,
-    "roles": [
-     "lifegain"
-    ]
-   },
-   {
     "name": "Voice of the Blessed",
     "decks": 2,
     "roles": [
@@ -2909,6 +2912,13 @@
     "roles": [
      "enhance",
      "protection"
+    ]
+   },
+   {
+    "name": "Violent Urge",
+    "decks": 2,
+    "roles": [
+     "enhance"
     ]
    }
   ],
@@ -2944,7 +2954,8 @@
     "decks": 83,
     "roles": [
      "tokens",
-     "draw"
+     "draw",
+     "fastmana"
     ]
    },
    {
@@ -2969,6 +2980,7 @@
     "decks": 68,
     "roles": [
      "tokens",
+     "ramp",
      "beater"
     ]
    },
@@ -3069,6 +3081,7 @@
      "tokens",
      "draw",
      "beater",
+     "fastmana",
      "lifegain"
     ]
    },

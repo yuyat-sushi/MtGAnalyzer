@@ -158,14 +158,6 @@
     "beater"
    ],
    "oracle": "{U}, Sacrifice this creature: Counter target noncreature spell unless its controller pays {3}.\nDisturb {2}{U} (You may cast this card from your graveyard transformed for its disturb cost.)\n//\nFlying\nNoncreature spells you control can't be countered.\nIf Benevolent Geist would be put into a graveyard from anywhere, exile it instead."
-  },
-  {
-   "name": "Strategic Betrayal",
-   "decks": 1,
-   "roles": [
-    "removal"
-   ],
-   "oracle": "Target opponent exiles a creature they control and their graveyard."
   }
  ],
  "disruptEvidence": {
@@ -1096,6 +1088,15 @@
     "detail": [
      "gyhate:exile:graveyard"
     ]
+   },
+   {
+    "name": "Strategic Betrayal",
+    "decks": 1,
+    "oracle": "Target opponent exiles a creature they control and their graveyard.",
+    "detail": [
+     "removal:other:creature",
+     "gyhate:exile:graveyard"
+    ]
    }
   ],
   "manalock": [
@@ -1242,7 +1243,7 @@
   ]
  },
  "format": "Vintage",
- "generatedAt": "2026-11-27T20:28:06.788Z",
+ "generatedAt": "2026-11-27T20:30:58.844Z",
  "decks": 1205,
  "otherOnly": [
   {
@@ -1451,6 +1452,19 @@
    "tags": [
     "draw@activated",
     "cheat@activated"
+   ]
+  },
+  {
+   "name": "Hullbreacher",
+   "decks": 22,
+   "roles": [
+    "draw",
+    "beater",
+    "fastmana"
+   ],
+   "tags": [
+    "draw@static",
+    "mana@static"
    ]
   },
   {
@@ -1700,19 +1714,6 @@
    "tags": [
     "counter@cast_trigger",
     "protection@activated_once"
-   ]
-  },
-  {
-   "name": "Metamorphosis Fanatic",
-   "decks": 3,
-   "roles": [
-    "recursion",
-    "beater",
-    "lifegain"
-   ],
-   "tags": [
-    "lifegain@static",
-    "recursion@etb"
    ]
   }
  ],
@@ -2112,7 +2113,7 @@
     "decks": 124,
     "roles": [
      "reach",
-     "beater"
+     "fastmana"
     ]
    },
    {
@@ -2226,7 +2227,8 @@
     "name": "Ragavan, Nimble Pilferer",
     "decks": 14,
     "roles": [
-     "beater"
+     "beater",
+     "fastmana"
     ]
    },
    {
@@ -2687,7 +2689,7 @@
    "decks": 124,
    "roles": [
     "reach",
-    "beater"
+    "fastmana"
    ],
    "tags": [
     "mana@cast_trigger",
@@ -2837,7 +2839,8 @@
    "name": "Ragavan, Nimble Pilferer",
    "decks": 14,
    "roles": [
-    "beater"
+    "beater",
+    "fastmana"
    ],
    "tags": [
     "mana@combat_damage"
@@ -2970,7 +2973,8 @@
    "name": "Dori, Bearer of Friends",
    "decks": 1,
    "roles": [
-    "beater"
+    "beater",
+    "fastmana"
    ],
    "tags": [
     "mana@etb"

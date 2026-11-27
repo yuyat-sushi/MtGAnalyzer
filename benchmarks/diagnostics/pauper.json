@@ -124,17 +124,9 @@
    "decks": 156,
    "roles": [
     "draw",
-    "ramp"
+    "fastmana"
    ],
    "oracle": "Exile the top three cards of your library. You may play those cards this turn. At the beginning of the next end step, if any of those cards remain exiled, put them into your graveyard, then create a 0/1 colorless Eldrazi Spawn creature token for each card put into your graveyard this way. Those tokens have \"Sacrifice this token: Add {C}.\""
-  },
-  {
-   "name": "Thraben Charm",
-   "decks": 145,
-   "roles": [
-    "removal"
-   ],
-   "oracle": "Choose one —\n• Thraben Charm deals damage equal to twice the number of creatures you control to target creature.\n• Destroy target enchantment.\n• Exile any number of target players' graveyards."
   },
   {
    "name": "Lunarch Veteran // Luminous Phantom",
@@ -153,23 +145,6 @@
     "lifegain"
    ],
    "oracle": "You may exile the top three black cards of your graveyard rather than pay this spell's mana cost.\nSpinning Darkness deals 3 damage to target nonblack creature. You gain 3 life."
-  },
-  {
-   "name": "Memory Leak",
-   "decks": 4,
-   "roles": [
-    "discard"
-   ],
-   "oracle": "Target opponent reveals their hand. You choose a nonland card from that player's graveyard or hand and exile it.\nCycling {1} ({1}, Discard this card: Draw a card.)"
-  },
-  {
-   "name": "Crypt Incursion",
-   "decks": 2,
-   "roles": [
-    "wipe",
-    "lifegain"
-   ],
-   "oracle": "Exile all creature cards from target player's graveyard. You gain 3 life for each card exiled this way."
   },
   {
    "name": "Grip of Amnesia",
@@ -309,7 +284,8 @@
     "oracle": "Choose one —\n• Thraben Charm deals damage equal to twice the number of creatures you control to target creature.\n• Destroy target enchantment.\n• Exile any number of target players' graveyards.",
     "detail": [
      "removal:damage:creature",
-     "removal:destroy:enchantment"
+     "removal:destroy:enchantment",
+     "gyhate:exile:graveyard"
     ]
    },
    {
@@ -580,14 +556,6 @@
     "oracle": "Flying\n//\nForktail Sweep deals 1 damage to each creature you don't control. (Then exile this card. You may cast the creature later from exile.)",
     "detail": [
      "wipe:damage:creature"
-    ]
-   },
-   {
-    "name": "Crypt Incursion",
-    "decks": 2,
-    "oracle": "Exile all creature cards from target player's graveyard. You gain 3 life for each card exiled this way.",
-    "detail": [
-     "wipe:exile:creature"
     ]
    },
    {
@@ -907,7 +875,8 @@
     "decks": 4,
     "oracle": "Target opponent reveals their hand. You choose a nonland card from that player's graveyard or hand and exile it.\nCycling {1} ({1}, Discard this card: Draw a card.)",
     "detail": [
-     "discard:exile:hand"
+     "discard:exile:hand",
+     "gyhate:exile:graveyard"
     ]
    },
    {
@@ -978,6 +947,16 @@
     ]
    },
    {
+    "name": "Thraben Charm",
+    "decks": 145,
+    "oracle": "Choose one —\n• Thraben Charm deals damage equal to twice the number of creatures you control to target creature.\n• Destroy target enchantment.\n• Exile any number of target players' graveyards.",
+    "detail": [
+     "removal:damage:creature",
+     "removal:destroy:enchantment",
+     "gyhate:exile:graveyard"
+    ]
+   },
+   {
     "name": "Heritage Reclamation",
     "decks": 44,
     "oracle": "Choose one —\n• Destroy target artifact.\n• Destroy target enchantment.\n• Exile up to one target card from a graveyard. Draw a card.",
@@ -1022,9 +1001,26 @@
     ]
    },
    {
+    "name": "Memory Leak",
+    "decks": 4,
+    "oracle": "Target opponent reveals their hand. You choose a nonland card from that player's graveyard or hand and exile it.\nCycling {1} ({1}, Discard this card: Draw a card.)",
+    "detail": [
+     "discard:exile:hand",
+     "gyhate:exile:graveyard"
+    ]
+   },
+   {
     "name": "Rotten Reunion",
     "decks": 2,
     "oracle": "Exile up to one target card from a graveyard. Create a 2/2 black Zombie creature token with decayed. (It can't block. When it attacks, sacrifice it at end of combat.)\nFlashback {1}{B} (You may cast this card from your graveyard for its flashback cost. Then exile it.)",
+    "detail": [
+     "gyhate:exile:graveyard"
+    ]
+   },
+   {
+    "name": "Crypt Incursion",
+    "decks": 2,
+    "oracle": "Exile all creature cards from target player's graveyard. You gain 3 life for each card exiled this way.",
     "detail": [
      "gyhate:exile:graveyard"
     ]
@@ -1117,7 +1113,7 @@
   "combat": []
  },
  "format": "Pauper",
- "generatedAt": "2026-11-27T20:28:06.788Z",
+ "generatedAt": "2026-11-27T20:30:58.844Z",
  "decks": 2747,
  "otherOnly": [
   {
@@ -1267,7 +1263,7 @@
    "roles": [
     "draw",
     "topselect",
-    "ramp"
+    "fastmana"
    ],
    "tags": [
     "topselect@spell",
@@ -1779,7 +1775,8 @@
     "name": "Thraben Charm",
     "decks": 145,
     "roles": [
-     "removal"
+     "removal",
+     "gyhate"
     ]
    },
    {
@@ -1984,7 +1981,7 @@
     "roles": [
      "draw",
      "topselect",
-     "ramp"
+     "fastmana"
     ]
    },
    {
@@ -2143,13 +2140,6 @@
     ]
    },
    {
-    "name": "Writhing Chrysalis",
-    "decks": 130,
-    "roles": [
-     "beater"
-    ]
-   },
-   {
     "name": "Black Mage's Rod",
     "decks": 129,
     "roles": [
@@ -2176,6 +2166,14 @@
     "decks": 118,
     "roles": [
      "beater"
+    ]
+   },
+   {
+    "name": "Bramble Wurm",
+    "decks": 110,
+    "roles": [
+     "beater",
+     "lifegain"
     ]
    }
   ],
@@ -2815,17 +2813,6 @@
    "tags": []
   },
   {
-   "name": "Writhing Chrysalis",
-   "decks": 130,
-   "roles": [
-    "beater"
-   ],
-   "tags": [
-    "mana@cast_self",
-    "pump@other_trigger"
-   ]
-  },
-  {
    "name": "Black Mage's Rod",
    "decks": 129,
    "roles": [
@@ -2928,7 +2915,8 @@
    "name": "Eldrazi Repurposer",
    "decks": 33,
    "roles": [
-    "beater"
+    "beater",
+    "fastmana"
    ],
    "tags": [
     "mana@cast_self",
@@ -2999,6 +2987,14 @@
   },
   {
    "name": "Ornithopter",
+   "decks": 25,
+   "roles": [
+    "beater"
+   ],
+   "tags": []
+  },
+  {
+   "name": "Gearseeker Serpent",
    "decks": 25,
    "roles": [
     "beater"
