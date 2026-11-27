@@ -268,7 +268,12 @@ function simOf(ds) {
       Object.entries(m).map(([name, v]) => ({ name, r: r2([3, 4, 5].map(t => v[t - 1])) }))
         .filter(x => Math.max(...x.r) >= 0.05).sort((a, b) => b.r[1] - a.r[1]).slice(0, 8)]))
   });
-  return { turns: [3, 4, 5], combos: combos.map(c => c.name), hasDisrupt: r.hasDisrupt, play: side(r.play), draw: side(r.draw) };
+  // 行動（フェッチ・サーチ・ドロー・ライフ回復・追加ターン）をするカードと、先手で3・4・5ターン目までに唱えた率（土地は手札に来た率）
+  const actCards = rep.cards.map(c => ({ c, kinds: ManaSim.actionKinds(c.card) })).filter(x => x.kinds.length).map(({ c, kinds }) => {
+    const by = (kinds.includes('fetch') ? r.play.seenBy : r.play.castBy)[c.card.name];
+    return { name: c.card.name, qty: c.qty, kinds, r: by ? r2([3, 4, 5].map(t => by[t - 1])) : [0, 0, 0] };
+  }).sort((a, b) => b.r[2] - a.r[2]);
+  return { turns: [3, 4, 5], combos: combos.map(c => c.name), hasDisrupt: r.hasDisrupt, play: side(r.play), draw: side(r.draw), actCards };
 }
 
 // ---------- メイン ----------

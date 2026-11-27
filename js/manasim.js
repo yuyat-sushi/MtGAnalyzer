@@ -878,7 +878,13 @@
     return { turns, iters, play, draw, tron, accel, hasDisrupt, keyNames, keyCmc, autoKey, keyTurn: T, enablers };
   }
 
-  const api = { simulate, landProfile, searchSpec, digSpec, rockSpec, costOf };
+  // カードが行う行動（行動干渉が効くもの）: fetch / search / draw / life / extra の配列
+  function actionKinds(card) {
+    if (isLandCard(card)) return landProfile(card).fetch ? ['fetch'] : [];
+    const sp = searchSpec(card), a = actsOf(card, !!sp);
+    return [...(sp || a.search ? ['search'] : []), ...['draw', 'life', 'extra'].filter(k => a[k])];
+  }
+  const api = { simulate, landProfile, searchSpec, digSpec, rockSpec, costOf, actionKinds };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else global.ManaSim = api;
 })(typeof window !== 'undefined' ? window : globalThis);
