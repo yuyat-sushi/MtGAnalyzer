@@ -205,7 +205,7 @@
 
   function analyze(card) {
     if (!card) return { abilities: [], tags: [], tokens: [], evasion: false, power: null, speed: 'sorcery' };
-    const abilities = [];
+    const abilities = [], untagged = [];
     faces(card).filter(f => f.playable).forEach(({ type, text: faceText }) => {
       const isSpell = /\b(Instant|Sorcery)\b/.test(type);
       let prev = null;
@@ -251,6 +251,7 @@
         if (RECURSION_KEYWORDS.test(line) && !effects.includes('recursion')) effects.push('recursion');
         const tokens = tokensOf(line);
         if (effects.length || tokens.length) abilities.push({ text: line, triggers, effects, tokens, isInstant: /\bInstant\b/.test(type) });
+        else untagged.push({ text: line, kind: kindOf(triggers[0]) }); // 効果を読み取れなかった能力（タグ化の取りこぼし確認用）
       }
     });
     const kw = (card.keywords || []).join(' ').toLowerCase();
@@ -273,7 +274,7 @@
     const front = String(card.typeLine || '').split(' // ')[0];
     const speed = /\bInstant\b/.test(front) || hasFlash ? 'instant' :
       abilities.some(a => a.triggers.includes('activated') && !/activate only as a sorcery/.test(a.text) && !(a.effects.length === 1 && a.effects[0] === 'mana')) ? 'instant' : 'sorcery';
-    return { abilities, tags, tokens, evasion, power: card.power, speed };
+    return { abilities, tags, tokens, evasion, power: card.power, speed, untagged };
   }
 
   // ---------- 妨害の詳細（選択先・影響範囲・処理/移動先・相手に与えるもの） ----------
