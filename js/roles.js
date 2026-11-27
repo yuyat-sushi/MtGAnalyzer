@@ -550,9 +550,73 @@
     return out;
   }
 
+  // ---------- 上位デッキの脅威への対処 ----------
+  const PERM_TYPES = ['creature', 'artifact', 'enchantment', 'planeswalker', 'battle'];
+  const typesOfThreat = t => {
+    const ty = String(t.type || '').toLowerCase();
+    if (/\b(instant|sorcery)\b/.test(ty)) return ['spell'];
+    return PERM_TYPES.filter(x => new RegExp(`\\b${x}\\b`).test(ty));
+  };
+  /**
+   * card がその脅威に対処できるか。{ how: 'removal'|'counter'|'discard' } か null
+   * threat: { type, mv, toughness }（benchmarks の meta[].threats）
+   */
+  function answerOf(card, threat) {
+    if (!card) return null;
+    const info = inspect(card);
+    const tt = typesOfThreat(threat);
+    if (!tt.length) return null;
+    const isCreature = tt.includes('creature');
+    for (const tag of info.tags) {
+      const d = tag.detail;
+      if (!d) continue;
+      if (tag.effect === 'counter') {
+        const ok = d.types.includes('spell') || (isCreature && d.types.includes('creature spell')) || (!isCreature && d.types.includes('noncreature spell')) ||
+          (tt.includes('spell') && d.types.includes('instant/sorcery'));
+        if (ok) return { how: 'counter' };
+        continue;
+      }
+      if (tag.effect === 'discard') { if (d.types.includes('hand')) return { how: 'discard' }; continue; }
+      if (tag.effect !== 'removal' && tag.effect !== 'wipe') continue;
+      const hit = d.types.filter(x => tt.includes(x));
+      if (!hit.length) continue;
+      // 対処に使う能力の文（ダメージ量・マナ総量の条件を見る）
+      const abil = info.abilities.find(a => (a.effects.includes('removal') || a.effects.includes('wipe')) && a.triggers.includes(tag.trigger)) || null;
+      const text = abil ? abil.text : '';
+      if (d.action === 'damage' && hit.length === 1 && hit[0] === 'creature') {
+        const dm = text.match(/deals? (\d+) damage/);
+        const tough = parseInt(threat.toughness, 10);
+        if (dm && !isNaN(tough) && tough > +dm[1]) continue;
+      }
+      const mvc = text.match(/mana value (\d+) or less/);
+      if (mvc && threat.mv != null && threat.mv > +mvc[1]) continue;
+      return { how: 'removal' };
+    }
+    return null;
+  }
+  /**
+   * 対戦相手のパーマネントの構成から見て、そのカードの妨害が「腐りやすい」か
+   * perm: { creature, artifact, enchantment, planeswalker }（中央値）、graveyard: 墓地を使うデッキか
+   */
+  function deadAgainst(card, opp) {
+    const info = inspect(card);
+    const ds = info.tags.filter(t => t.detail);
+    if (!ds.length) return false;
+    const MIN = { creature: 4, artifact: 2, enchantment: 2, planeswalker: 1, battle: 1 };
+    for (const t of ds) {
+      const d = t.detail;
+      // 打ち消し・手札破壊・ロック・プレイヤーに撃てるものは腐らないとみなす
+      if (t.effect === 'counter' || t.effect === 'discard' || d.action === 'lock' || d.types.includes('player') || d.types.includes('land')) return false;
+      if (t.effect === 'gyhate' || d.types.includes('graveyard')) { if (opp.graveyard) return false; continue; }
+      if (d.types.some(x => MIN[x] != null && (opp.perm && opp.perm[x] || 0) >= MIN[x])) return false;
+      if (!d.types.some(x => MIN[x] != null)) return false; // 判定できない種類は腐らない扱い
+    }
+    return true;
+  }
+
   const COLOR_JA = { W: '白', U: '青', B: '黒', R: '赤', G: '緑' };
 
-  const api = { CATEGORIES, CAT_MAP, ROLES, ROLE_MAP, PRIORITY, DISRUPT_LABELS, disruptProfile, metaAdvice, inspect, normalizeRoles, categoryOf, setOverrides, FORMATS, ARCHETYPES, COLOR_JA, classify, primary, analyze, targets };
+  const api = { answerOf, deadAgainst, CATEGORIES, CAT_MAP, ROLES, ROLE_MAP, PRIORITY, DISRUPT_LABELS, disruptProfile, metaAdvice, inspect, normalizeRoles, categoryOf, setOverrides, FORMATS, ARCHETYPES, COLOR_JA, classify, primary, analyze, targets };
   // ブラウザでは window.Roles、Node.js（集計スクリプト）では require で使う
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else global.Roles = api;

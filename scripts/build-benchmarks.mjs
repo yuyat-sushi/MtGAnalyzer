@@ -28,6 +28,7 @@ const Roles = require(path.join(ROOT, 'js/roles.js'));
 const CardModel = require(path.join(ROOT, 'js/cardmodel.js'));
 const Archetype = require(path.join(ROOT, 'js/archetype.js'));
 const Combos = require(path.join(ROOT, 'js/combos.js'));
+const ManaSim = require(path.join(ROOT, 'js/manasim.js'));
 const COMBOS = path.join(ROOT, 'data/combos.json');
 if (fs.existsSync(COMBOS)) Combos.setCombos(JSON.parse(fs.readFileSync(COMBOS, 'utf8')));
 
@@ -198,6 +199,70 @@ function keyCards(decks, limit) {
     .map(e => ({ name: e.name, rate: +(e.decks / decks.length).toFixed(2), avg: +(e.copies / e.decks).toFixed(2), cat: e.cat, roles: e.roles }));
 }
 
+// ---------- 対策の軸用: 脅威カード・代表リスト・一人回し ----------
+// 対処する価値のある脅威: そのアーキタイプの40%以上が採用していて、
+//   - 主な採用理由が勝ち手段・コンボ/展開のカード（インスタント・ソーサリーはコンボ/展開のみ）
+//   - または、居座って働くパーマネント（クリーチャー・プレインズウォーカー、エンジン、フィニッシャー）
+// キャントリップや使い捨てのドローのような「デッキを回すためのカード」は除く
+function isThreat(c) {
+  if (c.roles.includes('land')) return false;
+  const front = String(c.typeLine || '').split(' // ')[0];
+  const spell = /\b(Instant|Sorcery)\b/.test(front);
+  if (spell) return c.cat === 'combo';
+  if (c.cat === 'win' || c.cat === 'combo') return true;
+  if (/\bPlaneswalker\b/.test(front)) return true;
+  if (c.roles.includes('engine') || c.roles.includes('finisher')) return true;
+  return c.cat === 'resource' && /\bCreature\b/.test(front);
+}
+function threatsOf(ds, limit = 6) {
+  const m = new Map();
+  for (const d of ds) for (const c of d.cards) {
+    if (!isThreat(c)) continue;
+    const e = m.get(c.name) || { c, decks: 0, copies: 0 };
+    e.decks++; e.copies += c.qty; m.set(c.name, e);
+  }
+  return [...m.values()].filter(e => e.decks / ds.length >= 0.4)
+    .sort((a, b) => b.decks - a.decks || b.copies - a.copies).slice(0, limit)
+    .map(({ c, decks, copies }) => ({
+      name: c.name.split(' // ')[0], rate: +(decks / ds.length).toFixed(2), avg: +(copies / decks).toFixed(1), cat: c.cat,
+      type: String(c.typeLine || '').split(' // ')[0], mv: c.card ? c.card.cmc : null,
+      power: c.card ? c.card.power : null, toughness: c.card ? c.card.toughness : null
+    }));
+}
+// 代表リスト: ほかのデッキとの共通カード（枚数の小さいほう）の合計が一番大きいデッキ
+function representative(ds) {
+  const sample = ds.slice(0, 80);
+  const vs = sample.map(d => new Map(d.cards.map(c => [c.name, c.qty])));
+  let best = 0, bs = -1;
+  vs.forEach((a, i) => {
+    let s = 0;
+    vs.forEach((b, j) => { if (i !== j) for (const [k, q] of a) s += Math.min(q, b.get(k) || 0); });
+    if (s > bs) { bs = s; best = i; }
+  });
+  return sample[best];
+}
+const r2 = a => a.map(x => +x.toFixed(2));
+function simOf(ds, threats) {
+  const rep = representative(ds);
+  if (!rep) return null;
+  // 一人回しの主力はカードの正式名（両面カードは「表 // 裏」）で指定する
+  const full = n => (rep.cards.find(c => c.name.split(' // ')[0] === n) || { name: n }).name;
+  // リソース（ドロー・サーチなど）以外の脅威を主力にする（Primeval Titan のように主な採用理由がマナのフィニッシャーも含める）
+  let keys = threats.filter(t => t.cat !== 'resource').map(t => full(t.name));
+  if (!keys.length) keys = threats.map(t => full(t.name));
+  if (!rep || !keys.length) return null;
+  const r = ManaSim.simulate(rep.cards.map(c => ({ qty: c.qty, card: c.card, cat: c.cat })), { keys, iters: 800, enablers: false });
+  if (!r) return null;
+  const t50 = r.play.keyBy.findIndex(x => x >= 0.5);
+  return {
+    keys: keys.map(k => k.split(' // ')[0]),
+    keyBy: { play: r2(r.play.keyBy), draw: r2(r.draw.keyBy) },
+    // 主力が50%以上の確率で出ているターン（先手）。相手の「キーターン」
+    keyTurn: t50 >= 0 ? t50 + 1 : null,
+    inHand: r2(r.play.inHand), held: r2(r.play.held), idle: r2(r.play.idle)
+  };
+}
+
 // ---------- メイン ----------
 async function main() {
   const t0 = Date.now();
@@ -254,7 +319,7 @@ async function main() {
           info.abilities.some(a => a.effects.some(x => ['cheat', 'extraturn'].includes(x)) ||
             (a.effects.includes('copy') && info.cat === 'combo') ||
             (a.effects.includes('recursion') && /to the battlefield/.test(a.text)));
-        cards.push({ name: card.name, qty: e.qty, roles: r, cat: info.cat, tags: info.tags, power: card.power, typeLine: card.typeLine, instantCombo, oracle: card.oracle });
+        cards.push({ name: card.name, qty: e.qty, roles: r, cat: info.cat, tags: info.tags, power: card.power, typeLine: card.typeLine, instantCombo, oracle: card.oracle, card });
         if (!r.includes('land')) {
           nonLand += e.qty; mvSum += card.cmc * e.qty;
           (card.colors || []).forEach(c => colors.add(c));
@@ -322,6 +387,7 @@ async function main() {
     // メタの特徴（アドバイス用）：アーキタイプごとに、何に頼っているデッキか
     const meta = archetypes.filter(a => a.n >= 5).map(a => {
       const ds = groups.get(a.name);
+      const threats = threatsOf(ds);
       const comboCards = [...new Set(ds.flatMap(d => d.cards.filter(c => c.instantCombo).map(c => c.name)))]
         .filter(n => ds.filter(d => d.cards.some(c => c.name === n)).length / ds.length >= 0.5);
       return {
@@ -332,7 +398,11 @@ async function main() {
         graveyard: a.roles.recursion.median >= 4 || (a.roles.recursion.median + a.roles.selfmill.median) >= 8,
         // 成立しているコンボと、その採用率（30%以上のもの）
         combos: Combos.list().map(c => ({ id: c.id, rate: +(ds.filter(d => d.combos.includes(c.id)).length / ds.length).toFixed(2) })).filter(x => x.rate >= 0.3),
-        instantCombo: comboCards
+        instantCombo: comboCards,
+        // パーマネントの構成（中央値）と脅威カード、代表リストの一人回し
+        perm: Object.fromEntries(Object.entries(a.perm).map(([k, v]) => [k, v.median])),
+        threats,
+        sim: simOf(ds, threats)
       };
     });
 
