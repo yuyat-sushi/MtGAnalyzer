@@ -558,41 +558,61 @@
     return PERM_TYPES.filter(x => new RegExp(`\\b${x}\\b`).test(ty));
   };
   /**
-   * card がその脅威に対処できるか。{ how: 'removal'|'counter'|'discard' } か null
+   * card がその脅威に対処できるかと、その理由
    * threat: { type, mv, toughness }（benchmarks の meta[].threats）
+   * 戻り値: { ok: true, how: 'removal'|'counter'|'discard' }
+   *       | { ok: false, reason: 'type'|'damage'|'mv', note }（対処系の能力はあるが当たらない）
+   *       | null（対処系の能力がない）
    */
-  function answerOf(card, threat) {
+  function answerWhy(card, threat) {
     if (!card) return null;
     const info = inspect(card);
     const tt = typesOfThreat(threat);
     if (!tt.length) return null;
     const isCreature = tt.includes('creature');
+    let miss = null;
     for (const tag of info.tags) {
       const d = tag.detail;
       if (!d) continue;
       if (tag.effect === 'counter') {
         const ok = d.types.includes('spell') || (isCreature && d.types.includes('creature spell')) || (!isCreature && d.types.includes('noncreature spell')) ||
           (tt.includes('spell') && d.types.includes('instant/sorcery'));
-        if (ok) return { how: 'counter' };
+        if (ok) return { ok: true, how: 'counter' };
+        miss = miss || { ok: false, reason: 'type', note: '打ち消せる呪文の種類が違う' };
         continue;
       }
-      if (tag.effect === 'discard') { if (d.types.includes('hand')) return { how: 'discard' }; continue; }
+      if (tag.effect === 'discard') { if (d.types.includes('hand')) return { ok: true, how: 'discard' }; continue; }
       if (tag.effect !== 'removal' && tag.effect !== 'wipe') continue;
       const hit = d.types.filter(x => tt.includes(x));
-      if (!hit.length) continue;
+      if (!hit.length) {
+        if (d.types.some(x => PERM_TYPES.includes(x))) miss = miss || { ok: false, reason: 'type', note: '対象の種類が違う' };
+        continue;
+      }
       // 対処に使う能力の文（ダメージ量・マナ総量の条件を見る）
       const abil = info.abilities.find(a => (a.effects.includes('removal') || a.effects.includes('wipe')) && a.triggers.includes(tag.trigger)) || null;
       const text = abil ? abil.text : '';
       if (d.action === 'damage' && hit.length === 1 && hit[0] === 'creature') {
         const dm = text.match(/deals? (\d+) damage/);
         const tough = parseInt(threat.toughness, 10);
-        if (dm && !isNaN(tough) && tough > +dm[1]) continue;
+        if (dm && !isNaN(tough) && tough > +dm[1]) { miss = { ok: false, reason: 'damage', note: `${dm[1]}点ではタフネス${tough}に届かない` }; continue; }
       }
+      // 「マナ総量N以下」。紛争などの条件で上限が上がる場合（Fatal Push）は、基本の上限で判定してメモに残す
+      const allMv = [...info.abilities.filter(a => a.effects.includes('removal') || a.effects.includes('wipe')).map(a => a.text).join(' ').matchAll(/mana value (\d+) or less/g)].map(m => +m[1]);
       const mvc = text.match(/mana value (\d+) or less/);
-      if (mvc && threat.mv != null && threat.mv > +mvc[1]) continue;
-      return { how: 'removal' };
+      if (mvc && threat.mv != null && threat.mv > +mvc[1]) {
+        const alt = Math.max(...allMv);
+        const extra = alt > +mvc[1] && threat.mv <= alt ? `。条件を満たせば${alt}以下まで対象にできる` : '';
+        miss = { ok: false, reason: 'mv', note: `マナ総量${mvc[1]}以下までしか対象にできない（${threat.mv}）${extra}` };
+        continue;
+      }
+      return { ok: true, how: 'removal' };
     }
-    return null;
+    return miss;
+  }
+  /** card がその脅威に対処できるか。{ how } か null */
+  function answerOf(card, threat) {
+    const r = answerWhy(card, threat);
+    return r && r.ok ? { how: r.how } : null;
   }
   /**
    * 対戦相手のパーマネントの構成から見て、そのカードの妨害が「腐りやすい」か
@@ -616,7 +636,7 @@
 
   const COLOR_JA = { W: '白', U: '青', B: '黒', R: '赤', G: '緑' };
 
-  const api = { answerOf, deadAgainst, CATEGORIES, CAT_MAP, ROLES, ROLE_MAP, PRIORITY, DISRUPT_LABELS, disruptProfile, metaAdvice, inspect, normalizeRoles, categoryOf, setOverrides, FORMATS, ARCHETYPES, COLOR_JA, classify, primary, analyze, targets };
+  const api = { answerOf, answerWhy, deadAgainst, CATEGORIES, CAT_MAP, ROLES, ROLE_MAP, PRIORITY, DISRUPT_LABELS, disruptProfile, metaAdvice, inspect, normalizeRoles, categoryOf, setOverrides, FORMATS, ARCHETYPES, COLOR_JA, classify, primary, analyze, targets };
   // ブラウザでは window.Roles、Node.js（集計スクリプト）では require で使う
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else global.Roles = api;
