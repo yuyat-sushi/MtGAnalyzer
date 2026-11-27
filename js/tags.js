@@ -80,7 +80,13 @@
                                                  // 「墓地から〇枚まで追放」「対象のプレイヤーが自分の墓地のカードを追放する」「墓地をライブラリーの下に置く」
                                                  /exile up to (one|two|three|four|x|\d+) target cards? from (a single graveyard|graveyards|a graveyard|any graveyards?|target player's graveyard)/,
                                                  /(target|each) (player|opponent) exiles [^.]*?from (their|his or her) graveyard/,
-                                                 /puts? all (the )?cards from (their|his or her|target player's|each opponent's) graveyards? on the bottom of/] },
+                                                 /puts? all (the )?cards from (their|his or her|target player's|each opponent's) graveyards? on the bottom of/,
+                                                 // 実データで見つかった書き方（Thraben Charm、Kaya's Guile、Strategic Betrayal、Go Blank、Crypt Incursion、Sanctifier en-Vec など）
+                                                 /exile (any number of )?(all )?(target players'|all opponents'|each opponent's|opponents'|that player's|its controller's) graveyards?/,
+                                                 /exiles? [^.]*? and (their|his or her) graveyard/,
+                                                 /exile all [a-z ]*?cards? (that are [^.]*? )?from (all graveyards|target player's graveyard|each opponent's graveyard|all opponents' graveyards|a graveyard)/,
+                                                 /creature cards from graveyards/, /from that player's graveyard or hand and exile it/,
+                                                 /search (target opponent's|its controller's|its owner's|target player's) graveyard[^.]*?exile them/] },
     { id: 'hate',      label: '妨害（ロック）', re: [/\bcosts? \{\d\} more\b/, /would cost less than \w+ mana to cast costs/, /\bcost \{\d\} more\b/, /nonbasic lands (are|don't untap)/, /\bcan't cast (spells|noncreature|creature|instant|sorcery)/,
                                                  /can't be activated/, /(each player|players|your opponents|target player) can't (cast|activate|search|gain life|draw)/, /don't cause abilities to trigger/,
                                                  /(lands|creatures|artifacts|permanents) (your opponents control )?enter (the battlefield )?tapped/, /\bdon't untap during/, /players skip/, /tap for more than one mana produce/, /can't untap more than/,
@@ -221,6 +227,11 @@
         }
         // 絆魂はライフゲイン
         if (/(^|, )lifelink($|,)/.test(line) && !effects.includes('lifegain')) effects.push('lifegain');
+        // 「墓地のカードを全て追放」は全体除去ではなく墓地対策（Crypt Incursion）
+        if (effects.includes('wipe') && /exile all [^.]*?cards? (that are [^.]*? )?from [^.]*?graveyards?/.test(line) && !/(creatures?|permanents?) (you|they|your opponents) control/.test(line)) {
+          effects.splice(effects.indexOf('wipe'), 1);
+          if (!effects.includes('gyhate')) effects.push('gyhate');
+        }
         // 「対象のプレイヤーが自分の墓地のカードを追放する」は除去ではなく墓地対策（Relic of Progenitus）
         if (effects.includes('removal') && /(player|opponent) exiles [^.]*?from (their|his or her) graveyard/.test(line) && !/(creature|permanent|artifact|enchantment|planeswalker) (they|that player) control/.test(line)) {
           effects.splice(effects.indexOf('removal'), 1);
