@@ -290,6 +290,26 @@
     return arr;
   }
 
+  // ---------- 唱えたときの行動（相手の行動干渉が効くもの） ----------
+  // search: 土地以外を探す（土地サーチは doSearch で数える）、draw: 引く枚数、life: ライフを得る、extra: 追加ターン
+  // 「Whenever」「At the beginning」の誘発と、起動型能力（コロンの前にコスト）は唱えたときの行動ではないので数えない
+  function actsOf(card, landSearch) {
+    const out = { search: 0, draw: 0, life: 0, extra: 0 };
+    if (isLandCard(card)) return out;
+    for (const line of frontOracle(card).split('\n')) {
+      if (/^\s*(whenever|at the beginning)/i.test(line)) continue;
+      const colon = line.indexOf(':');
+      if (colon > 0 && /\{/.test(line.slice(0, colon))) continue;
+      if (/(target|each) (player|opponent)s? (may )?(searches|draws)|opponent (searches|draws)/i.test(line)) continue;
+      if (!landSearch && /search your library/i.test(line)) out.search++;
+      const dm = line.match(/\bdraws? (a|one|two|three|four|five|x) cards?/i);
+      if (dm && !/each player/i.test(line)) out.draw += Math.max(1, num(dm[1].toLowerCase()));
+      if (/\byou gain (\d+|x|that much) life|gain life equal/i.test(line)) out.life++;
+      if (/take an extra turn/i.test(line)) out.extra++;
+    }
+    return out;
+  }
+
   // ---------- デッキの下準備 ----------
   // entries: [{qty, card, cat?, key?}]
   function prepare(entries, keyNames) {
@@ -313,6 +333,7 @@
         key: keySet.has(c.name),
         perm: land ? null : permOf(c)
       };
+      info.acts = actsOf(c, !!info.search);
       // 構える妨害は、唱えて終わるインスタント・ソーサリーだけ。妨害のパーマネント（Karn、Teferi、Thalia など）は唱えて盤面に置く
       info.disrupt = !info.key && info.cat === 'disrupt' && /\b(Instant|Sorcery)\b/.test(frontType(c));
       for (let i = 0; i < e.qty; i++) cards.push(info);
@@ -387,7 +408,9 @@
     const rocks = []; // マナを出すパーマネント {amt, colors, sick, used}
     const perms = []; // 起動型のサーチを持つパーマネント（Expedition Map など）
     const tron = deck.tronTypes;
-    const g = { mana: [], idle: [], unused: [], held: [], inHand: [], cast: {}, seen: {}, board: [], combo: [], names: [], lands: [], groups: [] };
+    const g = { mana: [], idle: [], unused: [], held: [], inHand: [], cast: {}, seen: {}, board: [], combo: [], names: [], lands: [], groups: [], acts: [] };
+    // そのターンの行動の回数（相手の行動干渉が効くもの）。fetch はフェッチランドの生け贄起動、search は呪文・能力でのサーチ
+    let ev = { fetch: 0, search: 0, draw: 0, life: 0, extra: 0 };
     // 盤面（土地以外）: クリーチャー {power, toughness}、それ以外のパーマネントの数、毎ターン出るトークン
     const board = { creatures: [], artifact: 0, enchantment: 0, planeswalker: 0, battle: 0, makers: [], names: { artifact: [], enchantment: [], planeswalker: [] } };
     const seenNames = new Set();
@@ -537,7 +560,7 @@
       const tapped = entersTapped(c.p, bf);
       if (c.p.fetch) {
         const i = pickTarget(c.p.fetch, 'battlefield');
-        if (i >= 0) { const t = takeFromLib(i); bf.push(newSlot(t, c.p.fetch.tapped || entersTapped(t.p, bf) || tapped)); return; }
+        if (i >= 0) { const t = takeFromLib(i); ev.fetch++; bf.push(newSlot(t, c.p.fetch.tapped || entersTapped(t.p, bf) || tapped)); return; }
       }
       const slot = newSlot(c, tapped);
       bf.push(slot);
@@ -605,6 +628,7 @@
       const i = pickTarget(spec, spec.dest);
       if (i < 0) return;
       const c = takeFromLib(i);
+      ev.search++;
       if (spec.dest === 'battlefield') {
         if (spec.sacLand) {
           let si = -1, sv = Infinity;
@@ -617,6 +641,7 @@
     };
     const record = c => {
       castThisTurn++;
+      if (c.acts) { ev.search += c.acts.search; ev.draw += c.acts.draw; ev.life += c.acts.life; ev.extra += c.acts.extra; }
       if (!(c.name in g.seen)) g.seen[c.name] = turn;
       if (!(c.name in g.cast)) g.cast[c.name] = turn;
     };
@@ -688,6 +713,7 @@
       rocks.forEach(r => { r.sick = false; r.used = 0; });
       perms.forEach(x => { x.ready = true; });
       floated = null; landDrop = true; castThisTurn = 0; otherSpent = 0;
+      ev = { fetch: 0, search: 0, draw: 0, life: 0, extra: 0 };
       // 毎ターン（攻撃時・終了時など）トークンを出すパーマネントは、1ターンに1回出したものとして近似
       board.makers.forEach(list => list.forEach(t => board.creatures.push({ ...t })));
       pool.n += combatTreasure; // 前のターンまでに出たクリーチャーが攻撃して宝物を出したものとする
@@ -737,6 +763,7 @@
           bf.some(l => l.card && set.has(nk(l.card.name)));
       }
       g.groups.push(grp);
+      g.acts.push(ev);
       g.names.push({ land: landNames, creature: new Set(cr.map(x => x.name)), artifact: new Set(board.names.artifact), enchantment: new Set(board.names.enchantment), planeswalker: new Set(board.names.planeswalker) });
       g.combo.push((deck.combos || []).some(cb => cb.pieces.every(gr => gr.some(n => seenNames.has(nk(n))))));
       g.mana.push(total);
@@ -760,6 +787,8 @@
     const AK = ['normal', 'moon', 'sphere', 'b2b', 'ld'];
     const landsAgg = Array.from({ length: turns }, () => ({ n: 0, basic: 0, alt: Object.fromEntries(AK.map(k => [k, 0])) }));
     const groupsAgg = {};
+    const EK = ['fetch', 'search', 'draw', 'life', 'extra'];
+    const actsAgg = Array.from({ length: turns }, () => Object.fromEntries(EK.map(k => [k, 0])));
     const names = Object.fromEntries(NT.map(k => [k, {}])); // 種類 → カード名 → ターンごとの「戦場にある」回数
     const keys = new Set(keyNames);
     for (let n = 0; n < iters; n++) {
@@ -773,6 +802,7 @@
       r.combo.forEach((x, t) => { if (x) combo[t]++; });
       r.names.forEach((nm, t) => NT.forEach(k => nm[k].forEach(n => { (names[k][n] = names[k][n] || Array(turns).fill(0))[t]++; })));
       r.lands.forEach((l, t) => { landsAgg[t].n += l.n; landsAgg[t].basic += l.basic; AK.forEach(k => { landsAgg[t].alt[k] += l.alt[k]; }); });
+      r.acts.forEach((a, t) => EK.forEach(k => { actsAgg[t][k] += a[k]; }));
       r.groups.forEach((gr, t) => Object.entries(gr).forEach(([k, v]) => { (groupsAgg[k] = groupsAgg[k] || Array(turns).fill(0)); if (v) groupsAgg[k][t]++; }));
       for (const [name, t] of Object.entries(r.seen)) {
         (seenBy[name] = seenBy[name] || Array(turns).fill(0));
@@ -798,7 +828,9 @@
       // 土地の平均枚数・基本土地の枚数と、Blood Moon／Damping Sphere／Back to Basics／土地1枚破壊のときの出せるマナ
       lands: landsAgg.map(l => ({ n: l.n / iters, basic: l.basic / iters, alt: Object.fromEntries(AK.map(k => [k, l.alt[k] / iters])) })),
       // 対策札のグループを、そのターンまでに手札に持って唱えられる率
-      groups: Object.fromEntries(Object.entries(groupsAgg).map(([k, v]) => [k, f(v)]))
+      groups: Object.fromEntries(Object.entries(groupsAgg).map(([k, v]) => [k, f(v)])),
+      // そのターンに行った行動の平均回数（フェッチ・呪文や能力でのサーチ・ドロー枚数・ライフ回復・追加ターン）
+      acts: actsAgg.map(a => Object.fromEntries(EK.map(k => [k, a[k] / iters])))
     };
   }
 
