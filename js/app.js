@@ -576,19 +576,19 @@
     const backHTML = info.back && (info.back.tags.length || info.back.allRoles.length)
       ? `<div class="muted" style="margin-top:6px">変身後（手札からは唱えられない面。役割の枚数やカテゴリには数えないよ）</div>
         <div class="muted">役割: ${info.back.allRoles.map(r => esc((Roles.ROLE_MAP[r] || {}).label || r)).join('・') || 'なし'}</div>
-        ${info.back.tags.map(t => `<div class="tag back ${t.repeat ? 'rep' : 'once'}"><span class="tag-kind">${t.repeat ? '繰り返し' : '1回'}</span><span>${esc(Tags.tagLabel(t))}</span></div>`).join('')}`
+        ${info.back.tags.map(t => `<div class="tag back k-${t.kind}"><span class="tag-kind">${Tags.KINDS[t.kind] || ''}</span><span>${esc(Tags.tagLabel(t))}</span></div>`).join('')}`
       : '';
     const KIND_JA = { treasure: '宝物・落とし子', sacrifice: '生け贄', exile: '手札から追放', ritual: '儀式' };
     const COLOR_JA = { any: '好きな色', W: '白', U: '青', B: '黒', R: '赤', G: '緑', C: '無色' };
     const fastHTML = (info.fast || []).length
       ? `<div class="muted" style="margin-top:6px">即席マナ（1回きりのマナ）</div>${info.fast.map(f =>
-        `<div class="tag once"><span class="tag-kind">${esc(KIND_JA[f.kind] || f.kind)}</span><span>${f.amount}マナ・${COLOR_JA[f.color] || f.color}${f.combat ? '（攻撃・戦闘ダメージで）' : ''}
+        `<div class="tag k-fast"><span class="tag-kind">${esc(KIND_JA[f.kind] || f.kind)}</span><span>${f.amount}マナ・${COLOR_JA[f.color] || f.color}${f.combat ? '（攻撃・戦闘ダメージで）' : ''}
           <div class="tag-detail">${f.cardCost ? 'カード1枚を使う' : 'おまけで出る'} ／ ${f.now ? '今すぐマナが増える' : '払ったマナをあとにずらす'} ／ ${f.spell ? '呪文として唱える' : '唱えない'}</div></span></div>`).join('')}`
       : '';
     const ultHTML = info.ult
       ? `<div class="muted" style="margin-top:6px">奥義（出たターンには起動できない忠誠度能力。役割の枚数やカテゴリには数えないよ）</div>
         <div class="muted">役割: ${info.ult.allRoles.map(r => esc((Roles.ROLE_MAP[r] || {}).label || r)).join('・') || 'なし'}</div>
-        ${info.ult.tags.map(t => `<div class="tag back once"><span class="tag-kind">奥義</span><span>${esc(Tags.EFFECT_MAP[t.effect].label)}</span></div>`).join('')}`
+        ${info.ult.tags.map(t => `<div class="tag back k-activated"><span class="tag-kind">奥義</span><span>${esc(Tags.EFFECT_MAP[t.effect].label)}</span></div>`).join('')}`
       : '';
     if (!info.tags.length) return `<div class="tag-list"><div class="muted">検出した効果タグはありません</div>${fastHTML}${backHTML}${ultHTML}</div>`;
     const L = Roles.DISRUPT_LABELS;
@@ -604,7 +604,7 @@
     const tokens = info.tokens.length ? `<div class="muted" style="margin-top:4px">生成するトークン</div>${info.tokens.map(k =>
       `<div class="tag ${k.who === 'opponent' ? 'once' : 'rep'}"><span class="tag-kind">${k.who === 'opponent' ? '相手' : '自分'}</span>${esc(TOKEN_JA[k.kind] || k.kind)}${k.pt ? ` ${esc(k.pt)}` : ''}</div>`).join('')}` : '';
     return `<div class="tag-list"><div class="muted">検出した効果タグ（${info.speed === 'instant' ? 'インスタント速度で動ける' : 'ソーサリー速度'}）</div>${info.tags.map(t =>
-      `<div class="tag ${t.repeat ? 'rep' : 'once'}"><span class="tag-kind">${t.repeat ? '繰り返し' : '1回'}</span><span>${esc(Tags.tagLabel(t))}${detail(t)}</span></div>`).join('')}${tokens}${fastHTML}${backHTML}${ultHTML}</div>`;
+      `<div class="tag k-${t.kind}"><span class="tag-kind">${Tags.KINDS[t.kind] || ''}</span><span>${esc(Tags.tagLabel(t))}${detail(t)}</span></div>`).join('')}${tokens}${fastHTML}${backHTML}${ultHTML}</div>`;
   }
 
   // ---------- 上位デッキへの対策（フェアデッキを含む） ----------
@@ -873,18 +873,22 @@
   function renderTags(a, group) {
     const root = $('#tagTable');
     const benchTags = group && group.tags;
+    // 上位デッキの集計が古い形式（繰り返し/1回）のときは比較しない
+    const benchNew = benchTags && Object.keys(benchTags).some(k => /:(spell|activated|triggered|static)$/.test(k));
+    const KS = ['spell', 'activated', 'triggered', 'static'];
     const rows = Tags.EFFECTS.map(e => {
-      const r = a.tagCounts[e.id + ':r'] || 0, o = a.tagCounts[e.id + ':o'] || 0;
-      const br = benchTags && benchTags[e.id + ':r'], bo = benchTags && benchTags[e.id + ':o'];
-      if (!r && !o && !(br && br.q3) && !(bo && bo.q3)) return '';
-      const cell = (v, b) => `<td class="num">${v}${b ? ` <span class="muted">/ ${b.median}</span>` : ''}</td>`;
-      return `<tr><td>${esc(e.label)}</td>${cell(r, br)}${cell(o, bo)}</tr>`;
+      const v = KS.map(k => a.tagCounts[`${e.id}:${k}`] || 0);
+      const b = KS.map(k => benchNew ? benchTags[`${e.id}:${k}`] : null);
+      if (!v.some(Boolean) && !b.some(x => x && x.q3)) return '';
+      const cell = (x, bb) => `<td class="num">${x || ''}${bb ? ` <span class="muted">/ ${bb.median}</span>` : ''}</td>`;
+      return `<tr><td>${esc(e.label)}</td>${v.map((x, i) => cell(x, b[i])).join('')}</tr>`;
     }).join('');
     root.innerHTML = rows
-      ? `<table class="meta-table"><thead><tr><th>効果</th><th class="num">繰り返し</th><th class="num">1回</th></tr></thead><tbody>${rows}</tbody></table>
-         <p class="hint">その効果を持つカードの枚数。${benchTags ? '「/」の右は上位デッキの中央値。' : ''}カードの役割チップを押すと、カードごとのタグ（効果 × 発動条件）を確認できます。</p>`
+      ? `<table class="meta-table"><thead><tr><th>効果</th>${KS.map(k => `<th class="num">${Tags.KINDS[k]}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table>
+         <p class="hint">その効果を持つカードの枚数を、能力の種類（呪文・起動型・誘発型・常在型。総合ルール113.3の区分）ごとに数えています。${benchNew ? '「/」の右は上位デッキの中央値。' : benchTags ? '上位デッキの比較は、次回のベンチマーク集計後に表示されます。' : ''}カードの役割チップを押すと、カードごとのタグ（効果 × 発動条件）を確認できます。</p>`
       : '<p class="hint">効果タグのあるカードがまだありません</p>';
   }
+
 
   function renderSaved() {
     const saved = savedDecks();

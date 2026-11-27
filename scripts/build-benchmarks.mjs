@@ -170,7 +170,7 @@ function summarizeGroup(decks) {
   for (const r of ROLE_IDS) out.roles[r] = summarize(decks.map(d => d.roles[r] || 0));
   out.cats = {};
   for (const c of CAT_IDS) out.cats[c] = summarize(decks.map(d => d.cats[c] || 0));
-  // 効果タグ（"effect:r" = 繰り返し / "effect:o" = 1回）。どのデッキにもほぼ無いものは省く
+  // 効果タグ（"effect:kind"。kind = spell 呪文 / activated 起動型 / triggered 誘発型 / static 常在型）。どのデッキにもほぼ無いものは省く
   out.tags = {};
   const keys = new Set(decks.flatMap(d => Object.keys(d.tagCounts)));
   for (const k of keys) {
@@ -317,7 +317,7 @@ async function main() {
         const r = info.roles;
         r.forEach(x => { roles[x] += e.qty; });
         cats[info.cat] += e.qty;
-        new Set(info.tags.map(t => `${t.effect}:${t.repeat ? 'r' : 'o'}`)).forEach(k => { tagCounts[k] = (tagCounts[k] || 0) + e.qty; });
+        new Set(info.tags.map(t => `${t.effect}:${t.kind}`)).forEach(k => { tagCounts[k] = (tagCounts[k] || 0) + e.qty; });
         // インスタント速度のコンボパーツ（Goryo's Vengeance のような瞬間リアニメイト、インスタントの踏み倒しなど）
         //   主な採用理由がコンボ/展開・リソースのカードに限る（Flusterstorm のような妨害、Aether Vial のような継続的な展開は除く）
         const instantCombo = info.speed === 'instant' && (info.cat === 'combo' || info.cat === 'resource') && !r.includes('cheatloop') &&
