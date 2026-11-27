@@ -681,9 +681,19 @@
       if (thin || (S.combo && S.combo[1] >= 0.2)) needs.push('spell');
       if (m.graveyard) needs.push('graveyard');
       // 土地への対策で4ターン目の出せるマナが3割以上減る相手（特殊地形・2マナ土地に頼るデッキ）
+      // 土地への依存度: Blood Moon（マナが25%以上減るか、土地の7割以上が特殊地形）、Damping Sphere（25%以上減る）、
+      //   土地を1枚壊すと45%以上減る（普通のデッキは3割前後）。Back to Basics は特殊地形を使うほぼ全デッキに効くので判定には使わない
       const L4 = S.lands && S.lands[1];
-      const landDrop = L4 && L4.alt.normal > 0 ? Math.max(...['moon', 'sphere', 'b2b', 'ld'].map(k => 1 - L4.alt[k] / L4.alt.normal)) : 0;
-      if (landDrop >= 0.3) needs.push('land');
+      const landWhy = [];
+      if (L4 && L4.alt.normal > 0) {
+        const drop = k => 1 - L4.alt[k] / L4.alt.normal;
+        const nonbasic = L4.n ? 1 - L4.basic / L4.n : 0;
+        if (drop('moon') >= 0.25) landWhy.push(`Blood Moon下でマナ${n1(L4.alt.normal)}→${n1(L4.alt.moon)}`);
+        else if (nonbasic >= 0.7) landWhy.push(`土地の${pct(nonbasic)}が特殊地形（Blood Moon下で色を失う）`);
+        if (drop('sphere') >= 0.25) landWhy.push(`Damping Sphere下でマナ${n1(L4.alt.normal)}→${n1(L4.alt.sphere)}`);
+        if (drop('ld') >= 0.45) landWhy.push(`土地を1枚壊すとマナ${n1(L4.alt.normal)}→${n1(L4.alt.ld)}`);
+      }
+      if (landWhy.length) needs.push('land');
       const fits = (e, need) => {
         const info = Roles.inspect(e.card);
         if (need === 'creature') { const w = Roles.answerWhy(e.card, pseudo.creature); return w && w.ok && w.how === 'removal' && info.roles.includes('removal'); }
@@ -713,9 +723,7 @@
       if (wp && !wp.main && !wp.side && S.wide[1] >= 0.5 && m.share >= 0.05) tips.push({ level: 'info', text: `対${m.name}（${pct(m.share)}）: 4ターン目に3体以上並ぶ率が${pct(S.wide[1])}（タフネス2以下が平均${n1(b4.t2)}体）。全体除去がないので、サイドに検討の余地があるかも。` });
       const ld = cells.find(c => c.n === 'land');
       if (ld && L4) {
-        const worst = ['moon', 'sphere', 'b2b', 'ld'].sort((a, b) => L4.alt[a] - L4.alt[b])[0];
-        const WJ = { moon: 'Blood Moon下', sphere: 'Damping Sphere下', b2b: 'Back to Basics下', ld: '土地を1枚壊すと' };
-        const msg = `対${m.name}（${pct(m.share)}）: ${WJ[worst]}で4ターン目の出せるマナが${n1(L4.alt.normal)}→${n1(L4.alt[worst])}（基本土地は平均${n1(L4.basic)}枚）。`;
+        const msg = `対${m.name}（${pct(m.share)}）: 4ターン目に${landWhy.join('、')}（土地${n1(L4.n)}枚のうち基本土地${n1(L4.basic)}枚）。`;
         if (!ld.main && !ld.side) { if (m.share >= 0.05) tips.push({ level: 'info', text: msg + '特殊地形・土地対策はメインにもサイドにもないよ。' }); }
         else tips.push({ level: 'info', text: msg + `対策札は メイン${ld.main}/サイド${ld.side}枚。` });
       }
@@ -771,11 +779,12 @@
           ${near.length ? `<div class="mu-sub">数えなかったクリーチャー除去（相手のクリーチャーは平均タフネス${n1(perT)}）</div><ul class="mu-list">${[...new Set(near)].map(x => `<li>${x}</li>`).join('')}</ul>` : ''}
           ${deadN ? `<div class="mu-sub">腐りやすい枠</div><div>${esc(dead.map(e => `${displayName(e.card)}×${e.qty}`).join('、'))}${good.length ? `<br>→ 入れ替え候補（サイド）: ${esc(good.map(e => `${displayName(e.card)}×${e.qty}`).join('、'))}` : '<br><span class="muted">サイドに入れ替え先が見当たらない</span>'}</div>` : ''}
         </div>`;
-      const summary = `4T: クリーチャー${n1(b4.creatures)}体（P計${n1(b4.power)}・タフネス2以下${n1(b4.t2)}）${b4.artifact >= 0.3 ? `・A${n1(b4.artifact)}` : ''}${b4.enchantment >= 0.3 ? `・E${n1(b4.enchantment)}` : ''}${b4.planeswalker >= 0.2 ? `・PW${n1(b4.planeswalker)}` : ''}${m.sim.combos && m.sim.combos.length ? `・コンボ${pct(S.combo[1])}` : ''}`;
+      const summary = `4T: 土地${L4 ? n1(L4.n) : '?'}枚（基本${L4 ? n1(L4.basic) : '?'}）・クリーチャー${n1(b4.creatures)}体（P計${n1(b4.power)}・タフネス2以下${n1(b4.t2)}）${b4.artifact >= 0.3 ? `・A${n1(b4.artifact)}` : ''}${b4.enchantment >= 0.3 ? `・E${n1(b4.enchantment)}` : ''}${b4.planeswalker >= 0.2 ? `・PW${n1(b4.planeswalker)}` : ''}${m.sim.combos && m.sim.combos.length ? `・コンボ${pct(S.combo[1])}` : ''}`;
       return `<details class="mu" data-arch="${esc(m.name)}" ${openArch.has(m.name) ? 'open' : ''}><summary>
         <div class="mu-head"><b>${esc(m.name)}</b> <span class="num">${pct(m.share)}</span><span class="mu-toggle muted"></span></div>
         <div class="muted">${summary}</div>
         <div class="mu-threats">${cells.map(c => `<span class="mu-t ${cls(c)}">${NEED_LABEL[c.n]} <b>${c.main}</b><span class="muted">/${c.side}</span></span>`).join('')}</div>
+        ${landWhy.length ? `<div class="muted">土地への依存: ${esc(landWhy.join('、'))}</div>` : ''}
         ${deadN ? `<div class="muted">腐りやすい枠あり（${deadN}枚）</div>` : ''}
       </summary>${body}</details>`;
     }).join('');
