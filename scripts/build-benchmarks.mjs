@@ -257,7 +257,11 @@ function simOf(ds) {
     wide: r2([3, 4, 5].map(t => s.wide[t - 1])),
     mana: r2([3, 4, 5].map(t => s.avg[t - 1])),
     held: r2([3, 4, 5].map(t => s.held[t - 1])),
-    combo: r2([3, 4, 5].map(t => s.combo[t - 1]))
+    combo: r2([3, 4, 5].map(t => s.combo[t - 1])),
+    // 3・4・5ターン目に戦場にある確率が高いカード（種類ごとに、4ターン目に5%以上のものを上位8枚）
+    cards: Object.fromEntries(Object.entries(s.names).map(([k, m]) => [k,
+      Object.entries(m).map(([name, v]) => ({ name, r: r2([3, 4, 5].map(t => v[t - 1])) }))
+        .filter(x => Math.max(...x.r) >= 0.05).sort((a, b) => b.r[1] - a.r[1]).slice(0, 8)]))
   });
   return { turns: [3, 4, 5], combos: combos.map(c => c.name), hasDisrupt: r.hasDisrupt, play: side(r.play), draw: side(r.draw) };
 }

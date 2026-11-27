@@ -429,6 +429,7 @@
       ${r.hasDisrupt ? brow('妨害を構えられた', (s, t) => r[s].held[t - 1], pctTxt) : ''}
       ${r.comboNames && r.comboNames.length ? brow('コンボがそろった', (s, t) => r[s].combo[t - 1], pctTxt) : ''}
       </table></div>
+      ${TT.includes(4) ? cardBreakdownHTML(topCards(r.play.names), r.play.board[3], '先手') : ''}
       <p class="hint">トークンは出たとき・唱えたときに出るものと、毎ターン出すもの（1ターンに1回として近似）を含みます。全体除去を撃たれたときにどれだけ巻き込まれるかの目安にしてね。</p>`;
     if (TT.includes(4)) {
       const b = B('play', 4);
@@ -598,6 +599,30 @@
     for (let i = 0; i < n; i++) p *= Math.max(0, N - K - i) / (N - i);
     return 1 - p;
   }
+  // 盤面に出ているカード名と登場率（3・4・5ターン目）。平均2体/個以下なら並べ、多いときは折りたたむ
+  const BOARD_TYPES = [['creature', 'クリーチャー', 'creatures'], ['artifact', 'アーティファクト', 'artifact'], ['enchantment', 'エンチャント', 'enchantment'], ['planeswalker', 'PW', 'planeswalker']];
+  // manasim の names（種類 → 名前 → ターンごとの率）を、ベンチマークと同じ [{name, r:[3T,4T,5T]}] の形にする
+  function topCards(names) {
+    return Object.fromEntries(BOARD_TYPES.map(([k]) => [k, Object.entries((names || {})[k] || {})
+      .map(([name, v]) => ({ name, r: [v[2] || 0, v[3] || 0, v[4] || 0] }))
+      .filter(x => Math.max(...x.r) >= 0.05).sort((a, b) => b.r[1] - a.r[1]).slice(0, 8)]));
+  }
+  function cardBreakdownHTML(cards, b4, note) {
+    if (!cards) return '';
+    const pctS = x => `${Math.round(x * 100)}%`;
+    const rows = BOARD_TYPES.map(([k, label, bk]) => {
+      const list = cards[k] || [];
+      if (!list.length) return '';
+      const avg = b4[bk] || 0;
+      const items = list.map(x => `${esc(x.name)} <span class="muted">${x.r.map(pctS).join('/')}</span>`).join('、');
+      const head = `${label}（4Tで平均${avg.toFixed(1)}）`;
+      return avg <= 2 ? `<div class="bd-row"><b>${head}</b>: ${items}</div>`
+        : `<details class="bd-more"><summary>${head}の内訳を見る</summary><div class="bd-row">${items}</div></details>`;
+    }).join('');
+    return rows ? `<div class="mu-sub">盤面に出ているカード（3T/4T/5Tに戦場にある率${note ? '・' + note : ''}）</div>${rows}` : '';
+  }
+  const topNames = (cards, k, n = 2) => ((cards || {})[k] || []).slice(0, n).map(x => `${x.name} ${Math.round(x.r[1] * 100)}%`).join('・');
+
   // 対策の種類（相手の4ターン目の盤面から、必要なものだけ出す）
   const NEED_LABEL = { creature: 'クリーチャー除去', wipe: '全体除去', artifact: 'アーティファクト対策', enchantment: 'エンチャント対策', planeswalker: 'PW対策', spell: '打ち消し・手札破壊', graveyard: '墓地対策' };
   // 全体除去で相手の盤面から平均何体巻き込めるか（ダメージ型はタフネス1〜3以下の体数で見積もる）
@@ -666,7 +691,8 @@
       if (wp && !wp.main && !wp.side && S.wide[1] >= 0.5 && m.share >= 0.05) tips.push({ level: 'info', text: `対${m.name}（${pct(m.share)}）: 4ターン目に3体以上並ぶ率が${pct(S.wide[1])}（タフネス2以下が平均${n1(b4.t2)}体）。全体除去がないので、サイドに検討の余地があるかも。` });
       // 盤面に平均0.5個以上残るパーマネント・墓地・呪文中心の相手に、対策が1枚もないとき
       cells.filter(c => !c.main && !c.side && (['graveyard', 'spell'].includes(c.n) || (['artifact', 'enchantment', 'planeswalker'].includes(c.n) && b4[c.n] >= 0.5))).forEach(c => {
-        const what = ['artifact', 'enchantment', 'planeswalker'].includes(c.n) ? `4ターン目に${{ artifact: 'アーティファクト', enchantment: 'エンチャント', planeswalker: 'PW' }[c.n]}が平均${n1(b4[c.n])}個あるのに、` : '';
+        const nm = ['artifact', 'enchantment', 'planeswalker'].includes(c.n) ? topNames(S.cards, c.n) : '';
+        const what = ['artifact', 'enchantment', 'planeswalker'].includes(c.n) ? `4ターン目に${{ artifact: 'アーティファクト', enchantment: 'エンチャント', planeswalker: 'PW' }[c.n]}が平均${n1(b4[c.n])}個（${nm || '内訳不明'}）あるのに、` : '';
         tips.push({ level: 'warn', text: `対${m.name}（${pct(m.share)}）: ${what}${NEED_LABEL[c.n]}がメインにもサイドにもないよ。` });
       });
       // 腐りやすい枠（相手の4ターン目の盤面に対象がほとんどない妨害）
@@ -705,6 +731,7 @@
         </table></div>`;
       const body = `<div class="mu-body">
           ${oppTable}
+          ${cardBreakdownHTML(S.cards, b4, '先手')}
           ${cells.map(c => `<div class="mu-sub">${NEED_LABEL[c.n]}${c.chance != null ? `<span class="muted">（4Tまでに手札にあって唱えられる率 ${pct(c.chance)}・先手）</span>` : ''}</div>
             <div>メイン: ${list(c.mn, c.n)}</div><div class="muted">サイド: ${c.sd.length ? list(c.sd, c.n) : 'なし'}</div>`).join('')}
           ${near.length ? `<div class="mu-sub">数えなかったクリーチャー除去（相手のクリーチャーは平均タフネス${n1(perT)}）</div><ul class="mu-list">${[...new Set(near)].map(x => `<li>${x}</li>`).join('')}</ul>` : ''}
