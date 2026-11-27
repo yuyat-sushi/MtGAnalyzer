@@ -686,6 +686,19 @@
     return R.filter(([k]) => [2, 3, 4].some(t => (sim.play.acts[t] || {})[k] >= 0.05 || (sim.draw.acts[t] || {})[k] >= 0.05))
       .map(([k, label]) => brow(label, (s, i) => (sim[s].acts[i + 2] || {})[k] || 0)).join('');
   }
+  // 相手のカード自身の効果（唱えたとき・戦場に出たとき）で、先に置いた行動干渉を除去できるか
+  function selfRmHits(spec, card) {
+    const ty = String(card.typeLine || '').split('//')[0].toLowerCase();
+    if (/\b(instant|sorcery|land)\b/.test(ty)) return false; // 戦場に残らない／土地は対象外
+    let ok = spec.colored ? (card.colors || []).length > 0 : (spec.any || spec.nonland) ? true : spec.types.some(t => ty.includes(t));
+    if (ok && spec.dmg != null) {
+      const tough = /creature/.test(ty) && spec.types.includes('creature') ? parseInt(card.toughness, 10) : NaN;
+      const loy = /planeswalker/.test(ty) && spec.types.includes('planeswalker') ? parseInt(card.loyalty, 10) : NaN;
+      ok = (!isNaN(tough) && tough <= spec.dmg) || (!isNaN(loy) && loy <= spec.dmg);
+    }
+    if (ok && spec.mvMax != null) ok = (card.cmc || 0) <= spec.mvMax;
+    return ok;
+  }
   function renderMatchups(cmp) {
     const tips = [];
     const box = $('#matchBox');
@@ -735,7 +748,10 @@
       const actsOpp = m.sim.draw && m.sim.draw.acts; // 自分が先手のときの相手（後手）
       const actWhy = [], actNeed = [];
       if (actsOpp) Object.keys(ACT_KEYS).forEach(y => {
-        const r = actRemain(actsOpp, [y], 3);
+        // 相手のカード自身の効果で行動干渉を除去できるもの（嵐の目、ウギン など）の行動は、必要かどうかの判定から外す
+        let own = 0;
+        Object.values(m.sim.draw.rmActs || {}).forEach(list => list.forEach(o => { if (o.r >= 3 && o.t >= 3) ACT_KEYS[y].forEach(k => { own += ACT_W[k] * (o[k] || 0); }); }));
+        const r = actRemain(actsOpp, [y], 3) - own;
         if (r >= 1) { actNeed.push(y); actWhy.push(`${ACT_LABEL[y]}${y === 'library' ? `（フェッチ以外${n1(actRemain(actsOpp.map(a => ({ search: a.search })), ['library'], 3))}回）` : ''}`); }
       });
       if (actNeed.length) needs.push('action');
@@ -770,8 +786,20 @@
         let F = Math.max(1, Math.round(e.card.cmc || 0));
         const gr = sim && sim.play.groups && sim.play.groups['act:' + e.card.name];
         if (gr) { const i = gr.findIndex(x => x >= 0.05); if (i >= 0) F = Math.max(1, Math.min(F, i + 1)); }
-        const at = [F, F + 1, F + 2].map(L => ({ L, play: actRemain(m.sim.draw.acts, types, L), draw: actRemain(m.sim.play.acts, types, L + 1) }));
-        return { types, F, at };
+        // 相手のカード自身の効果で除去される場合、そのカードが着地後（除去した後）に行う行動は止められない
+        const rmBy = Object.entries(m.sim.selfRm || {}).filter(([, sp]) => selfRmHits(sp, e.card)).map(([n]) => n);
+        const lost = (side, from) => {
+          let v = 0;
+          rmBy.forEach(n => ((m.sim[side].rmActs || {})[n] || []).forEach(o => {
+            if (o.r >= from && o.t >= from) types.forEach(y => ACT_KEYS[y].forEach(k => { v += ACT_W[k] * (o[k] || 0); }));
+          }));
+          return v;
+        };
+        const at = [F, F + 1, F + 2].map(L => ({ L,
+          play: Math.max(0, actRemain(m.sim.draw.acts, types, L) - lost('draw', L)),
+          draw: Math.max(0, actRemain(m.sim.play.acts, types, L + 1) - lost('play', L + 1)),
+          lost: lost('draw', L) }));
+        return { types, F, at, rmBy: rmBy.filter(n => at.some(a => a.lost >= 0.05)) };
       };
       const ac = cells.find(c => c.n === 'action');
       if (ac) {
@@ -813,7 +841,7 @@
         else if (n === 'land') extra = `（${landHateKind(e.card)}）`;
         else if (n === 'action') {
           const tm = actTiming(e);
-          extra = `（${tm.types.map(y => ACT_LABEL[y]).join('・')}。止められる回数 先手/後手: ${tm.at.map((a, i) => `${i ? '' : '最速'}${a.L}T ${n1(a.play)}/${n1(a.draw)}回${a.play >= 0.5 ? '◎' : ''}`).join('・')}）`;
+          extra = `（${tm.types.map(y => ACT_LABEL[y]).join('・')}。止められる回数 先手/後手: ${tm.at.map((a, i) => `${i ? '' : '最速'}${a.L}T ${n1(a.play)}/${n1(a.draw)}回${a.play >= 0.5 ? '◎' : ''}`).join('・')}${tm.rmBy.length ? `。${tm.rmBy.join('・')}自身の効果で除去されるぶんは引いた（最速着地で−${n1(tm.at[0].lost)}回）` : ''}）`;
         }
         return `${esc(displayName(e.card))}×${e.qty}<span class="muted">${extra}</span>`;
       }).join('、') : '<span class="bad-t">なし</span>';

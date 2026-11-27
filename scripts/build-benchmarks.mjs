@@ -261,6 +261,10 @@ function simOf(ds) {
     combo: r2([3, 4, 5].map(t => s.combo[t - 1])),
     // 1〜6ターン目それぞれに行った行動の平均回数（行動干渉が間に合うかを見るため、全ターン分）
     acts: s.acts.map(r2o),
+    // 自分の効果で行動干渉を除去できるカード（嵐の目、ウギン など）の行動: r = 唱えたターン、t = 行動したターン
+    rmActs: Object.fromEntries(Object.entries(s.rmActs || {}).map(([n, list]) => [n,
+      list.map(o => Object.fromEntries(Object.entries(o).map(([k, v]) => [k, k === 'r' || k === 't' ? v : +v.toFixed(3)])))
+        .filter(o => ['fetch', 'search', 'draw', 'life', 'extra'].some(k => o[k] >= 0.001))])),
     // 土地の平均枚数・基本土地と、土地への対策（Blood Moon／Damping Sphere／Back to Basics／土地1枚破壊）が効いたときのマナ
     lands: [3, 4, 5].map(t => ({ n: +s.lands[t - 1].n.toFixed(2), basic: +s.lands[t - 1].basic.toFixed(2), alt: r2o(s.lands[t - 1].alt) })),
     // 3・4・5ターン目に戦場にある確率が高いカード（種類ごとに、4ターン目に5%以上のものを上位8枚）
@@ -273,7 +277,10 @@ function simOf(ds) {
     const by = (kinds.includes('fetch') ? r.play.seenBy : r.play.castBy)[c.card.name];
     return { name: c.card.name, qty: c.qty, kinds, r: by ? r2([3, 4, 5].map(t => by[t - 1])) : [0, 0, 0] };
   }).sort((a, b) => b.r[2] - a.r[2]);
-  return { turns: [3, 4, 5], combos: combos.map(c => c.name), hasDisrupt: r.hasDisrupt, play: side(r.play), draw: side(r.draw), actCards };
+  // 自分の効果で除去できるもの（行動干渉が届くかはアプリ側でカードタイプ・色・マナ総量・タフネスから判定する）
+  const selfRm = Object.fromEntries([...new Set([...Object.keys(r.play.rmActs || {}), ...Object.keys(r.draw.rmActs || {})])]
+    .map(n => { const c = rep.cards.find(x => x.card.name === n); return [n, c ? ManaSim.selfRemovalOf(c.card) : null]; }).filter(([, v]) => v));
+  return { turns: [3, 4, 5], combos: combos.map(c => c.name), hasDisrupt: r.hasDisrupt, play: side(r.play), draw: side(r.draw), actCards, selfRm };
 }
 
 // ---------- メイン ----------
