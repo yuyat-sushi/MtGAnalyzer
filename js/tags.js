@@ -79,7 +79,8 @@
                                                  /\btarget card in a graveyard\b/, /exile target [a-z ]*?card from a graveyard/, /would be put into an opponent's graveyard[^.]*?exile it\b/, /search its owner's graveyard[^.]*?and exile them/] },
     { id: 'hate',      label: '妨害（ロック）', re: [/\bcosts? \{\d\} more\b/, /would cost less than \w+ mana to cast costs/, /\bcost \{\d\} more\b/, /nonbasic lands (are|don't untap)/, /\bcan't cast (spells|noncreature|creature|instant|sorcery)/,
                                                  /can't be activated/, /(each player|players|your opponents|target player) can't (cast|activate|search|gain life|draw)/, /don't cause abilities to trigger/,
-                                                 /(lands|creatures|artifacts|permanents) (your opponents control )?enter (the battlefield )?tapped/, /\bdon't untap during/, /players skip/, /tap for more than one mana produce/, /can't untap more than/] },
+                                                 /(lands|creatures|artifacts|permanents) (your opponents control )?enter (the battlefield )?tapped/, /\bdon't untap during/, /players skip/, /tap for more than one mana produce/, /can't untap more than/,
+                                                 /tapped for two or more mana/, /lands your opponents control[^.]*?lose all land types/, /(enchanted|target)( nonbasic)? land (is|becomes) an? /] },
     // 攻撃の制限（Ensnaring Bridge、Propaganda、Moat、Peacekeeper など）
     { id: 'attacklock', label: '攻撃制限',    re: [/\bcreatures (with [^.]*?|without [^.]*?|your opponents control )?can't attack\b/, /no more than (one|two) creatures? can attack/] },
     { id: 'cheat',     label: '踏み倒し',     re: [/put (a|an|up to \w+|any number of|that|those|target)\b[^.]*?\b(creature|artifact|enchantment|permanent|planeswalker|nonland)\b[^.]*?\bcards?\b[^.]*?onto the battlefield/,
@@ -216,6 +217,8 @@
         }
         // 絆魂はライフゲイン
         if (/(^|, )lifelink($|,)/.test(line) && !effects.includes('lifegain')) effects.push('lifegain');
+        // 相手の土地にマナ能力を与えるだけの文（Alpine Moon）は、自分のマナにはならない
+        if (effects.includes('mana') && /lands your opponents control/.test(line)) effects.splice(effects.indexOf('mana'), 1);
         // 全体除去だけの能力は単体除去から外す
         if (effects.includes('wipe') && effects.includes('removal') && !/\btarget\b/.test(line)) effects.splice(effects.indexOf('removal'), 1);
         if (RECURSION_KEYWORDS.test(line) && !effects.includes('recursion')) effects.push('recursion');
@@ -266,7 +269,7 @@
       if (/can't cast|can't be cast/.test(line)) t.push('spell');
       if (/from graveyards|in graveyards/.test(line)) t.push('graveyard');
       if (/costs? \{\d\} more|cost \{\d\} more|would cost less than/.test(line)) t.push('tax');
-      if (/nonbasic lands|tap for more than one mana|produce \{c\}/.test(line)) t.push('mana');
+      if (/nonbasic lands|tap for more than one mana|produce \{c\}|tapped for two or more mana|lose all land types|(enchanted|target)( nonbasic)? land (is|becomes) an? /.test(line)) t.push('mana');
       if (/can't search/.test(line)) t.push('library');
       if (/can't attack|can attack/.test(line)) t.push('attack');
       // 「タップ状態で出る」「アンタップしない」：土地ならマナ、クリーチャーなら戦闘への妨害

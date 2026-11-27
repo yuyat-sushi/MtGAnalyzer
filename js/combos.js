@@ -18,7 +18,7 @@
   const ANSWER_JA = {
     stack: 'スタックで止める（打ち消しなど）', hand: '手札破壊', graveyard: '墓地対策', artifact: 'アーティファクト除去',
     enchantment: 'エンチャント除去', creature: 'クリーチャー除去', planeswalker: 'PW除去', land: '土地破壊',
-    tax: 'コスト増加',
+    tax: 'コスト増加', nonbasic: '特殊地形への対策（Blood Moon など）',
     'counter:mv': 'マナ総量を指定する打ち消し（Chalice of the Void など）',
     'counter:free': 'マナを使わずに唱えた呪文の打ち消し（Vexing Bauble など）',
     'counter:colorless': '色マナを使わずに唱えた呪文の打ち消し（Void Mirror など）'
@@ -103,6 +103,8 @@
       if (d.types.includes('graveyard')) out.add('graveyard');
       if (d.lock) out.locks.push(...d.lock);
       if (d.types.includes('tax')) out.add('tax');
+      // 特殊地形を山にする・アンタップさせない・土地を壊す（Blood Moon、Back to Basics、Wasteland など）
+      if (d.types.includes('mana') || (d.types.includes('land') && ['destroy', 'exile'].includes(d.action))) out.add('nonbasic');
       if (d.action !== 'lock') {
         for (const ty of ['artifact', 'enchantment', 'creature', 'planeswalker', 'land']) if (d.types.includes(ty)) out.add(ty);
       }

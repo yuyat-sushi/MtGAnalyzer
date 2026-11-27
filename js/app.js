@@ -388,14 +388,16 @@
     // デッキに登録済みのコンボ（パーツとデッキ要件がそろっているもの）を一人回しでもそろったか見る
     const lands = state.main.filter(e => rolesOf(e).includes('land')).reduce((s, e) => s + e.qty, 0);
     const combos = window.Combos ? Combos.detect({ main: state.main }, lands).filter(x => x.complete).map(x => ({ name: x.combo.name, pieces: x.combo.pieces })) : [];
-    const sig = list.map(e => `${e.qty}:${e.card.name}:${catOf(e)}`).sort().join('|') + '#' + combos.map(c => c.name).join('|');
+    const sig = list.map(e => `${e.qty}:${e.card.name}:${catOf(e)}`).sort().join('|') + '#' + combos.map(c => c.name).join('|') + '#v2';
     if (simCache.sig !== sig) {
       simCache = { sig, result: null, pending: true };
       box.innerHTML = list.length ? '<p class="hint">一人回し中…</p>' : '';
       setTimeout(() => {
         if (simCache.sig !== sig) return;
         let r = null;
-        try { r = ManaSim.simulate(list.map(e => ({ qty: e.qty, card: e.card, cat: catOf(e) })), { combos }); } catch (err) { console.error(err); }
+        // 特殊地形・土地への対策札（マナ妨害）を、何ターン目に唱えられるかも見る
+        const groups = { land: list.filter(e => Roles.inspect(e.card).roles.includes('manalock')).map(e => e.card.name) };
+        try { r = ManaSim.simulate(list.map(e => ({ qty: e.qty, card: e.card, cat: catOf(e) })), { combos, groups }); } catch (err) { console.error(err); }
         if (r) r.comboNames = combos.map(c => c.name);
         simCache = { sig, result: r, pending: false };
         renderAnalysis();
@@ -422,6 +424,8 @@
       ${brow('タフネス2以下（体）', (s, t) => B(s, t).t2)}
       ${brow('タフネス3以下（体）', (s, t) => B(s, t).t3)}
       ${brow('3体以上並ぶ率', (s, t) => r[s].wide[t - 1], pctTxt)}
+      ${brow('土地（枚）', (s, t) => r[s].lands[t - 1].n)}
+      ${brow('うち基本土地', (s, t) => r[s].lands[t - 1].basic)}
       ${brow('アーティファクト', (s, t) => B(s, t).artifact)}
       ${brow('エンチャント', (s, t) => B(s, t).enchantment)}
       ${brow('PW', (s, t) => B(s, t).planeswalker)}
@@ -429,7 +433,7 @@
       ${r.hasDisrupt ? brow('妨害を構えられた', (s, t) => r[s].held[t - 1], pctTxt) : ''}
       ${r.comboNames && r.comboNames.length ? brow('コンボがそろった', (s, t) => r[s].combo[t - 1], pctTxt) : ''}
       </table></div>
-      ${TT.includes(4) ? cardBreakdownHTML(topCards(r.play.names), r.play.board[3], '先手') : ''}
+      ${TT.includes(4) ? cardBreakdownHTML(topCards(r.play.names), Object.assign({ lands: r.play.lands[3].n }, r.play.board[3]), '先手') : ''}
       <p class="hint">トークンは出たとき・唱えたときに出るものと、毎ターン出すもの（1ターンに1回として近似）を含みます。全体除去を撃たれたときにどれだけ巻き込まれるかの目安にしてね。</p>`;
     if (TT.includes(4)) {
       const b = B('play', 4);
@@ -600,7 +604,7 @@
     return 1 - p;
   }
   // 盤面に出ているカード名と登場率（3・4・5ターン目）。平均2体/個以下なら並べ、多いときは折りたたむ
-  const BOARD_TYPES = [['creature', 'クリーチャー', 'creatures'], ['artifact', 'アーティファクト', 'artifact'], ['enchantment', 'エンチャント', 'enchantment'], ['planeswalker', 'PW', 'planeswalker']];
+  const BOARD_TYPES = [['land', '土地', 'lands'], ['creature', 'クリーチャー', 'creatures'], ['artifact', 'アーティファクト', 'artifact'], ['enchantment', 'エンチャント', 'enchantment'], ['planeswalker', 'PW', 'planeswalker']];
   // manasim の names（種類 → 名前 → ターンごとの率）を、ベンチマークと同じ [{name, r:[3T,4T,5T]}] の形にする
   function topCards(names) {
     return Object.fromEntries(BOARD_TYPES.map(([k]) => [k, Object.entries((names || {})[k] || {})
@@ -624,7 +628,7 @@
   const topNames = (cards, k, n = 2) => ((cards || {})[k] || []).slice(0, n).map(x => `${x.name} ${Math.round(x.r[1] * 100)}%`).join('・');
 
   // 対策の種類（相手の4ターン目の盤面から、必要なものだけ出す）
-  const NEED_LABEL = { creature: 'クリーチャー除去', wipe: '全体除去', artifact: 'アーティファクト対策', enchantment: 'エンチャント対策', planeswalker: 'PW対策', spell: '打ち消し・手札破壊', graveyard: '墓地対策' };
+  const NEED_LABEL = { creature: 'クリーチャー除去', wipe: '全体除去', artifact: 'アーティファクト対策', enchantment: 'エンチャント対策', planeswalker: 'PW対策', spell: '打ち消し・手札破壊', graveyard: '墓地対策', land: '特殊地形・土地対策' };
   // 全体除去で相手の盤面から平均何体巻き込めるか（ダメージ型はタフネス1〜3以下の体数で見積もる）
   function wipeKills(card, b) {
     const info = Roles.inspect(card);
@@ -633,6 +637,17 @@
     const dm = ab.text.match(/deals? (\d+) damage to each creature/) || ab.text.match(/(?:all|each) [^.]*?creatures?[^.]*? gets? -(\d+)\/-\d+/);
     if (dm) { const n = +dm[1]; return n >= 4 ? b.creatures : b['t' + Math.max(1, n)]; }
     return b.creatures;
+  }
+  // 土地への対策札の種類
+  function landHateKind(card) {
+    const t = Tags.playableOracle(card).toLowerCase();
+    if (/nonbasic lands are mountains/.test(t)) return '特殊地形を山に';
+    if (/nonbasic lands don't untap/.test(t)) return '特殊地形をアンタップさせない';
+    if (/tapped for two or more mana/.test(t)) return '2マナ以上の土地を1マナに';
+    if (/lose all land types/.test(t)) return '指定した土地の能力を消す';
+    if (/land (is|becomes) an? /.test(t)) return '土地のタイプを変える';
+    if (/(destroy|exile)[^.]*\bland/.test(t)) return /nonbasic/.test(t) ? '特殊地形を破壊' : '土地破壊';
+    return 'マナ妨害';
   }
   function renderMatchups(cmp) {
     const tips = [];
@@ -665,6 +680,10 @@
       const thin = b4.creatures < 1 && b4.artifact + b4.enchantment + b4.planeswalker < 0.5;
       if (thin || (S.combo && S.combo[1] >= 0.2)) needs.push('spell');
       if (m.graveyard) needs.push('graveyard');
+      // 土地への対策で4ターン目の出せるマナが3割以上減る相手（特殊地形・2マナ土地に頼るデッキ）
+      const L4 = S.lands && S.lands[1];
+      const landDrop = L4 && L4.alt.normal > 0 ? Math.max(...['moon', 'sphere', 'b2b', 'ld'].map(k => 1 - L4.alt[k] / L4.alt.normal)) : 0;
+      if (landDrop >= 0.3) needs.push('land');
       const fits = (e, need) => {
         const info = Roles.inspect(e.card);
         if (need === 'creature') { const w = Roles.answerWhy(e.card, pseudo.creature); return w && w.ok && w.how === 'removal' && info.roles.includes('removal'); }
@@ -672,12 +691,15 @@
         if (pseudo[need]) { const w = Roles.answerWhy(e.card, pseudo[need]); return w && w.ok && w.how === 'removal'; }
         if (need === 'spell') return info.tags.some(t => t.effect === 'counter' || t.effect === 'discard');
         if (need === 'graveyard') return info.roles.includes('gyhate');
+        if (need === 'land') return info.roles.includes('manalock');
         return false;
       };
       const cells = needs.map(n => {
         const mn = mainE.filter(e => fits(e, n)), sd = sideE.filter(e => fits(e, n));
         let chance = null;
-        if (mn.length) {
+        if (mn.length && n === 'land' && sim && sim.play.groups && sim.play.groups.land) {
+          chance = sim.play.groups.land[Math.min(4, sim.turns) - 1]; // コスト軽減も込みで、4ターン目までに手札にあって唱えられる率
+        } else if (mn.length) {
           const minCmc = Math.min(...mn.map(e => Math.round(e.card.cmc || 0)));
           const manaOk = sim ? (sim.play.ge[Math.min(4, sim.turns) - 1][Math.min(minCmc, 11)] || 0) : 1;
           chance = atLeastOne(deckN, qtyOf(mn), 10) * manaOk; // 先手4ターン目までに見る10枚
@@ -689,6 +711,14 @@
       if (cr && !cr.main && !cr.side) tips.push({ level: 'bad', text: `対${m.name}（${pct(m.share)}）: 4ターン目にクリーチャーが平均${n1(b4.creatures)}体並ぶのに、クリーチャー除去がメインにもサイドにもないよ。` });
       const wp = cells.find(c => c.n === 'wipe');
       if (wp && !wp.main && !wp.side && S.wide[1] >= 0.5 && m.share >= 0.05) tips.push({ level: 'info', text: `対${m.name}（${pct(m.share)}）: 4ターン目に3体以上並ぶ率が${pct(S.wide[1])}（タフネス2以下が平均${n1(b4.t2)}体）。全体除去がないので、サイドに検討の余地があるかも。` });
+      const ld = cells.find(c => c.n === 'land');
+      if (ld && L4) {
+        const worst = ['moon', 'sphere', 'b2b', 'ld'].sort((a, b) => L4.alt[a] - L4.alt[b])[0];
+        const WJ = { moon: 'Blood Moon下', sphere: 'Damping Sphere下', b2b: 'Back to Basics下', ld: '土地を1枚壊すと' };
+        const msg = `対${m.name}（${pct(m.share)}）: ${WJ[worst]}で4ターン目の出せるマナが${n1(L4.alt.normal)}→${n1(L4.alt[worst])}（基本土地は平均${n1(L4.basic)}枚）。`;
+        if (!ld.main && !ld.side) { if (m.share >= 0.05) tips.push({ level: 'info', text: msg + '特殊地形・土地対策はメインにもサイドにもないよ。' }); }
+        else tips.push({ level: 'info', text: msg + `対策札は メイン${ld.main}/サイド${ld.side}枚。` });
+      }
       // 盤面に平均0.5個以上残るパーマネント・墓地・呪文中心の相手に、対策が1枚もないとき
       cells.filter(c => !c.main && !c.side && (['graveyard', 'spell'].includes(c.n) || (['artifact', 'enchantment', 'planeswalker'].includes(c.n) && b4[c.n] >= 0.5))).forEach(c => {
         const nm = ['artifact', 'enchantment', 'planeswalker'].includes(c.n) ? topNames(S.cards, c.n) : '';
@@ -708,6 +738,7 @@
         let extra = '';
         if (n === 'wipe') { const k = wipeKills(e.card, b4); if (k != null) extra = `（平均${n1(k)}体）`; }
         else if (n === 'spell') extra = `（${Roles.inspect(e.card).tags.some(t => t.effect === 'counter') ? '打ち消し' : '手札破壊'}）`;
+        else if (n === 'land') extra = `（${landHateKind(e.card)}）`;
         return `${esc(displayName(e.card))}×${e.qty}<span class="muted">${extra}</span>`;
       }).join('、') : '<span class="bad-t">なし</span>';
       // クリーチャー除去で、ダメージ量や条件で届かないもの
@@ -726,13 +757,16 @@
         ${brow('エンチャント', (s, i) => B(s, i).enchantment)}
         ${brow('PW', (s, i) => B(s, i).planeswalker)}
         ${brow('出せるマナ', (s, i) => m.sim[s].mana[i])}
+        ${m.sim.play.lands ? brow('土地（枚）', (s, i) => m.sim[s].lands[i].n) + brow('うち基本土地', (s, i) => m.sim[s].lands[i].basic) +
+          brow('Blood Moon下のマナ', (s, i) => m.sim[s].lands[i].alt.moon) + brow('Damping Sphere下', (s, i) => m.sim[s].lands[i].alt.sphere) +
+          brow('Back to Basics下', (s, i) => m.sim[s].lands[i].alt.b2b) + brow('土地1枚破壊後', (s, i) => m.sim[s].lands[i].alt.ld) : ''}
         ${m.sim.hasDisrupt ? brow('妨害を構える', (s, i) => m.sim[s].held[i], pct) : ''}
         ${m.sim.combos && m.sim.combos.length ? brow('コンボがそろう', (s, i) => m.sim[s].combo[i], pct) : ''}
         </table></div>`;
       const body = `<div class="mu-body">
           ${oppTable}
-          ${cardBreakdownHTML(S.cards, b4, '先手')}
-          ${cells.map(c => `<div class="mu-sub">${NEED_LABEL[c.n]}${c.chance != null ? `<span class="muted">（4Tまでに手札にあって唱えられる率 ${pct(c.chance)}・先手）</span>` : ''}</div>
+          ${cardBreakdownHTML(S.cards, Object.assign({ lands: L4 ? L4.n : 0 }, b4), '先手')}
+          ${cells.map(c => `<div class="mu-sub">${NEED_LABEL[c.n]}${c.chance != null ? `<span class="muted">（4Tまでに手札にあって唱えられる率 ${pct(c.chance)}・先手${c.n === 'land' && sim && sim.play.groups && sim.play.groups.land ? `。2T/3T: ${pct(sim.play.groups.land[1])}/${pct(sim.play.groups.land[2])}、コスト軽減込み` : ''}）</span>` : ''}</div>
             <div>メイン: ${list(c.mn, c.n)}</div><div class="muted">サイド: ${c.sd.length ? list(c.sd, c.n) : 'なし'}</div>`).join('')}
           ${near.length ? `<div class="mu-sub">数えなかったクリーチャー除去（相手のクリーチャーは平均タフネス${n1(perT)}）</div><ul class="mu-list">${[...new Set(near)].map(x => `<li>${x}</li>`).join('')}</ul>` : ''}
           ${deadN ? `<div class="mu-sub">腐りやすい枠</div><div>${esc(dead.map(e => `${displayName(e.card)}×${e.qty}`).join('、'))}${good.length ? `<br>→ 入れ替え候補（サイド）: ${esc(good.map(e => `${displayName(e.card)}×${e.qty}`).join('、'))}` : '<br><span class="muted">サイドに入れ替え先が見当たらない</span>'}</div>` : ''}
