@@ -278,7 +278,8 @@
         key: keySet.has(c.name),
         perm: land ? null : permOf(c)
       };
-      info.disrupt = !info.key && info.cat === 'disrupt';
+      // 構える妨害は、唱えて終わるインスタント・ソーサリーだけ。妨害のパーマネント（Karn、Teferi、Thalia など）は唱えて盤面に置く
+      info.disrupt = !info.key && info.cat === 'disrupt' && /\b(Instant|Sorcery)\b/.test(frontType(c));
       for (let i = 0; i < e.qty; i++) cards.push(info);
     }
     const lands = cards.filter(x => x.land);
