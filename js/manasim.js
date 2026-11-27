@@ -304,7 +304,7 @@
   function permOf(c) {
     const front = frontType(c);
     if (/\b(Instant|Sorcery)\b/.test(front)) {
-      return { types: [], etbTokens: spellTokens(c), turnTokens: [] };
+      return { types: [], etbTokens: spellTokens(c), turnTokens: [], landFx: null, reduce: [] };
     }
     const types = ['Creature', 'Artifact', 'Enchantment', 'Planeswalker', 'Battle'].filter(t => new RegExp(`\\b${t}\\b`).test(front)).map(t => t.toLowerCase());
     const out = { types, power: ptOf(c.power), toughness: ptOf(c.toughness), etbTokens: [], turnTokens: [], landFx: null, reduce: [] };
@@ -392,7 +392,7 @@
       const pm = c.perm;
       if (!pm) return;
       if (pm.landFx && !fx[pm.landFx]) { fx[pm.landFx] = true; applyFx(); }
-      pm.reduce.forEach(r => reducers.push(r));
+      (pm.reduce || []).forEach(r => reducers.push(r));
       const front = String(c.name).split(' // ')[0];
       const tokName = t => `${t.power}/${t.toughness} トークン（${front}）`;
       pm.etbTokens.forEach(t => board.creatures.push({ ...t, name: tokName(t) }));
