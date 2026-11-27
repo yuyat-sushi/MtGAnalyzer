@@ -360,3 +360,7 @@ dialog::backdrop { background: rgba(0,0,0,.6); }
 .meta-table tr.c-low td:last-child { color: var(--bad); font-weight: 700; }
 .meta-table tr.c-near td:last-child { color: var(--warn); }
 .meta-table tr.c-ok td:last-child { color: var(--good); }
+
+/* 変身後（手札から唱えられない面）の役割・タグ */
+.chip.back { background: transparent !important; border: 1px dashed var(--muted); color: var(--muted); }
+.tag.back { opacity: .6; }

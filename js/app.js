@@ -175,10 +175,14 @@
   function chipsHTML(e) {
     const roles = rolesOf(e);
     const manual = !!((e.manualRoles && e.manualRoles.length) || e.manualCat);
+    const back = e.card ? Roles.inspect(e.card).back : null;
     return roles.map(r => {
       const R = Roles.ROLE_MAP[r];
       return `<span class="chip ${manual ? 'manual' : ''}" style="background:${R.color}">${R.label}</span>`;
-    }).join('');
+    }).join('') + (back && back.roles.length ? back.roles.map(r => {
+      const R = Roles.ROLE_MAP[r];
+      return `<span class="chip back" title="変身後の役割（枚数には数えない）">変身後:${R.label}</span>`;
+    }).join('') : '');
   }
 
   function typeGroup(card) {
@@ -551,7 +555,12 @@
   function tagListHTML(card) {
     if (!card) return '';
     const info = Roles.inspect(card);
-    if (!info.tags.length) return '<div class="tag-list"><div class="muted">検出した効果タグはありません</div></div>';
+    const backHTML = info.back && (info.back.tags.length || info.back.allRoles.length)
+      ? `<div class="muted" style="margin-top:6px">変身後（手札からは唱えられない面。役割の枚数やカテゴリには数えないよ）</div>
+        <div class="muted">役割: ${info.back.allRoles.map(r => esc((Roles.ROLE_MAP[r] || {}).label || r)).join('・') || 'なし'}</div>
+        ${info.back.tags.map(t => `<div class="tag back ${t.repeat ? 'rep' : 'once'}"><span class="tag-kind">${t.repeat ? '繰り返し' : '1回'}</span><span>${esc(Tags.tagLabel(t))}</span></div>`).join('')}`
+      : '';
+    if (!info.tags.length) return `<div class="tag-list"><div class="muted">検出した効果タグはありません</div>${backHTML}</div>`;
     const L = Roles.DISRUPT_LABELS;
     const detail = t => {
       if (!t.detail) return '';
@@ -565,7 +574,7 @@
     const tokens = info.tokens.length ? `<div class="muted" style="margin-top:4px">生成するトークン</div>${info.tokens.map(k =>
       `<div class="tag ${k.who === 'opponent' ? 'once' : 'rep'}"><span class="tag-kind">${k.who === 'opponent' ? '相手' : '自分'}</span>${esc(TOKEN_JA[k.kind] || k.kind)}${k.pt ? ` ${esc(k.pt)}` : ''}</div>`).join('')}` : '';
     return `<div class="tag-list"><div class="muted">検出した効果タグ（${info.speed === 'instant' ? 'インスタント速度で動ける' : 'ソーサリー速度'}）</div>${info.tags.map(t =>
-      `<div class="tag ${t.repeat ? 'rep' : 'once'}"><span class="tag-kind">${t.repeat ? '繰り返し' : '1回'}</span><span>${esc(Tags.tagLabel(t))}${detail(t)}</span></div>`).join('')}${tokens}</div>`;
+      `<div class="tag ${t.repeat ? 'rep' : 'once'}"><span class="tag-kind">${t.repeat ? '繰り返し' : '1回'}</span><span>${esc(Tags.tagLabel(t))}${detail(t)}</span></div>`).join('')}${tokens}${backHTML}</div>`;
   }
 
   // ---------- コンボ ----------

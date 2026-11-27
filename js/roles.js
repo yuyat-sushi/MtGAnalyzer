@@ -174,7 +174,7 @@
       }
       // マナ加速：クリーチャーがトークン（宝物・落とし子など）経由でマナを出すだけなら、主な役割はマナ加速ではない
       if (t.abilities.some(ab => ab.effects.includes('mana') && !(isCreature && /\btokens?\b|treasure/.test(ab.text)))) set.add('ramp');
-      const text = String(card.oracle || '').toLowerCase().replace(/\([^)]*\)/g, ' ');
+      const text = Tags.playableOracle(card).toLowerCase().replace(/\([^)]*\)/g, ' ');
       for (const [role, regs] of Object.entries(EXTRA)) if (regs.some(r => r.test(text))) set.add(role);
 
       const isSpell = /\b(Instant|Sorcery)\b/.test(front);
@@ -201,7 +201,14 @@
       if (Array.isArray(ov.roles) && ov.roles.length) roles = normalizeRoles(ov.roles);
       if (ov.category && CAT_MAP[ov.category]) cat = ov.category; else cat = categoryOf(roles);
     }
-    const result = { roles, cat, tags, abilities, tokens, speed, override: ov };
+    // 手札から唱えられない裏面（変身後）は別に判定して、表示だけに使う（枚数やカテゴリには数えない）
+    let back = null;
+    const bf = Tags.backFace(card);
+    if (bf) {
+      const b = inspect({ name: `${card.name}（変身後）`, typeLine: bf.typeLine, oracle: bf.oracle, keywords: [], power: null, layout: 'normal' });
+      back = { roles: b.roles.filter(r => r !== 'other' && !roles.includes(r)), allRoles: b.roles, tags: b.tags, tokens: b.tokens };
+    }
+    const result = { roles, cat, tags, abilities, tokens, speed, override: ov, back };
     cache.set(card, result);
     return result;
   }
@@ -351,7 +358,7 @@
    * { basic: 基本土地限定か, types: 土地タイプ指定（null なら指定なし） }
    */
   function fetchSpec(card) {
-    const text = String(card && card.oracle || '').replace(/\([^)]*\)/g, '');
+    const text = (card ? Tags.playableOracle(card) : '').replace(/\([^)]*\)/g, '');
     for (const sentence of text.split(/\.\s+|\n/)) {
       if (!/onto the battlefield/i.test(sentence)) continue;
       const m = sentence.match(/search your library for (.+?)(?:,? (?:and )?put |,? reveal|, then|\.|$)/i);

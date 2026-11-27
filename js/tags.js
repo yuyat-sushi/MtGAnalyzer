@@ -141,13 +141,29 @@
   /**
    * card → { abilities: [{text, triggers, effects}], tags: [{effect, trigger, repeat}], evasion, power }
    */
+  // 裏面を手札から唱えられないレイアウト（変身・合体・反転）。裏面の能力は別扱いにする
+  const NONPLAY_LAYOUTS = new Set(['transform', 'meld', 'flip']);
+  function faces(card) {
+    const types = String(card.typeLine || '').split(' // ');
+    const texts = String(card.oracle || '').split(/\n\/\/\n/);
+    return texts.map((text, i) => ({ type: types[i] || types[0] || '', text, playable: i === 0 || !NONPLAY_LAYOUTS.has(card.layout) }));
+  }
+  /** 手札から使える面だけのテキスト */
+  function playableOracle(card) {
+    return faces(card).filter(f => f.playable).map(f => f.text).join('\n//\n');
+  }
+  /** 手札から唱えられない裏面（なければ null） */
+  function backFace(card) {
+    if (!card || !NONPLAY_LAYOUTS.has(card.layout)) return null;
+    const f = faces(card).slice(1);
+    if (!f.length) return null;
+    return { typeLine: f.map(x => x.type).join(' // '), oracle: f.map(x => x.text).join('\n//\n') };
+  }
+
   function analyze(card) {
     if (!card) return { abilities: [], tags: [], tokens: [], evasion: false, power: null, speed: 'sorcery' };
-    const faceTypes = String(card.typeLine || '').split(' // ');
-    const faceTexts = String(card.oracle || '').split(/\n\/\/\n/);
     const abilities = [];
-    faceTexts.forEach((faceText, fi) => {
-      const type = faceTypes[fi] || faceTypes[0] || '';
+    faces(card).filter(f => f.playable).forEach(({ type, text: faceText }) => {
       const isSpell = /\b(Instant|Sorcery)\b/.test(type);
       let prev = null;
       for (const raw of faceText.split('\n')) {
@@ -176,7 +192,7 @@
       }
     });
     const kw = (card.keywords || []).join(' ').toLowerCase();
-    const hasFlash = /\bflash\b/.test(kw) || /^flash$/m.test(clean(card.oracle));
+    const hasFlash = /\bflash\b/.test(kw) || /^flash$/m.test(clean(playableOracle(card)));
     const seen = new Set();
     const tags = [];
     for (const a of abilities) for (const t of a.triggers) for (const e of a.effects) {
@@ -190,7 +206,7 @@
       tags.push(tag);
     }
     const tokens = abilities.flatMap(a => a.tokens || []);
-    const evasion = EVASION.test(kw) || /can't be blocked/.test(clean(card.oracle));
+    const evasion = EVASION.test(kw) || /can't be blocked/.test(clean(playableOracle(card)));
     // カード全体の速度：インスタント・瞬速、またはマナ以外の起動型能力があればインスタント速度で動ける
     const front = String(card.typeLine || '').split(' // ')[0];
     const speed = /\bInstant\b/.test(front) || hasFlash ? 'instant' :
@@ -362,5 +378,5 @@
 
   const tagLabel = t => `${EFFECT_MAP[t.effect].label} × ${TRIGGERS[t.trigger].label}`;
 
-  return { TRIGGERS, EFFECTS, EFFECT_MAP, analyze, tagLabel, detailOf, tokensOf };
+  return { TRIGGERS, EFFECTS, EFFECT_MAP, analyze, tagLabel, detailOf, tokensOf, playableOracle, backFace };
 });
