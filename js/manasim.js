@@ -240,6 +240,39 @@
     return { amt: best, colors: colors.length ? colors : ['C'], creature: /\bCreature\b/.test(frontType(card)) };
   }
 
+  // ---------- 即席マナ（1回きりのマナ） ----------
+  // hand: 手札から使えるマナ（エルフの指導霊・Lotus Petal・儀式の差し引き）、
+  // treasure: 唱えたとき・出たときに出る宝物・落とし子の数、combat: 攻撃・戦闘ダメージで毎ターン出る宝物の数
+  function fastSpec(c) {
+    if (!Tags || isLandCard(c)) return null;
+    const name = String(c.name || '').split(' // ')[0].toLowerCase();
+    const isSpell = /\b(Instant|Sorcery)\b/.test(frontType(c));
+    const out = { hand: null, treasure: 0, combat: 0 };
+    for (const ab of Tags.analyze(c).abilities) {
+      if (!ab.effects.includes('mana')) continue;
+      const txt = ab.text;
+      const cost = txt.split(':')[0];
+      const anyColor = /any color|any combination|treasure|one mana of any/.test(txt);
+      const col = anyColor ? ['W', 'U', 'B', 'R', 'G'] : [((txt.match(/add \{([wubrg])\}/) || [])[1] || 'c').toUpperCase()];
+      const tok = txt.match(/create (a|an|one|two|three|four|x|\d+) [a-z0-9/ ]*?\b(treasure|eldrazi spawn|eldrazi scion)/);
+      if (tok) {
+        const n = NUM[tok[1]] || parseInt(tok[1], 10) || 1;
+        if (/\b(deals combat damage|attacks)\b/.test(txt.split('create')[0])) out.combat += n;
+        else if (ab.triggers.some(t => t === 'etb' || t === 'spell')) out.treasure += n;
+        continue;
+      }
+      if (txt.includes(':') && new RegExp(`exile ${name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')} from your hand`).test(cost)) { out.hand = { amt: 1, colors: col, kind: 'exile' }; continue; }
+      if (txt.includes(':') && (cost.includes(`sacrifice ${name}`) || cost.includes('sacrifice this')) && (c.cmc || 0) === 0) { out.hand = { amt: 1, colors: col, kind: 'petal' }; continue; }
+      if (isSpell && ab.triggers.includes('spell')) {
+        const syms = ((txt.match(/add ((?:\{[^}]+\})+)/) || [])[1] || '').split('}').length - 1;
+        const w = txt.match(/add (one|two|three) mana/);
+        const net = (syms || (w ? NUM[w[1]] : 0)) - (c.cmc || 0);
+        if (net > 0) out.hand = { amt: net, colors: col, kind: 'ritual' };
+      }
+    }
+    return out.hand || out.treasure || out.combat ? out : null;
+  }
+
   // ---------- 乱数（デッキが同じなら結果も同じになるように固定シード） ----------
   function rngFrom(seed) {
     let a = seed >>> 0;
@@ -272,6 +305,7 @@
         search: land ? null : searchSpec(c),
         dig: land ? null : digSpec(c),
         rock: land ? null : rockSpec(c),
+        fast: land ? null : fastSpec(c),
         creature: /\bCreature\b/.test(frontType(c)),
         cost: land ? GENERIC(0) : costOf(c),
         cmc: c.cmc || 0,
@@ -403,7 +437,9 @@
       });
       if (pm.turnTokens.length) board.makers.push(pm.turnTokens.map(t => ({ ...t, name: tokName(t) })));
     }; // cast/seen: 名前 → 最初に唱えた／手札にあったターン
-    let floated = null; // バウンスランドで戻す前に出したマナ {amt, colors, used}
+    let floated = null; // バウンスランドで戻す前に出したマナ
+    const pool = { n: 0, used: 0 };  // 貯めている宝物・落とし子
+    let combatTreasure = 0;          // 攻撃・戦闘ダメージで毎ターン出る宝物（戦場にいるクリーチャーの分） {amt, colors, used}
     let landDrop = true, castThisTurn = 0, turn = 0, otherSpent = 0;
 
     const landsInHand = () => hand.filter(c => c.land).length;
@@ -426,23 +462,26 @@
       bf.forEach(l => { if (!l.sick) out.push({ ref: l, amt: landMana(l.p, bf, l) - l.used, colors: l.p.colors }); });
       rocks.forEach(r => { if (!r.sick) out.push({ ref: r, amt: r.amt - r.used, colors: r.colors }); });
       if (floated) out.push({ ref: floated, amt: floated.amt - floated.used, colors: ['W', 'U', 'B', 'R', 'G'] });
+      // 即席マナは最後に使う（宝物、手札のエルフの指導霊・Lotus Petal・儀式）
+      if (pool.n - pool.used > 0) out.push({ ref: pool, amt: pool.n - pool.used, colors: ['W', 'U', 'B', 'R', 'G'], fast: true });
+      hand.forEach(c => { if (c.fast && c.fast.hand) out.push({ ref: { handCard: c, used: 0 }, amt: c.fast.hand.amt, colors: c.fast.hand.colors, fast: true }); });
       return out.filter(s => s.amt > 0);
     };
     const avail = () => sources().reduce((s, x) => s + x.amt, 0);
     // 色の支払い方を決める（色の少ない発生源から使う）。払えなければ null
     const plan = cost => {
-      const src = sources().map(s => ({ ...s }));
+      const src = sources().map(s => ({ ...s })).sort((a, b) => (a.fast ? 1 : 0) - (b.fast ? 1 : 0));
       const use = new Map();
       const take = (s, n) => { s.amt -= n; use.set(s.ref, (use.get(s.ref) || 0) + n); };
       for (const [col, n] of Object.entries(cost.pips)) {
         for (let i = 0; i < n; i++) {
-          const s = src.filter(x => x.amt > 0 && x.colors.includes(col)).sort((a, b) => a.colors.length - b.colors.length)[0];
+          const s = src.filter(x => x.amt > 0 && x.colors.includes(col)).sort((a, b) => ((a.fast ? 1 : 0) - (b.fast ? 1 : 0)) || (a.colors.length - b.colors.length))[0];
           if (!s) return null;
           take(s, 1);
         }
       }
       let rest = cost.generic;
-      for (const s of src.sort((a, b) => a.colors.length - b.colors.length)) {
+      for (const s of src.sort((a, b) => ((a.fast ? 1 : 0) - (b.fast ? 1 : 0)) || (a.colors.length - b.colors.length))) {
         if (rest <= 0) break;
         const n = Math.min(s.amt, rest);
         if (n > 0) { take(s, n); rest -= n; }
@@ -452,7 +491,12 @@
     const pay = cost => {
       const use = plan(cost);
       if (!use) return false;
-      use.forEach((n, ref) => { ref.used += n; });
+      use.forEach((n, ref) => {
+        ref.used += n;
+        // 使った即席マナを消す（手札のカードは使い切り、宝物は数を減らす）
+        if (ref.handCard) { const i = hand.indexOf(ref.handCard); if (i >= 0) hand.splice(i, 1); }
+        if (ref === pool) { pool.n -= pool.used; pool.used = 0; }
+      });
       return true;
     };
 
@@ -582,6 +626,7 @@
       record(c);
       // 使い捨てのキャントリップ（Chromatic Star など）と、起動して生け贄にするサーチは盤面に残さない
       if (!(c.dig && /\bArtifact\b/.test(frontType(c.card))) && !(c.search && c.search.ability)) addPerm(c);
+      if (c.fast) { pool.n += c.fast.treasure; combatTreasure += c.fast.combat; }
       return true;
     };
     const canPay = cost => !!plan(cost);
@@ -615,7 +660,7 @@
       };
       if (!landsInHand() && landDrop && digs.length) return castDig(digs[0]);
       // 5. 主力 → それ以外（妨害は構えるので唱えない）。重いものから唱えてマナを使い切る
-      const spells = hand.filter(c => !c.land && !c.disrupt && !c.rock && !c.search && !c.dig && canPay(effCost(c)));
+      const spells = hand.filter(c => !c.land && !c.disrupt && !c.rock && !c.search && !c.dig && !(c.fast && c.fast.hand) && canPay(effCost(c)));
       if (spells.length) {
         spells.sort((a, b) => (b.key - a.key) || (b.cmc - a.cmc));
         const c = spells[0];
@@ -645,6 +690,7 @@
       floated = null; landDrop = true; castThisTurn = 0; otherSpent = 0;
       // 毎ターン（攻撃時・終了時など）トークンを出すパーマネントは、1ターンに1回出したものとして近似
       board.makers.forEach(list => list.forEach(t => board.creatures.push({ ...t })));
+      pool.n += combatTreasure; // 前のターンまでに出たクリーチャーが攻撃して宝物を出したものとする
       if (!(onPlay && turn === 1)) draw(1);
       if (!landsInHand()) act(false); // 土地がなければ先に探す
       playLand();
@@ -653,7 +699,7 @@
       act(true);
       // 集計: 出せるマナ（使った分も含む）、何もできなかったか、使い残し、妨害を構えられたか
       const total = manaOf(bf) + rocks.reduce((s, r) => s + (r.sick ? 0 : r.amt), 0) + (floated ? floated.amt : 0);
-      const left = avail();
+      const left = sources().filter(x => !x.fast).reduce((s, x) => s + x.amt, 0);
       // 主力以外の呪文を我慢すれば構えられたか（使ったマナを好きな色で戻して判定する近似）
       if (otherSpent) floated = { amt: (floated ? floated.amt - floated.used : 0) + otherSpent, used: 0 };
       const held = hand.some(c => c.disrupt && canPay(effCost(c)));

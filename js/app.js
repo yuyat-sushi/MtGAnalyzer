@@ -284,6 +284,11 @@
     if (id === 'removal' || id === 'wipe') { n = count(t => (t.effect === 'removal' || t.effect === 'wipe') && d(t).action === 'exile'); label = '追放'; }
     else if (['spell', 'ability', 'manalock', 'combat'].includes(id)) { n = count(t => t.detail && t.repeat); label = '継続'; }
     else if (id === 'discard' || id === 'gyhate') { n = count(t => t.detail && t.speed === 'instant'); label = 'インスタント'; }
+    else if (id === 'fastmana') {
+      // 今すぐマナが増える（カード1枚と引き換えのファストマナや、おまけの宝物）枚数
+      n = state.main.filter(e => e.card && rolesOf(e).includes(id) && (Roles.inspect(e.card).fast || []).some(f => f.now)).reduce((s, e) => s + e.qty, 0);
+      label = '今すぐ増える';
+    }
     return n ? `<span class="muted">（${label} ${n}）</span>` : '';
   }
   function renderAnalysis() {
@@ -573,12 +578,19 @@
         <div class="muted">役割: ${info.back.allRoles.map(r => esc((Roles.ROLE_MAP[r] || {}).label || r)).join('・') || 'なし'}</div>
         ${info.back.tags.map(t => `<div class="tag back ${t.repeat ? 'rep' : 'once'}"><span class="tag-kind">${t.repeat ? '繰り返し' : '1回'}</span><span>${esc(Tags.tagLabel(t))}</span></div>`).join('')}`
       : '';
+    const KIND_JA = { treasure: '宝物・落とし子', sacrifice: '生け贄', exile: '手札から追放', ritual: '儀式' };
+    const COLOR_JA = { any: '好きな色', W: '白', U: '青', B: '黒', R: '赤', G: '緑', C: '無色' };
+    const fastHTML = (info.fast || []).length
+      ? `<div class="muted" style="margin-top:6px">即席マナ（1回きりのマナ）</div>${info.fast.map(f =>
+        `<div class="tag once"><span class="tag-kind">${esc(KIND_JA[f.kind] || f.kind)}</span><span>${f.amount}マナ・${COLOR_JA[f.color] || f.color}${f.combat ? '（攻撃・戦闘ダメージで）' : ''}
+          <div class="tag-detail">${f.cardCost ? 'カード1枚を使う' : 'おまけで出る'} ／ ${f.now ? '今すぐマナが増える' : '払ったマナをあとにずらす'} ／ ${f.spell ? '呪文として唱える' : '唱えない'}</div></span></div>`).join('')}`
+      : '';
     const ultHTML = info.ult
       ? `<div class="muted" style="margin-top:6px">奥義（出たターンには起動できない忠誠度能力。役割の枚数やカテゴリには数えないよ）</div>
         <div class="muted">役割: ${info.ult.allRoles.map(r => esc((Roles.ROLE_MAP[r] || {}).label || r)).join('・') || 'なし'}</div>
         ${info.ult.tags.map(t => `<div class="tag back once"><span class="tag-kind">奥義</span><span>${esc(Tags.EFFECT_MAP[t.effect].label)}</span></div>`).join('')}`
       : '';
-    if (!info.tags.length) return `<div class="tag-list"><div class="muted">検出した効果タグはありません</div>${backHTML}${ultHTML}</div>`;
+    if (!info.tags.length) return `<div class="tag-list"><div class="muted">検出した効果タグはありません</div>${fastHTML}${backHTML}${ultHTML}</div>`;
     const L = Roles.DISRUPT_LABELS;
     const detail = t => {
       if (!t.detail) return '';
@@ -592,7 +604,7 @@
     const tokens = info.tokens.length ? `<div class="muted" style="margin-top:4px">生成するトークン</div>${info.tokens.map(k =>
       `<div class="tag ${k.who === 'opponent' ? 'once' : 'rep'}"><span class="tag-kind">${k.who === 'opponent' ? '相手' : '自分'}</span>${esc(TOKEN_JA[k.kind] || k.kind)}${k.pt ? ` ${esc(k.pt)}` : ''}</div>`).join('')}` : '';
     return `<div class="tag-list"><div class="muted">検出した効果タグ（${info.speed === 'instant' ? 'インスタント速度で動ける' : 'ソーサリー速度'}）</div>${info.tags.map(t =>
-      `<div class="tag ${t.repeat ? 'rep' : 'once'}"><span class="tag-kind">${t.repeat ? '繰り返し' : '1回'}</span><span>${esc(Tags.tagLabel(t))}${detail(t)}</span></div>`).join('')}${tokens}${backHTML}${ultHTML}</div>`;
+      `<div class="tag ${t.repeat ? 'rep' : 'once'}"><span class="tag-kind">${t.repeat ? '繰り返し' : '1回'}</span><span>${esc(Tags.tagLabel(t))}${detail(t)}</span></div>`).join('')}${tokens}${fastHTML}${backHTML}${ultHTML}</div>`;
   }
 
   // ---------- 上位デッキへの対策（フェアデッキを含む） ----------

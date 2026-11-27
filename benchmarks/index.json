@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-27T15:13:21.832Z",
+ "generatedAt": "2026-11-27T20:30:58.844Z",
  "window": {
   "from": "2026-09-28",
   "to": "2026-11-27",
@@ -25,39 +25,39 @@
  "formats": {
   "standard": {
    "label": "Standard",
-   "decks": 2432,
-   "events": 127,
-   "archetypes": 110
+   "decks": 2593,
+   "events": 133,
+   "archetypes": 113
   },
   "pioneer": {
    "label": "Pioneer",
-   "decks": 1143,
-   "events": 91,
+   "decks": 1176,
+   "events": 93,
    "archetypes": 77
   },
   "modern": {
    "label": "Modern",
-   "decks": 4870,
-   "events": 169,
+   "decks": 5115,
+   "events": 178,
    "archetypes": 141
   },
   "legacy": {
    "label": "Legacy",
-   "decks": 2746,
-   "events": 110,
+   "decks": 2805,
+   "events": 112,
    "archetypes": 117
   },
   "vintage": {
    "label": "Vintage",
-   "decks": 1179,
-   "events": 91,
+   "decks": 1205,
+   "events": 92,
    "archetypes": 33
   },
   "pauper": {
    "label": "Pauper",
-   "decks": 2694,
-   "events": 116,
-   "archetypes": 93
+   "decks": 2747,
+   "events": 118,
+   "archetypes": 94
   }
  }
 }

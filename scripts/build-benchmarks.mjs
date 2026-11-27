@@ -434,8 +434,16 @@ async function main() {
       .map(m => archetypes.find(a => a.name === m.name))
       .filter(a => a && a.cats.combo && a.cats.combo.median >= 3)
       .map(a => ({ name: a.name, share: a.share, comboCards: a.keyCards.filter(k => k.cat === 'combo').map(k => k.name).slice(0, 8) }));
+    // 墓地と追放（またはライブラリーの下）が書いてあるのに墓地対策が付いていないカード。自分の墓地のコスト（探査・脱出など）は除く
+    const gyMiss = all.filter(c => {
+      if (c.roles.includes('gyhate')) return false;
+      const o = String(c.oracle || '').toLowerCase().replace(/\([^)]*\)/g, '');
+      const t = o.replace(/[^.\n]*from your graveyard[^.\n]*/g, '').replace(/\b(delve|escape|flashback|unearth|embalm|eternalize|retrace|jump-start|disturb)\b[^.\n]*/g, '');
+      return /graveyard/.test(t) && /(exile|bottom of|can't)/.test(t);
+    }).slice(0, 60).map(c => ({ name: c.name, decks: c.decks, roles: c.roles, oracle: c.oracle }));
     const diag = {
       comboCandidates,
+      gyhateCandidates: gyMiss,
       // 妨害の小カテゴリごとの判定根拠（オラクルテキストと、処理・対象の種類）。判定ルールの見直し用
       disruptEvidence: Object.fromEntries(['removal', 'wipe', 'spell', 'ability', 'discard', 'gyhate', 'manalock', 'combat'].map(id => [id,
         all.filter(c => c.roles.includes(id)).slice(0, 40).map(c => ({ name: c.name, decks: c.decks, oracle: c.oracle,

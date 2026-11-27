@@ -24,6 +24,7 @@
   const ROLES = [
     { id: 'land',       cat: 'mana',     label: '土地',         color: '#8d7b62' },
     { id: 'ramp',       cat: 'mana',     label: 'マナ加速',     color: '#3fa36b' },
+    { id: 'fastmana',   cat: 'mana',     label: '即席マナ',     color: '#6fbf8a' },
     { id: 'removal',    cat: 'disrupt',  label: '単体除去',     color: '#d0503c' },
     { id: 'wipe',       cat: 'disrupt',  label: '全体除去',     color: '#9b2f2f' },
     { id: 'spell',      cat: 'disrupt',  label: '呪文への干渉', color: '#5a6fd6' },
@@ -66,6 +67,7 @@
     'draw', 'tutor', 'recursion', 'selfmill', 'topselect', 'topmanip',
     'ramp',
     'reach', 'beater',
+    'fastmana',
     'enhance', 'protection', 'lifegain', 'energy',
     'other'];
   // 旧バージョンの役割IDの読み替え
@@ -157,19 +159,64 @@
     }
   }
 
+  // ---------- 即席マナ（1回きりのマナ） ----------
+  const NUMW = { a: 1, an: 1, one: 1, two: 2, three: 3, four: 4, five: 5, x: 1 };
+  /** その能力が1回きりのマナか（宝物・落とし子のトークン、自分を生け贄・手札から追放、インスタント・ソーサリー） */
+  function fastAbility(card, ab) {
+    if (!ab.effects.includes('mana')) return false;
+    const name = String(card.name || '').split(' // ')[0].toLowerCase();
+    const cost = ab.text.split(':')[0];
+    if (/\b(treasure|eldrazi (spawn|scion))\b/.test(ab.text)) return true;
+    if (ab.triggers.includes('spell')) return true;
+    if (ab.text.includes(':') && (cost.includes(`sacrifice ${name}`) || cost.includes('sacrifice this') || cost.includes(`exile ${name} from your hand`))) return true;
+    return false;
+  }
+  /**
+   * 即席マナの属性 [{ kind, amount, cardCost, now, spell, color, combat }]
+   *   kind: treasure（宝物・落とし子）/ sacrifice（Lotus Petal など）/ exile（エルフの指導霊など）/ ritual（儀式）
+   *   cardCost: カード1枚を使うか（おまけで出る宝物は false）
+   *   now: 今すぐマナが増えるか（false = 払ったマナをあとにずらすだけ。Strike It Rich など）
+   */
+  function fastManaOf(card, t, isCreature) {
+    const out = [];
+    const front = frontType(card);
+    const isSpell = /\b(Instant|Sorcery)\b/.test(front);
+    const cmc = card.cmc || 0;
+    for (const ab of t.abilities) {
+      if (!fastAbility(card, ab)) continue;
+      const txt = ab.text;
+      const tok = txt.match(/create (a|an|one|two|three|four|five|x|\d+) (?:[a-z0-9/ ]*?)\b(treasure|eldrazi spawn|eldrazi scion)/);
+      let kind, amount;
+      if (tok) { kind = 'treasure'; amount = NUMW[tok[1]] || parseInt(tok[1], 10) || 1; }
+      else if (/exile [^:]* from your hand/.test(txt.split(':')[0])) { kind = 'exile'; amount = 1; }
+      else if (ab.triggers.includes('spell')) { kind = 'ritual'; amount = ((txt.match(/add ((?:\{[^}]+\})+)/) || [])[1] || '').split('}').length - 1 || ((txt.match(/add (one|two|three) mana/) || [])[1] ? NUMW[txt.match(/add (one|two|three) mana/)[1]] : 1); }
+      else { kind = 'sacrifice'; amount = 1; }
+      const fromSpell = isSpell && (ab.triggers.includes('spell'));
+      const cardCost = kind !== 'treasure' || fromSpell;
+      const paid = kind === 'exile' ? 0 : (kind === 'sacrifice' && cmc === 0) ? 0 : (cardCost ? cmc : 0);
+      const color = /any color|any combination|treasure|one mana of any/.test(txt) ? 'any' : ((txt.match(/add \{([wubrg])\}/) || [])[1] || 'C').toUpperCase();
+      out.push({
+        kind, amount, cardCost, now: amount - paid > 0, spell: isSpell || (kind === 'sacrifice' && !isCreature),
+        color, combat: ab.triggers.some(x => x === 'attack' || x === 'combat_damage') || /\b(deals combat damage|attacks)\b/.test(txt.split('create')[0])
+      });
+    }
+    return out;
+  }
+
   /** card → { roles(小カテゴリ), cat(大カテゴリ), tags, abilities, override }（結果はカードごとにキャッシュ） */
   function inspect(card) {
     if (!card) return { roles: ['other'], cat: 'other', tags: [], abilities: [], tokens: [], speed: 'sorcery', override: null };
     if (cache.has(card)) return cache.get(card);
     const tl = String(card.typeLine || '');
     const front = frontType(card);
-    let roles, tags = [], abilities = [], tokens = [], speed = 'sorcery';
+    let roles, tags = [], abilities = [], tokens = [], speed = 'sorcery', fast = [];
     if (/\bLand\b/.test(front)) {
       // 土地も、マナ以外の妨害能力（Wasteland・Boseiju・Otawara など）があれば小カテゴリに付ける。大カテゴリは土地のまま
       const t = Tags.analyze(card);
-      tags = t.tags.filter(x => x.effect !== 'mana' && x.detail); abilities = t.abilities; speed = t.speed;
+      tags = t.tags.filter(x => x.effect !== 'mana' && (x.detail || x.effect === 'gyhate')); abilities = t.abilities; speed = t.speed;
       const set = new Set(['land']);
       addDisruptRoles(set, tags);
+      if (tags.some(x => x.effect === 'gyhate')) set.add('gyhate'); // Bojuka Bog など
       roles = PRIORITY.filter(r => set.has(r));
     } else {
       const t = Tags.analyze(card);
@@ -183,8 +230,12 @@
         set.add('cheatloop');
         if (!t.tags.some(x => x.effect === 'cheat' && !x.repeat)) set.delete('cheat');
       }
-      // マナ加速：クリーチャーがトークン（宝物・落とし子など）経由でマナを出すだけなら、主な役割はマナ加速ではない
-      if (t.abilities.some(ab => ab.effects.includes('mana') && !(isCreature && /\btokens?\b|treasure/.test(ab.text)))) set.add('ramp');
+      // マナ: 繰り返し使えるもの（{T}で出す・常在）はマナ加速、1回きりのもの（宝物・落とし子、生け贄・手札から追放、儀式）は即席マナ
+      fast = fastManaOf(card, t, isCreature);
+      if (fast.length) set.add('fastmana');
+      // 攻撃・戦闘ダメージで宝物を出すクリーチャーは、殴ることが前提なので打点も付ける（Ragavan、Goldspan Dragon）
+      if (isCreature && fast.some(f => f.combat)) set.add('beater');
+      if (t.abilities.some(ab => ab.effects.includes('mana') && !fastAbility(card, ab))) set.add('ramp');
       const text = Tags.playableOracle(card).toLowerCase().replace(/\([^)]*\)/g, ' ');
       for (const [role, regs] of Object.entries(EXTRA)) if (regs.some(r => r.test(text))) set.add(role);
 
@@ -225,7 +276,7 @@
       const u = inspect({ name: `${card.name}（奥義）`, typeLine: 'Sorcery', oracle: uf.oracle.replace(/^[−-]\d+:\s*/gm, ''), keywords: [], power: null, layout: 'normal' });
       ult = { roles: u.roles.filter(r => r !== 'other' && !roles.includes(r)), allRoles: u.roles.filter(r => r !== 'other'), tags: u.tags, text: uf.oracle };
     }
-    const result = { roles, cat, tags, abilities, tokens, speed, override: ov, back, ult };
+    const result = { roles, cat, tags, abilities, tokens, speed, override: ov, back, ult, fast };
     cache.set(card, result);
     return result;
   }

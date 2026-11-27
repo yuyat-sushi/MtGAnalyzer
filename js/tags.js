@@ -76,7 +76,17 @@
                                                  /(cast|play) [^.]*from your graveyard/, /return enchanted creature card to the battlefield/, /creature card in a graveyard/] },
     { id: 'selfmill',  label: '墓地肥やし',   re: [/\bsurveil \d/, /\byou mill\b/, /\bmills? (a|one|two|three|four|\d+|x) cards?\b/] },
     { id: 'gyhate',    label: '墓地対策',     re: [/exile (all cards from )?(target player's|each opponent's|each player's|all) graveyards?/, /exile (all )?(target )?cards? from (all |a |an opponent's )?graveyards?/, /exile target card from a graveyard/,
-                                                 /\btarget card in a graveyard\b/, /exile target [a-z ]*?card from a graveyard/, /would be put into an opponent's graveyard[^.]*?exile it\b/, /search its owner's graveyard[^.]*?and exile them/] },
+                                                 /\btarget card in a graveyard\b/, /exile target [a-z ]*?card from a graveyard/, /would be put into an opponent's graveyard[^.]*?exile it\b/, /search its owner's graveyard[^.]*?and exile them/,
+                                                 // 「墓地から〇枚まで追放」「対象のプレイヤーが自分の墓地のカードを追放する」「墓地をライブラリーの下に置く」
+                                                 /exile up to (one|two|three|four|x|\d+) target cards? from (a single graveyard|graveyards|a graveyard|any graveyards?|target player's graveyard)/,
+                                                 /(target|each) (player|opponent) exiles [^.]*?from (their|his or her) graveyard/,
+                                                 /puts? all (the )?cards from (their|his or her|target player's|each opponent's) graveyards? on the bottom of/,
+                                                 // 実データで見つかった書き方（Thraben Charm、Kaya's Guile、Strategic Betrayal、Go Blank、Crypt Incursion、Sanctifier en-Vec など）
+                                                 /exile (any number of )?(all )?(target players'|all opponents'|each opponent's|opponents'|that player's|its controller's) graveyards?/,
+                                                 /exiles? [^.]*? and (their|his or her) graveyard/,
+                                                 /exile all [a-z ]*?cards? (that are [^.]*? )?from (all graveyards|target player's graveyard|each opponent's graveyard|all opponents' graveyards|a graveyard)/,
+                                                 /creature cards from graveyards/, /from that player's graveyard or hand and exile it/,
+                                                 /search (target opponent's|its controller's|its owner's|target player's) graveyard[^.]*?exile them/] },
     { id: 'hate',      label: '妨害（ロック）', re: [/\bcosts? \{\d\} more\b/, /would cost less than \w+ mana to cast costs/, /\bcost \{\d\} more\b/, /nonbasic lands (are|don't untap)/, /\bcan't cast (spells|noncreature|creature|instant|sorcery)/,
                                                  /can't be activated/, /(each player|players|your opponents|target player) can't (cast|activate|search|gain life|draw)/, /don't cause abilities to trigger/,
                                                  /(lands|creatures|artifacts|permanents) (your opponents control )?enter (the battlefield )?tapped/, /\bdon't untap during/, /players skip/, /tap for more than one mana produce/, /can't untap more than/,
@@ -87,7 +97,7 @@
                                                  /(artifact|creature|enchantment|planeswalker|permanent)( cards?|, (artifact|creature|enchantment|planeswalker|land)[\w, ]*? cards?) from (their|your) hand onto the battlefield/, { test: t => /puts? that (creature )?card onto the battlefield/.test(t) && /\bcreature card\b/.test(t) && !/\bland card\b/.test(t) }, { test: t => t.split(/(?<=\.)\s+/).some(x => /(?<!(this spell|cast it|cast this card) )without paying (its|their) mana costs?/.test(x) && !/from (your|a) graveyard/.test(x)) }] },
     { id: 'extraturn', label: '追加ターン',   re: [/take an extra turn/] },
     { id: 'untap',     label: 'アンタップ',   re: [/\buntap (target|all|up to \w+ target|another target|up to \w+) (artifacts?|lands?|nonland permanents?)\b/] },
-    { id: 'copy',      label: 'コピー/ストーム', re: [/\bstorm\b/, /copy (target|that|the exiled|it)[^.]*?(instant|sorcery|spell|card)/] },
+    { id: 'copy',      label: 'コピー/ストーム', re: [/(^|, )storm\b(?!-)/, /copy (target|that|the exiled|it)[^.]*?(instant|sorcery|spell|card)/] },
     { id: 'protection', label: '保護',        re: [/(gains?|have|has) (hexproof|indestructible|shroud|protection from)/, /phases? out/, /\bregenerate\b/,
                                                  /exile [^.]*?(target|any number of target) [^.]*?(creature|permanent|nonland)[^.]*?(you control|you own)[\s\S]{0,60}?return (it|that card|them|those cards)/] }
   ];
@@ -217,6 +227,16 @@
         }
         // 絆魂はライフゲイン
         if (/(^|, )lifelink($|,)/.test(line) && !effects.includes('lifegain')) effects.push('lifegain');
+        // 「墓地のカードを全て追放」は全体除去ではなく墓地対策（Crypt Incursion）
+        if (effects.includes('wipe') && /exile all [^.]*?cards? (that are [^.]*? )?from [^.]*?graveyards?/.test(line) && !/(creatures?|permanents?) (you|they|your opponents) control/.test(line)) {
+          effects.splice(effects.indexOf('wipe'), 1);
+          if (!effects.includes('gyhate')) effects.push('gyhate');
+        }
+        // 「対象のプレイヤーが自分の墓地のカードを追放する」は除去ではなく墓地対策（Relic of Progenitus）
+        if (effects.includes('removal') && /(player|opponent) exiles [^.]*?from (their|his or her) graveyard/.test(line) && !/(creature|permanent|artifact|enchantment|planeswalker) (they|that player) control/.test(line)) {
+          effects.splice(effects.indexOf('removal'), 1);
+          if (!effects.includes('gyhate')) effects.push('gyhate');
+        }
         // 相手の土地にマナ能力を与えるだけの文（Alpine Moon）は、自分のマナにはならない
         if (effects.includes('mana') && /lands your opponents control/.test(line)) effects.splice(effects.indexOf('mana'), 1);
         // 全体除去だけの能力は単体除去から外す
