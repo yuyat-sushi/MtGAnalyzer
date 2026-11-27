@@ -30,6 +30,7 @@
       keywords: c.keywords || [],
       power: c.power != null ? c.power : (faces[0] && faces[0].power) || null,
       toughness: c.toughness != null ? c.toughness : (faces[0] && faces[0].toughness) || null,
+      loyalty: c.loyalty != null ? c.loyalty : (faces[0] && faces[0].loyalty) || null,
       layout: c.layout,
       mtgoId: c.mtgo_id || null,
       set: c.set,

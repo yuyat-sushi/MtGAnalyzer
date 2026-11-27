@@ -209,9 +209,9 @@ function isThreat(c) {
   const front = String(c.typeLine || '').split(' // ')[0];
   const spell = /\b(Instant|Sorcery)\b/.test(front);
   if (spell) return c.cat === 'combo';
-  if (c.cat === 'win' || c.cat === 'combo') return true;
+  if (c.cat === 'damage' || c.cat === 'combo') return true;
   if (/\bPlaneswalker\b/.test(front)) return true;
-  if (c.roles.includes('engine') || c.roles.includes('finisher')) return true;
+
   return c.cat === 'resource' && /\bCreature\b/.test(front);
 }
 function threatsOf(ds, limit = 6) {
@@ -443,8 +443,7 @@ async function main() {
       // 大カテゴリごとの採用率上位（主な採用理由の判定確認用）
       byCategory: Object.fromEntries(CAT_IDS.map(cat => [cat, all.filter(c => c.cat === cat && cat !== 'mana').slice(0, 25).map(c => ({ name: c.name, decks: c.decks, roles: c.roles }))]).filter(([cat]) => cat !== 'mana')),
       // エンジン・フィニッシャーと判定されたカード（判定の確認用）
-      engines: all.filter(c => c.roles.includes('engine')).slice(0, 40).map(c => ({ name: c.name, decks: c.decks, roles: c.roles, tags: tagText(c) })),
-      finishers: all.filter(c => c.roles.includes('finisher')).slice(0, 20).map(c => ({ name: c.name, decks: c.decks, roles: c.roles })),
+      damage: all.filter(c => c.cat === 'damage').slice(0, 40).map(c => ({ name: c.name, decks: c.decks, roles: c.roles, tags: tagText(c) })),
       // タグが1つも付かなかった土地以外のカード → 効果の判定漏れの候補
       noTags: all.filter(c => !c.roles.includes('land') && !c.tags.length).slice(0, 40).map(c => ({ name: c.name, decks: c.decks, roles: c.roles, typeLine: c.typeLine })),
       unknownCards: [...unknownCards[fmt].entries()].sort((a, b) => b[1] - a[1]).slice(0, 30).map(([name, decks]) => ({ name, decks })),
