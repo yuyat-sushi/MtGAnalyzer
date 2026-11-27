@@ -200,19 +200,31 @@ function keyCards(decks, limit) {
 }
 
 // ---------- 対策の軸用: 脅威カード・代表リスト・一人回し ----------
-// 主な採用理由が勝ち手段・コンボ/展開・リソースで、そのアーキタイプの40%以上が採用しているカード
-const THREAT_CATS = new Set(['win', 'combo', 'resource']);
+// 対処する価値のある脅威: そのアーキタイプの40%以上が採用していて、
+//   - 主な採用理由が勝ち手段・コンボ/展開のカード（インスタント・ソーサリーはコンボ/展開のみ）
+//   - または、居座って働くパーマネント（クリーチャー・プレインズウォーカー、エンジン、フィニッシャー）
+// キャントリップや使い捨てのドローのような「デッキを回すためのカード」は除く
+function isThreat(c) {
+  if (c.roles.includes('land')) return false;
+  const front = String(c.typeLine || '').split(' // ')[0];
+  const spell = /\b(Instant|Sorcery)\b/.test(front);
+  if (spell) return c.cat === 'combo';
+  if (c.cat === 'win' || c.cat === 'combo') return true;
+  if (/\bPlaneswalker\b/.test(front)) return true;
+  if (c.roles.includes('engine') || c.roles.includes('finisher')) return true;
+  return c.cat === 'resource' && /\bCreature\b/.test(front);
+}
 function threatsOf(ds, limit = 6) {
   const m = new Map();
   for (const d of ds) for (const c of d.cards) {
-    if (c.roles.includes('land') || !THREAT_CATS.has(c.cat)) continue;
+    if (!isThreat(c)) continue;
     const e = m.get(c.name) || { c, decks: 0, copies: 0 };
     e.decks++; e.copies += c.qty; m.set(c.name, e);
   }
   return [...m.values()].filter(e => e.decks / ds.length >= 0.4)
     .sort((a, b) => b.decks - a.decks || b.copies - a.copies).slice(0, limit)
     .map(({ c, decks, copies }) => ({
-      name: c.name, rate: +(decks / ds.length).toFixed(2), avg: +(copies / decks).toFixed(1), cat: c.cat,
+      name: c.name.split(' // ')[0], rate: +(decks / ds.length).toFixed(2), avg: +(copies / decks).toFixed(1), cat: c.cat,
       type: String(c.typeLine || '').split(' // ')[0], mv: c.card ? c.card.cmc : null,
       power: c.card ? c.card.power : null, toughness: c.card ? c.card.toughness : null
     }));
@@ -232,14 +244,17 @@ function representative(ds) {
 const r2 = a => a.map(x => +x.toFixed(2));
 function simOf(ds, threats) {
   const rep = representative(ds);
-  let keys = threats.filter(t => t.cat === 'win' || t.cat === 'combo').map(t => t.name);
-  if (!keys.length) keys = threats.map(t => t.name);
+  if (!rep) return null;
+  // 一人回しの主力はカードの正式名（両面カードは「表 // 裏」）で指定する
+  const full = n => (rep.cards.find(c => c.name.split(' // ')[0] === n) || { name: n }).name;
+  let keys = threats.filter(t => t.cat === 'win' || t.cat === 'combo').map(t => full(t.name));
+  if (!keys.length) keys = threats.map(t => full(t.name));
   if (!rep || !keys.length) return null;
   const r = ManaSim.simulate(rep.cards.map(c => ({ qty: c.qty, card: c.card, cat: c.cat })), { keys, iters: 800, enablers: false });
   if (!r) return null;
   const t50 = r.play.keyBy.findIndex(x => x >= 0.5);
   return {
-    keys,
+    keys: keys.map(k => k.split(' // ')[0]),
     keyBy: { play: r2(r.play.keyBy), draw: r2(r.draw.keyBy) },
     // 主力が50%以上の確率で出ているターン（先手）。相手の「キーターン」
     keyTurn: t50 >= 0 ? t50 + 1 : null,
