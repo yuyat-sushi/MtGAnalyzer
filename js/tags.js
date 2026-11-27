@@ -97,7 +97,7 @@
     { id: 'hate',      label: '妨害（ロック）', re: [/\bcosts? \{\d\} more\b/, /would cost less than \w+ mana to cast costs/, /\bcost \{\d\} more\b/, /nonbasic lands (are|don't untap)/, /\bcan't cast (spells|noncreature|creature|instant|sorcery)/,
                                                  /can't be activated/, /(each player|players|your opponents|target player) can't (cast|activate|search|gain life|draw)/, /don't cause abilities to trigger/,
                                                  /(lands|creatures|artifacts|permanents) (your opponents control )?enter (the battlefield )?tapped/, /\bdon't untap during/, /players skip/, /tap for more than one mana produce/, /can't untap more than/,
-                                                 /tapped for two or more mana/, /lands your opponents control[^.]*?lose all land types/, /(enchanted|target)( nonbasic)? land (is|becomes) an? /, /can cast spells only any time they could cast a sorcery/, /can't draw more than one card each turn/, /creatures lose all abilities/, /destroy this creature unless you pay/] },
+                                                 /tapped for two or more mana/, /lands your opponents control[^.]*?lose all land types/, /(enchanted|target)( nonbasic)? land (is|becomes) an? /, /can cast spells only any time they could cast a sorcery/, /can't draw more than one card each turn/, /creatures lose all abilities/, /destroy this creature unless you pay/, /can't cause their controller to search/, /can't search librar/, /would search a library/, /while (they're|an opponent is) searching their librar/, /would gain life, (that player|they) gains? no life/, /would begin an extra turn/, /can't take extra turns/, /if an opponent would draw a card/, /whenever (an opponent|a player|each opponent) draws a card[^.]*?(loses? \d+ life|deals \d+ damage)/] },
     // 攻撃の制限（Ensnaring Bridge、Propaganda、Moat、Peacekeeper など）
     { id: 'attacklock', label: '攻撃制限',    re: [/\bcreatures (with [^.]*?|without [^.]*?|your opponents control )?can't attack\b/, /no more than (one|two) creatures? can attack/] },
     { id: 'cheat',     label: '踏み倒し',     re: [/put (a|an|up to \w+|any number of|that|those|target)\b[^.]*?\b(creature|artifact|enchantment|permanent|planeswalker|nonland)\b[^.]*?\bcards?\b[^.]*?onto the battlefield/,
@@ -380,7 +380,6 @@
       if (/from graveyards|in graveyards/.test(line)) t.push('graveyard');
       if (/costs? \{\d\} more|cost \{\d\} more|would cost less than/.test(line)) t.push('tax');
       if (/nonbasic lands|tap for more than one mana|produce \{c\}|tapped for two or more mana|lose all land types|(enchanted|target)( nonbasic)? land (is|becomes) an? /.test(line)) t.push('mana');
-      if (/can't search/.test(line)) t.push('library');
       if (/can't attack|can attack/.test(line)) t.push('attack');
       // 「タップ状態で出る」「アンタップしない」：土地ならマナ、クリーチャーなら戦闘への妨害
       // 自分のパーマネントにかかるデメリット（Bontu's Last Reckoning など）は除く
@@ -388,7 +387,16 @@
         if (/\blands?\b/.test(line)) t.push('mana');
         if (/\bcreatures?\b|\bpermanents?\b/.test(line)) t.push('untap');
       }
-      if (/can't (gain life|draw)|can't draw more than/.test(line)) t.push('other');
+      // 行動への干渉（呪文や能力ではなく、プレイヤーの行動を制限・課税・罰する）
+      if (/\bsearch(es|ing)? (their |a |the top [a-z]+ cards of (that |their )?)?librar|cause their controller to search/.test(line)) t.push('library');
+      if (/can't draw|draw more than|would draw a card|draws a card/.test(line)) t.push('draw');
+      if (/can't gain life|gains? no life/.test(line)) t.push('lifegain');
+      if (/extra turns?/.test(line)) t.push('extraturn');
+      if (t.some(x => ['library', 'draw', 'lifegain', 'extraturn'].includes(x))) {
+        d.how = /instead that player skips that draw and you draw|you control your opponents while|exile each card they find/.test(line) ? 'steal'
+          : /loses? \d+ life|deals \d+ damage/.test(line) ? 'punish'
+          : /more than one|the top [a-z]+ cards|except the first/.test(line) ? 'limit' : 'forbid';
+      }
       if (/creatures lose all abilities/.test(line)) t.push('activated ability', 'triggered ability');
       d.types = t.length ? t : ['none'];   // none: 自分へのデメリットなど、相手への妨害ではないもの
       d.lock = lockScope(line);
