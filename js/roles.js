@@ -167,9 +167,10 @@
     if (/\bLand\b/.test(front)) {
       // 土地も、マナ以外の妨害能力（Wasteland・Boseiju・Otawara など）があれば小カテゴリに付ける。大カテゴリは土地のまま
       const t = Tags.analyze(card);
-      tags = t.tags.filter(x => x.effect !== 'mana' && x.detail); abilities = t.abilities; speed = t.speed;
+      tags = t.tags.filter(x => x.effect !== 'mana' && (x.detail || x.effect === 'gyhate')); abilities = t.abilities; speed = t.speed;
       const set = new Set(['land']);
       addDisruptRoles(set, tags);
+      if (tags.some(x => x.effect === 'gyhate')) set.add('gyhate'); // Bojuka Bog など
       roles = PRIORITY.filter(r => set.has(r));
     } else {
       const t = Tags.analyze(card);
