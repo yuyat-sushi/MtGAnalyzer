@@ -271,6 +271,7 @@
   }
 
   const openCats = new Set();
+  let extraOpen = false;
   /** 小カテゴリの横に添える大事な属性（例: 単体除去 12（追放 4）、呪文への干渉 6（継続 2）） */
   function subNote(id) {
     const count = pred => state.main.filter(e => e.card && rolesOf(e).includes(id) && Roles.inspect(e.card).tags.some(pred)).reduce((s, e) => s + e.qty, 0);
@@ -357,12 +358,18 @@
       ['base', '前提チェック（枚数・土地・色）'],
       ['plan', 'メインの動き（一人回し）'],
       ['meta', '環境への対策'],
-      ['extra', '補足（カテゴリの比率）']
+      ['extra', '参考：上位デッキ・目安との構成の違い']
     ];
     $('#advice').innerHTML = GROUPS.map(([g, label]) => {
       const items = all.filter(x => (x.group || 'base') === g);
-      return items.length ? `<li class="adv-head">${label}</li>` + items.map(x => `<li class="${x.level}">${esc(x.text)}</li>`).join('') : '';
+      if (!items.length) return '';
+      const lis = items.map(x => `<li class="${x.level}">${esc(x.text)}</li>`).join('');
+      // 構成の比率は参考情報なので折りたたむ
+      if (g === 'extra') return `<li class="adv-extra"><details${extraOpen ? ' open' : ''}><summary>${label}（${items.length}件）</summary><ul class="advice">${lis}</ul></details></li>`;
+      return `<li class="adv-head">${label}</li>` + lis;
     }).join('');
+    const ex = $('#advice details');
+    if (ex) ex.addEventListener('toggle', () => { extraOpen = ex.open; });
   }
 
   // ---------- マナシミュレーション（js/manasim.js） ----------
@@ -430,13 +437,17 @@
       ${row('<span class="muted">後手</span>', t => `<span class="muted">${r.draw.avg[t].toFixed(1)}</span>`)}
       ${row('何もできない', t => pctTxt(r.play.idle[t]))}
       ${row('使い残し', t => r.play.unused[t].toFixed(1))}
+      ${r.hasDisrupt ? row('妨害を手札に持つ', t => pctTxt(r.play.inHand[t])) : ''}
       ${r.hasDisrupt ? row('妨害を構えられた', t => pctTxt(r.play.held[t])) : ''}
       </table></div>`;
     [2, 3].forEach(t => {
       if (t <= r.turns && r.play.idle[t - 1] > 0.25) tips.push({ level: 'warn', text: `${t}ターン目に何も唱えられず、妨害も構えられなかった率が${pctTxt(r.play.idle[t - 1])}（先手）。${t}マナ以下で動けるカードを増やすと安定するよ。` });
     });
     if (r.turns >= 4 && r.play.unused[3] >= 1.5) tips.push({ level: 'info', text: `4ターン目に平均${r.play.unused[3].toFixed(1)}マナ余ってるよ。マナの使い道（重めのカードや起動型能力）を足す余地があるかも。` });
-    if (r.hasDisrupt) tips.push({ level: 'info', text: `妨害を構えられた率は、2ターン目${pctTxt(r.play.held[1])}・3ターン目${pctTxt(r.play.held[2])}（先手、主力以外の呪文を我慢した場合を含む）。` });
+    if (r.hasDisrupt) {
+      tips.push({ level: 'info', text: `妨害を手札に持っていた率は、2ターン目${pctTxt(r.play.inHand[1])}・3ターン目${pctTxt(r.play.inHand[2])}。そのうち構えるマナもあった率は${pctTxt(r.play.held[1])}・${pctTxt(r.play.held[2])}（先手、主力以外の呪文を我慢した場合を含む）。` });
+      if (r.play.inHand[2] < 0.5) tips.push({ level: 'warn', text: `3ターン目までに妨害を手札に持てていない率が${pctTxt(1 - r.play.inHand[2])}。相手の動きを止めたいなら、妨害の枚数か、引きにいくカードを見直してみて。` });
+    } else tips.push({ level: 'info', text: '妨害（大カテゴリが【妨害】のカード）が入っていないよ。相手の動きに干渉しない、速さ勝負のデッキとして回した結果だよ。' });
 
     // 貢献度
     const base = r.keyNames.length ? r.play.keyBy[r.keyTurn - 1] : 0;

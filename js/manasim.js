@@ -305,7 +305,7 @@
     const rocks = []; // マナを出すパーマネント {amt, colors, sick, used}
     const perms = []; // 起動型のサーチを持つパーマネント（Expedition Map など）
     const tron = deck.tronTypes;
-    const g = { mana: [], idle: [], unused: [], held: [], cast: {}, seen: {} }; // cast/seen: 名前 → 最初に唱えた／手札にあったターン
+    const g = { mana: [], idle: [], unused: [], held: [], inHand: [], cast: {}, seen: {} }; // cast/seen: 名前 → 最初に唱えた／手札にあったターン
     let floated = null; // バウンスランドで戻す前に出したマナ {amt, colors, used}
     let landDrop = true, castThisTurn = 0, turn = 0, otherSpent = 0;
 
@@ -561,6 +561,7 @@
       g.mana.push(total);
       g.unused.push(held ? 0 : left);
       g.held.push(held);
+      g.inHand.push(hand.some(c => c.disrupt));
       g.idle.push(castThisTurn === 0 && !held);
     }
     return g;
@@ -568,7 +569,7 @@
 
   function run(deck, onPlay, turns, iters, seed, keyNames) {
     const rng = rngFrom(seed);
-    const sum = Array(turns).fill(0), unused = Array(turns).fill(0), idle = Array(turns).fill(0), held = Array(turns).fill(0), keyBy = Array(turns).fill(0);
+    const sum = Array(turns).fill(0), unused = Array(turns).fill(0), idle = Array(turns).fill(0), held = Array(turns).fill(0), inHand = Array(turns).fill(0), keyBy = Array(turns).fill(0);
     const ge = Array.from({ length: turns }, () => Array(12).fill(0));
     const castBy = {}, seenBy = {};
     const keys = new Set(keyNames);
@@ -578,6 +579,7 @@
       r.unused.forEach((m, t) => { unused[t] += m; });
       r.idle.forEach((x, t) => { if (x) idle[t]++; });
       r.held.forEach((x, t) => { if (x) held[t]++; });
+      r.inHand.forEach((x, t) => { if (x) inHand[t]++; });
       for (const [name, t] of Object.entries(r.seen)) {
         (seenBy[name] = seenBy[name] || Array(turns).fill(0));
         for (let k = t - 1; k < turns; k++) seenBy[name][k]++;
@@ -592,7 +594,7 @@
     }
     const f = a => a.map(x => x / iters);
     return {
-      avg: f(sum), ge: ge.map(f), unused: f(unused), idle: f(idle), held: f(held), keyBy: f(keyBy),
+      avg: f(sum), ge: ge.map(f), unused: f(unused), idle: f(idle), held: f(held), inHand: f(inHand), keyBy: f(keyBy),
       castBy: Object.fromEntries(Object.entries(castBy).map(([k, v]) => [k, f(v)])),
       seenBy: Object.fromEntries(Object.entries(seenBy).map(([k, v]) => [k, f(v)]))
     };
@@ -611,6 +613,7 @@
    *   play/draw.idle          = 何も唱えられず、妨害も構えられなかった確率
    *   play/draw.unused        = 使い残したマナの平均（妨害を構えたターンは0）
    *   play/draw.held          = 妨害を構えられた確率
+   *   play/draw.inHand        = ターン終了時に妨害を手札に持っていた確率
    */
   function simulate(entries, opts = {}) {
     const turns = opts.turns || 6, iters = opts.iters || 2000;

@@ -195,6 +195,10 @@ input:focus, select:focus, textarea:focus { outline: 2px solid var(--gold-dim); 
 .advice li.info { border-color: var(--gold); }
 .advice li.adv-head { background: none; border: none; padding: 8px 2px 0; font-size: 12px; color: var(--gold); font-weight: 700; }
 .advice li.adv-head:first-child { padding-top: 0; }
+.advice li.adv-extra { background: none; border: none; padding: 8px 0 0; }
+.advice li.adv-extra summary { font-size: 12px; color: var(--muted); cursor: pointer; }
+.advice li.adv-extra .advice { margin-top: 6px; }
+.advice li.adv-extra .advice li { color: var(--muted); }
 .key-btn { background: none; border: none; padding: 0 4px; color: var(--muted); font-size: 15px; line-height: 1; }
 .key-btn.on { color: var(--gold); }
 
