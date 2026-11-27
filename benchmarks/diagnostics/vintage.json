@@ -162,14 +162,6 @@
    ]
   },
   {
-   "pattern": "landfall whenever a land you control enters, empower jace N.",
-   "kind": "triggered",
-   "decks": 24,
-   "cards": [
-    "Avatar of Burgeoning Echoes"
-   ]
-  },
-  {
    "pattern": "the \"legend rule\" doesn't apply to creatures you control.",
    "kind": "static",
    "decks": 22,
@@ -307,14 +299,6 @@
    ]
   },
   {
-   "pattern": "• you lose N life. empower jace N.",
-   "kind": "spell",
-   "decks": 4,
-   "cards": [
-    "Vraska's Final Mercy"
-   ]
-  },
-  {
    "pattern": "when ~ enters and at the beginning of your upkeep, exile the top four cards of your library. put all permanent cards exiled this way onto the battlefield.",
    "kind": "triggered",
    "decks": 4,
@@ -397,27 +381,11 @@
    ]
   },
   {
-   "pattern": "when this creature enters, empower jace N.",
-   "kind": "triggered",
-   "decks": 2,
-   "cards": [
-    "Theorist's Proxy"
-   ]
-  },
-  {
    "pattern": "{x}, {t}: this land becomes a copy of target nontoken artifact you control with mana value x.",
    "kind": "activated",
    "decks": 2,
    "cards": [
     "The Mycosynth Gardens"
-   ]
-  },
-  {
-   "pattern": "{N}{u}, {t}: empower jace N.",
-   "kind": "activated",
-   "decks": 2,
-   "cards": [
-    "Theorist's Sanctum"
    ]
   },
   {
@@ -1045,7 +1013,8 @@
     "decks": 130,
     "oracle": "Flash\nWhen this creature enters and whenever an opponent draws a card except the first one they draw in each of their draw steps, this creature deals 1 damage to any target. Then amass Orcs 1.",
     "detail": [
-     "removal:damage:creature/planeswalker/battle/player"
+     "removal:damage:creature/planeswalker/battle/player",
+     "hate:lock:draw"
     ]
    },
    {
@@ -1534,14 +1503,6 @@
     ]
    },
    {
-    "name": "Narset, Parter of Veils",
-    "decks": 12,
-    "oracle": "Each opponent can't draw more than one card each turn.\n−2: Look at the top four cards of your library. You may reveal a noncreature, nonland card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.",
-    "detail": [
-     "hate:lock:other"
-    ]
-   },
-   {
     "name": "Mystical Dispute",
     "decks": 8,
     "oracle": "This spell costs {2} less to cast if it targets a blue spell.\nCounter target spell unless its controller pays {3}.",
@@ -1639,14 +1600,6 @@
     ]
    },
    {
-    "name": "Leovold, Emissary of Trest",
-    "decks": 1,
-    "oracle": "Each opponent can't draw more than one card each turn.\nWhenever you or a permanent you control becomes the target of a spell or ability an opponent controls, you may draw a card.",
-    "detail": [
-     "hate:lock:other"
-    ]
-   },
-   {
     "name": "Hope of Ghirapur",
     "decks": 1,
     "oracle": "Flying\nSacrifice Hope of Ghirapur: Until your next turn, target player who was dealt combat damage by Hope of Ghirapur this turn can't cast noncreature spells.",
@@ -1660,6 +1613,22 @@
     "oracle": "Spells your opponents cast cost {2} more to cast.\nAt the beginning of your end step, each opponent loses 1 life.",
     "detail": [
      "hate:lock:tax"
+    ]
+   },
+   {
+    "name": "Redirect Lightning",
+    "decks": 1,
+    "oracle": "As an additional cost to cast this spell, pay 5 life or pay {2}.\nChange the target of target spell or ability with a single target.",
+    "detail": [
+     "redirect:redirect:spell"
+    ]
+   },
+   {
+    "name": "Flare of Denial",
+    "decks": 1,
+    "oracle": "You may sacrifice a nontoken blue creature rather than pay this spell's mana cost.\nCounter target spell.",
+    "detail": [
+     "counter:counter:spell"
     ]
    }
   ],
@@ -2088,7 +2057,7 @@
   ]
  },
  "format": "Vintage",
- "generatedAt": "2026-11-27T21:12:44.633Z",
+ "generatedAt": "2026-11-27T21:32:20.278Z",
  "decks": 1205,
  "otherOnly": [
   {
@@ -2204,13 +2173,30 @@
    "name": "Scrawling Crawler",
    "decks": 142,
    "roles": [
+    "action",
     "draw",
     "reach",
     "beater"
    ],
    "tags": [
     "draw@each_turn",
-    "drain@other_trigger"
+    "drain@other_trigger",
+    "hate@other_trigger"
+   ]
+  },
+  {
+   "name": "Orcish Bowmasters",
+   "decks": 130,
+   "roles": [
+    "removal",
+    "action",
+    "reach"
+   ],
+   "tags": [
+    "flash@static",
+    "drain@etb",
+    "removal@etb",
+    "hate@etb"
    ]
   },
   {
@@ -2317,6 +2303,7 @@
    "name": "Hullbreacher",
    "decks": 22,
    "roles": [
+    "action",
     "draw",
     "beater",
     "fastmana"
@@ -2324,7 +2311,8 @@
    "tags": [
     "flash@static",
     "draw@static",
-    "mana@static"
+    "mana@static",
+    "hate@static"
    ]
   },
   {
@@ -2375,7 +2363,7 @@
    "name": "Narset, Parter of Veils",
    "decks": 12,
    "roles": [
-    "spell",
+    "action",
     "draw",
     "topselect"
    ],
@@ -2592,20 +2580,6 @@
     "removal@etb",
     "altcost@static"
    ]
-  },
-  {
-   "name": "Boromir, Warden of the Tower",
-   "decks": 3,
-   "roles": [
-    "spell",
-    "beater",
-    "protection"
-   ],
-   "tags": [
-    "combatkw@static",
-    "counter@cast_trigger",
-    "protection@activated_once"
-   ]
   }
  ],
  "byCategory": {
@@ -2752,10 +2726,21 @@
     ]
    },
    {
+    "name": "Scrawling Crawler",
+    "decks": 142,
+    "roles": [
+     "action",
+     "draw",
+     "reach",
+     "beater"
+    ]
+   },
+   {
     "name": "Orcish Bowmasters",
     "decks": 130,
     "roles": [
      "removal",
+     "action",
      "reach"
     ]
    },
@@ -2787,15 +2772,6 @@
     "decks": 115,
     "roles": [
      "spell"
-    ]
-   },
-   {
-    "name": "Archon of Emeria",
-    "decks": 110,
-    "roles": [
-     "spell",
-     "manalock",
-     "beater"
     ]
    }
   ],
@@ -2922,15 +2898,6 @@
     ]
    },
    {
-    "name": "Scrawling Crawler",
-    "decks": 142,
-    "roles": [
-     "draw",
-     "reach",
-     "beater"
-    ]
-   },
-   {
     "name": "Coveted Jewel",
     "decks": 134,
     "roles": [
@@ -2989,6 +2956,16 @@
     "decks": 81,
     "roles": [
      "tutor"
+    ]
+   },
+   {
+    "name": "Bolas's Citadel",
+    "decks": 73,
+    "roles": [
+     "draw",
+     "topselect",
+     "topmanip",
+     "reach"
     ]
    }
   ],
@@ -3687,7 +3664,7 @@
     "beater"
    ],
    "tags": [
-    "misc@landfall",
+    "pump@landfall",
     "pump@static"
    ]
   },

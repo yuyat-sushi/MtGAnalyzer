@@ -1,53 +1,11 @@
 {
  "untagged": [
   {
-   "pattern": "{N}{g}, {t}: earthbend N. activate only as a sorcery.",
-   "kind": "activated",
-   "decks": 333,
-   "cards": [
-    "Ba Sing Se"
-   ]
-  },
-  {
    "pattern": "landfall whenever a land you control enters, double the power of target creature you control until end of turn.",
    "kind": "triggered",
    "decks": 285,
    "cards": [
     "Mightform Harmonizer"
-   ]
-  },
-  {
-   "pattern": "if a permanent dealt damage by ~ would die this turn, exile it instead.",
-   "kind": "spell",
-   "decks": 259,
-   "cards": [
-    "Torch the Tower"
-   ]
-  },
-  {
-   "pattern": "when ~ dies, if it was a creature, return it to the battlefield under its owner's control. it's an enchantment.",
-   "kind": "triggered",
-   "decks": 239,
-   "cards": [
-    "Enduring Curiosity",
-    "Enduring Innocence"
-   ]
-  },
-  {
-   "pattern": "{N}{u}, {t}: empower jace N.",
-   "kind": "activated",
-   "decks": 237,
-   "cards": [
-    "Theorist's Sanctum"
-   ]
-  },
-  {
-   "pattern": "empower jace N.",
-   "kind": "spell",
-   "decks": 207,
-   "cards": [
-    "Jace's Machinations",
-    "Rewrite Regrets"
    ]
   },
   {
@@ -314,14 +272,6 @@
    ]
   },
   {
-   "pattern": "• you lose N life. empower jace N.",
-   "kind": "spell",
-   "decks": 37,
-   "cards": [
-    "Vraska's Final Mercy"
-   ]
-  },
-  {
    "pattern": "each creature with mana value x or less loses all abilities until end of turn. destroy those creatures.",
    "kind": "spell",
    "decks": 36,
@@ -343,15 +293,6 @@
    "decks": 32,
    "cards": [
     "Georgiou, Terran Emperor"
-   ]
-  },
-  {
-   "pattern": "when ~ enters, empower jace N.",
-   "kind": "triggered",
-   "decks": 32,
-   "cards": [
-    "Way of the Pyromancer",
-    "Way of the Paradox"
    ]
   },
   {
@@ -476,14 +417,6 @@
    ]
   },
   {
-   "pattern": "landfall whenever a land you control enters, empower jace N.",
-   "kind": "triggered",
-   "decks": 15,
-   "cards": [
-    "Avatar of Burgeoning Echoes"
-   ]
-  },
-  {
    "pattern": "whenever you conjure one or more cards, this creature becomes prepared.",
    "kind": "triggered",
    "decks": 15,
@@ -601,15 +534,6 @@
    "decks": 9,
    "cards": [
     "Shimmerwilds Growth"
-   ]
-  },
-  {
-   "pattern": "when this creature enters, empower jace N.",
-   "kind": "triggered",
-   "decks": 9,
-   "cards": [
-    "Sanctum Lurker",
-    "Theorist's Proxy"
    ]
   },
   {
@@ -778,14 +702,6 @@
    "decks": 5,
    "cards": [
     "Hawkeye, Master Marksman"
-   ]
-  },
-  {
-   "pattern": "whenever an opponent draws a card, this creature deals N damage to them.",
-   "kind": "triggered",
-   "decks": 5,
-   "cards": [
-    "Razorkin Needlehead"
    ]
   },
   {
@@ -1953,14 +1869,6 @@
     ]
    },
    {
-    "name": "Sunspine Lynx",
-    "decks": 11,
-    "oracle": "Players can't gain life.\nDamage can't be prevented.\nWhen this creature enters, it deals damage to each player equal to the number of nonbasic lands that player controls.",
-    "detail": [
-     "hate:lock:other"
-    ]
-   },
-   {
     "name": "Dispelling Exhale",
     "decks": 5,
     "oracle": "As an additional cost to cast this spell, you may behold a Dragon. (You may choose a Dragon you control or reveal a Dragon card from your hand.)\nCounter target spell unless its controller pays {2}. If a Dragon was beheld, counter that spell unless its controller pays {4} instead.",
@@ -2065,14 +1973,6 @@
     "detail": [
      "counter:counter:noncreature spell",
      "removal:bounce:creature"
-    ]
-   },
-   {
-    "name": "Giant Cindermaw",
-    "decks": 1,
-    "oracle": "Trample (This creature can deal excess combat damage to the player or planeswalker it's attacking.)\nPlayers can't gain life.",
-    "detail": [
-     "hate:lock:other"
     ]
    }
   ],
@@ -2467,17 +2367,9 @@
   ]
  },
  "format": "Standard",
- "generatedAt": "2026-11-27T21:12:44.633Z",
+ "generatedAt": "2026-11-27T21:32:20.278Z",
  "decks": 2593,
  "otherOnly": [
-  {
-   "name": "Jace's Machinations",
-   "decks": 204,
-   "typeLine": "Instant",
-   "tags": [
-    "misc@spell"
-   ]
-  },
   {
    "name": "Outrageous Robbery",
    "decks": 6,
@@ -2525,15 +2417,6 @@
    "tags": [
     "haste@static",
     "misc@etb"
-   ]
-  },
-  {
-   "name": "Way of the Mentor",
-   "decks": 2,
-   "typeLine": "Legendary Enchantment",
-   "tags": [
-    "misc@etb",
-    "misc@lifegain_trigger"
    ]
   },
   {
@@ -2712,6 +2595,20 @@
    "tags": [
     "topmanip@activated",
     "selfmill@activated"
+   ]
+  },
+  {
+   "name": "Enduring Curiosity",
+   "decks": 230,
+   "roles": [
+    "draw",
+    "recursion",
+    "beater"
+   ],
+   "tags": [
+    "flash@static",
+    "draw@combat_damage",
+    "recursion@dies"
    ]
   },
   {
@@ -3020,22 +2917,6 @@
     "drain@spell",
     "removal@spell"
    ]
-  },
-  {
-   "name": "Elspeth, Storm Slayer",
-   "decks": 60,
-   "roles": [
-    "removal",
-    "tokens",
-    "enhance"
-   ],
-   "tags": [
-    "misc@static",
-    "token@loyalty",
-    "pump@loyalty",
-    "evasion@loyalty",
-    "removal@loyalty"
-   ]
   }
  ],
  "byCategory": {
@@ -3177,7 +3058,8 @@
     "name": "Countersculpt",
     "decks": 225,
     "roles": [
-     "spell"
+     "spell",
+     "enhance"
     ]
    },
    {
@@ -3351,6 +3233,7 @@
     "decks": 230,
     "roles": [
      "draw",
+     "recursion",
      "beater"
     ]
    },
@@ -3645,6 +3528,13 @@
     ]
    },
    {
+    "name": "Jace's Machinations",
+    "decks": 204,
+    "roles": [
+     "enhance"
+    ]
+   },
+   {
     "name": "Ajani Resolute",
     "decks": 96,
     "roles": [
@@ -3802,13 +3692,6 @@
     "decks": 4,
     "roles": [
      "protection"
-    ]
-   },
-   {
-    "name": "Violent Urge",
-    "decks": 4,
-    "roles": [
-     "enhance"
     ]
    }
   ],
@@ -4017,13 +3900,6 @@
   ],
   "other": [
    {
-    "name": "Jace's Machinations",
-    "decks": 204,
-    "roles": [
-     "other"
-    ]
-   },
-   {
     "name": "Outrageous Robbery",
     "decks": 6,
     "roles": [
@@ -4061,13 +3937,6 @@
    {
     "name": "Hit It!",
     "decks": 3,
-    "roles": [
-     "other"
-    ]
-   },
-   {
-    "name": "Way of the Mentor",
-    "decks": 2,
     "roles": [
      "other"
     ]
@@ -4564,7 +4433,7 @@
     "beater"
    ],
    "tags": [
-    "misc@landfall",
+    "pump@landfall",
     "pump@static"
    ]
   },

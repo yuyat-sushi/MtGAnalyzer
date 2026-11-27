@@ -49,14 +49,6 @@
    ]
   },
   {
-   "pattern": "when this creature enters, earthbend N.",
-   "kind": "triggered",
-   "decks": 138,
-   "cards": [
-    "Badgermole Cub"
-   ]
-  },
-  {
    "pattern": "choose three. you may choose the same mode more than once.",
    "kind": "spell",
    "decks": 128,
@@ -210,22 +202,6 @@
    ]
   },
   {
-   "pattern": "{N}{b}: adapt N.",
-   "kind": "activated",
-   "decks": 44,
-   "cards": [
-    "Emperor of Bones"
-   ]
-  },
-  {
-   "pattern": "{N}{g}, {t}: earthbend N. activate only as a sorcery.",
-   "kind": "activated",
-   "decks": 42,
-   "cards": [
-    "Ba Sing Se"
-   ]
-  },
-  {
    "pattern": "creature cards in graveyards and libraries can't enter the battlefield.",
    "kind": "static",
    "decks": 42,
@@ -271,14 +247,6 @@
    "decks": 27,
    "cards": [
     "Nomads en-Kor"
-   ]
-  },
-  {
-   "pattern": "landfall whenever a land you control enters, empower jace N.",
-   "kind": "triggered",
-   "decks": 27,
-   "cards": [
-    "Avatar of Burgeoning Echoes"
    ]
   },
   {
@@ -383,30 +351,6 @@
    "decks": 13,
    "cards": [
     "Jace, the Mind Sculptor"
-   ]
-  },
-  {
-   "pattern": "you control your opponents while they're searching their libraries.",
-   "kind": "static",
-   "decks": 12,
-   "cards": [
-    "Opposition Agent"
-   ]
-  },
-  {
-   "pattern": "while an opponent is searching their library, they exile each card they find. you may play those cards for as long as they remain exiled, and you may spend mana as though it were mana of any color to cast them.",
-   "kind": "static",
-   "decks": 12,
-   "cards": [
-    "Opposition Agent"
-   ]
-  },
-  {
-   "pattern": "when this creature enters, empower jace N.",
-   "kind": "triggered",
-   "decks": 12,
-   "cards": [
-    "Theorist's Proxy"
    ]
   },
   {
@@ -711,14 +655,6 @@
    "decks": 3,
    "cards": [
     "Rotting Regisaur"
-   ]
-  },
-  {
-   "pattern": "{N}{u}, {t}: empower jace N.",
-   "kind": "activated",
-   "decks": 3,
-   "cards": [
-    "Theorist's Sanctum"
    ]
   },
   {
@@ -1222,7 +1158,8 @@
     "decks": 520,
     "oracle": "Flash\nWhen this creature enters and whenever an opponent draws a card except the first one they draw in each of their draw steps, this creature deals 1 damage to any target. Then amass Orcs 1.",
     "detail": [
-     "removal:damage:creature/planeswalker/battle/player"
+     "removal:damage:creature/planeswalker/battle/player",
+     "hate:lock:draw"
     ]
    },
    {
@@ -1809,14 +1746,6 @@
     ]
    },
    {
-    "name": "Narset, Parter of Veils",
-    "decks": 48,
-    "oracle": "Each opponent can't draw more than one card each turn.\n−2: Look at the top four cards of your library. You may reveal a noncreature, nonland card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.",
-    "detail": [
-     "hate:lock:other"
-    ]
-   },
-   {
     "name": "Grafdigger's Cage",
     "decks": 42,
     "oracle": "Creature cards in graveyards and libraries can't enter the battlefield.\nPlayers can't cast spells from graveyards or libraries.",
@@ -1998,6 +1927,14 @@
     "oracle": "Vigilance\nWhenever an opponent casts a spell, if no mana was spent to cast it, counter that spell.\nSacrifice Boromir: Creatures you control gain indestructible until end of turn. The Ring tempts you.",
     "detail": [
      "counter:counter:spell"
+    ]
+   },
+   {
+    "name": "Myrel, Shield of Argive",
+    "decks": 1,
+    "oracle": "During your turn, your opponents can't cast spells or activate abilities of artifacts, creatures, or enchantments.\nWhenever Myrel attacks, create X 1/1 colorless Soldier artifact creature tokens, where X is the number of Soldiers you control.",
+    "detail": [
+     "hate:lock:spell"
     ]
    }
   ],
@@ -2692,7 +2629,7 @@
   ]
  },
  "format": "Legacy",
- "generatedAt": "2026-11-27T21:12:44.633Z",
+ "generatedAt": "2026-11-27T21:32:20.278Z",
  "decks": 2805,
  "otherOnly": [
   {
@@ -2768,14 +2705,6 @@
    "tags": [
     "setup@static",
     "misc@each_turn"
-   ]
-  },
-  {
-   "name": "Jace's Machinations",
-   "decks": 1,
-   "typeLine": "Instant",
-   "tags": [
-    "misc@spell"
    ]
   },
   {
@@ -2882,6 +2811,21 @@
   }
  ],
  "manyRoles": [
+  {
+   "name": "Orcish Bowmasters",
+   "decks": 520,
+   "roles": [
+    "removal",
+    "action",
+    "reach"
+   ],
+   "tags": [
+    "flash@static",
+    "drain@etb",
+    "removal@etb",
+    "hate@etb"
+   ]
+  },
   {
    "name": "Boseiju, Who Endures",
    "decks": 498,
@@ -3323,20 +3267,6 @@
     "landsearch@etb",
     "altcost@static"
    ]
-  },
-  {
-   "name": "Narset, Parter of Veils",
-   "decks": 48,
-   "roles": [
-    "spell",
-    "draw",
-    "topselect"
-   ],
-   "tags": [
-    "hate@static",
-    "topselect@loyalty",
-    "draw@loyalty"
-   ]
   }
  ],
  "byCategory": {
@@ -3374,6 +3304,7 @@
     "decks": 520,
     "roles": [
      "removal",
+     "action",
      "reach"
     ]
    },
@@ -3915,8 +3846,8 @@
     ]
    },
    {
-    "name": "Opposition Agent",
-    "decks": 12,
+    "name": "Samut, Hazoret's Champion",
+    "decks": 10,
     "roles": [
      "beater"
     ]
@@ -4051,6 +3982,13 @@
     ]
    },
    {
+    "name": "Jace's Machinations",
+    "decks": 1,
+    "roles": [
+     "enhance"
+    ]
+   },
+   {
     "name": "Spider-Punk",
     "decks": 1,
     "roles": [
@@ -4091,13 +4029,6 @@
     "roles": [
      "enhance",
      "lifegain"
-    ]
-   },
-   {
-    "name": "Brotherhood Regalia",
-    "decks": 1,
-    "roles": [
-     "enhance"
     ]
    }
   ],
@@ -4357,13 +4288,6 @@
    },
    {
     "name": "Sphere of Annihilation",
-    "decks": 1,
-    "roles": [
-     "other"
-    ]
-   },
-   {
-    "name": "Jace's Machinations",
     "decks": 1,
     "roles": [
      "other"
@@ -4652,7 +4576,7 @@
     "beater"
    ],
    "tags": [
-    "misc@landfall",
+    "pump@landfall",
     "pump@static"
    ]
   },
@@ -4739,17 +4663,6 @@
    ]
   },
   {
-   "name": "Opposition Agent",
-   "decks": 12,
-   "roles": [
-    "beater"
-   ],
-   "tags": [
-    "flash@static",
-    "misc@static"
-   ]
-  },
-  {
    "name": "Samut, Hazoret's Champion",
    "decks": 10,
    "roles": [
@@ -4757,20 +4670,6 @@
    ],
    "tags": [
     "haste@static"
-   ]
-  },
-  {
-   "name": "Sheoldred, the Apocalypse",
-   "decks": 8,
-   "roles": [
-    "reach",
-    "beater",
-    "lifegain"
-   ],
-   "tags": [
-    "combatkw@static",
-    "lifegain@other_trigger",
-    "drain@other_trigger"
    ]
   },
   {
@@ -4915,6 +4814,30 @@
     "costreduce@static",
     "evasion@static",
     "combatkw@static"
+   ]
+  },
+  {
+   "name": "Eyetwitch",
+   "decks": 5,
+   "roles": [
+    "beater"
+   ],
+   "tags": [
+    "evasion@static",
+    "misc@dies"
+   ]
+  },
+  {
+   "name": "Crescendo Conductor // Boltwave",
+   "decks": 4,
+   "roles": [
+    "reach",
+    "beater"
+   ],
+   "tags": [
+    "combatkw@static",
+    "misc@other_trigger",
+    "drain@spell"
    ]
   }
  ],
