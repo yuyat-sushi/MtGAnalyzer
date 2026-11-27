@@ -292,7 +292,7 @@
 
   // ---------- 唱えたときの行動（相手の行動干渉が効くもの） ----------
   // search: 土地以外を探す（土地サーチは doSearch で数える）、draw: 引く枚数、life: ライフを得る、extra: 追加ターン
-  // 「Whenever」「At the beginning」の誘発と、起動型能力（コロンの前にコスト）は唱えたときの行動ではないので数えない
+  // 「Whenever」「At the beginning」の誘発と、起動型能力（コロンの前にコスト・忠誠度能力）は唱えたときの行動ではないので数えない
   function actsOf(card, landSearch) {
     const out = { search: 0, draw: 0, life: 0, extra: 0 };
     if (isLandCard(card)) return out;
@@ -300,6 +300,7 @@
       if (/^\s*(whenever|at the beginning)/i.test(line)) continue;
       const colon = line.indexOf(':');
       if (colon > 0 && /\{/.test(line.slice(0, colon))) continue;
+      if (/^\s*\[?[+−-]?(\d+|X)\]?:/.test(line)) continue; // 忠誠度能力（起動型能力。奥義も含む）
       if (/(target|each) (player|opponent)s? (may )?(searches|draws)|opponent (searches|draws)/i.test(line)) continue;
       if (!landSearch && /search your library/i.test(line)) out.search++;
       const dm = line.match(/\bdraws? (a|one|two|three|four|five|x) cards?/i);
