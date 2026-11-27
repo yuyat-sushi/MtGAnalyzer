@@ -63,7 +63,7 @@
                                                  /target [^.]*?creature[^.]*? gets -(\d+|x)\/-(\d+|x)/, /\bfights? (target|another target|up to one target)/,
                                                  /target creature you control deals damage equal to its power to (another )?target/, /deals damage equal to [^.]*? to (any target|target creature|target planeswalker|up to one target)/,
                                                  /return (target|up to \w+ target) (spell or )?(nonland )?(creature|permanent|artifact|enchantment)(?![^.]*\bcards?\b)[^.]*to (its|their) owner'?s'? hand/,
-                                                 /(target|each) (player|opponent) (sacrifices|exiles) (a|an|two)/, /gain control of target/, /enchanted creature can't attack\b/, /enchanted creature doesn't untap/, /put target [^.]*on (the )?(top|bottom) of its owner's library/] },
+                                                 /(target|each) (player|opponent) (sacrifices|exiles) (a|an|two)/, /gain control of target/, /enchanted creature can't attack\b/, /enchanted creature doesn't untap/, /put target [^.]*on (the )?(top|bottom) of its owner's library/, /return target [a-z ]*?(creature|artifact|enchantment|planeswalker|nonland permanent|permanent)s? to (its|their) owner'?s?'? hands?/] },
     { id: 'wipe',      label: '全体除去',     re: [/(destroy|exile) (all|each) [^.]*?(creatures?|nonland|permanents?|artifacts?|enchantments?|lands?)\b/, /(all|each) [^.]*?creatures?[^.]*? gets? -/,
                                                  /creatures (your opponents|target player|that player) controls? gets? -/, /deals? (\d+|x) damage to each (\w+ )?(creature|other creature|creature and)/,
                                                  /damage to each opponent and each creature/, /(each|target) (player|opponent) sacrifices all\b/, /damage to [^.]*?each creature (they|your opponents) control/, /put all [^.]*creatures [^.]*on the bottom/,
@@ -97,7 +97,7 @@
     { id: 'hate',      label: '妨害（ロック）', re: [/\bcosts? \{\d\} more\b/, /would cost less than \w+ mana to cast costs/, /\bcost \{\d\} more\b/, /nonbasic lands (are|don't untap)/, /\bcan't cast (spells|noncreature|creature|instant|sorcery)/,
                                                  /can't be activated/, /(each player|players|your opponents|target player) can't (cast|activate|search|gain life|draw)/, /don't cause abilities to trigger/,
                                                  /(lands|creatures|artifacts|permanents) (your opponents control )?enter (the battlefield )?tapped/, /\bdon't untap during/, /players skip/, /tap for more than one mana produce/, /can't untap more than/,
-                                                 /tapped for two or more mana/, /lands your opponents control[^.]*?lose all land types/, /(enchanted|target)( nonbasic)? land (is|becomes) an? /] },
+                                                 /tapped for two or more mana/, /lands your opponents control[^.]*?lose all land types/, /(enchanted|target)( nonbasic)? land (is|becomes) an? /, /can cast spells only any time they could cast a sorcery/] },
     // 攻撃の制限（Ensnaring Bridge、Propaganda、Moat、Peacekeeper など）
     { id: 'attacklock', label: '攻撃制限',    re: [/\bcreatures (with [^.]*?|without [^.]*?|your opponents control )?can't attack\b/, /no more than (one|two) creatures? can attack/] },
     { id: 'cheat',     label: '踏み倒し',     re: [/put (a|an|up to \w+|any number of|that|those|target)\b[^.]*?\b(creature|artifact|enchantment|permanent|planeswalker|nonland)\b[^.]*?\bcards?\b[^.]*?onto the battlefield/,
@@ -106,7 +106,30 @@
     { id: 'untap',     label: 'アンタップ',   re: [/\buntap (target|all|up to \w+ target|another target|up to \w+) (artifacts?|lands?|nonland permanents?)\b/] },
     { id: 'copy',      label: 'コピー/ストーム', re: [/(^|, )storm\b(?!-)/, /copy (target|that|the exiled|it)[^.]*?(instant|sorcery|spell|card)/] },
     { id: 'protection', label: '保護',        re: [/(gains?|have|has) (hexproof|indestructible|shroud|protection from)/, /phases? out/, /\bregenerate\b/,
-                                                 /exile [^.]*?(target|any number of target) [^.]*?(creature|permanent|nonland)[^.]*?(you control|you own)[\s\S]{0,60}?return (it|that card|them|those cards)/] }
+                                                 /exile [^.]*?(target|any number of target) [^.]*?(creature|permanent|nonland)[^.]*?(you control|you own)[\s\S]{0,60}?return (it|that card|them|those cards)/] },
+    // ---- 以下は表示・集計用のタグ（役割にはつながないものが多い）----
+    { id: 'landetb',    label: '土地の出方',   re: [/\benters tapped\b/, /as (this land|~) enters, you may pay \d+ life/, /(this land|~) is the chosen type/, /each land is an? [a-z]+ in addition to its other land types/] },
+    { id: 'landsearch', label: '土地サーチ',   re: [/search your library for [^.]*?\b(land|plains|island|swamp|mountain|forest)\b cards?/] },
+    { id: 'extraland',  label: '追加の土地',   re: [/you may play (an )?additional lands?/, /put (a|up to \w+) land cards? from your hand onto the battlefield/] },
+    { id: 'evasion',    label: '回避能力',     re: [/can't be blocked/, /\b(gains?|has|have) (flying|menace|trample|shadow)\b/] },
+    { id: 'combatkw',   label: '戦闘能力',     re: [/\b(gains?|has|have) (first strike|double strike|deathtouch|vigilance|reach)\b/] },
+    { id: 'flash',      label: '瞬速',         re: [/as though (it|they) had flash/, /\b(gains?|has|have) flash\b/] },
+    { id: 'resilience', label: '耐性',         re: [/can't be countered/, /\bward\b/] },
+    { id: 'altcost',    label: '代替コスト',   re: [/rather than pay (this spell's|its) mana cost/, /without paying (its|their) mana costs?/] },
+    { id: 'costreduce', label: 'コスト軽減',   re: [/(this spell|~) costs? \{[\dx]+\} less to cast/, /\bcosts? \{\d+\} less to activate/] },
+    { id: 'addcost',    label: '追加コスト',   re: [/as an additional cost to cast this spell/] },
+    { id: 'equip',      label: '装備・つける', re: [/^enchant (creature|permanent|land|artifact|player|planeswalker)/, /attach (it|~|this)/] },
+    { id: 'drawback',   label: 'デメリット',   re: [/doesn't untap during your untap step/, /deals? \d+ damage to you\b/, /you lose \d+ life for each/, /(this creature|~) can't block\b/, /\bskip your draw step/, /when you play another land, sacrifice/, /can't attack or block unless/] },
+    { id: 'setup',      label: '準備',         re: [/as (this|~) [a-z ]*?enters, choose/, /when (this|~) [a-z ]*?enters, choose/, /in your opening hand/, /enters with [^.]*counters? on it/, /enters prepared/] },
+    { id: 'transform',  label: '変身',         re: [/\btransformed\b/, /\btransform (it|~|this)/] },
+    { id: 'monarch',    label: '統治者・イニシアチブ', re: [/become the monarch/, /take the initiative/] },
+    { id: 'statdef',    label: 'P/Tの定義',    re: [/(power|toughness) (is|are) (each )?equal to/, /gets \+\d+\/\+\d+ for each/] },
+    { id: 'animate',    label: 'クリーチャー化', re: [/becomes an? (\d+\/\d+ )?[^.]*?\bcreature\b/] },
+    { id: 'level',      label: 'レベルアップ', re: [/:\s*level \d/, /\blevel up\b/] },
+    { id: 'haste',      label: '速攻',         re: [/\b(gains?|has|have) haste\b/] },
+    { id: 'cycling',    label: 'サイクリング', re: [] },
+    { id: 'charkw',     label: '特性',         re: [] },
+    { id: 'misc',       label: 'その他（未分類）', re: [] }
   ];
   const EFFECT_MAP = Object.fromEntries(EFFECTS.map(e => [e.id, e]));
 
@@ -203,6 +226,48 @@
     return { typeLine: f.map(x => x.type).join(' // '), oracle: f.map(x => x.text).join('\n//\n') };
   }
 
+  // ---------- キーワード能力だけの行（「飛行、速攻」「装備 {1}」「サイクリング {2}」など） ----------
+  // [パターン, 効果, 発動条件]。発動条件はキーワード能力の種類（常在型・起動型・誘発型）に合わせる
+  const KEYWORDS = [
+    [/^(flying|menace|trample|shadow|horsemanship|fear|intimidate|skulk|[a-z]+walk)$/, 'evasion', 'static'],
+    [/^haste$/, 'haste', 'static'],
+    [/^(first strike|double strike|deathtouch|vigilance|reach)$/, 'combatkw', 'static'],
+    [/^lifelink$/, 'lifegain', 'static'],
+    [/^(defender|vanishing \d+|fading \d+|echo\b.*|cumulative upkeep\b.*)$/, 'drawback', 'static'],
+    [/^(indestructible|hexproof|hexproof from .+|shroud|protection from .+|ward\b.*|split second)$/, 'resilience', 'static'],
+    [/^flash$/, 'flash', 'static'],
+    [/^prowess$/, 'pump', 'cast_trigger'],
+    [/^([a-z]+)?cycling\b.*$/, 'cycling', 'activated_once'],
+    [/^(equip|reconfigure|crew)\b.*$/, 'equip', 'activated'],
+    [/^(evoke|dash|ninjutsu|plot|warp|bestow|impending|spectacle|prowl|surge|emerge|blitz|overload|madness|foretell|miracle|suspend|morph|megamorph|disguise|mutate|sneak)\b.*$/, 'altcost', 'static'],
+    [/^(affinity for .+|delve|improvise|convoke|undaunted|assist)$/, 'costreduce', 'static'],
+    [/^(kicker|multikicker|bargain|spree|replicate|entwine|buyback|casualty|offspring|gift\b.*|squad|escalate|strive)\b.*$/, 'addcost', 'static'],
+    [/^cascade$/, 'cheat', 'cast_self'],
+    [/^(devoid|changeling)$/, 'charkw', 'static'],
+    [/^mobilize \d+$/, 'token', 'attack'],
+    [/^(dredge \d+|rebound|flashback\b.*|unearth\b.*|escape\b.*|disturb\b.*|embalm\b.*|eternalize\b.*|retrace|jump-start|harmonize\b.*)$/, 'recursion', 'static'],
+    [/^storm$/, 'copy', 'cast_self'],
+    [/^(ascend|level up\b.*)$/, 'setup', 'static'],
+    [/^(living weapon|for mirrodin!)$/, 'equip', 'etb']
+  ];
+  function keywordLine(line) {
+    const body = line.replace(/\.$/, '');
+    // コストに読点が入る書き方（「授与—{r}、証拠収集6」）は1つのキーワードとして扱う
+    const parts = /^[a-z -]+(—|\s\{)/.test(body) ? [body] : body.split(/,\s*/);
+    const out = [];
+    for (const part of parts) {
+      const hit = KEYWORDS.find(([re]) => re.test(part.trim()));
+      if (!hit) return null;
+      out.push(hit);
+      // 土地サイクリング（「島サイクリング」など）は土地サーチでもある
+      const m = part.trim().match(/^([a-z]+)cycling\b/);
+      if (m && m[1]) out.push([null, 'landsearch', 'activated_once']);
+    }
+    return out;
+  }
+  // 能力ではない構造の行（モード選択の見出し）
+  const STRUCTURAL = /^choose (one|two|three|four|any number|one or both|one or more|up to [a-z]+)\b[^.]*—$/;
+
   function analyze(card) {
     if (!card) return { abilities: [], tags: [], tokens: [], evasion: false, power: null, speed: 'sorcery' };
     const abilities = [], untagged = [];
@@ -251,7 +316,18 @@
         if (RECURSION_KEYWORDS.test(line) && !effects.includes('recursion')) effects.push('recursion');
         const tokens = tokensOf(line);
         if (effects.length || tokens.length) abilities.push({ text: line, triggers, effects, tokens, isInstant: /\bInstant\b/.test(type) });
-        else untagged.push({ text: line, kind: kindOf(triggers[0]) }); // 効果を読み取れなかった能力（タグ化の取りこぼし確認用）
+        else if (STRUCTURAL.test(line)) continue;
+        else {
+          const kws = keywordLine(line);
+          if (kws) {
+            // キーワード能力は種類ごとに発動条件を分けて1つずつ能力にする
+            for (const [, eff, trig] of kws) abilities.push({ text: line, triggers: [trig], effects: [eff], tokens: [], isInstant: /\bInstant\b/.test(type) });
+          } else {
+            // どれにも当てはまらない文は「その他（未分類）」として残す（タグ化の取りこぼし確認用に untagged にも記録）
+            abilities.push({ text: line, triggers, effects: ['misc'], tokens: [], isInstant: /\bInstant\b/.test(type) });
+            untagged.push({ text: line, kind: kindOf(triggers[0]) });
+          }
+        }
       }
     });
     const kw = (card.keywords || []).join(' ').toLowerCase();
@@ -294,7 +370,7 @@
       const t = [];
       if (/can't be activated/.test(line)) t.push('activated ability');
       if (/don't cause abilities to trigger|abilities (can't|don't) trigger/.test(line)) t.push('triggered ability');
-      if (/can't cast|can't be cast/.test(line)) t.push('spell');
+      if (/can't cast|can't be cast|can cast spells only any time they could cast a sorcery/.test(line)) t.push('spell');
       if (/from graveyards|in graveyards/.test(line)) t.push('graveyard');
       if (/costs? \{\d\} more|cost \{\d\} more|would cost less than/.test(line)) t.push('tax');
       if (/nonbasic lands|tap for more than one mana|produce \{c\}|tapped for two or more mana|lose all land types|(enchanted|target)( nonbasic)? land (is|becomes) an? /.test(line)) t.push('mana');
