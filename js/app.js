@@ -272,6 +272,7 @@
 
   const openCats = new Set();
   let extraOpen = false;
+  const openArch = new Set();
   /** 小カテゴリの横に添える大事な属性（例: 単体除去 12（追放 4）、呪文への干渉 6（継続 2）） */
   function subNote(id) {
     const count = pred => state.main.filter(e => e.card && rolesOf(e).includes(id) && Roles.inspect(e.card).tags.some(pred)).reduce((s, e) => s + e.qty, 0);
@@ -653,15 +654,47 @@
       }
 
       const cls = c => (c.main + c.side) === 0 ? 'c-low' : c.main === 0 ? 'c-near' : 'c-ok';
-      return `<div class="mu">
-        <div class="mu-head"><b>${esc(m.name)}</b> <span class="num">${pct(m.share)}</span>${kt ? ` <span class="muted">キーターン ${kt}T</span>` : ''}</div>
+      // 開いたときの中身: 対処札の一覧、脅威ごとの対処札、惜しくも数えなかったカード、入れ替え候補
+      const HOW = { removal: '除去', counter: '打ち消し', discard: '手札破壊' };
+      const listOf = list => {
+        const rows = list.map(e => {
+          const hows = [...new Set(threats.map(t => Roles.answerOf(e.card, t)).filter(Boolean).map(x => HOW[x.how]))];
+          return hows.length ? `${esc(displayName(e.card))}×${e.qty}<span class="muted">（${hows.join('・')}）</span>` : '';
+        }).filter(Boolean);
+        return rows.length ? rows.join('、') : '<span class="muted">なし</span>';
+      };
+      const perThreat = threats.map(t => {
+        const names = l => l.filter(e => Roles.answerOf(e.card, t)).map(e => esc(displayName(e.card)));
+        const mn = names(mainE), sd = names(sideE);
+        const info = [t.type ? esc(t.type.replace(/^Legendary /, '')) : '', t.toughness ? `タフネス${esc(t.toughness)}` : '', t.mv != null ? `MV${t.mv}` : ''].filter(Boolean).join('・');
+        return `<li><b>${esc(t.name)}</b> <span class="muted">${info}／採用率${pct(t.rate)}</span><br>
+          メイン: ${mn.length ? mn.join('、') : '<span class="bad-t">なし</span>'}${sd.length ? `　<span class="muted">サイド: ${sd.join('、')}</span>` : ''}</li>`;
+      }).join('');
+      // 対処系の能力はあるが、ダメージ量やマナ総量の条件で当たらなかったカード
+      const near = [];
+      [...mainE, ...sideE].forEach(e => threats.forEach(t => {
+        const w = Roles.answerWhy(e.card, t);
+        if (w && !w.ok && w.reason !== 'type') near.push(`${esc(displayName(e.card))} → ${esc(t.name)}（${esc(w.note)}）`);
+      }));
+      const body = `<div class="mu-body">
+          <div><b>対処札（メイン）</b>: ${listOf(mainE)}</div>
+          <div><b>対処札（サイド）</b>: ${listOf(sideE)}</div>
+          <div class="mu-sub">脅威ごと</div><ul class="mu-list">${perThreat}</ul>
+          ${near.length ? `<div class="mu-sub">数えなかったカード</div><ul class="mu-list">${[...new Set(near)].map(x => `<li>${x}</li>`).join('')}</ul>` : ''}
+          ${deadN ? `<div class="mu-sub">腐りやすい枠</div><div>${esc(dead.map(e => `${displayName(e.card)}×${e.qty}`).join('、'))}${good.length ? `<br>→ 入れ替え候補（サイド）: ${esc(good.map(e => `${displayName(e.card)}×${e.qty}`).join('、'))}` : '<br><span class="muted">サイドに入れ替え先が見当たらない</span>'}</div>` : ''}
+        </div>`;
+      return `<details class="mu" data-arch="${esc(m.name)}" ${openArch.has(m.name) ? 'open' : ''}><summary>
+        <div class="mu-head"><b>${esc(m.name)}</b> <span class="num">${pct(m.share)}</span>${kt ? ` <span class="muted">キーターン ${kt}T</span>` : ''}<span class="mu-toggle muted"></span></div>
         <div class="mu-threats">${cells.map(c => `<span class="mu-t ${cls(c)}" title="採用率${pct(c.t.rate)}・平均${c.t.avg}枚">${esc(c.t.name)} <b>${c.main}</b><span class="muted">/${c.side}</span></span>`).join('')}</div>
         ${chance != null ? `<div class="muted">キーターンまでに対処札を持って唱えられる率（先手）: <b>${pct(chance)}</b>（対処札 ${K} 枚）</div>` : ''}
-        ${deadN ? `<div class="muted">腐りやすい枠: ${esc(short(dead.map(e => `${displayName(e.card)}×${e.qty}`)))}${good.length ? ` → 入れ替え候補: ${esc(short(good.map(e => `${displayName(e.card)}×${e.qty}`)))}` : ''}</div>` : ''}
-      </div>`;
+        ${deadN ? `<div class="muted">腐りやすい枠あり（${deadN}枚）</div>` : ''}
+      </summary>${body}</details>`;
     }).join('');
     box.innerHTML = (html || '<p class="hint">シェア3%以上の上位デッキがありません</p>') +
-      `<p class="hint">脅威＝そのアーキタイプの40%以上が採用する勝ち手段・コンボ/展開のカードと、居座って働くクリーチャー・プレインズウォーカー・エンジン。数字はメイン/サイドの対処札の枚数（除去・打ち消し・手札破壊。ダメージ量とタフネス、「マナ総量N以下」の条件も見ています）。キーターン＝代表リストを一人回しして主力が50%以上出ているターン。腐りやすい枠＝相手のパーマネント構成に対象がほとんどない妨害。</p>`;
+      `<p class="hint">脅威＝そのアーキタイプの40%以上が採用する勝ち手段・コンボ/展開のカードと、居座って働くクリーチャー・プレインズウォーカー・エンジン。押すと対処札の一覧を開けます。数字はメイン/サイドの対処札の枚数（除去・打ち消し・手札破壊。ダメージ量とタフネス、「マナ総量N以下」の条件も見ています）。キーターン＝代表リストを一人回しして主力が50%以上出ているターン。腐りやすい枠＝相手のパーマネント構成に対象がほとんどない妨害。</p>`;
+    box.querySelectorAll('details.mu').forEach(d => d.addEventListener('toggle', () => {
+      if (d.open) openArch.add(d.dataset.arch); else openArch.delete(d.dataset.arch);
+    }));
     return tips;
   }
 
