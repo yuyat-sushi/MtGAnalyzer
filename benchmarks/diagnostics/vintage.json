@@ -9,44 +9,11 @@
    ]
   },
   {
-   "pattern": "at the beginning of your upkeep, you may pay {N}. if you do, untap this artifact.",
-   "kind": "triggered",
-   "decks": 463,
-   "cards": [
-    "Mana Vault"
-   ]
-  },
-  {
-   "pattern": "if you would begin your turn while this artifact is tapped, you may skip that turn instead. if you do, untap this artifact.",
-   "kind": "static",
-   "decks": 322,
-   "cards": [
-    "Time Vault"
-   ]
-  },
-  {
-   "pattern": "spells you cast from anywhere other than your hand cost {N} less to cast.",
-   "kind": "static",
-   "decks": 278,
-   "cards": [
-    "Bilbo, Thief in the Night",
-    "Fortune Teller's Talent"
-   ]
-  },
-  {
    "pattern": "whenever an artifact you control enters, put a loyalty counter on tezzeret.",
    "kind": "triggered",
    "decks": 260,
    "cards": [
     "Tezzeret, Cruel Captain"
-   ]
-  },
-  {
-   "pattern": "{N}: untap this artifact.",
-   "kind": "activated",
-   "decks": 244,
-   "cards": [
-    "Grim Monolith"
    ]
   },
   {
@@ -66,36 +33,11 @@
    ]
   },
   {
-   "pattern": "at the beginning of the end step, sacrifice this enchantment.",
-   "kind": "triggered",
-   "decks": 179,
-   "cards": [
-    "Dress Down",
-    "Underworld Breach"
-   ]
-  },
-  {
-   "pattern": "you may cast artifact spells and colorless spells from the top of your library.",
-   "kind": "static",
-   "decks": 161,
-   "cards": [
-    "Mystic Forge"
-   ]
-  },
-  {
    "pattern": "{t}, pay N life: exile the top card of your library.",
    "kind": "activated",
    "decks": 161,
    "cards": [
     "Mystic Forge"
-   ]
-  },
-  {
-   "pattern": "choose one. if you control a wizard as you cast this spell, you may choose two instead.",
-   "kind": "spell",
-   "decks": 150,
-   "cards": [
-    "Flame of Anor"
    ]
   },
   {
@@ -115,27 +57,11 @@
    ]
   },
   {
-   "pattern": "when this artifact enters, you may exile a nonartifact, nonland card from your hand.",
-   "kind": "triggered",
-   "decks": 112,
-   "cards": [
-    "Chrome Mox"
-   ]
-  },
-  {
    "pattern": "at the beginning of each opponent's upkeep, untap a creature you control. if you've completed a dungeon, untap all creatures you control instead.",
    "kind": "triggered",
    "decks": 107,
    "cards": [
     "White Plume Adventurer"
-   ]
-  },
-  {
-   "pattern": "creatures lose all abilities.",
-   "kind": "static",
-   "decks": 106,
-   "cards": [
-    "Dress Down"
    ]
   },
   {
@@ -152,14 +78,6 @@
    "decks": 68,
    "cards": [
     "Narcomoeba"
-   ]
-  },
-  {
-   "pattern": "at the beginning of the end step, sacrifice this creature.",
-   "kind": "triggered",
-   "decks": 67,
-   "cards": [
-    "Ichorid"
    ]
   },
   {
@@ -276,15 +194,6 @@
    ]
   },
   {
-   "pattern": "each opponent can't draw more than one card each turn.",
-   "kind": "static",
-   "decks": 13,
-   "cards": [
-    "Narset, Parter of Veils",
-    "Leovold, Emissary of Trest"
-   ]
-  },
-  {
    "pattern": "when this creature enters, it deals N damage divided as you choose among any number of target creatures and/or planeswalkers.",
    "kind": "triggered",
    "decks": 11,
@@ -298,14 +207,6 @@
    "decks": 10,
    "cards": [
     "Fastbond"
-   ]
-  },
-  {
-   "pattern": "all creatures have \"at the beginning of your upkeep, destroy this creature unless you pay {N}.\"",
-   "kind": "static",
-   "decks": 9,
-   "cards": [
-    "The Tabernacle at Pendrell Vale"
    ]
   },
   {
@@ -362,23 +263,6 @@
    "decks": 6,
    "cards": [
     "Uro, Titan of Nature's Wrath"
-   ]
-  },
-  {
-   "pattern": "noncreature spells you cast cost {N} less to cast.",
-   "kind": "static",
-   "decks": 6,
-   "cards": [
-    "Geist of Saint Thalia",
-    "Artist's Talent"
-   ]
-  },
-  {
-   "pattern": "at the beginning of your next upkeep, pay {N}{u}{u}. if you don't, you lose the game.",
-   "kind": "spell",
-   "decks": 5,
-   "cards": [
-    "Pact of Negation"
    ]
   },
   {
@@ -479,14 +363,6 @@
    ]
   },
   {
-   "pattern": "colorless eldrazi spells you cast cost {N} less to cast.",
-   "kind": "static",
-   "decks": 3,
-   "cards": [
-    "Eye of Ugin"
-   ]
-  },
-  {
    "pattern": "{N}: the next N damage that would be dealt to this creature this turn is dealt to target creature you control instead.",
    "kind": "activated",
    "decks": 3,
@@ -500,14 +376,6 @@
    "decks": 3,
    "cards": [
     "Outland Liberator // Frenzied Trapbreaker"
-   ]
-  },
-  {
-   "pattern": "return a forest you control to its owner's hand: untap target creature. activate only once each turn.",
-   "kind": "activated",
-   "decks": 3,
-   "cards": [
-    "Scryb Ranger"
    ]
   },
   {
@@ -529,14 +397,6 @@
    ]
   },
   {
-   "pattern": "annihilator N",
-   "kind": "static",
-   "decks": 2,
-   "cards": [
-    "Nulldrifter"
-   ]
-  },
-  {
    "pattern": "when this creature enters, empower jace N.",
    "kind": "triggered",
    "decks": 2,
@@ -550,22 +410,6 @@
    "decks": 2,
    "cards": [
     "The Mycosynth Gardens"
-   ]
-  },
-  {
-   "pattern": "you may have this land enter tapped as a copy of any land card in a graveyard, except it's a cave in addition to its other types.",
-   "kind": "static",
-   "decks": 2,
-   "cards": [
-    "Echoing Deeps"
-   ]
-  },
-  {
-   "pattern": "as long as you've cast a spell this turn, you may play cards from the top of your library.",
-   "kind": "static",
-   "decks": 2,
-   "cards": [
-    "Fortune Teller's Talent"
    ]
   },
   {
@@ -593,30 +437,6 @@
    ]
   },
   {
-   "pattern": "you can't spend mana to cast this spell.",
-   "kind": "static",
-   "decks": 2,
-   "cards": [
-    "Hogaak, Arisen Necropolis"
-   ]
-  },
-  {
-   "pattern": "you may play historic lands and cast historic spells from the top of your library.",
-   "kind": "static",
-   "decks": 2,
-   "cards": [
-    "Crystal Skull, Isu Spyglass"
-   ]
-  },
-  {
-   "pattern": "−x: tap target artifact or creature. put x stun counters on it.",
-   "kind": "activated",
-   "decks": 2,
-   "cards": [
-    "Chandra, Chill of Compliance"
-   ]
-  },
-  {
    "pattern": "~ deals x damage divided as you choose among up to two target creatures and/or planeswalkers. if x is N or more, ~ deals twice x damage divided as you choose among them instead.",
    "kind": "spell",
    "decks": 2,
@@ -641,14 +461,6 @@
    ]
   },
   {
-   "pattern": "{N}{g}{g}: this land becomes a copy of target permanent card in your graveyard until end of turn. activate only if there are four or more card types among cards in your graveyard.",
-   "kind": "activated",
-   "decks": 2,
-   "cards": [
-    "Shifting Woodland"
-   ]
-  },
-  {
    "pattern": "if a source you control would deal noncombat damage to an opponent or a permanent an opponent controls, it deals that much damage plus N instead.",
    "kind": "static",
    "decks": 2,
@@ -662,14 +474,6 @@
    "decks": 2,
    "cards": [
     "Dark Depths"
-   ]
-  },
-  {
-   "pattern": "{N}, {t}: this land becomes a copy of target land, except it has this ability.",
-   "kind": "activated",
-   "decks": 2,
-   "cards": [
-    "Thespian's Stage"
    ]
   },
   {
@@ -694,14 +498,6 @@
    "decks": 2,
    "cards": [
     "Necrodominance"
-   ]
-  },
-  {
-   "pattern": "at the beginning of your next upkeep, pay {N}{g}{g}. if you don't, you lose the game.",
-   "kind": "spell",
-   "decks": 2,
-   "cards": [
-    "Summoner's Pact"
    ]
   },
   {
@@ -874,14 +670,6 @@
    ]
   },
   {
-   "pattern": "when ~ enters, tap up to one target creature. it loses all abilities for as long as ~ remains on the battlefield.",
-   "kind": "triggered",
-   "decks": 1,
-   "cards": [
-    "The Wondrous Wasp"
-   ]
-  },
-  {
    "pattern": "all cards that aren't on the battlefield, spells, and permanents are the chosen color in addition to their other colors.",
    "kind": "static",
    "decks": 1,
@@ -891,14 +679,6 @@
   },
   {
    "pattern": "play with the top card of your library revealed.",
-   "kind": "static",
-   "decks": 1,
-   "cards": [
-    "Conspicuous Snoop"
-   ]
-  },
-  {
-   "pattern": "you may cast goblin spells from the top of your library.",
    "kind": "static",
    "decks": 1,
    "cards": [
@@ -951,14 +731,6 @@
    "decks": 1,
    "cards": [
     "Headliner Scarlett"
-   ]
-  },
-  {
-   "pattern": "if this artifact would enter, you may discard a land card instead. if you do, put this artifact onto the battlefield. if you don't, put it into its owner's graveyard.",
-   "kind": "static",
-   "decks": 1,
-   "cards": [
-    "Mox Diamond"
    ]
   },
   {
@@ -1026,14 +798,6 @@
    ]
   },
   {
-   "pattern": "whenever you cast a spell, choose up to one —",
-   "kind": "triggered",
-   "decks": 1,
-   "cards": [
-    "Hullbreaker Horror"
-   ]
-  },
-  {
    "pattern": "• return target spell you don't control to its owner's hand.",
    "kind": "triggered",
    "decks": 1,
@@ -1055,6 +819,7 @@
    "name": "Jewel Shops",
    "share": 0.103,
    "comboCards": [
+    "Mana Vault",
     "Time Walk"
    ]
   },
@@ -1062,14 +827,24 @@
    "name": "Raker Shops",
    "share": 0.081,
    "comboCards": [
+    "Grim Monolith",
     "Tezzeret, Cruel Captain",
+    "Mana Vault",
     "Manifold Key"
+   ]
+  },
+  {
+   "name": "Lurrus PO",
+   "share": 0.075,
+   "comboCards": [
+    "Time Walk"
    ]
   },
   {
    "name": "PO",
    "share": 0.046,
    "comboCards": [
+    "Mana Vault",
     "Time Vault"
    ]
   },
@@ -1083,7 +858,10 @@
   {
    "name": "Other Shops系（推定）",
    "share": 0.025,
-   "comboCards": []
+   "comboCards": [
+    "Mana Vault",
+    "Grim Monolith"
+   ]
   },
   {
    "name": "Tinker",
@@ -1756,6 +1534,14 @@
     ]
    },
    {
+    "name": "Narset, Parter of Veils",
+    "decks": 12,
+    "oracle": "Each opponent can't draw more than one card each turn.\n−2: Look at the top four cards of your library. You may reveal a noncreature, nonland card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.",
+    "detail": [
+     "hate:lock:other"
+    ]
+   },
+   {
     "name": "Mystical Dispute",
     "decks": 8,
     "oracle": "This spell costs {2} less to cast if it targets a blue spell.\nCounter target spell unless its controller pays {3}.",
@@ -1853,6 +1639,14 @@
     ]
    },
    {
+    "name": "Leovold, Emissary of Trest",
+    "decks": 1,
+    "oracle": "Each opponent can't draw more than one card each turn.\nWhenever you or a permanent you control becomes the target of a spell or ability an opponent controls, you may draw a card.",
+    "detail": [
+     "hate:lock:other"
+    ]
+   },
+   {
     "name": "Hope of Ghirapur",
     "decks": 1,
     "oracle": "Flying\nSacrifice Hope of Ghirapur: Until your next turn, target player who was dealt combat damage by Hope of Ghirapur this turn can't cast noncreature spells.",
@@ -1866,22 +1660,6 @@
     "oracle": "Spells your opponents cast cost {2} more to cast.\nAt the beginning of your end step, each opponent loses 1 life.",
     "detail": [
      "hate:lock:tax"
-    ]
-   },
-   {
-    "name": "Redirect Lightning",
-    "decks": 1,
-    "oracle": "As an additional cost to cast this spell, pay 5 life or pay {2}.\nChange the target of target spell or ability with a single target.",
-    "detail": [
-     "redirect:redirect:spell"
-    ]
-   },
-   {
-    "name": "Flare of Denial",
-    "decks": 1,
-    "oracle": "You may sacrifice a nontoken blue creature rather than pay this spell's mana cost.\nCounter target spell.",
-    "detail": [
-     "counter:counter:spell"
     ]
    }
   ],
@@ -1916,6 +1694,14 @@
     "oracle": "Flying\nActivated abilities of artifacts, creatures, and planeswalkers can't be activated.",
     "detail": [
      "hate:lock:activated ability"
+    ]
+   },
+   {
+    "name": "Dress Down",
+    "decks": 106,
+    "oracle": "Flash\nWhen this enchantment enters, draw a card.\nCreatures lose all abilities.\nAt the beginning of the end step, sacrifice this enchantment.",
+    "detail": [
+     "hate:lock:activated ability/triggered ability"
     ]
    },
    {
@@ -2302,7 +2088,7 @@
   ]
  },
  "format": "Vintage",
- "generatedAt": "2026-11-27T21:10:06.632Z",
+ "generatedAt": "2026-11-27T21:12:44.633Z",
  "decks": 1205,
  "otherOnly": [
   {
@@ -2428,21 +2214,6 @@
    ]
   },
   {
-   "name": "Orcish Bowmasters",
-   "decks": 130,
-   "roles": [
-    "removal",
-    "draw",
-    "reach"
-   ],
-   "tags": [
-    "flash@static",
-    "draw@etb",
-    "drain@etb",
-    "removal@etb"
-   ]
-  },
-  {
    "name": "Archon of Emeria",
    "decks": 110,
    "roles": [
@@ -2474,11 +2245,13 @@
    "decks": 73,
    "roles": [
     "draw",
+    "topselect",
     "topmanip",
     "reach"
    ],
    "tags": [
     "topmanip@static",
+    "topselect@static",
     "draw@static",
     "altcost@static",
     "drain@activated_once"
@@ -2596,6 +2369,20 @@
     "lifegain@spell",
     "drain@spell",
     "copy@spell"
+   ]
+  },
+  {
+   "name": "Narset, Parter of Veils",
+   "decks": 12,
+   "roles": [
+    "spell",
+    "draw",
+    "topselect"
+   ],
+   "tags": [
+    "hate@static",
+    "topselect@loyalty",
+    "draw@loyalty"
    ]
   },
   {
@@ -2969,7 +2756,6 @@
     "decks": 130,
     "roles": [
      "removal",
-     "draw",
      "reach"
     ]
    },
@@ -3124,6 +2910,7 @@
     "name": "Mystic Forge",
     "decks": 161,
     "roles": [
+     "topselect",
      "topmanip"
     ]
    },
@@ -3190,18 +2977,18 @@
     ]
    },
    {
-    "name": "Dress Down",
-    "decks": 106,
-    "roles": [
-     "draw"
-    ]
-   },
-   {
     "name": "Ponder",
     "decks": 86,
     "roles": [
      "draw",
      "topmanip"
+    ]
+   },
+   {
+    "name": "Transmute Artifact",
+    "decks": 81,
+    "roles": [
+     "tutor"
     ]
    }
   ],
@@ -3365,13 +3152,6 @@
     ]
    },
    {
-    "name": "Scryb Ranger",
-    "decks": 3,
-    "roles": [
-     "beater"
-    ]
-   },
-   {
     "name": "Kappa Cannoneer",
     "decks": 3,
     "roles": [
@@ -3380,6 +3160,13 @@
    },
    {
     "name": "Eldrazi Linebreaker",
+    "decks": 2,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
+    "name": "Mockingbird",
     "decks": 2,
     "roles": [
      "beater"
@@ -3473,25 +3260,11 @@
     ]
    },
    {
-    "name": "Vow to Erebor",
-    "decks": 1,
-    "roles": [
-     "enhance"
-    ]
-   },
-   {
     "name": "Well-Worn Spatula",
     "decks": 1,
     "roles": [
      "enhance",
      "lifegain"
-    ]
-   },
-   {
-    "name": "Amped Raptor",
-    "decks": 1,
-    "roles": [
-     "energy"
     ]
    },
    {
@@ -3511,10 +3284,19 @@
     ]
    },
    {
+    "name": "Mana Vault",
+    "decks": 463,
+    "roles": [
+     "untap",
+     "ramp"
+    ]
+   },
+   {
     "name": "Time Vault",
     "decks": 322,
     "roles": [
-     "extraturn"
+     "extraturn",
+     "untap"
     ]
    },
    {
@@ -3531,6 +3313,14 @@
      "untap",
      "tutor",
      "enhance"
+    ]
+   },
+   {
+    "name": "Grim Monolith",
+    "decks": 244,
+    "roles": [
+     "untap",
+     "ramp"
     ]
    },
    {
@@ -3682,22 +3472,6 @@
     "roles": [
      "tokens"
     ]
-   },
-   {
-    "name": "Tezzeret the Seeker",
-    "decks": 6,
-    "roles": [
-     "untap",
-     "tutor"
-    ]
-   },
-   {
-    "name": "Ocelot Pride",
-    "decks": 5,
-    "roles": [
-     "tokens",
-     "lifegain"
-    ]
    }
   ],
   "other": [
@@ -3831,6 +3605,7 @@
    ],
    "tags": [
     "haste@static",
+    "drawback@each_turn",
     "misc@each_turn"
    ]
   },
@@ -4019,19 +3794,6 @@
     "beater"
    ],
    "tags": [
-    "misc@activated"
-   ]
-  },
-  {
-   "name": "Scryb Ranger",
-   "decks": 3,
-   "roles": [
-    "beater"
-   ],
-   "tags": [
-    "flash@static",
-    "evasion@static",
-    "resilience@static",
     "misc@activated"
    ]
   },
@@ -4226,6 +3988,17 @@
    "tags": [
     "flash@static",
     "pump@etb"
+   ]
+  },
+  {
+   "name": "Long Lake Nuisance",
+   "decks": 1,
+   "roles": [
+    "beater"
+   ],
+   "tags": [
+    "evasion@static",
+    "misc@etb"
    ]
   }
  ],

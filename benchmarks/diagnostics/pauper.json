@@ -1,25 +1,6 @@
 {
  "untagged": [
   {
-   "pattern": "when this land enters, return a land you control to its owner's hand.",
-   "kind": "triggered",
-   "decks": 623,
-   "cards": [
-    "Dimir Aqueduct",
-    "Boros Garrison",
-    "Simic Growth Chamber",
-    "Azorius Chancery"
-   ]
-  },
-  {
-   "pattern": "metalcraft — ~ deals N damage instead if you control three or more artifacts.",
-   "kind": "spell",
-   "decks": 379,
-   "cards": [
-    "Galvanic Blast"
-   ]
-  },
-  {
    "pattern": "{N}, {t}, exile this artifact: put all commanders you own from the command zone and from your graveyard into your hand. then shuffle your graveyard into your library.",
    "kind": "activated",
    "decks": 352,
@@ -36,67 +17,11 @@
    ]
   },
   {
-   "pattern": "tap target creature.",
-   "kind": "spell",
-   "decks": 286,
-   "cards": [
-    "Dispatch"
-   ]
-  },
-  {
-   "pattern": "return a forest you control to its owner's hand: untap target creature. activate only once each turn.",
-   "kind": "activated",
-   "decks": 242,
-   "cards": [
-    "Quirion Ranger"
-   ]
-  },
-  {
-   "pattern": "when this creature enters, sacrifice it unless you return an artifact you control to its owner's hand.",
-   "kind": "triggered",
-   "decks": 218,
-   "cards": [
-    "Glint Hawk"
-   ]
-  },
-  {
-   "pattern": "when this creature enters, return a permanent you control to its owner's hand.",
-   "kind": "triggered",
-   "decks": 218,
-   "cards": [
-    "Kor Skyfisher"
-   ]
-  },
-  {
-   "pattern": "tap target creature. it doesn't untap during its controller's next untap step.",
-   "kind": "spell",
-   "decks": 208,
-   "cards": [
-    "Sleep of the Dead"
-   ]
-  },
-  {
-   "pattern": "the owner of target nonland permanent puts it into their library second from the top or on the bottom.",
-   "kind": "spell",
-   "decks": 177,
-   "cards": [
-    "Deem Inferior"
-   ]
-  },
-  {
    "pattern": "prevent all damage that sources of the color of your choice would deal this turn.",
    "kind": "spell",
    "decks": 167,
    "cards": [
     "Prismatic Strands"
-   ]
-  },
-  {
-   "pattern": "enchant forest",
-   "kind": "static",
-   "decks": 164,
-   "cards": [
-    "Utopia Sprawl"
    ]
   },
   {
@@ -127,54 +52,6 @@
    ]
   },
   {
-   "pattern": "splice onto arcane {N}{r}",
-   "kind": "spell",
-   "decks": 154,
-   "cards": [
-    "Desperate Ritual"
-   ]
-  },
-  {
-   "pattern": "each spell you cast that's red or green costs {N} less to cast.",
-   "kind": "static",
-   "decks": 154,
-   "cards": [
-    "Goblin Anarchomancer"
-   ]
-  },
-  {
-   "pattern": "red spells and white spells you cast cost {N} less to cast.",
-   "kind": "static",
-   "decks": 154,
-   "cards": [
-    "Thornscape Familiar"
-   ]
-  },
-  {
-   "pattern": "teamwork N",
-   "kind": "spell",
-   "decks": 153,
-   "cards": [
-    "Crossover Collaboration"
-   ]
-  },
-  {
-   "pattern": "learn.",
-   "kind": "spell",
-   "decks": 153,
-   "cards": [
-    "First Day of Class"
-   ]
-  },
-  {
-   "pattern": "{N}{u}, sacrifice this artifact: put a stun counter on up to one target tapped creature.",
-   "kind": "activated",
-   "decks": 151,
-   "cards": [
-    "Cryogen Relic"
-   ]
-  },
-  {
    "pattern": "when this aura is put into a graveyard from the battlefield, return it to its owner's hand.",
    "kind": "triggered",
    "decks": 138,
@@ -199,14 +76,6 @@
    ]
   },
   {
-   "pattern": "when this artifact enters or leaves the battlefield, you may tap or untap target creature.",
-   "kind": "triggered",
-   "decks": 115,
-   "cards": [
-    "Sewer-veillance Cam"
-   ]
-  },
-  {
    "pattern": "~ deals N damage to each non-dragon creature.",
    "kind": "spell",
    "decks": 76,
@@ -223,35 +92,11 @@
    ]
   },
   {
-   "pattern": "green spells and blue spells you cast cost {N} less to cast.",
-   "kind": "static",
-   "decks": 49,
-   "cards": [
-    "Sunscape Familiar"
-   ]
-  },
-  {
    "pattern": "each attacking creature doesn't untap during its controller's next untap step.",
    "kind": "spell",
    "decks": 48,
    "cards": [
     "Tangle"
-   ]
-  },
-  {
-   "pattern": "untap this artifact during each other player's untap step.",
-   "kind": "static",
-   "decks": 38,
-   "cards": [
-    "Bender's Waterskin"
-   ]
-  },
-  {
-   "pattern": "{t}: untap target forest.",
-   "kind": "activated",
-   "decks": 37,
-   "cards": [
-    "Arbor Elf"
    ]
   },
   {
@@ -292,14 +137,6 @@
    "decks": 29,
    "cards": [
     "Pinnacle Kill-Ship"
-   ]
-  },
-  {
-   "pattern": "you may tap or untap target creature.",
-   "kind": "spell",
-   "decks": 26,
-   "cards": [
-    "Elite Interceptor // Rejoinder"
    ]
   },
   {
@@ -416,14 +253,6 @@
    ]
   },
   {
-   "pattern": "when this creature dies, choose one —",
-   "kind": "triggered",
-   "decks": 12,
-   "cards": [
-    "Shambling Ghast"
-   ]
-  },
-  {
    "pattern": "if a permanent dealt damage by ~ would die this turn, exile it instead.",
    "kind": "spell",
    "decks": 12,
@@ -440,14 +269,6 @@
    ]
   },
   {
-   "pattern": "when this creature enters, tap target permanent.",
-   "kind": "triggered",
-   "decks": 12,
-   "cards": [
-    "Harrier Strix"
-   ]
-  },
-  {
    "pattern": "you have no maximum hand size.",
    "kind": "static",
    "decks": 12,
@@ -461,23 +282,6 @@
    "decks": 11,
    "cards": [
     "Hopeless Nightmare"
-   ]
-  },
-  {
-   "pattern": "transmute {N}{u}{u}",
-   "kind": "spell",
-   "decks": 11,
-   "cards": [
-    "Muddle the Mixture",
-    "Drift of Phantasms"
-   ]
-  },
-  {
-   "pattern": "sunburst",
-   "kind": "static",
-   "decks": 9,
-   "cards": [
-    "Pentad Prism"
    ]
   },
   {
@@ -521,14 +325,6 @@
    "decks": 7,
    "cards": [
     "Rolling Thunder"
-   ]
-  },
-  {
-   "pattern": "when this creature enters, return a creature you control to its owner's hand.",
-   "kind": "triggered",
-   "decks": 7,
-   "cards": [
-    "Whitemane Lion"
    ]
   },
   {
@@ -588,15 +384,6 @@
    ]
   },
   {
-   "pattern": "tap target permanent.",
-   "kind": "spell",
-   "decks": 5,
-   "cards": [
-    "Gigadrowse",
-    "Fire // Ice"
-   ]
-  },
-  {
    "pattern": "whenever you cast an artifact spell, you may put a charge counter on this artifact.",
    "kind": "triggered",
    "decks": 4,
@@ -622,14 +409,6 @@
   },
   {
    "pattern": "{u}: tap enchanted creature.",
-   "kind": "activated",
-   "decks": 4,
-   "cards": [
-    "Freed from the Real"
-   ]
-  },
-  {
-   "pattern": "{u}: untap enchanted creature.",
    "kind": "activated",
    "decks": 4,
    "cards": [
@@ -674,14 +453,6 @@
    "decks": 4,
    "cards": [
     "Seeker of the Way"
-   ]
-  },
-  {
-   "pattern": "blue spells and red spells you cast cost {N} less to cast.",
-   "kind": "static",
-   "decks": 4,
-   "cards": [
-    "Nightscape Familiar"
    ]
   },
   {
@@ -733,14 +504,6 @@
    ]
   },
   {
-   "pattern": "{t}: untap target snow land.",
-   "kind": "activated",
-   "decks": 2,
-   "cards": [
-    "Sculptor of Winter"
-   ]
-  },
-  {
    "pattern": "umbra armor",
    "kind": "static",
    "decks": 2,
@@ -763,6 +526,13 @@
    "share": 0.063,
    "comboCards": [
     "Murmuring Mystic"
+   ]
+  },
+  {
+   "name": "Elves",
+   "share": 0.045,
+   "comboCards": [
+    "Quirion Ranger"
    ]
   },
   {
@@ -809,11 +579,28 @@
    ]
   },
   {
+   "name": "Jeskai Ephemerate",
+   "share": 0.008,
+   "comboCards": [
+    "Murmuring Mystic",
+    "Bender's Waterskin"
+   ]
+  },
+  {
    "name": "Gruul Ponza",
    "share": 0.007,
    "comboCards": [
+    "Arbor Elf",
     "Boarding Party",
     "Annoyed Altisaur"
+   ]
+  },
+  {
+   "name": "Esper Ephemerate",
+   "share": 0.006,
+   "comboCards": [
+    "Bender's Waterskin",
+    "Murmuring Mystic"
    ]
   },
   {
@@ -828,6 +615,13 @@
    "share": 0.005,
    "comboCards": [
     "Murmuring Mystic"
+   ]
+  },
+  {
+   "name": "Mono Blue Faeries",
+   "share": 0.005,
+   "comboCards": [
+    "Sewer-veillance Cam"
    ]
   },
   {
@@ -872,8 +666,17 @@
    "name": "Gruul Ramp",
    "share": 0.003,
    "comboCards": [
+    "Arbor Elf",
     "Boarding Party",
     "Annoyed Altisaur"
+   ]
+  },
+  {
+   "name": "4 Color Ephemerate",
+   "share": 0.003,
+   "comboCards": [
+    "Bender's Waterskin",
+    "Murmuring Mystic"
    ]
   },
   {
@@ -889,6 +692,13 @@
    "share": 0.002,
    "comboCards": [
     "Experimental Synthesizer"
+   ]
+  },
+  {
+   "name": "Mono White (Unknown)",
+   "share": 0.002,
+   "comboCards": [
+    "Elite Interceptor // Rejoinder"
    ]
   }
  ],
@@ -1042,6 +852,14 @@
     "oracle": "When this artifact enters, scry 2. (Look at the top two cards of your library, then put any number of them on the bottom and the rest on top in any order.)\n{1}, {T}: Add one mana of any color.\n{7}, {T}, Sacrifice this artifact: Destroy target permanent.",
     "detail": [
      "removal:destroy:creature/artifact/enchantment/planeswalker/battle/land"
+    ]
+   },
+   {
+    "name": "Deem Inferior",
+    "decks": 177,
+    "oracle": "This spell costs {1} less to cast for each card you've drawn this turn.\nThe owner of target nonland permanent puts it into their library second from the top or on the bottom.",
+    "detail": [
+     "removal:other:creature/artifact/enchantment/planeswalker/battle"
     ]
    },
    {
@@ -1256,14 +1074,6 @@
     "oracle": "Exile target artifact or land. Structural Distortion deals 2 damage to that permanent's controller.",
     "detail": [
      "removal:exile:artifact/land"
-    ]
-   },
-   {
-    "name": "Cast into the Fire",
-    "decks": 13,
-    "oracle": "Choose one —\n• Cast into the Fire deals 1 damage to each of up to two target creatures.\n• Exile target artifact.",
-    "detail": [
-     "removal:exile:artifact"
     ]
    }
   ],
@@ -1897,7 +1707,7 @@
   "combat": []
  },
  "format": "Pauper",
- "generatedAt": "2026-11-27T21:10:06.632Z",
+ "generatedAt": "2026-11-27T21:12:44.633Z",
  "decks": 2747,
  "otherOnly": [
   {
@@ -1906,15 +1716,6 @@
    "typeLine": "Instant",
    "tags": [
     "counter@spell"
-   ]
-  },
-  {
-   "name": "Deem Inferior",
-   "decks": 177,
-   "typeLine": "Sorcery",
-   "tags": [
-    "costreduce@spell",
-    "misc@spell"
    ]
   },
   {
@@ -1958,21 +1759,12 @@
    ]
   },
   {
-   "name": "Freed from the Real",
-   "decks": 4,
-   "typeLine": "Enchantment — Aura",
-   "tags": [
-    "equip@static",
-    "misc@activated"
-   ]
-  },
-  {
    "name": "Gigadrowse",
    "decks": 3,
    "typeLine": "Instant",
    "tags": [
     "addcost@static",
-    "misc@spell"
+    "tapdown@spell"
    ]
   },
   {
@@ -2340,6 +2132,20 @@
    ]
   },
   {
+   "name": "Make It So",
+   "decks": 3,
+   "roles": [
+    "untap",
+    "tokens",
+    "draw"
+   ],
+   "tags": [
+    "draw@spell",
+    "untap@spell",
+    "token@spell"
+   ]
+  },
+  {
    "name": "Dihada's Ploy",
    "decks": 3,
    "roles": [
@@ -2405,20 +2211,6 @@
    "tags": [
     "removal@spell",
     "discard@spell"
-   ]
-  },
-  {
-   "name": "You Meet in a Tavern",
-   "decks": 2,
-   "roles": [
-    "draw",
-    "topselect",
-    "enhance"
-   ],
-   "tags": [
-    "topselect@spell",
-    "draw@spell",
-    "pump@spell"
    ]
   }
  ],
@@ -2579,6 +2371,13 @@
     ]
    },
    {
+    "name": "Deem Inferior",
+    "decks": 177,
+    "roles": [
+     "removal"
+    ]
+   },
+   {
     "name": "Krark-Clan Shaman",
     "decks": 162,
     "roles": [
@@ -2606,14 +2405,6 @@
     "roles": [
      "removal",
      "reach",
-     "beater"
-    ]
-   },
-   {
-    "name": "Balustrade Spy",
-    "decks": 136,
-    "roles": [
-     "discard",
      "beater"
     ]
    }
@@ -2847,13 +2638,6 @@
     ]
    },
    {
-    "name": "Quirion Ranger",
-    "decks": 242,
-    "roles": [
-     "beater"
-    ]
-   },
-   {
     "name": "Tolarian Terror",
     "decks": 237,
     "roles": [
@@ -2995,6 +2779,14 @@
     "decks": 43,
     "roles": [
      "beater"
+    ]
+   },
+   {
+    "name": "Boulderbranch Golem",
+    "decks": 33,
+    "roles": [
+     "beater",
+     "lifegain"
     ]
    }
   ],
@@ -3187,6 +2979,13 @@
     ]
    },
    {
+    "name": "Quirion Ranger",
+    "decks": 242,
+    "roles": [
+     "untap"
+    ]
+   },
+   {
     "name": "Melded Moxite",
     "decks": 203,
     "roles": [
@@ -3208,6 +3007,14 @@
     "roles": [
      "tokens",
      "enhance"
+    ]
+   },
+   {
+    "name": "Sewer-veillance Cam",
+    "decks": 115,
+    "roles": [
+     "untap",
+     "draw"
     ]
    },
    {
@@ -3250,6 +3057,21 @@
     ]
    },
    {
+    "name": "Bender's Waterskin",
+    "decks": 38,
+    "roles": [
+     "untap",
+     "ramp"
+    ]
+   },
+   {
+    "name": "Arbor Elf",
+    "decks": 37,
+    "roles": [
+     "untap"
+    ]
+   },
+   {
     "name": "Maelstrom Colossus",
     "decks": 33,
     "roles": [
@@ -3263,6 +3085,14 @@
     "roles": [
      "cheat",
      "beater"
+    ]
+   },
+   {
+    "name": "Elite Interceptor // Rejoinder",
+    "decks": 26,
+    "roles": [
+     "untap",
+     "draw"
     ]
    },
    {
@@ -3332,59 +3162,12 @@
     "roles": [
      "tokens"
     ]
-   },
-   {
-    "name": "Hard Evidence",
-    "decks": 6,
-    "roles": [
-     "tokens",
-     "draw"
-    ]
-   },
-   {
-    "name": "Acorn Harvest",
-    "decks": 5,
-    "roles": [
-     "tokens",
-     "recursion"
-    ]
-   },
-   {
-    "name": "Teach by Example",
-    "decks": 5,
-    "roles": [
-     "copy"
-    ]
-   },
-   {
-    "name": "Pegasus Guardian // Rescue the Foal",
-    "decks": 5,
-    "roles": [
-     "tokens",
-     "beater",
-     "protection"
-    ]
-   },
-   {
-    "name": "Photosynthetic Physician",
-    "decks": 5,
-    "roles": [
-     "tokens",
-     "beater"
-    ]
    }
   ],
   "other": [
    {
     "name": "Dispel",
     "decks": 472,
-    "roles": [
-     "other"
-    ]
-   },
-   {
-    "name": "Deem Inferior",
-    "decks": 177,
     "roles": [
      "other"
     ]
@@ -3419,13 +3202,6 @@
    },
    {
     "name": "Exhume",
-    "decks": 4,
-    "roles": [
-     "other"
-    ]
-   },
-   {
-    "name": "Freed from the Real",
     "decks": 4,
     "roles": [
      "other"
@@ -3504,16 +3280,6 @@
    ]
   },
   {
-   "name": "Quirion Ranger",
-   "decks": 242,
-   "roles": [
-    "beater"
-   ],
-   "tags": [
-    "misc@activated"
-   ]
-  },
-  {
    "name": "Tolarian Terror",
    "decks": 237,
    "roles": [
@@ -3553,7 +3319,7 @@
    ],
    "tags": [
     "evasion@static",
-    "misc@etb"
+    "drawback@etb"
    ]
   },
   {
@@ -3564,7 +3330,7 @@
    ],
    "tags": [
     "evasion@static",
-    "misc@etb"
+    "drawback@etb"
    ]
   },
   {
@@ -3737,16 +3503,6 @@
    ]
   },
   {
-   "name": "Arbor Elf",
-   "decks": 37,
-   "roles": [
-    "beater"
-   ],
-   "tags": [
-    "misc@activated"
-   ]
-  },
-  {
    "name": "Boulderbranch Golem",
    "decks": 33,
    "roles": [
@@ -3896,6 +3652,24 @@
     "monarch@etb",
     "evasion@static"
    ]
+  },
+  {
+   "name": "Stonehorn Dignitary",
+   "decks": 22,
+   "roles": [
+    "beater"
+   ],
+   "tags": [
+    "misc@etb"
+   ]
+  },
+  {
+   "name": "Phyrexian Walker",
+   "decks": 20,
+   "roles": [
+    "beater"
+   ],
+   "tags": []
   }
  ],
  "noTags": [

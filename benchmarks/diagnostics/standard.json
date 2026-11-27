@@ -17,35 +17,11 @@
    ]
   },
   {
-   "pattern": "when ~ enters, tap up to one target creature. it loses all abilities for as long as ~ remains on the battlefield.",
-   "kind": "triggered",
-   "decks": 268,
-   "cards": [
-    "The Wondrous Wasp"
-   ]
-  },
-  {
-   "pattern": "the first non-lemur creature spell with flying you cast during each of your turns costs {N} less to cast.",
-   "kind": "static",
-   "decks": 266,
-   "cards": [
-    "Momo, Friendly Flier"
-   ]
-  },
-  {
    "pattern": "if a permanent dealt damage by ~ would die this turn, exile it instead.",
    "kind": "spell",
    "decks": 259,
    "cards": [
     "Torch the Tower"
-   ]
-  },
-  {
-   "pattern": "−N: tap target creature. put two stun counters on it.",
-   "kind": "activated",
-   "decks": 240,
-   "cards": [
-    "Kaito, Bane of Nightmares"
    ]
   },
   {
@@ -63,46 +39,6 @@
    "decks": 237,
    "cards": [
     "Theorist's Sanctum"
-   ]
-  },
-  {
-   "pattern": "when this creature enters, tap target creature an opponent controls and put a stun counter on it.",
-   "kind": "triggered",
-   "decks": 230,
-   "cards": [
-    "Floodpits Drowner"
-   ]
-  },
-  {
-   "pattern": "{N}{u}, {t}: shuffle this creature and target creature with a stun counter on it into their owners' libraries.",
-   "kind": "activated",
-   "decks": 230,
-   "cards": [
-    "Floodpits Drowner"
-   ]
-  },
-  {
-   "pattern": "teamwork N",
-   "kind": "spell",
-   "decks": 229,
-   "cards": [
-    "We Say Thee Nay!"
-   ]
-  },
-  {
-   "pattern": "when this creature enters, counter up to one target activated or triggered ability. if an ability of an artifact, creature, or planeswalker is countered this way, that permanent loses all abilities for as long as this creature remains on the battlefield.",
-   "kind": "triggered",
-   "decks": 207,
-   "cards": [
-    "Tishana's Tidebinder"
-   ]
-  },
-  {
-   "pattern": "to solve — you've gained N or more life this turn.",
-   "kind": "static",
-   "decks": 207,
-   "cards": [
-    "Case of the Uneaten Feast"
    ]
   },
   {
@@ -131,35 +67,11 @@
    ]
   },
   {
-   "pattern": "• ~ deals N damage to each of one or two targets.",
-   "kind": "spell",
-   "decks": 158,
-   "cards": [
-    "Prismari Charm"
-   ]
-  },
-  {
-   "pattern": "when this creature enters, tap up to two target creatures.",
-   "kind": "triggered",
-   "decks": 157,
-   "cards": [
-    "Eddymurk Crab"
-   ]
-  },
-  {
    "pattern": "when this creature enters, if {u}{u} was spent to cast it, return up to one other target nonland permanent to its owner's hand.",
    "kind": "triggered",
    "decks": 145,
    "cards": [
     "Deceit"
-   ]
-  },
-  {
-   "pattern": "• return one or two target creatures and/or enchantments you own to your hand.",
-   "kind": "spell",
-   "decks": 119,
-   "cards": [
-    "Get Out"
    ]
   },
   {
@@ -176,14 +88,6 @@
    "decks": 116,
    "cards": [
     "The Mind Stone"
-   ]
-  },
-  {
-   "pattern": "{N}{u}, sacrifice this artifact: put a stun counter on up to one target tapped creature.",
-   "kind": "activated",
-   "decks": 115,
-   "cards": [
-    "Cryogen Relic"
    ]
   },
   {
@@ -230,14 +134,6 @@
    ]
   },
   {
-   "pattern": "red spells you cast cost {N} less to cast.",
-   "kind": "static",
-   "decks": 101,
-   "cards": [
-    "The Fire Crystal"
-   ]
-  },
-  {
    "pattern": "creatures with power less than this creature's power can't block it.",
    "kind": "static",
    "decks": 97,
@@ -251,14 +147,6 @@
    "decks": 96,
    "cards": [
     "Ajani Resolute"
-   ]
-  },
-  {
-   "pattern": "when yuriko enters, choose one —",
-   "kind": "triggered",
-   "decks": 94,
-   "cards": [
-    "Yuriko, Hope from the Shadows"
    ]
   },
   {
@@ -297,17 +185,6 @@
    ]
   },
   {
-   "pattern": "when this land enters untapped, choose one —",
-   "kind": "triggered",
-   "decks": 78,
-   "cards": [
-    "Ni'Var Science Academy",
-    "The Unicomplex",
-    "Federation Outpost",
-    "Quark's Bar"
-   ]
-  },
-  {
    "pattern": "iii — sacrifice a land.",
    "kind": "triggered",
    "decks": 63,
@@ -322,14 +199,6 @@
    "cards": [
     "Elspeth, Storm Slayer",
     "Exalted Sunborn"
-   ]
-  },
-  {
-   "pattern": "whenever this creature deals combat damage to a player, choose one —",
-   "kind": "triggered",
-   "decks": 62,
-   "cards": [
-    "Bejeweled Warg"
    ]
   },
   {
@@ -362,14 +231,6 @@
    "decks": 61,
    "cards": [
     "Kíli the Resourceful"
-   ]
-  },
-  {
-   "pattern": "when this equipment enters, tap target permanent.",
-   "kind": "triggered",
-   "decks": 61,
-   "cards": [
-    "Skateboard"
    ]
   },
   {
@@ -413,22 +274,6 @@
    ]
   },
   {
-   "pattern": "−x: tap target artifact or creature. put x stun counters on it.",
-   "kind": "activated",
-   "decks": 52,
-   "cards": [
-    "Chandra, Chill of Compliance"
-   ]
-  },
-  {
-   "pattern": "sunburst",
-   "kind": "static",
-   "decks": 49,
-   "cards": [
-    "Engineered Explosives"
-   ]
-  },
-  {
    "pattern": "target creature you control deals damage equal to its power to any other target. then sacrifice it.",
    "kind": "spell",
    "decks": 48,
@@ -466,14 +311,6 @@
    "decks": 38,
    "cards": [
     "Leatherhead, Swamp Stalker"
-   ]
-  },
-  {
-   "pattern": "{N}, {t}: untap another target permanent.",
-   "kind": "activated",
-   "decks": 38,
-   "cards": [
-    "Formidable Speaker"
    ]
   },
   {
@@ -515,14 +352,6 @@
    "cards": [
     "Way of the Pyromancer",
     "Way of the Paradox"
-   ]
-  },
-  {
-   "pattern": "whenever you cast your second spell each turn, choose one —",
-   "kind": "triggered",
-   "decks": 30,
-   "cards": [
-    "Cosmogrand Zenith"
    ]
   },
   {
@@ -572,23 +401,6 @@
    "decks": 24,
    "cards": [
     "Tersa Lightshatter"
-   ]
-  },
-  {
-   "pattern": "noncreature spells you cast cost {N} less to cast.",
-   "kind": "static",
-   "decks": 24,
-   "cards": [
-    "Geist of Saint Thalia",
-    "Artist's Talent"
-   ]
-  },
-  {
-   "pattern": "whenever this creature attacks for the first time each turn, if there are four or more card types among cards in your graveyard, untap target creature. after this phase, there is an additional combat phase.",
-   "kind": "triggered",
-   "decks": 23,
-   "cards": [
-    "Fear of Missing Out"
    ]
   },
   {
@@ -642,14 +454,6 @@
   {
    "pattern": "as gollum enters, choose odd or even.",
    "kind": "static",
-   "decks": 15,
-   "cards": [
-    "Gollum, Riddle Master"
-   ]
-  },
-  {
-   "pattern": "whenever an opponent casts a spell with mana value of the chosen quality, choose one that hasn't been chosen —",
-   "kind": "triggered",
    "decks": 15,
    "cards": [
     "Gollum, Riddle Master"
@@ -849,14 +653,6 @@
    ]
   },
   {
-   "pattern": "you may play lands and cast bird spells from the top of your library.",
-   "kind": "static",
-   "decks": 8,
-   "cards": [
-    "Traveling Chocobo"
-   ]
-  },
-  {
    "pattern": "if a land or bird you control entering the battlefield causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time.",
    "kind": "static",
    "decks": 8,
@@ -921,27 +717,11 @@
    ]
   },
   {
-   "pattern": "whenever you discard a card, choose one that hasn't been chosen this turn —",
-   "kind": "triggered",
-   "decks": 6,
-   "cards": [
-    "Monument to Endurance"
-   ]
-  },
-  {
    "pattern": "target opponent exiles the top x cards of their library face down. you may look at and play those cards for as long as they remain exiled. if you cast a spell this way, you may spend mana as though it were mana of any type to cast it.",
    "kind": "spell",
    "decks": 6,
    "cards": [
     "Outrageous Robbery"
-   ]
-  },
-  {
-   "pattern": "untap this artifact during each other player's untap step.",
-   "kind": "static",
-   "decks": 5,
-   "cards": [
-    "Bender's Waterskin"
    ]
   },
   {
@@ -993,7 +773,7 @@
    ]
   },
   {
-   "pattern": "whenever hawkeye becomes tapped, you may pay {N} up to three times. when you do, choose up to that many —",
+   "pattern": "• net — target creature can't block this turn.",
    "kind": "triggered",
    "decks": 5,
    "cards": [
@@ -1001,11 +781,11 @@
    ]
   },
   {
-   "pattern": "• net — target creature can't block this turn.",
+   "pattern": "whenever an opponent draws a card, this creature deals N damage to them.",
    "kind": "triggered",
    "decks": 5,
    "cards": [
-    "Hawkeye, Master Marksman"
+    "Razorkin Needlehead"
    ]
   },
   {
@@ -1038,14 +818,6 @@
    "decks": 5,
    "cards": [
     "Innkeeper's Talent"
-   ]
-  },
-  {
-   "pattern": "whenever you cast a noncreature spell, choose one that hasn't been chosen this turn —",
-   "kind": "triggered",
-   "decks": 5,
-   "cards": [
-    "The Vision"
    ]
   },
   {
@@ -1118,14 +890,6 @@
    "decks": 4,
    "cards": [
     "Harmless Offering"
-   ]
-  },
-  {
-   "pattern": "at the beginning of your upkeep, choose one that hasn't been chosen —",
-   "kind": "triggered",
-   "decks": 4,
-   "cards": [
-    "Kobayashi Maru Scenario"
    ]
   },
   {
@@ -1215,14 +979,6 @@
    "cards": [
     "Roaming Throne"
    ]
-  },
-  {
-   "pattern": "during your turn, spells you cast cost {N} less to cast for each creature you control with power N or greater.",
-   "kind": "static",
-   "decks": 3,
-   "cards": [
-    "Temur Battlecrier"
-   ]
   }
  ],
  "comboCandidates": [
@@ -1287,11 +1043,21 @@
    ]
   },
   {
+   "name": "Izzet Looting",
+   "share": 0.006,
+   "comboCards": [
+    "Fear of Missing Out",
+    "Captain James T. Kirk",
+    "Gray and Adira, Forever Joined"
+   ]
+  },
+  {
    "name": "Temur Omniscience",
    "share": 0.005,
    "comboCards": [
     "Kona, Rescue Beastie",
-    "Omniscience"
+    "Omniscience",
+    "Formidable Speaker"
    ]
   },
   {
@@ -1306,7 +1072,8 @@
    "share": 0.004,
    "comboCards": [
     "Kona, Rescue Beastie",
-    "Omniscience"
+    "Omniscience",
+    "Formidable Speaker"
    ]
   },
   {
@@ -1315,6 +1082,14 @@
    "comboCards": [
     "United Battlefront",
     "Tezzeret, Cruel Captain"
+   ]
+  },
+  {
+   "name": "Reanimator",
+   "share": 0.003,
+   "comboCards": [
+    "Formidable Speaker",
+    "Ardyn, the Usurper"
    ]
   },
   {
@@ -1629,6 +1404,7 @@
     "decks": 158,
     "oracle": "Choose one —\n• Surveil 2, then draw a card.\n• Prismari Charm deals 1 damage to each of one or two targets.\n• Return target nonland permanent to its owner's hand.",
     "detail": [
+     "removal:damage:creature",
      "removal:bounce:creature/artifact/enchantment/planeswalker/battle"
     ]
    },
@@ -2243,6 +2019,14 @@
     ]
    },
    {
+    "name": "Repulsive Mutation",
+    "decks": 2,
+    "oracle": "Put X +1/+1 counters on target creature you control. Then counter up to one target spell unless its controller pays mana equal to the greatest power among creatures you control.",
+    "detail": [
+     "counter:counter:spell"
+    ]
+   },
+   {
     "name": "Spider-Man 2099",
     "decks": 2,
     "oracle": "From the Future — You can't cast Spider-Man 2099 during your first, second, or third turns of the game.\nDouble strike, vigilance\nAt the beginning of your end step, if you've played a land or cast a spell this turn from anywhere other than your hand, Spider-Man 2099 deals damage equal to his power to any target.",
@@ -2299,6 +2083,14 @@
     "oracle": "When this land enters, choose a land card name.\nActivated abilities of sources with the chosen name can't be activated unless they're mana abilities.\nLands with the chosen name have \"{T}: Add {C}.\"\n{T}: Add {C}.",
     "detail": [
      "hate:lock:activated ability"
+    ]
+   },
+   {
+    "name": "Tishana's Tidebinder",
+    "decks": 207,
+    "oracle": "Flash\nWhen this creature enters, counter up to one target activated or triggered ability. If an ability of an artifact, creature, or planeswalker is countered this way, that permanent loses all abilities for as long as this creature remains on the battlefield. (Mana abilities can't be targeted.)",
+    "detail": [
+     "counter:counter:activated ability/triggered ability"
     ]
    },
    {
@@ -2675,7 +2467,7 @@
   ]
  },
  "format": "Standard",
- "generatedAt": "2026-11-27T21:10:06.632Z",
+ "generatedAt": "2026-11-27T21:12:44.633Z",
  "decks": 2593,
  "otherOnly": [
   {
@@ -2878,7 +2670,7 @@
     "topmanip@loyalty",
     "draw@loyalty",
     "selfmill@loyalty",
-    "misc@loyalty"
+    "tapdown@loyalty"
    ]
   },
   {
@@ -3027,7 +2819,7 @@
     "topmanip@spell",
     "draw@spell",
     "selfmill@spell",
-    "misc@spell",
+    "removal@spell",
     "removal@spell"
    ]
   },
@@ -3182,7 +2974,6 @@
    ],
    "tags": [
     "flash@static",
-    "misc@etb",
     "removal@etb",
     "topmanip@etb",
     "selfmill@etb"
@@ -3397,6 +3188,14 @@
     ]
    },
    {
+    "name": "Tishana's Tidebinder",
+    "decks": 207,
+    "roles": [
+     "ability",
+     "beater"
+    ]
+   },
+   {
     "name": "Amalia Benavides Aguirre",
     "decks": 206,
     "roles": [
@@ -3432,13 +3231,6 @@
     "decks": 172,
     "roles": [
      "removal"
-    ]
-   },
-   {
-    "name": "Duress",
-    "decks": 166,
-    "roles": [
-     "discard"
     ]
    }
   ],
@@ -3703,13 +3495,6 @@
     ]
    },
    {
-    "name": "Tishana's Tidebinder",
-    "decks": 207,
-    "roles": [
-     "beater"
-    ]
-   },
-   {
     "name": "Starscape Cleric",
     "decks": 194,
     "roles": [
@@ -3831,6 +3616,13 @@
    {
     "name": "Dwalin, Weaponmaster",
     "decks": 60,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
+    "name": "Master of Barbs",
+    "decks": 55,
     "roles": [
      "beater"
     ]
@@ -4153,6 +3945,14 @@
     ]
    },
    {
+    "name": "Formidable Speaker",
+    "decks": 38,
+    "roles": [
+     "untap",
+     "tutor"
+    ]
+   },
+   {
     "name": "Captain James T. Kirk",
     "decks": 34,
     "roles": [
@@ -4192,6 +3992,14 @@
     ]
    },
    {
+    "name": "Fear of Missing Out",
+    "decks": 23,
+    "roles": [
+     "untap",
+     "draw"
+    ]
+   },
+   {
     "name": "Colorstorm Stallion",
     "decks": 21,
     "roles": [
@@ -4204,23 +4012,6 @@
     "decks": 19,
     "roles": [
      "cheat"
-    ]
-   },
-   {
-    "name": "Royal Treatment",
-    "decks": 19,
-    "roles": [
-     "tokens",
-     "protection"
-    ]
-   },
-   {
-    "name": "Caretaker's Talent",
-    "decks": 15,
-    "roles": [
-     "tokens",
-     "draw",
-     "enhance"
     ]
    }
   ],
@@ -4349,7 +4140,7 @@
    "tags": [
     "flash@static",
     "evasion@static",
-    "misc@etb"
+    "tapdown@etb"
    ]
   },
   {
@@ -4384,8 +4175,8 @@
    "tags": [
     "flash@static",
     "combatkw@static",
-    "misc@etb",
-    "misc@activated"
+    "tapdown@etb",
+    "tapdown@activated"
    ]
   },
   {
@@ -4398,17 +4189,6 @@
     "pump@static",
     "setup@static",
     "pump@each_turn"
-   ]
-  },
-  {
-   "name": "Tishana's Tidebinder",
-   "decks": 207,
-   "roles": [
-    "beater"
-   ],
-   "tags": [
-    "flash@static",
-    "misc@etb"
    ]
   },
   {
@@ -4458,7 +4238,7 @@
     "flash@static",
     "costreduce@static",
     "landetb@static",
-    "misc@etb"
+    "tapdown@etb"
    ]
   },
   {
@@ -4580,7 +4360,6 @@
    ],
    "tags": [
     "evasion@static",
-    "misc@combat_damage",
     "pump@combat_damage",
     "mana@combat_damage"
    ]
@@ -4787,6 +4566,16 @@
    "tags": [
     "misc@landfall",
     "pump@static"
+   ]
+  },
+  {
+   "name": "Sentinel of the Nameless City",
+   "decks": 15,
+   "roles": [
+    "beater"
+   ],
+   "tags": [
+    "combatkw@static"
    ]
   }
  ],

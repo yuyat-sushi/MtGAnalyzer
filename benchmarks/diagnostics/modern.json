@@ -1,29 +1,11 @@
 {
  "untagged": [
   {
-   "pattern": "when this land enters, you may exile a colorless card with mana value N or greater from your hand.",
-   "kind": "triggered",
-   "decks": 736,
-   "cards": [
-    "Ugin's Labyrinth"
-   ]
-  },
-  {
    "pattern": "{t}: return the exiled card to its owner's hand.",
    "kind": "activated",
    "decks": 736,
    "cards": [
     "Ugin's Labyrinth"
-   ]
-  },
-  {
-   "pattern": "when this land enters, return a land you control to its owner's hand.",
-   "kind": "triggered",
-   "decks": 534,
-   "cards": [
-    "Gruul Turf",
-    "Simic Growth Chamber",
-    "Golgari Rot Farm"
    ]
   },
   {
@@ -35,51 +17,11 @@
    ]
   },
   {
-   "pattern": "delirium — ~ deals N damage instead if there are four or more card types among cards in your graveyard.",
-   "kind": "spell",
-   "decks": 505,
-   "cards": [
-    "Unholy Heat"
-   ]
-  },
-  {
-   "pattern": "whenever this creature attacks for the first time each turn, if there are four or more card types among cards in your graveyard, untap target creature. after this phase, there is an additional combat phase.",
-   "kind": "triggered",
-   "decks": 459,
-   "cards": [
-    "Fear of Missing Out"
-   ]
-  },
-  {
    "pattern": "{N}{g}: adapt N.",
    "kind": "activated",
    "decks": 411,
    "cards": [
     "Basking Broodscale"
-   ]
-  },
-  {
-   "pattern": "{N}{g}{g}: this land becomes a copy of target permanent card in your graveyard until end of turn. activate only if there are four or more card types among cards in your graveyard.",
-   "kind": "activated",
-   "decks": 409,
-   "cards": [
-    "Shifting Woodland"
-   ]
-  },
-  {
-   "pattern": "at the beginning of your next upkeep, pay {N}{g}{g}. if you don't, you lose the game.",
-   "kind": "spell",
-   "decks": 392,
-   "cards": [
-    "Summoner's Pact"
-   ]
-  },
-  {
-   "pattern": "when this equipment enters, tap target permanent.",
-   "kind": "triggered",
-   "decks": 376,
-   "cards": [
-    "Skateboard"
    ]
   },
   {
@@ -91,52 +33,11 @@
    ]
   },
   {
-   "pattern": "{t}: choose target artifact card in your graveyard. you may cast that card this turn.",
-   "kind": "activated",
-   "decks": 322,
-   "cards": [
-    "Emry, Lurker of the Loch"
-   ]
-  },
-  {
    "pattern": "{N}{b}: adapt N.",
    "kind": "activated",
    "decks": 312,
    "cards": [
     "Emperor of Bones"
-   ]
-  },
-  {
-   "pattern": "each opponent can't draw more than one card each turn.",
-   "kind": "static",
-   "decks": 295,
-   "cards": [
-    "Narset, Parter of Veils"
-   ]
-  },
-  {
-   "pattern": "sunburst",
-   "kind": "static",
-   "decks": 288,
-   "cards": [
-    "Engineered Explosives"
-   ]
-  },
-  {
-   "pattern": "lands you control enter untapped.",
-   "kind": "static",
-   "decks": 261,
-   "cards": [
-    "Spelunking"
-   ]
-  },
-  {
-   "pattern": "lands you control are every basic land type in addition to their other types.",
-   "kind": "static",
-   "decks": 261,
-   "cards": [
-    "Leyline of the Guildpact",
-    "Dryad of the Ilysian Grove"
    ]
   },
   {
@@ -148,92 +49,11 @@
    ]
   },
   {
-   "pattern": "transmute {N}{u}{u}",
-   "kind": "static",
-   "decks": 256,
-   "cards": [
-    "Tolaria West"
-   ]
-  },
-  {
-   "pattern": "you may activate abilities of creatures you control as though those creatures had haste.",
-   "kind": "static",
-   "decks": 255,
-   "cards": [
-    "Shang-Chi, Master of Kung Fu",
-    "Tyvar, Jubilant Brawler"
-   ]
-  },
-  {
-   "pattern": "you may have this land enter tapped as a copy of any land card in a graveyard, except it's a cave in addition to its other types.",
-   "kind": "static",
-   "decks": 250,
-   "cards": [
-    "Echoing Deeps"
-   ]
-  },
-  {
-   "pattern": "you may have this land enter tapped as a copy of any land on the battlefield.",
-   "kind": "static",
-   "decks": 222,
-   "cards": [
-    "Vesuva"
-   ]
-  },
-  {
-   "pattern": "when this artifact enters, you may exile an instant card with mana value N or less from your hand.",
-   "kind": "triggered",
-   "decks": 218,
-   "cards": [
-    "Isochron Scepter"
-   ]
-  },
-  {
-   "pattern": "splice onto arcane {N}{r}",
-   "kind": "spell",
-   "decks": 209,
-   "cards": [
-    "Desperate Ritual"
-   ]
-  },
-  {
-   "pattern": "instant and sorcery spells you cast cost {N} less to cast.",
-   "kind": "static",
-   "decks": 200,
-   "cards": [
-    "Ral, Monsoon Mage // Ral, Leyline Prodigy"
-   ]
-  },
-  {
-   "pattern": "red spells you cast cost {N} less to cast.",
-   "kind": "static",
-   "decks": 197,
-   "cards": [
-    "Ruby Medallion"
-   ]
-  },
-  {
    "pattern": "each nonland permanent you control is all colors.",
    "kind": "static",
    "decks": 194,
    "cards": [
     "Leyline of the Guildpact"
-   ]
-  },
-  {
-   "pattern": "whenever this creature attacks, choose one —",
-   "kind": "triggered",
-   "decks": 192,
-   "cards": [
-    "Territorial Kavu"
-   ]
-  },
-  {
-   "pattern": "noncreature spells you cast cost {N} less to cast.",
-   "kind": "static",
-   "decks": 188,
-   "cards": [
-    "Artist's Talent"
    ]
   },
   {
@@ -261,14 +81,6 @@
    ]
   },
   {
-   "pattern": "{N}, {t}: untap another target permanent.",
-   "kind": "activated",
-   "decks": 159,
-   "cards": [
-    "Formidable Speaker"
-   ]
-  },
-  {
    "pattern": "when you cast this spell, exile two target permanents.",
    "kind": "triggered",
    "decks": 150,
@@ -282,14 +94,6 @@
    "decks": 150,
    "cards": [
     "Ulamog, the Ceaseless Hunger"
-   ]
-  },
-  {
-   "pattern": "splice onto arcane {N}{b}",
-   "kind": "spell",
-   "decks": 147,
-   "cards": [
-    "Goryo's Vengeance"
    ]
   },
   {
@@ -349,14 +153,6 @@
    ]
   },
   {
-   "pattern": "at the beginning of your next upkeep, pay {N}{u}{u}. if you don't, you lose the game.",
-   "kind": "spell",
-   "decks": 97,
-   "cards": [
-    "Pact of Negation"
-   ]
-  },
-  {
    "pattern": "{x}, {t}: this land becomes a copy of target nontoken artifact you control with mana value x.",
    "kind": "activated",
    "decks": 96,
@@ -371,14 +167,6 @@
    "cards": [
     "Arcbound Ravager",
     "Zabaz, the Glimmerwasp"
-   ]
-  },
-  {
-   "pattern": "−N: tap target creature. put two stun counters on it.",
-   "kind": "activated",
-   "decks": 95,
-   "cards": [
-    "Kaito, Bane of Nightmares"
    ]
   },
   {
@@ -423,27 +211,11 @@
    ]
   },
   {
-   "pattern": "metalcraft — ~ deals N damage instead if you control three or more artifacts.",
-   "kind": "spell",
-   "decks": 67,
-   "cards": [
-    "Galvanic Blast"
-   ]
-  },
-  {
    "pattern": "{b}{b}, discard a card: proliferate.",
    "kind": "activated",
    "decks": 67,
    "cards": [
     "Yawgmoth, Thran Physician"
-   ]
-  },
-  {
-   "pattern": "choose one. if you control a wizard as you cast this spell, you may choose two instead.",
-   "kind": "spell",
-   "decks": 63,
-   "cards": [
-    "Flame of Anor"
    ]
   },
   {
@@ -469,14 +241,6 @@
    "cards": [
     "Way of the Paradox",
     "Way of the Pyromancer"
-   ]
-  },
-  {
-   "pattern": "tap all creatures target player controls. you may pay any amount of {e}. if you do, choose up to that many creatures tapped this way. put a stun counter on each of them.",
-   "kind": "spell",
-   "decks": 57,
-   "cards": [
-    "Suppression Ray // Orderly Plaza"
    ]
   },
   {
@@ -536,22 +300,6 @@
    ]
   },
   {
-   "pattern": "enchant forest",
-   "kind": "static",
-   "decks": 41,
-   "cards": [
-    "Utopia Sprawl"
-   ]
-  },
-  {
-   "pattern": "whenever an opponent draws a card, they lose N life.",
-   "kind": "triggered",
-   "decks": 40,
-   "cards": [
-    "Sheoldred, the Apocalypse"
-   ]
-  },
-  {
    "pattern": "whenever this creature attacks, defending player reveals the top card of their library. if it's a land card, that player puts it into their hand.",
    "kind": "triggered",
    "decks": 34,
@@ -573,46 +321,6 @@
    "decks": 32,
    "cards": [
     "Hardened Academic"
-   ]
-  },
-  {
-   "pattern": "creatures lose all abilities.",
-   "kind": "static",
-   "decks": 32,
-   "cards": [
-    "Dress Down"
-   ]
-  },
-  {
-   "pattern": "at the beginning of the end step, sacrifice this enchantment.",
-   "kind": "triggered",
-   "decks": 32,
-   "cards": [
-    "Dress Down"
-   ]
-  },
-  {
-   "pattern": "whenever an artifact enters, you may untap this artifact.",
-   "kind": "triggered",
-   "decks": 32,
-   "cards": [
-    "Grinding Station"
-   ]
-  },
-  {
-   "pattern": "when this artifact enters or leaves the battlefield, you may tap or untap target creature.",
-   "kind": "triggered",
-   "decks": 32,
-   "cards": [
-    "Sewer-veillance Cam"
-   ]
-  },
-  {
-   "pattern": "flying, protection from spells that are one or more colors, annihilator N",
-   "kind": "static",
-   "decks": 31,
-   "cards": [
-    "Emrakul, the Aeons Torn"
    ]
   },
   {
@@ -638,14 +346,6 @@
    "cards": [
     "Fight Rigging",
     "Mosswort Bridge"
-   ]
-  },
-  {
-   "pattern": "this creature can block only creatures with flying.",
-   "kind": "static",
-   "decks": 28,
-   "cards": [
-    "Brazen Borrower // Petty Theft"
    ]
   },
   {
@@ -777,14 +477,6 @@
    ]
   },
   {
-   "pattern": "annihilator N",
-   "kind": "static",
-   "decks": 16,
-   "cards": [
-    "Nulldrifter"
-   ]
-  },
-  {
    "pattern": "~ deals N damage divided as you choose among one or two targets.",
    "kind": "spell",
    "decks": 16,
@@ -806,22 +498,6 @@
    "decks": 15,
    "cards": [
     "Super-Soldier Serum"
-   ]
-  },
-  {
-   "pattern": "• ~ deals N damage to each of one or two targets.",
-   "kind": "spell",
-   "decks": 15,
-   "cards": [
-    "Prismari Charm"
-   ]
-  },
-  {
-   "pattern": "noncreature spells you cast cost {N} less to cast as long as there are three or more lesson cards in your graveyard.",
-   "kind": "static",
-   "decks": 14,
-   "cards": [
-    "Gran-Gran"
    ]
   },
   {
@@ -857,14 +533,6 @@
    ]
   },
   {
-   "pattern": "splice onto arcane {N}{r}{r}",
-   "kind": "spell",
-   "decks": 14,
-   "cards": [
-    "Through the Breach"
-   ]
-  },
-  {
    "pattern": "target creature you control deals damage equal to its power to any other target. then sacrifice it.",
    "kind": "spell",
    "decks": 14,
@@ -878,38 +546,6 @@
    "decks": 14,
    "cards": [
     "Loading Zone"
-   ]
-  },
-  {
-   "pattern": "when this land enters untapped, choose one —",
-   "kind": "triggered",
-   "decks": 14,
-   "cards": [
-    "Federation Outpost"
-   ]
-  },
-  {
-   "pattern": "• tap target creature.",
-   "kind": "triggered",
-   "decks": 13,
-   "cards": [
-    "Divining Duelist"
-   ]
-  },
-  {
-   "pattern": "• untap target creature.",
-   "kind": "triggered",
-   "decks": 13,
-   "cards": [
-    "Divining Duelist"
-   ]
-  },
-  {
-   "pattern": "−x: tap target artifact or creature. put x stun counters on it.",
-   "kind": "activated",
-   "decks": 13,
-   "cards": [
-    "Chandra, Chill of Compliance"
    ]
   },
   {
@@ -993,14 +629,6 @@
    ]
   },
   {
-   "pattern": "when this creature enters, counter up to one target activated or triggered ability. if an ability of an artifact, creature, or planeswalker is countered this way, that permanent loses all abilities for as long as this creature remains on the battlefield.",
-   "kind": "triggered",
-   "decks": 10,
-   "cards": [
-    "Tishana's Tidebinder"
-   ]
-  },
-  {
    "pattern": "when aang enters, airbend up to one other target creature or spell.",
    "kind": "triggered",
    "decks": 10,
@@ -1031,14 +659,6 @@
    "cards": [
     "Aether Vial"
    ]
-  },
-  {
-   "pattern": "to solve — you have no cards in hand.",
-   "kind": "static",
-   "decks": 10,
-   "cards": [
-    "Case of the Crimson Pulse"
-   ]
   }
  ],
  "comboCandidates": [
@@ -1060,10 +680,24 @@
    ]
   },
   {
+   "name": "Affinity系（推定）",
+   "share": 0.056,
+   "comboCards": [
+    "Fear of Missing Out"
+   ]
+  },
+  {
    "name": "Affinity",
    "share": 0.048,
    "comboCards": [
     "Pinnacle Emissary"
+   ]
+  },
+  {
+   "name": "Rakdos Graveyard系（推定）",
+   "share": 0.038,
+   "comboCards": [
+    "Fear of Missing Out"
    ]
   },
   {
@@ -1160,10 +794,26 @@
    ]
   },
   {
+   "name": "Rakdos Shadow",
+   "share": 0.003,
+   "comboCards": [
+    "Fear of Missing Out"
+   ]
+  },
+  {
    "name": "Izzet Energy系（推定）",
    "share": 0.002,
    "comboCards": [
+    "Divining Duelist",
     "Splinter Twin"
+   ]
+  },
+  {
+   "name": "Mono Blue Loki",
+   "share": 0.002,
+   "comboCards": [
+    "Sewer-veillance Cam",
+    "Grinding Station"
    ]
   },
   {
@@ -1206,6 +856,14 @@
    ]
   },
   {
+   "name": "Kethis Combo",
+   "share": 0.001,
+   "comboCards": [
+    "Grinding Station",
+    "Sewer-veillance Cam"
+   ]
+  },
+  {
    "name": "Abzan (Unknown)",
    "share": 0.001,
    "comboCards": [
@@ -1217,6 +875,14 @@
    "share": 0.001,
    "comboCards": [
     "Ocelot Pride"
+   ]
+  },
+  {
+   "name": "KikiChord",
+   "share": 0.001,
+   "comboCards": [
+    "Formidable Speaker",
+    "Kiki-Jiki, Mirror Breaker"
    ]
   }
  ],
@@ -2067,6 +1733,14 @@
     ]
    },
    {
+    "name": "Narset, Parter of Veils",
+    "decks": 295,
+    "oracle": "Each opponent can't draw more than one card each turn.\n−2: Look at the top four cards of your library. You may reveal a noncreature, nonland card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.",
+    "detail": [
+     "hate:lock:other"
+    ]
+   },
+   {
     "name": "Metallic Rebuke",
     "decks": 286,
     "oracle": "Improvise (Your artifacts can help cast this spell. Each artifact you tap after you're done activating mana abilities pays for {1}.)\nCounter target spell unless its controller pays {3}.",
@@ -2305,15 +1979,6 @@
     "detail": [
      "removal:steal:spell"
     ]
-   },
-   {
-    "name": "Cryptic Command",
-    "decks": 4,
-    "oracle": "Choose two —\n• Counter target spell.\n• Return target permanent to its owner's hand.\n• Tap all creatures your opponents control.\n• Draw a card.",
-    "detail": [
-     "counter:counter:spell",
-     "removal:bounce:creature/artifact/enchantment/planeswalker/battle/land"
-    ]
    }
   ],
   "ability": [
@@ -2342,6 +2007,14 @@
     ]
    },
    {
+    "name": "Dress Down",
+    "decks": 32,
+    "oracle": "Flash\nWhen this enchantment enters, draw a card.\nCreatures lose all abilities.\nAt the beginning of the end step, sacrifice this enchantment.",
+    "detail": [
+     "hate:lock:activated ability/triggered ability"
+    ]
+   },
+   {
     "name": "Disruptor Flute",
     "decks": 31,
     "oracle": "Flash\nAs this artifact enters, choose a card name.\nSpells with the chosen name cost {3} more to cast.\nActivated abilities of sources with the chosen name can't be activated unless they're mana abilities.",
@@ -2356,6 +2029,14 @@
     "oracle": "Flying\nActivated abilities of artifacts, creatures, and planeswalkers can't be activated.",
     "detail": [
      "hate:lock:activated ability"
+    ]
+   },
+   {
+    "name": "Tishana's Tidebinder",
+    "decks": 10,
+    "oracle": "Flash\nWhen this creature enters, counter up to one target activated or triggered ability. If an ability of an artifact, creature, or planeswalker is countered this way, that permanent loses all abilities for as long as this creature remains on the battlefield. (Mana abilities can't be targeted.)",
+    "detail": [
+     "counter:counter:activated ability/triggered ability"
     ]
    },
    {
@@ -3153,7 +2834,7 @@
   ]
  },
  "format": "Modern",
- "generatedAt": "2026-11-27T21:10:06.632Z",
+ "generatedAt": "2026-11-27T21:12:44.633Z",
  "decks": 5115,
  "otherOnly": [
   {
@@ -3211,7 +2892,7 @@
    "typeLine": "Instant",
    "tags": [
     "combatkw@spell",
-    "misc@spell"
+    "setup@static"
    ]
   },
   {
@@ -3306,7 +2987,7 @@
    "decks": 2,
    "typeLine": "Enchantment",
    "tags": [
-    "misc@static"
+    "landetb@static"
    ]
   },
   {
@@ -3494,21 +3175,6 @@
    ]
   },
   {
-   "name": "Orcish Bowmasters",
-   "decks": 351,
-   "roles": [
-    "removal",
-    "draw",
-    "reach"
-   ],
-   "tags": [
-    "flash@static",
-    "draw@etb",
-    "drain@etb",
-    "removal@etb"
-   ]
-  },
-  {
    "name": "Lava Dart",
    "decks": 335,
    "roles": [
@@ -3540,6 +3206,20 @@
    ]
   },
   {
+   "name": "Narset, Parter of Veils",
+   "decks": 295,
+   "roles": [
+    "spell",
+    "draw",
+    "topselect"
+   ],
+   "tags": [
+    "hate@static",
+    "topselect@loyalty",
+    "draw@loyalty"
+   ]
+  },
+  {
    "name": "Spelunking",
    "decks": 261,
    "roles": [
@@ -3551,7 +3231,7 @@
     "lifegain@etb",
     "draw@etb",
     "extraland@etb",
-    "misc@static"
+    "landetb@static"
    ]
   },
   {
@@ -4100,13 +3780,6 @@
     ]
    },
    {
-    "name": "Fear of Missing Out",
-    "decks": 459,
-    "roles": [
-     "draw"
-    ]
-   },
-   {
     "name": "Ancient Stirrings",
     "decks": 439,
     "roles": [
@@ -4141,6 +3814,7 @@
     "name": "Emry, Lurker of the Loch",
     "decks": 322,
     "roles": [
+     "recursion",
      "selfmill"
     ]
    },
@@ -4157,14 +3831,6 @@
     "decks": 295,
     "roles": [
      "draw"
-    ]
-   },
-   {
-    "name": "Narset, Parter of Veils",
-    "decks": 295,
-    "roles": [
-     "draw",
-     "topselect"
     ]
    },
    {
@@ -4205,6 +3871,21 @@
      "draw",
      "beater",
      "lifegain"
+    ]
+   },
+   {
+    "name": "Tamiyo, Inquisitive Student // Tamiyo, Seasoned Scholar",
+    "decks": 232,
+    "roles": [
+     "draw"
+    ]
+   },
+   {
+    "name": "Consult the Star Charts",
+    "decks": 223,
+    "roles": [
+     "draw",
+     "topselect"
     ]
    }
   ],
@@ -4570,6 +4251,14 @@
   ],
   "combo": [
    {
+    "name": "Fear of Missing Out",
+    "decks": 459,
+    "roles": [
+     "untap",
+     "draw"
+    ]
+   },
+   {
     "name": "Ocelot Pride",
     "decks": 446,
     "roles": [
@@ -4646,6 +4335,14 @@
      "wipe",
      "cheat",
      "recursion"
+    ]
+   },
+   {
+    "name": "Formidable Speaker",
+    "decks": 159,
+    "roles": [
+     "untap",
+     "tutor"
     ]
    },
    {
@@ -4751,23 +4448,6 @@
     "roles": [
      "cheatloop",
      "beater"
-    ]
-   },
-   {
-    "name": "Emrakul, the Aeons Torn",
-    "decks": 31,
-    "roles": [
-     "extraturn",
-     "beater",
-     "protection"
-    ]
-   },
-   {
-    "name": "Teferi, Hero of Dominaria",
-    "decks": 27,
-    "roles": [
-     "untap",
-     "draw"
     ]
    }
   ],
@@ -5175,6 +4855,7 @@
    ],
    "tags": [
     "altcost@static",
+    "setup@static",
     "statdef@static"
    ]
   },
@@ -5277,6 +4958,20 @@
    ],
    "tags": [
     "evasion@static"
+   ]
+  },
+  {
+   "name": "Sheoldred, the Apocalypse",
+   "decks": 40,
+   "roles": [
+    "reach",
+    "beater",
+    "lifegain"
+   ],
+   "tags": [
+    "combatkw@static",
+    "lifegain@other_trigger",
+    "drain@other_trigger"
    ]
   },
   {
@@ -5397,17 +5092,6 @@
    "tags": [
     "evasion@static",
     "misc@static"
-   ]
-  },
-  {
-   "name": "Slumbering Trudge",
-   "decks": 15,
-   "roles": [
-    "beater"
-   ],
-   "tags": [
-    "landetb@static",
-    "setup@static"
    ]
   }
  ],
