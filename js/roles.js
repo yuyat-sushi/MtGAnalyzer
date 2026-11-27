@@ -27,8 +27,9 @@
     { id: 'fastmana',   cat: 'mana',     label: '即席マナ',     color: '#6fbf8a' },
     { id: 'removal',    cat: 'disrupt',  label: '単体除去',     color: '#d0503c' },
     { id: 'wipe',       cat: 'disrupt',  label: '全体除去',     color: '#9b2f2f' },
-    { id: 'spell',      cat: 'disrupt',  label: '呪文への干渉', color: '#5a6fd6' },
-    { id: 'ability',    cat: 'disrupt',  label: '能力への干渉', color: '#4f6470' },
+    { id: 'spell',      cat: 'disrupt',  label: '呪文干渉',     color: '#5a6fd6' },
+    { id: 'ability',    cat: 'disrupt',  label: '能力干渉',     color: '#4f6470' },
+    { id: 'action',     cat: 'disrupt',  label: '行動干渉',     color: '#6a5a8a' },
     { id: 'discard',    cat: 'disrupt',  label: '手札破壊',     color: '#7a4fa0' },
     { id: 'gyhate',     cat: 'disrupt',  label: '墓地対策',     color: '#6b6b80' },
     { id: 'manalock',   cat: 'disrupt',  label: 'マナ妨害',     color: '#7a6040' },
@@ -62,7 +63,7 @@
    * 妨害に使えるカードは、打点やドローを兼ねていても主に妨害として数える（プレイヤーの感覚に合わせる）
    */
   const PRIORITY = ['land',
-    'removal', 'wipe', 'spell', 'ability', 'discard', 'gyhate', 'manalock', 'combat',
+    'removal', 'wipe', 'spell', 'ability', 'action', 'discard', 'gyhate', 'manalock', 'combat',
     'cheatloop', 'cheat', 'extraturn', 'untap', 'copy', 'tokens', 'altwin',
     'draw', 'tutor', 'recursion', 'selfmill', 'topselect', 'topmanip',
     'ramp',
@@ -151,7 +152,8 @@
       } else if (x.effect === 'hate') {
         const ty = d.types;
         if (ty.some(y => /ability/.test(y))) set.add('ability');
-        if (ty.some(y => ['spell', 'tax', 'library', 'other'].includes(y))) set.add('spell');
+        if (ty.some(y => ['spell', 'tax', 'other'].includes(y))) set.add('spell');
+        if (ty.some(y => ['library', 'draw', 'lifegain', 'extraturn'].includes(y))) set.add('action'); // 行動干渉
         if (ty.includes('mana')) set.add('manalock');
         if (ty.includes('untap')) set.add('combat');   // クリーチャーがタップ状態で出る・アンタップしない
         if (ty.includes('graveyard')) set.add('gyhate');
@@ -290,7 +292,8 @@
     types: { creature: 'クリーチャー', artifact: 'アーティファクト', enchantment: 'エンチャント', planeswalker: 'プレインズウォーカー', battle: 'バトル', land: '土地',
       spell: '呪文', 'noncreature spell': '非クリーチャー呪文', 'creature spell': 'クリーチャー呪文', 'instant/sorcery': 'インスタント・ソーサリー', ability: '能力',
       hand: '手札', graveyard: '墓地', player: 'プレイヤー', 'activated ability': '起動型能力', 'triggered ability': '誘発型能力',
-      tax: 'コスト増加', mana: 'マナ', library: 'ライブラリー', attack: '攻撃', untap: 'アンタップ', other: 'その他' },
+      tax: 'コスト増加', mana: 'マナ', library: 'サーチ', draw: 'ドロー', lifegain: 'ライフ回復', extraturn: '追加ターン', attack: '攻撃', untap: 'アンタップ', other: 'その他' },
+    how: { forbid: '禁止', limit: '制限', punish: '罰', steal: '奪取' },
     targeting: { target: '対象を取る', nontarget: '対象を取らない', edict: '相手が選ぶ（エディクト）' },
     form: { once: '1回きり', ongoing: '継続（置物・常在・繰り返し）' },
     speed: { instant: 'インスタント速度', sorcery: 'ソーサリー速度', trigger: '誘発', static: '常在' }

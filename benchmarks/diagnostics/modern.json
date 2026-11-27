@@ -1,14 +1,6 @@
 {
  "untagged": [
   {
-   "pattern": "{t}: return the exiled card to its owner's hand.",
-   "kind": "activated",
-   "decks": 736,
-   "cards": [
-    "Ugin's Labyrinth"
-   ]
-  },
-  {
    "pattern": "whenever one or more permanent cards are put into your graveyard from anywhere while this creature has a -N/-N counter on it, remove a -N/-N counter from this creature.",
    "kind": "triggered",
    "decks": 511,
@@ -17,27 +9,11 @@
    ]
   },
   {
-   "pattern": "{N}{g}: adapt N.",
-   "kind": "activated",
-   "decks": 411,
-   "cards": [
-    "Basking Broodscale"
-   ]
-  },
-  {
    "pattern": "{N}: permanents your opponents control lose hexproof and indestructible until end of turn.",
    "kind": "activated",
    "decks": 336,
    "cards": [
     "Shadowspear"
-   ]
-  },
-  {
-   "pattern": "{N}{b}: adapt N.",
-   "kind": "activated",
-   "decks": 312,
-   "cards": [
-    "Emperor of Bones"
    ]
   },
   {
@@ -62,22 +38,6 @@
    "decks": 188,
    "cards": [
     "Artist's Talent"
-   ]
-  },
-  {
-   "pattern": "{N}{u}, {t}: empower jace N.",
-   "kind": "activated",
-   "decks": 182,
-   "cards": [
-    "Theorist's Sanctum"
-   ]
-  },
-  {
-   "pattern": "when this creature enters, earthbend N.",
-   "kind": "triggered",
-   "decks": 166,
-   "cards": [
-    "Badgermole Cub"
    ]
   },
   {
@@ -118,14 +78,6 @@
    "decks": 124,
    "cards": [
     "Tyvar, Jubilant Brawler"
-   ]
-  },
-  {
-   "pattern": "{N}{g}, {t}: earthbend N. activate only as a sorcery.",
-   "kind": "activated",
-   "decks": 118,
-   "cards": [
-    "Ba Sing Se"
    ]
   },
   {
@@ -232,15 +184,6 @@
    "decks": 62,
    "cards": [
     "Eyetwitch"
-   ]
-  },
-  {
-   "pattern": "when ~ enters, empower jace N.",
-   "kind": "triggered",
-   "decks": 58,
-   "cards": [
-    "Way of the Paradox",
-    "Way of the Pyromancer"
    ]
   },
   {
@@ -581,14 +524,6 @@
    ]
   },
   {
-   "pattern": "when this creature enters, empower jace N.",
-   "kind": "triggered",
-   "decks": 11,
-   "cards": [
-    "Theorist's Proxy"
-   ]
-  },
-  {
    "pattern": "if a creature an opponent controls would die, exile it instead.",
    "kind": "static",
    "decks": 11,
@@ -642,14 +577,6 @@
    "decks": 10,
    "cards": [
     "Aang, Swift Savior // Aang and La, Ocean's Fury"
-   ]
-  },
-  {
-   "pattern": "• you lose N life. empower jace N.",
-   "kind": "spell",
-   "decks": 10,
-   "cards": [
-    "Vraska's Final Mercy"
    ]
   },
   {
@@ -1239,7 +1166,8 @@
     "decks": 351,
     "oracle": "Flash\nWhen this creature enters and whenever an opponent draws a card except the first one they draw in each of their draw steps, this creature deals 1 damage to any target. Then amass Orcs 1.",
     "detail": [
-     "removal:damage:creature/planeswalker/battle/player"
+     "removal:damage:creature/planeswalker/battle/player",
+     "hate:lock:draw"
     ]
    },
    {
@@ -1733,14 +1661,6 @@
     ]
    },
    {
-    "name": "Narset, Parter of Veils",
-    "decks": 295,
-    "oracle": "Each opponent can't draw more than one card each turn.\n−2: Look at the top four cards of your library. You may reveal a noncreature, nonland card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.",
-    "detail": [
-     "hate:lock:other"
-    ]
-   },
-   {
     "name": "Metallic Rebuke",
     "decks": 286,
     "oracle": "Improvise (Your artifacts can help cast this spell. Each artifact you tap after you're done activating mana abilities pays for {1}.)\nCounter target spell unless its controller pays {3}.",
@@ -1906,15 +1826,6 @@
     ]
    },
    {
-    "name": "Skullcrack",
-    "decks": 16,
-    "oracle": "Players can't gain life this turn. Damage can't be prevented this turn. Skullcrack deals 3 damage to target player or planeswalker.",
-    "detail": [
-     "removal:damage:planeswalker",
-     "hate:lock:other"
-    ]
-   },
-   {
     "name": "Chancellor of the Annex",
     "decks": 14,
     "oracle": "You may reveal this card from your opening hand. If you do, when each opponent casts their first spell of the game, counter that spell unless that player pays {1}.\nFlying\nWhenever an opponent casts a spell, counter it unless that player pays {1}.",
@@ -1978,6 +1889,23 @@
     "oracle": "You may exile two blue cards from your hand rather than pay this spell's mana cost.\nGain control of target noncreature spell. You may choose new targets for it. (If that spell is an artifact, enchantment, or planeswalker, the permanent enters under your control.)",
     "detail": [
      "removal:steal:spell"
+    ]
+   },
+   {
+    "name": "Cryptic Command",
+    "decks": 4,
+    "oracle": "Choose two —\n• Counter target spell.\n• Return target permanent to its owner's hand.\n• Tap all creatures your opponents control.\n• Draw a card.",
+    "detail": [
+     "counter:counter:spell",
+     "removal:bounce:creature/artifact/enchantment/planeswalker/battle/land"
+    ]
+   },
+   {
+    "name": "Vodalian Hexcatcher",
+    "decks": 4,
+    "oracle": "Flash\nOther Merfolk you control get +1/+1.\nSacrifice a Merfolk: Counter target noncreature spell unless its controller pays {1}.",
+    "detail": [
+     "counter:counter:noncreature spell"
     ]
    }
   ],
@@ -2069,6 +1997,67 @@
     "oracle": "When this land enters, choose a land card name.\nActivated abilities of sources with the chosen name can't be activated unless they're mana abilities.\nLands with the chosen name have \"{T}: Add {C}.\"\n{T}: Add {C}.",
     "detail": [
      "hate:lock:activated ability"
+    ]
+   }
+  ],
+  "action": [
+   {
+    "name": "Orcish Bowmasters",
+    "decks": 351,
+    "oracle": "Flash\nWhen this creature enters and whenever an opponent draws a card except the first one they draw in each of their draw steps, this creature deals 1 damage to any target. Then amass Orcs 1.",
+    "detail": [
+     "removal:damage:creature/planeswalker/battle/player",
+     "hate:lock:draw"
+    ]
+   },
+   {
+    "name": "Narset, Parter of Veils",
+    "decks": 295,
+    "oracle": "Each opponent can't draw more than one card each turn.\n−2: Look at the top four cards of your library. You may reveal a noncreature, nonland card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.",
+    "detail": [
+     "hate:lock:draw"
+    ]
+   },
+   {
+    "name": "Sheoldred, the Apocalypse",
+    "decks": 40,
+    "oracle": "Deathtouch\nWhenever you draw a card, you gain 2 life.\nWhenever an opponent draws a card, they lose 2 life.",
+    "detail": [
+     "hate:lock:draw"
+    ]
+   },
+   {
+    "name": "Skullcrack",
+    "decks": 16,
+    "oracle": "Players can't gain life this turn. Damage can't be prevented this turn. Skullcrack deals 3 damage to target player or planeswalker.",
+    "detail": [
+     "removal:damage:planeswalker",
+     "hate:lock:lifegain"
+    ]
+   },
+   {
+    "name": "Ashiok, Dream Render",
+    "decks": 5,
+    "oracle": "Spells and abilities your opponents control can't cause their controller to search their library.\n−1: Target player mills four cards. Then exile each opponent's graveyard.",
+    "detail": [
+     "hate:lock:library",
+     "gyhate:exile:graveyard"
+    ]
+   },
+   {
+    "name": "Leonin Arbiter",
+    "decks": 1,
+    "oracle": "Players can't search libraries. Any player may pay {2} for that player to ignore this effect until end of turn.",
+    "detail": [
+     "hate:lock:library"
+    ]
+   },
+   {
+    "name": "Shadow of Doubt",
+    "decks": 1,
+    "oracle": "({U/B} can be paid with either {U} or {B}.)\nPlayers can't search libraries this turn.\nDraw a card.",
+    "detail": [
+     "hate:lock:library"
     ]
    }
   ],
@@ -2444,6 +2433,7 @@
     "decks": 5,
     "oracle": "Spells and abilities your opponents control can't cause their controller to search their library.\n−1: Target player mills four cards. Then exile each opponent's graveyard.",
     "detail": [
+     "hate:lock:library",
      "gyhate:exile:graveyard"
     ]
    },
@@ -2834,7 +2824,7 @@
   ]
  },
  "format": "Modern",
- "generatedAt": "2026-11-27T21:12:44.633Z",
+ "generatedAt": "2026-11-27T21:34:04.339Z",
  "decks": 5115,
  "otherOnly": [
   {
@@ -3175,6 +3165,21 @@
    ]
   },
   {
+   "name": "Orcish Bowmasters",
+   "decks": 351,
+   "roles": [
+    "removal",
+    "action",
+    "reach"
+   ],
+   "tags": [
+    "flash@static",
+    "drain@etb",
+    "removal@etb",
+    "hate@etb"
+   ]
+  },
+  {
    "name": "Lava Dart",
    "decks": 335,
    "roles": [
@@ -3209,7 +3214,7 @@
    "name": "Narset, Parter of Veils",
    "decks": 295,
    "roles": [
-    "spell",
+    "action",
     "draw",
     "topselect"
    ],
@@ -3477,19 +3482,6 @@
     "topmanip@etb",
     "mana@activated",
     "removal@activated_once"
-   ]
-  },
-  {
-   "name": "Flickerwisp",
-   "decks": 123,
-   "roles": [
-    "removal",
-    "manalock",
-    "beater"
-   ],
-   "tags": [
-    "evasion@static",
-    "removal@etb"
    ]
   }
  ],
@@ -4961,20 +4953,6 @@
    ]
   },
   {
-   "name": "Sheoldred, the Apocalypse",
-   "decks": 40,
-   "roles": [
-    "reach",
-    "beater",
-    "lifegain"
-   ],
-   "tags": [
-    "combatkw@static",
-    "lifegain@other_trigger",
-    "drain@other_trigger"
-   ]
-  },
-  {
    "name": "Memnite",
    "decks": 39,
    "roles": [
@@ -5092,6 +5070,18 @@
    "tags": [
     "evasion@static",
     "misc@static"
+   ]
+  },
+  {
+   "name": "Slumbering Trudge",
+   "decks": 15,
+   "roles": [
+    "beater"
+   ],
+   "tags": [
+    "landetb@static",
+    "setup@static",
+    "tapdown@static"
    ]
   }
  ],

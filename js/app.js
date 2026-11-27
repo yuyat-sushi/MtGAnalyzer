@@ -276,13 +276,13 @@
   const openCats = new Set();
   let extraOpen = false;
   const openArch = new Set();
-  /** 小カテゴリの横に添える大事な属性（例: 単体除去 12（追放 4）、呪文への干渉 6（継続 2）） */
+  /** 小カテゴリの横に添える大事な属性（例: 単体除去 12（追放 4）、呪文干渉 6（継続 2）） */
   function subNote(id) {
     const count = pred => state.main.filter(e => e.card && rolesOf(e).includes(id) && Roles.inspect(e.card).tags.some(pred)).reduce((s, e) => s + e.qty, 0);
     const d = t => t.detail || {};
     let n = 0, label = '';
     if (id === 'removal' || id === 'wipe') { n = count(t => (t.effect === 'removal' || t.effect === 'wipe') && d(t).action === 'exile'); label = '追放'; }
-    else if (['spell', 'ability', 'manalock', 'combat'].includes(id)) { n = count(t => t.detail && t.repeat); label = '継続'; }
+    else if (['spell', 'ability', 'action', 'manalock', 'combat'].includes(id)) { n = count(t => t.detail && t.repeat); label = '継続'; }
     else if (id === 'discard' || id === 'gyhate') { n = count(t => t.detail && t.speed === 'instant'); label = 'インスタント'; }
     else if (id === 'fastmana') {
       // 今すぐマナが増える（カード1枚と引き換えのファストマナや、おまけの宝物）枚数
@@ -597,7 +597,7 @@
       const d = t.detail;
       const parts = [L.action[d.action] || d.action, d.types.map(x => L.types[x] || x).join('・'), L.targeting[d.targeting],
         d.scope === 'all' ? '全体' : d.scope === 'multi' ? '複数' : '', d.cond ? `条件: ${d.cond}` : '',
-        d.gives ? `相手に${d.gives === 'token' ? 'トークン' : d.gives === 'land' ? '土地' : 'ライフ'}` : '', L.speed[t.speed] || ''];
+        d.gives ? `相手に${d.gives === 'token' ? 'トークン' : d.gives === 'land' ? '土地' : 'ライフ'}` : '', d.how ? `干渉の仕方: ${L.how[d.how]}` : '', L.speed[t.speed] || ''];
       return `<div class="tag-detail">${parts.filter(Boolean).map(esc).join(' ／ ')}</div>`;
     };
     const TOKEN_JA = { creature: 'クリーチャー', treasure: '宝物', clue: '手掛かり', food: '食物', blood: '血', map: '地図', powerstone: 'パワーストーン', incubator: 'インキュベーター', role: '役割', copy: 'コピー', other: 'その他' };

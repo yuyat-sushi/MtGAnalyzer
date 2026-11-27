@@ -1,14 +1,6 @@
 {
  "untagged": [
   {
-   "pattern": "when this creature enters, earthbend N.",
-   "kind": "triggered",
-   "decks": 231,
-   "cards": [
-    "Badgermole Cub"
-   ]
-  },
-  {
    "pattern": "spell mastery — if there are two or more instant and/or sorcery cards in your graveyard, ~ deals N damage instead.",
    "kind": "spell",
    "decks": 169,
@@ -41,14 +33,6 @@
    ]
   },
   {
-   "pattern": "if a permanent dealt damage by ~ would die this turn, exile it instead.",
-   "kind": "spell",
-   "decks": 123,
-   "cards": [
-    "Torch the Tower"
-   ]
-  },
-  {
    "pattern": "you have no maximum hand size.",
    "kind": "static",
    "decks": 85,
@@ -63,15 +47,6 @@
    "cards": [
     "Professor of Symbology",
     "Gnarled Professor"
-   ]
-  },
-  {
-   "pattern": "when ~ dies, if it was a creature, return it to the battlefield under its owner's control. it's an enchantment.",
-   "kind": "triggered",
-   "decks": 81,
-   "cards": [
-    "Enduring Innocence",
-    "Enduring Curiosity"
    ]
   },
   {
@@ -211,14 +186,6 @@
    ]
   },
   {
-   "pattern": "{N}{g}, {t}: earthbend N. activate only as a sorcery.",
-   "kind": "activated",
-   "decks": 29,
-   "cards": [
-    "Ba Sing Se"
-   ]
-  },
-  {
    "pattern": "{N}{g}{w}{w}: transform ~. activate only as a sorcery.",
    "kind": "activated",
    "decks": 28,
@@ -299,14 +266,6 @@
    ]
   },
   {
-   "pattern": "{N}{u}, {t}: empower jace N.",
-   "kind": "activated",
-   "decks": 16,
-   "cards": [
-    "Theorist's Sanctum"
-   ]
-  },
-  {
    "pattern": "{N}{b}, {t}, exile a creature you control: harness ~.",
    "kind": "activated",
    "decks": 16,
@@ -377,14 +336,6 @@
    "decks": 12,
    "cards": [
     "Worldspine Wurm"
-   ]
-  },
-  {
-   "pattern": "when this creature enters, empower jace N.",
-   "kind": "triggered",
-   "decks": 12,
-   "cards": [
-    "Sanctum Lurker"
    ]
   },
   {
@@ -733,14 +684,6 @@
   },
   {
    "pattern": "until end of turn, you may activate loyalty abilities of jace planeswalkers you control on any player's turn any time you could cast an instant.",
-   "kind": "spell",
-   "decks": 3,
-   "cards": [
-    "Jace's Machinations"
-   ]
-  },
-  {
-   "pattern": "empower jace N.",
    "kind": "spell",
    "decks": 3,
    "cards": [
@@ -1779,14 +1722,6 @@
     ]
    },
    {
-    "name": "Sunspine Lynx",
-    "decks": 77,
-    "oracle": "Players can't gain life.\nDamage can't be prevented.\nWhen this creature enters, it deals damage to each player equal to the number of nonbasic lands that player controls.",
-    "detail": [
-     "hate:lock:other"
-    ]
-   },
-   {
     "name": "Thalia, Guardian of Thraben",
     "decks": 66,
     "oracle": "First strike\nNoncreature spells cost {1} more to cast.",
@@ -1906,14 +1841,6 @@
     "oracle": "Counter target spell unless its controller pays {2}.",
     "detail": [
      "counter:counter:spell"
-    ]
-   },
-   {
-    "name": "Narset, Parter of Veils",
-    "decks": 36,
-    "oracle": "Each opponent can't draw more than one card each turn.\n−2: Look at the top four cards of your library. You may reveal a noncreature, nonland card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.",
-    "detail": [
-     "hate:lock:other"
     ]
    },
    {
@@ -2099,6 +2026,24 @@
      "discard:exile:hand",
      "hate:lock:tax"
     ]
+   },
+   {
+    "name": "Lightstall Inquisitor",
+    "decks": 1,
+    "oracle": "Vigilance\nWhen this creature enters, each opponent exiles a card from their hand and may play that card for as long as it remains exiled. Each spell cast this way costs {1} more to cast. Each land played this way enters tapped.",
+    "detail": [
+     "removal:other:spell",
+     "hate:lock:tax"
+    ]
+   },
+   {
+    "name": "Soul Partition",
+    "decks": 1,
+    "oracle": "Exile target nonland permanent. For as long as that card remains exiled, its owner may play it. A spell cast by an opponent this way costs {2} more to cast.",
+    "detail": [
+     "removal:exile:creature/artifact/enchantment/planeswalker/battle",
+     "hate:lock:tax"
+    ]
    }
   ],
   "ability": [
@@ -2142,6 +2087,32 @@
     "oracle": "Flash\nWhen this creature enters, counter up to one target activated or triggered ability. If an ability of an artifact, creature, or planeswalker is countered this way, that permanent loses all abilities for as long as this creature remains on the battlefield. (Mana abilities can't be targeted.)",
     "detail": [
      "counter:counter:activated ability/triggered ability"
+    ]
+   }
+  ],
+  "action": [
+   {
+    "name": "Sheoldred, the Apocalypse",
+    "decks": 159,
+    "oracle": "Deathtouch\nWhenever you draw a card, you gain 2 life.\nWhenever an opponent draws a card, they lose 2 life.",
+    "detail": [
+     "hate:lock:draw"
+    ]
+   },
+   {
+    "name": "Sunspine Lynx",
+    "decks": 77,
+    "oracle": "Players can't gain life.\nDamage can't be prevented.\nWhen this creature enters, it deals damage to each player equal to the number of nonbasic lands that player controls.",
+    "detail": [
+     "hate:lock:lifegain"
+    ]
+   },
+   {
+    "name": "Narset, Parter of Veils",
+    "decks": 36,
+    "oracle": "Each opponent can't draw more than one card each turn.\n−2: Look at the top four cards of your library. You may reveal a noncreature, nonland card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.",
+    "detail": [
+     "hate:lock:draw"
     ]
    }
   ],
@@ -2568,7 +2539,7 @@
   "combat": []
  },
  "format": "Pioneer",
- "generatedAt": "2026-11-27T21:12:44.633Z",
+ "generatedAt": "2026-11-27T21:34:04.339Z",
  "decks": 1176,
  "otherOnly": [
   {
@@ -2615,14 +2586,6 @@
     "equip@static",
     "misc@static",
     "misc@dies"
-   ]
-  },
-  {
-   "name": "Jace's Machinations",
-   "decks": 3,
-   "typeLine": "Instant",
-   "tags": [
-    "misc@spell"
    ]
   },
   {
@@ -2676,6 +2639,7 @@
    "name": "Sheoldred, the Apocalypse",
    "decks": 159,
    "roles": [
+    "action",
     "reach",
     "beater",
     "lifegain"
@@ -2683,7 +2647,8 @@
    "tags": [
     "combatkw@static",
     "lifegain@other_trigger",
-    "drain@other_trigger"
+    "drain@other_trigger",
+    "hate@other_trigger"
    ]
   },
   {
@@ -2797,7 +2762,7 @@
    "name": "Sunspine Lynx",
    "decks": 77,
    "roles": [
-    "spell",
+    "action",
     "reach",
     "beater"
    ],
@@ -2856,13 +2821,29 @@
    "decks": 68,
    "roles": [
     "tokens",
+    "recursion",
     "ramp",
     "beater"
    ],
    "tags": [
     "evasion@static",
     "token@dies",
-    "mana@dies"
+    "mana@dies",
+    "recursion@dies"
+   ]
+  },
+  {
+   "name": "Enduring Innocence",
+   "decks": 66,
+   "roles": [
+    "draw",
+    "recursion",
+    "lifegain"
+   ],
+   "tags": [
+    "lifegain@static",
+    "draw@other_trigger",
+    "recursion@dies"
    ]
   },
   {
@@ -3080,23 +3061,6 @@
     "recursion@attack",
     "selfmill@attack"
    ]
-  },
-  {
-   "name": "Prismari Command",
-   "decks": 38,
-   "roles": [
-    "removal",
-    "draw",
-    "reach",
-    "fastmana"
-   ],
-   "tags": [
-    "drain@spell",
-    "removal@spell",
-    "draw@spell",
-    "mana@spell",
-    "removal@spell"
-   ]
   }
  ],
  "byCategory": {
@@ -3151,6 +3115,16 @@
      "removal",
      "spell",
      "reach"
+    ]
+   },
+   {
+    "name": "Sheoldred, the Apocalypse",
+    "decks": 159,
+    "roles": [
+     "action",
+     "reach",
+     "beater",
+     "lifegain"
     ]
    },
    {
@@ -3239,7 +3213,7 @@
     "name": "Sunspine Lynx",
     "decks": 77,
     "roles": [
-     "spell",
+     "action",
      "reach",
      "beater"
     ]
@@ -3290,16 +3264,6 @@
     "roles": [
      "removal",
      "draw"
-    ]
-   },
-   {
-    "name": "The Wandering Emperor",
-    "decks": 62,
-    "roles": [
-     "removal",
-     "tokens",
-     "enhance",
-     "lifegain"
     ]
    }
   ],
@@ -3437,6 +3401,7 @@
     "decks": 66,
     "roles": [
      "draw",
+     "recursion",
      "lifegain"
     ]
    },
@@ -3510,15 +3475,6 @@
     "decks": 194,
     "roles": [
      "beater"
-    ]
-   },
-   {
-    "name": "Sheoldred, the Apocalypse",
-    "decks": 159,
-    "roles": [
-     "reach",
-     "beater",
-     "lifegain"
     ]
    },
    {
@@ -3686,6 +3642,14 @@
     "roles": [
      "beater"
     ]
+   },
+   {
+    "name": "Seasoned Hallowblade",
+    "decks": 15,
+    "roles": [
+     "beater",
+     "protection"
+    ]
    }
   ],
   "support": [
@@ -3812,6 +3776,13 @@
     ]
    },
    {
+    "name": "Jace's Machinations",
+    "decks": 3,
+    "roles": [
+     "enhance"
+    ]
+   },
+   {
     "name": "Tail Swipe",
     "decks": 3,
     "roles": [
@@ -3856,13 +3827,6 @@
    },
    {
     "name": "Violent Urge",
-    "decks": 2,
-    "roles": [
-     "enhance"
-    ]
-   },
-   {
-    "name": "Gather Courage",
     "decks": 2,
     "roles": [
      "enhance"
@@ -3935,6 +3899,7 @@
     "decks": 68,
     "roles": [
      "tokens",
+     "recursion",
      "ramp",
      "beater"
     ]
@@ -4116,13 +4081,6 @@
     ]
    },
    {
-    "name": "Jace's Machinations",
-    "decks": 3,
-    "roles": [
-     "other"
-    ]
-   },
-   {
     "name": "Nine Lives",
     "decks": 2,
     "roles": [
@@ -4148,20 +4106,6 @@
    "tags": [
     "haste@static",
     "pump@cast_trigger"
-   ]
-  },
-  {
-   "name": "Sheoldred, the Apocalypse",
-   "decks": 159,
-   "roles": [
-    "reach",
-    "beater",
-    "lifegain"
-   ],
-   "tags": [
-    "combatkw@static",
-    "lifegain@other_trigger",
-    "drain@other_trigger"
    ]
   },
   {
@@ -4489,7 +4433,7 @@
     "lifegain"
    ],
    "tags": [
-    "misc@etb",
+    "pump@etb",
     "misc@static",
     "lifegain@static",
     "drain@static"
@@ -4601,6 +4545,17 @@
    "tags": [
     "lifegain@spell",
     "drain@spell"
+   ]
+  },
+  {
+   "name": "Narcomoeba",
+   "decks": 7,
+   "roles": [
+    "beater"
+   ],
+   "tags": [
+    "evasion@static",
+    "misc@once_trigger"
    ]
   }
  ],
