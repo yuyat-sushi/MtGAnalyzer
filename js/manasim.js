@@ -278,7 +278,8 @@
         key: keySet.has(c.name),
         perm: land ? null : permOf(c)
       };
-      info.disrupt = !info.key && info.cat === 'disrupt';
+      // 構える妨害は、唱えて終わるインスタント・ソーサリーだけ。妨害のパーマネント（Karn、Teferi、Thalia など）は唱えて盤面に置く
+      info.disrupt = !info.key && info.cat === 'disrupt' && /\b(Instant|Sorcery)\b/.test(frontType(c));
       for (let i = 0; i < e.qty; i++) cards.push(info);
     }
     const lands = cards.filter(x => x.land);
@@ -341,18 +342,22 @@
     const rocks = []; // マナを出すパーマネント {amt, colors, sick, used}
     const perms = []; // 起動型のサーチを持つパーマネント（Expedition Map など）
     const tron = deck.tronTypes;
-    const g = { mana: [], idle: [], unused: [], held: [], inHand: [], cast: {}, seen: {}, board: [], combo: [] };
+    const g = { mana: [], idle: [], unused: [], held: [], inHand: [], cast: {}, seen: {}, board: [], combo: [], names: [] };
     // 盤面（土地以外）: クリーチャー {power, toughness}、それ以外のパーマネントの数、毎ターン出るトークン
-    const board = { creatures: [], artifact: 0, enchantment: 0, planeswalker: 0, battle: 0, makers: [] };
+    const board = { creatures: [], artifact: 0, enchantment: 0, planeswalker: 0, battle: 0, makers: [], names: { artifact: [], enchantment: [], planeswalker: [] } };
     const seenNames = new Set();
     const addPerm = c => {
       const pm = c.perm;
       if (!pm) return;
-      pm.etbTokens.forEach(t => board.creatures.push({ ...t }));
+      const front = String(c.name).split(' // ')[0];
+      const tokName = t => `${t.power}/${t.toughness} トークン（${front}）`;
+      pm.etbTokens.forEach(t => board.creatures.push({ ...t, name: tokName(t) }));
       if (!pm.types.length) return;
-      if (pm.types.includes('creature')) board.creatures.push({ power: pm.power, toughness: pm.toughness });
-      ['artifact', 'enchantment', 'planeswalker', 'battle'].forEach(t => { if (pm.types.includes(t) && !pm.types.includes('creature')) board[t]++; });
-      if (pm.turnTokens.length) board.makers.push(pm.turnTokens);
+      if (pm.types.includes('creature')) board.creatures.push({ power: pm.power, toughness: pm.toughness, name: front });
+      ['artifact', 'enchantment', 'planeswalker', 'battle'].forEach(t => {
+        if (pm.types.includes(t) && !pm.types.includes('creature')) { board[t]++; if (board.names[t]) board.names[t].push(front); }
+      });
+      if (pm.turnTokens.length) board.makers.push(pm.turnTokens.map(t => ({ ...t, name: tokName(t) })));
     }; // cast/seen: 名前 → 最初に唱えた／手札にあったターン
     let floated = null; // バウンスランドで戻す前に出したマナ {amt, colors, used}
     let landDrop = true, castThisTurn = 0, turn = 0, otherSpent = 0;
@@ -619,6 +624,7 @@
         t1: cr.filter(x => x.toughness <= 1).length, t2: cr.filter(x => x.toughness <= 2).length, t3: cr.filter(x => x.toughness <= 3).length,
         artifact: board.artifact, enchantment: board.enchantment, planeswalker: board.planeswalker
       });
+      g.names.push({ creature: new Set(cr.map(x => x.name)), artifact: new Set(board.names.artifact), enchantment: new Set(board.names.enchantment), planeswalker: new Set(board.names.planeswalker) });
       g.combo.push((deck.combos || []).some(cb => cb.pieces.every(gr => gr.some(n => seenNames.has(nk(n))))));
       g.mana.push(total);
       g.unused.push(held ? 0 : left);
@@ -637,6 +643,8 @@
     const BK = ['creatures', 'power', 'toughness', 't1', 't2', 't3', 'artifact', 'enchantment', 'planeswalker'];
     const board = Array.from({ length: turns }, () => Object.fromEntries(BK.map(k => [k, 0])));
     const wide = Array(turns).fill(0), combo = Array(turns).fill(0);
+    const NT = ['creature', 'artifact', 'enchantment', 'planeswalker'];
+    const names = Object.fromEntries(NT.map(k => [k, {}])); // 種類 → カード名 → ターンごとの「戦場にある」回数
     const keys = new Set(keyNames);
     for (let n = 0; n < iters; n++) {
       const r = playGame(deck, onPlay, turns, rng);
@@ -647,6 +655,7 @@
       r.inHand.forEach((x, t) => { if (x) inHand[t]++; });
       r.board.forEach((b, t) => { BK.forEach(k => { board[t][k] += b[k]; }); if (b.creatures >= 3) wide[t]++; });
       r.combo.forEach((x, t) => { if (x) combo[t]++; });
+      r.names.forEach((nm, t) => NT.forEach(k => nm[k].forEach(n => { (names[k][n] = names[k][n] || Array(turns).fill(0))[t]++; })));
       for (const [name, t] of Object.entries(r.seen)) {
         (seenBy[name] = seenBy[name] || Array(turns).fill(0));
         for (let k = t - 1; k < turns; k++) seenBy[name][k]++;
@@ -665,7 +674,9 @@
       castBy: Object.fromEntries(Object.entries(castBy).map(([k, v]) => [k, f(v)])),
       seenBy: Object.fromEntries(Object.entries(seenBy).map(([k, v]) => [k, f(v)])),
       board: board.map(b => Object.fromEntries(BK.map(k => [k, b[k] / iters]))),
-      wide: f(wide), combo: f(combo)
+      wide: f(wide), combo: f(combo),
+      // 種類ごとに、そのターンに戦場に1枚以上ある確率（カード名・トークンは「P/T トークン（出したカード）」）
+      names: Object.fromEntries(NT.map(k => [k, Object.fromEntries(Object.entries(names[k]).map(([n, v]) => [n, f(v)]))]))
     };
   }
 

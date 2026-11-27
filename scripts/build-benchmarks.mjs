@@ -242,25 +242,28 @@ function representative(ds) {
   return sample[best];
 }
 const r2 = a => a.map(x => +x.toFixed(2));
-function simOf(ds, threats) {
+const r2o = o => Object.fromEntries(Object.entries(o).map(([k, v]) => [k, +v.toFixed(2)]));
+// 代表リストを一人回しして、3・4・5ターン目の盤面・マナ・妨害・コンボを保存する（対策の傾向を決めるため）
+function simOf(ds) {
   const rep = representative(ds);
   if (!rep) return null;
-  // 一人回しの主力はカードの正式名（両面カードは「表 // 裏」）で指定する
-  const full = n => (rep.cards.find(c => c.name.split(' // ')[0] === n) || { name: n }).name;
-  // リソース（ドロー・サーチなど）以外の脅威を主力にする（Primeval Titan のように主な採用理由がマナのフィニッシャーも含める）
-  let keys = threats.filter(t => t.cat !== 'resource').map(t => full(t.name));
-  if (!keys.length) keys = threats.map(t => full(t.name));
-  if (!rep || !keys.length) return null;
-  const r = ManaSim.simulate(rep.cards.map(c => ({ qty: c.qty, card: c.card, cat: c.cat })), { keys, iters: 800, enablers: false });
+  const lands = rep.cards.filter(c => c.roles.includes('land')).reduce((s, c) => s + c.qty, 0);
+  const combos = Combos.detect({ main: rep.cards.map(c => ({ name: c.name, qty: c.qty })) }, lands)
+    .filter(x => x.complete).map(x => ({ name: x.combo.name, pieces: x.combo.pieces }));
+  const r = ManaSim.simulate(rep.cards.map(c => ({ qty: c.qty, card: c.card, cat: c.cat })), { iters: 800, combos });
   if (!r) return null;
-  const t50 = r.play.keyBy.findIndex(x => x >= 0.5);
-  return {
-    keys: keys.map(k => k.split(' // ')[0]),
-    keyBy: { play: r2(r.play.keyBy), draw: r2(r.draw.keyBy) },
-    // 主力が50%以上の確率で出ているターン（先手）。相手の「キーターン」
-    keyTurn: t50 >= 0 ? t50 + 1 : null,
-    inHand: r2(r.play.inHand), held: r2(r.play.held), idle: r2(r.play.idle)
-  };
+  const side = s => ({
+    board: [3, 4, 5].map(t => r2o(s.board[t - 1])),
+    wide: r2([3, 4, 5].map(t => s.wide[t - 1])),
+    mana: r2([3, 4, 5].map(t => s.avg[t - 1])),
+    held: r2([3, 4, 5].map(t => s.held[t - 1])),
+    combo: r2([3, 4, 5].map(t => s.combo[t - 1])),
+    // 3・4・5ターン目に戦場にある確率が高いカード（種類ごとに、4ターン目に5%以上のものを上位8枚）
+    cards: Object.fromEntries(Object.entries(s.names).map(([k, m]) => [k,
+      Object.entries(m).map(([name, v]) => ({ name, r: r2([3, 4, 5].map(t => v[t - 1])) }))
+        .filter(x => Math.max(...x.r) >= 0.05).sort((a, b) => b.r[1] - a.r[1]).slice(0, 8)]))
+  });
+  return { turns: [3, 4, 5], combos: combos.map(c => c.name), hasDisrupt: r.hasDisrupt, play: side(r.play), draw: side(r.draw) };
 }
 
 // ---------- メイン ----------
@@ -402,7 +405,7 @@ async function main() {
         // パーマネントの構成（中央値）と脅威カード、代表リストの一人回し
         perm: Object.fromEntries(Object.entries(a.perm).map(([k, v]) => [k, v.median])),
         threats,
-        sim: simOf(ds, threats)
+        sim: simOf(ds)
       };
     });
 

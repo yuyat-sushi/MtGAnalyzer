@@ -1,11 +1,42 @@
 {
  "comboCandidates": [
   {
+   "name": "Golgari Midrange系（推定）",
+   "share": 0.1,
+   "comboCards": [
+    "Unholy Annex // Ritual Chamber"
+   ]
+  },
+  {
+   "name": "Mono Red Aggro",
+   "share": 0.076,
+   "comboCards": [
+    "Monstrous Rage"
+   ]
+  },
+  {
+   "name": "Izzet Prowess",
+   "share": 0.061,
+   "comboCards": [
+    "Stormchaser's Talent",
+    "Monstrous Rage"
+   ]
+  },
+  {
    "name": "Mono Green Devotion",
    "share": 0.059,
    "comboCards": [
     "Storm the Festival",
+    "Old-Growth Troll",
     "Garruk, Curse Breaker"
+   ]
+  },
+  {
+   "name": "Izzet Cauldron",
+   "share": 0.052,
+   "comboCards": [
+    "Stormchaser's Talent",
+    "Jadzi, Steward of Fate // Oracle's Gift"
    ]
   },
   {
@@ -13,7 +44,15 @@
    "share": 0.042,
    "comboCards": [
     "Indomitable Creativity",
-    "Raph & Mikey, Troublemakers"
+    "Raph & Mikey, Troublemakers",
+    "Fable of the Mirror-Breaker // Reflection of Kiki-Jiki"
+   ]
+  },
+  {
+   "name": "Orzhov Greasefang",
+   "share": 0.038,
+   "comboCards": [
+    "Parhelion II"
    ]
   },
   {
@@ -28,7 +67,26 @@
    "share": 0.028,
    "comboCards": [
     "Scapeshift",
+    "Thassa's Oracle",
+    "The Wandering Minstrel",
     "Kenrith, the Returned King"
+   ]
+  },
+  {
+   "name": "Jund Biotech",
+   "share": 0.024,
+   "comboCards": [
+    "Biotech Specialist",
+    "Experimental Synthesizer",
+    "Oni-Cult Anvil"
+   ]
+  },
+  {
+   "name": "Abzan Greasefang",
+   "share": 0.022,
+   "comboCards": [
+    "Esika's Chariot",
+    "Parhelion II"
    ]
   },
   {
@@ -40,10 +98,40 @@
    ]
   },
   {
+   "name": "Boros Convoke",
+   "share": 0.014,
+   "comboCards": [
+    "Cosmogrand Zenith"
+   ]
+  },
+  {
+   "name": "Boros Prowess系（推定）",
+   "share": 0.013,
+   "comboCards": [
+    "Monstrous Rage"
+   ]
+  },
+  {
+   "name": "Mono White Humans",
+   "share": 0.012,
+   "comboCards": [
+    "Adeline, Resplendent Cathar",
+    "Basri, Tomorrow's Champion"
+   ]
+  },
+  {
    "name": "Rakdos Aggro系（推定）",
    "share": 0.011,
    "comboCards": [
+    "Monstrous Rage",
     "Leyline of Resonance"
+   ]
+  },
+  {
+   "name": "Dimir SelfBounce",
+   "share": 0.01,
+   "comboCards": [
+    "Stormchaser's Talent"
    ]
   },
   {
@@ -54,11 +142,45 @@
    ]
   },
   {
+   "name": "Izzet (Unknown)",
+   "share": 0.01,
+   "comboCards": [
+    "Stormchaser's Talent",
+    "Pinnacle Emissary"
+   ]
+  },
+  {
    "name": "Temur Creativity",
    "share": 0.01,
    "comboCards": [
+    "Fable of the Mirror-Breaker // Reflection of Kiki-Jiki",
     "Indomitable Creativity",
-    "Raph & Mikey, Troublemakers"
+    "Raph & Mikey, Troublemakers",
+    "Worldspine Wurm"
+   ]
+  },
+  {
+   "name": "Orzhov Midrange系（推定）",
+   "share": 0.008,
+   "comboCards": [
+    "Caretaker's Talent",
+    "Unholy Annex // Ritual Chamber",
+    "Bitterbloom Bearer"
+   ]
+  },
+  {
+   "name": "Dimir Midrange系（推定）",
+   "share": 0.008,
+   "comboCards": [
+    "Stormchaser's Talent"
+   ]
+  },
+  {
+   "name": "Gruul Stompy系（推定）",
+   "share": 0.008,
+   "comboCards": [
+    "Elder Gargaroth",
+    "Vastlands Scavenger // Bind to Life"
    ]
   },
   {
@@ -70,12 +192,21 @@
    ]
   },
   {
+   "name": "Izzet Prowess系（推定）",
+   "share": 0.004,
+   "comboCards": [
+    "Stormchaser's Talent",
+    "Monstrous Rage"
+   ]
+  },
+  {
    "name": "Mono Green Stompy系（推定）",
    "share": 0.004,
    "comboCards": [
     "Fight Rigging",
     "Turntimber Symbiosis // Turntimber, Serpentine Wood",
-    "Bramble Familiar // Fetch Quest"
+    "Bramble Familiar // Fetch Quest",
+    "Elder Gargaroth"
    ]
   }
  ],
@@ -250,14 +381,6 @@
     ]
    },
    {
-    "name": "Teferi, Hero of Dominaria",
-    "decks": 48,
-    "oracle": "+1: Draw a card. At the beginning of the next end step, untap up to two lands.\n−3: Put target nonland permanent into its owner's library third from the top.\n−8: You get an emblem with \"Whenever you draw a card, exile target permanent an opponent controls.\"",
-    "detail": [
-     "removal:exile:creature/artifact/enchantment/planeswalker/battle/land"
-    ]
-   },
-   {
     "name": "Into the Flood Maw",
     "decks": 47,
     "oracle": "Gift a tapped Fish (You may promise an opponent a gift as you cast this spell. If you do, they create a tapped 1/1 blue Fish creature token before its other effects.)\nReturn target creature an opponent controls to its owner's hand. If the gift was promised, instead return target nonland permanent an opponent controls to its owner's hand.",
@@ -402,6 +525,14 @@
     "detail": [
      "hate:lock:spell",
      "removal:damage:creature/planeswalker/battle/player"
+    ]
+   },
+   {
+    "name": "Thundering Broodwagon",
+    "decks": 25,
+    "oracle": "Reach, menace\nWhen this Vehicle enters, destroy target nonland permanent an opponent controls with mana value 4 or less.\nCrew 3\nCycling {2} ({2}, Discard this card: Draw a card.)",
+    "detail": [
+     "removal:destroy:creature/artifact/enchantment/planeswalker/battle"
     ]
    }
   ],
@@ -866,15 +997,6 @@
     ]
    },
    {
-    "name": "Chandra, Torch of Defiance",
-    "decks": 2,
-    "oracle": "+1: Exile the top card of your library. You may cast that card. If you don't, Chandra deals 2 damage to each opponent.\n+1: Add {R}{R}.\n−3: Chandra deals 4 damage to target creature.\n−7: You get an emblem with \"Whenever you cast a spell, this emblem deals 5 damage to any target.\"",
-    "detail": [
-     "removal:damage:creature",
-     "removal:damage:creature/planeswalker/battle/player/spell"
-    ]
-   },
-   {
     "name": "Dispelling Exhale",
     "decks": 1,
     "oracle": "As an additional cost to cast this spell, you may behold a Dragon. (You may choose a Dragon you control or reveal a Dragon card from your hand.)\nCounter target spell unless its controller pays {2}. If a Dragon was beheld, counter that spell unless its controller pays {4} instead.",
@@ -904,6 +1026,15 @@
     "oracle": "Flying\nWhen this creature enters, look at target opponent's hand. You may exile a nonland card from it. For as long as that card remains exiled, its owner may play it. A spell cast this way costs {2} more to cast.",
     "detail": [
      "discard:exile:hand",
+     "hate:lock:tax"
+    ]
+   },
+   {
+    "name": "Lightstall Inquisitor",
+    "decks": 1,
+    "oracle": "Vigilance\nWhen this creature enters, each opponent exiles a card from their hand and may play that card for as long as it remains exiled. Each spell cast this way costs {1} more to cast. Each land played this way enters tapped.",
+    "detail": [
+     "removal:other:spell",
      "hate:lock:tax"
     ]
    }
@@ -1186,14 +1317,6 @@
   ],
   "manalock": [
    {
-    "name": "Teferi, Hero of Dominaria",
-    "decks": 48,
-    "oracle": "+1: Draw a card. At the beginning of the next end step, untap up to two lands.\n−3: Put target nonland permanent into its owner's library third from the top.\n−8: You get an emblem with \"Whenever you draw a card, exile target permanent an opponent controls.\"",
-    "detail": [
-     "removal:exile:creature/artifact/enchantment/planeswalker/battle/land"
-    ]
-   },
-   {
     "name": "Divide by Zero",
     "decks": 42,
     "oracle": "Return target spell or permanent with mana value 1 or greater to its owner's hand.\nLearn. (You may reveal a Lesson card you own from outside the game and put it into your hand, or discard a card to draw a card.)",
@@ -1263,7 +1386,7 @@
   "combat": []
  },
  "format": "Pioneer",
- "generatedAt": "2026-11-27T13:19:47.681Z",
+ "generatedAt": "2026-11-27T14:42:25.530Z",
  "decks": 1143,
  "otherOnly": [
   {
@@ -1309,21 +1432,9 @@
    "tags": []
   },
   {
-   "name": "Break Out",
-   "decks": 3,
-   "typeLine": "Sorcery",
-   "tags": []
-  },
-  {
    "name": "Nine Lives",
    "decks": 2,
    "typeLine": "Enchantment",
-   "tags": []
-  },
-  {
-   "name": "Aqueous Form",
-   "decks": 1,
-   "typeLine": "Enchantment — Aura",
    "tags": []
   },
   {
@@ -1334,20 +1445,6 @@
   }
  ],
  "manyRoles": [
-  {
-   "name": "Stormchaser's Talent",
-   "decks": 170,
-   "roles": [
-    "recursion",
-    "engine",
-    "tokens"
-   ],
-   "tags": [
-    "token@etb",
-    "recursion@once_trigger",
-    "token@cast_trigger"
-   ]
-  },
   {
    "name": "Burst Lightning",
    "decks": 157,
@@ -1366,8 +1463,8 @@
    "decks": 155,
    "roles": [
     "draw",
-    "engine",
-    "beater"
+    "beater",
+    "lifegain"
    ],
    "tags": [
     "lifegain@other_trigger",
@@ -1378,10 +1475,10 @@
    "name": "Unholy Annex // Ritual Chamber",
    "decks": 151,
    "roles": [
+    "tokens",
     "draw",
-    "engine",
     "reach",
-    "tokens"
+    "lifegain"
    ],
    "tags": [
     "lifegain@each_turn",
@@ -1394,9 +1491,9 @@
    "name": "Graveyard Trespasser // Graveyard Glutton",
    "decks": 122,
    "roles": [
-    "engine",
     "reach",
-    "beater"
+    "beater",
+    "lifegain"
    ],
    "tags": [
     "lifegain@etb",
@@ -1411,7 +1508,7 @@
    "roles": [
     "removal",
     "draw",
-    "engine"
+    "lifegain"
    ],
    "tags": [
     "lifegain@loyalty",
@@ -1420,34 +1517,31 @@
    ]
   },
   {
+   "name": "Consider",
+   "decks": 108,
+   "roles": [
+    "draw",
+    "selfmill",
+    "topmanip"
+   ],
+   "tags": [
+    "topmanip@spell",
+    "selfmill@spell",
+    "draw@spell"
+   ]
+  },
+  {
    "name": "The Theorist, Jace Beleren",
    "decks": 93,
    "roles": [
     "removal",
-    "draw",
-    "engine",
-    "enhance"
+    "tokens",
+    "draw"
    ],
    "tags": [
     "draw@each_turn",
     "token@loyalty",
-    "removal@loyalty",
-    "draw@loyalty",
-    "pump@loyalty"
-   ]
-  },
-  {
-   "name": "The Sackville-Bagginses",
-   "decks": 80,
-   "roles": [
-    "draw",
-    "engine",
-    "reach"
-   ],
-   "tags": [
-    "draw@once_trigger",
-    "mana@once_trigger",
-    "drain@other_trigger"
+    "removal@loyalty"
    ]
   },
   {
@@ -1455,7 +1549,6 @@
    "decks": 76,
    "roles": [
     "spell",
-    "finisher",
     "reach",
     "beater"
    ],
@@ -1465,38 +1558,11 @@
    ]
   },
   {
-   "name": "Vivi Ornitier",
-   "decks": 69,
-   "roles": [
-    "ramp",
-    "engine",
-    "reach"
-   ],
-   "tags": [
-    "mana@activated",
-    "drain@cast_trigger",
-    "pump@cast_trigger"
-   ]
-  },
-  {
-   "name": "Greasefang, Okiba Boss",
-   "decks": 68,
-   "roles": [
-    "recursion",
-    "engine",
-    "beater"
-   ],
-   "tags": [
-    "recursion@each_turn"
-   ]
-  },
-  {
    "name": "Outcaster Trailblazer",
    "decks": 68,
    "roles": [
     "draw",
     "ramp",
-    "engine",
     "beater"
    ],
    "tags": [
@@ -1505,16 +1571,17 @@
    ]
   },
   {
-   "name": "Biotech Specialist",
-   "decks": 65,
+   "name": "Storm the Festival",
+   "decks": 68,
    "roles": [
-    "engine",
-    "reach",
-    "tokens"
+    "cheat",
+    "recursion",
+    "topmanip"
    ],
    "tags": [
-    "token@etb",
-    "drain@other_trigger"
+    "topmanip@spell",
+    "cheat@spell",
+    "recursion@spell"
    ]
   },
   {
@@ -1522,7 +1589,7 @@
    "decks": 64,
    "roles": [
     "removal",
-    "engine",
+    "tokens",
     "enhance"
    ],
    "tags": [
@@ -1536,8 +1603,8 @@
    "decks": 64,
    "roles": [
     "spell",
-    "draw",
-    "tokens"
+    "tokens",
+    "draw"
    ],
    "tags": [
     "counter@spell",
@@ -1546,24 +1613,13 @@
    ]
   },
   {
-   "name": "Raph & Mikey, Troublemakers",
-   "decks": 62,
-   "roles": [
-    "cheatloop",
-    "finisher",
-    "beater"
-   ],
-   "tags": [
-    "cheat@attack"
-   ]
-  },
-  {
    "name": "The Wandering Emperor",
    "decks": 61,
    "roles": [
     "removal",
-    "engine",
-    "enhance"
+    "tokens",
+    "enhance",
+    "lifegain"
    ],
    "tags": [
     "pump@loyalty",
@@ -1573,26 +1629,16 @@
    ]
   },
   {
-   "name": "Hearth Elemental // Stoke Genius",
-   "decks": 59,
-   "roles": [
-    "draw",
-    "finisher",
-    "beater"
-   ],
-   "tags": [
-    "draw@spell"
-   ]
-  },
-  {
    "name": "Prismari Charm",
    "decks": 59,
    "roles": [
     "removal",
     "draw",
-    "selfmill"
+    "selfmill",
+    "topmanip"
    ],
    "tags": [
+    "topmanip@spell",
     "draw@spell",
     "selfmill@spell",
     "removal@spell"
@@ -1603,10 +1649,11 @@
    "decks": 53,
    "roles": [
     "draw",
-    "finisher",
-    "beater"
+    "beater",
+    "lifegain"
    ],
    "tags": [
+    "lifegain@static",
     "draw@etb"
    ]
   },
@@ -1615,8 +1662,8 @@
    "decks": 53,
    "roles": [
     "untap",
+    "tokens",
     "draw",
-    "engine",
     "enhance"
    ],
    "tags": [
@@ -1631,27 +1678,12 @@
    "decks": 52,
    "roles": [
     "gyhate",
-    "finisher",
-    "beater"
+    "beater",
+    "lifegain"
    ],
    "tags": [
+    "lifegain@static",
     "gyhate@static"
-   ]
-  },
-  {
-   "name": "Teferi, Hero of Dominaria",
-   "decks": 48,
-   "roles": [
-    "removal",
-    "manalock",
-    "untap",
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "draw@loyalty",
-    "untap@loyalty",
-    "removal@loyalty"
    ]
   },
   {
@@ -1659,7 +1691,6 @@
    "decks": 47,
    "roles": [
     "removal",
-    "engine",
     "reach",
     "beater"
    ],
@@ -1674,7 +1705,6 @@
    "roles": [
     "draw",
     "ramp",
-    "engine",
     "reach"
    ],
    "tags": [
@@ -1688,8 +1718,8 @@
    "decks": 44,
    "roles": [
     "recursion",
-    "engine",
-    "reach"
+    "reach",
+    "lifegain"
    ],
    "tags": [
     "lifegain@etb",
@@ -1704,7 +1734,8 @@
     "removal",
     "tutor",
     "reach",
-    "beater"
+    "beater",
+    "lifegain"
    ],
    "tags": [
     "drain@etb",
@@ -1743,15 +1774,103 @@
    ]
   },
   {
-   "name": "Gran-Gran",
+   "name": "Aven Interrupter",
    "decks": 37,
+   "roles": [
+    "spell",
+    "gyhate",
+    "beater"
+   ],
+   "tags": [
+    "counter@etb",
+    "hate@static"
+   ]
+  },
+  {
+   "name": "Overlord of the Balemurk",
+   "decks": 36,
+   "roles": [
+    "recursion",
+    "selfmill",
+    "beater"
+   ],
+   "tags": [
+    "recursion@etb",
+    "selfmill@etb",
+    "recursion@attack",
+    "selfmill@attack"
+   ]
+  },
+  {
+   "name": "Memory Deluge",
+   "decks": 35,
+   "roles": [
+    "draw",
+    "recursion",
+    "topselect"
+   ],
+   "tags": [
+    "topselect@spell",
+    "draw@spell",
+    "recursion@spell"
+   ]
+  },
+  {
+   "name": "Thor, God of Thunder",
+   "decks": 35,
+   "roles": [
+    "removal",
+    "spell",
+    "reach",
+    "beater"
+   ],
+   "tags": [
+    "drain@cast_trigger",
+    "removal@cast_trigger"
+   ]
+  },
+  {
+   "name": "Archon of Emeria",
+   "decks": 33,
+   "roles": [
+    "spell",
+    "manalock",
+    "beater"
+   ],
+   "tags": [
+    "hate@static",
+    "hate@static"
+   ]
+  },
+  {
+   "name": "Kaito, Bane of Nightmares",
+   "decks": 33,
+   "roles": [
+    "draw",
+    "selfmill",
+    "topmanip",
+    "enhance",
+    "protection"
+   ],
+   "tags": [
+    "protection@static",
+    "pump@loyalty",
+    "topmanip@loyalty",
+    "draw@loyalty",
+    "selfmill@loyalty"
+   ]
+  },
+  {
+   "name": "Spelunking",
+   "decks": 32,
    "roles": [
     "draw",
     "ramp",
-    "engine"
+    "lifegain"
    ],
    "tags": [
-    "draw@other_trigger"
+    "lifegain@etb",
+    "draw@etb"
    ]
   }
  ],
@@ -1813,7 +1932,8 @@
     "name": "Torch the Tower",
     "decks": 119,
     "roles": [
-     "removal"
+     "removal",
+     "topmanip"
     ]
    },
    {
@@ -1822,7 +1942,7 @@
     "roles": [
      "removal",
      "draw",
-     "engine"
+     "lifegain"
     ]
    },
    {
@@ -1853,9 +1973,8 @@
     "decks": 93,
     "roles": [
      "removal",
-     "draw",
-     "engine",
-     "enhance"
+     "tokens",
+     "draw"
     ]
    },
    {
@@ -1878,7 +1997,6 @@
     "decks": 76,
     "roles": [
      "spell",
-     "finisher",
      "reach",
      "beater"
     ]
@@ -1896,7 +2014,7 @@
     "decks": 64,
     "roles": [
      "removal",
-     "engine",
+     "tokens",
      "enhance"
     ]
    },
@@ -1905,8 +2023,8 @@
     "decks": 64,
     "roles": [
      "spell",
-     "draw",
-     "tokens"
+     "tokens",
+     "draw"
     ]
    },
    {
@@ -1944,8 +2062,9 @@
     "decks": 61,
     "roles": [
      "removal",
-     "engine",
-     "enhance"
+     "tokens",
+     "enhance",
+     "lifegain"
     ]
    },
    {
@@ -1961,24 +2080,15 @@
     "name": "Emberheart Challenger",
     "decks": 175,
     "roles": [
-     "draw",
-     "engine"
-    ]
-   },
-   {
-    "name": "Stormchaser's Talent",
-    "decks": 170,
-    "roles": [
-     "recursion",
-     "engine",
-     "tokens"
+     "draw"
     ]
    },
    {
     "name": "Sleight of Hand",
     "decks": 170,
     "roles": [
-     "draw"
+     "draw",
+     "topselect"
     ]
    },
    {
@@ -1986,18 +2096,8 @@
     "decks": 155,
     "roles": [
      "draw",
-     "engine",
-     "beater"
-    ]
-   },
-   {
-    "name": "Unholy Annex // Ritual Chamber",
-    "decks": 151,
-    "roles": [
-     "draw",
-     "engine",
-     "reach",
-     "tokens"
+     "beater",
+     "lifegain"
     ]
    },
    {
@@ -2005,7 +2105,8 @@
     "decks": 108,
     "roles": [
      "draw",
-     "selfmill"
+     "selfmill",
+     "topmanip"
     ]
    },
    {
@@ -2019,22 +2120,23 @@
     "name": "Seasoned Cryomancer",
     "decks": 88,
     "roles": [
-     "draw",
-     "engine"
+     "draw"
     ]
    },
    {
     "name": "Opt",
     "decks": 88,
     "roles": [
-     "draw"
+     "draw",
+     "topmanip"
     ]
    },
    {
     "name": "Flow State",
     "decks": 86,
     "roles": [
-     "draw"
+     "draw",
+     "topselect"
     ]
    },
    {
@@ -2043,14 +2145,6 @@
     "roles": [
      "draw",
      "enhance"
-    ]
-   },
-   {
-    "name": "Fable of the Mirror-Breaker // Reflection of Kiki-Jiki",
-    "decks": 83,
-    "roles": [
-     "draw",
-     "tokens"
     ]
    },
    {
@@ -2074,7 +2168,6 @@
     "decks": 80,
     "roles": [
      "draw",
-     "engine",
      "reach"
     ]
    },
@@ -2090,7 +2183,8 @@
     "name": "Consult the Star Charts",
     "decks": 77,
     "roles": [
-     "draw"
+     "draw",
+     "topselect"
     ]
    },
    {
@@ -2098,7 +2192,6 @@
     "decks": 68,
     "roles": [
      "recursion",
-     "engine",
      "beater"
     ]
    },
@@ -2108,7 +2201,14 @@
     "roles": [
      "draw",
      "ramp",
-     "engine",
+     "beater"
+    ]
+   },
+   {
+    "name": "Cavalier of Thorns",
+    "decks": 67,
+    "roles": [
+     "topmanip",
      "beater"
     ]
    },
@@ -2116,8 +2216,7 @@
     "name": "Kiora, Behemoth Beckoner",
     "decks": 67,
     "roles": [
-     "draw",
-     "engine"
+     "draw"
     ]
    },
    {
@@ -2139,7 +2238,7 @@
     "decks": 61,
     "roles": [
      "draw",
-     "engine"
+     "lifegain"
     ]
    },
    {
@@ -2154,25 +2253,31 @@
     "decks": 59,
     "roles": [
      "draw",
-     "finisher",
      "beater"
+    ]
+   },
+   {
+    "name": "Greedy Freebooter",
+    "decks": 58,
+    "roles": [
+     "topmanip"
+    ]
+   },
+   {
+    "name": "The Legend of Roku // Avatar Roku",
+    "decks": 54,
+    "roles": [
+     "draw",
+     "ramp"
     ]
    }
   ],
-  "win": [
+  "damage": [
    {
     "name": "Monastery Swiftspear",
     "decks": 191,
     "roles": [
      "beater"
-    ]
-   },
-   {
-    "name": "Monstrous Rage",
-    "decks": 147,
-    "roles": [
-     "tokens",
-     "enhance"
     ]
    },
    {
@@ -2193,9 +2298,9 @@
     "name": "Graveyard Trespasser // Graveyard Glutton",
     "decks": 122,
     "roles": [
-     "engine",
      "reach",
-     "beater"
+     "beater",
+     "lifegain"
     ]
    },
    {
@@ -2203,14 +2308,6 @@
     "decks": 99,
     "roles": [
      "reach",
-     "beater"
-    ]
-   },
-   {
-    "name": "Parhelion II",
-    "decks": 68,
-    "roles": [
-     "engine",
      "beater"
     ]
    },
@@ -2229,42 +2326,9 @@
     ]
    },
    {
-    "name": "Cavalier of Thorns",
-    "decks": 67,
-    "roles": [
-     "finisher",
-     "beater"
-    ]
-   },
-   {
-    "name": "Old-Growth Troll",
-    "decks": 67,
-    "roles": [
-     "tokens",
-     "beater"
-    ]
-   },
-   {
-    "name": "Biotech Specialist",
-    "decks": 65,
-    "roles": [
-     "engine",
-     "reach",
-     "tokens"
-    ]
-   },
-   {
-    "name": "Greedy Freebooter",
-    "decks": 58,
-    "roles": [
-     "beater"
-    ]
-   },
-   {
     "name": "Eddymurk Crab",
     "decks": 58,
     "roles": [
-     "finisher",
      "beater"
     ]
    },
@@ -2272,7 +2336,6 @@
     "name": "Sunderflock",
     "decks": 57,
     "roles": [
-     "finisher",
      "beater"
     ]
    },
@@ -2289,13 +2352,6 @@
     "decks": 54,
     "roles": [
      "beater"
-    ]
-   },
-   {
-    "name": "Witch's Oven",
-    "decks": 44,
-    "roles": [
-     "engine"
     ]
    },
    {
@@ -2328,14 +2384,6 @@
     ]
    },
    {
-    "name": "Oni-Cult Anvil",
-    "decks": 28,
-    "roles": [
-     "engine",
-     "reach"
-    ]
-   },
-   {
     "name": "Polukranos Reborn // Polukranos, Engine of Ruin",
     "decks": 28,
     "roles": [
@@ -2343,21 +2391,78 @@
     ]
    },
    {
-    "name": "Esika's Chariot",
-    "decks": 27,
+    "name": "Eyetwitch",
+    "decks": 25,
     "roles": [
-     "engine",
-     "tokens",
      "beater"
+    ]
+   },
+   {
+    "name": "Ornithopter",
+    "decks": 24,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
+    "name": "Slickshot Show-Off",
+    "decks": 22,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
+    "name": "Eidolon of the Great Revel",
+    "decks": 22,
+    "roles": [
+     "reach",
+     "beater"
+    ]
+   },
+   {
+    "name": "The Queen of Dale",
+    "decks": 19,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
+    "name": "Venerated Loxodon",
+    "decks": 16,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
+    "name": "Craterhoof Behemoth",
+    "decks": 16,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
+    "name": "Seasoned Hallowblade",
+    "decks": 15,
+    "roles": [
+     "beater",
+     "protection"
+    ]
+   },
+   {
+    "name": "Rattlechains",
+    "decks": 15,
+    "roles": [
+     "beater",
+     "protection"
     ]
    }
   ],
   "support": [
    {
-    "name": "Guardian of New Benalia",
-    "decks": 46,
+    "name": "Witch's Oven",
+    "decks": 44,
     "roles": [
-     "protection"
+     "lifegain"
     ]
    },
    {
@@ -2435,7 +2540,15 @@
     "name": "Bofur, Reliable Guardian // Concerted Care",
     "decks": 9,
     "roles": [
-     "protection"
+     "protection",
+     "lifegain"
+    ]
+   },
+   {
+    "name": "Gifted Aetherborn",
+    "decks": 8,
+    "roles": [
+     "lifegain"
     ]
    },
    {
@@ -2489,10 +2602,24 @@
     ]
    },
    {
+    "name": "Prosperous Innkeeper",
+    "decks": 2,
+    "roles": [
+     "lifegain"
+    ]
+   },
+   {
     "name": "Voice of the Blessed",
     "decks": 2,
     "roles": [
      "protection"
+    ]
+   },
+   {
+    "name": "Cloak and Dagger, Entwined",
+    "decks": 2,
+    "roles": [
+     "lifegain"
     ]
    },
    {
@@ -2509,37 +2636,74 @@
      "enhance",
      "protection"
     ]
-   },
-   {
-    "name": "Violent Urge",
-    "decks": 2,
-    "roles": [
-     "enhance"
-    ]
-   },
-   {
-    "name": "Gather Courage",
-    "decks": 2,
-    "roles": [
-     "enhance"
-    ]
-   },
-   {
-    "name": "Essence Flux",
-    "decks": 2,
-    "roles": [
-     "enhance",
-     "protection"
-    ]
    }
   ],
   "combo": [
+   {
+    "name": "Stormchaser's Talent",
+    "decks": 170,
+    "roles": [
+     "tokens",
+     "recursion"
+    ]
+   },
+   {
+    "name": "Unholy Annex // Ritual Chamber",
+    "decks": 151,
+    "roles": [
+     "tokens",
+     "draw",
+     "reach",
+     "lifegain"
+    ]
+   },
+   {
+    "name": "Monstrous Rage",
+    "decks": 147,
+    "roles": [
+     "tokens",
+     "enhance"
+    ]
+   },
+   {
+    "name": "Fable of the Mirror-Breaker // Reflection of Kiki-Jiki",
+    "decks": 83,
+    "roles": [
+     "tokens",
+     "draw"
+    ]
+   },
+   {
+    "name": "Parhelion II",
+    "decks": 68,
+    "roles": [
+     "tokens",
+     "beater"
+    ]
+   },
    {
     "name": "Storm the Festival",
     "decks": 68,
     "roles": [
      "cheat",
-     "recursion"
+     "recursion",
+     "topmanip"
+    ]
+   },
+   {
+    "name": "Old-Growth Troll",
+    "decks": 67,
+    "roles": [
+     "tokens",
+     "beater"
+    ]
+   },
+   {
+    "name": "Biotech Specialist",
+    "decks": 65,
+    "roles": [
+     "tokens",
+     "reach"
     ]
    },
    {
@@ -2547,7 +2711,6 @@
     "decks": 62,
     "roles": [
      "cheatloop",
-     "finisher",
      "beater"
     ]
    },
@@ -2562,7 +2725,8 @@
     "name": "Collected Company",
     "decks": 60,
     "roles": [
-     "cheat"
+     "cheat",
+     "topmanip"
     ]
    },
    {
@@ -2570,9 +2734,33 @@
     "decks": 53,
     "roles": [
      "untap",
+     "tokens",
      "draw",
-     "engine",
      "enhance"
+    ]
+   },
+   {
+    "name": "Jadzi, Steward of Fate // Oracle's Gift",
+    "decks": 52,
+    "roles": [
+     "tokens",
+     "draw"
+    ]
+   },
+   {
+    "name": "Teferi, Hero of Dominaria",
+    "decks": 48,
+    "roles": [
+     "untap",
+     "draw"
+    ]
+   },
+   {
+    "name": "Experimental Synthesizer",
+    "decks": 40,
+    "roles": [
+     "tokens",
+     "draw"
     ]
    },
    {
@@ -2584,6 +2772,62 @@
     ]
    },
    {
+    "name": "Oni-Cult Anvil",
+    "decks": 28,
+    "roles": [
+     "tokens",
+     "reach",
+     "lifegain"
+    ]
+   },
+   {
+    "name": "Esika's Chariot",
+    "decks": 27,
+    "roles": [
+     "tokens",
+     "beater"
+    ]
+   },
+   {
+    "name": "Beza, the Bounding Spring",
+    "decks": 26,
+    "roles": [
+     "tokens",
+     "draw",
+     "beater",
+     "lifegain"
+    ]
+   },
+   {
+    "name": "Thassa's Oracle",
+    "decks": 21,
+    "roles": [
+     "altwin",
+     "topmanip"
+    ]
+   },
+   {
+    "name": "Cosmogrand Zenith",
+    "decks": 17,
+    "roles": [
+     "tokens"
+    ]
+   },
+   {
+    "name": "Adeline, Resplendent Cathar",
+    "decks": 14,
+    "roles": [
+     "tokens"
+    ]
+   },
+   {
+    "name": "The Wandering Minstrel",
+    "decks": 14,
+    "roles": [
+     "tokens"
+    ]
+   },
+   {
     "name": "Temporal Trespass",
     "decks": 13,
     "roles": [
@@ -2591,147 +2835,11 @@
     ]
    },
    {
-    "name": "Leyline of Resonance",
+    "name": "Worldspine Wurm",
     "decks": 12,
     "roles": [
-     "copy"
-    ]
-   },
-   {
-    "name": "Baron Helmut Zemo",
-    "decks": 11,
-    "roles": [
-     "cheatloop",
-     "draw",
-     "engine",
+     "tokens",
      "beater"
-    ]
-   },
-   {
-    "name": "Galvanic Iteration",
-    "decks": 10,
-    "roles": [
-     "copy",
-     "recursion"
-    ]
-   },
-   {
-    "name": "Kenrith, the Returned King",
-    "decks": 8,
-    "roles": [
-     "cheatloop",
-     "draw",
-     "finisher",
-     "engine",
-     "beater"
-    ]
-   },
-   {
-    "name": "Breaking // Entering",
-    "decks": 7,
-    "roles": [
-     "cheat"
-    ]
-   },
-   {
-    "name": "Founding the Third Path",
-    "decks": 7,
-    "roles": [
-     "cheat",
-     "selfmill"
-    ]
-   },
-   {
-    "name": "Turntimber Symbiosis // Turntimber, Serpentine Wood",
-    "decks": 6,
-    "roles": [
-     "cheat",
-     "ramp",
-     "enhance"
-    ]
-   },
-   {
-    "name": "Michelangelo's Technique",
-    "decks": 6,
-    "roles": [
-     "cheat"
-    ]
-   },
-   {
-    "name": "Bramble Familiar // Fetch Quest",
-    "decks": 5,
-    "roles": [
-     "cheat",
-     "ramp"
-    ]
-   },
-   {
-    "name": "Emergent Ultimatum",
-    "decks": 4,
-    "roles": [
-     "cheat",
-     "tutor"
-    ]
-   },
-   {
-    "name": "Omniscience",
-    "decks": 4,
-    "roles": [
-     "cheatloop"
-    ]
-   },
-   {
-    "name": "Pore Over the Pages",
-    "decks": 4,
-    "roles": [
-     "untap",
-     "draw"
-    ]
-   },
-   {
-    "name": "Fight Rigging",
-    "decks": 4,
-    "roles": [
-     "cheatloop",
-     "enhance"
-    ]
-   },
-   {
-    "name": "Vastlands Scavenger // Bind to Life",
-    "decks": 3,
-    "roles": [
-     "cheat",
-     "beater"
-    ]
-   },
-   {
-    "name": "Enigmatic Incarnation",
-    "decks": 3,
-    "roles": [
-     "cheatloop",
-     "tutor"
-    ]
-   },
-   {
-    "name": "Kayla's Reconstruction",
-    "decks": 2,
-    "roles": [
-     "cheat"
-    ]
-   },
-   {
-    "name": "Aang, at the Crossroads // Aang, Destined Savior",
-    "decks": 2,
-    "roles": [
-     "cheat",
-     "beater"
-    ]
-   },
-   {
-    "name": "United Battlefront",
-    "decks": 2,
-    "roles": [
-     "cheat"
     ]
    }
   ],
@@ -2786,22 +2894,8 @@
     ]
    },
    {
-    "name": "Break Out",
-    "decks": 3,
-    "roles": [
-     "other"
-    ]
-   },
-   {
     "name": "Nine Lives",
     "decks": 2,
-    "roles": [
-     "other"
-    ]
-   },
-   {
-    "name": "Aqueous Form",
-    "decks": 1,
     "roles": [
      "other"
     ]
@@ -2815,68 +2909,38 @@
    }
   ]
  },
- "engines": [
+ "damage": [
   {
-   "name": "Emberheart Challenger",
-   "decks": 175,
+   "name": "Monastery Swiftspear",
+   "decks": 191,
    "roles": [
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "draw@other_trigger"
-   ]
-  },
-  {
-   "name": "Stormchaser's Talent",
-   "decks": 170,
-   "roles": [
-    "recursion",
-    "engine",
-    "tokens"
-   ],
-   "tags": [
-    "token@etb",
-    "recursion@once_trigger",
-    "token@cast_trigger"
-   ]
-  },
-  {
-   "name": "Sheoldred, the Apocalypse",
-   "decks": 155,
-   "roles": [
-    "draw",
-    "engine",
     "beater"
    ],
-   "tags": [
-    "lifegain@other_trigger",
-    "draw@other_trigger"
-   ]
+   "tags": []
   },
   {
-   "name": "Unholy Annex // Ritual Chamber",
-   "decks": 151,
+   "name": "Soul-Scar Mage",
+   "decks": 135,
    "roles": [
-    "draw",
-    "engine",
-    "reach",
-    "tokens"
+    "beater"
    ],
-   "tags": [
-    "lifegain@each_turn",
-    "draw@each_turn",
-    "drain@each_turn",
-    "token@once_trigger"
-   ]
+   "tags": []
+  },
+  {
+   "name": "Screaming Nemesis",
+   "decks": 126,
+   "roles": [
+    "beater"
+   ],
+   "tags": []
   },
   {
    "name": "Graveyard Trespasser // Graveyard Glutton",
    "decks": 122,
    "roles": [
-    "engine",
     "reach",
-    "beater"
+    "beater",
+    "lifegain"
    ],
    "tags": [
     "lifegain@etb",
@@ -2886,654 +2950,349 @@
    ]
   },
   {
-   "name": "Professor Dellian Fel",
-   "decks": 118,
+   "name": "Kumano Faces Kakkazan // Etching of Kumano",
+   "decks": 99,
    "roles": [
-    "removal",
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "lifegain@loyalty",
-    "draw@loyalty",
-    "removal@loyalty"
-   ]
-  },
-  {
-   "name": "The Theorist, Jace Beleren",
-   "decks": 93,
-   "roles": [
-    "removal",
-    "draw",
-    "engine",
-    "enhance"
-   ],
-   "tags": [
-    "draw@each_turn",
-    "token@loyalty",
-    "removal@loyalty",
-    "draw@loyalty",
-    "pump@loyalty"
-   ]
-  },
-  {
-   "name": "Seasoned Cryomancer",
-   "decks": 88,
-   "roles": [
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "draw@etb",
-    "draw@activated"
-   ]
-  },
-  {
-   "name": "The Sackville-Bagginses",
-   "decks": 80,
-   "roles": [
-    "draw",
-    "engine",
-    "reach"
-   ],
-   "tags": [
-    "draw@once_trigger",
-    "mana@once_trigger",
-    "drain@other_trigger"
-   ]
-  },
-  {
-   "name": "Vivi Ornitier",
-   "decks": 69,
-   "roles": [
-    "ramp",
-    "engine",
-    "reach"
-   ],
-   "tags": [
-    "mana@activated",
-    "drain@cast_trigger",
-    "pump@cast_trigger"
-   ]
-  },
-  {
-   "name": "Greasefang, Okiba Boss",
-   "decks": 68,
-   "roles": [
-    "recursion",
-    "engine",
-    "beater"
-   ],
-   "tags": [
-    "recursion@each_turn"
-   ]
-  },
-  {
-   "name": "Parhelion II",
-   "decks": 68,
-   "roles": [
-    "engine",
-    "beater"
-   ],
-   "tags": [
-    "token@attack"
-   ]
-  },
-  {
-   "name": "Outcaster Trailblazer",
-   "decks": 68,
-   "roles": [
-    "draw",
-    "ramp",
-    "engine",
-    "beater"
-   ],
-   "tags": [
-    "mana@etb",
-    "draw@creature_enters"
-   ]
-  },
-  {
-   "name": "Kiora, Behemoth Beckoner",
-   "decks": 67,
-   "roles": [
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "draw@creature_enters"
-   ]
-  },
-  {
-   "name": "Biotech Specialist",
-   "decks": 65,
-   "roles": [
-    "engine",
-    "reach",
-    "tokens"
-   ],
-   "tags": [
-    "token@etb",
-    "drain@other_trigger"
-   ]
-  },
-  {
-   "name": "Elspeth, Storm Slayer",
-   "decks": 64,
-   "roles": [
-    "removal",
-    "engine",
-    "enhance"
-   ],
-   "tags": [
-    "token@loyalty",
-    "pump@loyalty",
-    "removal@loyalty"
-   ]
-  },
-  {
-   "name": "Enduring Innocence",
-   "decks": 61,
-   "roles": [
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "draw@other_trigger"
-   ]
-  },
-  {
-   "name": "The Wandering Emperor",
-   "decks": 61,
-   "roles": [
-    "removal",
-    "engine",
-    "enhance"
-   ],
-   "tags": [
-    "pump@loyalty",
-    "token@loyalty",
-    "lifegain@loyalty",
-    "removal@loyalty"
-   ]
-  },
-  {
-   "name": "Garruk, Curse Breaker",
-   "decks": 53,
-   "roles": [
-    "untap",
-    "draw",
-    "engine",
-    "enhance"
-   ],
-   "tags": [
-    "draw@creature_enters",
-    "untap@loyalty",
-    "token@loyalty",
-    "pump@loyalty"
-   ]
-  },
-  {
-   "name": "Teferi, Hero of Dominaria",
-   "decks": 48,
-   "roles": [
-    "removal",
-    "manalock",
-    "untap",
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "draw@loyalty",
-    "untap@loyalty",
-    "removal@loyalty"
-   ]
-  },
-  {
-   "name": "Mayhem Devil",
-   "decks": 47,
-   "roles": [
-    "removal",
-    "engine",
     "reach",
     "beater"
    ],
    "tags": [
-    "drain@other_trigger",
-    "removal@other_trigger"
+    "drain@chapter",
+    "pump@chapter"
    ]
   },
   {
-   "name": "Monument to Endurance",
-   "decks": 44,
+   "name": "Professor of Symbology",
+   "decks": 68,
    "roles": [
-    "draw",
-    "ramp",
-    "engine",
-    "reach"
-   ],
-   "tags": [
-    "draw@other_trigger",
-    "mana@other_trigger",
-    "drain@other_trigger"
-   ]
-  },
-  {
-   "name": "Cauldron Familiar",
-   "decks": 44,
-   "roles": [
-    "recursion",
-    "engine",
-    "reach"
-   ],
-   "tags": [
-    "lifegain@etb",
-    "drain@etb",
-    "recursion@activated"
-   ]
-  },
-  {
-   "name": "Witch's Oven",
-   "decks": 44,
-   "roles": [
-    "engine"
-   ],
-   "tags": [
-    "lifegain@activated"
-   ]
-  },
-  {
-   "name": "Gran-Gran",
-   "decks": 37,
-   "roles": [
-    "draw",
-    "ramp",
-    "engine"
-   ],
-   "tags": [
-    "draw@other_trigger"
-   ]
-  },
-  {
-   "name": "Overlord of the Balemurk",
-   "decks": 36,
-   "roles": [
-    "recursion",
-    "selfmill",
-    "finisher",
-    "engine",
     "beater"
    ],
-   "tags": [
-    "recursion@etb",
-    "selfmill@etb",
-    "recursion@attack",
-    "selfmill@attack"
-   ]
+   "tags": []
   },
   {
-   "name": "Narset, Parter of Veils",
-   "decks": 35,
+   "name": "Ulvenwald Oddity // Ulvenwald Behemoth",
+   "decks": 68,
    "roles": [
-    "draw",
-    "engine"
+    "beater"
    ],
-   "tags": [
-    "draw@loyalty"
-   ]
+   "tags": []
   },
   {
-   "name": "Thor, God of Thunder",
-   "decks": 35,
+   "name": "Eddymurk Crab",
+   "decks": 58,
    "roles": [
-    "removal",
-    "spell",
-    "finisher",
-    "engine",
+    "beater"
+   ],
+   "tags": []
+  },
+  {
+   "name": "Sunderflock",
+   "decks": 57,
+   "roles": [
+    "beater"
+   ],
+   "tags": []
+  },
+  {
+   "name": "Voldaren Epicure",
+   "decks": 55,
+   "roles": [
     "reach",
     "beater"
    ],
    "tags": [
-    "drain@cast_trigger",
-    "removal@cast_trigger"
+    "drain@etb"
    ]
   },
   {
-   "name": "Kaito, Bane of Nightmares",
-   "decks": 33,
+   "name": "Ouroboroid",
+   "decks": 54,
    "roles": [
-    "draw",
-    "selfmill",
-    "engine",
-    "enhance",
+    "beater"
+   ],
+   "tags": [
+    "pump@each_turn"
+   ]
+  },
+  {
+   "name": "Fleeting Spirit",
+   "decks": 43,
+   "roles": [
+    "beater"
+   ],
+   "tags": []
+  },
+  {
+   "name": "Iron-Shield Elf",
+   "decks": 43,
+   "roles": [
+    "beater",
     "protection"
    ],
    "tags": [
-    "protection@static",
-    "pump@loyalty",
-    "draw@loyalty",
-    "selfmill@loyalty"
+    "protection@activated"
    ]
   },
   {
-   "name": "Moon-Circuit Hacker",
-   "decks": 31,
+   "name": "Mockingbird",
+   "decks": 34,
    "roles": [
-    "draw",
-    "engine"
-   ],
-   "tags": [
-    "draw@combat_damage"
-   ]
-  },
-  {
-   "name": "Artist's Talent",
-   "decks": 29,
-   "roles": [
-    "draw",
-    "ramp",
-    "engine"
-   ],
-   "tags": [
-    "draw@cast_trigger"
-   ]
-  },
-  {
-   "name": "Oni-Cult Anvil",
-   "decks": 28,
-   "roles": [
-    "engine",
-    "reach"
-   ],
-   "tags": [
-    "token@other_trigger",
-    "lifegain@activated",
-    "drain@activated"
-   ]
-  },
-  {
-   "name": "Arclight Phoenix",
-   "decks": 28,
-   "roles": [
-    "recursion",
-    "engine",
     "beater"
    ],
-   "tags": [
-    "recursion@each_turn"
-   ]
+   "tags": []
   },
   {
-   "name": "Esika's Chariot",
-   "decks": 27,
+   "name": "Floodpits Drowner",
+   "decks": 32,
    "roles": [
-    "engine",
-    "tokens",
     "beater"
    ],
-   "tags": [
-    "token@etb",
-    "token@attack"
-   ]
+   "tags": []
   },
   {
-   "name": "Scavenger's Talent",
-   "decks": 26,
+   "name": "Polukranos Reborn // Polukranos, Engine of Ruin",
+   "decks": 28,
    "roles": [
-    "recursion",
-    "selfmill",
-    "engine"
+    "beater"
    ],
-   "tags": [
-    "lifegain@other_trigger",
-    "selfmill@other_trigger",
-    "recursion@each_turn"
-   ]
+   "tags": []
   },
   {
-   "name": "Jennifer Walters // The Sensational She-Hulk",
+   "name": "Eyetwitch",
    "decks": 25,
    "roles": [
-    "removal",
-    "spell",
-    "engine",
-    "reach",
+    "beater"
+   ],
+   "tags": []
+  },
+  {
+   "name": "Ornithopter",
+   "decks": 24,
+   "roles": [
+    "beater"
+   ],
+   "tags": []
+  },
+  {
+   "name": "Slickshot Show-Off",
+   "decks": 22,
+   "roles": [
     "beater"
    ],
    "tags": [
-    "hate@static",
-    "drain@other_trigger",
-    "removal@other_trigger"
-   ]
-  },
-  {
-   "name": "Bloodghast",
-   "decks": 23,
-   "roles": [
-    "recursion",
-    "engine"
-   ],
-   "tags": [
-    "recursion@landfall"
+    "pump@cast_trigger"
    ]
   },
   {
    "name": "Eidolon of the Great Revel",
    "decks": 22,
    "roles": [
-    "engine",
-    "reach"
+    "reach",
+    "beater"
    ],
    "tags": [
     "drain@cast_trigger"
    ]
   },
   {
-   "name": "Anthropological Mission",
-   "decks": 20,
+   "name": "The Queen of Dale",
+   "decks": 19,
    "roles": [
-    "draw",
-    "engine"
+    "beater"
+   ],
+   "tags": []
+  },
+  {
+   "name": "Venerated Loxodon",
+   "decks": 16,
+   "roles": [
+    "beater"
    ],
    "tags": [
-    "draw@cast_trigger"
-   ]
-  },
-  {
-   "name": "Cosmogrand Zenith",
-   "decks": 17,
-   "roles": [
-    "engine"
-   ],
-   "tags": [
-    "token@cast_trigger",
-    "pump@cast_trigger"
-   ]
-  }
- ],
- "finishers": [
-  {
-   "name": "Sunspine Lynx",
-   "decks": 76,
-   "roles": [
-    "spell",
-    "finisher",
-    "reach",
-    "beater"
-   ]
-  },
-  {
-   "name": "Cavalier of Thorns",
-   "decks": 67,
-   "roles": [
-    "finisher",
-    "beater"
-   ]
-  },
-  {
-   "name": "Raph & Mikey, Troublemakers",
-   "decks": 62,
-   "roles": [
-    "cheatloop",
-    "finisher",
-    "beater"
-   ]
-  },
-  {
-   "name": "Hearth Elemental // Stoke Genius",
-   "decks": 59,
-   "roles": [
-    "draw",
-    "finisher",
-    "beater"
-   ]
-  },
-  {
-   "name": "Eddymurk Crab",
-   "decks": 58,
-   "roles": [
-    "finisher",
-    "beater"
-   ]
-  },
-  {
-   "name": "Sunderflock",
-   "decks": 57,
-   "roles": [
-    "finisher",
-    "beater"
-   ]
-  },
-  {
-   "name": "Atraxa, Grand Unifier",
-   "decks": 53,
-   "roles": [
-    "draw",
-    "finisher",
-    "beater"
-   ]
-  },
-  {
-   "name": "Valgavoth, Terror Eater",
-   "decks": 52,
-   "roles": [
-    "gyhate",
-    "finisher",
-    "beater"
-   ]
-  },
-  {
-   "name": "Overlord of the Balemurk",
-   "decks": 36,
-   "roles": [
-    "recursion",
-    "selfmill",
-    "finisher",
-    "engine",
-    "beater"
-   ]
-  },
-  {
-   "name": "Thor, God of Thunder",
-   "decks": 35,
-   "roles": [
-    "removal",
-    "spell",
-    "finisher",
-    "engine",
-    "reach",
-    "beater"
-   ]
-  },
-  {
-   "name": "Thassa's Oracle",
-   "decks": 21,
-   "roles": [
-    "finisher"
+    "pump@etb"
    ]
   },
   {
    "name": "Craterhoof Behemoth",
    "decks": 16,
    "roles": [
-    "finisher",
     "beater"
+   ],
+   "tags": [
+    "pump@etb"
    ]
   },
   {
-   "name": "Worldspine Wurm",
-   "decks": 12,
+   "name": "Seasoned Hallowblade",
+   "decks": 15,
    "roles": [
-    "finisher",
-    "tokens",
-    "beater"
+    "beater",
+    "protection"
+   ],
+   "tags": [
+    "protection@activated"
    ]
   },
   {
-   "name": "Emeritus of Ideation // Ancestral Recall",
+   "name": "Rattlechains",
+   "decks": 15,
+   "roles": [
+    "beater",
+    "protection"
+   ],
+   "tags": [
+    "protection@etb"
+   ]
+  },
+  {
+   "name": "Supreme Phantom",
+   "decks": 15,
+   "roles": [
+    "beater"
+   ],
+   "tags": [
+    "pump@static"
+   ]
+  },
+  {
+   "name": "Coppercoat Vanguard",
+   "decks": 14,
+   "roles": [
+    "beater"
+   ],
+   "tags": [
+    "pump@static"
+   ]
+  },
+  {
+   "name": "Thalia's Lieutenant",
+   "decks": 14,
+   "roles": [
+    "beater"
+   ],
+   "tags": [
+    "pump@etb"
+   ]
+  },
+  {
+   "name": "Callous Sell-Sword // Burn Together",
+   "decks": 13,
+   "roles": [
+    "beater"
+   ],
+   "tags": [
+    "pump@static"
+   ]
+  },
+  {
+   "name": "Tarmogoyf",
    "decks": 12,
    "roles": [
-    "draw",
-    "finisher",
     "beater"
+   ],
+   "tags": []
+  },
+  {
+   "name": "Sanctum Lurker",
+   "decks": 12,
+   "roles": [
+    "reach",
+    "beater",
+    "lifegain"
+   ],
+   "tags": [
+    "lifegain@static",
+    "drain@static"
    ]
   },
   {
    "name": "Ygra, Eater of All",
    "decks": 11,
    "roles": [
-    "finisher",
-    "beater"
+    "beater",
+    "lifegain"
+   ],
+   "tags": [
+    "lifegain@static",
+    "pump@dies"
    ]
   },
   {
-   "name": "Elder Gargaroth",
-   "decks": 10,
+   "name": "Skrelv, Defector Mite",
+   "decks": 11,
    "roles": [
-    "draw",
-    "finisher",
-    "engine",
     "beater"
-   ]
+   ],
+   "tags": []
   },
   {
    "name": "Rottenmouth Viper",
    "decks": 10,
    "roles": [
-    "finisher",
-    "engine",
     "reach",
     "beater"
+   ],
+   "tags": [
+    "drain@etb",
+    "drain@attack"
    ]
   },
   {
-   "name": "Kenrith, the Returned King",
+   "name": "Gray Merchant of Asphodel",
+   "decks": 10,
+   "roles": [
+    "reach",
+    "lifegain"
+   ],
+   "tags": [
+    "lifegain@etb",
+    "drain@etb"
+   ]
+  },
+  {
+   "name": "Sentinel of the Nameless City",
+   "decks": 9,
+   "roles": [
+    "beater"
+   ],
+   "tags": []
+  },
+  {
+   "name": "Fear of Isolation",
+   "decks": 9,
+   "roles": [
+    "beater"
+   ],
+   "tags": []
+  },
+  {
+   "name": "Fervent Champion",
    "decks": 8,
    "roles": [
-    "cheatloop",
-    "draw",
-    "finisher",
-    "engine",
     "beater"
+   ],
+   "tags": [
+    "pump@attack"
    ]
   },
   {
-   "name": "Altanak, the Thrice-Called",
+   "name": "Chrome Host Seedshark",
    "decks": 7,
    "roles": [
-    "draw",
-    "recursion",
-    "finisher",
-    "engine",
     "beater"
-   ]
+   ],
+   "tags": []
   },
   {
-   "name": "Gnarled Professor",
+   "name": "Creeping Chill",
    "decks": 7,
    "roles": [
-    "finisher",
-    "beater"
+    "reach",
+    "lifegain"
+   ],
+   "tags": [
+    "lifegain@spell",
+    "drain@spell"
    ]
   }
  ],
@@ -3587,15 +3346,6 @@
    "typeLine": "Creature — Beast // Creature — Beast Horror"
   },
   {
-   "name": "Cavalier of Thorns",
-   "decks": 67,
-   "roles": [
-    "finisher",
-    "beater"
-   ],
-   "typeLine": "Creature — Elemental Knight"
-  },
-  {
    "name": "Indomitable Creativity",
    "decks": 61,
    "roles": [
@@ -3607,7 +3357,6 @@
    "name": "Eddymurk Crab",
    "decks": 58,
    "roles": [
-    "finisher",
     "beater"
    ],
    "typeLine": "Creature — Elemental Crab"
@@ -3616,7 +3365,6 @@
    "name": "Sunderflock",
    "decks": 57,
    "roles": [
-    "finisher",
     "beater"
    ],
    "typeLine": "Creature — Elemental"
@@ -3695,14 +3443,6 @@
    "typeLine": "Artifact Creature — Thopter"
   },
   {
-   "name": "Thassa's Oracle",
-   "decks": 21,
-   "roles": [
-    "finisher"
-   ],
-   "typeLine": "Creature — Merfolk Wizard"
-  },
-  {
    "name": "The Queen of Dale",
    "decks": 19,
    "roles": [
@@ -3717,14 +3457,6 @@
     "ramp"
    ],
    "typeLine": "Legendary Artifact"
-  },
-  {
-   "name": "Knight-Errant of Eos",
-   "decks": 16,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Human Knight"
   },
   {
    "name": "Tarmogoyf",
@@ -3767,14 +3499,6 @@
    "typeLine": "Enchantment Creature — Nightmare"
   },
   {
-   "name": "Gifted Aetherborn",
-   "decks": 8,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Aetherborn Vampire"
-  },
-  {
    "name": "Chrome Host Seedshark",
    "decks": 7,
    "roles": [
@@ -3794,7 +3518,6 @@
    "name": "Gnarled Professor",
    "decks": 7,
    "roles": [
-    "finisher",
     "beater"
    ],
    "typeLine": "Creature — Treefolk Druid"
@@ -3812,7 +3535,6 @@
    "decks": 6,
    "roles": [
     "ramp",
-    "finisher",
     "beater"
    ],
    "typeLine": "Creature — Chimera Horror"
@@ -3829,7 +3551,6 @@
    "name": "Slumbering Trudge",
    "decks": 5,
    "roles": [
-    "finisher",
     "beater"
    ],
    "typeLine": "Creature — Plant Beast"
@@ -3854,7 +3575,6 @@
    "name": "Ulamog, the Ceaseless Hunger",
    "decks": 4,
    "roles": [
-    "finisher",
     "beater"
    ],
    "typeLine": "Legendary Creature — Eldrazi"
@@ -3866,6 +3586,38 @@
     "beater"
    ],
    "typeLine": "Creature — Human Cleric"
+  },
+  {
+   "name": "Spyglass Siren",
+   "decks": 3,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Siren Pirate"
+  },
+  {
+   "name": "The Blackstaff of Waterdeep",
+   "decks": 3,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Legendary Artifact"
+  },
+  {
+   "name": "Zoetic Glyph",
+   "decks": 3,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Enchantment — Aura"
+  },
+  {
+   "name": "Jace's Machinations",
+   "decks": 3,
+   "roles": [
+    "other"
+   ],
+   "typeLine": "Instant"
   }
  ],
  "unknownCards": [

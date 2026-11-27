@@ -272,7 +272,9 @@
     const shareOf = list => list.reduce((s, a) => s + a.share, 0);
 
     // 1. パーマネントの種類ごとの対処（サイドボード込み）
-    for (const [type, label, min] of [['artifact', 'アーティファクト', 0.1], ['enchantment', 'エンチャント', 0.1], ['planeswalker', 'プレインズウォーカー', 0.08]]) {
+    //    ベンチマークに一人回しの盤面があるときは、「上位デッキへの対策」でデッキごとに見るので出さない
+    const hasBoard = meta.some(a => a.sim && a.sim.play && a.sim.play.board);
+    if (!hasBoard) for (const [type, label, min] of [['artifact', 'アーティファクト', 0.1], ['enchantment', 'エンチャント', 0.1], ['planeswalker', 'プレインズウォーカー', 0.08]]) {
       const heavy = meta.filter(a => a[type]);
       if (shareOf(heavy) < min) continue;
       const n = both(['types', type]);
@@ -626,11 +628,11 @@
    * 対戦相手のパーマネントの構成から見て、そのカードの妨害が「腐りやすい」か
    * perm: { creature, artifact, enchantment, planeswalker }（中央値）、graveyard: 墓地を使うデッキか
    */
-  function deadAgainst(card, opp) {
+  function deadAgainst(card, opp, min) {
     const info = inspect(card);
     const ds = info.tags.filter(t => t.detail);
     if (!ds.length) return false;
-    const MIN = { creature: 4, artifact: 2, enchantment: 2, planeswalker: 1, battle: 1 };
+    const MIN = min || { creature: 4, artifact: 2, enchantment: 2, planeswalker: 1, battle: 1 };
     for (const t of ds) {
       const d = t.detail;
       // 打ち消し・手札破壊・ロック・プレイヤーに撃てるものは腐らないとみなす
