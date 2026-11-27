@@ -258,6 +258,14 @@
     ]
    },
    {
+    "name": "Desert",
+    "decks": 85,
+    "oracle": "{T}: Add {C}.\n{T}: This land deals 1 damage to target attacking creature. Activate only during the end of combat step.",
+    "detail": [
+     "removal:damage:creature"
+    ]
+   },
+   {
     "name": "Defile",
     "decks": 78,
     "oracle": "Target creature gets -1/-1 until end of turn for each Swamp you control.",
@@ -435,14 +443,6 @@
     "oracle": "Choose one —\n• Cast into the Fire deals 1 damage to each of up to two target creatures.\n• Exile target artifact.",
     "detail": [
      "removal:exile:artifact"
-    ]
-   },
-   {
-    "name": "Shambling Ghast",
-    "decks": 12,
-    "oracle": "When this creature dies, choose one —\n• Target creature an opponent controls gets -1/-1 until end of turn.\n• Create a Treasure token. (It's an artifact with \"{T}, Sacrifice this token: Add one mana of any color.\")",
-    "detail": [
-     "removal:minus:creature"
     ]
    }
   ],
@@ -1005,7 +1005,7 @@
   "combat": []
  },
  "format": "Pauper",
- "generatedAt": "2026-11-27T14:42:25.530Z",
+ "generatedAt": "2026-11-27T15:13:21.832Z",
  "decks": 2694,
  "otherOnly": [
   {
