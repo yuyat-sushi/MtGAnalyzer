@@ -456,7 +456,7 @@
       if (r.play.inHand[2] < 0.5) tips.push({ level: 'warn', text: `3ターン目までに妨害を手札に持てていない率が${pctTxt(1 - r.play.inHand[2])}。相手の動きを止めたいなら、妨害の枚数か、引きにいくカードを見直してみて。` });
     } else tips.push({ level: 'info', text: '妨害（大カテゴリが【妨害】のカード）が入っていないよ。相手の動きに干渉しない、速さ勝負のデッキとして回した結果だよ。' });
 
-    html += `<p class="hint">相手が何もしない前提で、マリガンなし・7枚キープで${r.iters.toLocaleString()}回一人回しした結果。妨害は唱えずに構えたものとして数え、効果を読み取れないカードは「唱えた」ことだけを記録しています。カードの使い方は簡単なルールで決めているので、上手な人が回すより少し低めに出ることがあるよ。</p>`;
+    html += `<p class="hint">相手が何もしない前提で、マリガンなし・7枚キープで${r.iters.toLocaleString()}回一人回しした結果。妨害のインスタント・ソーサリーは唱えずに構えたものとして数え（妨害のパーマネントは唱えて盤面に置きます）、効果を読み取れないカードは「唱えた」ことだけを記録しています。カードの使い方は簡単なルールで決めているので、上手な人が回すより少し低めに出ることがあるよ。</p>`;
     box.innerHTML = html;
     return tips;
   }
@@ -598,93 +598,128 @@
     for (let i = 0; i < n; i++) p *= Math.max(0, N - K - i) / (N - i);
     return 1 - p;
   }
+  // 対策の種類（相手の4ターン目の盤面から、必要なものだけ出す）
+  const NEED_LABEL = { creature: 'クリーチャー除去', wipe: '全体除去', artifact: 'アーティファクト対策', enchantment: 'エンチャント対策', planeswalker: 'PW対策', spell: '打ち消し・手札破壊', graveyard: '墓地対策' };
+  // 全体除去で相手の盤面から平均何体巻き込めるか（ダメージ型はタフネス1〜3以下の体数で見積もる）
+  function wipeKills(card, b) {
+    const info = Roles.inspect(card);
+    const ab = info.abilities.find(a => a.effects.includes('wipe'));
+    if (!ab) return null;
+    const dm = ab.text.match(/deals? (\d+) damage to each creature/) || ab.text.match(/(?:all|each) [^.]*?creatures?[^.]*? gets? -(\d+)\/-\d+/);
+    if (dm) { const n = +dm[1]; return n >= 4 ? b.creatures : b['t' + Math.max(1, n)]; }
+    return b.creatures;
+  }
   function renderMatchups(cmp) {
     const tips = [];
     const box = $('#matchBox');
     const meta = cmp && cmp.bench && cmp.bench.meta;
     if (!meta) { box.innerHTML = '<p class="hint">上の「上位デッキとの比較」でフォーマットを選ぶと、環境の上位デッキ（シェア3%以上）への対策を表示します。</p>'; return tips; }
-    if (!meta.some(m => m.threats)) { box.innerHTML = '<p class="hint">ベンチマークのデータが古い形式なので、次回の集計後に表示されます。</p>'; return tips; }
+    if (!meta.some(m => m.sim && m.sim.play && m.sim.play.board)) { box.innerHTML = '<p class="hint">ベンチマークのデータが古い形式なので、次回の集計後に表示されます。</p>'; return tips; }
     const mainE = state.main.filter(e => e.card), sideE = state.side.filter(e => e.card);
     if (!mainE.length) { box.innerHTML = ''; return tips; }
     const deckN = mainE.reduce((s, e) => s + e.qty, 0);
     const sim = simCache.result;
     const myArch = cmp.group && cmp.group.name;
     const pct = x => `${Math.round(x * 100)}%`;
+    const n1 = x => (+x).toFixed(1);
     const short = list => list.length > 3 ? list.slice(0, 3).join('、') + ' など' : list.join('、');
+    const qtyOf = l => l.reduce((s, e) => s + e.qty, 0);
+    const HOW = { removal: '除去', counter: '打ち消し', discard: '手札破壊' };
 
-    const rows = meta.filter(m => m.share >= 0.03 && m.name !== myArch).sort((a, b) => b.share - a.share);
+    const rows = meta.filter(m => m.share >= 0.03 && m.name !== myArch && m.sim && m.sim.play && m.sim.play.board).sort((a, b) => b.share - a.share);
     const html = rows.map(m => {
-      const threats = (m.threats || []).slice(0, 4);
-      const ans = (list, t) => list.filter(e => Roles.answerOf(e.card, t));
-      const cells = threats.map(t => {
-        const a = ans(mainE, t).reduce((s, e) => s + e.qty, 0), b = ans(sideE, t).reduce((s, e) => s + e.qty, 0);
-        return { t, main: a, side: b };
+      const S = m.sim.play, b4 = S.board[1];
+      const perT = b4.creatures ? b4.toughness / b4.creatures : 0;
+      const pseudo = { creature: { type: 'Creature', toughness: String(Math.round(perT) || 1), mv: null }, artifact: { type: 'Artifact' }, enchantment: { type: 'Enchantment' }, planeswalker: { type: 'Planeswalker' } };
+      // 必要な対策（相手の4ターン目の盤面から）
+      const needs = [];
+      if (b4.creatures >= 0.5) needs.push('creature');
+      if (S.wide[1] >= 0.3 || b4.creatures >= 2.5) needs.push('wipe');
+      ['artifact', 'enchantment'].forEach(k => { if (b4[k] >= 0.3) needs.push(k); });
+      if (b4.planeswalker >= 0.2) needs.push('planeswalker');
+      const thin = b4.creatures < 1 && b4.artifact + b4.enchantment + b4.planeswalker < 0.5;
+      if (thin || (S.combo && S.combo[1] >= 0.2)) needs.push('spell');
+      if (m.graveyard) needs.push('graveyard');
+      const fits = (e, need) => {
+        const info = Roles.inspect(e.card);
+        if (need === 'creature') { const w = Roles.answerWhy(e.card, pseudo.creature); return w && w.ok && w.how === 'removal' && info.roles.includes('removal'); }
+        if (need === 'wipe') return info.roles.includes('wipe') && info.tags.some(t => t.effect === 'wipe' && t.detail && t.detail.types.includes('creature'));
+        if (pseudo[need]) { const w = Roles.answerWhy(e.card, pseudo[need]); return w && w.ok && w.how === 'removal'; }
+        if (need === 'spell') return info.tags.some(t => t.effect === 'counter' || t.effect === 'discard');
+        if (need === 'graveyard') return info.roles.includes('gyhate');
+        return false;
+      };
+      const cells = needs.map(n => {
+        const mn = mainE.filter(e => fits(e, n)), sd = sideE.filter(e => fits(e, n));
+        let chance = null;
+        if (mn.length) {
+          const minCmc = Math.min(...mn.map(e => Math.round(e.card.cmc || 0)));
+          const manaOk = sim ? (sim.play.ge[Math.min(4, sim.turns) - 1][Math.min(minCmc, 11)] || 0) : 1;
+          chance = atLeastOne(deckN, qtyOf(mn), 10) * manaOk; // 先手4ターン目までに見る10枚
+        }
+        return { n, mn, sd, main: qtyOf(mn), side: qtyOf(sd), chance };
       });
-      // 主力（勝ち手段・コンボ）の脅威に対処できるメインのカード
-      const keyThreats = threats.filter(t => t.cat !== 'resource');
-      const focus = keyThreats.length ? keyThreats : threats;
-      const answerCards = mainE.filter(e => focus.some(t => Roles.answerOf(e.card, t)));
-      const K = answerCards.reduce((s, e) => s + e.qty, 0);
-      const kt = m.sim && m.sim.keyTurn;
-      let chance = null;
-      if (kt && K) {
-        const seen = 7 + (kt - 1); // 先手
-        const minCmc = Math.min(...answerCards.map(e => Math.round(e.card.cmc || 0)));
-        const manaOk = sim ? (sim.play.ge[Math.min(kt, sim.turns) - 1][Math.min(minCmc, 11)] || 0) : 1;
-        chance = atLeastOne(deckN, K, seen) * manaOk;
-      }
-      // 腐りやすいメインの妨害と、サイドの入れ替え先
-      const dead = mainE.filter(e => Roles.inspect(e.card).cat === 'disrupt' && Roles.deadAgainst(e.card, m));
-      const deadN = dead.reduce((s, e) => s + e.qty, 0);
-      const good = sideE.filter(e => !Roles.deadAgainst(e.card, m) && (threats.some(t => Roles.answerOf(e.card, t)) || (m.graveyard && Roles.inspect(e.card).roles.includes('gyhate'))));
-
-      const noAns = cells.filter(c => c.t.rate >= 0.8 && c.t.cat !== 'resource' && !c.main && !c.side).map(c => c.t.name);
-      if (noAns.length) tips.push({ level: 'bad', text: `環境の${pct(m.share)}の${m.name}の主力（${short(noAns)}）に対処できるカードが、メインにもサイドにもないよ。` });
-      if (chance != null && chance < 0.4 && m.share >= 0.05) tips.push({ level: 'warn', text: `対${m.name}（${pct(m.share)}）: 相手のキーターン（${kt}ターン目）までに対処札を手札に持って唱えられる率が${pct(chance)}（先手）。` });
-      if (deadN >= 2) {
-        if (good.length) tips.push({ level: 'info', text: `対${m.name}（${pct(m.share)}）では、メインの${short(dead.map(e => displayName(e.card)))}（計${deadN}枚）が腐りやすいよ。サイドの${short(good.map(e => displayName(e.card)))}と入れ替える候補だね。` });
-        else tips.push({ level: 'info', text: `対${m.name}（${pct(m.share)}）では、メインの${short(dead.map(e => displayName(e.card)))}（計${deadN}枚）が腐りやすいよ。サイドに入れ替え先になるカードが見当たらないかも。` });
-      }
+      // アドバイス
+      const cr = cells.find(c => c.n === 'creature');
+      if (cr && !cr.main && !cr.side) tips.push({ level: 'bad', text: `対${m.name}（${pct(m.share)}）: 4ターン目にクリーチャーが平均${n1(b4.creatures)}体並ぶのに、クリーチャー除去がメインにもサイドにもないよ。` });
+      const wp = cells.find(c => c.n === 'wipe');
+      if (wp && !wp.main && !wp.side && S.wide[1] >= 0.5 && m.share >= 0.05) tips.push({ level: 'info', text: `対${m.name}（${pct(m.share)}）: 4ターン目に3体以上並ぶ率が${pct(S.wide[1])}（タフネス2以下が平均${n1(b4.t2)}体）。全体除去がないので、サイドに検討の余地があるかも。` });
+      // 盤面に平均0.5個以上残るパーマネント・墓地・呪文中心の相手に、対策が1枚もないとき
+      cells.filter(c => !c.main && !c.side && (['graveyard', 'spell'].includes(c.n) || (['artifact', 'enchantment', 'planeswalker'].includes(c.n) && b4[c.n] >= 0.5))).forEach(c => {
+        const what = ['artifact', 'enchantment', 'planeswalker'].includes(c.n) ? `4ターン目に${{ artifact: 'アーティファクト', enchantment: 'エンチャント', planeswalker: 'PW' }[c.n]}が平均${n1(b4[c.n])}個あるのに、` : '';
+        tips.push({ level: 'warn', text: `対${m.name}（${pct(m.share)}）: ${what}${NEED_LABEL[c.n]}がメインにもサイドにもないよ。` });
+      });
+      // 腐りやすい枠（相手の4ターン目の盤面に対象がほとんどない妨害）
+      const opp = { perm: { creature: b4.creatures, artifact: b4.artifact, enchantment: b4.enchantment, planeswalker: b4.planeswalker, battle: 0 }, graveyard: m.graveyard };
+      const MIN = { creature: 1, artifact: 0.3, enchantment: 0.3, planeswalker: 0.2, battle: 0.2 };
+      const dead = mainE.filter(e => Roles.inspect(e.card).cat === 'disrupt' && Roles.deadAgainst(e.card, opp, MIN));
+      const deadN = qtyOf(dead);
+      const good = sideE.filter(e => !Roles.deadAgainst(e.card, opp, MIN) && needs.some(n => fits(e, n)));
+      if (deadN >= 2) tips.push({ level: 'info', text: `対${m.name}（${pct(m.share)}）では、メインの${short(dead.map(e => displayName(e.card)))}（計${deadN}枚）が腐りやすいよ。${good.length ? `サイドの${short(good.map(e => displayName(e.card)))}と入れ替える候補だね。` : 'サイドに入れ替え先になるカードが見当たらないかも。'}` });
 
       const cls = c => (c.main + c.side) === 0 ? 'c-low' : c.main === 0 ? 'c-near' : 'c-ok';
-      // 開いたときの中身: 対処札の一覧、脅威ごとの対処札、惜しくも数えなかったカード、入れ替え候補
-      const HOW = { removal: '除去', counter: '打ち消し', discard: '手札破壊' };
-      const listOf = list => {
-        const rows = list.map(e => {
-          const hows = [...new Set(threats.map(t => Roles.answerOf(e.card, t)).filter(Boolean).map(x => HOW[x.how]))];
-          return hows.length ? `${esc(displayName(e.card))}×${e.qty}<span class="muted">（${hows.join('・')}）</span>` : '';
-        }).filter(Boolean);
-        return rows.length ? rows.join('、') : '<span class="muted">なし</span>';
-      };
-      const perThreat = threats.map(t => {
-        const names = l => l.filter(e => Roles.answerOf(e.card, t)).map(e => esc(displayName(e.card)));
-        const mn = names(mainE), sd = names(sideE);
-        const info = [t.type ? esc(t.type.replace(/^Legendary /, '')) : '', t.toughness ? `タフネス${esc(t.toughness)}` : '', t.mv != null ? `MV${t.mv}` : ''].filter(Boolean).join('・');
-        return `<li><b>${esc(t.name)}</b> <span class="muted">${info}／採用率${pct(t.rate)}</span><br>
-          メイン: ${mn.length ? mn.join('、') : '<span class="bad-t">なし</span>'}${sd.length ? `　<span class="muted">サイド: ${sd.join('、')}</span>` : ''}</li>`;
-      }).join('');
-      // 対処系の能力はあるが、ダメージ量やマナ総量の条件で当たらなかったカード
-      const near = [];
-      [...mainE, ...sideE].forEach(e => threats.forEach(t => {
-        const w = Roles.answerWhy(e.card, t);
-        if (w && !w.ok && w.reason !== 'type') near.push(`${esc(displayName(e.card))} → ${esc(t.name)}（${esc(w.note)}）`);
-      }));
+      const list = (l, n) => l.length ? l.map(e => {
+        let extra = '';
+        if (n === 'wipe') { const k = wipeKills(e.card, b4); if (k != null) extra = `（平均${n1(k)}体）`; }
+        else if (n === 'spell') extra = `（${Roles.inspect(e.card).tags.some(t => t.effect === 'counter') ? '打ち消し' : '手札破壊'}）`;
+        return `${esc(displayName(e.card))}×${e.qty}<span class="muted">${extra}</span>`;
+      }).join('、') : '<span class="bad-t">なし</span>';
+      // クリーチャー除去で、ダメージ量や条件で届かないもの
+      const near = [...mainE, ...sideE].map(e => ({ e, w: Roles.answerWhy(e.card, pseudo.creature) })).filter(x => x.w && !x.w.ok && x.w.reason !== 'type' && b4.creatures >= 0.5)
+        .map(x => `${esc(displayName(x.e.card))}（${esc(x.w.note)}）`);
+      const B = (side, i) => m.sim[side].board[i];
+      const brow = (label, f, fmt = n1) => `<tr><td>${label}</td>${[0, 1, 2].map(i => `<td>${fmt(f('play', i))}<span class="muted">/${fmt(f('draw', i))}</span></td>`).join('')}</tr>`;
+      const oppTable = `<div class="sim-scroll"><table class="meta-table sim-table"><tr><th>相手（先手/後手）</th><th>3T</th><th>4T</th><th>5T</th></tr>
+        ${brow('クリーチャー（体）', (s, i) => B(s, i).creatures)}
+        ${brow('合計パワー', (s, i) => B(s, i).power)}
+        ${brow('タフネス1以下', (s, i) => B(s, i).t1)}
+        ${brow('タフネス2以下', (s, i) => B(s, i).t2)}
+        ${brow('タフネス3以下', (s, i) => B(s, i).t3)}
+        ${brow('3体以上並ぶ率', (s, i) => m.sim[s].wide[i], pct)}
+        ${brow('アーティファクト', (s, i) => B(s, i).artifact)}
+        ${brow('エンチャント', (s, i) => B(s, i).enchantment)}
+        ${brow('PW', (s, i) => B(s, i).planeswalker)}
+        ${brow('出せるマナ', (s, i) => m.sim[s].mana[i])}
+        ${m.sim.hasDisrupt ? brow('妨害を構える', (s, i) => m.sim[s].held[i], pct) : ''}
+        ${m.sim.combos && m.sim.combos.length ? brow('コンボがそろう', (s, i) => m.sim[s].combo[i], pct) : ''}
+        </table></div>`;
       const body = `<div class="mu-body">
-          <div><b>対処札（メイン）</b>: ${listOf(mainE)}</div>
-          <div><b>対処札（サイド）</b>: ${listOf(sideE)}</div>
-          <div class="mu-sub">脅威ごと</div><ul class="mu-list">${perThreat}</ul>
-          ${near.length ? `<div class="mu-sub">数えなかったカード</div><ul class="mu-list">${[...new Set(near)].map(x => `<li>${x}</li>`).join('')}</ul>` : ''}
+          ${oppTable}
+          ${cells.map(c => `<div class="mu-sub">${NEED_LABEL[c.n]}${c.chance != null ? `<span class="muted">（4Tまでに手札にあって唱えられる率 ${pct(c.chance)}・先手）</span>` : ''}</div>
+            <div>メイン: ${list(c.mn, c.n)}</div><div class="muted">サイド: ${c.sd.length ? list(c.sd, c.n) : 'なし'}</div>`).join('')}
+          ${near.length ? `<div class="mu-sub">数えなかったクリーチャー除去（相手のクリーチャーは平均タフネス${n1(perT)}）</div><ul class="mu-list">${[...new Set(near)].map(x => `<li>${x}</li>`).join('')}</ul>` : ''}
           ${deadN ? `<div class="mu-sub">腐りやすい枠</div><div>${esc(dead.map(e => `${displayName(e.card)}×${e.qty}`).join('、'))}${good.length ? `<br>→ 入れ替え候補（サイド）: ${esc(good.map(e => `${displayName(e.card)}×${e.qty}`).join('、'))}` : '<br><span class="muted">サイドに入れ替え先が見当たらない</span>'}</div>` : ''}
         </div>`;
+      const summary = `4T: クリーチャー${n1(b4.creatures)}体（P計${n1(b4.power)}・タフネス2以下${n1(b4.t2)}）${b4.artifact >= 0.3 ? `・A${n1(b4.artifact)}` : ''}${b4.enchantment >= 0.3 ? `・E${n1(b4.enchantment)}` : ''}${b4.planeswalker >= 0.2 ? `・PW${n1(b4.planeswalker)}` : ''}${m.sim.combos && m.sim.combos.length ? `・コンボ${pct(S.combo[1])}` : ''}`;
       return `<details class="mu" data-arch="${esc(m.name)}" ${openArch.has(m.name) ? 'open' : ''}><summary>
-        <div class="mu-head"><b>${esc(m.name)}</b> <span class="num">${pct(m.share)}</span>${kt ? ` <span class="muted">キーターン ${kt}T</span>` : ''}<span class="mu-toggle muted"></span></div>
-        <div class="mu-threats">${cells.map(c => `<span class="mu-t ${cls(c)}" title="採用率${pct(c.t.rate)}・平均${c.t.avg}枚">${esc(c.t.name)} <b>${c.main}</b><span class="muted">/${c.side}</span></span>`).join('')}</div>
-        ${chance != null ? `<div class="muted">キーターンまでに対処札を持って唱えられる率（先手）: <b>${pct(chance)}</b>（対処札 ${K} 枚）</div>` : ''}
+        <div class="mu-head"><b>${esc(m.name)}</b> <span class="num">${pct(m.share)}</span><span class="mu-toggle muted"></span></div>
+        <div class="muted">${summary}</div>
+        <div class="mu-threats">${cells.map(c => `<span class="mu-t ${cls(c)}">${NEED_LABEL[c.n]} <b>${c.main}</b><span class="muted">/${c.side}</span></span>`).join('')}</div>
         ${deadN ? `<div class="muted">腐りやすい枠あり（${deadN}枚）</div>` : ''}
       </summary>${body}</details>`;
     }).join('');
     box.innerHTML = (html || '<p class="hint">シェア3%以上の上位デッキがありません</p>') +
-      `<p class="hint">脅威＝そのアーキタイプの40%以上が採用する勝ち手段・コンボ/展開のカードと、居座って働くクリーチャー・プレインズウォーカー・エンジン。押すと対処札の一覧を開けます。数字はメイン/サイドの対処札の枚数（除去・打ち消し・手札破壊。ダメージ量とタフネス、「マナ総量N以下」の条件も見ています）。キーターン＝代表リストを一人回しして主力が50%以上出ているターン。腐りやすい枠＝相手のパーマネント構成に対象がほとんどない妨害。</p>`;
+      `<p class="hint">各デッキの代表リストを相手が何もしない前提で一人回しした、4ターン目の盤面（先手）から必要な対策を出しています。数字はメイン/サイドの枚数。押すと相手の3・4・5ターン目の盤面と、対策ごとのカードの一覧を開けます。クリーチャー除去は相手のクリーチャーの平均タフネスに届くか、「マナ総量N以下」の条件も見ています。腐りやすい枠＝相手の4ターン目の盤面に対象がほとんどない妨害。</p>`;
     box.querySelectorAll('details.mu').forEach(d => d.addEventListener('toggle', () => {
       if (d.open) openArch.add(d.dataset.arch); else openArch.delete(d.dataset.arch);
     }));
