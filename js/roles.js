@@ -470,7 +470,7 @@
     const pips = { W: 0, U: 0, B: 0, R: 0, G: 0 };
     const sources = { W: 0, U: 0, B: 0, R: 0, G: 0 };
     let nonLand = 0, mvSum = 0, cheapRampDraw = 0, lands = 0, mdfcLands = 0;
-    const tagCounts = {}; // "effect:r" / "effect:o"（繰り返し / 1回）→ 枚数
+    const tagCounts = {}; // "effect:kind"（kind は呪文 spell / 起動型 activated / 誘発型 triggered / 常在型 static）→ 枚数
     const roleCards = {}; // 小カテゴリ → [{name, qty, others}]（アドバイスで兼任カードを見分ける用）
     // フェッチ対象になるデッキ内の土地（土地を戦場に出すカードの色源の計算用）
     const deckLands = entries.filter(e => e.card && /\bLand\b/.test(frontType(e.card))).map(e => e.card);
@@ -485,7 +485,7 @@
       catCount[e.cat || categoryOf(roles)] += e.qty;
       const c = e.card;
       if (!c) continue;
-      const keys = new Set(inspect(c).tags.map(t => `${t.effect}:${t.repeat ? 'r' : 'o'}`));
+      const keys = new Set(inspect(c).tags.map(t => `${t.effect}:${t.kind || Tags.kindOf(t.trigger)}`)); // 効果:能力の種類（spell/activated/triggered/static）
       keys.forEach(k => { tagCounts[k] = (tagCounts[k] || 0) + e.qty; });
       const isLand = roles.includes('land');
       // 土地を探して戦場に出すカードは、デッキ内で探せる土地の色も色源にする

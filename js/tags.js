@@ -13,6 +13,13 @@
 })(typeof window !== 'undefined' ? window : globalThis, function () {
   'use strict';
 
+  // ---------- 能力の種類（総合ルール113.3: 呪文能力・起動型能力・誘発型能力・常在型能力） ----------
+  const KINDS = { spell: '呪文', activated: '起動型', triggered: '誘発型', static: '常在型' };
+  // 発動条件 → 能力の種類（忠誠度能力は起動型、出たとき・章能力は誘発型）
+  const kindOf = trigger => trigger === 'spell' ? 'spell'
+    : ['activated', 'activated_once', 'loyalty'].includes(trigger) ? 'activated'
+    : trigger === 'static' ? 'static' : 'triggered';
+
   // ---------- 発動条件 ----------
   const TRIGGERS = {
     spell:            { label: '唱えたとき',           repeat: false },
@@ -256,7 +263,7 @@
       const k = e + '@' + t + (detail ? `#${detail.action}:${detail.types.join(',')}` : '');
       if (seen.has(k)) continue;
       seen.add(k);
-      const tag = { effect: e, trigger: t, repeat: TRIGGERS[t].repeat, speed: speedOf(t, a.isInstant, hasFlash, a.text) };
+      const tag = { effect: e, trigger: t, kind: kindOf(t), repeat: TRIGGERS[t].repeat, speed: speedOf(t, a.isInstant, hasFlash, a.text) };
       if (detail) tag.detail = detail;
       tags.push(tag);
     }
@@ -433,5 +440,5 @@
 
   const tagLabel = t => `${EFFECT_MAP[t.effect].label} × ${TRIGGERS[t.trigger].label}`;
 
-  return { TRIGGERS, EFFECTS, EFFECT_MAP, analyze, tagLabel, detailOf, tokensOf, playableOracle, backFace, ultimateFace };
+  return { TRIGGERS, KINDS, kindOf, EFFECTS, EFFECT_MAP, analyze, tagLabel, detailOf, tokensOf, playableOracle, backFace, ultimateFace };
 });
