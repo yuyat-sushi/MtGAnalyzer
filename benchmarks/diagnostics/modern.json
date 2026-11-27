@@ -2000,6 +2000,67 @@
     ]
    }
   ],
+  "action": [
+   {
+    "name": "Orcish Bowmasters",
+    "decks": 351,
+    "oracle": "Flash\nWhen this creature enters and whenever an opponent draws a card except the first one they draw in each of their draw steps, this creature deals 1 damage to any target. Then amass Orcs 1.",
+    "detail": [
+     "removal:damage:creature/planeswalker/battle/player",
+     "hate:lock:draw"
+    ]
+   },
+   {
+    "name": "Narset, Parter of Veils",
+    "decks": 295,
+    "oracle": "Each opponent can't draw more than one card each turn.\n−2: Look at the top four cards of your library. You may reveal a noncreature, nonland card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.",
+    "detail": [
+     "hate:lock:draw"
+    ]
+   },
+   {
+    "name": "Sheoldred, the Apocalypse",
+    "decks": 40,
+    "oracle": "Deathtouch\nWhenever you draw a card, you gain 2 life.\nWhenever an opponent draws a card, they lose 2 life.",
+    "detail": [
+     "hate:lock:draw"
+    ]
+   },
+   {
+    "name": "Skullcrack",
+    "decks": 16,
+    "oracle": "Players can't gain life this turn. Damage can't be prevented this turn. Skullcrack deals 3 damage to target player or planeswalker.",
+    "detail": [
+     "removal:damage:planeswalker",
+     "hate:lock:lifegain"
+    ]
+   },
+   {
+    "name": "Ashiok, Dream Render",
+    "decks": 5,
+    "oracle": "Spells and abilities your opponents control can't cause their controller to search their library.\n−1: Target player mills four cards. Then exile each opponent's graveyard.",
+    "detail": [
+     "hate:lock:library",
+     "gyhate:exile:graveyard"
+    ]
+   },
+   {
+    "name": "Leonin Arbiter",
+    "decks": 1,
+    "oracle": "Players can't search libraries. Any player may pay {2} for that player to ignore this effect until end of turn.",
+    "detail": [
+     "hate:lock:library"
+    ]
+   },
+   {
+    "name": "Shadow of Doubt",
+    "decks": 1,
+    "oracle": "({U/B} can be paid with either {U} or {B}.)\nPlayers can't search libraries this turn.\nDraw a card.",
+    "detail": [
+     "hate:lock:library"
+    ]
+   }
+  ],
   "discard": [
    {
     "name": "Thoughtseize",
@@ -2763,7 +2824,7 @@
   ]
  },
  "format": "Modern",
- "generatedAt": "2026-11-27T21:32:20.278Z",
+ "generatedAt": "2026-11-27T21:34:04.339Z",
  "decks": 5115,
  "otherOnly": [
   {

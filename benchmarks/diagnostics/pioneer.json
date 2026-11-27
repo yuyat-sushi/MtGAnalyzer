@@ -2090,6 +2090,32 @@
     ]
    }
   ],
+  "action": [
+   {
+    "name": "Sheoldred, the Apocalypse",
+    "decks": 159,
+    "oracle": "Deathtouch\nWhenever you draw a card, you gain 2 life.\nWhenever an opponent draws a card, they lose 2 life.",
+    "detail": [
+     "hate:lock:draw"
+    ]
+   },
+   {
+    "name": "Sunspine Lynx",
+    "decks": 77,
+    "oracle": "Players can't gain life.\nDamage can't be prevented.\nWhen this creature enters, it deals damage to each player equal to the number of nonbasic lands that player controls.",
+    "detail": [
+     "hate:lock:lifegain"
+    ]
+   },
+   {
+    "name": "Narset, Parter of Veils",
+    "decks": 36,
+    "oracle": "Each opponent can't draw more than one card each turn.\n−2: Look at the top four cards of your library. You may reveal a noncreature, nonland card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.",
+    "detail": [
+     "hate:lock:draw"
+    ]
+   }
+  ],
   "discard": [
    {
     "name": "Thoughtseize",
@@ -2513,7 +2539,7 @@
   "combat": []
  },
  "format": "Pioneer",
- "generatedAt": "2026-11-27T21:32:20.278Z",
+ "generatedAt": "2026-11-27T21:34:04.339Z",
  "decks": 1176,
  "otherOnly": [
   {

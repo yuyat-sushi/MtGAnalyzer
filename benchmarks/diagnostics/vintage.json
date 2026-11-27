@@ -1738,6 +1738,49 @@
     ]
    }
   ],
+  "action": [
+   {
+    "name": "Scrawling Crawler",
+    "decks": 142,
+    "oracle": "At the beginning of your upkeep, each player draws a card.\nWhenever an opponent draws a card, that player loses 1 life.",
+    "detail": [
+     "hate:lock:draw"
+    ]
+   },
+   {
+    "name": "Orcish Bowmasters",
+    "decks": 130,
+    "oracle": "Flash\nWhen this creature enters and whenever an opponent draws a card except the first one they draw in each of their draw steps, this creature deals 1 damage to any target. Then amass Orcs 1.",
+    "detail": [
+     "removal:damage:creature/planeswalker/battle/player",
+     "hate:lock:draw"
+    ]
+   },
+   {
+    "name": "Hullbreacher",
+    "decks": 22,
+    "oracle": "Flash\nIf an opponent would draw a card except the first one they draw in each of their draw steps, instead you create a Treasure token. (It's an artifact with \"{T}, Sacrifice this token: Add one mana of any color.\")",
+    "detail": [
+     "hate:lock:draw"
+    ]
+   },
+   {
+    "name": "Narset, Parter of Veils",
+    "decks": 12,
+    "oracle": "Each opponent can't draw more than one card each turn.\n−2: Look at the top four cards of your library. You may reveal a noncreature, nonland card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.",
+    "detail": [
+     "hate:lock:draw"
+    ]
+   },
+   {
+    "name": "Leovold, Emissary of Trest",
+    "decks": 1,
+    "oracle": "Each opponent can't draw more than one card each turn.\nWhenever you or a permanent you control becomes the target of a spell or ability an opponent controls, you may draw a card.",
+    "detail": [
+     "hate:lock:draw"
+    ]
+   }
+  ],
   "discard": [
    {
     "name": "Gitaxian Probe",
@@ -2057,7 +2100,7 @@
   ]
  },
  "format": "Vintage",
- "generatedAt": "2026-11-27T21:32:20.278Z",
+ "generatedAt": "2026-11-27T21:34:04.339Z",
  "decks": 1205,
  "otherOnly": [
   {

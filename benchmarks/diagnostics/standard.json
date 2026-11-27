@@ -2050,6 +2050,32 @@
     ]
    }
   ],
+  "action": [
+   {
+    "name": "Sunspine Lynx",
+    "decks": 11,
+    "oracle": "Players can't gain life.\nDamage can't be prevented.\nWhen this creature enters, it deals damage to each player equal to the number of nonbasic lands that player controls.",
+    "detail": [
+     "hate:lock:lifegain"
+    ]
+   },
+   {
+    "name": "Razorkin Needlehead",
+    "decks": 5,
+    "oracle": "This creature has first strike during your turn.\nWhenever an opponent draws a card, this creature deals 1 damage to them.",
+    "detail": [
+     "hate:lock:draw"
+    ]
+   },
+   {
+    "name": "Giant Cindermaw",
+    "decks": 1,
+    "oracle": "Trample (This creature can deal excess combat damage to the player or planeswalker it's attacking.)\nPlayers can't gain life.",
+    "detail": [
+     "hate:lock:lifegain"
+    ]
+   }
+  ],
   "discard": [
    {
     "name": "Duress",
@@ -2367,7 +2393,7 @@
   ]
  },
  "format": "Standard",
- "generatedAt": "2026-11-27T21:32:20.278Z",
+ "generatedAt": "2026-11-27T21:34:04.339Z",
  "decks": 2593,
  "otherOnly": [
   {

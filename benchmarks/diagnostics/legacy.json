@@ -2045,6 +2045,82 @@
     ]
    }
   ],
+  "action": [
+   {
+    "name": "Orcish Bowmasters",
+    "decks": 520,
+    "oracle": "Flash\nWhen this creature enters and whenever an opponent draws a card except the first one they draw in each of their draw steps, this creature deals 1 damage to any target. Then amass Orcs 1.",
+    "detail": [
+     "removal:damage:creature/planeswalker/battle/player",
+     "hate:lock:draw"
+    ]
+   },
+   {
+    "name": "Narset, Parter of Veils",
+    "decks": 48,
+    "oracle": "Each opponent can't draw more than one card each turn.\n−2: Look at the top four cards of your library. You may reveal a noncreature, nonland card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.",
+    "detail": [
+     "hate:lock:draw"
+    ]
+   },
+   {
+    "name": "Opposition Agent",
+    "decks": 12,
+    "oracle": "Flash\nYou control your opponents while they're searching their libraries.\nWhile an opponent is searching their library, they exile each card they find. You may play those cards for as long as they remain exiled, and you may spend mana as though it were mana of any color to cast them.",
+    "detail": [
+     "hate:lock:library"
+    ]
+   },
+   {
+    "name": "Sheoldred, the Apocalypse",
+    "decks": 8,
+    "oracle": "Deathtouch\nWhenever you draw a card, you gain 2 life.\nWhenever an opponent draws a card, they lose 2 life.",
+    "detail": [
+     "hate:lock:draw"
+    ]
+   },
+   {
+    "name": "Hullbreacher",
+    "decks": 4,
+    "oracle": "Flash\nIf an opponent would draw a card except the first one they draw in each of their draw steps, instead you create a Treasure token. (It's an artifact with \"{T}, Sacrifice this token: Add one mana of any color.\")",
+    "detail": [
+     "hate:lock:draw"
+    ]
+   },
+   {
+    "name": "Roiling Vortex",
+    "decks": 1,
+    "oracle": "At the beginning of each player's upkeep, this enchantment deals 1 damage to them.\nWhenever a player casts a spell, if no mana was spent to cast that spell, this enchantment deals 5 damage to that player.\n{R}: Your opponents can't gain life this turn.",
+    "detail": [
+     "hate:lock:lifegain"
+    ]
+   },
+   {
+    "name": "Leovold, Emissary of Trest",
+    "decks": 1,
+    "oracle": "Each opponent can't draw more than one card each turn.\nWhenever you or a permanent you control becomes the target of a spell or ability an opponent controls, you may draw a card.",
+    "detail": [
+     "hate:lock:draw"
+    ]
+   },
+   {
+    "name": "Skullcrack",
+    "decks": 1,
+    "oracle": "Players can't gain life this turn. Damage can't be prevented this turn. Skullcrack deals 3 damage to target player or planeswalker.",
+    "detail": [
+     "removal:damage:planeswalker",
+     "hate:lock:lifegain"
+    ]
+   },
+   {
+    "name": "Sulfuric Vortex",
+    "decks": 1,
+    "oracle": "At the beginning of each player's upkeep, this enchantment deals 2 damage to that player.\nIf a player would gain life, that player gains no life instead.",
+    "detail": [
+     "hate:lock:lifegain"
+    ]
+   }
+  ],
   "discard": [
    {
     "name": "Thoughtseize",
@@ -2629,7 +2705,7 @@
   ]
  },
  "format": "Legacy",
- "generatedAt": "2026-11-27T21:32:20.278Z",
+ "generatedAt": "2026-11-27T21:34:04.339Z",
  "decks": 2805,
  "otherOnly": [
   {
