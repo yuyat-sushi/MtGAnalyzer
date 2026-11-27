@@ -36,7 +36,7 @@
   // ---------- 永続化 ----------
   function serialize(deck) {
     // カードデータ本体は Scryfall キャッシュ側にあるので、名前と手動役割だけ保存
-    const z = l => l.map(e => ({ name: e.name, qty: e.qty, manualRoles: e.manualRoles || null, manualCat: e.manualCat || null }));
+    const z = l => l.map(e => ({ name: e.name, qty: e.qty, manualRoles: e.manualRoles || null, manualCat: e.manualCat || null, key: !!e.key }));
     return { name: deck.name, format: deck.format, archetype: deck.archetype, meta: deck.meta || '', metaArch: deck.metaArch || 'auto', main: z(deck.main), side: z(deck.side) };
   }
   function saveCurrent() {
@@ -259,6 +259,7 @@
       <div class="name" data-preview>${esc(label)}${sub}${e.missing ? ' <small>(未取得)</small>' : ''}</div>
       <div class="meta">
         ${c ? manaHTML(c.manaCost) : ''}
+        ${zone === 'main' && c && !rolesOf(e).includes('land') ? `<button class="key-btn ${e.key ? 'on' : ''}" data-act="key" title="${e.key ? '主力カードの指定を外す' : '主力カードに指定（一人回しで登場ターンを調べる）'}">${e.key ? '★' : '☆'}</button>` : ''}
         <span class="chips" data-act="roles" title="クリックで役割を編集">${c || e.manualRoles ? chipsHTML(e) : ''}</span>
         <button class="move" data-act="move" title="${zone === 'main' ? 'サイドへ1枚移動' : 'メインへ1枚移動'}">${zone === 'main' ? '→SB' : '→Main'}</button>
       </div>
@@ -347,8 +348,17 @@
     renderDisrupt(dMain, dSide, cmp && cmp.group);
     const metaTips = cmp && cmp.bench && cmp.bench.meta ? Roles.metaAdvice(dMain, dSide, cmp.bench.meta, cmp.group) : [];
     metaTips.push(...renderCombos(cmp));
-    metaTips.push(...simTips);
-    $('#advice').innerHTML = [...a.advice, ...metaTips].map(x => `<li class="${x.level}">${esc(x.text)}</li>`).join('');
+    const all = [...a.advice, ...metaTips.map(x => ({ group: 'meta', ...x })), ...simTips.map(x => ({ group: 'plan', ...x }))];
+    const GROUPS = [
+      ['base', '前提チェック（枚数・土地・色）'],
+      ['plan', 'メインの動き（一人回し）'],
+      ['meta', '環境への対策'],
+      ['extra', '補足（カテゴリの比率）']
+    ];
+    $('#advice').innerHTML = GROUPS.map(([g, label]) => {
+      const items = all.filter(x => (x.group || 'base') === g);
+      return items.length ? `<li class="adv-head">${label}</li>` + items.map(x => `<li class="${x.level}">${esc(x.text)}</li>`).join('') : '';
+    }).join('');
   }
 
   // ---------- マナシミュレーション（js/manasim.js） ----------
@@ -359,55 +369,82 @@
     const box = $('#manaSim');
     if (!window.ManaSim) { box.innerHTML = ''; return []; }
     const list = state.main.filter(e => e.card);
-    const sig = list.map(e => `${e.qty}:${e.card.name}`).sort().join('|');
+    const keys = list.filter(e => e.key).map(e => e.card.name);
+    const sig = list.map(e => `${e.qty}:${e.card.name}:${catOf(e)}`).sort().join('|') + '#' + keys.sort().join('|');
     if (simCache.sig !== sig) {
       simCache = { sig, result: null, pending: true };
-      box.innerHTML = list.length ? '<p class="hint">ターンごとのマナを計算中…</p>' : '';
+      box.innerHTML = list.length ? '<p class="hint">一人回し中…</p>' : '';
       setTimeout(() => {
         if (simCache.sig !== sig) return;
         let r = null;
-        try { r = ManaSim.simulate(list.map(e => ({ qty: e.qty, card: e.card }))); } catch (err) { console.error(err); }
+        try { r = ManaSim.simulate(list.map(e => ({ qty: e.qty, card: e.card, cat: catOf(e) })), { keys }); } catch (err) { console.error(err); }
         simCache = { sig, result: r, pending: false };
         renderAnalysis();
       }, 30);
       return [];
     }
     const r = simCache.result;
-    if (!r) { box.innerHTML = simCache.pending ? '<p class="hint">ターンごとのマナを計算中…</p>' : ''; return []; }
+    if (!r) { box.innerHTML = simCache.pending ? '<p class="hint">一人回し中…</p>' : ''; return []; }
 
-    const T = [...Array(r.turns).keys()];
-    const row = (label, f) => `<tr><td>${label}</td>${T.map(t => `<td>${f(t)}</td>`).join('')}</tr>`;
-    let html = `<h3>ターンごとに出せるマナ（土地とサーチ・占術を使った場合）</h3>
-      <table class="meta-table sim-table"><tr><th></th>${T.map(t => `<th>${t + 1}T</th>`).join('')}</tr>
-      ${row('先手 平均', t => r.play.avg[t].toFixed(1))}
-      ${row('先手 ターン数ぶん以上', t => pctTxt(r.play.ge[t][t + 1]))}
-      ${row('後手 平均', t => r.draw.avg[t].toFixed(1))}
-      ${row('後手 ターン数ぶん以上', t => pctTxt(r.draw.ge[t][t + 1]))}
-      </table>`;
     const tips = [];
-    const h = r.headline;
-    const base = r.play.ge[h.turn - 1][h.k];
-    if (r.tron) {
-      const p3 = r.play.ge[2][7], d3 = r.draw.ge[2][7], p4 = r.play.ge[3][7], d4 = r.draw.ge[3][7];
-      html += `<h3>Tron（7マナ）が出る確率</h3>
-        <table class="meta-table sim-table"><tr><th></th><th>3T</th><th>4T</th></tr>
-        <tr><td>先手</td><td class="big">${pctTxt(p3)}</td><td class="big">${pctTxt(p4)}</td></tr>
-        <tr><td>後手</td><td class="big">${pctTxt(d3)}</td><td class="big">${pctTxt(d4)}</td></tr></table>
-        <p class="hint">4マナ以上（塔＋Planar Nexusなど）: 先手 2T ${pctTxt(r.play.ge[1][4])}・3T ${pctTxt(r.play.ge[2][4])}</p>`;
-      tips.push({ level: 'info', text: `Tron（7マナ）が出る確率は、3ターン目で先手${pctTxt(p3)}・後手${pctTxt(d3)}、4ターン目で先手${pctTxt(p4)}・後手${pctTxt(d4)}だよ。` });
-    } else if (r.accel) {
-      html += `<p class="hint">2マナ以上出る土地込みで、3ターン目に4マナ以上: 先手 <b>${pctTxt(r.play.ge[2][4])}</b>・後手 <b>${pctTxt(r.draw.ge[2][4])}</b></p>`;
-      if (r.play.ge[2][4] >= 0.05) tips.push({ level: 'info', text: `2マナ以上出る土地のおかげで、3ターン目に4マナ以上出る確率は先手${pctTxt(r.play.ge[2][4])}・後手${pctTxt(r.draw.ge[2][4])}。MV4のカードを早めに唱えられるよ。` });
+    const nameOf = n => { const e = list.find(x => x.card.name === n); return e ? displayName(e.card) : n; };
+    const TT = [2, 3, 4, 5].filter(t => t <= r.turns);
+    const pd = (p, d) => `${pctTxt(p)}<span class="muted">/${pctTxt(d)}</span>`;
+    let html = '';
+
+    // 主力カードの登場率
+    if (r.keyNames.length) {
+      const rows = r.keyNames.map(n => `<tr><td>${esc(nameOf(n))}</td>${TT.map(t => `<td>${pd((r.play.castBy[n] || [])[t - 1] || 0, (r.draw.castBy[n] || [])[t - 1] || 0)}</td>`).join('')}</tr>`).join('');
+      html += `<h3>主力カードを唱えられた率（先手/後手、そのターンまでに）</h3>
+        ${r.autoKey ? '<p class="hint">主力が未指定なので【勝ち手段】【コンボ/展開】を自動で選んでるよ。デッキ画面の☆で指定できます。</p>' : ''}
+        <div class="sim-scroll"><table class="meta-table sim-table key-table"><tr><th></th>${TT.map(t => `<th>${t}T</th>`).join('')}</tr>
+        <tr><td><b>主力のどれか</b></td>${TT.map(t => `<td><b>${pd(r.play.keyBy[t - 1], r.draw.keyBy[t - 1])}</b></td>`).join('')}</tr>
+        ${rows}</table></div>`;
+      const T = r.keyTurn;
+      const names = r.keyNames.map(nameOf);
+      tips.push({ level: 'info', text: `主力（${names.length > 3 ? names.slice(0, 3).join('、') + ' など' : names.join('、')}）を${T}ターン目までに唱えられた率は、先手${pctTxt(r.play.keyBy[T - 1])}・後手${pctTxt(r.draw.keyBy[T - 1])}。` });
+      // 引けていたのに唱えられなかった主力
+      r.keyNames.forEach(n => {
+        const mv = Math.round(r.keyCmc[n] || 0);
+        if (mv < 1 || mv > 6) return;
+        const t = Math.min(mv + 1, r.turns);
+        const seen = (r.play.seenBy[n] || [])[t - 1] || 0, cast = (r.play.castBy[n] || [])[t - 1] || 0;
+        if (seen < 0.1) return;
+        const rate = cast / seen;
+        if (rate < 0.6) tips.push({ level: 'warn', text: `${nameOf(n)}（MV${mv}）は、${t}ターン目までに手札にあっても唱えられたのは${pctTxt(rate)}だけ（先手）。土地・マナ加速か、色の出る土地が足りないかも。` });
+      });
+    } else {
+      html += '<p class="hint">主力カードがまだないよ。デッキ画面の☆で指定すると、何ターン目に唱えられるかを調べられます。</p>';
     }
-    if (r.enablers.length) {
+
+    // ターンごとの動き
+    const T6 = [...Array(r.turns).keys()];
+    const row = (label, f) => `<tr><td>${label}</td>${T6.map(t => `<td>${f(t)}</td>`).join('')}</tr>`;
+    html += `<h3>ターンごとの動き（先手）</h3>
+      <div class="sim-scroll"><table class="meta-table sim-table"><tr><th></th>${T6.map(t => `<th>${t + 1}T</th>`).join('')}</tr>
+      ${row('出せるマナ', t => r.play.avg[t].toFixed(1))}
+      ${row('<span class="muted">後手</span>', t => `<span class="muted">${r.draw.avg[t].toFixed(1)}</span>`)}
+      ${row('何もできない', t => pctTxt(r.play.idle[t]))}
+      ${row('使い残し', t => r.play.unused[t].toFixed(1))}
+      ${r.hasDisrupt ? row('妨害を構えられた', t => pctTxt(r.play.held[t])) : ''}
+      </table></div>`;
+    [2, 3].forEach(t => {
+      if (t <= r.turns && r.play.idle[t - 1] > 0.25) tips.push({ level: 'warn', text: `${t}ターン目に何も唱えられず、妨害も構えられなかった率が${pctTxt(r.play.idle[t - 1])}（先手）。${t}マナ以下で動けるカードを増やすと安定するよ。` });
+    });
+    if (r.turns >= 4 && r.play.unused[3] >= 1.5) tips.push({ level: 'info', text: `4ターン目に平均${r.play.unused[3].toFixed(1)}マナ余ってるよ。マナの使い道（重めのカードや起動型能力）を足す余地があるかも。` });
+    if (r.hasDisrupt) tips.push({ level: 'info', text: `妨害を構えられた率は、2ターン目${pctTxt(r.play.held[1])}・3ターン目${pctTxt(r.play.held[2])}（先手、主力以外の呪文を我慢した場合を含む）。` });
+
+    // 貢献度
+    const base = r.keyNames.length ? r.play.keyBy[r.keyTurn - 1] : 0;
+    if (r.enablers.length && base >= 0.05) {
       const items = r.enablers.map(e => ({ ...e, diff: base - e.without })).sort((x, y) => y.diff - x.diff);
-      html += `<h3>サーチ・ライブラリー操作の貢献（${h.label}・${h.turn}T・先手 ${pctTxt(base)}）</h3>
+      html += `<h3>サーチ・加速・占術の貢献（${r.keyTurn}Tまでに主力 先手 ${pctTxt(base)}）</h3>
         <table class="meta-table sim-table"><tr><th>カード</th><th>抜くと</th><th>差</th></tr>
-        ${items.map(e => `<tr><td>${esc(e.name)} ×${e.qty}</td><td>${pctTxt(e.without)}</td><td>${e.diff >= 0 ? '−' : '+'}${Math.abs(Math.round(e.diff * 100))}</td></tr>`).join('')}</table>`;
+        ${items.map(e => `<tr><td>${esc(nameOf(e.name))} ×${e.qty}</td><td>${pctTxt(e.without)}</td><td>${Math.round(e.diff * 100) === 0 ? '0' : (e.diff > 0 ? '−' : '+') + Math.abs(Math.round(e.diff * 100))}</td></tr>`).join('')}</table>`;
       const top = items[0];
-      if (top && top.diff >= 0.03) tips.push({ level: 'info', text: `${h.turn}ターン目の${h.label.replace(/^\dターン目に/, '')}に一番効いているのは${top.name}（抜くと先手${pctTxt(base)}→${pctTxt(top.without)}）。` });
+      if (top && top.diff >= 0.03) tips.push({ level: 'info', text: `主力を早く出すのに一番効いているのは${nameOf(top.name)}（抜くと${r.keyTurn}ターン目までの率が先手${pctTxt(base)}→${pctTxt(top.without)}）。` });
     }
-    html += `<p class="hint">マリガンなし・7枚キープで${r.iters.toLocaleString()}回試した結果。土地の置き方やサーチ・占術の使い方は簡単なルールで決めているので、上手な人が回すより少し低めに出ることがあるよ。</p>`;
+    html += `<p class="hint">相手が何もしない前提で、マリガンなし・7枚キープで${r.iters.toLocaleString()}回一人回しした結果。妨害は唱えずに構えたものとして数え、効果を読み取れないカードは「唱えた」ことだけを記録しています。カードの使い方は簡単なルールで決めているので、上手な人が回すより少し低めに出ることがあるよ。</p>`;
     box.innerHTML = html;
     return tips;
   }
@@ -862,6 +899,7 @@
       else if (act === 'dec') changeQty(zone, name, -1);
       else if (act === 'move') moveZone(zone, name);
       else if (act === 'roles') openRoleEditor(zone, name, actEl);
+      else if (act === 'key') { const e = state[zone].find(x => x.name === name); if (e) { e.key = !e.key; render(); } }
       else if (ev.target.closest('[data-preview]') && isTouch()) {
         const e = findEntry(zone, name);
         if (e && e.card) openZoom(e.card, false);
