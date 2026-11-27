@@ -322,6 +322,7 @@
         <span class="l">${i === 7 ? '7+' : i}</span>
       </div>`).join('');
     $('#avgMV').textContent = a.nonLand ? `平均MV ${a.avgMV.toFixed(2)}（土地除く ${a.nonLand} 枚）` : '';
+    const simTips = renderManaSim();
 
     // 色
     const totalPips = Object.values(a.pips).reduce((s, x) => s + x, 0);
@@ -346,7 +347,69 @@
     renderDisrupt(dMain, dSide, cmp && cmp.group);
     const metaTips = cmp && cmp.bench && cmp.bench.meta ? Roles.metaAdvice(dMain, dSide, cmp.bench.meta, cmp.group) : [];
     metaTips.push(...renderCombos(cmp));
+    metaTips.push(...simTips);
     $('#advice').innerHTML = [...a.advice, ...metaTips].map(x => `<li class="${x.level}">${esc(x.text)}</li>`).join('');
+  }
+
+  // ---------- マナシミュレーション（js/manasim.js） ----------
+  // 計算に少し時間がかかるので、デッキが変わったら後から計算して描き直す
+  let simCache = { sig: null, result: null, pending: false };
+  const pctTxt = x => `${Math.round(x * 100)}%`;
+  function renderManaSim() {
+    const box = $('#manaSim');
+    if (!window.ManaSim) { box.innerHTML = ''; return []; }
+    const list = state.main.filter(e => e.card);
+    const sig = list.map(e => `${e.qty}:${e.card.name}`).sort().join('|');
+    if (simCache.sig !== sig) {
+      simCache = { sig, result: null, pending: true };
+      box.innerHTML = list.length ? '<p class="hint">ターンごとのマナを計算中…</p>' : '';
+      setTimeout(() => {
+        if (simCache.sig !== sig) return;
+        let r = null;
+        try { r = ManaSim.simulate(list.map(e => ({ qty: e.qty, card: e.card }))); } catch (err) { console.error(err); }
+        simCache = { sig, result: r, pending: false };
+        renderAnalysis();
+      }, 30);
+      return [];
+    }
+    const r = simCache.result;
+    if (!r) { box.innerHTML = simCache.pending ? '<p class="hint">ターンごとのマナを計算中…</p>' : ''; return []; }
+
+    const T = [...Array(r.turns).keys()];
+    const row = (label, f) => `<tr><td>${label}</td>${T.map(t => `<td>${f(t)}</td>`).join('')}</tr>`;
+    let html = `<h3>ターンごとに出せるマナ（土地とサーチ・占術を使った場合）</h3>
+      <table class="meta-table sim-table"><tr><th></th>${T.map(t => `<th>${t + 1}T</th>`).join('')}</tr>
+      ${row('先手 平均', t => r.play.avg[t].toFixed(1))}
+      ${row('先手 ターン数ぶん以上', t => pctTxt(r.play.ge[t][t + 1]))}
+      ${row('後手 平均', t => r.draw.avg[t].toFixed(1))}
+      ${row('後手 ターン数ぶん以上', t => pctTxt(r.draw.ge[t][t + 1]))}
+      </table>`;
+    const tips = [];
+    const h = r.headline;
+    const base = r.play.ge[h.turn - 1][h.k];
+    if (r.tron) {
+      const p3 = r.play.ge[2][7], d3 = r.draw.ge[2][7], p4 = r.play.ge[3][7], d4 = r.draw.ge[3][7];
+      html += `<h3>Tron（7マナ）が出る確率</h3>
+        <table class="meta-table sim-table"><tr><th></th><th>3T</th><th>4T</th></tr>
+        <tr><td>先手</td><td class="big">${pctTxt(p3)}</td><td class="big">${pctTxt(p4)}</td></tr>
+        <tr><td>後手</td><td class="big">${pctTxt(d3)}</td><td class="big">${pctTxt(d4)}</td></tr></table>
+        <p class="hint">4マナ以上（塔＋Planar Nexusなど）: 先手 2T ${pctTxt(r.play.ge[1][4])}・3T ${pctTxt(r.play.ge[2][4])}</p>`;
+      tips.push({ level: 'info', text: `Tron（7マナ）が出る確率は、3ターン目で先手${pctTxt(p3)}・後手${pctTxt(d3)}、4ターン目で先手${pctTxt(p4)}・後手${pctTxt(d4)}だよ。` });
+    } else if (r.accel) {
+      html += `<p class="hint">2マナ以上出る土地込みで、3ターン目に4マナ以上: 先手 <b>${pctTxt(r.play.ge[2][4])}</b>・後手 <b>${pctTxt(r.draw.ge[2][4])}</b></p>`;
+      if (r.play.ge[2][4] >= 0.05) tips.push({ level: 'info', text: `2マナ以上出る土地のおかげで、3ターン目に4マナ以上出る確率は先手${pctTxt(r.play.ge[2][4])}・後手${pctTxt(r.draw.ge[2][4])}。MV4のカードを早めに唱えられるよ。` });
+    }
+    if (r.enablers.length) {
+      const items = r.enablers.map(e => ({ ...e, diff: base - e.without })).sort((x, y) => y.diff - x.diff);
+      html += `<h3>サーチ・ライブラリー操作の貢献（${h.label}・${h.turn}T・先手 ${pctTxt(base)}）</h3>
+        <table class="meta-table sim-table"><tr><th>カード</th><th>抜くと</th><th>差</th></tr>
+        ${items.map(e => `<tr><td>${esc(e.name)} ×${e.qty}</td><td>${pctTxt(e.without)}</td><td>${e.diff >= 0 ? '−' : '+'}${Math.abs(Math.round(e.diff * 100))}</td></tr>`).join('')}</table>`;
+      const top = items[0];
+      if (top && top.diff >= 0.03) tips.push({ level: 'info', text: `${h.turn}ターン目の${h.label.replace(/^\dターン目に/, '')}に一番効いているのは${top.name}（抜くと先手${pctTxt(base)}→${pctTxt(top.without)}）。` });
+    }
+    html += `<p class="hint">マリガンなし・7枚キープで${r.iters.toLocaleString()}回試した結果。土地の置き方やサーチ・占術の使い方は簡単なルールで決めているので、上手な人が回すより少し低めに出ることがあるよ。</p>`;
+    box.innerHTML = html;
+    return tips;
   }
 
   // ---------- 上位デッキとの比較（benchmarks/ の集計データ） ----------

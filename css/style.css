@@ -205,6 +205,11 @@ input:focus, select:focus, textarea:focus { outline: 2px solid var(--gold-dim); 
 .meta-table td { padding: 4px; border-bottom: 1px solid var(--line); }
 .meta-table .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .meta-table tr.low td:nth-child(2) { color: var(--bad); font-weight: 700; }
+.mana-sim { margin-top: 10px; }
+.mana-sim h3 { font-size: 12px; color: var(--muted); font-weight: 400; margin: 10px 0 2px; }
+.mana-sim .sim-table th, .mana-sim .sim-table td { text-align: right; font-variant-numeric: tabular-nums; }
+.mana-sim .sim-table th:first-child, .mana-sim .sim-table td:first-child { text-align: left; white-space: nowrap; }
+.mana-sim .big { font-size: 15px; font-weight: 700; color: var(--gold); }
 .meta-table tr.high td:nth-child(2) { color: var(--warn); font-weight: 700; }
 .meta-table tr.near td:nth-child(2) { color: var(--gold); }
 .meta-table tr.ok td:nth-child(2) { color: var(--good); }
