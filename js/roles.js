@@ -501,40 +501,33 @@
         others: uniq(multiCards.flatMap(c => c.others).map(r => labels[r] || r)).join('・')
       };
     }
-    // 上位デッキ比較のときは四分位の範囲から1枚ずれるまでは許容する
+    // 上位デッキや目安との構成の違いは「参考」として淡々と出す（メタ外のカードを試す妨げにならないよう、注意にはしない）
+    // 上位デッキ比較のときは四分位の範囲から1枚ずれるまでは言及しない
     const tol = a.bench ? 1 : 0;
-    const src = a.bench ? `上位デッキ（${a.bench.label}）の中央50%` : '目安';
+    const src = a.bench ? `上位（${a.bench.label}）` : 'フォーマットの目安';
     for (const [key, [min, max]] of Object.entries(a.tgt)) {
       if (key === 'land' || key === 'other' || key === 'cat:mana' || key === 'cat:other') continue; // 土地は上の推奨枚数で判定
       const v = key.startsWith('cat:') ? (a.catCount[key.slice(4)] || 0) : (a.roleCount[key] || 0);
       const isCat = key.startsWith('cat:');
-      if (a.bench && max === 0 && v === 0) continue; // どちらも0なら言及しない
+      if (v >= min - tol && v <= max + tol) continue;
       const name = labels[key] || key;
-      if (v < min - tol) push(key === 'cat:win' || key === 'cat:disrupt' ? 'bad' : 'warn', `${name} が ${v} 枚。${src}は ${min}〜${max} 枚だから、あと ${min - v} 枚くらい欲しいな。`);
-      else if (v > max + tol) {
-        const ov = isCat ? null : overInfo(key, max + tol);
-        if (ov && !ov.warn) {
-          // 多い分はほかの役割も持つカードによるもの → 言い過ぎない
-          const multi = `${ov.multi}は${ov.others}も兼ねているから`;
-          if (max === 0) push('info', `${name}は${src.replace('の中央50%', '')}では普段使われない役割だよ（${ov.names}で ${v} 枚）。${multi}問題ないかも。`);
-          else push('info', `${name} が ${v} 枚で${src}（${min}〜${max}）より多めだけど、${multi}問題ないかも。`);
-        } else if (max === 0 && a.bench) {
-          push('warn', `${name} が ${v} 枚。${src.replace('の中央50%', '')}では普段使われない役割だよ。本当に必要か見直してみよう。`);
-        } else push('warn', `${name} が ${v} 枚で${src}（${min}〜${max}）より多め。他の役割に枠を回せないか考えてみよう。`);
+      const range = max === 0 ? `${src}では普段使われない役割` : `${src}（${min}〜${max} 枚）`;
+      let note = '';
+      if (!isCat && v > max + tol) {
+        const ov = overInfo(key, max + tol);
+        if (ov && !ov.warn) note = `（${ov.multi}は${ov.others}も兼ねている）`;
       }
-      else if ((v < min || v > max) && isCat) push('info', `${name} ${v} 枚は${src}（${min}〜${max}）から1枚ずれてるけど、許容範囲かな。`);
-      else if (isCat || !a.bench) push('good', `${name} ${v} 枚は${src}（${min}〜${max}）の範囲内！`); // 小カテゴリは範囲内なら言及しない
+      push('info', `${name} ${v} 枚：${range}${v < min ? 'より少なめ' : max === 0 ? '' : 'より多め'}${note}。`);
     }
 
-    // カーブ
-    grp = 'plan';
+    // カーブの目安も参考扱い（実際に動けるかは一人回しで見る）
     const top = a.curve[5] + a.curve[6] + a.curve[7];
     const low = a.curve[0] + a.curve[1] + a.curve[2];
     if (a.nonLand) {
       const topShare = top / a.nonLand;
-      if (a.format !== 'commander' && topShare > 0.2) push('warn', `MV5以上が ${top} 枚（呪文の ${(topShare * 100).toFixed(0)}%）。序盤に動けなくなりがちだよ。`);
-      if (a.format === 'commander' && topShare > 0.35) push('warn', `MV5以上が ${top} 枚。マナ加速をもう少し増やすと安定するよ。`);
-      if (a.format !== 'commander' && low / a.nonLand < 0.35) push('warn', `MV2以下が ${low} 枚と少なめ。序盤の受けや展開が薄いかも。`);
+      if (a.format !== 'commander' && topShare > 0.2) push('info', `MV5以上が ${top} 枚（呪文の ${(topShare * 100).toFixed(0)}%）。`);
+      if (a.format === 'commander' && topShare > 0.35) push('info', `MV5以上が ${top} 枚。`);
+      if (a.format !== 'commander' && low / a.nonLand < 0.35) push('info', `MV2以下が ${low} 枚（呪文の ${(low / a.nonLand * 100).toFixed(0)}%）。`);
     }
 
     // 土地サーチ先
