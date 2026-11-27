@@ -247,7 +247,8 @@ function simOf(ds, threats) {
   if (!rep) return null;
   // 一人回しの主力はカードの正式名（両面カードは「表 // 裏」）で指定する
   const full = n => (rep.cards.find(c => c.name.split(' // ')[0] === n) || { name: n }).name;
-  let keys = threats.filter(t => t.cat === 'win' || t.cat === 'combo').map(t => full(t.name));
+  // リソース（ドロー・サーチなど）以外の脅威を主力にする（Primeval Titan のように主な採用理由がマナのフィニッシャーも含める）
+  let keys = threats.filter(t => t.cat !== 'resource').map(t => full(t.name));
   if (!keys.length) keys = threats.map(t => full(t.name));
   if (!rep || !keys.length) return null;
   const r = ManaSim.simulate(rep.cards.map(c => ({ qty: c.qty, card: c.card, cat: c.cat })), { keys, iters: 800, enablers: false });
