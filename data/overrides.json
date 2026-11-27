@@ -40,7 +40,7 @@
     "note": "Valakut などと組み合わせるコンボの核"
   },
   "Dragon's Rage Channeler": {
-    "category": "win",
+    "category": "damage",
     "roles": [
       "beater",
       "selfmill"

@@ -36,7 +36,7 @@
   // ---------- 永続化 ----------
   function serialize(deck) {
     // カードデータ本体は Scryfall キャッシュ側にあるので、名前と手動役割だけ保存
-    const z = l => l.map(e => ({ name: e.name, qty: e.qty, manualRoles: e.manualRoles || null, manualCat: e.manualCat || null, key: !!e.key }));
+    const z = l => l.map(e => ({ name: e.name, qty: e.qty, manualRoles: e.manualRoles || null, manualCat: e.manualCat || null }));
     return { name: deck.name, format: deck.format, archetype: deck.archetype, meta: deck.meta || '', metaArch: deck.metaArch || 'auto', main: z(deck.main), side: z(deck.side) };
   }
   function saveCurrent() {
@@ -176,12 +176,16 @@
     const roles = rolesOf(e);
     const manual = !!((e.manualRoles && e.manualRoles.length) || e.manualCat);
     const back = e.card ? Roles.inspect(e.card).back : null;
+    const ult = e.card ? Roles.inspect(e.card).ult : null;
     return roles.map(r => {
       const R = Roles.ROLE_MAP[r];
       return `<span class="chip ${manual ? 'manual' : ''}" style="background:${R.color}">${R.label}</span>`;
     }).join('') + (back && back.roles.length ? back.roles.map(r => {
       const R = Roles.ROLE_MAP[r];
       return `<span class="chip back" title="変身後の役割（枚数には数えない）">変身後:${R.label}</span>`;
+    }).join('') : '') + (ult && ult.roles.length ? ult.roles.map(r => {
+      const R = Roles.ROLE_MAP[r];
+      return `<span class="chip back" title="奥義（出たターンに使えない忠誠度能力。枚数には数えない）">奥義:${R.label}</span>`;
     }).join('') : '');
   }
 
@@ -263,7 +267,6 @@
       <div class="name" data-preview>${esc(label)}${sub}${e.missing ? ' <small>(未取得)</small>' : ''}</div>
       <div class="meta">
         ${c ? manaHTML(c.manaCost) : ''}
-        ${zone === 'main' && c && !rolesOf(e).includes('land') ? `<button class="key-btn ${e.key ? 'on' : ''}" data-act="key" title="${e.key ? '主力カードの指定を外す' : '主力カードに指定（一人回しで登場ターンを調べる）'}">${e.key ? '★' : '☆'}</button>` : ''}
         <span class="chips" data-act="roles" title="クリックで役割を編集">${c || e.manualRoles ? chipsHTML(e) : ''}</span>
         <button class="move" data-act="move" title="${zone === 'main' ? 'サイドへ1枚移動' : 'メインへ1枚移動'}">${zone === 'main' ? '→SB' : '→Main'}</button>
       </div>
@@ -382,15 +385,18 @@
     const box = $('#manaSim');
     if (!window.ManaSim) { box.innerHTML = ''; return []; }
     const list = state.main.filter(e => e.card);
-    const keys = list.filter(e => e.key).map(e => e.card.name);
-    const sig = list.map(e => `${e.qty}:${e.card.name}:${catOf(e)}`).sort().join('|') + '#' + keys.sort().join('|');
+    // デッキに登録済みのコンボ（パーツとデッキ要件がそろっているもの）を一人回しでもそろったか見る
+    const lands = state.main.filter(e => rolesOf(e).includes('land')).reduce((s, e) => s + e.qty, 0);
+    const combos = window.Combos ? Combos.detect({ main: state.main }, lands).filter(x => x.complete).map(x => ({ name: x.combo.name, pieces: x.combo.pieces })) : [];
+    const sig = list.map(e => `${e.qty}:${e.card.name}:${catOf(e)}`).sort().join('|') + '#' + combos.map(c => c.name).join('|');
     if (simCache.sig !== sig) {
       simCache = { sig, result: null, pending: true };
       box.innerHTML = list.length ? '<p class="hint">一人回し中…</p>' : '';
       setTimeout(() => {
         if (simCache.sig !== sig) return;
         let r = null;
-        try { r = ManaSim.simulate(list.map(e => ({ qty: e.qty, card: e.card, cat: catOf(e) })), { keys }); } catch (err) { console.error(err); }
+        try { r = ManaSim.simulate(list.map(e => ({ qty: e.qty, card: e.card, cat: catOf(e) })), { combos }); } catch (err) { console.error(err); }
+        if (r) r.comboNames = combos.map(c => c.name);
         simCache = { sig, result: r, pending: false };
         renderAnalysis();
       }, 30);
@@ -400,34 +406,34 @@
     if (!r) { box.innerHTML = simCache.pending ? '<p class="hint">一人回し中…</p>' : ''; return []; }
 
     const tips = [];
-    const nameOf = n => { const e = list.find(x => x.card.name === n); return e ? displayName(e.card) : n; };
-    const TT = [2, 3, 4, 5].filter(t => t <= r.turns);
-    const pd = (p, d) => `${pctTxt(p)}<span class="muted">/${pctTxt(d)}</span>`;
-    let html = '';
-
-    // 主力カードの登場率
-    if (r.keyNames.length) {
-      const rows = r.keyNames.map(n => `<tr><td>${esc(nameOf(n))}</td>${TT.map(t => `<td>${pd((r.play.castBy[n] || [])[t - 1] || 0, (r.draw.castBy[n] || [])[t - 1] || 0)}</td>`).join('')}</tr>`).join('');
-      html += `<h3>主力カードを唱えられた率（先手/後手、そのターンまでに）</h3>
-        ${r.autoKey ? '<p class="hint">主力が未指定なので【勝ち手段】【コンボ/展開】を自動で選んでるよ。デッキ画面の☆で指定できます。</p>' : ''}
-        <div class="sim-scroll"><table class="meta-table sim-table key-table"><tr><th></th>${TT.map(t => `<th>${t}T</th>`).join('')}</tr>
-        <tr><td><b>主力のどれか</b></td>${TT.map(t => `<td><b>${pd(r.play.keyBy[t - 1], r.draw.keyBy[t - 1])}</b></td>`).join('')}</tr>
-        ${rows}</table></div>`;
-      const T = r.keyTurn;
-      const names = r.keyNames.map(nameOf);
-      tips.push({ level: 'info', text: `主力（${names.length > 3 ? names.slice(0, 3).join('、') + ' など' : names.join('、')}）を${T}ターン目までに唱えられた率は、先手${pctTxt(r.play.keyBy[T - 1])}・後手${pctTxt(r.draw.keyBy[T - 1])}。` });
-      // 引けていたのに唱えられなかった主力
-      r.keyNames.forEach(n => {
-        const mv = Math.round(r.keyCmc[n] || 0);
-        if (mv < 1 || mv > 6) return;
-        const t = Math.min(mv + 1, r.turns);
-        const seen = (r.play.seenBy[n] || [])[t - 1] || 0, cast = (r.play.castBy[n] || [])[t - 1] || 0;
-        if (seen < 0.1) return;
-        const rate = cast / seen;
-        if (rate < 0.6) tips.push({ level: 'warn', text: `${nameOf(n)}（MV${mv}）は、${t}ターン目までに手札にあっても唱えられたのは${pctTxt(rate)}だけ（先手）。土地・マナ加速か、色の出る土地が足りないかも。` });
-      });
-    } else {
-      html += '<p class="hint">主力カードがまだないよ。デッキ画面の☆で指定すると、何ターン目に唱えられるかを調べられます。</p>';
+    const TT = [3, 4, 5].filter(t => t <= r.turns);
+    const n1 = x => x.toFixed(1);
+    const pd = (p, d, f) => `${f(p)}<span class="muted">/${f(d)}</span>`;
+    const B = (side, t) => r[side].board[t - 1];
+    const brow = (label, f, fmt = n1) => `<tr><td>${label}</td>${TT.map(t => `<td>${pd(f('play', t), f('draw', t), fmt)}</td>`).join('')}</tr>`;
+    const per = (side, t, k) => { const b = B(side, t); return b.creatures ? b[k] / b.creatures : 0; };
+    let html = `<h3>3・4・5ターン目の盤面（先手/後手の平均。相手が何もしない場合）</h3>
+      <div class="sim-scroll"><table class="meta-table sim-table board-table"><tr><th></th>${TT.map(t => `<th>${t}T</th>`).join('')}</tr>
+      ${brow('クリーチャー（体）', (s, t) => B(s, t).creatures)}
+      ${brow('合計パワー', (s, t) => B(s, t).power)}
+      ${brow('合計タフネス', (s, t) => B(s, t).toughness)}
+      <tr><td>1体あたり P/T（先手）</td>${TT.map(t => `<td>${n1(per('play', t, 'power'))}/${n1(per('play', t, 'toughness'))}</td>`).join('')}</tr>
+      ${brow('タフネス1以下（体）', (s, t) => B(s, t).t1)}
+      ${brow('タフネス2以下（体）', (s, t) => B(s, t).t2)}
+      ${brow('タフネス3以下（体）', (s, t) => B(s, t).t3)}
+      ${brow('3体以上並ぶ率', (s, t) => r[s].wide[t - 1], pctTxt)}
+      ${brow('アーティファクト', (s, t) => B(s, t).artifact)}
+      ${brow('エンチャント', (s, t) => B(s, t).enchantment)}
+      ${brow('PW', (s, t) => B(s, t).planeswalker)}
+      ${brow('出せるマナ', (s, t) => r[s].avg[t - 1])}
+      ${r.hasDisrupt ? brow('妨害を構えられた', (s, t) => r[s].held[t - 1], pctTxt) : ''}
+      ${r.comboNames && r.comboNames.length ? brow('コンボがそろった', (s, t) => r[s].combo[t - 1], pctTxt) : ''}
+      </table></div>
+      <p class="hint">トークンは出たとき・唱えたときに出るものと、毎ターン出すもの（1ターンに1回として近似）を含みます。全体除去を撃たれたときにどれだけ巻き込まれるかの目安にしてね。</p>`;
+    if (TT.includes(4)) {
+      const b = B('play', 4);
+      tips.push({ level: 'info', text: `4ターン目の盤面（先手）は、クリーチャー平均${n1(b.creatures)}体（パワー計${n1(b.power)}）、タフネス2以下が${n1(b.t2)}体、3体以上並ぶ率${pctTxt(r.play.wide[3])}。アーティファクト${n1(b.artifact)}・エンチャント${n1(b.enchantment)}・PW${n1(b.planeswalker)}。` });
+      if (r.comboNames && r.comboNames.length) tips.push({ level: 'info', text: `コンボ（${r.comboNames.join('、')}）のパーツが4ターン目までにそろった率は先手${pctTxt(r.play.combo[3])}・後手${pctTxt(r.draw.combo[3])}。` });
     }
 
     // ターンごとの動き
@@ -436,7 +442,6 @@
     html += `<h3>ターンごとの動き（先手）</h3>
       <div class="sim-scroll"><table class="meta-table sim-table"><tr><th></th>${T6.map(t => `<th>${t + 1}T</th>`).join('')}</tr>
       ${row('出せるマナ', t => r.play.avg[t].toFixed(1))}
-      ${row('<span class="muted">後手</span>', t => `<span class="muted">${r.draw.avg[t].toFixed(1)}</span>`)}
       ${row('何もできない', t => pctTxt(r.play.idle[t]))}
       ${row('使い残し', t => r.play.unused[t].toFixed(1))}
       ${r.hasDisrupt ? row('妨害を手札に持つ', t => pctTxt(r.play.inHand[t])) : ''}
@@ -447,20 +452,10 @@
     });
     if (r.turns >= 4 && r.play.unused[3] >= 1.5) tips.push({ level: 'info', text: `4ターン目に平均${r.play.unused[3].toFixed(1)}マナ余ってるよ。マナの使い道（重めのカードや起動型能力）を足す余地があるかも。` });
     if (r.hasDisrupt) {
-      tips.push({ level: 'info', text: `妨害を手札に持っていた率は、2ターン目${pctTxt(r.play.inHand[1])}・3ターン目${pctTxt(r.play.inHand[2])}。そのうち構えるマナもあった率は${pctTxt(r.play.held[1])}・${pctTxt(r.play.held[2])}（先手、主力以外の呪文を我慢した場合を含む）。` });
+      tips.push({ level: 'info', text: `妨害を手札に持っていた率は、2ターン目${pctTxt(r.play.inHand[1])}・3ターン目${pctTxt(r.play.inHand[2])}。そのうち構えるマナもあった率は${pctTxt(r.play.held[1])}・${pctTxt(r.play.held[2])}（先手、妨害以外の呪文を我慢した場合を含む）。` });
       if (r.play.inHand[2] < 0.5) tips.push({ level: 'warn', text: `3ターン目までに妨害を手札に持てていない率が${pctTxt(1 - r.play.inHand[2])}。相手の動きを止めたいなら、妨害の枚数か、引きにいくカードを見直してみて。` });
     } else tips.push({ level: 'info', text: '妨害（大カテゴリが【妨害】のカード）が入っていないよ。相手の動きに干渉しない、速さ勝負のデッキとして回した結果だよ。' });
 
-    // 貢献度
-    const base = r.keyNames.length ? r.play.keyBy[r.keyTurn - 1] : 0;
-    if (r.enablers.length && base >= 0.05) {
-      const items = r.enablers.map(e => ({ ...e, diff: base - e.without })).sort((x, y) => y.diff - x.diff);
-      html += `<h3>サーチ・加速・占術の貢献（${r.keyTurn}Tまでに主力 先手 ${pctTxt(base)}）</h3>
-        <table class="meta-table sim-table"><tr><th>カード</th><th>抜くと</th><th>差</th></tr>
-        ${items.map(e => `<tr><td>${esc(nameOf(e.name))} ×${e.qty}</td><td>${pctTxt(e.without)}</td><td>${Math.round(e.diff * 100) === 0 ? '0' : (e.diff > 0 ? '−' : '+') + Math.abs(Math.round(e.diff * 100))}</td></tr>`).join('')}</table>`;
-      const top = items[0];
-      if (top && top.diff >= 0.03) tips.push({ level: 'info', text: `主力を早く出すのに一番効いているのは${nameOf(top.name)}（抜くと${r.keyTurn}ターン目までの率が先手${pctTxt(base)}→${pctTxt(top.without)}）。` });
-    }
     html += `<p class="hint">相手が何もしない前提で、マリガンなし・7枚キープで${r.iters.toLocaleString()}回一人回しした結果。妨害は唱えずに構えたものとして数え、効果を読み取れないカードは「唱えた」ことだけを記録しています。カードの使い方は簡単なルールで決めているので、上手な人が回すより少し低めに出ることがあるよ。</p>`;
     box.innerHTML = html;
     return tips;
@@ -573,7 +568,12 @@
         <div class="muted">役割: ${info.back.allRoles.map(r => esc((Roles.ROLE_MAP[r] || {}).label || r)).join('・') || 'なし'}</div>
         ${info.back.tags.map(t => `<div class="tag back ${t.repeat ? 'rep' : 'once'}"><span class="tag-kind">${t.repeat ? '繰り返し' : '1回'}</span><span>${esc(Tags.tagLabel(t))}</span></div>`).join('')}`
       : '';
-    if (!info.tags.length) return `<div class="tag-list"><div class="muted">検出した効果タグはありません</div>${backHTML}</div>`;
+    const ultHTML = info.ult
+      ? `<div class="muted" style="margin-top:6px">奥義（出たターンには起動できない忠誠度能力。役割の枚数やカテゴリには数えないよ）</div>
+        <div class="muted">役割: ${info.ult.allRoles.map(r => esc((Roles.ROLE_MAP[r] || {}).label || r)).join('・') || 'なし'}</div>
+        ${info.ult.tags.map(t => `<div class="tag back once"><span class="tag-kind">奥義</span><span>${esc(Tags.EFFECT_MAP[t.effect].label)}</span></div>`).join('')}`
+      : '';
+    if (!info.tags.length) return `<div class="tag-list"><div class="muted">検出した効果タグはありません</div>${backHTML}${ultHTML}</div>`;
     const L = Roles.DISRUPT_LABELS;
     const detail = t => {
       if (!t.detail) return '';
@@ -587,7 +587,7 @@
     const tokens = info.tokens.length ? `<div class="muted" style="margin-top:4px">生成するトークン</div>${info.tokens.map(k =>
       `<div class="tag ${k.who === 'opponent' ? 'once' : 'rep'}"><span class="tag-kind">${k.who === 'opponent' ? '相手' : '自分'}</span>${esc(TOKEN_JA[k.kind] || k.kind)}${k.pt ? ` ${esc(k.pt)}` : ''}</div>`).join('')}` : '';
     return `<div class="tag-list"><div class="muted">検出した効果タグ（${info.speed === 'instant' ? 'インスタント速度で動ける' : 'ソーサリー速度'}）</div>${info.tags.map(t =>
-      `<div class="tag ${t.repeat ? 'rep' : 'once'}"><span class="tag-kind">${t.repeat ? '繰り返し' : '1回'}</span><span>${esc(Tags.tagLabel(t))}${detail(t)}</span></div>`).join('')}${tokens}${backHTML}</div>`;
+      `<div class="tag ${t.repeat ? 'rep' : 'once'}"><span class="tag-kind">${t.repeat ? '繰り返し' : '1回'}</span><span>${esc(Tags.tagLabel(t))}${detail(t)}</span></div>`).join('')}${tokens}${backHTML}${ultHTML}</div>`;
   }
 
   // ---------- 上位デッキへの対策（フェアデッキを含む） ----------
@@ -611,13 +611,6 @@
     const myArch = cmp.group && cmp.group.name;
     const pct = x => `${Math.round(x * 100)}%`;
     const short = list => list.length > 3 ? list.slice(0, 3).join('、') + ' など' : list.join('、');
-
-    // 同じアーキタイプの上位デッキ（代表リスト）と一人回しの結果を比べる
-    const mine = meta.find(m => m.name === myArch);
-    if (mine && mine.sim && sim && sim.keyNames.length) {
-      const T = 4;
-      tips.push({ group: 'plan', level: 'info', text: `上位の${mine.name}（代表リスト）は${T}ターン目までに主力（${short(mine.sim.keys)}）を出す率が先手${pct(mine.sim.keyBy.play[T - 1])}。あなたのリストは${pct(sim.play.keyBy[T - 1])}（主力の選び方が違うと単純には比べられないよ）。` });
-    }
 
     const rows = meta.filter(m => m.share >= 0.03 && m.name !== myArch).sort((a, b) => b.share - a.share);
     const html = rows.map(m => {
@@ -1029,7 +1022,6 @@
       else if (act === 'dec') changeQty(zone, name, -1);
       else if (act === 'move') moveZone(zone, name);
       else if (act === 'roles') openRoleEditor(zone, name, actEl);
-      else if (act === 'key') { const e = state[zone].find(x => x.name === name); if (e) { e.key = !e.key; render(); } }
       else if (ev.target.closest('[data-preview]') && isTouch()) {
         const e = findEntry(zone, name);
         if (e && e.card) openZoom(e.card, false);

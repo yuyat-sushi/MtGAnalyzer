@@ -12,6 +12,9 @@
 (function (global) {
   'use strict';
 
+  // 効果タグ（トークンの読み取りに使う）。Node.js では require、ブラウザでは window.Tags
+  const Tags = (typeof module !== 'undefined' && module.exports) ? require('./tags.js') : global.Tags;
+
   const NUM = { a: 1, an: 1, one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, x: 0 };
   const num = s => (s in NUM ? NUM[String(s).toLowerCase()] : (parseInt(s, 10) || 0));
   const norm = s => String(s || '').replace(/[’‘]/g, "'");
@@ -272,7 +275,8 @@
         cost: land ? GENERIC(0) : costOf(c),
         cmc: c.cmc || 0,
         cat: e.cat || null,
-        key: keySet.has(c.name)
+        key: keySet.has(c.name),
+        perm: land ? null : permOf(c)
       };
       info.disrupt = !info.key && info.cat === 'disrupt';
       for (let i = 0; i < e.qty; i++) cards.push(info);
@@ -292,6 +296,38 @@
     const tronTypes = [...new Set(lands.filter(l => l.p.tron).flatMap(l => [...l.p.tron.needs, tronOwnType(l.p)]).filter(Boolean))];
     return { cards, lands, ratio, tronTypes };
   }
+  // 盤面に残るパーマネントの情報（クリーチャーのパワー・タフネス、出たときと毎ターンのトークン）
+  const nk = n => String(n || '').split(' // ')[0].toLowerCase();
+  function ptOf(s) { const n = parseInt(s, 10); return isNaN(n) ? 0 : n; }
+  function permOf(c) {
+    const front = frontType(c);
+    if (/\b(Instant|Sorcery)\b/.test(front)) {
+      return { types: [], etbTokens: spellTokens(c), turnTokens: [] };
+    }
+    const types = ['Creature', 'Artifact', 'Enchantment', 'Planeswalker', 'Battle'].filter(t => new RegExp(`\\b${t}\\b`).test(front)).map(t => t.toLowerCase());
+    const out = { types, power: ptOf(c.power), toughness: ptOf(c.toughness), etbTokens: [], turnTokens: [] };
+    if (Tags) {
+      const a = Tags.analyze(c);
+      a.abilities.forEach(ab => {
+        if (!ab.tokens || !ab.tokens.length) return;
+        const toks = ab.tokens.filter(k => k.who === 'self' && k.kind === 'creature').map(k => {
+          const [pw, th] = String(k.pt || '1/1').split('/');
+          return { power: ptOf(pw), toughness: ptOf(th) || 1 };
+        });
+        if (!toks.length) return;
+        if (ab.triggers.some(t => t === 'etb' || t === 'spell')) out.etbTokens.push(...toks);
+        else if (ab.triggers.some(t => ['each_turn', 'attack', 'combat_damage', 'creature_enters', 'landfall', 'cast_trigger', 'lifegain_trigger', 'other_trigger'].includes(t))) out.turnTokens.push(...toks);
+      });
+    }
+    return out;
+  }
+  function spellTokens(c) {
+    if (!Tags) return [];
+    return Tags.analyze(c).abilities.flatMap(ab => (ab.tokens || []).filter(k => k.who === 'self' && k.kind === 'creature').map(k => {
+      const [pw, th] = String(k.pt || '1/1').split('/');
+      return { power: ptOf(pw), toughness: ptOf(th) || 1 };
+    }));
+  }
   function tronOwnType(p) {
     const m = p.typeStr.match(/—\s*(.+)$/);
     return m ? m[1].trim() : null;
@@ -305,7 +341,19 @@
     const rocks = []; // マナを出すパーマネント {amt, colors, sick, used}
     const perms = []; // 起動型のサーチを持つパーマネント（Expedition Map など）
     const tron = deck.tronTypes;
-    const g = { mana: [], idle: [], unused: [], held: [], inHand: [], cast: {}, seen: {} }; // cast/seen: 名前 → 最初に唱えた／手札にあったターン
+    const g = { mana: [], idle: [], unused: [], held: [], inHand: [], cast: {}, seen: {}, board: [], combo: [] };
+    // 盤面（土地以外）: クリーチャー {power, toughness}、それ以外のパーマネントの数、毎ターン出るトークン
+    const board = { creatures: [], artifact: 0, enchantment: 0, planeswalker: 0, battle: 0, makers: [] };
+    const seenNames = new Set();
+    const addPerm = c => {
+      const pm = c.perm;
+      if (!pm) return;
+      pm.etbTokens.forEach(t => board.creatures.push({ ...t }));
+      if (!pm.types.length) return;
+      if (pm.types.includes('creature')) board.creatures.push({ power: pm.power, toughness: pm.toughness });
+      ['artifact', 'enchantment', 'planeswalker', 'battle'].forEach(t => { if (pm.types.includes(t) && !pm.types.includes('creature')) board[t]++; });
+      if (pm.turnTokens.length) board.makers.push(pm.turnTokens);
+    }; // cast/seen: 名前 → 最初に唱えた／手札にあったターン
     let floated = null; // バウンスランドで戻す前に出したマナ {amt, colors, used}
     let landDrop = true, castThisTurn = 0, turn = 0, otherSpent = 0;
 
@@ -483,6 +531,8 @@
       if (!pay(c.cost)) return false;
       hand.splice(hand.indexOf(c), 1);
       record(c);
+      // 使い捨てのキャントリップ（Chromatic Star など）と、起動して生け贄にするサーチは盤面に残さない
+      if (!(c.dig && /\bArtifact\b/.test(frontType(c.card))) && !(c.search && c.search.ability)) addPerm(c);
       return true;
     };
     const canPay = cost => !!plan(cost);
@@ -544,6 +594,8 @@
       rocks.forEach(r => { r.sick = false; r.used = 0; });
       perms.forEach(x => { x.ready = true; });
       floated = null; landDrop = true; castThisTurn = 0; otherSpent = 0;
+      // 毎ターン（攻撃時・終了時など）トークンを出すパーマネントは、1ターンに1回出したものとして近似
+      board.makers.forEach(list => list.forEach(t => board.creatures.push({ ...t })));
       if (!(onPlay && turn === 1)) draw(1);
       if (!landsInHand()) act(false); // 土地がなければ先に探す
       playLand();
@@ -558,6 +610,16 @@
       const held = hand.some(c => c.disrupt && canPay(c.cost));
       if (otherSpent) { floated.amt -= otherSpent; if (floated.amt <= 0) floated = null; }
       hand.forEach(c => { if (!c.land && !(c.name in g.seen)) g.seen[c.name] = turn; });
+      hand.forEach(c => seenNames.add(nk(c.name)));
+      Object.keys(g.cast).forEach(n => seenNames.add(nk(n)));
+      bf.forEach(l => l.card && seenNames.add(nk(l.card.name)));
+      const cr = board.creatures;
+      g.board.push({
+        creatures: cr.length, power: cr.reduce((s, x) => s + x.power, 0), toughness: cr.reduce((s, x) => s + x.toughness, 0),
+        t1: cr.filter(x => x.toughness <= 1).length, t2: cr.filter(x => x.toughness <= 2).length, t3: cr.filter(x => x.toughness <= 3).length,
+        artifact: board.artifact, enchantment: board.enchantment, planeswalker: board.planeswalker
+      });
+      g.combo.push((deck.combos || []).some(cb => cb.pieces.every(gr => gr.some(n => seenNames.has(nk(n))))));
       g.mana.push(total);
       g.unused.push(held ? 0 : left);
       g.held.push(held);
@@ -572,6 +634,9 @@
     const sum = Array(turns).fill(0), unused = Array(turns).fill(0), idle = Array(turns).fill(0), held = Array(turns).fill(0), inHand = Array(turns).fill(0), keyBy = Array(turns).fill(0);
     const ge = Array.from({ length: turns }, () => Array(12).fill(0));
     const castBy = {}, seenBy = {};
+    const BK = ['creatures', 'power', 'toughness', 't1', 't2', 't3', 'artifact', 'enchantment', 'planeswalker'];
+    const board = Array.from({ length: turns }, () => Object.fromEntries(BK.map(k => [k, 0])));
+    const wide = Array(turns).fill(0), combo = Array(turns).fill(0);
     const keys = new Set(keyNames);
     for (let n = 0; n < iters; n++) {
       const r = playGame(deck, onPlay, turns, rng);
@@ -580,6 +645,8 @@
       r.idle.forEach((x, t) => { if (x) idle[t]++; });
       r.held.forEach((x, t) => { if (x) held[t]++; });
       r.inHand.forEach((x, t) => { if (x) inHand[t]++; });
+      r.board.forEach((b, t) => { BK.forEach(k => { board[t][k] += b[k]; }); if (b.creatures >= 3) wide[t]++; });
+      r.combo.forEach((x, t) => { if (x) combo[t]++; });
       for (const [name, t] of Object.entries(r.seen)) {
         (seenBy[name] = seenBy[name] || Array(turns).fill(0));
         for (let k = t - 1; k < turns; k++) seenBy[name][k]++;
@@ -596,7 +663,9 @@
     return {
       avg: f(sum), ge: ge.map(f), unused: f(unused), idle: f(idle), held: f(held), inHand: f(inHand), keyBy: f(keyBy),
       castBy: Object.fromEntries(Object.entries(castBy).map(([k, v]) => [k, f(v)])),
-      seenBy: Object.fromEntries(Object.entries(seenBy).map(([k, v]) => [k, f(v)]))
+      seenBy: Object.fromEntries(Object.entries(seenBy).map(([k, v]) => [k, f(v)])),
+      board: board.map(b => Object.fromEntries(BK.map(k => [k, b[k] / iters]))),
+      wide: f(wide), combo: f(combo)
     };
   }
 
@@ -617,11 +686,10 @@
    */
   function simulate(entries, opts = {}) {
     const turns = opts.turns || 6, iters = opts.iters || 2000;
-    const autoKey = !(opts.keys && opts.keys.length);
-    const keyNames = autoKey
-      ? [...new Set(entries.filter(e => e.card && (e.cat === 'win' || e.cat === 'combo') && !isLandCard(e.card)).map(e => e.card.name))]
-      : opts.keys.slice();
+    const keyNames = (opts.keys || []).slice();
+    const autoKey = false;
     const deck = prepare(entries, keyNames);
+    deck.combos = opts.combos || []; // [{ name, pieces: [[カード名…], …] }]
     if (deck.cards.length < 8 || !deck.lands.length) return null;
     const seed = hashStr(entries.filter(e => e.card).map(e => e.qty + e.card.name).sort().join('|') + '#' + keyNames.join('|'));
     const play = run(deck, true, turns, iters, seed, keyNames);
@@ -631,7 +699,7 @@
     const hasDisrupt = deck.cards.some(c => c.disrupt);
     // サーチ・ライブラリー操作・マナ加速のカードを1種類ずつ抜いたとき、4ターン目までに主力を唱えられる率がどう変わるか
     const T = Math.min(4, turns);
-    const enablerNames = keyNames.length && opts.enablers !== false
+    const enablerNames = keyNames.length && opts.enablers === true
       ? [...new Set(deck.cards.filter(c => !c.land && !c.key && (c.search || c.dig || c.rock)).map(c => c.name))].slice(0, 5) : [];
     const enablers = enablerNames.map(name => {
       const blank = { name: '-', land: false, p: null, search: null, dig: null, rock: null, cost: GENERIC(0), cmc: 0, disrupt: false, key: false };

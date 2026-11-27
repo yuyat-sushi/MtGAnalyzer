@@ -40,6 +40,10 @@
   const NUM = '(a|an|one|two|three|four|five|six|seven|x|that many|cards equal)';
   const EFFECTS = [
     { id: 'token',     label: 'トークン生成', re: [/\bcreates? (a|an|one|two|three|four|five|six|x|that many|a number of|[\w-]+ )[^.]*?\btokens?\b/] },
+    // 上から数枚を見て1枚を手札に（トップ選択）。1枚だけ見て手札に入れるのはドロー扱い
+    { id: 'topselect', label: 'トップ選択',   re: [/look at the top (two|three|four|five|six|seven|x|\d+) cards of your library[^]*?into your hand/, /reveal the top (two|three|four|five|six|seven|x|\d+) cards of your library[^]*?into your hand/] },
+    // 占術・諜報・上に戻す（トップ操作）
+    { id: 'topmanip',  label: 'トップ操作',   re: [/\bscry (\d+|x)\b/, /\bsurveil (\d+|x)\b/, { test: t => /look at the top (card|\w+ cards) of your library/.test(t) && !/into your hand/.test(t) }, /put [^.]*? on top of your library/] },
     { id: 'lifegain',  label: 'ライフ回復',   re: [/\byou gain (\d+|x|that much|life equal|an amount)/, /\bgains? (\d+|x) life\b/, /\bcreate[^.]*\bfood\b/] },
     { id: 'draw',      label: 'ドロー',       re: [new RegExp(`\\bdraws? ${NUM}\\b[^.]*\\bcards?\\b`), /\binvestigate\b/, /\bclue tokens?\b/,
                                                  /exile the top [^.]*cards? of your library[\s\S]{0,120}?you may (play|cast)/,
@@ -143,10 +147,31 @@
    */
   // 裏面を手札から唱えられないレイアウト（変身・合体・反転）。裏面の能力は別扱いにする
   const NONPLAY_LAYOUTS = new Set(['transform', 'meld', 'flip']);
+  // プレインズウォーカーの「奥義」: 出たターンには起動できない忠誠度能力（マイナスの値が初期忠誠度より大きい）
+  const isUltimate = (raw, loyalty) => {
+    const m = String(raw).trim().match(/^[−-](\d+):/);
+    return !!m && loyalty != null && +m[1] > loyalty;
+  };
   function faces(card) {
     const types = String(card.typeLine || '').split(' // ');
     const texts = String(card.oracle || '').split(/\n\/\/\n/);
-    return texts.map((text, i) => ({ type: types[i] || types[0] || '', text, playable: i === 0 || !NONPLAY_LAYOUTS.has(card.layout) }));
+    const loyalty = parseInt(card.loyalty, 10);
+    return texts.map((text, i) => {
+      const type = types[i] || types[0] || '';
+      const pw = i === 0 && /\bPlaneswalker\b/.test(type) && !isNaN(loyalty);
+      const lines = text.split('\n');
+      return {
+        type, playable: i === 0 || !NONPLAY_LAYOUTS.has(card.layout),
+        text: pw ? lines.filter(l => !isUltimate(l, loyalty)).join('\n') : text,
+        ult: pw ? lines.filter(l => isUltimate(l, loyalty)) : []
+      };
+    });
+  }
+  /** 奥義（出たターンに起動できない忠誠度能力）だけのテキスト（なければ null） */
+  function ultimateFace(card) {
+    if (!card) return null;
+    const f = faces(card)[0];
+    return f && f.ult.length ? { typeLine: f.type, oracle: f.ult.join('\n') } : null;
   }
   /** 手札から使える面だけのテキスト */
   function playableOracle(card) {
@@ -184,6 +209,13 @@
         // トレジャーだけを作るならマナ、クルーだけならドロー（トークン生成としては数えない）
         if (effects.includes('token') && /\b(treasure|clue|food|blood|map|powerstone)\b tokens?/.test(line) &&
             !/creature tokens?|\d+\/\d+/.test(line)) effects.splice(effects.indexOf('token'), 1);
+        // エルドラージの落とし子・末裔だけを作るならマナ（生け贄でマナを出すためのトークン）
+        if (effects.includes('token') && /eldrazi (spawn|scion) creature tokens?/.test(line) && !/\d+\/\d+ (?!colorless eldrazi)[^.]*creature token/.test(line.replace(/0\/1 colorless eldrazi spawn|1\/1 colorless eldrazi scion/g, ''))) {
+          effects.splice(effects.indexOf('token'), 1);
+          if (!effects.includes('mana')) effects.push('mana');
+        }
+        // 絆魂はライフゲイン
+        if (/(^|, )lifelink($|,)/.test(line) && !effects.includes('lifegain')) effects.push('lifegain');
         // 全体除去だけの能力は単体除去から外す
         if (effects.includes('wipe') && effects.includes('removal') && !/\btarget\b/.test(line)) effects.splice(effects.indexOf('removal'), 1);
         if (RECURSION_KEYWORDS.test(line) && !effects.includes('recursion')) effects.push('recursion');
@@ -378,5 +410,5 @@
 
   const tagLabel = t => `${EFFECT_MAP[t.effect].label} × ${TRIGGERS[t.trigger].label}`;
 
-  return { TRIGGERS, EFFECTS, EFFECT_MAP, analyze, tagLabel, detailOf, tokensOf, playableOracle, backFace };
+  return { TRIGGERS, EFFECTS, EFFECT_MAP, analyze, tagLabel, detailOf, tokensOf, playableOracle, backFace, ultimateFace };
 });

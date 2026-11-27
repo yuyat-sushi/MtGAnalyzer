@@ -13,7 +13,7 @@
     { id: 'mana',     label: '土地・マナ',   color: '#8d7b62' },
     { id: 'disrupt',  label: '妨害',         color: '#d0503c' },
     { id: 'resource', label: 'リソース',     color: '#3b82c4' },
-    { id: 'win',      label: '勝ち手段',     color: '#e07a2e' },
+    { id: 'damage',   label: 'ダメージソース', color: '#e07a2e' },
     { id: 'support',  label: '補助',         color: '#d8b13a' },
     { id: 'combo',    label: 'コンボ/展開',  color: '#2f8f8f' },
     { id: 'other',    label: 'その他',       color: '#777' }
@@ -36,38 +36,41 @@
     { id: 'tutor',      cat: 'resource', label: 'サーチ',       color: '#8a5cc7' },
     { id: 'recursion',  cat: 'resource', label: '墓地回収',     color: '#4a4a6a' },
     { id: 'selfmill',   cat: 'resource', label: '墓地肥やし',   color: '#5b6f5b' },
-    { id: 'finisher',   cat: 'win',      label: 'フィニッシャー', color: '#c0392b' },
-    { id: 'engine',     cat: 'win',      label: 'エンジン',     color: '#c4569a' },
-    { id: 'reach',      cat: 'win',      label: '本体火力',     color: '#a8324a' },
-    { id: 'tokens',     cat: 'win',      label: 'トークン展開', color: '#d98b4a' },
-    { id: 'beater',     cat: 'win',      label: '打点',         color: '#e07a2e' },
+    { id: 'topselect',  cat: 'resource', label: 'トップ選択',   color: '#4f8fd0' },
+    { id: 'topmanip',   cat: 'resource', label: 'トップ操作',   color: '#6aa0d8' },
+    { id: 'beater',     cat: 'damage',   label: '打点',         color: '#e07a2e' },
+    { id: 'reach',      cat: 'damage',   label: '本体火力',     color: '#a8324a' },
     { id: 'enhance',    cat: 'support',  label: '強化',         color: '#b5835a' },
     { id: 'protection', cat: 'support',  label: '保護',         color: '#d8b13a' },
+    { id: 'lifegain',   cat: 'support',  label: 'ライフゲイン', color: '#c9b458' },
+    { id: 'energy',     cat: 'support',  label: 'エネルギー',   color: '#b89a3a' },
     { id: 'cheatloop',  cat: 'combo',    label: '継続的な踏み倒し', color: '#1f7f7f' },
     { id: 'cheat',      cat: 'combo',    label: '踏み倒し（1回）', color: '#2f8f8f' },
     { id: 'extraturn',  cat: 'combo',    label: '追加ターン',   color: '#3a9f9a' },
     { id: 'untap',      cat: 'combo',    label: 'アンタップ',   color: '#4aa5a0' },
     { id: 'copy',       cat: 'combo',    label: 'コピー/ストーム', color: '#5ab0a8' },
+    { id: 'tokens',     cat: 'combo',    label: 'トークン生成', color: '#d98b4a' },
+    { id: 'altwin',     cat: 'combo',    label: '特殊勝利',     color: '#2a7070' },
     { id: 'other',      cat: 'other',    label: 'その他',       color: '#777' }
   ];
   const ROLE_MAP = Object.fromEntries(ROLES.map(r => [r.id, r]));
 
   /*
    * 主な採用理由（大カテゴリ）を決める優先順位
-   *   土地 ＞ 妨害 ＞ コンボ/展開 ＞ リソース ＞ マナ加速 ＞ 勝ち手段 ＞ 補助
+   *   土地 ＞ 妨害 ＞ コンボ/展開 ＞ リソース ＞ マナ加速 ＞ ダメージソース ＞ 補助
    * 妨害に使えるカードは、打点やドローを兼ねていても主に妨害として数える（プレイヤーの感覚に合わせる）
    */
   const PRIORITY = ['land',
     'removal', 'wipe', 'spell', 'ability', 'discard', 'gyhate', 'manalock', 'combat',
-    'cheatloop', 'cheat', 'extraturn', 'untap', 'copy',
-    'draw', 'tutor', 'recursion', 'selfmill',
+    'cheatloop', 'cheat', 'extraturn', 'untap', 'copy', 'tokens', 'altwin',
+    'draw', 'tutor', 'recursion', 'selfmill', 'topselect', 'topmanip',
     'ramp',
-    'finisher', 'engine', 'reach', 'tokens', 'beater',
-    'enhance', 'protection',
+    'reach', 'beater',
+    'enhance', 'protection', 'lifegain', 'energy',
     'other'];
   // 旧バージョンの役割IDの読み替え
   const LEGACY = {
-    threat: 'beater', combo: 'cheat',
+    threat: 'beater', combo: 'cheat', finisher: 'beater',
     // 妨害の小カテゴリを処理別（17個）から干渉する場所別（8個）にまとめたときの読み替え
     rm_exile: 'removal', rm_destroy: 'removal', rm_damage: 'removal', edict: 'removal', bounce: 'removal', steal: 'removal', neutralize: 'removal',
     landdestroy: 'manalock', counter: 'spell', redirect: 'spell', counterlock: 'spell', hate: 'spell', abilitylock: 'ability', attacklock: 'combat'
@@ -77,10 +80,9 @@
   const EFFECT_ROLE = {
     mana: 'ramp', draw: 'draw', redirect: 'spell', discard: 'discard', attacklock: 'combat',
     tutor: 'tutor', recursion: 'recursion', selfmill: 'selfmill', protection: 'protection', gyhate: 'gyhate',
-    cheat: 'cheat', extraturn: 'extraturn', untap: 'untap', copy: 'copy', drain: 'reach'
+    cheat: 'cheat', extraturn: 'extraturn', untap: 'untap', copy: 'copy', drain: 'reach',
+    lifegain: 'lifegain', energy: 'energy', topselect: 'topselect', topmanip: 'topmanip'
   };
-  // 繰り返し起きるとき「エンジン」とみなす効果（自己強化やマナは除く）
-  const ENGINE_EFFECTS = new Set(['token', 'draw', 'lifegain', 'drain', 'removal', 'energy', 'recursion', 'discard']);
 
   // タグでは拾いにくい、文全体で判定する追加ルール
   const EXTRA = {
@@ -179,17 +181,16 @@
 
       const isSpell = /\b(Instant|Sorcery)\b/.test(front);
       const power = parseInt(card.power, 10);
-      // 1回きりのトークン生成は「トークン展開」（繰り返しならエンジン）
-      if (t.tags.some(x => x.effect === 'token' && !x.repeat)) set.add('tokens');
+      // トークン生成（1回でも繰り返しでも。繰り返しかどうかはタグの属性で見る）
+      if (t.tags.some(x => x.effect === 'token')) set.add('tokens');
       // クリーチャー以外の強化（装備品・オーラ・パンプ呪文）
       if (!isCreature && t.tags.some(x => x.effect === 'pump')) set.add('enhance');
-      // エンジン：繰り返し起きる価値のある効果を持つパーマネント
-      if (!isSpell && t.tags.some(x => x.repeat && x.trigger !== 'static' && ENGINE_EFFECTS.has(x.effect))) set.add('engine');
-      // フィニッシャー：勝利条件、または大型の打点
-      if (/you win the game/.test(text) || (isCreature && (power >= 5 || (card.cmc >= 6 && power >= 4)))) set.add('finisher');
+      // 特殊勝利（「ゲームに勝利する」）
+      if (/you win the game/.test(text)) set.add('altwin');
       // 打点：本体で殴るクリーチャー（パワー3以上、回避能力つきのパワー2以上、または他に役割のないクリーチャー）
       if (isCreature || /\bVehicle\b/.test(tl)) {
         const others = [...set].filter(r => r !== 'reach' && r !== 'beater').length;
+        // 大型（パワー5以上など）も打点
         if (power >= 3 || (power >= 2 && t.evasion) || !others) set.add('beater');
       }
       if (!set.size) set.add('other');
@@ -208,7 +209,14 @@
       const b = inspect({ name: `${card.name}（変身後）`, typeLine: bf.typeLine, oracle: bf.oracle, keywords: [], power: null, layout: 'normal' });
       back = { roles: b.roles.filter(r => r !== 'other' && !roles.includes(r)), allRoles: b.roles, tags: b.tags, tokens: b.tokens };
     }
-    const result = { roles, cat, tags, abilities, tokens, speed, override: ov, back };
+    // 奥義（出たターンに起動できない忠誠度能力）も同じく表示だけ
+    let ult = null;
+    const uf = Tags.ultimateFace(card);
+    if (uf) {
+      const u = inspect({ name: `${card.name}（奥義）`, typeLine: 'Sorcery', oracle: uf.oracle.replace(/^[−-]\d+:\s*/gm, ''), keywords: [], power: null, layout: 'normal' });
+      ult = { roles: u.roles.filter(r => r !== 'other' && !roles.includes(r)), allRoles: u.roles.filter(r => r !== 'other'), tags: u.tags, text: uf.oracle };
+    }
+    const result = { roles, cat, tags, abilities, tokens, speed, override: ov, back, ult };
     cache.set(card, result);
     return result;
   }
@@ -326,16 +334,16 @@
     if (format === 'commander') {
       return {
         ramp: [10, 14], draw: [10, 14], 'cat:disrupt': [10, 16], wipe: [2, 4],
-        protection: [2, 6], 'cat:win': [12, 25], tutor: [0, 8]
+        protection: [2, 6], 'cat:damage': [12, 25], tutor: [0, 8]
       };
     }
     if (format === 'limited') {
-      return { 'cat:win': [14, 18], 'cat:disrupt': [3, 8], 'cat:resource': [1, 4], wipe: [0, 2] };
+      return { 'cat:damage': [14, 18], 'cat:disrupt': [3, 8], 'cat:resource': [1, 4], wipe: [0, 2] };
     }
     const t = {
-      aggro:    { 'cat:win': [22, 32], 'cat:disrupt': [4, 10],  'cat:resource': [0, 4] },
-      midrange: { 'cat:win': [12, 20], 'cat:disrupt': [8, 14],  'cat:resource': [3, 8] },
-      control:  { 'cat:win': [3, 10],  'cat:disrupt': [14, 22], 'cat:resource': [6, 12], wipe: [2, 5] },
+      aggro:    { 'cat:damage': [22, 32], 'cat:disrupt': [4, 10],  'cat:resource': [0, 4] },
+      midrange: { 'cat:damage': [12, 20], 'cat:disrupt': [8, 14],  'cat:resource': [3, 8] },
+      control:  { 'cat:damage': [3, 10],  'cat:disrupt': [14, 22], 'cat:resource': [6, 12], wipe: [2, 5] },
       combo:    { 'cat:combo': [4, 14], 'cat:resource': [6, 14], 'cat:disrupt': [4, 12], protection: [2, 8] }
     };
     return t[archetype] || t.midrange;
