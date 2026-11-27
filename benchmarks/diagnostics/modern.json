@@ -1,238 +1,6 @@
 {
  "untagged": [
   {
-   "pattern": "as this land enters, you may pay N life. if you don't, it enters tapped.",
-   "kind": "static",
-   "decks": 9174,
-   "cards": [
-    "Steam Vents",
-    "Sacred Foundry",
-    "Blood Crypt",
-    "Hallowed Fountain"
-   ]
-  },
-  {
-   "pattern": "this land enters tapped.",
-   "kind": "static",
-   "decks": 8323,
-   "cards": [
-    "Thundering Falls",
-    "Meticulous Archive",
-    "Raucous Theater",
-    "Elegant Parlor"
-   ]
-  },
-  {
-   "pattern": "flash",
-   "kind": "static",
-   "decks": 2893,
-   "cards": [
-    "Solitude",
-    "Subtlety",
-    "Orcish Bowmasters",
-    "Endurance"
-   ]
-  },
-  {
-   "pattern": "flying",
-   "kind": "static",
-   "decks": 2710,
-   "cards": [
-    "Quantum Riddler",
-    "Subtlety",
-    "Tamiyo, Inquisitive Student // Tamiyo, Seasoned Scholar",
-    "Scion of Draco"
-   ]
-  },
-  {
-   "pattern": "{t}, pay N life, sacrifice this land: search your library for a mountain or plains card, put it onto the battlefield, then shuffle.",
-   "kind": "activated",
-   "decks": 1792,
-   "cards": [
-    "Arid Mesa"
-   ]
-  },
-  {
-   "pattern": "{t}, pay N life, sacrifice this land: search your library for a plains or island card, put it onto the battlefield, then shuffle.",
-   "kind": "activated",
-   "decks": 1484,
-   "cards": [
-    "Flooded Strand"
-   ]
-  },
-  {
-   "pattern": "{t}, pay N life, sacrifice this land: search your library for a swamp or mountain card, put it onto the battlefield, then shuffle.",
-   "kind": "activated",
-   "decks": 1387,
-   "cards": [
-    "Bloodstained Mire"
-   ]
-  },
-  {
-   "pattern": "{t}, pay N life, sacrifice this land: search your library for a plains or swamp card, put it onto the battlefield, then shuffle.",
-   "kind": "activated",
-   "decks": 1333,
-   "cards": [
-    "Marsh Flats"
-   ]
-  },
-  {
-   "pattern": "{t}, pay N life, sacrifice this land: search your library for an island or swamp card, put it onto the battlefield, then shuffle.",
-   "kind": "activated",
-   "decks": 1331,
-   "cards": [
-    "Polluted Delta"
-   ]
-  },
-  {
-   "pattern": "{t}, pay N life, sacrifice this land: search your library for an island or mountain card, put it onto the battlefield, then shuffle.",
-   "kind": "activated",
-   "decks": 1244,
-   "cards": [
-    "Scalding Tarn"
-   ]
-  },
-  {
-   "pattern": "equip {N}",
-   "kind": "static",
-   "decks": 1226,
-   "cards": [
-    "Blade of the Bloodchief",
-    "Skateboard",
-    "Shadowspear",
-    "Lavaspur Boots"
-   ]
-  },
-  {
-   "pattern": "{t}, pay N life, sacrifice this land: search your library for a mountain or forest card, put it onto the battlefield, then shuffle.",
-   "kind": "activated",
-   "decks": 1097,
-   "cards": [
-    "Wooded Foothills"
-   ]
-  },
-  {
-   "pattern": "devoid",
-   "kind": "static",
-   "decks": 1037,
-   "cards": [
-    "Sowing Mycospawn",
-    "Basking Broodscale",
-    "World Breaker",
-    "Kozilek's Return"
-   ]
-  },
-  {
-   "pattern": "reach",
-   "kind": "static",
-   "decks": 981,
-   "cards": [
-    "Endurance",
-    "Arboreal Grazer",
-    "Generous Ent",
-    "Crescendo Conductor // Boltwave"
-   ]
-  },
-  {
-   "pattern": "evoke—exile a white card from your hand.",
-   "kind": "static",
-   "decks": 921,
-   "cards": [
-    "Solitude"
-   ]
-  },
-  {
-   "pattern": "choose one —",
-   "kind": "spell",
-   "decks": 918,
-   "cards": [
-    "Thraben Charm",
-    "Sheoldred's Edict",
-    "Drown in the Loch",
-    "Warping Wail"
-   ]
-  },
-  {
-   "pattern": "flying, haste",
-   "kind": "static",
-   "decks": 878,
-   "cards": [
-    "Detective's Phoenix",
-    "Slickshot Show-Off",
-    "Darklight Phoenix",
-    "Hardened Academic"
-   ]
-  },
-  {
-   "pattern": "trample",
-   "kind": "static",
-   "decks": 877,
-   "cards": [
-    "Primeval Titan",
-    "Cultivator Colossus",
-    "Oliphaunt",
-    "Ghalta, Stampede Tyrant"
-   ]
-  },
-  {
-   "pattern": "choose two —",
-   "kind": "spell",
-   "decks": 834,
-   "cards": [
-    "Kozilek's Command",
-    "Kolaghan's Command",
-    "Kaya's Guile"
-   ]
-  },
-  {
-   "pattern": "if it's not your turn, you may exile a blue card from your hand rather than pay this spell's mana cost.",
-   "kind": "spell",
-   "decks": 812,
-   "cards": [
-    "Force of Negation"
-   ]
-  },
-  {
-   "pattern": "warp {N}{u}",
-   "kind": "static",
-   "decks": 777,
-   "cards": [
-    "Quantum Riddler"
-   ]
-  },
-  {
-   "pattern": "each opponent can cast spells only any time they could cast a sorcery.",
-   "kind": "static",
-   "decks": 756,
-   "cards": [
-    "Teferi, Time Raveler"
-   ]
-  },
-  {
-   "pattern": "+N: until your next turn, you may cast sorcery spells as though they had flash.",
-   "kind": "activated",
-   "decks": 756,
-   "cards": [
-    "Teferi, Time Raveler"
-   ]
-  },
-  {
-   "pattern": "{t}, pay N life, sacrifice this land: search your library for a forest or island card, put it onto the battlefield, then shuffle.",
-   "kind": "activated",
-   "decks": 746,
-   "cards": [
-    "Misty Rainforest"
-   ]
-  },
-  {
-   "pattern": "{t}, pay N life, sacrifice this land: search your library for a swamp or forest card, put it onto the battlefield, then shuffle.",
-   "kind": "activated",
-   "decks": 744,
-   "cards": [
-    "Verdant Catacombs"
-   ]
-  },
-  {
    "pattern": "when this land enters, you may exile a colorless card with mana value N or greater from your hand.",
    "kind": "triggered",
    "decks": 736,
@@ -249,102 +17,6 @@
    ]
   },
   {
-   "pattern": "dash {N}{r}",
-   "kind": "static",
-   "decks": 725,
-   "cards": [
-    "Ragavan, Nimble Pilferer"
-   ]
-  },
-  {
-   "pattern": "this land enters tapped unless you control two or fewer other lands.",
-   "kind": "static",
-   "decks": 719,
-   "cards": [
-    "Spirebluff Canal",
-    "Darkslick Shores",
-    "Blackcleave Cliffs",
-    "Blooming Marsh"
-   ]
-  },
-  {
-   "pattern": "haste",
-   "kind": "static",
-   "decks": 662,
-   "cards": [
-    "Monastery Swiftspear",
-    "Craterhoof Behemoth",
-    "Vengevine",
-    "Timeline Culler"
-   ]
-  },
-  {
-   "pattern": "improvise",
-   "kind": "static",
-   "decks": 642,
-   "cards": [
-    "Kappa Cannoneer",
-    "Metallic Rebuke",
-    "Whir of Invention"
-   ]
-  },
-  {
-   "pattern": "if this card is in your opening hand and you're not the starting player, you may begin the game with ~ on the battlefield with a luck counter on it. if you do, exile a card from your hand.",
-   "kind": "static",
-   "decks": 636,
-   "cards": [
-    "Gemstone Caverns"
-   ]
-  },
-  {
-   "pattern": "replicate {N}",
-   "kind": "spell",
-   "decks": 626,
-   "cards": [
-    "Consign to Memory"
-   ]
-  },
-  {
-   "pattern": "swampwalk",
-   "kind": "static",
-   "decks": 618,
-   "cards": [
-    "Street Wraith"
-   ]
-  },
-  {
-   "pattern": "cycling—pay N life.",
-   "kind": "static",
-   "decks": 618,
-   "cards": [
-    "Street Wraith"
-   ]
-  },
-  {
-   "pattern": "~'s power is equal to the number of card types among cards in your graveyard and its toughness is equal to that number plus N.",
-   "kind": "static",
-   "decks": 569,
-   "cards": [
-    "Nethergoyf"
-   ]
-  },
-  {
-   "pattern": "kicker {N}{c}",
-   "kind": "static",
-   "decks": 542,
-   "cards": [
-    "Sowing Mycospawn"
-   ]
-  },
-  {
-   "pattern": "when you cast this spell, search your library for a land card, put it onto the battlefield, then shuffle.",
-   "kind": "triggered",
-   "decks": 542,
-   "cards": [
-    "Sowing Mycospawn"
-   ]
-  },
-  {
    "pattern": "when this land enters, return a land you control to its owner's hand.",
    "kind": "triggered",
    "decks": 534,
@@ -352,57 +24,6 @@
     "Gruul Turf",
     "Simic Growth Chamber",
     "Golgari Rot Farm"
-   ]
-  },
-  {
-   "pattern": "cycling {N}",
-   "kind": "static",
-   "decks": 534,
-   "cards": [
-    "Indatha Triome",
-    "Unearth",
-    "Spara's Headquarters",
-    "Pest Control"
-   ]
-  },
-  {
-   "pattern": "{t}, pay N life, sacrifice this land: search your library for a forest or plains card, put it onto the battlefield, then shuffle.",
-   "kind": "activated",
-   "decks": 532,
-   "cards": [
-    "Windswept Heath"
-   ]
-  },
-  {
-   "pattern": "this spell costs {N} less to cast for each card type among cards in your graveyard.",
-   "kind": "static",
-   "decks": 524,
-   "cards": [
-    "Emrakul, the Promised End"
-   ]
-  },
-  {
-   "pattern": "flying, trample, protection from instants",
-   "kind": "static",
-   "decks": 524,
-   "cards": [
-    "Emrakul, the Promised End"
-   ]
-  },
-  {
-   "pattern": "menace",
-   "kind": "static",
-   "decks": 511,
-   "cards": [
-    "Moonshadow"
-   ]
-  },
-  {
-   "pattern": "this creature enters with six -N/-N counters on it.",
-   "kind": "static",
-   "decks": 511,
-   "cards": [
-    "Moonshadow"
    ]
   },
   {
@@ -422,127 +43,11 @@
    ]
   },
   {
-   "pattern": "bestow—{r}, collect evidence N.",
-   "kind": "static",
-   "decks": 505,
-   "cards": [
-    "Detective's Phoenix"
-   ]
-  },
-  {
-   "pattern": "this land enters tapped unless you control a mountain.",
-   "kind": "static",
-   "decks": 504,
-   "cards": [
-    "Arena of Glory"
-   ]
-  },
-  {
-   "pattern": "exile three cards from your graveyard: this creature gains flying until end of turn.",
-   "kind": "activated",
-   "decks": 495,
-   "cards": [
-    "Psychic Frog"
-   ]
-  },
-  {
-   "pattern": "rebound",
-   "kind": "spell",
-   "decks": 494,
-   "cards": [
-    "Ephemerate"
-   ]
-  },
-  {
-   "pattern": "prowess",
-   "kind": "static",
-   "decks": 476,
-   "cards": [
-    "Monastery Swiftspear",
-    "Pompous Battlemage // Improvised Act",
-    "Pinnacle Monk // Mystic Peak"
-   ]
-  },
-  {
-   "pattern": "domain — this spell costs {N} less to cast for each basic land type among lands you control.",
-   "kind": "static",
-   "decks": 463,
-   "cards": [
-    "Leyline Binding",
-    "Scion of Draco"
-   ]
-  },
-  {
    "pattern": "whenever this creature attacks for the first time each turn, if there are four or more card types among cards in your graveyard, untap target creature. after this phase, there is an additional combat phase.",
    "kind": "triggered",
    "decks": 459,
    "cards": [
     "Fear of Missing Out"
-   ]
-  },
-  {
-   "pattern": "reach, first strike",
-   "kind": "static",
-   "decks": 448,
-   "cards": [
-    "Sire of Seven Deaths"
-   ]
-  },
-  {
-   "pattern": "vigilance, menace",
-   "kind": "static",
-   "decks": 448,
-   "cards": [
-    "Sire of Seven Deaths"
-   ]
-  },
-  {
-   "pattern": "ward—pay N life.",
-   "kind": "static",
-   "decks": 448,
-   "cards": [
-    "Sire of Seven Deaths"
-   ]
-  },
-  {
-   "pattern": "ascend",
-   "kind": "static",
-   "decks": 446,
-   "cards": [
-    "Ocelot Pride"
-   ]
-  },
-  {
-   "pattern": "whenever one or more other cats you control die, you may exile ajani, then return him to the battlefield transformed under his owner's control.",
-   "kind": "triggered",
-   "decks": 426,
-   "cards": [
-    "Ajani, Nacatl Pariah // Ajani, Nacatl Avenger"
-   ]
-  },
-  {
-   "pattern": "this land enters tapped unless you control a forest.",
-   "kind": "static",
-   "decks": 421,
-   "cards": [
-    "Shifting Woodland",
-    "Castle Garenbrig"
-   ]
-  },
-  {
-   "pattern": "this creature can't be blocked except by three or more creatures.",
-   "kind": "static",
-   "decks": 417,
-   "cards": [
-    "Troll of Khazad-dûm"
-   ]
-  },
-  {
-   "pattern": "swampcycling {N}",
-   "kind": "static",
-   "decks": 417,
-   "cards": [
-    "Troll of Khazad-dûm"
    ]
   },
   {
@@ -562,55 +67,11 @@
    ]
   },
   {
-   "pattern": "{N}{r}: level N",
-   "kind": "activated",
-   "decks": 402,
-   "cards": [
-    "Artist's Talent",
-    "Artist's Talent",
-    "Cool but Rude",
-    "Cool but Rude"
-   ]
-  },
-  {
-   "pattern": "each land is a forest in addition to its other land types.",
-   "kind": "static",
-   "decks": 400,
-   "cards": [
-    "Yavimaya, Cradle of Growth"
-   ]
-  },
-  {
-   "pattern": "mobilize N",
-   "kind": "static",
-   "decks": 396,
-   "cards": [
-    "Voice of Victory"
-   ]
-  },
-  {
    "pattern": "at the beginning of your next upkeep, pay {N}{g}{g}. if you don't, you lose the game.",
    "kind": "spell",
    "decks": 392,
    "cards": [
     "Summoner's Pact"
-   ]
-  },
-  {
-   "pattern": "as this artifact enters, choose a card name.",
-   "kind": "static",
-   "decks": 390,
-   "cards": [
-    "Pithing Needle",
-    "Disruptor Flute"
-   ]
-  },
-  {
-   "pattern": "equip {N}{r}",
-   "kind": "static",
-   "decks": 379,
-   "cards": [
-    "Cori-Steel Cutter"
    ]
   },
   {
@@ -622,89 +83,11 @@
    ]
   },
   {
-   "pattern": "when this creature enters, choose up to one target creature spell or planeswalker spell. its owner puts it on their choice of the top or bottom of their library.",
-   "kind": "triggered",
-   "decks": 367,
-   "cards": [
-    "Subtlety"
-   ]
-  },
-  {
-   "pattern": "evoke—exile a blue card from your hand.",
-   "kind": "static",
-   "decks": 367,
-   "cards": [
-    "Subtlety"
-   ]
-  },
-  {
-   "pattern": "this land enters tapped unless you control a swamp or a mountain.",
-   "kind": "static",
-   "decks": 361,
-   "cards": [
-    "Dalkovan Encampment"
-   ]
-  },
-  {
-   "pattern": "affinity for artifacts",
-   "kind": "static",
-   "decks": 356,
-   "cards": [
-    "Emry, Lurker of the Loch",
-    "Thoughtcast",
-    "Krang, Master Mind"
-   ]
-  },
-  {
-   "pattern": "evoke—exile a green card from your hand.",
-   "kind": "static",
-   "decks": 347,
-   "cards": [
-    "Endurance"
-   ]
-  },
-  {
-   "pattern": "if this card is in your opening hand, you may begin the game with it on the battlefield.",
-   "kind": "static",
-   "decks": 342,
-   "cards": [
-    "Leyline of the Guildpact",
-    "Leyline of Abundance",
-    "Leyline Axe"
-   ]
-  },
-  {
    "pattern": "{N}: permanents your opponents control lose hexproof and indestructible until end of turn.",
    "kind": "activated",
    "decks": 336,
    "cards": [
     "Shadowspear"
-   ]
-  },
-  {
-   "pattern": "as an additional cost to cast this spell, you may exile any number of white cards from your hand. this spell costs {N} less to cast for each card exiled this way.",
-   "kind": "spell",
-   "decks": 336,
-   "cards": [
-    "March of Otherworldly Light"
-   ]
-  },
-  {
-   "pattern": "cascade",
-   "kind": "static",
-   "decks": 336,
-   "cards": [
-    "Shardless Agent",
-    "Violent Outburst"
-   ]
-  },
-  {
-   "pattern": "this land enters tapped unless you control a plains.",
-   "kind": "static",
-   "decks": 326,
-   "cards": [
-    "Monumental Henge",
-    "Castle Ardenvale"
    ]
   },
   {
@@ -716,38 +99,11 @@
    ]
   },
   {
-   "pattern": "indestructible",
-   "kind": "static",
-   "decks": 321,
-   "cards": [
-    "Ulamog, the Ceaseless Hunger",
-    "Xenagos, God of Revels",
-    "The Mind Stone",
-    "Darksteel Citadel"
-   ]
-  },
-  {
    "pattern": "{N}{b}: adapt N.",
    "kind": "activated",
    "decks": 312,
    "cards": [
     "Emperor of Bones"
-   ]
-  },
-  {
-   "pattern": "kicker {w}",
-   "kind": "spell",
-   "decks": 310,
-   "cards": [
-    "Orim's Chant"
-   ]
-  },
-  {
-   "pattern": "when this creature enters, you may put a land card from your hand onto the battlefield tapped.",
-   "kind": "triggered",
-   "decks": 296,
-   "cards": [
-    "Arboreal Grazer"
    ]
   },
   {
@@ -759,67 +115,11 @@
    ]
   },
   {
-   "pattern": "whenever this creature enters or attacks, you may search your library for up to two land cards, put them onto the battlefield tapped, then shuffle.",
-   "kind": "triggered",
-   "decks": 294,
-   "cards": [
-    "Primeval Titan"
-   ]
-  },
-  {
-   "pattern": "ward {N}",
-   "kind": "static",
-   "decks": 293,
-   "cards": [
-    "Kappa Cannoneer"
-   ]
-  },
-  {
-   "pattern": "warp {u/r}",
-   "kind": "static",
-   "decks": 291,
-   "cards": [
-    "Pinnacle Emissary"
-   ]
-  },
-  {
    "pattern": "sunburst",
    "kind": "static",
    "decks": 288,
    "cards": [
     "Engineered Explosives"
-   ]
-  },
-  {
-   "pattern": "+N: until your next turn, up to one target noncreature artifact becomes an artifact creature with power and toughness each equal to its mana value.",
-   "kind": "activated",
-   "decks": 275,
-   "cards": [
-    "Karn, the Great Creator"
-   ]
-  },
-  {
-   "pattern": "you may sacrifice a nontoken black creature rather than pay this spell's mana cost.",
-   "kind": "spell",
-   "decks": 273,
-   "cards": [
-    "Flare of Malice"
-   ]
-  },
-  {
-   "pattern": "sacrifice any number of lands. search your library for up to that many land cards, put them onto the battlefield tapped, then shuffle.",
-   "kind": "spell",
-   "decks": 266,
-   "cards": [
-    "Scapeshift"
-   ]
-  },
-  {
-   "pattern": "plot {N}{r}",
-   "kind": "static",
-   "decks": 261,
-   "cards": [
-    "Slickshot Show-Off"
    ]
   },
   {
@@ -837,41 +137,6 @@
    "cards": [
     "Leyline of the Guildpact",
     "Dryad of the Ilysian Grove"
-   ]
-  },
-  {
-   "pattern": "as an additional cost to cast this spell, sacrifice a creature.",
-   "kind": "spell",
-   "decks": 261,
-   "cards": [
-    "Neoform",
-    "Eldritch Evolution",
-    "Corrupted Conviction",
-    "Village Rites"
-   ]
-  },
-  {
-   "pattern": "whenever a permanent you control enters tapped, untap it.",
-   "kind": "triggered",
-   "decks": 260,
-   "cards": [
-    "Amulet of Vigor"
-   ]
-  },
-  {
-   "pattern": "~'s power and toughness are each equal to the number of lands you control.",
-   "kind": "static",
-   "decks": 259,
-   "cards": [
-    "Cultivator Colossus"
-   ]
-  },
-  {
-   "pattern": "{r}, {t}: target creature gains haste until end of turn.",
-   "kind": "activated",
-   "decks": 258,
-   "cards": [
-    "Hanweir Battlements"
    ]
   },
   {
@@ -908,62 +173,11 @@
    ]
   },
   {
-   "pattern": "delve",
-   "kind": "static",
-   "decks": 247,
-   "cards": [
-    "Murktide Regent",
-    "Hooting Mandrills",
-    "Logic Knot"
-   ]
-  },
-  {
-   "pattern": "forestcycling {N}",
-   "kind": "static",
-   "decks": 245,
-   "cards": [
-    "Generous Ent"
-   ]
-  },
-  {
-   "pattern": "as this land enters, choose a creature type.",
-   "kind": "static",
-   "decks": 241,
-   "cards": [
-    "Cavern of Souls"
-   ]
-  },
-  {
-   "pattern": "when you draw your third card in a turn, exile tamiyo, then return her to the battlefield transformed under her owner's control.",
-   "kind": "triggered",
-   "decks": 232,
-   "cards": [
-    "Tamiyo, Inquisitive Student // Tamiyo, Seasoned Scholar"
-   ]
-  },
-  {
-   "pattern": "kicker {N}{u}",
-   "kind": "spell",
-   "decks": 223,
-   "cards": [
-    "Consult the Star Charts"
-   ]
-  },
-  {
    "pattern": "you may have this land enter tapped as a copy of any land on the battlefield.",
    "kind": "static",
    "decks": 222,
    "cards": [
     "Vesuva"
-   ]
-  },
-  {
-   "pattern": "this spell can't be countered.",
-   "kind": "spell",
-   "decks": 221,
-   "cards": [
-    "Supreme Verdict",
-    "Emrakul, the Aeons Torn"
    ]
   },
   {
@@ -983,24 +197,8 @@
    ]
   },
   {
-   "pattern": "evoke {g/u}{g/u}",
-   "kind": "static",
-   "decks": 209,
-   "cards": [
-    "Wistfulness"
-   ]
-  },
-  {
    "pattern": "instant and sorcery spells you cast cost {N} less to cast.",
    "kind": "static",
-   "decks": 200,
-   "cards": [
-    "Ral, Monsoon Mage // Ral, Leyline Prodigy"
-   ]
-  },
-  {
-   "pattern": "whenever you cast an instant or sorcery spell during your turn, flip a coin. if you lose the flip, ral deals N damage to you. if you win the flip, you may exile ral. if you do, return him to the battlefield transformed under his owner's control.",
-   "kind": "triggered",
    "decks": 200,
    "cards": [
     "Ral, Monsoon Mage // Ral, Leyline Prodigy"
@@ -1015,35 +213,11 @@
    ]
   },
   {
-   "pattern": "delirium — if there are four or more card types among cards in your graveyard, that creature gains double strike until end of turn.",
-   "kind": "spell",
-   "decks": 196,
-   "cards": [
-    "Violent Urge"
-   ]
-  },
-  {
    "pattern": "each nonland permanent you control is all colors.",
    "kind": "static",
    "decks": 194,
    "cards": [
     "Leyline of the Guildpact"
-   ]
-  },
-  {
-   "pattern": "each creature you control has vigilance if it's white, hexproof if it's blue, lifelink if it's black, first strike if it's red, and trample if it's green.",
-   "kind": "static",
-   "decks": 194,
-   "cards": [
-    "Scion of Draco"
-   ]
-  },
-  {
-   "pattern": "domain — ~'s power and toughness are each equal to the number of basic land types among lands you control.",
-   "kind": "static",
-   "decks": 192,
-   "cards": [
-    "Territorial Kavu"
    ]
   },
   {
@@ -1071,69 +245,11 @@
    ]
   },
   {
-   "pattern": "warp {w}",
-   "kind": "static",
-   "decks": 187,
-   "cards": [
-    "Haliya, Guided by Light"
-   ]
-  },
-  {
-   "pattern": "impending N—{N}{b}",
-   "kind": "static",
-   "decks": 184,
-   "cards": [
-    "Overlord of the Balemurk"
-   ]
-  },
-  {
-   "pattern": "as this land enters, you may behold a jace. if you don't, this land enters tapped.",
-   "kind": "static",
-   "decks": 182,
-   "cards": [
-    "Theorist's Sanctum"
-   ]
-  },
-  {
    "pattern": "{N}{u}, {t}: empower jace N.",
    "kind": "activated",
    "decks": 182,
    "cards": [
     "Theorist's Sanctum"
-   ]
-  },
-  {
-   "pattern": "iii — exile this saga, then return it to the battlefield transformed under your control.",
-   "kind": "triggered",
-   "decks": 182,
-   "cards": [
-    "Fable of the Mirror-Breaker // Reflection of Kiki-Jiki",
-    "The Legend of Roku // Avatar Roku"
-   ]
-  },
-  {
-   "pattern": "this creature can't block.",
-   "kind": "static",
-   "decks": 173,
-   "cards": [
-    "Carrion Feeder",
-    "Bloodghast"
-   ]
-  },
-  {
-   "pattern": "suspend N—{N}{b}{b}",
-   "kind": "spell",
-   "decks": 170,
-   "cards": [
-    "Living End"
-   ]
-  },
-  {
-   "pattern": "flying, ward {N}",
-   "kind": "static",
-   "decks": 167,
-   "cards": [
-    "Colossal Skyturtle"
    ]
   },
   {
@@ -1145,29 +261,11 @@
    ]
   },
   {
-   "pattern": "this land enters tapped unless you control a basic land.",
-   "kind": "static",
-   "decks": 164,
-   "cards": [
-    "Ba Sing Se",
-    "Abandoned Air Temple"
-   ]
-  },
-  {
    "pattern": "{N}, {t}: untap another target permanent.",
    "kind": "activated",
    "decks": 159,
    "cards": [
     "Formidable Speaker"
-   ]
-  },
-  {
-   "pattern": "cycling {u}",
-   "kind": "static",
-   "decks": 157,
-   "cards": [
-    "Striped Riverwinder",
-    "Curator of Mysteries"
    ]
   },
   {
@@ -1192,57 +290,6 @@
    "decks": 147,
    "cards": [
     "Goryo's Vengeance"
-   ]
-  },
-  {
-   "pattern": "you may play an additional land on each of your turns.",
-   "kind": "static",
-   "decks": 145,
-   "cards": [
-    "Icetill Explorer",
-    "Dryad of the Ilysian Grove"
-   ]
-  },
-  {
-   "pattern": "{N}{u}: level N",
-   "kind": "activated",
-   "decks": 144,
-   "cards": [
-    "Stormchaser's Talent",
-    "Stormchaser's Talent"
-   ]
-  },
-  {
-   "pattern": "mountaincycling {N}",
-   "kind": "static",
-   "decks": 140,
-   "cards": [
-    "Oliphaunt"
-   ]
-  },
-  {
-   "pattern": "this land enters tapped unless you control a swamp.",
-   "kind": "static",
-   "decks": 134,
-   "cards": [
-    "Spymaster's Vault",
-    "Castle Locthwain"
-   ]
-  },
-  {
-   "pattern": "harmonize {x}{g}{g}{g}{g}",
-   "kind": "spell",
-   "decks": 133,
-   "cards": [
-    "Nature's Rhythm"
-   ]
-  },
-  {
-   "pattern": "this artifact enters with x charge counters on it.",
-   "kind": "static",
-   "decks": 128,
-   "cards": [
-    "Chalice of the Void"
    ]
   },
   {
@@ -1278,30 +325,6 @@
    ]
   },
   {
-   "pattern": "hexproof",
-   "kind": "static",
-   "decks": 111,
-   "cards": [
-    "Striped Riverwinder"
-   ]
-  },
-  {
-   "pattern": "this creature enters prepared.",
-   "kind": "static",
-   "decks": 110,
-   "cards": [
-    "Pompous Battlemage // Improvised Act"
-   ]
-  },
-  {
-   "pattern": "at the beginning of each upkeep, if no spells were cast last turn, transform this creature.",
-   "kind": "triggered",
-   "decks": 105,
-   "cards": [
-    "Duskwatch Recruiter // Krallenhorde Howler"
-   ]
-  },
-  {
    "pattern": "you may spend mana as though it were mana of any color to activate abilities of creatures you control.",
    "kind": "static",
    "decks": 101,
@@ -1315,14 +338,6 @@
    "decks": 101,
    "cards": [
     "Drown in the Loch"
-   ]
-  },
-  {
-   "pattern": "you may sacrifice a nontoken blue creature rather than pay this spell's mana cost.",
-   "kind": "spell",
-   "decks": 100,
-   "cards": [
-    "Flare of Denial"
    ]
   },
   {
@@ -1359,14 +374,6 @@
    ]
   },
   {
-   "pattern": "ninjutsu {N}{u}{b}",
-   "kind": "static",
-   "decks": 95,
-   "cards": [
-    "Kaito, Bane of Nightmares"
-   ]
-  },
-  {
    "pattern": "−N: tap target creature. put two stun counters on it.",
    "kind": "activated",
    "decks": 95,
@@ -1384,83 +391,11 @@
    ]
   },
   {
-   "pattern": "this land enters tapped unless you control a mountain or a forest.",
-   "kind": "static",
-   "decks": 93,
-   "cards": [
-    "Mistrise Village"
-   ]
-  },
-  {
-   "pattern": "{u}, {t}: the next spell you cast this turn can't be countered.",
-   "kind": "activated",
-   "decks": 93,
-   "cards": [
-    "Mistrise Village"
-   ]
-  },
-  {
-   "pattern": "{N}{w}{u}: until end of turn, this land becomes a N/N white and blue elemental creature with flying and vigilance. it's still a land.",
-   "kind": "activated",
-   "decks": 90,
-   "cards": [
-    "Celestial Colonnade"
-   ]
-  },
-  {
-   "pattern": "warp {N}{w}",
-   "kind": "static",
-   "decks": 88,
-   "cards": [
-    "Starfield Shepherd"
-   ]
-  },
-  {
-   "pattern": "if you control two or more other lands, this land enters tapped.",
-   "kind": "static",
-   "decks": 87,
-   "cards": [
-    "Hall of Storm Giants"
-   ]
-  },
-  {
-   "pattern": "{N}{u}: until end of turn, this land becomes a N/N blue giant creature with ward {N}. it's still a land.",
-   "kind": "activated",
-   "decks": 87,
-   "cards": [
-    "Hall of Storm Giants"
-   ]
-  },
-  {
    "pattern": "you may play two additional lands on each of your turns.",
    "kind": "static",
    "decks": 86,
    "cards": [
     "Azusa, Lost but Seeking"
-   ]
-  },
-  {
-   "pattern": "you may sacrifice three artifacts rather than pay this spell's mana cost.",
-   "kind": "static",
-   "decks": 83,
-   "cards": [
-    "Salvage Titan"
-   ]
-  },
-  {
-   "pattern": "you may exile two green cards from your hand rather than pay this spell's mana cost.",
-   "kind": "static",
-   "decks": 82,
-   "cards": [
-    "Allosaurus Rider"
-   ]
-  },
-  {
-   "pattern": "~'s power and toughness are each equal to N plus the number of lands you control.",
-   "kind": "static",
-   "decks": 82,
-   "cards": [
-    "Allosaurus Rider"
    ]
   },
   {
@@ -1472,36 +407,11 @@
    ]
   },
   {
-   "pattern": "flying, protection from white and from black",
-   "kind": "static",
-   "decks": 77,
-   "cards": [
-    "Ureni, the Song Unending"
-   ]
-  },
-  {
    "pattern": "when ureni enters, it deals x damage divided as you choose among any number of target creatures and/or planeswalkers your opponents control, where x is the number of lands you control.",
    "kind": "triggered",
    "decks": 77,
    "cards": [
     "Ureni, the Song Unending"
-   ]
-  },
-  {
-   "pattern": "convoke",
-   "kind": "spell",
-   "decks": 76,
-   "cards": [
-    "Chord of Calling"
-   ]
-  },
-  {
-   "pattern": "spectacle {r}",
-   "kind": "spell",
-   "decks": 72,
-   "cards": [
-    "Skewer the Critics",
-    "Light Up the Stage"
    ]
   },
   {
@@ -1521,22 +431,6 @@
    ]
   },
   {
-   "pattern": "islandcycling {N}",
-   "kind": "spell",
-   "decks": 67,
-   "cards": [
-    "Lórien Revealed"
-   ]
-  },
-  {
-   "pattern": "protection from humans",
-   "kind": "static",
-   "decks": 67,
-   "cards": [
-    "Yawgmoth, Thran Physician"
-   ]
-  },
-  {
    "pattern": "{b}{b}, discard a card: proliferate.",
    "kind": "activated",
    "decks": 67,
@@ -1550,14 +444,6 @@
    "decks": 63,
    "cards": [
     "Flame of Anor"
-   ]
-  },
-  {
-   "pattern": "this creature has haste as long as an opponent has N or less life.",
-   "kind": "static",
-   "decks": 63,
-   "cards": [
-    "Bloodghast"
    ]
   },
   {
@@ -1577,60 +463,12 @@
    ]
   },
   {
-   "pattern": "when ~ enters, search your library for a basic land card or planet card, put it onto the battlefield tapped, then shuffle.",
-   "kind": "triggered",
-   "decks": 60,
-   "cards": [
-    "Genesis Device"
-   ]
-  },
-  {
-   "pattern": "{N}{g}{g}, {t}, sacrifice ~: sacrifice any number of lands you control, then search your library for up to that many land cards, put them onto the battlefield tapped, then shuffle. activate only as a sorcery.",
-   "kind": "activated",
-   "decks": 60,
-   "cards": [
-    "Genesis Device"
-   ]
-  },
-  {
-   "pattern": "you may exile a blue card with mana value x from your hand rather than pay this spell's mana cost.",
-   "kind": "spell",
-   "decks": 58,
-   "cards": [
-    "Disrupting Shoal"
-   ]
-  },
-  {
-   "pattern": "gift a tapped fish",
-   "kind": "spell",
-   "decks": 58,
-   "cards": [
-    "Into the Flood Maw"
-   ]
-  },
-  {
-   "pattern": "each land is a swamp in addition to its other land types.",
-   "kind": "static",
-   "decks": 58,
-   "cards": [
-    "Urborg, Tomb of Yawgmoth"
-   ]
-  },
-  {
    "pattern": "when ~ enters, empower jace N.",
    "kind": "triggered",
    "decks": 58,
    "cards": [
     "Way of the Paradox",
     "Way of the Pyromancer"
-   ]
-  },
-  {
-   "pattern": "suspend N—{N}",
-   "kind": "static",
-   "decks": 57,
-   "cards": [
-    "Lotus Bloom"
    ]
   },
   {
@@ -1642,30 +480,6 @@
    ]
   },
   {
-   "pattern": "ketramose can't attack or block unless there are seven or more cards in exile.",
-   "kind": "static",
-   "decks": 57,
-   "cards": [
-    "Ketramose, the New Dawn"
-   ]
-  },
-  {
-   "pattern": "flying, vigilance",
-   "kind": "static",
-   "decks": 55,
-   "cards": [
-    "Wan Shi Tong, Librarian"
-   ]
-  },
-  {
-   "pattern": "whenever this land becomes tapped, it deals N damage to you.",
-   "kind": "triggered",
-   "decks": 54,
-   "cards": [
-    "City of Brass"
-   ]
-  },
-  {
    "pattern": "+N: look at the top card of target player's library. you may put that card on the bottom of that player's library.",
    "kind": "activated",
    "decks": 51,
@@ -1674,11 +488,556 @@
    ]
   },
   {
-   "pattern": "flying, first strike",
-   "kind": "static",
-   "decks": 51,
+   "pattern": "whenever captain kirk enters or attacks, choose one. if you have no cards in hand, choose one or more instead.",
+   "kind": "triggered",
+   "decks": 49,
    "cards": [
-    "White Orchid Phantom"
+    "Captain James T. Kirk"
+   ]
+  },
+  {
+   "pattern": "destroy x target artifacts and/or creatures. for each permanent destroyed this way, its controller reveals cards from the top of their library until an artifact or creature card is revealed and exiles that card. those players put the exiled cards onto the battlefield, then shuffle.",
+   "kind": "spell",
+   "decks": 47,
+   "cards": [
+    "Indomitable Creativity"
+   ]
+  },
+  {
+   "pattern": "{N}{b}{b}, {t}, sacrifice a desert: put two -N/-N counters on target creature an opponent controls. activate only as a sorcery.",
+   "kind": "activated",
+   "decks": 45,
+   "cards": [
+    "Ifnir Deadlands"
+   ]
+  },
+  {
+   "pattern": "your maximum hand size is five.",
+   "kind": "static",
+   "decks": 44,
+   "cards": [
+    "Necrodominance"
+   ]
+  },
+  {
+   "pattern": "if a card or token would be put into your graveyard from anywhere, exile it instead.",
+   "kind": "static",
+   "decks": 44,
+   "cards": [
+    "Necrodominance"
+   ]
+  },
+  {
+   "pattern": "if a card or token would be put into a graveyard from anywhere, exile it instead.",
+   "kind": "static",
+   "decks": 44,
+   "cards": [
+    "Rest in Peace"
+   ]
+  },
+  {
+   "pattern": "enchant forest",
+   "kind": "static",
+   "decks": 41,
+   "cards": [
+    "Utopia Sprawl"
+   ]
+  },
+  {
+   "pattern": "whenever an opponent draws a card, they lose N life.",
+   "kind": "triggered",
+   "decks": 40,
+   "cards": [
+    "Sheoldred, the Apocalypse"
+   ]
+  },
+  {
+   "pattern": "whenever this creature attacks, defending player reveals the top card of their library. if it's a land card, that player puts it into their hand.",
+   "kind": "triggered",
+   "decks": 34,
+   "cards": [
+    "Goblin Guide"
+   ]
+  },
+  {
+   "pattern": "{u}, {t}: untap target legendary permanent.",
+   "kind": "activated",
+   "decks": 33,
+   "cards": [
+    "Minamo, School at Water's Edge"
+   ]
+  },
+  {
+   "pattern": "discard a card: this creature gains lifelink until end of turn.",
+   "kind": "activated",
+   "decks": 32,
+   "cards": [
+    "Hardened Academic"
+   ]
+  },
+  {
+   "pattern": "creatures lose all abilities.",
+   "kind": "static",
+   "decks": 32,
+   "cards": [
+    "Dress Down"
+   ]
+  },
+  {
+   "pattern": "at the beginning of the end step, sacrifice this enchantment.",
+   "kind": "triggered",
+   "decks": 32,
+   "cards": [
+    "Dress Down"
+   ]
+  },
+  {
+   "pattern": "whenever an artifact enters, you may untap this artifact.",
+   "kind": "triggered",
+   "decks": 32,
+   "cards": [
+    "Grinding Station"
+   ]
+  },
+  {
+   "pattern": "when this artifact enters or leaves the battlefield, you may tap or untap target creature.",
+   "kind": "triggered",
+   "decks": 32,
+   "cards": [
+    "Sewer-veillance Cam"
+   ]
+  },
+  {
+   "pattern": "flying, protection from spells that are one or more colors, annihilator N",
+   "kind": "static",
+   "decks": 31,
+   "cards": [
+    "Emrakul, the Aeons Torn"
+   ]
+  },
+  {
+   "pattern": "when emrakul is put into a graveyard from anywhere, its owner shuffles their graveyard into their library.",
+   "kind": "triggered",
+   "decks": 31,
+   "cards": [
+    "Emrakul, the Aeons Torn"
+   ]
+  },
+  {
+   "pattern": "at the beginning of your first main phase, sacrifice this enchantment unless you pay {e}.",
+   "kind": "triggered",
+   "decks": 29,
+   "cards": [
+    "Static Prison"
+   ]
+  },
+  {
+   "pattern": "hideaway N",
+   "kind": "static",
+   "decks": 29,
+   "cards": [
+    "Fight Rigging",
+    "Mosswort Bridge"
+   ]
+  },
+  {
+   "pattern": "this creature can block only creatures with flying.",
+   "kind": "static",
+   "decks": 28,
+   "cards": [
+    "Brazen Borrower // Petty Theft"
+   ]
+  },
+  {
+   "pattern": "−N: put target nonland permanent into its owner's library third from the top.",
+   "kind": "activated",
+   "decks": 27,
+   "cards": [
+    "Teferi, Hero of Dominaria"
+   ]
+  },
+  {
+   "pattern": "as long as grist isn't on the battlefield, it's a N/N insect creature in addition to its other types.",
+   "kind": "static",
+   "decks": 26,
+   "cards": [
+    "Grist, the Hunger Tide"
+   ]
+  },
+  {
+   "pattern": "• pay any amount of life, then look at that many cards from the top of your library. put one of those cards into your hand and exile the rest.",
+   "kind": "spell",
+   "decks": 24,
+   "cards": [
+    "Plunge into Darkness"
+   ]
+  },
+  {
+   "pattern": "as long as ~ entered this turn, you may activate her loyalty abilities any time you could cast an instant.",
+   "kind": "static",
+   "decks": 21,
+   "cards": [
+    "The Wandering Emperor"
+   ]
+  },
+  {
+   "pattern": "return target spell to its owner's hand.",
+   "kind": "spell",
+   "decks": 20,
+   "cards": [
+    "Reprieve"
+   ]
+  },
+  {
+   "pattern": "each creature spell you cast has emerge. the emerge cost is equal to its mana cost.",
+   "kind": "static",
+   "decks": 19,
+   "cards": [
+    "Herigast, Erupting Nullkite"
+   ]
+  },
+  {
+   "pattern": "this creature gets -x/-x, where x is your life total.",
+   "kind": "static",
+   "decks": 18,
+   "cards": [
+    "Death's Shadow"
+   ]
+  },
+  {
+   "pattern": "{r}: destroy target artifact you control.",
+   "kind": "activated",
+   "decks": 18,
+   "cards": [
+    "Zabaz, the Glimmerwasp"
+   ]
+  },
+  {
+   "pattern": "whenever a creature you control leaves the battlefield, if it had counters on it, put those counters on ~.",
+   "kind": "triggered",
+   "decks": 17,
+   "cards": [
+    "The Ozolith"
+   ]
+  },
+  {
+   "pattern": "at the beginning of combat on your turn, if ~ has counters on it, you may move all counters from ~ onto target creature.",
+   "kind": "triggered",
+   "decks": 17,
+   "cards": [
+    "The Ozolith"
+   ]
+  },
+  {
+   "pattern": "if a triggered ability of a creature you control with power N or less triggers, that ability triggers an additional time.",
+   "kind": "static",
+   "decks": 17,
+   "cards": [
+    "Delney, Streetwise Lookout"
+   ]
+  },
+  {
+   "pattern": "when ~ enters and at the beginning of your upkeep, exile the top four cards of your library. put all permanent cards exiled this way onto the battlefield.",
+   "kind": "triggered",
+   "decks": 17,
+   "cards": [
+    "Deep Space 9"
+   ]
+  },
+  {
+   "pattern": "station",
+   "kind": "static",
+   "decks": 17,
+   "cards": [
+    "Deep Space 9"
+   ]
+  },
+  {
+   "pattern": "metalcraft — equipment you control have equip {N} as long as you control three or more artifacts.",
+   "kind": "static",
+   "decks": 16,
+   "cards": [
+    "Puresteel Paladin"
+   ]
+  },
+  {
+   "pattern": "you may reveal this card from your opening hand. if you do, at the beginning of the first upkeep, your life total becomes N.",
+   "kind": "spell",
+   "decks": 16,
+   "cards": [
+    "Providence"
+   ]
+  },
+  {
+   "pattern": "your life total becomes N.",
+   "kind": "spell",
+   "decks": 16,
+   "cards": [
+    "Providence"
+   ]
+  },
+  {
+   "pattern": "annihilator N",
+   "kind": "static",
+   "decks": 16,
+   "cards": [
+    "Nulldrifter"
+   ]
+  },
+  {
+   "pattern": "~ deals N damage divided as you choose among one or two targets.",
+   "kind": "spell",
+   "decks": 16,
+   "cards": [
+    "Forked Bolt"
+   ]
+  },
+  {
+   "pattern": "when fblthp becomes the target of a spell, shuffle fblthp into its owner's library.",
+   "kind": "triggered",
+   "decks": 15,
+   "cards": [
+    "Fblthp, the Lost"
+   ]
+  },
+  {
+   "pattern": "whenever enchanted creature attacks or blocks, attach any number of target equipment you control to it.",
+   "kind": "triggered",
+   "decks": 15,
+   "cards": [
+    "Super-Soldier Serum"
+   ]
+  },
+  {
+   "pattern": "• ~ deals N damage to each of one or two targets.",
+   "kind": "spell",
+   "decks": 15,
+   "cards": [
+    "Prismari Charm"
+   ]
+  },
+  {
+   "pattern": "noncreature spells you cast cost {N} less to cast as long as there are three or more lesson cards in your graveyard.",
+   "kind": "static",
+   "decks": 14,
+   "cards": [
+    "Gran-Gran"
+   ]
+  },
+  {
+   "pattern": "when you cast this spell, target opponent exiles the top half of their library, rounded up.",
+   "kind": "triggered",
+   "decks": 14,
+   "cards": [
+    "Ulamog, the Defiler"
+   ]
+  },
+  {
+   "pattern": "{N}{u}: return this equipment to its owner's hand.",
+   "kind": "activated",
+   "decks": 14,
+   "cards": [
+    "Cryptic Coat"
+   ]
+  },
+  {
+   "pattern": "{N}{w}, {t}: you may put an equipment card from your hand onto the battlefield.",
+   "kind": "activated",
+   "decks": 14,
+   "cards": [
+    "Stoneforge Mystic"
+   ]
+  },
+  {
+   "pattern": "when krang enters, if you have fewer than four cards in hand, draw cards equal to the difference.",
+   "kind": "triggered",
+   "decks": 14,
+   "cards": [
+    "Krang, Master Mind"
+   ]
+  },
+  {
+   "pattern": "splice onto arcane {N}{r}{r}",
+   "kind": "spell",
+   "decks": 14,
+   "cards": [
+    "Through the Breach"
+   ]
+  },
+  {
+   "pattern": "target creature you control deals damage equal to its power to any other target. then sacrifice it.",
+   "kind": "spell",
+   "decks": 14,
+   "cards": [
+    "Callous Sell-Sword // Burn Together"
+   ]
+  },
+  {
+   "pattern": "if one or more counters would be put on a creature, spacecraft, or planet you control, twice that many of each of those kinds of counters are put on it instead.",
+   "kind": "static",
+   "decks": 14,
+   "cards": [
+    "Loading Zone"
+   ]
+  },
+  {
+   "pattern": "when this land enters untapped, choose one —",
+   "kind": "triggered",
+   "decks": 14,
+   "cards": [
+    "Federation Outpost"
+   ]
+  },
+  {
+   "pattern": "• tap target creature.",
+   "kind": "triggered",
+   "decks": 13,
+   "cards": [
+    "Divining Duelist"
+   ]
+  },
+  {
+   "pattern": "• untap target creature.",
+   "kind": "triggered",
+   "decks": 13,
+   "cards": [
+    "Divining Duelist"
+   ]
+  },
+  {
+   "pattern": "−x: tap target artifact or creature. put x stun counters on it.",
+   "kind": "activated",
+   "decks": 13,
+   "cards": [
+    "Chandra, Chill of Compliance"
+   ]
+  },
+  {
+   "pattern": "{N}{g}{g}, {t}: add six {g}. spend this mana only to cast creature spells or activate abilities of creatures.",
+   "kind": "activated",
+   "decks": 12,
+   "cards": [
+    "Castle Garenbrig"
+   ]
+  },
+  {
+   "pattern": "the controller of target artifact sacrifices it, then reveals cards from the top of their library until they reveal an artifact card. that player puts that card onto the battlefield, then shuffles all other cards revealed this way into their library.",
+   "kind": "spell",
+   "decks": 12,
+   "cards": [
+    "Shape Anew"
+   ]
+  },
+  {
+   "pattern": "if a permanent entering causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time.",
+   "kind": "static",
+   "decks": 11,
+   "cards": [
+    "Elesh Norn, Mother of Machines"
+   ]
+  },
+  {
+   "pattern": "permanents entering don't cause abilities of permanents your opponents control to trigger.",
+   "kind": "static",
+   "decks": 11,
+   "cards": [
+    "Elesh Norn, Mother of Machines"
+   ]
+  },
+  {
+   "pattern": "when this creature enters, empower jace N.",
+   "kind": "triggered",
+   "decks": 11,
+   "cards": [
+    "Theorist's Proxy"
+   ]
+  },
+  {
+   "pattern": "if a creature an opponent controls would die, exile it instead.",
+   "kind": "static",
+   "decks": 11,
+   "cards": [
+    "Stone of Erech"
+   ]
+  },
+  {
+   "pattern": "compleated",
+   "kind": "static",
+   "decks": 11,
+   "cards": [
+    "Jace, the Perfected Mind"
+   ]
+  },
+  {
+   "pattern": "−x: target player mills three times x cards.",
+   "kind": "activated",
+   "decks": 11,
+   "cards": [
+    "Jace, the Perfected Mind"
+   ]
+  },
+  {
+   "pattern": "{t}: exile the top three cards of your library.",
+   "kind": "activated",
+   "decks": 11,
+   "cards": [
+    "Yggdrasil, Rebirth Engine"
+   ]
+  },
+  {
+   "pattern": "iii — sacrifice a land.",
+   "kind": "triggered",
+   "decks": 11,
+   "cards": [
+    "The Naked Time"
+   ]
+  },
+  {
+   "pattern": "when this creature enters, counter up to one target activated or triggered ability. if an ability of an artifact, creature, or planeswalker is countered this way, that permanent loses all abilities for as long as this creature remains on the battlefield.",
+   "kind": "triggered",
+   "decks": 10,
+   "cards": [
+    "Tishana's Tidebinder"
+   ]
+  },
+  {
+   "pattern": "when aang enters, airbend up to one other target creature or spell.",
+   "kind": "triggered",
+   "decks": 10,
+   "cards": [
+    "Aang, Swift Savior // Aang and La, Ocean's Fury"
+   ]
+  },
+  {
+   "pattern": "waterbend {N}: transform aang.",
+   "kind": "activated",
+   "decks": 10,
+   "cards": [
+    "Aang, Swift Savior // Aang and La, Ocean's Fury"
+   ]
+  },
+  {
+   "pattern": "• you lose N life. empower jace N.",
+   "kind": "spell",
+   "decks": 10,
+   "cards": [
+    "Vraska's Final Mercy"
+   ]
+  },
+  {
+   "pattern": "at the beginning of your upkeep, you may put a charge counter on this artifact.",
+   "kind": "triggered",
+   "decks": 10,
+   "cards": [
+    "Aether Vial"
+   ]
+  },
+  {
+   "pattern": "to solve — you have no cards in hand.",
+   "kind": "static",
+   "decks": 10,
+   "cards": [
+    "Case of the Crimson Pulse"
    ]
   }
  ],
@@ -1781,7 +1140,8 @@
    "name": "Simic Ritual",
    "share": 0.003,
    "comboCards": [
-    "Birthing Ritual"
+    "Birthing Ritual",
+    "Shardless Agent"
    ]
   },
   {
@@ -1818,6 +1178,7 @@
    "share": 0.002,
    "comboCards": [
     "Birthing Ritual",
+    "Shardless Agent",
     "Aang, at the Crossroads // Aang, Destined Savior"
    ]
   },
@@ -2139,6 +1500,7 @@
     "decks": 756,
     "oracle": "Each opponent can cast spells only any time they could cast a sorcery.\n+1: Until your next turn, you may cast sorcery spells as though they had flash.\n−3: Return up to one target artifact, creature, or enchantment to its owner's hand. Draw a card.",
     "detail": [
+     "hate:lock:spell",
      "removal:bounce:creature/artifact/enchantment"
     ]
    },
@@ -2639,6 +2001,15 @@
     ]
    },
    {
+    "name": "Teferi, Time Raveler",
+    "decks": 756,
+    "oracle": "Each opponent can cast spells only any time they could cast a sorcery.\n+1: Until your next turn, you may cast sorcery spells as though they had flash.\n−3: Return up to one target artifact, creature, or enchantment to its owner's hand. Draw a card.",
+    "detail": [
+     "hate:lock:spell",
+     "removal:bounce:creature/artifact/enchantment"
+    ]
+   },
+   {
     "name": "Consign to Memory",
     "decks": 626,
     "oracle": "Replicate {1} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.)\nCounter target triggered ability or colorless spell.",
@@ -2942,14 +2313,6 @@
     "detail": [
      "counter:counter:spell",
      "removal:bounce:creature/artifact/enchantment/planeswalker/battle/land"
-    ]
-   },
-   {
-    "name": "Vodalian Hexcatcher",
-    "decks": 4,
-    "oracle": "Flash\nOther Merfolk you control get +1/+1.\nSacrifice a Merfolk: Counter target noncreature spell unless its controller pays {1}.",
-    "detail": [
-     "counter:counter:noncreature spell"
     ]
    }
   ],
@@ -3790,152 +3153,213 @@
   ]
  },
  "format": "Modern",
- "generatedAt": "2026-11-27T21:04:17.142Z",
+ "generatedAt": "2026-11-27T21:10:06.632Z",
  "decks": 5115,
  "otherOnly": [
   {
    "name": "Spoils of the Vault",
    "decks": 24,
    "typeLine": "Instant",
-   "tags": []
+   "tags": [
+    "drawback@spell"
+   ]
   },
   {
    "name": "Providence",
    "decks": 16,
    "typeLine": "Sorcery",
-   "tags": []
+   "tags": [
+    "misc@spell"
+   ]
   },
   {
    "name": "Forked Bolt",
    "decks": 16,
    "typeLine": "Sorcery",
-   "tags": []
+   "tags": [
+    "misc@spell"
+   ]
   },
   {
    "name": "Loading Zone",
    "decks": 14,
    "typeLine": "Enchantment",
-   "tags": []
+   "tags": [
+    "misc@static",
+    "altcost@static"
+   ]
   },
   {
    "name": "Shape Anew",
    "decks": 12,
    "typeLine": "Sorcery",
-   "tags": []
+   "tags": [
+    "misc@spell"
+   ]
   },
   {
    "name": "Irencrag Feat",
    "decks": 9,
    "typeLine": "Sorcery",
-   "tags": []
+   "tags": [
+    "misc@spell"
+   ]
   },
   {
    "name": "Academic Dispute",
    "decks": 9,
    "typeLine": "Instant",
-   "tags": []
+   "tags": [
+    "combatkw@spell",
+    "misc@spell"
+   ]
   },
   {
    "name": "Archive Trap",
    "decks": 6,
    "typeLine": "Instant — Trap",
-   "tags": []
+   "tags": [
+    "altcost@spell",
+    "misc@spell"
+   ]
   },
   {
    "name": "Tasha's Hideous Laughter",
    "decks": 6,
    "typeLine": "Sorcery",
-   "tags": []
+   "tags": [
+    "misc@spell"
+   ]
   },
   {
    "name": "Enhanced Surveillance",
    "decks": 6,
    "typeLine": "Enchantment",
-   "tags": []
+   "tags": [
+    "misc@static",
+    "misc@activated"
+   ]
   },
   {
    "name": "Lantern of Insight",
    "decks": 6,
    "typeLine": "Artifact",
-   "tags": []
+   "tags": [
+    "misc@static",
+    "misc@activated_once"
+   ]
   },
   {
    "name": "Pyxis of Pandemonium",
    "decks": 6,
    "typeLine": "Artifact",
-   "tags": []
+   "tags": [
+    "misc@activated",
+    "misc@activated_once"
+   ]
   },
   {
    "name": "U.S.S. Voyager, Lone Wanderer",
    "decks": 6,
    "typeLine": "Legendary Artifact — Spacecraft",
-   "tags": []
+   "tags": [
+    "misc@etb",
+    "misc@static"
+   ]
   },
   {
    "name": "Hit It!",
    "decks": 4,
    "typeLine": "Enchantment",
-   "tags": []
+   "tags": [
+    "haste@static",
+    "misc@etb"
+   ]
   },
   {
    "name": "Perfected Theory",
    "decks": 3,
    "typeLine": "Instant",
-   "tags": []
+   "tags": [
+    "misc@spell"
+   ]
   },
   {
    "name": "Glimpse the Unthinkable",
    "decks": 3,
    "typeLine": "Sorcery",
-   "tags": []
+   "tags": [
+    "misc@spell"
+   ]
   },
   {
    "name": "Scale Up",
    "decks": 3,
    "typeLine": "Sorcery",
-   "tags": []
+   "tags": [
+    "misc@spell",
+    "altcost@static"
+   ]
   },
   {
    "name": "Prismatic Omen",
    "decks": 2,
    "typeLine": "Enchantment",
-   "tags": []
+   "tags": [
+    "misc@static"
+   ]
   },
   {
    "name": "Unable to Scream",
    "decks": 2,
    "typeLine": "Enchantment — Aura",
-   "tags": []
+   "tags": [
+    "equip@static",
+    "misc@static"
+   ]
   },
   {
    "name": "Smallpox",
    "decks": 2,
    "typeLine": "Sorcery",
-   "tags": []
+   "tags": [
+    "misc@spell"
+   ]
   },
   {
    "name": "Nameless Inversion",
    "decks": 2,
    "typeLine": "Kindred Instant — Shapeshifter",
-   "tags": []
+   "tags": [
+    "charkw@static",
+    "misc@spell"
+   ]
   },
   {
    "name": "Synthesizer Labship",
    "decks": 2,
    "typeLine": "Artifact — Spacecraft",
-   "tags": []
+   "tags": [
+    "misc@static",
+    "evasion@static",
+    "animate@static"
+   ]
   },
   {
    "name": "Mathemagics",
    "decks": 1,
    "typeLine": "Sorcery",
-   "tags": []
+   "tags": [
+    "misc@spell"
+   ]
   },
   {
    "name": "Abundant Harvest",
    "decks": 1,
    "typeLine": "Sorcery",
-   "tags": []
+   "tags": [
+    "misc@spell"
+   ]
   },
   {
    "name": "Pym Particles",
@@ -3947,13 +3371,10 @@
    "name": "The Ten Rings",
    "decks": 1,
    "typeLine": "Legendary Artifact",
-   "tags": []
-  },
-  {
-   "name": "Ardent Plea",
-   "decks": 1,
-   "typeLine": "Enchantment",
-   "tags": []
+   "tags": [
+    "misc@static",
+    "misc@each_turn"
+   ]
   }
  ],
  "manyRoles": [
@@ -3966,7 +3387,8 @@
     "manalock"
    ],
    "tags": [
-    "removal@activated"
+    "removal@activated",
+    "costreduce@activated"
    ]
   },
   {
@@ -3978,8 +3400,10 @@
     "lifegain"
    ],
    "tags": [
+    "flash@static",
     "lifegain@static",
-    "removal@etb"
+    "removal@etb",
+    "altcost@static"
    ]
   },
   {
@@ -3992,6 +3416,7 @@
    ],
    "tags": [
     "removal@spell",
+    "landetb@static",
     "mana@activated"
    ]
   },
@@ -4009,6 +3434,21 @@
     "draw@spell",
     "removal@spell",
     "gyhate@spell"
+   ]
+  },
+  {
+   "name": "Teferi, Time Raveler",
+   "decks": 756,
+   "roles": [
+    "removal",
+    "spell",
+    "draw"
+   ],
+   "tags": [
+    "hate@static",
+    "flash@loyalty",
+    "draw@loyalty",
+    "removal@loyalty"
    ]
   },
   {
@@ -4047,6 +3487,9 @@
     "beater"
    ],
    "tags": [
+    "charkw@static",
+    "addcost@static",
+    "landsearch@cast_self",
     "removal@cast_self"
    ]
   },
@@ -4059,6 +3502,7 @@
     "reach"
    ],
    "tags": [
+    "flash@static",
     "draw@etb",
     "drain@etb",
     "removal@etb"
@@ -4105,7 +3549,24 @@
    ],
    "tags": [
     "lifegain@etb",
-    "draw@etb"
+    "draw@etb",
+    "extraland@etb",
+    "misc@static"
+   ]
+  },
+  {
+   "name": "Generous Ent",
+   "decks": 245,
+   "roles": [
+    "draw",
+    "beater",
+    "lifegain"
+   ],
+   "tags": [
+    "combatkw@static",
+    "lifegain@etb",
+    "cycling@activated_once",
+    "landsearch@activated_once"
    ]
   },
   {
@@ -4184,7 +3645,8 @@
    ],
    "tags": [
     "removal@etb",
-    "draw@etb"
+    "draw@etb",
+    "altcost@static"
    ]
   },
   {
@@ -4197,7 +3659,8 @@
    ],
    "tags": [
     "lifegain@creature_enters",
-    "draw@each_turn"
+    "draw@each_turn",
+    "altcost@static"
    ]
   },
   {
@@ -4209,6 +3672,7 @@
     "beater"
    ],
    "tags": [
+    "altcost@static",
     "recursion@etb",
     "selfmill@etb",
     "recursion@attack",
@@ -4225,6 +3689,7 @@
    ],
    "tags": [
     "gyhate@etb",
+    "landetb@static",
     "mana@activated"
    ]
   },
@@ -4237,6 +3702,7 @@
     "recursion"
    ],
    "tags": [
+    "altcost@static",
     "gyhate@spell"
    ]
   },
@@ -4249,6 +3715,7 @@
     "beater"
    ],
    "tags": [
+    "resilience@static",
     "recursion@activated",
     "removal@activated"
    ]
@@ -4279,6 +3746,7 @@
    "tags": [
     "lifegain@etb",
     "draw@etb",
+    "landetb@static",
     "mana@activated"
    ]
   },
@@ -4292,6 +3760,7 @@
     "lifegain"
    ],
    "tags": [
+    "evasion@static",
     "lifegain@etb",
     "draw@etb",
     "removal@etb",
@@ -4311,7 +3780,8 @@
    "tags": [
     "token@chapter",
     "mana@chapter",
-    "draw@chapter"
+    "draw@chapter",
+    "transform@chapter"
    ]
   },
   {
@@ -4338,38 +3808,8 @@
     "beater"
    ],
    "tags": [
+    "evasion@static",
     "removal@etb"
-   ]
-  },
-  {
-   "name": "Cling to Dust",
-   "decks": 115,
-   "roles": [
-    "gyhate",
-    "draw",
-    "recursion",
-    "lifegain"
-   ],
-   "tags": [
-    "lifegain@spell",
-    "draw@spell",
-    "gyhate@spell",
-    "recursion@spell"
-   ]
-  },
-  {
-   "name": "Waker of Waves",
-   "decks": 108,
-   "roles": [
-    "wipe",
-    "draw",
-    "topselect",
-    "beater"
-   ],
-   "tags": [
-    "wipe@static",
-    "topselect@activated",
-    "draw@activated"
    ]
   }
  ],
@@ -4437,6 +3877,7 @@
     "decks": 756,
     "roles": [
      "removal",
+     "spell",
      "draw"
     ]
    },
@@ -4568,7 +4009,8 @@
     "name": "Voice of Victory",
     "decks": 396,
     "roles": [
-     "spell"
+     "spell",
+     "tokens"
     ]
    }
   ],
@@ -4606,6 +4048,14 @@
     ]
    },
    {
+    "name": "Street Wraith",
+    "decks": 618,
+    "roles": [
+     "draw",
+     "beater"
+    ]
+   },
+   {
     "name": "Nethergoyf",
     "decks": 569,
     "roles": [
@@ -4635,6 +4085,14 @@
     ]
    },
    {
+    "name": "Ephemerate",
+    "decks": 494,
+    "roles": [
+     "recursion",
+     "protection"
+    ]
+   },
+   {
     "name": "Green Sun's Zenith",
     "decks": 464,
     "roles": [
@@ -4654,6 +4112,14 @@
     "roles": [
      "draw",
      "topselect"
+    ]
+   },
+   {
+    "name": "Troll of Khazad-dûm",
+    "decks": 417,
+    "roles": [
+     "draw",
+     "beater"
     ]
    },
    {
@@ -4733,32 +4199,8 @@
     ]
    },
    {
-    "name": "Tamiyo, Inquisitive Student // Tamiyo, Seasoned Scholar",
-    "decks": 232,
-    "roles": [
-     "draw"
-    ]
-   },
-   {
-    "name": "Consult the Star Charts",
-    "decks": 223,
-    "roles": [
-     "draw",
-     "topselect"
-    ]
-   },
-   {
-    "name": "Griselbrand",
-    "decks": 221,
-    "roles": [
-     "draw",
-     "beater",
-     "lifegain"
-    ]
-   },
-   {
-    "name": "Atraxa, Grand Unifier",
-    "decks": 220,
+    "name": "Generous Ent",
+    "decks": 245,
     "roles": [
      "draw",
      "beater",
@@ -4776,13 +4218,6 @@
     ]
    },
    {
-    "name": "Street Wraith",
-    "decks": 618,
-    "roles": [
-     "beater"
-    ]
-   },
-   {
     "name": "Moonshadow",
     "decks": 511,
     "roles": [
@@ -4795,13 +4230,6 @@
     "roles": [
      "beater",
      "lifegain"
-    ]
-   },
-   {
-    "name": "Troll of Khazad-dûm",
-    "decks": 417,
-    "roles": [
-     "beater"
     ]
    },
    {
@@ -4849,21 +4277,6 @@
     ]
    },
    {
-    "name": "Generous Ent",
-    "decks": 245,
-    "roles": [
-     "beater",
-     "lifegain"
-    ]
-   },
-   {
-    "name": "Shardless Agent",
-    "decks": 196,
-    "roles": [
-     "beater"
-    ]
-   },
-   {
     "name": "Scion of Draco",
     "decks": 194,
     "roles": [
@@ -4880,13 +4293,6 @@
    {
     "name": "Ulamog, the Ceaseless Hunger",
     "decks": 150,
-    "roles": [
-     "beater"
-    ]
-   },
-   {
-    "name": "Oliphaunt",
-    "decks": 140,
     "roles": [
      "beater"
     ]
@@ -4909,13 +4315,6 @@
    {
     "name": "Craterhoof Behemoth",
     "decks": 118,
-    "roles": [
-     "beater"
-    ]
-   },
-   {
-    "name": "Striped Riverwinder",
-    "decks": 111,
     "roles": [
      "beater"
     ]
@@ -4947,16 +4346,51 @@
     "roles": [
      "beater"
     ]
+   },
+   {
+    "name": "Xenagos, God of Revels",
+    "decks": 81,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
+    "name": "Young Wolf",
+    "decks": 81,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
+    "name": "Hooting Mandrills",
+    "decks": 80,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
+    "name": "Arcbound Ravager",
+    "decks": 78,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
+    "name": "Ureni, the Song Unending",
+    "decks": 77,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
+    "name": "Ouroboroid",
+    "decks": 73,
+    "roles": [
+     "beater"
+    ]
    }
   ],
   "support": [
-   {
-    "name": "Ephemerate",
-    "decks": 494,
-    "roles": [
-     "protection"
-    ]
-   },
    {
     "name": "Guide of Souls",
     "decks": 446,
@@ -5010,13 +4444,6 @@
    {
     "name": "Violent Urge",
     "decks": 196,
-    "roles": [
-     "enhance"
-    ]
-   },
-   {
-    "name": "Violent Outburst",
-    "decks": 140,
     "roles": [
      "enhance"
     ]
@@ -5125,6 +4552,20 @@
     "roles": [
      "lifegain"
     ]
+   },
+   {
+    "name": "Felidar Guardian",
+    "decks": 9,
+    "roles": [
+     "protection"
+    ]
+   },
+   {
+    "name": "Assault Strobe",
+    "decks": 8,
+    "roles": [
+     "enhance"
+    ]
    }
   ],
   "combo": [
@@ -5192,12 +4633,27 @@
     ]
    },
    {
+    "name": "Shardless Agent",
+    "decks": 196,
+    "roles": [
+     "cheat"
+    ]
+   },
+   {
     "name": "Living End",
     "decks": 170,
     "roles": [
      "wipe",
      "cheat",
      "recursion"
+    ]
+   },
+   {
+    "name": "Violent Outburst",
+    "decks": 140,
+    "roles": [
+     "cheat",
+     "enhance"
     ]
    },
    {
@@ -5312,21 +4768,6 @@
     "roles": [
      "untap",
      "draw"
-    ]
-   },
-   {
-    "name": "Hangarback Walker",
-    "decks": 16,
-    "roles": [
-     "tokens"
-    ]
-   },
-   {
-    "name": "Fight Rigging",
-    "decks": 15,
-    "roles": [
-     "cheatloop",
-     "enhance"
     ]
    }
   ],
@@ -5517,16 +4958,9 @@
     "fastmana"
    ],
    "tags": [
-    "mana@combat_damage"
+    "mana@combat_damage",
+    "altcost@static"
    ]
-  },
-  {
-   "name": "Street Wraith",
-   "decks": 618,
-   "roles": [
-    "beater"
-   ],
-   "tags": []
   },
   {
    "name": "Moonshadow",
@@ -5534,7 +4968,11 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "evasion@static",
+    "setup@static",
+    "misc@other_trigger"
+   ]
   },
   {
    "name": "Sire of Seven Deaths",
@@ -5544,16 +4982,11 @@
     "lifegain"
    ],
    "tags": [
-    "lifegain@static"
+    "combatkw@static",
+    "evasion@static",
+    "lifegain@static",
+    "resilience@static"
    ]
-  },
-  {
-   "name": "Troll of Khazad-dûm",
-   "decks": 417,
-   "roles": [
-    "beater"
-   ],
-   "tags": []
   },
   {
    "name": "Dragon's Rage Channeler",
@@ -5565,7 +4998,8 @@
    "tags": [
     "topmanip@cast_trigger",
     "selfmill@cast_trigger",
-    "pump@static"
+    "pump@static",
+    "evasion@static"
    ]
   },
   {
@@ -5574,7 +5008,12 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "flash@static",
+    "evasion@static",
+    "setup@etb",
+    "altcost@static"
+   ]
   },
   {
    "name": "Monastery Swiftspear",
@@ -5582,7 +5021,10 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "haste@static",
+    "pump@cast_trigger"
+   ]
   },
   {
    "name": "Kappa Cannoneer",
@@ -5591,7 +5033,10 @@
     "beater"
    ],
    "tags": [
-    "pump@etb"
+    "costreduce@static",
+    "resilience@static",
+    "pump@etb",
+    "evasion@etb"
    ]
   },
   {
@@ -5601,7 +5046,10 @@
     "beater"
    ],
    "tags": [
-    "pump@cast_trigger"
+    "evasion@static",
+    "haste@static",
+    "pump@cast_trigger",
+    "altcost@static"
    ]
   },
   {
@@ -5617,31 +5065,16 @@
    ]
   },
   {
-   "name": "Generous Ent",
-   "decks": 245,
-   "roles": [
-    "beater",
-    "lifegain"
-   ],
-   "tags": [
-    "lifegain@etb"
-   ]
-  },
-  {
-   "name": "Shardless Agent",
-   "decks": 196,
-   "roles": [
-    "beater"
-   ],
-   "tags": []
-  },
-  {
    "name": "Scion of Draco",
    "decks": 194,
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "costreduce@static",
+    "evasion@static",
+    "combatkw@static"
+   ]
   },
   {
    "name": "Murktide Regent",
@@ -5650,7 +5083,10 @@
     "beater"
    ],
    "tags": [
+    "costreduce@static",
+    "evasion@static",
     "pump@static",
+    "setup@static",
     "pump@other_trigger"
    ]
   },
@@ -5660,16 +5096,10 @@
    "roles": [
     "beater"
    ],
-   "tags": []
-  },
-  {
-   "name": "Oliphaunt",
-   "decks": 140,
-   "roles": [
-    "beater"
-   ],
    "tags": [
-    "pump@attack"
+    "misc@cast_self",
+    "resilience@static",
+    "misc@attack"
    ]
   },
   {
@@ -5678,7 +5108,9 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "misc@static"
+   ]
   },
   {
    "name": "Tyvar, the Pummeler",
@@ -5699,16 +5131,10 @@
     "beater"
    ],
    "tags": [
-    "pump@etb"
+    "haste@static",
+    "pump@etb",
+    "evasion@etb"
    ]
-  },
-  {
-   "name": "Striped Riverwinder",
-   "decks": 111,
-   "roles": [
-    "beater"
-   ],
-   "tags": []
   },
   {
    "name": "Carrion Feeder",
@@ -5717,6 +5143,7 @@
     "beater"
    ],
    "tags": [
+    "drawback@static",
     "pump@activated"
    ]
   },
@@ -5736,7 +5163,9 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "misc@static"
+   ]
   },
   {
    "name": "Allosaurus Rider",
@@ -5744,7 +5173,10 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "altcost@static",
+    "statdef@static"
+   ]
   },
   {
    "name": "Xenagos, God of Revels",
@@ -5753,7 +5185,10 @@
     "beater"
    ],
    "tags": [
-    "pump@each_turn"
+    "resilience@static",
+    "misc@static",
+    "pump@each_turn",
+    "haste@each_turn"
    ]
   },
   {
@@ -5762,7 +5197,9 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "misc@static"
+   ]
   },
   {
    "name": "Hooting Mandrills",
@@ -5770,7 +5207,10 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "costreduce@static",
+    "evasion@static"
+   ]
   },
   {
    "name": "Arcbound Ravager",
@@ -5779,7 +5219,8 @@
     "beater"
    ],
    "tags": [
-    "pump@activated"
+    "pump@activated",
+    "misc@static"
    ]
   },
   {
@@ -5788,7 +5229,11 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "evasion@static",
+    "resilience@static",
+    "misc@etb"
+   ]
   },
   {
    "name": "Ouroboroid",
@@ -5808,6 +5253,8 @@
     "beater"
    ],
    "tags": [
+    "combatkw@static",
+    "misc@other_trigger",
     "drain@spell"
    ]
   },
@@ -5817,7 +5264,10 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "evasion@static",
+    "misc@dies"
+   ]
   },
   {
    "name": "Ornithopter",
@@ -5825,19 +5275,13 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "evasion@static"
+   ]
   },
   {
    "name": "Memnite",
    "decks": 39,
-   "roles": [
-    "beater"
-   ],
-   "tags": []
-  },
-  {
-   "name": "Hollow One",
-   "decks": 36,
    "roles": [
     "beater"
    ],
@@ -5855,22 +5299,15 @@
    ]
   },
   {
-   "name": "Marauding Mako",
-   "decks": 35,
-   "roles": [
-    "beater"
-   ],
-   "tags": [
-    "pump@other_trigger"
-   ]
-  },
-  {
    "name": "Goblin Guide",
    "decks": 34,
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "haste@static",
+    "misc@attack"
+   ]
   },
   {
    "name": "Blazing Rootwalla",
@@ -5879,230 +5316,102 @@
     "beater"
    ],
    "tags": [
-    "pump@activated"
+    "pump@activated",
+    "altcost@static"
+   ]
+  },
+  {
+   "name": "Hardened Academic",
+   "decks": 32,
+   "roles": [
+    "beater"
+   ],
+   "tags": [
+    "evasion@static",
+    "haste@static",
+    "misc@activated",
+    "pump@other_trigger"
+   ]
+  },
+  {
+   "name": "Cosmogoyf",
+   "decks": 24,
+   "roles": [
+    "beater"
+   ],
+   "tags": [
+    "statdef@static"
+   ]
+  },
+  {
+   "name": "Halo Forager",
+   "decks": 23,
+   "roles": [
+    "beater"
+   ],
+   "tags": [
+    "evasion@static",
+    "altcost@etb"
+   ]
+  },
+  {
+   "name": "Nishoba Brawler",
+   "decks": 22,
+   "roles": [
+    "beater"
+   ],
+   "tags": [
+    "evasion@static",
+    "statdef@static"
+   ]
+  },
+  {
+   "name": "Death's Shadow",
+   "decks": 18,
+   "roles": [
+    "beater"
+   ],
+   "tags": [
+    "misc@static"
+   ]
+  },
+  {
+   "name": "Zabaz, the Glimmerwasp",
+   "decks": 18,
+   "roles": [
+    "beater"
+   ],
+   "tags": [
+    "misc@static",
+    "pump@static",
+    "misc@activated",
+    "evasion@activated"
+   ]
+  },
+  {
+   "name": "Delney, Streetwise Lookout",
+   "decks": 17,
+   "roles": [
+    "beater"
+   ],
+   "tags": [
+    "evasion@static",
+    "misc@static"
+   ]
+  },
+  {
+   "name": "Slumbering Trudge",
+   "decks": 15,
+   "roles": [
+    "beater"
+   ],
+   "tags": [
+    "landetb@static",
+    "setup@static"
    ]
   }
  ],
  "noTags": [
-  {
-   "name": "Street Wraith",
-   "decks": 618,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Wraith"
-  },
-  {
-   "name": "Moonshadow",
-   "decks": 511,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Elemental"
-  },
-  {
-   "name": "Troll of Khazad-dûm",
-   "decks": 417,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Troll"
-  },
-  {
-   "name": "Subtlety",
-   "decks": 367,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Elemental Incarnation"
-  },
-  {
-   "name": "Monastery Swiftspear",
-   "decks": 354,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Human Monk"
-  },
-  {
-   "name": "Arboreal Grazer",
-   "decks": 296,
-   "roles": [
-    "ramp"
-   ],
-   "typeLine": "Creature — Sloth Beast"
-  },
-  {
-   "name": "Primeval Titan",
-   "decks": 294,
-   "roles": [
-    "ramp",
-    "beater"
-   ],
-   "typeLine": "Creature — Giant"
-  },
-  {
-   "name": "Scapeshift",
-   "decks": 266,
-   "roles": [
-    "cheat",
-    "ramp"
-   ],
-   "typeLine": "Sorcery"
-  },
-  {
-   "name": "Amulet of Vigor",
-   "decks": 260,
-   "roles": [
-    "untap",
-    "ramp"
-   ],
-   "typeLine": "Artifact"
-  },
-  {
-   "name": "Ral, Monsoon Mage // Ral, Leyline Prodigy",
-   "decks": 200,
-   "roles": [
-    "ramp"
-   ],
-   "typeLine": "Legendary Creature — Human Wizard // Legendary Planeswalker — Ral"
-  },
-  {
-   "name": "Ruby Medallion",
-   "decks": 197,
-   "roles": [
-    "ramp"
-   ],
-   "typeLine": "Artifact"
-  },
-  {
-   "name": "Shardless Agent",
-   "decks": 196,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Artifact Creature — Human Rogue"
-  },
-  {
-   "name": "Leyline of the Guildpact",
-   "decks": 194,
-   "roles": [
-    "ramp"
-   ],
-   "typeLine": "Enchantment"
-  },
-  {
-   "name": "Scion of Draco",
-   "decks": 194,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Artifact Creature — Dragon"
-  },
-  {
-   "name": "Ulamog, the Ceaseless Hunger",
-   "decks": 150,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Legendary Creature — Eldrazi"
-  },
-  {
-   "name": "Vizier of Remedies",
-   "decks": 126,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Human Cleric"
-  },
-  {
-   "name": "Striped Riverwinder",
-   "decks": 111,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Serpent"
-  },
-  {
-   "name": "Azusa, Lost but Seeking",
-   "decks": 86,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Legendary Creature — Human Monk"
-  },
-  {
-   "name": "Allosaurus Rider",
-   "decks": 82,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Elf Warrior"
-  },
-  {
-   "name": "Young Wolf",
-   "decks": 81,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Wolf"
-  },
-  {
-   "name": "Hooting Mandrills",
-   "decks": 80,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Ape"
-  },
-  {
-   "name": "Ureni, the Song Unending",
-   "decks": 77,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Legendary Creature — Spirit Dragon"
-  },
-  {
-   "name": "Dryad of the Ilysian Grove",
-   "decks": 67,
-   "roles": [
-    "ramp"
-   ],
-   "typeLine": "Enchantment Creature — Nymph Dryad"
-  },
-  {
-   "name": "Eyetwitch",
-   "decks": 62,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Eye Bat"
-  },
-  {
-   "name": "Genesis Device",
-   "decks": 60,
-   "roles": [
-    "ramp"
-   ],
-   "typeLine": "Legendary Artifact"
-  },
-  {
-   "name": "Ornithopter",
-   "decks": 58,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Artifact Creature — Thopter"
-  },
-  {
-   "name": "Indomitable Creativity",
-   "decks": 47,
-   "roles": [
-    "cheat"
-   ],
-   "typeLine": "Sorcery"
-  },
   {
    "name": "Memnite",
    "decks": 39,
@@ -6112,101 +5421,12 @@
    "typeLine": "Artifact Creature — Construct"
   },
   {
-   "name": "Hollow One",
-   "decks": 36,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Artifact Creature — Golem"
-  },
-  {
-   "name": "Goblin Guide",
-   "decks": 34,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Goblin Scout"
-  },
-  {
-   "name": "Hexhaven Invigorator",
-   "decks": 27,
-   "roles": [
-    "ramp",
-    "beater"
-   ],
-   "typeLine": "Creature — Chimera Horror"
-  },
-  {
-   "name": "Sakura-Tribe Elder",
-   "decks": 25,
-   "roles": [
-    "ramp"
-   ],
-   "typeLine": "Creature — Snake Shaman"
-  },
-  {
-   "name": "Cosmogoyf",
-   "decks": 24,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Elemental Lhurgoyf"
-  },
-  {
-   "name": "Spoils of the Vault",
-   "decks": 24,
+   "name": "Pym Particles",
+   "decks": 1,
    "roles": [
     "other"
    ],
-   "typeLine": "Instant"
-  },
-  {
-   "name": "Halo Forager",
-   "decks": 23,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Faerie Rogue"
-  },
-  {
-   "name": "Nishoba Brawler",
-   "decks": 22,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Cat Warrior"
-  },
-  {
-   "name": "Death's Shadow",
-   "decks": 18,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Avatar"
-  },
-  {
-   "name": "The Ozolith",
-   "decks": 17,
-   "roles": [
-    "enhance"
-   ],
-   "typeLine": "Legendary Artifact"
-  },
-  {
-   "name": "Delney, Streetwise Lookout",
-   "decks": 17,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Legendary Creature — Human Scout"
-  },
-  {
-   "name": "Sakura-Tribe Scout",
-   "decks": 16,
-   "roles": [
-    "ramp"
-   ],
-   "typeLine": "Creature — Snake Shaman Scout"
+   "typeLine": "Card"
   }
  ],
  "unknownCards": [
