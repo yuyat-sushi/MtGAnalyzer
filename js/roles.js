@@ -83,7 +83,8 @@
     mana: 'ramp', draw: 'draw', redirect: 'spell', discard: 'discard', attacklock: 'combat',
     tutor: 'tutor', recursion: 'recursion', selfmill: 'selfmill', protection: 'protection', gyhate: 'gyhate',
     cheat: 'cheat', extraturn: 'extraturn', untap: 'untap', copy: 'copy', drain: 'reach',
-    lifegain: 'lifegain', energy: 'energy', topselect: 'topselect', topmanip: 'topmanip'
+    lifegain: 'lifegain', energy: 'energy', topselect: 'topselect', topmanip: 'topmanip',
+    cycling: 'draw', extraland: 'ramp'
   };
 
   // タグでは拾いにくい、文全体で判定する追加ルール
@@ -213,9 +214,10 @@
     if (/\bLand\b/.test(front)) {
       // 土地も、マナ以外の妨害能力（Wasteland・Boseiju・Otawara など）があれば小カテゴリに付ける。大カテゴリは土地のまま
       const t = Tags.analyze(card);
-      tags = t.tags.filter(x => x.effect !== 'mana' && (x.detail || x.effect === 'gyhate')); abilities = t.abilities; speed = t.speed;
+      // タグはマナ以外を全部残す（土地の出方・土地サーチなどの表示用）。役割は妨害能力からだけ付ける
+      tags = t.tags.filter(x => x.effect !== 'mana'); abilities = t.abilities; speed = t.speed;
       const set = new Set(['land']);
-      addDisruptRoles(set, tags);
+      addDisruptRoles(set, tags.filter(x => x.detail));
       if (tags.some(x => x.effect === 'gyhate')) set.add('gyhate'); // Bojuka Bog など
       roles = PRIORITY.filter(r => set.has(r));
     } else {

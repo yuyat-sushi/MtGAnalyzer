@@ -1,10 +1,538 @@
 {
+ "untagged": [
+  {
+   "pattern": "{N}, {t}, exile this artifact: put all commanders you own from the command zone and from your graveyard into your hand. then shuffle your graveyard into your library.",
+   "kind": "activated",
+   "decks": 352,
+   "cards": [
+    "Campfire"
+   ]
+  },
+  {
+   "pattern": "when this artifact is put into a graveyard from the battlefield, its owner shuffles it into their library.",
+   "kind": "triggered",
+   "decks": 306,
+   "cards": [
+    "Lembas"
+   ]
+  },
+  {
+   "pattern": "prevent all damage that sources of the color of your choice would deal this turn.",
+   "kind": "spell",
+   "decks": 167,
+   "cards": [
+    "Prismatic Strands"
+   ]
+  },
+  {
+   "pattern": "prevent all combat damage that would be dealt this turn.",
+   "kind": "spell",
+   "decks": 164,
+   "cards": [
+    "Moment's Peace",
+    "Tangle",
+    "Fog",
+    "Angelsong"
+   ]
+  },
+  {
+   "pattern": "craft with creature {N}{b}",
+   "kind": "static",
+   "decks": 160,
+   "cards": [
+    "Tithing Blade // Consuming Sepulcher"
+   ]
+  },
+  {
+   "pattern": "basic landcycling {N}",
+   "kind": "static",
+   "decks": 157,
+   "cards": [
+    "Ash Barrens"
+   ]
+  },
+  {
+   "pattern": "when this aura is put into a graveyard from the battlefield, return it to its owner's hand.",
+   "kind": "triggered",
+   "decks": 138,
+   "cards": [
+    "Rancor"
+   ]
+  },
+  {
+   "pattern": "job select",
+   "kind": "static",
+   "decks": 129,
+   "cards": [
+    "Black Mage's Rod"
+   ]
+  },
+  {
+   "pattern": "when this creature leaves the battlefield, return the exiled card to its owner's hand.",
+   "kind": "triggered",
+   "decks": 126,
+   "cards": [
+    "Mesmeric Fiend"
+   ]
+  },
+  {
+   "pattern": "~ deals N damage to each non-dragon creature.",
+   "kind": "spell",
+   "decks": 76,
+   "cards": [
+    "Breath Weapon"
+   ]
+  },
+  {
+   "pattern": "when this enchantment leaves the battlefield, return the exiled card to the battlefield under its owner's control.",
+   "kind": "triggered",
+   "decks": 53,
+   "cards": [
+    "Journey to Nowhere"
+   ]
+  },
+  {
+   "pattern": "each attacking creature doesn't untap during its controller's next untap step.",
+   "kind": "spell",
+   "decks": 48,
+   "cards": [
+    "Tangle"
+   ]
+  },
+  {
+   "pattern": "prototype {N}{g} — N/N",
+   "kind": "static",
+   "decks": 33,
+   "cards": [
+    "Boulderbranch Golem"
+   ]
+  },
+  {
+   "pattern": "{t}: until end of turn, target land you control becomes the basic land type of your choice in addition to its other types.",
+   "kind": "activated",
+   "decks": 29,
+   "cards": [
+    "Navigator's Compass"
+   ]
+  },
+  {
+   "pattern": "when this creature enters, it endures N.",
+   "kind": "triggered",
+   "decks": 29,
+   "cards": [
+    "Fortress Kin-Guard"
+   ]
+  },
+  {
+   "pattern": "station",
+   "kind": "static",
+   "decks": 29,
+   "cards": [
+    "Pinnacle Kill-Ship"
+   ]
+  },
+  {
+   "pattern": "N+ | flying",
+   "kind": "static",
+   "decks": 29,
+   "cards": [
+    "Pinnacle Kill-Ship"
+   ]
+  },
+  {
+   "pattern": "at the beginning of the end step, if no creatures are on the battlefield, sacrifice this enchantment.",
+   "kind": "triggered",
+   "decks": 25,
+   "cards": [
+    "Pestilence"
+   ]
+  },
+  {
+   "pattern": "{w}, sacrifice this creature: prevent the next N damage that would be dealt to any target this turn.",
+   "kind": "activated",
+   "decks": 24,
+   "cards": [
+    "Aurora Eidolon"
+   ]
+  },
+  {
+   "pattern": "switch target creature's power and toughness until end of turn.",
+   "kind": "spell",
+   "decks": 24,
+   "cards": [
+    "Inside Out"
+   ]
+  },
+  {
+   "pattern": "{r}, sacrifice this creature: target creature can't block this turn.",
+   "kind": "activated",
+   "decks": 24,
+   "cards": [
+    "Sandstorm Eidolon"
+   ]
+  },
+  {
+   "pattern": "when this creature enters, target opponent skips their next combat phase.",
+   "kind": "triggered",
+   "decks": 22,
+   "cards": [
+    "Stonehorn Dignitary"
+   ]
+  },
+  {
+   "pattern": "proliferate.",
+   "kind": "spell",
+   "decks": 18,
+   "cards": [
+    "Contentious Plan",
+    "Steady Progress"
+   ]
+  },
+  {
+   "pattern": "when enchanted creature becomes tapped or is dealt damage, destroy it.",
+   "kind": "triggered",
+   "decks": 14,
+   "cards": [
+    "Cryoshatter"
+   ]
+  },
+  {
+   "pattern": "when this creature enters, starting with you, each player votes for an artifact, creature, or enchantment card in your graveyard. return each card with the most votes or tied for most votes to your hand.",
+   "kind": "triggered",
+   "decks": 14,
+   "cards": [
+    "Custodi Squire"
+   ]
+  },
+  {
+   "pattern": "• ~ deals N damage to each of up to two target creatures.",
+   "kind": "spell",
+   "decks": 13,
+   "cards": [
+    "Cast into the Fire"
+   ]
+  },
+  {
+   "pattern": "• target artifact card.",
+   "kind": "spell",
+   "decks": 13,
+   "cards": [
+    "Call Damage Control"
+   ]
+  },
+  {
+   "pattern": "• target creature card.",
+   "kind": "spell",
+   "decks": 13,
+   "cards": [
+    "Call Damage Control"
+   ]
+  },
+  {
+   "pattern": "• target enchantment card.",
+   "kind": "spell",
+   "decks": 13,
+   "cards": [
+    "Call Damage Control"
+   ]
+  },
+  {
+   "pattern": "• target land card.",
+   "kind": "spell",
+   "decks": 13,
+   "cards": [
+    "Call Damage Control"
+   ]
+  },
+  {
+   "pattern": "web-slinging {w}",
+   "kind": "static",
+   "decks": 12,
+   "cards": [
+    "Spider-Man, Web-Slinger"
+   ]
+  },
+  {
+   "pattern": "if a permanent dealt damage by ~ would die this turn, exile it instead.",
+   "kind": "spell",
+   "decks": 12,
+   "cards": [
+    "Torch the Tower"
+   ]
+  },
+  {
+   "pattern": "~ deals N damage to each non-pirate creature.",
+   "kind": "spell",
+   "decks": 12,
+   "cards": [
+    "Fiery Cannonade"
+   ]
+  },
+  {
+   "pattern": "you have no maximum hand size.",
+   "kind": "static",
+   "decks": 12,
+   "cards": [
+    "Thought Vessel"
+   ]
+  },
+  {
+   "pattern": "{N}{b}: sacrifice this enchantment.",
+   "kind": "activated",
+   "decks": 11,
+   "cards": [
+    "Hopeless Nightmare"
+   ]
+  },
+  {
+   "pattern": "each opponent gets a poison counter.",
+   "kind": "spell",
+   "decks": 9,
+   "cards": [
+    "Prologue to Phyresis"
+   ]
+  },
+  {
+   "pattern": "put a -N/-N counter on this creature: untap this creature.",
+   "kind": "static",
+   "decks": 9,
+   "cards": [
+    "Devoted Druid"
+   ]
+  },
+  {
+   "pattern": "empower jace N.",
+   "kind": "spell",
+   "decks": 9,
+   "cards": [
+    "No Admittance",
+    "Protege's Awakening"
+   ]
+  },
+  {
+   "pattern": "infect",
+   "kind": "static",
+   "decks": 9,
+   "cards": [
+    "Blight Mamba",
+    "Glistener Elf",
+    "Ichorclaw Myr"
+   ]
+  },
+  {
+   "pattern": "~ deals x damage divided as you choose among any number of targets.",
+   "kind": "spell",
+   "decks": 7,
+   "cards": [
+    "Rolling Thunder"
+   ]
+  },
+  {
+   "pattern": "prevent all damage that would be dealt by creatures this turn.",
+   "kind": "spell",
+   "decks": 7,
+   "cards": [
+    "Ethereal Haze"
+   ]
+  },
+  {
+   "pattern": "reinforce N—{N}{g}",
+   "kind": "static",
+   "decks": 7,
+   "cards": [
+    "Bannerhide Krushok"
+   ]
+  },
+  {
+   "pattern": "scavenge {N}{g}{g}",
+   "kind": "static",
+   "decks": 7,
+   "cards": [
+    "Bannerhide Krushok"
+   ]
+  },
+  {
+   "pattern": "grandeur — discard another card named ~: reveal cards from the top of your library until you reveal an instant or sorcery card. put that card into your hand and the rest on the bottom of your library in a random order.",
+   "kind": "activated",
+   "decks": 6,
+   "cards": [
+    "Page, Loose Leaf"
+   ]
+  },
+  {
+   "pattern": "{t}: target land you control becomes the basic land type of your choice until end of turn.",
+   "kind": "activated",
+   "decks": 5,
+   "cards": [
+    "Pixie Illusionist"
+   ]
+  },
+  {
+   "pattern": "• proliferate.",
+   "kind": "spell",
+   "decks": 5,
+   "cards": [
+    "Thirsting Roots"
+   ]
+  },
+  {
+   "pattern": "whenever you cast a green spell, you may untap this creature.",
+   "kind": "triggered",
+   "decks": 5,
+   "cards": [
+    "Nettle Sentinel"
+   ]
+  },
+  {
+   "pattern": "whenever you cast an artifact spell, you may put a charge counter on this artifact.",
+   "kind": "triggered",
+   "decks": 4,
+   "cards": [
+    "Golem Foundry"
+   ]
+  },
+  {
+   "pattern": "this creature attacks each combat if able.",
+   "kind": "static",
+   "decks": 4,
+   "cards": [
+    "Monstrous Carabid"
+   ]
+  },
+  {
+   "pattern": "each player puts a creature card from their graveyard onto the battlefield.",
+   "kind": "spell",
+   "decks": 4,
+   "cards": [
+    "Exhume"
+   ]
+  },
+  {
+   "pattern": "{u}: tap enchanted creature.",
+   "kind": "activated",
+   "decks": 4,
+   "cards": [
+    "Freed from the Real"
+   ]
+  },
+  {
+   "pattern": "soulbond",
+   "kind": "static",
+   "decks": 4,
+   "cards": [
+    "Galvanic Alchemist"
+   ]
+  },
+  {
+   "pattern": "as long as this creature is paired with another creature, each of those creatures has \"{N}{u}: untap this creature.\"",
+   "kind": "static",
+   "decks": 4,
+   "cards": [
+    "Galvanic Alchemist"
+   ]
+  },
+  {
+   "pattern": "{N}{u}: venture into the dungeon. activate only as a sorcery.",
+   "kind": "activated",
+   "decks": 4,
+   "cards": [
+    "Secret Door"
+   ]
+  },
+  {
+   "pattern": "morbid — that creature gets -N/-N until end of turn instead if a creature died this turn.",
+   "kind": "spell",
+   "decks": 4,
+   "cards": [
+    "Tragic Slip"
+   ]
+  },
+  {
+   "pattern": "whenever you cast a noncreature spell, this creature gains lifelink until end of turn.",
+   "kind": "triggered",
+   "decks": 4,
+   "cards": [
+    "Seeker of the Way"
+   ]
+  },
+  {
+   "pattern": "all creatures able to block this creature do so.",
+   "kind": "static",
+   "decks": 3,
+   "cards": [
+    "Shinen of Life's Roar"
+   ]
+  },
+  {
+   "pattern": "{N}{g}{g}, discard this card: all creatures able to block target creature this turn do so.",
+   "kind": "activated",
+   "decks": 3,
+   "cards": [
+    "Shinen of Life's Roar"
+   ]
+  },
+  {
+   "pattern": "when this creature enters, recruit.",
+   "kind": "triggered",
+   "decks": 3,
+   "cards": [
+    "Patient Instructor"
+   ]
+  },
+  {
+   "pattern": "when this creature enters, look at the top three cards of target player's library, then put them back in any order.",
+   "kind": "triggered",
+   "decks": 3,
+   "cards": [
+    "Architects of Will"
+   ]
+  },
+  {
+   "pattern": "exploit",
+   "kind": "static",
+   "decks": 3,
+   "cards": [
+    "Repository Skaab"
+   ]
+  },
+  {
+   "pattern": "backup N",
+   "kind": "static",
+   "decks": 3,
+   "cards": [
+    "Saiba Cryptomancer"
+   ]
+  },
+  {
+   "pattern": "umbra armor",
+   "kind": "static",
+   "decks": 2,
+   "cards": [
+    "Hyena Umbra"
+   ]
+  },
+  {
+   "pattern": "~ deals N damage divided as you choose among one or two targets.",
+   "kind": "spell",
+   "decks": 2,
+   "cards": [
+    "Fire // Ice"
+   ]
+  }
+ ],
  "comboCandidates": [
   {
    "name": "Dimir Control",
    "share": 0.063,
    "comboCards": [
     "Murmuring Mystic"
+   ]
+  },
+  {
+   "name": "Elves",
+   "share": 0.045,
+   "comboCards": [
+    "Quirion Ranger"
    ]
   },
   {
@@ -51,6 +579,31 @@
    ]
   },
   {
+   "name": "Jeskai Ephemerate",
+   "share": 0.008,
+   "comboCards": [
+    "Murmuring Mystic",
+    "Bender's Waterskin"
+   ]
+  },
+  {
+   "name": "Gruul Ponza",
+   "share": 0.007,
+   "comboCards": [
+    "Arbor Elf",
+    "Boarding Party",
+    "Annoyed Altisaur"
+   ]
+  },
+  {
+   "name": "Esper Ephemerate",
+   "share": 0.006,
+   "comboCards": [
+    "Bender's Waterskin",
+    "Murmuring Mystic"
+   ]
+  },
+  {
    "name": "Simic Control",
    "share": 0.006,
    "comboCards": [
@@ -62,6 +615,13 @@
    "share": 0.005,
    "comboCards": [
     "Murmuring Mystic"
+   ]
+  },
+  {
+   "name": "Mono Blue Faeries",
+   "share": 0.005,
+   "comboCards": [
+    "Sewer-veillance Cam"
    ]
   },
   {
@@ -103,6 +663,23 @@
    ]
   },
   {
+   "name": "Gruul Ramp",
+   "share": 0.003,
+   "comboCards": [
+    "Arbor Elf",
+    "Boarding Party",
+    "Annoyed Altisaur"
+   ]
+  },
+  {
+   "name": "4 Color Ephemerate",
+   "share": 0.003,
+   "comboCards": [
+    "Bender's Waterskin",
+    "Murmuring Mystic"
+   ]
+  },
+  {
    "name": "Boros Synthesizer",
    "share": 0.002,
    "comboCards": [
@@ -115,6 +692,13 @@
    "share": 0.002,
    "comboCards": [
     "Experimental Synthesizer"
+   ]
+  },
+  {
+   "name": "Mono White (Unknown)",
+   "share": 0.002,
+   "comboCards": [
+    "Elite Interceptor // Rejoinder"
    ]
   }
  ],
@@ -268,6 +852,14 @@
     "oracle": "When this artifact enters, scry 2. (Look at the top two cards of your library, then put any number of them on the bottom and the rest on top in any order.)\n{1}, {T}: Add one mana of any color.\n{7}, {T}, Sacrifice this artifact: Destroy target permanent.",
     "detail": [
      "removal:destroy:creature/artifact/enchantment/planeswalker/battle/land"
+    ]
+   },
+   {
+    "name": "Deem Inferior",
+    "decks": 177,
+    "oracle": "This spell costs {1} less to cast for each card you've drawn this turn.\nThe owner of target nonland permanent puts it into their library second from the top or on the bottom.",
+    "detail": [
+     "removal:other:creature/artifact/enchantment/planeswalker/battle"
     ]
    },
    {
@@ -482,14 +1074,6 @@
     "oracle": "Exile target artifact or land. Structural Distortion deals 2 damage to that permanent's controller.",
     "detail": [
      "removal:exile:artifact/land"
-    ]
-   },
-   {
-    "name": "Cast into the Fire",
-    "decks": 13,
-    "oracle": "Choose one —\n• Cast into the Fire deals 1 damage to each of up to two target creatures.\n• Exile target artifact.",
-    "detail": [
-     "removal:exile:artifact"
     ]
    }
   ],
@@ -909,6 +1493,7 @@
     "decks": 1,
     "oracle": "When this creature enters, return target permanent to its owner's hand, then that player discards a card.",
     "detail": [
+     "removal:bounce:creature/artifact/enchantment/planeswalker/battle/land",
      "discard:discard:hand"
     ]
    },
@@ -1108,12 +1693,21 @@
     "detail": [
      "removal:bounce:creature/artifact/enchantment/planeswalker/battle/land"
     ]
+   },
+   {
+    "name": "Dinrova Horror",
+    "decks": 1,
+    "oracle": "When this creature enters, return target permanent to its owner's hand, then that player discards a card.",
+    "detail": [
+     "removal:bounce:creature/artifact/enchantment/planeswalker/battle/land",
+     "discard:discard:hand"
+    ]
    }
   ],
   "combat": []
  },
  "format": "Pauper",
- "generatedAt": "2026-11-27T20:54:14.249Z",
+ "generatedAt": "2026-11-27T21:12:44.633Z",
  "decks": 2747,
  "otherOnly": [
   {
@@ -1125,22 +1719,20 @@
    ]
   },
   {
-   "name": "Deem Inferior",
-   "decks": 177,
-   "typeLine": "Sorcery",
-   "tags": []
-  },
-  {
    "name": "Breath Weapon",
    "decks": 76,
    "typeLine": "Instant",
-   "tags": []
+   "tags": [
+    "misc@spell"
+   ]
   },
   {
    "name": "Fiery Cannonade",
    "decks": 12,
    "typeLine": "Instant",
-   "tags": []
+   "tags": [
+    "misc@spell"
+   ]
   },
   {
    "name": "Envelop",
@@ -1154,37 +1746,43 @@
    "name": "Rolling Thunder",
    "decks": 7,
    "typeLine": "Sorcery",
-   "tags": []
+   "tags": [
+    "misc@spell"
+   ]
   },
   {
    "name": "Exhume",
    "decks": 4,
    "typeLine": "Sorcery",
-   "tags": []
-  },
-  {
-   "name": "Freed from the Real",
-   "decks": 4,
-   "typeLine": "Enchantment — Aura",
-   "tags": []
+   "tags": [
+    "misc@spell"
+   ]
   },
   {
    "name": "Gigadrowse",
    "decks": 3,
    "typeLine": "Instant",
-   "tags": []
+   "tags": [
+    "addcost@static",
+    "tapdown@spell"
+   ]
   },
   {
    "name": "Goblin War Drums",
    "decks": 1,
    "typeLine": "Enchantment",
-   "tags": []
+   "tags": [
+    "evasion@static"
+   ]
   },
   {
    "name": "Unable to Scream",
    "decks": 1,
    "typeLine": "Enchantment — Aura",
-   "tags": []
+   "tags": [
+    "equip@static",
+    "misc@static"
+   ]
   }
  ],
  "manyRoles": [
@@ -1197,8 +1795,25 @@
     "beater"
    ],
    "tags": [
+    "costreduce@static",
+    "evasion@static",
     "draw@etb",
     "discard@etb"
+   ]
+  },
+  {
+   "name": "Generous Ent",
+   "decks": 333,
+   "roles": [
+    "draw",
+    "beater",
+    "lifegain"
+   ],
+   "tags": [
+    "combatkw@static",
+    "lifegain@etb",
+    "cycling@activated_once",
+    "landsearch@activated_once"
    ]
   },
   {
@@ -1212,7 +1827,8 @@
    "tags": [
     "topmanip@etb",
     "draw@etb",
-    "lifegain@activated_once"
+    "lifegain@activated_once",
+    "misc@dies"
    ]
   },
   {
@@ -1238,8 +1854,10 @@
     "lifegain"
    ],
    "tags": [
+    "evasion@static",
     "lifegain@etb",
-    "tutor@spell"
+    "tutor@spell",
+    "landsearch@spell"
    ]
   },
   {
@@ -1327,6 +1945,20 @@
    ]
   },
   {
+   "name": "Jolted Awake",
+   "decks": 46,
+   "roles": [
+    "draw",
+    "recursion",
+    "energy"
+   ],
+   "tags": [
+    "energy@spell",
+    "recursion@spell",
+    "cycling@activated_once"
+   ]
+  },
+  {
    "name": "Heritage Reclamation",
    "decks": 44,
    "roles": [
@@ -1392,6 +2024,8 @@
     "lifegain"
    ],
    "tags": [
+    "charkw@static",
+    "evasion@static",
     "lifegain@etb",
     "gyhate@etb"
    ]
@@ -1405,9 +2039,24 @@
     "lifegain"
    ],
    "tags": [
+    "setup@etb",
     "lifegain@etb",
     "removal@etb",
     "gyhate@etb"
+   ]
+  },
+  {
+   "name": "Warped Tusker",
+   "decks": 9,
+   "roles": [
+    "draw",
+    "beater",
+    "fastmana"
+   ],
+   "tags": [
+    "combatkw@static",
+    "mana@cast_trigger",
+    "cycling@activated_once"
    ]
   },
   {
@@ -1421,7 +2070,8 @@
    "tags": [
     "drain@static",
     "removal@static",
-    "pump@static"
+    "pump@static",
+    "equip@activated"
    ]
   },
   {
@@ -1433,6 +2083,7 @@
     "lifegain"
    ],
    "tags": [
+    "evasion@static",
     "topselect@etb",
     "lifegain@etb",
     "draw@etb"
@@ -1447,6 +2098,7 @@
     "protection"
    ],
    "tags": [
+    "evasion@static",
     "token@each_turn",
     "protection@spell"
    ]
@@ -1463,6 +2115,34 @@
     "drain@spell",
     "removal@spell",
     "recursion@spell"
+   ]
+  },
+  {
+   "name": "Memory Leak",
+   "decks": 4,
+   "roles": [
+    "discard",
+    "gyhate",
+    "draw"
+   ],
+   "tags": [
+    "discard@spell",
+    "gyhate@spell",
+    "cycling@activated_once"
+   ]
+  },
+  {
+   "name": "Make It So",
+   "decks": 3,
+   "roles": [
+    "untap",
+    "tokens",
+    "draw"
+   ],
+   "tags": [
+    "draw@spell",
+    "untap@spell",
+    "token@spell"
    ]
   },
   {
@@ -1531,74 +2211,6 @@
    "tags": [
     "removal@spell",
     "discard@spell"
-   ]
-  },
-  {
-   "name": "You Meet in a Tavern",
-   "decks": 2,
-   "roles": [
-    "draw",
-    "topselect",
-    "enhance"
-   ],
-   "tags": [
-    "topselect@spell",
-    "draw@spell",
-    "pump@spell"
-   ]
-  },
-  {
-   "name": "Hissing Iguanar",
-   "decks": 2,
-   "roles": [
-    "removal",
-    "reach",
-    "beater"
-   ],
-   "tags": [
-    "drain@death_trigger",
-    "removal@death_trigger"
-   ]
-  },
-  {
-   "name": "Foundry Helix",
-   "decks": 2,
-   "roles": [
-    "removal",
-    "reach",
-    "lifegain"
-   ],
-   "tags": [
-    "lifegain@spell",
-    "drain@spell",
-    "removal@spell"
-   ]
-  },
-  {
-   "name": "Vampire Sovereign",
-   "decks": 1,
-   "roles": [
-    "reach",
-    "beater",
-    "lifegain"
-   ],
-   "tags": [
-    "lifegain@etb",
-    "drain@etb"
-   ]
-  },
-  {
-   "name": "Consider",
-   "decks": 1,
-   "roles": [
-    "draw",
-    "selfmill",
-    "topmanip"
-   ],
-   "tags": [
-    "topmanip@spell",
-    "selfmill@spell",
-    "draw@spell"
    ]
   }
  ],
@@ -1669,7 +2281,8 @@
     "name": "Suffocating Fumes",
     "decks": 333,
     "roles": [
-     "wipe"
+     "wipe",
+     "draw"
     ]
    },
    {
@@ -1758,6 +2371,13 @@
     ]
    },
    {
+    "name": "Deem Inferior",
+    "decks": 177,
+    "roles": [
+     "removal"
+    ]
+   },
+   {
     "name": "Krark-Clan Shaman",
     "decks": 162,
     "roles": [
@@ -1785,14 +2405,6 @@
     "roles": [
      "removal",
      "reach",
-     "beater"
-    ]
-   },
-   {
-    "name": "Balustrade Spy",
-    "decks": 136,
-    "roles": [
-     "discard",
      "beater"
     ]
    }
@@ -1834,6 +2446,15 @@
     "roles": [
      "recursion",
      "beater"
+    ]
+   },
+   {
+    "name": "Generous Ent",
+    "decks": 333,
+    "roles": [
+     "draw",
+     "beater",
+     "lifegain"
     ]
    },
    {
@@ -1983,14 +2604,6 @@
      "topselect",
      "fastmana"
     ]
-   },
-   {
-    "name": "Reckoner's Bargain",
-    "decks": 210,
-    "roles": [
-     "draw",
-     "lifegain"
-    ]
    }
   ],
   "damage": [
@@ -2010,14 +2623,6 @@
     ]
    },
    {
-    "name": "Generous Ent",
-    "decks": 333,
-    "roles": [
-     "beater",
-     "lifegain"
-    ]
-   },
-   {
     "name": "Nyxborn Hydra",
     "decks": 312,
     "roles": [
@@ -2029,13 +2634,6 @@
     "decks": 289,
     "roles": [
      "reach",
-     "beater"
-    ]
-   },
-   {
-    "name": "Quirion Ranger",
-    "decks": 242,
-    "roles": [
      "beater"
     ]
    },
@@ -2105,13 +2703,6 @@
     ]
    },
    {
-    "name": "Troll of Khazad-dûm",
-    "decks": 183,
-    "roles": [
-     "beater"
-    ]
-   },
-   {
     "name": "Leonardo, Big Brother",
     "decks": 143,
     "roles": [
@@ -2175,6 +2766,28 @@
      "beater",
      "lifegain"
     ]
+   },
+   {
+    "name": "Martyr's Soul",
+    "decks": 56,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
+    "name": "Gurmag Angler",
+    "decks": 43,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
+    "name": "Boulderbranch Golem",
+    "decks": 33,
+    "roles": [
+     "beater",
+     "lifegain"
+    ]
    }
   ],
   "support": [
@@ -2226,13 +2839,6 @@
     "decks": 119,
     "roles": [
      "enhance"
-    ]
-   },
-   {
-    "name": "Ephemerate",
-    "decks": 115,
-    "roles": [
-     "protection"
     ]
    },
    {
@@ -2355,6 +2961,13 @@
     "roles": [
      "lifegain"
     ]
+   },
+   {
+    "name": "Unexpected Fangs",
+    "decks": 10,
+    "roles": [
+     "enhance"
+    ]
    }
   ],
   "combo": [
@@ -2363,6 +2976,13 @@
     "decks": 442,
     "roles": [
      "tokens"
+    ]
+   },
+   {
+    "name": "Quirion Ranger",
+    "decks": 242,
+    "roles": [
+     "untap"
     ]
    },
    {
@@ -2387,6 +3007,14 @@
     "roles": [
      "tokens",
      "enhance"
+    ]
+   },
+   {
+    "name": "Sewer-veillance Cam",
+    "decks": 115,
+    "roles": [
+     "untap",
+     "draw"
     ]
    },
    {
@@ -2418,6 +3046,53 @@
     "roles": [
      "tokens",
      "recursion"
+    ]
+   },
+   {
+    "name": "Boarding Party",
+    "decks": 41,
+    "roles": [
+     "cheat",
+     "beater"
+    ]
+   },
+   {
+    "name": "Bender's Waterskin",
+    "decks": 38,
+    "roles": [
+     "untap",
+     "ramp"
+    ]
+   },
+   {
+    "name": "Arbor Elf",
+    "decks": 37,
+    "roles": [
+     "untap"
+    ]
+   },
+   {
+    "name": "Maelstrom Colossus",
+    "decks": 33,
+    "roles": [
+     "cheat",
+     "beater"
+    ]
+   },
+   {
+    "name": "Annoyed Altisaur",
+    "decks": 28,
+    "roles": [
+     "cheat",
+     "beater"
+    ]
+   },
+   {
+    "name": "Elite Interceptor // Rejoinder",
+    "decks": 26,
+    "roles": [
+     "untap",
+     "draw"
     ]
    },
    {
@@ -2487,82 +3162,12 @@
     "roles": [
      "tokens"
     ]
-   },
-   {
-    "name": "Hard Evidence",
-    "decks": 6,
-    "roles": [
-     "tokens",
-     "draw"
-    ]
-   },
-   {
-    "name": "Acorn Harvest",
-    "decks": 5,
-    "roles": [
-     "tokens",
-     "recursion"
-    ]
-   },
-   {
-    "name": "Teach by Example",
-    "decks": 5,
-    "roles": [
-     "copy"
-    ]
-   },
-   {
-    "name": "Pegasus Guardian // Rescue the Foal",
-    "decks": 5,
-    "roles": [
-     "tokens",
-     "beater",
-     "protection"
-    ]
-   },
-   {
-    "name": "Photosynthetic Physician",
-    "decks": 5,
-    "roles": [
-     "tokens",
-     "beater"
-    ]
-   },
-   {
-    "name": "Squire's Devotion",
-    "decks": 4,
-    "roles": [
-     "tokens",
-     "enhance"
-    ]
-   },
-   {
-    "name": "Golem Foundry",
-    "decks": 4,
-    "roles": [
-     "tokens"
-    ]
-   },
-   {
-    "name": "Lys Alana Huntmaster",
-    "decks": 4,
-    "roles": [
-     "tokens",
-     "beater"
-    ]
    }
   ],
   "other": [
    {
     "name": "Dispel",
     "decks": 472,
-    "roles": [
-     "other"
-    ]
-   },
-   {
-    "name": "Deem Inferior",
-    "decks": 177,
     "roles": [
      "other"
     ]
@@ -2603,13 +3208,6 @@
     ]
    },
    {
-    "name": "Freed from the Real",
-    "decks": 4,
-    "roles": [
-     "other"
-    ]
-   },
-   {
     "name": "Gigadrowse",
     "decks": 3,
     "roles": [
@@ -2639,7 +3237,10 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "combatkw@static",
+    "monarch@etb"
+   ]
   },
   {
    "name": "Voldaren Epicure",
@@ -2653,24 +3254,18 @@
    ]
   },
   {
-   "name": "Generous Ent",
-   "decks": 333,
-   "roles": [
-    "beater",
-    "lifegain"
-   ],
-   "tags": [
-    "lifegain@etb"
-   ]
-  },
-  {
    "name": "Nyxborn Hydra",
    "decks": 312,
    "roles": [
     "beater"
    ],
    "tags": [
-    "pump@static"
+    "altcost@static",
+    "combatkw@static",
+    "evasion@static",
+    "pump@static",
+    "setup@static",
+    "statdef@static"
    ]
   },
   {
@@ -2685,20 +3280,15 @@
    ]
   },
   {
-   "name": "Quirion Ranger",
-   "decks": 242,
-   "roles": [
-    "beater"
-   ],
-   "tags": []
-  },
-  {
    "name": "Tolarian Terror",
    "decks": 237,
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "costreduce@static",
+    "resilience@static"
+   ]
   },
   {
    "name": "Utrom Monitor",
@@ -2706,7 +3296,10 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "costreduce@static",
+    "evasion@static"
+   ]
   },
   {
    "name": "Myr Enforcer",
@@ -2714,7 +3307,9 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "costreduce@static"
+   ]
   },
   {
    "name": "Glint Hawk",
@@ -2722,7 +3317,10 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "evasion@static",
+    "drawback@etb"
+   ]
   },
   {
    "name": "Kor Skyfisher",
@@ -2730,7 +3328,10 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "evasion@static",
+    "drawback@etb"
+   ]
   },
   {
    "name": "Mukotai Ambusher",
@@ -2740,6 +3341,7 @@
     "lifegain"
    ],
    "tags": [
+    "altcost@static",
     "lifegain@static"
    ]
   },
@@ -2749,7 +3351,9 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "costreduce@static"
+   ]
   },
   {
    "name": "Kessig Flamebreather",
@@ -2768,15 +3372,10 @@
    "roles": [
     "beater"
    ],
-   "tags": []
-  },
-  {
-   "name": "Troll of Khazad-dûm",
-   "decks": 183,
-   "roles": [
-    "beater"
-   ],
-   "tags": []
+   "tags": [
+    "evasion@static",
+    "monarch@etb"
+   ]
   },
   {
    "name": "Leonardo, Big Brother",
@@ -2785,7 +3384,9 @@
     "beater"
    ],
    "tags": [
-    "pump@static"
+    "altcost@static",
+    "pump@static",
+    "statdef@static"
    ]
   },
   {
@@ -2794,7 +3395,9 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "resilience@static"
+   ]
   },
   {
    "name": "Silhana Ledgewalker",
@@ -2802,7 +3405,10 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "resilience@static",
+    "evasion@static"
+   ]
   },
   {
    "name": "Slippery Bogle",
@@ -2810,7 +3416,9 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "resilience@static"
+   ]
   },
   {
    "name": "Black Mage's Rod",
@@ -2820,8 +3428,10 @@
     "enhance"
    ],
    "tags": [
+    "misc@static",
     "drain@static",
-    "pump@static"
+    "pump@static",
+    "equip@activated"
    ]
   },
   {
@@ -2841,7 +3451,8 @@
     "beater"
    ],
    "tags": [
-    "pump@static"
+    "pump@static",
+    "haste@static"
    ]
   },
   {
@@ -2851,7 +3462,9 @@
     "beater"
    ],
    "tags": [
-    "pump@etb"
+    "addcost@static",
+    "pump@etb",
+    "haste@etb"
    ]
   },
   {
@@ -2862,6 +3475,8 @@
     "lifegain"
    ],
    "tags": [
+    "combatkw@static",
+    "evasion@static",
     "lifegain@etb",
     "lifegain@activated"
    ]
@@ -2873,6 +3488,7 @@
     "beater"
    ],
    "tags": [
+    "costreduce@static",
     "pump@etb"
    ]
   },
@@ -2882,23 +3498,9 @@
    "roles": [
     "beater"
    ],
-   "tags": []
-  },
-  {
-   "name": "Boarding Party",
-   "decks": 41,
-   "roles": [
-    "beater"
-   ],
-   "tags": []
-  },
-  {
-   "name": "Arbor Elf",
-   "decks": 37,
-   "roles": [
-    "beater"
-   ],
-   "tags": []
+   "tags": [
+    "costreduce@static"
+   ]
   },
   {
    "name": "Boulderbranch Golem",
@@ -2908,6 +3510,7 @@
     "lifegain"
    ],
    "tags": [
+    "misc@static",
     "lifegain@etb"
    ]
   },
@@ -2919,17 +3522,10 @@
     "fastmana"
    ],
    "tags": [
+    "charkw@static",
     "mana@cast_self",
     "mana@dies"
    ]
-  },
-  {
-   "name": "Maelstrom Colossus",
-   "decks": 33,
-   "roles": [
-    "beater"
-   ],
-   "tags": []
   },
   {
    "name": "Fortress Kin-Guard",
@@ -2937,15 +3533,9 @@
    "roles": [
     "beater"
    ],
-   "tags": []
-  },
-  {
-   "name": "Annoyed Altisaur",
-   "decks": 28,
-   "roles": [
-    "beater"
-   ],
-   "tags": []
+   "tags": [
+    "misc@etb"
+   ]
   },
   {
    "name": "Frogmite",
@@ -2953,7 +3543,9 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "costreduce@static"
+   ]
   },
   {
    "name": "Alms of the Vein",
@@ -2962,7 +3554,8 @@
     "reach"
    ],
    "tags": [
-    "drain@spell"
+    "drain@spell",
+    "altcost@static"
    ]
   },
   {
@@ -2983,7 +3576,11 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "evasion@static",
+    "haste@static",
+    "altcost@static"
+   ]
   },
   {
    "name": "Ornithopter",
@@ -2991,11 +3588,84 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "evasion@static"
+   ]
   },
   {
    "name": "Gearseeker Serpent",
    "decks": 25,
+   "roles": [
+    "beater"
+   ],
+   "tags": [
+    "costreduce@static",
+    "evasion@activated"
+   ]
+  },
+  {
+   "name": "Crimson Fleet Commodore",
+   "decks": 24,
+   "roles": [
+    "beater"
+   ],
+   "tags": [
+    "evasion@static",
+    "monarch@etb"
+   ]
+  },
+  {
+   "name": "Tireless Tribe",
+   "decks": 24,
+   "roles": [
+    "beater"
+   ],
+   "tags": [
+    "pump@activated"
+   ]
+  },
+  {
+   "name": "Gigantosaurus",
+   "decks": 23,
+   "roles": [
+    "beater"
+   ],
+   "tags": []
+  },
+  {
+   "name": "Halo Hopper",
+   "decks": 23,
+   "roles": [
+    "beater"
+   ],
+   "tags": [
+    "costreduce@static"
+   ]
+  },
+  {
+   "name": "Azure Fleet Admiral",
+   "decks": 23,
+   "roles": [
+    "beater"
+   ],
+   "tags": [
+    "monarch@etb",
+    "evasion@static"
+   ]
+  },
+  {
+   "name": "Stonehorn Dignitary",
+   "decks": 22,
+   "roles": [
+    "beater"
+   ],
+   "tags": [
+    "misc@etb"
+   ]
+  },
+  {
+   "name": "Phyrexian Walker",
+   "decks": 20,
    "roles": [
     "beater"
    ],
@@ -3004,292 +3674,12 @@
  ],
  "noTags": [
   {
-   "name": "Thorn of the Black Rose",
-   "decks": 431,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Human Assassin"
-  },
-  {
-   "name": "Quirion Ranger",
-   "decks": 242,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Elf Ranger"
-  },
-  {
-   "name": "Tolarian Terror",
-   "decks": 237,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Serpent"
-  },
-  {
-   "name": "Utrom Monitor",
-   "decks": 226,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Artifact Creature — Utrom Scientist"
-  },
-  {
-   "name": "Myr Enforcer",
-   "decks": 219,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Artifact Creature — Myr"
-  },
-  {
-   "name": "Glint Hawk",
-   "decks": 218,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Bird"
-  },
-  {
-   "name": "Kor Skyfisher",
-   "decks": 218,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Kor Soldier"
-  },
-  {
-   "name": "Cryptic Serpent",
-   "decks": 212,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Serpent"
-  },
-  {
-   "name": "Avenging Hunter",
-   "decks": 195,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Dragon Ranger"
-  },
-  {
-   "name": "Troll of Khazad-dûm",
-   "decks": 183,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Troll"
-  },
-  {
-   "name": "Deem Inferior",
-   "decks": 177,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Sorcery"
-  },
-  {
-   "name": "Goblin Anarchomancer",
-   "decks": 154,
-   "roles": [
-    "ramp"
-   ],
-   "typeLine": "Creature — Goblin Shaman"
-  },
-  {
-   "name": "Thornscape Familiar",
-   "decks": 154,
-   "roles": [
-    "ramp"
-   ],
-   "typeLine": "Creature — Insect"
-  },
-  {
-   "name": "Gladecover Scout",
-   "decks": 133,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Elf Scout"
-  },
-  {
-   "name": "Silhana Ledgewalker",
-   "decks": 133,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Elf Rogue"
-  },
-  {
-   "name": "Slippery Bogle",
-   "decks": 133,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Beast"
-  },
-  {
-   "name": "Crop Rotation",
-   "decks": 107,
-   "roles": [
-    "ramp"
-   ],
-   "typeLine": "Instant"
-  },
-  {
-   "name": "Breath Weapon",
-   "decks": 76,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Instant"
-  },
-  {
-   "name": "Sunscape Familiar",
-   "decks": 49,
-   "roles": [
-    "ramp"
-   ],
-   "typeLine": "Creature — Wall"
-  },
-  {
-   "name": "Tangle",
-   "decks": 48,
-   "roles": [
-    "protection"
-   ],
-   "typeLine": "Instant"
-  },
-  {
-   "name": "Gurmag Angler",
-   "decks": 43,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Zombie Fish"
-  },
-  {
-   "name": "Boarding Party",
-   "decks": 41,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Human Pirate"
-  },
-  {
-   "name": "Fog",
-   "decks": 40,
-   "roles": [
-    "protection"
-   ],
-   "typeLine": "Instant"
-  },
-  {
-   "name": "Arbor Elf",
-   "decks": 37,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Elf Druid"
-  },
-  {
-   "name": "Maelstrom Colossus",
-   "decks": 33,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Artifact Creature — Golem"
-  },
-  {
-   "name": "Fortress Kin-Guard",
-   "decks": 29,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Dog Soldier"
-  },
-  {
-   "name": "Annoyed Altisaur",
-   "decks": 28,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Dinosaur"
-  },
-  {
-   "name": "Frogmite",
-   "decks": 27,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Artifact Creature — Frog"
-  },
-  {
-   "name": "Kitchen Imp",
-   "decks": 26,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Imp"
-  },
-  {
-   "name": "Ornithopter",
-   "decks": 25,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Artifact Creature — Thopter"
-  },
-  {
-   "name": "Gearseeker Serpent",
-   "decks": 25,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Serpent"
-  },
-  {
-   "name": "Crimson Fleet Commodore",
-   "decks": 24,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Ogre Pirate"
-  },
-  {
    "name": "Gigantosaurus",
    "decks": 23,
    "roles": [
     "beater"
    ],
    "typeLine": "Creature — Dinosaur"
-  },
-  {
-   "name": "Halo Hopper",
-   "decks": 23,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Artifact Creature — Frog"
-  },
-  {
-   "name": "Azure Fleet Admiral",
-   "decks": 23,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Human Pirate"
-  },
-  {
-   "name": "Stonehorn Dignitary",
-   "decks": 22,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Rhino Soldier"
   },
   {
    "name": "Phyrexian Walker",
@@ -3300,28 +3690,12 @@
    "typeLine": "Artifact Creature — Phyrexian Construct"
   },
   {
-   "name": "Guardian of the Guildpact",
-   "decks": 14,
+   "name": "Happy Hogan, Dauntless Driver",
+   "decks": 1,
    "roles": [
     "beater"
    ],
-   "typeLine": "Creature — Spirit"
-  },
-  {
-   "name": "Custodi Squire",
-   "decks": 14,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Spirit Cleric"
-  },
-  {
-   "name": "Spider-Man, Web-Slinger",
-   "decks": 12,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Legendary Creature — Spider Human Hero"
+   "typeLine": "Legendary Creature — Human Pilot"
   }
  ],
  "unknownCards": [

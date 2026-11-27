@@ -1,4 +1,986 @@
 {
+ "untagged": [
+  {
+   "pattern": "{N}{g}, {t}: earthbend N. activate only as a sorcery.",
+   "kind": "activated",
+   "decks": 333,
+   "cards": [
+    "Ba Sing Se"
+   ]
+  },
+  {
+   "pattern": "landfall whenever a land you control enters, double the power of target creature you control until end of turn.",
+   "kind": "triggered",
+   "decks": 285,
+   "cards": [
+    "Mightform Harmonizer"
+   ]
+  },
+  {
+   "pattern": "if a permanent dealt damage by ~ would die this turn, exile it instead.",
+   "kind": "spell",
+   "decks": 259,
+   "cards": [
+    "Torch the Tower"
+   ]
+  },
+  {
+   "pattern": "when ~ dies, if it was a creature, return it to the battlefield under its owner's control. it's an enchantment.",
+   "kind": "triggered",
+   "decks": 239,
+   "cards": [
+    "Enduring Curiosity",
+    "Enduring Innocence"
+   ]
+  },
+  {
+   "pattern": "{N}{u}, {t}: empower jace N.",
+   "kind": "activated",
+   "decks": 237,
+   "cards": [
+    "Theorist's Sanctum"
+   ]
+  },
+  {
+   "pattern": "empower jace N.",
+   "kind": "spell",
+   "decks": 207,
+   "cards": [
+    "Jace's Machinations",
+    "Rewrite Regrets"
+   ]
+  },
+  {
+   "pattern": "until end of turn, you may activate loyalty abilities of jace planeswalkers you control on any player's turn any time you could cast an instant.",
+   "kind": "spell",
+   "decks": 204,
+   "cards": [
+    "Jace's Machinations"
+   ]
+  },
+  {
+   "pattern": "when you cast this spell, if you've cast another spell this turn, copy this spell.",
+   "kind": "triggered",
+   "decks": 169,
+   "cards": [
+    "Sage of the Skies"
+   ]
+  },
+  {
+   "pattern": "when this creature enters, if {u}{u} was spent to cast it, return up to one other target nonland permanent to its owner's hand.",
+   "kind": "triggered",
+   "decks": 145,
+   "cards": [
+    "Deceit"
+   ]
+  },
+  {
+   "pattern": "when this creature enters, if you cast it, return all non-elemental creatures to their owners' hands.",
+   "kind": "triggered",
+   "decks": 119,
+   "cards": [
+    "Sunderflock"
+   ]
+  },
+  {
+   "pattern": "{N}{w}, {t}: harness ~.",
+   "kind": "activated",
+   "decks": 116,
+   "cards": [
+    "The Mind Stone"
+   ]
+  },
+  {
+   "pattern": "whenever this creature attacks, you may exile eight cards from your graveyard. if you do, this creature becomes prepared.",
+   "kind": "triggered",
+   "decks": 114,
+   "cards": [
+    "Emeritus of Ideation // Ancestral Recall"
+   ]
+  },
+  {
+   "pattern": "when wolverine enters, he fights up to one other target creature.",
+   "kind": "triggered",
+   "decks": 112,
+   "cards": [
+    "Wolverine, Fierce Fighter"
+   ]
+  },
+  {
+   "pattern": "if damage would be dealt to wolverine, instead that damage is dealt, but all other damage already dealt to him is healed.",
+   "kind": "static",
+   "decks": 112,
+   "cards": [
+    "Wolverine, Fierce Fighter"
+   ]
+  },
+  {
+   "pattern": "start your engines!",
+   "kind": "static",
+   "decks": 108,
+   "cards": [
+    "Perilous Snare",
+    "Burnout Bashtronaut",
+    "Howlsquad Heavy"
+   ]
+  },
+  {
+   "pattern": "tiered",
+   "kind": "spell",
+   "decks": 107,
+   "cards": [
+    "Fire Magic",
+    "Restoration Magic"
+   ]
+  },
+  {
+   "pattern": "creatures with power less than this creature's power can't block it.",
+   "kind": "static",
+   "decks": 97,
+   "cards": [
+    "Elusive Otter // Grove's Bounty"
+   ]
+  },
+  {
+   "pattern": "whenever you gain life, put a loyalty counter on ajani.",
+   "kind": "triggered",
+   "decks": 96,
+   "cards": [
+    "Ajani Resolute"
+   ]
+  },
+  {
+   "pattern": "craft with artifact {N}{u}",
+   "kind": "static",
+   "decks": 93,
+   "cards": [
+    "Braided Net // Braided Quipu"
+   ]
+  },
+  {
+   "pattern": "craft with artifact {N}{w}",
+   "kind": "static",
+   "decks": 86,
+   "cards": [
+    "Spring-Loaded Sawblades // Bladewheel Chariot"
+   ]
+  },
+  {
+   "pattern": "station",
+   "kind": "static",
+   "decks": 82,
+   "cards": [
+    "Uthros, Titanic Godcore",
+    "Adagia, Windswept Bastion",
+    "Evendo, Waking Haven",
+    "Kavaron, Memorial World"
+   ]
+  },
+  {
+   "pattern": "craft with artifact {N}{w}{w}",
+   "kind": "static",
+   "decks": 81,
+   "cards": [
+    "Clay-Fired Bricks // Cosmium Kiln"
+   ]
+  },
+  {
+   "pattern": "iii — sacrifice a land.",
+   "kind": "triggered",
+   "decks": 63,
+   "cards": [
+    "The Naked Time"
+   ]
+  },
+  {
+   "pattern": "if one or more tokens would be created under your control, twice that many of those tokens are created instead.",
+   "kind": "static",
+   "decks": 63,
+   "cards": [
+    "Elspeth, Storm Slayer",
+    "Exalted Sunborn"
+   ]
+  },
+  {
+   "pattern": "whenever one or more creatures die, put a rev counter on this equipment.",
+   "kind": "triggered",
+   "decks": 61,
+   "cards": [
+    "Chainsaw"
+   ]
+  },
+  {
+   "pattern": "this creature has lifelink as long as you control another dwarf.",
+   "kind": "static",
+   "decks": 61,
+   "cards": [
+    "Dáin's Company"
+   ]
+  },
+  {
+   "pattern": "storied",
+   "kind": "static",
+   "decks": 61,
+   "cards": [
+    "Kíli the Resourceful"
+   ]
+  },
+  {
+   "pattern": "as long as you have an enduring story, you may pay {N} rather than pay the equip cost of the first equip ability you activate each turn.",
+   "kind": "static",
+   "decks": 61,
+   "cards": [
+    "Kíli the Resourceful"
+   ]
+  },
+  {
+   "pattern": "whenever dwalin enters or attacks, put a hone counter on each equipment you control.",
+   "kind": "triggered",
+   "decks": 60,
+   "cards": [
+    "Dwalin, Weaponmaster"
+   ]
+  },
+  {
+   "pattern": "whenever you cast a noncreature spell, put a loyalty counter on ral.",
+   "kind": "triggered",
+   "decks": 55,
+   "cards": [
+    "Ral, Crackling Wit"
+   ]
+  },
+  {
+   "pattern": "when this creature enters, if {b}{b} was spent to cast it, put three -N/-N counters on up to one target creature.",
+   "kind": "triggered",
+   "decks": 54,
+   "cards": [
+    "Emptiness"
+   ]
+  },
+  {
+   "pattern": "when this creature dies, put its counters on target creature you control.",
+   "kind": "triggered",
+   "decks": 52,
+   "cards": [
+    "Essence Channeler"
+   ]
+  },
+  {
+   "pattern": "when thor enters, exile target equipment, instant, or sorcery card from your graveyard. until the end of your next turn, you may play that card.",
+   "kind": "triggered",
+   "decks": 52,
+   "cards": [
+    "Thor, God of Thunder"
+   ]
+  },
+  {
+   "pattern": "target creature you control deals damage equal to its power to any other target. then sacrifice it.",
+   "kind": "spell",
+   "decks": 48,
+   "cards": [
+    "Callous Sell-Sword // Burn Together"
+   ]
+  },
+  {
+   "pattern": "whenever one or more permanent cards are put into your graveyard from anywhere while this creature has a -N/-N counter on it, remove a -N/-N counter from this creature.",
+   "kind": "triggered",
+   "decks": 48,
+   "cards": [
+    "Moonshadow"
+   ]
+  },
+  {
+   "pattern": "whenever this creature deals combat damage to a player, put that many incubation counters on it.",
+   "kind": "triggered",
+   "decks": 42,
+   "cards": [
+    "Drake Hatcher"
+   ]
+  },
+  {
+   "pattern": "if a lizard, mouse, otter, or raccoon you control would deal damage to a permanent or player, it deals that much damage plus N instead.",
+   "kind": "static",
+   "decks": 41,
+   "cards": [
+    "Valley Flamecaller"
+   ]
+  },
+  {
+   "pattern": "leatherhead enters with a hexproof counter on her.",
+   "kind": "static",
+   "decks": 38,
+   "cards": [
+    "Leatherhead, Swamp Stalker"
+   ]
+  },
+  {
+   "pattern": "• you lose N life. empower jace N.",
+   "kind": "spell",
+   "decks": 37,
+   "cards": [
+    "Vraska's Final Mercy"
+   ]
+  },
+  {
+   "pattern": "each creature with mana value x or less loses all abilities until end of turn. destroy those creatures.",
+   "kind": "spell",
+   "decks": 36,
+   "cards": [
+    "Day of Black Sun"
+   ]
+  },
+  {
+   "pattern": "whenever captain kirk enters or attacks, choose one. if you have no cards in hand, choose one or more instead.",
+   "kind": "triggered",
+   "decks": 34,
+   "cards": [
+    "Captain James T. Kirk"
+   ]
+  },
+  {
+   "pattern": "you don't lose the game for having N or less life.",
+   "kind": "static",
+   "decks": 32,
+   "cards": [
+    "Georgiou, Terran Emperor"
+   ]
+  },
+  {
+   "pattern": "when ~ enters, empower jace N.",
+   "kind": "triggered",
+   "decks": 32,
+   "cards": [
+    "Way of the Pyromancer",
+    "Way of the Paradox"
+   ]
+  },
+  {
+   "pattern": "when this creature enters, return up to two other target nonland permanents to their owners' hands.",
+   "kind": "triggered",
+   "decks": 30,
+   "cards": [
+    "Marang River Regent // Coil and Catch"
+   ]
+  },
+  {
+   "pattern": "when this creature enters, other creatures get -N/-N until end of turn.",
+   "kind": "triggered",
+   "decks": 29,
+   "cards": [
+    "Harvester of Misery"
+   ]
+  },
+  {
+   "pattern": "−N: any number of target players each discard a card.",
+   "kind": "activated",
+   "decks": 28,
+   "cards": [
+    "Ral Zarek, Guest Lecturer"
+   ]
+  },
+  {
+   "pattern": "at the beginning of your first main phase, you may pay {u}. if you do, transform ashling.",
+   "kind": "triggered",
+   "decks": 27,
+   "cards": [
+    "Ashling, Rekindled // Ashling, Rimebound"
+   ]
+  },
+  {
+   "pattern": "if a source you control would deal noncombat damage to an opponent or a permanent an opponent controls, it deals that much damage plus N instead.",
+   "kind": "static",
+   "decks": 25,
+   "cards": [
+    "Tomik, Izzet Sparkmage",
+    "Artist's Talent"
+   ]
+  },
+  {
+   "pattern": "whenever ~ attacks, if there are seven or more cards in your graveyard, exile a card at random from your graveyard. you may play that card this turn.",
+   "kind": "triggered",
+   "decks": 24,
+   "cards": [
+    "Tersa Lightshatter"
+   ]
+  },
+  {
+   "pattern": "whenever this creature attacks, if you control eight or more lands, this creature becomes prepared.",
+   "kind": "triggered",
+   "decks": 22,
+   "cards": [
+    "Emeritus of Abundance // Regrowth"
+   ]
+  },
+  {
+   "pattern": "at the beginning of each opponent's upkeep, manifest dread.",
+   "kind": "triggered",
+   "decks": 21,
+   "cards": [
+    "Abhorrent Oculus"
+   ]
+  },
+  {
+   "pattern": "discard a card: this creature gains lifelink until end of turn.",
+   "kind": "activated",
+   "decks": 20,
+   "cards": [
+    "Hardened Academic"
+   ]
+  },
+  {
+   "pattern": "paradigm",
+   "kind": "spell",
+   "decks": 19,
+   "cards": [
+    "Improvisation Capstone"
+   ]
+  },
+  {
+   "pattern": "mayhem {b}{r}",
+   "kind": "static",
+   "decks": 19,
+   "cards": [
+    "Carnage, Crimson Chaos"
+   ]
+  },
+  {
+   "pattern": "when q enters, shuffle your library, then exile cards from the top of your library until you exile a nonland card. that nonland card gains \"exile a card from your hand: create a copy of this card. you may cast the copy. activate only during your turn and only if this card is exiled.\"",
+   "kind": "triggered",
+   "decks": 18,
+   "cards": [
+    "Q, Stacking the Deck"
+   ]
+  },
+  {
+   "pattern": "as gollum enters, choose odd or even.",
+   "kind": "static",
+   "decks": 15,
+   "cards": [
+    "Gollum, Riddle Master"
+   ]
+  },
+  {
+   "pattern": "if a creature an opponent controls would die, exile it instead.",
+   "kind": "static",
+   "decks": 15,
+   "cards": [
+    "Garruk, Veiled Butcher"
+   ]
+  },
+  {
+   "pattern": "{N}{g}{w}{w}: transform ~. activate only as a sorcery.",
+   "kind": "activated",
+   "decks": 15,
+   "cards": [
+    "Jennifer Walters // The Sensational She-Hulk"
+   ]
+  },
+  {
+   "pattern": "landfall whenever a land you control enters, empower jace N.",
+   "kind": "triggered",
+   "decks": 15,
+   "cards": [
+    "Avatar of Burgeoning Echoes"
+   ]
+  },
+  {
+   "pattern": "whenever you conjure one or more cards, this creature becomes prepared.",
+   "kind": "triggered",
+   "decks": 15,
+   "cards": [
+    "Crescendo Conductor // Boltwave"
+   ]
+  },
+  {
+   "pattern": "void — ~ deals N damage instead if a nonland permanent left the battlefield this turn or a spell was warped this turn.",
+   "kind": "spell",
+   "decks": 15,
+   "cards": [
+    "Plasma Bolt"
+   ]
+  },
+  {
+   "pattern": "each instant and sorcery card in your hand has miracle {N}.",
+   "kind": "static",
+   "decks": 14,
+   "cards": [
+    "Lorehold, the Historian"
+   ]
+  },
+  {
+   "pattern": "at the beginning of your upkeep, tap this creature.",
+   "kind": "triggered",
+   "decks": 14,
+   "cards": [
+    "Tiger-Seal"
+   ]
+  },
+  {
+   "pattern": "whenever you draw your second card each turn, untap this creature.",
+   "kind": "triggered",
+   "decks": 14,
+   "cards": [
+    "Tiger-Seal"
+   ]
+  },
+  {
+   "pattern": "at the beginning of your end step, if you descended this turn, you may pay N life. if you do, return this enchantment to its owner's hand.",
+   "kind": "triggered",
+   "decks": 13,
+   "cards": [
+    "Corpses of the Lost"
+   ]
+  },
+  {
+   "pattern": "when aang enters, airbend up to one other target creature or spell.",
+   "kind": "triggered",
+   "decks": 13,
+   "cards": [
+    "Aang, Swift Savior // Aang and La, Ocean's Fury"
+   ]
+  },
+  {
+   "pattern": "waterbend {N}: transform aang.",
+   "kind": "activated",
+   "decks": 13,
+   "cards": [
+    "Aang, Swift Savior // Aang and La, Ocean's Fury"
+   ]
+  },
+  {
+   "pattern": "web-slinging {u}",
+   "kind": "spell",
+   "decks": 12,
+   "cards": [
+    "Spider-Sense"
+   ]
+  },
+  {
+   "pattern": "landfall whenever a land you control enters, double ~'s power until end of turn.",
+   "kind": "triggered",
+   "decks": 12,
+   "cards": [
+    "Tifa Lockhart"
+   ]
+  },
+  {
+   "pattern": "increment",
+   "kind": "static",
+   "decks": 12,
+   "cards": [
+    "Ambitious Augmenter"
+   ]
+  },
+  {
+   "pattern": "damage can't be prevented.",
+   "kind": "static",
+   "decks": 11,
+   "cards": [
+    "Sunspine Lynx"
+   ]
+  },
+  {
+   "pattern": "target creature has base power and toughness N/N until end of turn.",
+   "kind": "spell",
+   "decks": 10,
+   "cards": [
+    "Multiply by Zero"
+   ]
+  },
+  {
+   "pattern": "N+ | flying",
+   "kind": "static",
+   "decks": 9,
+   "cards": [
+    "Warmaker Gunship"
+   ]
+  },
+  {
+   "pattern": "enchanted land is the chosen color.",
+   "kind": "static",
+   "decks": 9,
+   "cards": [
+    "Shimmerwilds Growth"
+   ]
+  },
+  {
+   "pattern": "when this creature enters, empower jace N.",
+   "kind": "triggered",
+   "decks": 9,
+   "cards": [
+    "Sanctum Lurker",
+    "Theorist's Proxy"
+   ]
+  },
+  {
+   "pattern": "whenever you cast a spell with mana value N or greater, untap this creature.",
+   "kind": "triggered",
+   "decks": 8,
+   "cards": [
+    "Spider Manifestation"
+   ]
+  },
+  {
+   "pattern": "whenever an artifact you control enters, put a loyalty counter on tezzeret.",
+   "kind": "triggered",
+   "decks": 8,
+   "cards": [
+    "Tezzeret, Cruel Captain"
+   ]
+  },
+  {
+   "pattern": "{N}{b}, exile this card from your graveyard: put a flying counter, a deathtouch counter, and a lifelink counter on target creature. activate only as a sorcery.",
+   "kind": "activated",
+   "decks": 8,
+   "cards": [
+    "Qarsi Revenant"
+   ]
+  },
+  {
+   "pattern": "spells your opponents cast that target this creature cost an additional N life to cast.",
+   "kind": "static",
+   "decks": 8,
+   "cards": [
+    "Terror of the Peaks"
+   ]
+  },
+  {
+   "pattern": "void — that creature gets -N/-N until end of turn instead if a nonland permanent left the battlefield this turn or a spell was warped this turn.",
+   "kind": "spell",
+   "decks": 8,
+   "cards": [
+    "Tragic Trajectory"
+   ]
+  },
+  {
+   "pattern": "if a land or bird you control entering the battlefield causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time.",
+   "kind": "static",
+   "decks": 8,
+   "cards": [
+    "Traveling Chocobo"
+   ]
+  },
+  {
+   "pattern": "craft with four or more nonlands with activated abilities {N}{u}",
+   "kind": "static",
+   "decks": 8,
+   "cards": [
+    "The Enigma Jewel // Locus of Enlightenment"
+   ]
+  },
+  {
+   "pattern": "you have no maximum hand size.",
+   "kind": "static",
+   "decks": 8,
+   "cards": [
+    "Roaring Furnace // Steaming Sauna"
+   ]
+  },
+  {
+   "pattern": "{N}{u}{u}, {t}: any number of target players each mill cards equal to the number of cards in their graveyard.",
+   "kind": "activated",
+   "decks": 7,
+   "cards": [
+    "Riverchurn Monument"
+   ]
+  },
+  {
+   "pattern": "when a dragon you control enters, return this enchantment to its owner's hand.",
+   "kind": "triggered",
+   "decks": 7,
+   "cards": [
+    "Roiling Dragonstorm"
+   ]
+  },
+  {
+   "pattern": "choose one. if you descended this turn, you may choose both instead.",
+   "kind": "spell",
+   "decks": 7,
+   "cards": [
+    "Molten Collapse"
+   ]
+  },
+  {
+   "pattern": "planeswalkers you control aren't put into their owners' graveyards for having N loyalty.",
+   "kind": "static",
+   "decks": 6,
+   "cards": [
+    "Sanctum Lurker"
+   ]
+  },
+  {
+   "pattern": "plotting cards from your hand costs {N} less.",
+   "kind": "static",
+   "decks": 6,
+   "cards": [
+    "Doc Aurlock, Grizzled Genius"
+   ]
+  },
+  {
+   "pattern": "target opponent exiles the top x cards of their library face down. you may look at and play those cards for as long as they remain exiled. if you cast a spell this way, you may spend mana as though it were mana of any type to cast it.",
+   "kind": "spell",
+   "decks": 6,
+   "cards": [
+    "Outrageous Robbery"
+   ]
+  },
+  {
+   "pattern": "when appa enters, airbend any number of other target nonland permanents you control.",
+   "kind": "triggered",
+   "decks": 5,
+   "cards": [
+    "Appa, Steadfast Guardian"
+   ]
+  },
+  {
+   "pattern": "{N}{g}, {t}, discard a card: return this creature to its owner's hand.",
+   "kind": "activated",
+   "decks": 5,
+   "cards": [
+    "Bramble Familiar // Fetch Quest"
+   ]
+  },
+  {
+   "pattern": "threshold — as long as there are seven or more cards in your graveyard, you may cast the exiled card, and mana of any type can be spent to cast that spell.",
+   "kind": "static",
+   "decks": 5,
+   "cards": [
+    "Null Summoner"
+   ]
+  },
+  {
+   "pattern": "if a card or token would be put into a graveyard from anywhere, exile it instead.",
+   "kind": "static",
+   "decks": 5,
+   "cards": [
+    "Rest in Peace"
+   ]
+  },
+  {
+   "pattern": "at the beginning of your upkeep, if there are fourteen or more cards in your graveyard, you may transform emet-selch.",
+   "kind": "triggered",
+   "decks": 5,
+   "cards": [
+    "Emet-Selch, Unsundered // Hades, Sorcerer of Eld"
+   ]
+  },
+  {
+   "pattern": "whenever this creature attacks, up to one target artifact, creature, or planeswalker an opponent controls loses all abilities until your next turn. if it's a creature, it also has base power and toughness N/N until your next turn.",
+   "kind": "triggered",
+   "decks": 5,
+   "cards": [
+    "Azure Beastbinder"
+   ]
+  },
+  {
+   "pattern": "• net — target creature can't block this turn.",
+   "kind": "triggered",
+   "decks": 5,
+   "cards": [
+    "Hawkeye, Master Marksman"
+   ]
+  },
+  {
+   "pattern": "whenever an opponent draws a card, this creature deals N damage to them.",
+   "kind": "triggered",
+   "decks": 5,
+   "cards": [
+    "Razorkin Needlehead"
+   ]
+  },
+  {
+   "pattern": "whenever an opponent casts their first noncreature spell each turn, you recruit.",
+   "kind": "triggered",
+   "decks": 5,
+   "cards": [
+    "The Queen of Dale"
+   ]
+  },
+  {
+   "pattern": "target player draws Nˣ cards.",
+   "kind": "spell",
+   "decks": 5,
+   "cards": [
+    "Mathemagics"
+   ]
+  },
+  {
+   "pattern": "when the fourth plan counter is put on this enchantment, sacrifice it. when you do, it deals N damage divided as you choose among one or two targets.",
+   "kind": "triggered",
+   "decks": 5,
+   "cards": [
+    "Death to Our Enemies"
+   ]
+  },
+  {
+   "pattern": "if you would put one or more counters on a permanent or player, put twice that many of each of those kinds of counters on that permanent or player instead.",
+   "kind": "static",
+   "decks": 5,
+   "cards": [
+    "Innkeeper's Talent"
+   ]
+  },
+  {
+   "pattern": "when mabel enters, remove up to three counters from another target creature or planeswalker.",
+   "kind": "triggered",
+   "decks": 5,
+   "cards": [
+    "Mabel, Bitter Recluse"
+   ]
+  },
+  {
+   "pattern": "when another creature you control leaves the battlefield, transform aang at the beginning of the next upkeep.",
+   "kind": "triggered",
+   "decks": 4,
+   "cards": [
+    "Aang, at the Crossroads // Aang, Destined Savior"
+   ]
+  },
+  {
+   "pattern": "when this enchantment enters, airbend up to one target creature.",
+   "kind": "triggered",
+   "decks": 4,
+   "cards": [
+    "Airbender Ascension"
+   ]
+  },
+  {
+   "pattern": "whenever a creature you control enters, put a quest counter on this enchantment.",
+   "kind": "triggered",
+   "decks": 4,
+   "cards": [
+    "Airbender Ascension"
+   ]
+  },
+  {
+   "pattern": "immune — prevent all combat damage that would be dealt to ~.",
+   "kind": "static",
+   "decks": 4,
+   "cards": [
+    "Diamond Weapon"
+   ]
+  },
+  {
+   "pattern": "when this creature enters, it explores.",
+   "kind": "triggered",
+   "decks": 4,
+   "cards": [
+    "Cenote Scout"
+   ]
+  },
+  {
+   "pattern": "descend N — choose one. if there are eight or more permanent cards in your graveyard as you cast this spell, choose one or more instead.",
+   "kind": "spell",
+   "decks": 4,
+   "cards": [
+    "Wail of the Forgotten"
+   ]
+  },
+  {
+   "pattern": "if you gaining life causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time.",
+   "kind": "static",
+   "decks": 4,
+   "cards": [
+    "Dr. Beverly Crusher"
+   ]
+  },
+  {
+   "pattern": "target opponent gains control of target permanent you control.",
+   "kind": "spell",
+   "decks": 4,
+   "cards": [
+    "Harmless Offering"
+   ]
+  },
+  {
+   "pattern": "• abandon ship — you lose the game.",
+   "kind": "triggered",
+   "decks": 4,
+   "cards": [
+    "Kobayashi Maru Scenario"
+   ]
+  },
+  {
+   "pattern": "exile this card and two other cards named ~ from your graveyard: search your graveyard, hand, and/or library for a card named altanak, the thrice-called and put it onto the battlefield. if you search your library this way, shuffle. activate only as a sorcery.",
+   "kind": "spell",
+   "decks": 3,
+   "cards": [
+    "Say Its Name"
+   ]
+  },
+  {
+   "pattern": "when this vehicle leaves the battlefield, the exiled card's owner manifests dread.",
+   "kind": "triggered",
+   "decks": 3,
+   "cards": [
+    "Unidentified Hovership"
+   ]
+  },
+  {
+   "pattern": "when this creature enters, discover N.",
+   "kind": "triggered",
+   "decks": 3,
+   "cards": [
+    "Trumpeting Carnosaur"
+   ]
+  },
+  {
+   "pattern": "if a red source you control would deal an amount of noncombat damage less than ojer axonil's power to an opponent, that source deals damage equal to ojer axonil's power instead.",
+   "kind": "static",
+   "decks": 3,
+   "cards": [
+    "Ojer Axonil, Deepest Might // Temple of Power"
+   ]
+  },
+  {
+   "pattern": "{N}, {t}, discard your hand: transform ~.",
+   "kind": "activated",
+   "decks": 3,
+   "cards": [
+    "Tarrian's Journal // The Tomb of Aclazotz"
+   ]
+  },
+  {
+   "pattern": "whenever this land attacks, up to one other target creature has base power and toughness N/N until end of turn.",
+   "kind": "triggered",
+   "decks": 3,
+   "cards": [
+    "Restless Vinestalk"
+   ]
+  },
+  {
+   "pattern": "N+ | {N}{b}, {t}, pay N life, sacrifice a creature: draw cards equal to the sacrificed creature's power. activate only as a sorcery.",
+   "kind": "activated",
+   "decks": 3,
+   "cards": [
+    "Susur Secundi, Void Altar"
+   ]
+  },
+  {
+   "pattern": "double target creature's power until end of turn.",
+   "kind": "spell",
+   "decks": 3,
+   "cards": [
+    "Bulk Up"
+   ]
+  },
+  {
+   "pattern": "this creature is the chosen type in addition to its other types.",
+   "kind": "static",
+   "decks": 3,
+   "cards": [
+    "Roaming Throne"
+   ]
+  },
+  {
+   "pattern": "if a triggered ability of another creature you control of the chosen type triggers, it triggers an additional time.",
+   "kind": "static",
+   "decks": 3,
+   "cards": [
+    "Roaming Throne"
+   ]
+  }
+ ],
  "comboCandidates": [
   {
    "name": "Jund Sacrifice",
@@ -61,11 +1043,21 @@
    ]
   },
   {
+   "name": "Izzet Looting",
+   "share": 0.006,
+   "comboCards": [
+    "Fear of Missing Out",
+    "Captain James T. Kirk",
+    "Gray and Adira, Forever Joined"
+   ]
+  },
+  {
    "name": "Temur Omniscience",
    "share": 0.005,
    "comboCards": [
     "Kona, Rescue Beastie",
-    "Omniscience"
+    "Omniscience",
+    "Formidable Speaker"
    ]
   },
   {
@@ -80,7 +1072,8 @@
    "share": 0.004,
    "comboCards": [
     "Kona, Rescue Beastie",
-    "Omniscience"
+    "Omniscience",
+    "Formidable Speaker"
    ]
   },
   {
@@ -89,6 +1082,14 @@
    "comboCards": [
     "United Battlefront",
     "Tezzeret, Cruel Captain"
+   ]
+  },
+  {
+   "name": "Reanimator",
+   "share": 0.003,
+   "comboCards": [
+    "Formidable Speaker",
+    "Ardyn, the Usurper"
    ]
   },
   {
@@ -403,6 +1404,7 @@
     "decks": 158,
     "oracle": "Choose one —\n• Surveil 2, then draw a card.\n• Prismari Charm deals 1 damage to each of one or two targets.\n• Return target nonland permanent to its owner's hand.",
     "detail": [
+     "removal:damage:creature",
      "removal:bounce:creature/artifact/enchantment/planeswalker/battle"
     ]
    },
@@ -1017,6 +2019,14 @@
     ]
    },
    {
+    "name": "Repulsive Mutation",
+    "decks": 2,
+    "oracle": "Put X +1/+1 counters on target creature you control. Then counter up to one target spell unless its controller pays mana equal to the greatest power among creatures you control.",
+    "detail": [
+     "counter:counter:spell"
+    ]
+   },
+   {
     "name": "Spider-Man 2099",
     "decks": 2,
     "oracle": "From the Future — You can't cast Spider-Man 2099 during your first, second, or third turns of the game.\nDouble strike, vigilance\nAt the beginning of your end step, if you've played a land or cast a spell this turn from anywhere other than your hand, Spider-Man 2099 deals damage equal to his power to any target.",
@@ -1073,6 +2083,14 @@
     "oracle": "When this land enters, choose a land card name.\nActivated abilities of sources with the chosen name can't be activated unless they're mana abilities.\nLands with the chosen name have \"{T}: Add {C}.\"\n{T}: Add {C}.",
     "detail": [
      "hate:lock:activated ability"
+    ]
+   },
+   {
+    "name": "Tishana's Tidebinder",
+    "decks": 207,
+    "oracle": "Flash\nWhen this creature enters, counter up to one target activated or triggered ability. If an ability of an artifact, creature, or planeswalker is countered this way, that permanent loses all abilities for as long as this creature remains on the battlefield. (Mana abilities can't be targeted.)",
+    "detail": [
+     "counter:counter:activated ability/triggered ability"
     ]
    },
    {
@@ -1449,26 +2467,32 @@
   ]
  },
  "format": "Standard",
- "generatedAt": "2026-11-27T20:54:14.249Z",
+ "generatedAt": "2026-11-27T21:12:44.633Z",
  "decks": 2593,
  "otherOnly": [
   {
    "name": "Jace's Machinations",
    "decks": 204,
    "typeLine": "Instant",
-   "tags": []
+   "tags": [
+    "misc@spell"
+   ]
   },
   {
    "name": "Outrageous Robbery",
    "decks": 6,
    "typeLine": "Instant",
-   "tags": []
+   "tags": [
+    "misc@spell"
+   ]
   },
   {
    "name": "Mathemagics",
    "decks": 5,
    "typeLine": "Sorcery",
-   "tags": []
+   "tags": [
+    "misc@spell"
+   ]
   },
   {
    "name": "Pym Particles",
@@ -1480,55 +2504,78 @@
    "name": "Harmless Offering",
    "decks": 4,
    "typeLine": "Sorcery",
-   "tags": []
+   "tags": [
+    "misc@spell"
+   ]
   },
   {
    "name": "U.S.S. Discovery, at Black Alert",
    "decks": 3,
    "typeLine": "Legendary Artifact — Spacecraft",
-   "tags": []
+   "tags": [
+    "misc@etb",
+    "misc@attack",
+    "misc@static"
+   ]
   },
   {
    "name": "Hit It!",
    "decks": 3,
    "typeLine": "Enchantment",
-   "tags": []
+   "tags": [
+    "haste@static",
+    "misc@etb"
+   ]
   },
   {
    "name": "Way of the Mentor",
    "decks": 2,
    "typeLine": "Legendary Enchantment",
-   "tags": []
+   "tags": [
+    "misc@etb",
+    "misc@lifegain_trigger"
+   ]
   },
   {
    "name": "Inside Information",
    "decks": 1,
    "typeLine": "Sorcery",
-   "tags": []
+   "tags": [
+    "altcost@spell"
+   ]
   },
   {
    "name": "Jace, Reality Sculptor",
    "decks": 1,
    "typeLine": "Legendary Planeswalker — Jace",
-   "tags": []
+   "tags": [
+    "misc@loyalty"
+   ]
   },
   {
    "name": "Desolation of Smaug",
    "decks": 1,
    "typeLine": "Sorcery",
-   "tags": []
+   "tags": [
+    "misc@spell"
+   ]
   },
   {
    "name": "Hide on the Ceiling",
    "decks": 1,
    "typeLine": "Instant",
-   "tags": []
+   "tags": [
+    "misc@spell"
+   ]
   },
   {
    "name": "Loading Zone",
    "decks": 1,
    "typeLine": "Enchantment",
-   "tags": []
+   "tags": [
+    "misc@static",
+    "altcost@static"
+   ]
   }
  ],
  "manyRoles": [
@@ -1541,6 +2588,7 @@
     "reach"
    ],
    "tags": [
+    "addcost@static",
     "drain@spell",
     "removal@spell"
    ]
@@ -1568,6 +2616,7 @@
     "ramp"
    ],
    "tags": [
+    "extraland@static",
     "recursion@static",
     "selfmill@landfall"
    ]
@@ -1582,6 +2631,8 @@
     "fastmana"
    ],
    "tags": [
+    "evasion@static",
+    "haste@static",
     "drain@attack",
     "removal@attack",
     "mana@each_turn"
@@ -1596,6 +2647,7 @@
     "draw"
    ],
    "tags": [
+    "addcost@static",
     "counter@spell",
     "token@spell",
     "draw@spell"
@@ -1612,11 +2664,13 @@
     "protection"
    ],
    "tags": [
+    "altcost@static",
     "protection@static",
     "pump@loyalty",
     "topmanip@loyalty",
     "draw@loyalty",
-    "selfmill@loyalty"
+    "selfmill@loyalty",
+    "tapdown@loyalty"
    ]
   },
   {
@@ -1629,7 +2683,8 @@
    ],
    "tags": [
     "lifegain@creature_enters",
-    "draw@each_turn"
+    "draw@each_turn",
+    "altcost@static"
    ]
   },
   {
@@ -1668,6 +2723,7 @@
     "lifegain"
    ],
    "tags": [
+    "evasion@static",
     "topmanip@etb",
     "lifegain@etb",
     "drain@etb"
@@ -1686,6 +2742,7 @@
     "topmanip@spell",
     "lifegain@spell",
     "selfmill@spell",
+    "transform@spell",
     "recursion@spell"
    ]
   },
@@ -1699,6 +2756,7 @@
     "lifegain"
    ],
    "tags": [
+    "evasion@static",
     "token@etb",
     "lifegain@etb",
     "recursion@each_turn"
@@ -1761,6 +2819,7 @@
     "topmanip@spell",
     "draw@spell",
     "selfmill@spell",
+    "removal@spell",
     "removal@spell"
    ]
   },
@@ -1806,6 +2865,7 @@
     "beater"
    ],
    "tags": [
+    "altcost@static",
     "recursion@etb",
     "selfmill@etb",
     "recursion@attack",
@@ -1837,9 +2897,11 @@
     "beater"
    ],
    "tags": [
+    "evasion@static",
     "removal@etb",
     "recursion@etb",
-    "cheat@etb"
+    "cheat@etb",
+    "altcost@etb"
    ]
   },
   {
@@ -1868,6 +2930,8 @@
     "protection"
    ],
    "tags": [
+    "resilience@static",
+    "evasion@static",
     "draw@other_trigger"
    ]
   },
@@ -1882,7 +2946,8 @@
    "tags": [
     "topmanip@etb",
     "token@creature_enters",
-    "pump@creature_enters"
+    "pump@creature_enters",
+    "statdef@creature_enters"
    ]
   },
   {
@@ -1894,6 +2959,7 @@
     "lifegain"
    ],
    "tags": [
+    "evasion@static",
     "lifegain@etb",
     "removal@spell"
    ]
@@ -1907,6 +2973,7 @@
     "topmanip"
    ],
    "tags": [
+    "flash@static",
     "removal@etb",
     "topmanip@etb",
     "selfmill@etb"
@@ -1963,8 +3030,10 @@
     "enhance"
    ],
    "tags": [
+    "misc@static",
     "token@loyalty",
     "pump@loyalty",
+    "evasion@loyalty",
     "removal@loyalty"
    ]
   }
@@ -2119,6 +3188,14 @@
     ]
    },
    {
+    "name": "Tishana's Tidebinder",
+    "decks": 207,
+    "roles": [
+     "ability",
+     "beater"
+    ]
+   },
+   {
     "name": "Amalia Benavides Aguirre",
     "decks": 206,
     "roles": [
@@ -2154,13 +3231,6 @@
     "decks": 172,
     "roles": [
      "removal"
-    ]
-   },
-   {
-    "name": "Duress",
-    "decks": 166,
-    "roles": [
-     "discard"
     ]
    }
   ],
@@ -2329,7 +3399,8 @@
     "name": "Winternight Stories",
     "decks": 201,
     "roles": [
-     "draw"
+     "draw",
+     "recursion"
     ]
    },
    {
@@ -2419,13 +3490,6 @@
    {
     "name": "Guiding Hydra",
     "decks": 218,
-    "roles": [
-     "beater"
-    ]
-   },
-   {
-    "name": "Tishana's Tidebinder",
-    "decks": 207,
     "roles": [
      "beater"
     ]
@@ -2555,6 +3619,13 @@
     "roles": [
      "beater"
     ]
+   },
+   {
+    "name": "Master of Barbs",
+    "decks": 55,
+    "roles": [
+     "beater"
+    ]
    }
   ],
   "support": [
@@ -2578,13 +3649,6 @@
     "decks": 96,
     "roles": [
      "lifegain"
-    ]
-   },
-   {
-    "name": "Wild Ride",
-    "decks": 94,
-    "roles": [
-     "enhance"
     ]
    },
    {
@@ -2739,6 +3803,13 @@
     "roles": [
      "protection"
     ]
+   },
+   {
+    "name": "Violent Urge",
+    "decks": 4,
+    "roles": [
+     "enhance"
+    ]
    }
   ],
   "combo": [
@@ -2874,6 +3945,14 @@
     ]
    },
    {
+    "name": "Formidable Speaker",
+    "decks": 38,
+    "roles": [
+     "untap",
+     "tutor"
+    ]
+   },
+   {
     "name": "Captain James T. Kirk",
     "decks": 34,
     "roles": [
@@ -2913,6 +3992,14 @@
     ]
    },
    {
+    "name": "Fear of Missing Out",
+    "decks": 23,
+    "roles": [
+     "untap",
+     "draw"
+    ]
+   },
+   {
     "name": "Colorstorm Stallion",
     "decks": 21,
     "roles": [
@@ -2925,23 +4012,6 @@
     "decks": 19,
     "roles": [
      "cheat"
-    ]
-   },
-   {
-    "name": "Royal Treatment",
-    "decks": 19,
-    "roles": [
-     "tokens",
-     "protection"
-    ]
-   },
-   {
-    "name": "Caretaker's Talent",
-    "decks": 15,
-    "roles": [
-     "tokens",
-     "draw",
-     "enhance"
     ]
    }
   ],
@@ -3046,7 +4116,10 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "misc@landfall",
+    "altcost@static"
+   ]
   },
   {
    "name": "Sazh's Chocobo",
@@ -3064,7 +4137,11 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "flash@static",
+    "evasion@static",
+    "tapdown@etb"
+   ]
   },
   {
    "name": "Mossborn Hydra",
@@ -3073,7 +4150,9 @@
     "beater"
    ],
    "tags": [
+    "evasion@static",
     "pump@static",
+    "setup@static",
     "pump@landfall"
    ]
   },
@@ -3083,7 +4162,9 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "evasion@static"
+   ]
   },
   {
    "name": "Floodpits Drowner",
@@ -3091,7 +4172,12 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "flash@static",
+    "combatkw@static",
+    "tapdown@etb",
+    "tapdown@activated"
+   ]
   },
   {
    "name": "Guiding Hydra",
@@ -3101,16 +4187,9 @@
    ],
    "tags": [
     "pump@static",
+    "setup@static",
     "pump@each_turn"
    ]
-  },
-  {
-   "name": "Tishana's Tidebinder",
-   "decks": 207,
-   "roles": [
-    "beater"
-   ],
-   "tags": []
   },
   {
    "name": "Starscape Cleric",
@@ -3120,6 +4199,9 @@
     "beater"
    ],
    "tags": [
+    "addcost@static",
+    "evasion@static",
+    "drawback@static",
     "drain@lifegain_trigger"
    ]
   },
@@ -3130,6 +4212,7 @@
     "beater"
    ],
    "tags": [
+    "evasion@static",
     "pump@etb"
    ]
   },
@@ -3141,6 +4224,7 @@
     "lifegain"
    ],
    "tags": [
+    "misc@cast_self",
     "lifegain@static"
    ]
   },
@@ -3150,7 +4234,12 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "flash@static",
+    "costreduce@static",
+    "landetb@static",
+    "tapdown@etb"
+   ]
   },
   {
    "name": "Sunderflock",
@@ -3158,7 +4247,11 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "costreduce@static",
+    "evasion@static",
+    "misc@etb"
+   ]
   },
   {
    "name": "Slickshot Show-Off",
@@ -3167,7 +4260,10 @@
     "beater"
    ],
    "tags": [
-    "pump@cast_trigger"
+    "evasion@static",
+    "haste@static",
+    "pump@cast_trigger",
+    "altcost@static"
    ]
   },
   {
@@ -3176,7 +4272,11 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "haste@static",
+    "misc@etb",
+    "misc@static"
+   ]
   },
   {
    "name": "Elusive Otter // Grove's Bounty",
@@ -3185,6 +4285,8 @@
     "beater"
    ],
    "tags": [
+    "pump@cast_trigger",
+    "misc@static",
     "pump@spell"
    ]
   },
@@ -3196,6 +4298,7 @@
     "lifegain"
    ],
    "tags": [
+    "flash@static",
     "lifegain@static",
     "pump@activated"
    ]
@@ -3220,6 +4323,8 @@
     "beater"
    ],
    "tags": [
+    "costreduce@static",
+    "addcost@static",
     "drain@etb",
     "drain@attack"
    ]
@@ -3241,6 +4346,8 @@
     "beater"
    ],
    "tags": [
+    "addcost@static",
+    "evasion@static",
     "pump@other_trigger"
    ]
   },
@@ -3252,6 +4359,7 @@
     "fastmana"
    ],
    "tags": [
+    "evasion@static",
     "pump@combat_damage",
     "mana@combat_damage"
    ]
@@ -3264,6 +4372,7 @@
     "beater"
    ],
    "tags": [
+    "addcost@static",
     "drain@landfall"
    ]
   },
@@ -3273,7 +4382,9 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "costreduce@static"
+   ]
   },
   {
    "name": "Dwalin, Weaponmaster",
@@ -3281,7 +4392,11 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "combatkw@static",
+    "misc@etb",
+    "misc@attack"
+   ]
   },
   {
    "name": "Master of Barbs",
@@ -3290,6 +4405,7 @@
     "beater"
    ],
    "tags": [
+    "evasion@static",
     "pump@other_trigger"
    ]
   },
@@ -3300,7 +4416,9 @@
     "beater"
    ],
    "tags": [
-    "pump@lifegain_trigger"
+    "evasion@static",
+    "pump@lifegain_trigger",
+    "misc@dies"
    ]
   },
   {
@@ -3309,7 +4427,9 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "evasion@static"
+   ]
   },
   {
    "name": "Callous Sell-Sword // Burn Together",
@@ -3318,7 +4438,9 @@
     "beater"
    ],
    "tags": [
-    "pump@static"
+    "pump@static",
+    "setup@static",
+    "misc@spell"
    ]
   },
   {
@@ -3327,7 +4449,11 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "evasion@static",
+    "setup@static",
+    "misc@other_trigger"
+   ]
   },
   {
    "name": "Gev, Scaled Scorch",
@@ -3337,6 +4463,7 @@
     "beater"
    ],
    "tags": [
+    "resilience@static",
     "pump@static",
     "drain@cast_trigger"
    ]
@@ -3347,7 +4474,9 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "misc@static"
+   ]
   },
   {
    "name": "Balmor, Battlemage Captain",
@@ -3356,17 +4485,9 @@
     "beater"
    ],
    "tags": [
-    "pump@cast_trigger"
-   ]
-  },
-  {
-   "name": "Marauding Mako",
-   "decks": 26,
-   "roles": [
-    "beater"
-   ],
-   "tags": [
-    "pump@other_trigger"
+    "evasion@static",
+    "pump@cast_trigger",
+    "evasion@cast_trigger"
    ]
   },
   {
@@ -3386,7 +4507,10 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "pump@cast_trigger",
+    "misc@static"
+   ]
   },
   {
    "name": "Hardened Academic",
@@ -3395,6 +4519,9 @@
     "beater"
    ],
    "tags": [
+    "evasion@static",
+    "haste@static",
+    "misc@activated",
     "pump@other_trigger"
    ]
   },
@@ -3404,7 +4531,10 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "combatkw@static",
+    "transform@other_trigger"
+   ]
   },
   {
    "name": "Q, Stacking the Deck",
@@ -3412,7 +4542,9 @@
    "roles": [
     "beater"
    ],
-   "tags": []
+   "tags": [
+    "misc@etb"
+   ]
   },
   {
    "name": "Bristly Bill, Spine Sower",
@@ -3424,176 +4556,17 @@
     "pump@landfall",
     "pump@activated"
    ]
-  }
- ],
- "noTags": [
+  },
   {
-   "name": "Mightform Harmonizer",
-   "decks": 285,
+   "name": "Avatar of Burgeoning Echoes",
+   "decks": 15,
    "roles": [
     "beater"
    ],
-   "typeLine": "Creature — Insect Druid"
-  },
-  {
-   "name": "The Wondrous Wasp",
-   "decks": 268,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Legendary Creature — Human Hero"
-  },
-  {
-   "name": "Spyglass Siren",
-   "decks": 232,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Siren Pirate"
-  },
-  {
-   "name": "Floodpits Drowner",
-   "decks": 230,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Merfolk"
-  },
-  {
-   "name": "Tishana's Tidebinder",
-   "decks": 207,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Merfolk Wizard"
-  },
-  {
-   "name": "Jace's Machinations",
-   "decks": 204,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Instant"
-  },
-  {
-   "name": "Eddymurk Crab",
-   "decks": 157,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Elemental Crab"
-  },
-  {
-   "name": "Sunderflock",
-   "decks": 119,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Elemental"
-  },
-  {
-   "name": "Wolverine, Fierce Fighter",
-   "decks": 112,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Legendary Creature — Mutant Berserker Hero"
-  },
-  {
-   "name": "Dwarven Mauler",
-   "decks": 61,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Dwarf Warrior"
-  },
-  {
-   "name": "Dwalin, Weaponmaster",
-   "decks": 60,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Legendary Creature — Dwarf Warrior"
-  },
-  {
-   "name": "Shared Roots",
-   "decks": 54,
-   "roles": [
-    "ramp"
-   ],
-   "typeLine": "Sorcery — Lesson"
-  },
-  {
-   "name": "Lumbering Worldwagon",
-   "decks": 52,
-   "roles": [
-    "ramp"
-   ],
-   "typeLine": "Artifact — Vehicle"
-  },
-  {
-   "name": "Mockingbird",
-   "decks": 49,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Bird Bard"
-  },
-  {
-   "name": "Moonshadow",
-   "decks": 48,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Elemental"
-  },
-  {
-   "name": "Valley Flamecaller",
-   "decks": 41,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Lizard Warlock"
-  },
-  {
-   "name": "Day of Black Sun",
-   "decks": 36,
-   "roles": [
-    "wipe"
-   ],
-   "typeLine": "Sorcery"
-  },
-  {
-   "name": "Tomik, Izzet Sparkmage",
-   "decks": 21,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Legendary Creature — Human Wizard"
-  },
-  {
-   "name": "Geist of Saint Thalia",
-   "decks": 20,
-   "roles": [
-    "ramp"
-   ],
-   "typeLine": "Legendary Creature — Spirit Cleric"
-  },
-  {
-   "name": "Cecil, Dark Knight // Cecil, Redeemed Paladin",
-   "decks": 18,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Legendary Creature — Human Knight // Legendary Creature — Human Knight"
-  },
-  {
-   "name": "Q, Stacking the Deck",
-   "decks": 18,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Legendary Creature — Q"
+   "tags": [
+    "misc@landfall",
+    "pump@static"
+   ]
   },
   {
    "name": "Sentinel of the Nameless City",
@@ -3601,146 +4574,12 @@
    "roles": [
     "beater"
    ],
-   "typeLine": "Creature — Merfolk Warrior Scout"
-  },
-  {
-   "name": "Samut, Hazoret's Champion",
-   "decks": 15,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Legendary Creature — Human Warrior Cleric"
-  },
-  {
-   "name": "Thought-Stalker Warlock",
-   "decks": 14,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Lizard Warlock"
-  },
-  {
-   "name": "Tiger-Seal",
-   "decks": 14,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Cat Seal"
-  },
-  {
-   "name": "Aang, Swift Savior // Aang and La, Ocean's Fury",
-   "decks": 13,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Legendary Creature — Human Avatar Ally // Legendary Creature — Avatar Spirit Ally"
-  },
-  {
-   "name": "Tarmogoyf",
-   "decks": 12,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Lhurgoyf"
-  },
-  {
-   "name": "Tifa Lockhart",
-   "decks": 12,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Legendary Creature — Human Monk"
-  },
-  {
-   "name": "Multiply by Zero",
-   "decks": 10,
-   "roles": [
-    "removal"
-   ],
-   "typeLine": "Instant"
-  },
-  {
-   "name": "Hexing Squelcher",
-   "decks": 10,
-   "roles": [
-    "protection"
-   ],
-   "typeLine": "Creature — Goblin Sorcerer"
-  },
-  {
-   "name": "Hexhaven Invigorator",
-   "decks": 7,
-   "roles": [
-    "ramp",
-    "beater"
-   ],
-   "typeLine": "Creature — Chimera Horror"
-  },
-  {
-   "name": "Outrageous Robbery",
-   "decks": 6,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Instant"
-  },
-  {
-   "name": "Azure Beastbinder",
-   "decks": 5,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Rat Rogue"
-  },
-  {
-   "name": "Huskburster Swarm",
-   "decks": 5,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Elemental Insect"
-  },
-  {
-   "name": "The Queen of Dale",
-   "decks": 5,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Legendary Creature — Human Noble"
-  },
-  {
-   "name": "Mathemagics",
-   "decks": 5,
-   "roles": [
-    "other"
-   ],
-   "typeLine": "Sorcery"
-  },
-  {
-   "name": "Mabel, Bitter Recluse",
-   "decks": 5,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Legendary Creature — Mouse Warlock"
-  },
-  {
-   "name": "Ravenous Cosmozoan",
-   "decks": 5,
-   "roles": [
-    "beater"
-   ],
-   "typeLine": "Creature — Fish"
-  },
-  {
-   "name": "Diamond Weapon",
-   "decks": 4,
-   "roles": [
-    "beater",
-    "protection"
-   ],
-   "typeLine": "Legendary Artifact Creature — Elemental"
-  },
+   "tags": [
+    "combatkw@static"
+   ]
+  }
+ ],
+ "noTags": [
   {
    "name": "Pym Particles",
    "decks": 4,
@@ -3748,6 +4587,22 @@
     "other"
    ],
    "typeLine": "Card"
+  },
+  {
+   "name": "Aegis Turtle",
+   "decks": 1,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Creature — Turtle"
+  },
+  {
+   "name": "Caelorna, Coral Tyrant",
+   "decks": 1,
+   "roles": [
+    "beater"
+   ],
+   "typeLine": "Legendary Creature — Octopus"
   }
  ],
  "unknownCards": [

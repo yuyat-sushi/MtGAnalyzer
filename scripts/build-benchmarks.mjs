@@ -25,6 +25,7 @@ import { createRequire } from 'node:module';
 const require = createRequire(import.meta.url);
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const Roles = require(path.join(ROOT, 'js/roles.js'));
+const Tags = require(path.join(ROOT, 'js/tags.js'));
 const CardModel = require(path.join(ROOT, 'js/cardmodel.js'));
 const Archetype = require(path.join(ROOT, 'js/archetype.js'));
 const Combos = require(path.join(ROOT, 'js/combos.js'));
@@ -441,7 +442,22 @@ async function main() {
       const t = o.replace(/[^.\n]*from your graveyard[^.\n]*/g, '').replace(/\b(delve|escape|flashback|unearth|embalm|eternalize|retrace|jump-start|disturb)\b[^.\n]*/g, '');
       return /graveyard/.test(t) && /(exile|bottom of|can't)/.test(t);
     }).slice(0, 60).map(c => ({ name: c.name, decks: c.decks, roles: c.roles, oracle: c.oracle }));
+    // 効果を読み取れなかった能力の文（採用の多いカードから）。カード名は ~、数字は N にまとめて書き方ごとに集計する
+    const untaggedLines = new Map();
+    for (const c of all.slice(0, 600)) {
+      const card = lookup(c.name);
+      if (!card) continue;
+      const nm = String(card.name).split(' // ')[0].toLowerCase().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      for (const u of Tags.analyze(card).untagged || []) {
+        const key = u.text.replace(new RegExp(nm, 'g'), '~').replace(/\b\d+\b/g, 'N');
+        const e = untaggedLines.get(key) || { pattern: key, kind: u.kind, decks: 0, cards: [] };
+        e.decks += c.decks; if (e.cards.length < 4) e.cards.push(c.name);
+        untaggedLines.set(key, e);
+      }
+    }
+    const untagged = [...untaggedLines.values()].sort((a, b) => b.decks - a.decks).slice(0, 200);
     const diag = {
+      untagged,
       comboCandidates,
       gyhateCandidates: gyMiss,
       // 妨害の小カテゴリごとの判定根拠（オラクルテキストと、処理・対象の種類）。判定ルールの見直し用
