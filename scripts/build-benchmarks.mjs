@@ -461,7 +461,7 @@ async function main() {
       comboCandidates,
       gyhateCandidates: gyMiss,
       // 妨害の小カテゴリごとの判定根拠（オラクルテキストと、処理・対象の種類）。判定ルールの見直し用
-      disruptEvidence: Object.fromEntries(['removal', 'wipe', 'spell', 'ability', 'discard', 'gyhate', 'manalock', 'combat'].map(id => [id,
+      disruptEvidence: Object.fromEntries(['removal', 'wipe', 'spell', 'ability', 'action', 'discard', 'gyhate', 'manalock', 'combat'].map(id => [id,
         all.filter(c => c.roles.includes(id)).slice(0, 40).map(c => ({ name: c.name, decks: c.decks, oracle: c.oracle,
           detail: c.tags.filter(t => t.detail).map(t => `${t.effect}:${t.detail.action}:${t.detail.types.join('/')}`) }))])),
       format: FORMATS[fmt], generatedAt: index.generatedAt, decks: decks.length,
