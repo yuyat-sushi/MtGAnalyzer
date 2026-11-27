@@ -450,8 +450,10 @@
   }
 
   function buildAdvice(a) {
-    const out = []; // {level: 'good'|'warn'|'bad'|'info', text}
-    const push = (level, text) => out.push({ level, text });
+    const out = []; // {level: 'good'|'warn'|'bad'|'info', text, group}
+    // group: base（前提チェック）/ plan（メインの動き）/ meta（対策）/ extra（補足）
+    let grp = 'base';
+    const push = (level, text) => out.push({ level, text, group: grp });
 
     if (a.total === 0) {
       push('info', 'まずはカードを追加するか、MTGO形式のデッキを読み込んでね！');
@@ -473,7 +475,8 @@
     else if (diff < 0) push('bad', `土地が少なめかも…平均MV ${a.avgMV.toFixed(2)} なら目安は ${rec} 枚（いま ${a.lands} 枚${a.mdfcLands ? `＋両面土地 ${a.mdfcLands}` : ''}）。土地事故が怖いよ！`);
     else push('warn', `土地が多めかも。目安 ${rec} 枚に対して ${a.lands} 枚。マナフラッド対策に土地を減らすか、マナの使い道を足してみて。`);
 
-    // カテゴリ
+    // カテゴリ（上位デッキや目安との比較。補足扱い）
+    grp = 'extra';
     const labels = Object.fromEntries(ROLES.map(r => [r.id, r.label]));
     CATEGORIES.forEach(c => { labels['cat:' + c.id] = `【${c.label}】`; });
     // 小カテゴリの「多め」判定用: その役割だけを持つ専任カードで数え直す
@@ -517,6 +520,7 @@
     }
 
     // カーブ
+    grp = 'plan';
     const top = a.curve[5] + a.curve[6] + a.curve[7];
     const low = a.curve[0] + a.curve[1] + a.curve[2];
     if (a.nonLand) {
@@ -527,6 +531,7 @@
     }
 
     // 土地サーチ先
+    grp = 'base';
     (a.fetchMiss || []).forEach(f => push('warn', `${f.name}で探せる土地がデッキにないよ（${f.need}が必要）。`));
 
     // 色
