@@ -1,4 +1,1687 @@
 {
+ "untagged": [
+  {
+   "pattern": "as this land enters, you may pay N life. if you don't, it enters tapped.",
+   "kind": "static",
+   "decks": 9174,
+   "cards": [
+    "Steam Vents",
+    "Sacred Foundry",
+    "Blood Crypt",
+    "Hallowed Fountain"
+   ]
+  },
+  {
+   "pattern": "this land enters tapped.",
+   "kind": "static",
+   "decks": 8323,
+   "cards": [
+    "Thundering Falls",
+    "Meticulous Archive",
+    "Raucous Theater",
+    "Elegant Parlor"
+   ]
+  },
+  {
+   "pattern": "flash",
+   "kind": "static",
+   "decks": 2893,
+   "cards": [
+    "Solitude",
+    "Subtlety",
+    "Orcish Bowmasters",
+    "Endurance"
+   ]
+  },
+  {
+   "pattern": "flying",
+   "kind": "static",
+   "decks": 2710,
+   "cards": [
+    "Quantum Riddler",
+    "Subtlety",
+    "Tamiyo, Inquisitive Student // Tamiyo, Seasoned Scholar",
+    "Scion of Draco"
+   ]
+  },
+  {
+   "pattern": "{t}, pay N life, sacrifice this land: search your library for a mountain or plains card, put it onto the battlefield, then shuffle.",
+   "kind": "activated",
+   "decks": 1792,
+   "cards": [
+    "Arid Mesa"
+   ]
+  },
+  {
+   "pattern": "{t}, pay N life, sacrifice this land: search your library for a plains or island card, put it onto the battlefield, then shuffle.",
+   "kind": "activated",
+   "decks": 1484,
+   "cards": [
+    "Flooded Strand"
+   ]
+  },
+  {
+   "pattern": "{t}, pay N life, sacrifice this land: search your library for a swamp or mountain card, put it onto the battlefield, then shuffle.",
+   "kind": "activated",
+   "decks": 1387,
+   "cards": [
+    "Bloodstained Mire"
+   ]
+  },
+  {
+   "pattern": "{t}, pay N life, sacrifice this land: search your library for a plains or swamp card, put it onto the battlefield, then shuffle.",
+   "kind": "activated",
+   "decks": 1333,
+   "cards": [
+    "Marsh Flats"
+   ]
+  },
+  {
+   "pattern": "{t}, pay N life, sacrifice this land: search your library for an island or swamp card, put it onto the battlefield, then shuffle.",
+   "kind": "activated",
+   "decks": 1331,
+   "cards": [
+    "Polluted Delta"
+   ]
+  },
+  {
+   "pattern": "{t}, pay N life, sacrifice this land: search your library for an island or mountain card, put it onto the battlefield, then shuffle.",
+   "kind": "activated",
+   "decks": 1244,
+   "cards": [
+    "Scalding Tarn"
+   ]
+  },
+  {
+   "pattern": "equip {N}",
+   "kind": "static",
+   "decks": 1226,
+   "cards": [
+    "Blade of the Bloodchief",
+    "Skateboard",
+    "Shadowspear",
+    "Lavaspur Boots"
+   ]
+  },
+  {
+   "pattern": "{t}, pay N life, sacrifice this land: search your library for a mountain or forest card, put it onto the battlefield, then shuffle.",
+   "kind": "activated",
+   "decks": 1097,
+   "cards": [
+    "Wooded Foothills"
+   ]
+  },
+  {
+   "pattern": "devoid",
+   "kind": "static",
+   "decks": 1037,
+   "cards": [
+    "Sowing Mycospawn",
+    "Basking Broodscale",
+    "World Breaker",
+    "Kozilek's Return"
+   ]
+  },
+  {
+   "pattern": "reach",
+   "kind": "static",
+   "decks": 981,
+   "cards": [
+    "Endurance",
+    "Arboreal Grazer",
+    "Generous Ent",
+    "Crescendo Conductor // Boltwave"
+   ]
+  },
+  {
+   "pattern": "evoke—exile a white card from your hand.",
+   "kind": "static",
+   "decks": 921,
+   "cards": [
+    "Solitude"
+   ]
+  },
+  {
+   "pattern": "choose one —",
+   "kind": "spell",
+   "decks": 918,
+   "cards": [
+    "Thraben Charm",
+    "Sheoldred's Edict",
+    "Drown in the Loch",
+    "Warping Wail"
+   ]
+  },
+  {
+   "pattern": "flying, haste",
+   "kind": "static",
+   "decks": 878,
+   "cards": [
+    "Detective's Phoenix",
+    "Slickshot Show-Off",
+    "Darklight Phoenix",
+    "Hardened Academic"
+   ]
+  },
+  {
+   "pattern": "trample",
+   "kind": "static",
+   "decks": 877,
+   "cards": [
+    "Primeval Titan",
+    "Cultivator Colossus",
+    "Oliphaunt",
+    "Ghalta, Stampede Tyrant"
+   ]
+  },
+  {
+   "pattern": "choose two —",
+   "kind": "spell",
+   "decks": 834,
+   "cards": [
+    "Kozilek's Command",
+    "Kolaghan's Command",
+    "Kaya's Guile"
+   ]
+  },
+  {
+   "pattern": "if it's not your turn, you may exile a blue card from your hand rather than pay this spell's mana cost.",
+   "kind": "spell",
+   "decks": 812,
+   "cards": [
+    "Force of Negation"
+   ]
+  },
+  {
+   "pattern": "warp {N}{u}",
+   "kind": "static",
+   "decks": 777,
+   "cards": [
+    "Quantum Riddler"
+   ]
+  },
+  {
+   "pattern": "each opponent can cast spells only any time they could cast a sorcery.",
+   "kind": "static",
+   "decks": 756,
+   "cards": [
+    "Teferi, Time Raveler"
+   ]
+  },
+  {
+   "pattern": "+N: until your next turn, you may cast sorcery spells as though they had flash.",
+   "kind": "activated",
+   "decks": 756,
+   "cards": [
+    "Teferi, Time Raveler"
+   ]
+  },
+  {
+   "pattern": "{t}, pay N life, sacrifice this land: search your library for a forest or island card, put it onto the battlefield, then shuffle.",
+   "kind": "activated",
+   "decks": 746,
+   "cards": [
+    "Misty Rainforest"
+   ]
+  },
+  {
+   "pattern": "{t}, pay N life, sacrifice this land: search your library for a swamp or forest card, put it onto the battlefield, then shuffle.",
+   "kind": "activated",
+   "decks": 744,
+   "cards": [
+    "Verdant Catacombs"
+   ]
+  },
+  {
+   "pattern": "when this land enters, you may exile a colorless card with mana value N or greater from your hand.",
+   "kind": "triggered",
+   "decks": 736,
+   "cards": [
+    "Ugin's Labyrinth"
+   ]
+  },
+  {
+   "pattern": "{t}: return the exiled card to its owner's hand.",
+   "kind": "activated",
+   "decks": 736,
+   "cards": [
+    "Ugin's Labyrinth"
+   ]
+  },
+  {
+   "pattern": "dash {N}{r}",
+   "kind": "static",
+   "decks": 725,
+   "cards": [
+    "Ragavan, Nimble Pilferer"
+   ]
+  },
+  {
+   "pattern": "this land enters tapped unless you control two or fewer other lands.",
+   "kind": "static",
+   "decks": 719,
+   "cards": [
+    "Spirebluff Canal",
+    "Darkslick Shores",
+    "Blackcleave Cliffs",
+    "Blooming Marsh"
+   ]
+  },
+  {
+   "pattern": "haste",
+   "kind": "static",
+   "decks": 662,
+   "cards": [
+    "Monastery Swiftspear",
+    "Craterhoof Behemoth",
+    "Vengevine",
+    "Timeline Culler"
+   ]
+  },
+  {
+   "pattern": "improvise",
+   "kind": "static",
+   "decks": 642,
+   "cards": [
+    "Kappa Cannoneer",
+    "Metallic Rebuke",
+    "Whir of Invention"
+   ]
+  },
+  {
+   "pattern": "if this card is in your opening hand and you're not the starting player, you may begin the game with ~ on the battlefield with a luck counter on it. if you do, exile a card from your hand.",
+   "kind": "static",
+   "decks": 636,
+   "cards": [
+    "Gemstone Caverns"
+   ]
+  },
+  {
+   "pattern": "replicate {N}",
+   "kind": "spell",
+   "decks": 626,
+   "cards": [
+    "Consign to Memory"
+   ]
+  },
+  {
+   "pattern": "swampwalk",
+   "kind": "static",
+   "decks": 618,
+   "cards": [
+    "Street Wraith"
+   ]
+  },
+  {
+   "pattern": "cycling—pay N life.",
+   "kind": "static",
+   "decks": 618,
+   "cards": [
+    "Street Wraith"
+   ]
+  },
+  {
+   "pattern": "~'s power is equal to the number of card types among cards in your graveyard and its toughness is equal to that number plus N.",
+   "kind": "static",
+   "decks": 569,
+   "cards": [
+    "Nethergoyf"
+   ]
+  },
+  {
+   "pattern": "kicker {N}{c}",
+   "kind": "static",
+   "decks": 542,
+   "cards": [
+    "Sowing Mycospawn"
+   ]
+  },
+  {
+   "pattern": "when you cast this spell, search your library for a land card, put it onto the battlefield, then shuffle.",
+   "kind": "triggered",
+   "decks": 542,
+   "cards": [
+    "Sowing Mycospawn"
+   ]
+  },
+  {
+   "pattern": "when this land enters, return a land you control to its owner's hand.",
+   "kind": "triggered",
+   "decks": 534,
+   "cards": [
+    "Gruul Turf",
+    "Simic Growth Chamber",
+    "Golgari Rot Farm"
+   ]
+  },
+  {
+   "pattern": "cycling {N}",
+   "kind": "static",
+   "decks": 534,
+   "cards": [
+    "Indatha Triome",
+    "Unearth",
+    "Spara's Headquarters",
+    "Pest Control"
+   ]
+  },
+  {
+   "pattern": "{t}, pay N life, sacrifice this land: search your library for a forest or plains card, put it onto the battlefield, then shuffle.",
+   "kind": "activated",
+   "decks": 532,
+   "cards": [
+    "Windswept Heath"
+   ]
+  },
+  {
+   "pattern": "this spell costs {N} less to cast for each card type among cards in your graveyard.",
+   "kind": "static",
+   "decks": 524,
+   "cards": [
+    "Emrakul, the Promised End"
+   ]
+  },
+  {
+   "pattern": "flying, trample, protection from instants",
+   "kind": "static",
+   "decks": 524,
+   "cards": [
+    "Emrakul, the Promised End"
+   ]
+  },
+  {
+   "pattern": "menace",
+   "kind": "static",
+   "decks": 511,
+   "cards": [
+    "Moonshadow"
+   ]
+  },
+  {
+   "pattern": "this creature enters with six -N/-N counters on it.",
+   "kind": "static",
+   "decks": 511,
+   "cards": [
+    "Moonshadow"
+   ]
+  },
+  {
+   "pattern": "whenever one or more permanent cards are put into your graveyard from anywhere while this creature has a -N/-N counter on it, remove a -N/-N counter from this creature.",
+   "kind": "triggered",
+   "decks": 511,
+   "cards": [
+    "Moonshadow"
+   ]
+  },
+  {
+   "pattern": "delirium — ~ deals N damage instead if there are four or more card types among cards in your graveyard.",
+   "kind": "spell",
+   "decks": 505,
+   "cards": [
+    "Unholy Heat"
+   ]
+  },
+  {
+   "pattern": "bestow—{r}, collect evidence N.",
+   "kind": "static",
+   "decks": 505,
+   "cards": [
+    "Detective's Phoenix"
+   ]
+  },
+  {
+   "pattern": "this land enters tapped unless you control a mountain.",
+   "kind": "static",
+   "decks": 504,
+   "cards": [
+    "Arena of Glory"
+   ]
+  },
+  {
+   "pattern": "exile three cards from your graveyard: this creature gains flying until end of turn.",
+   "kind": "activated",
+   "decks": 495,
+   "cards": [
+    "Psychic Frog"
+   ]
+  },
+  {
+   "pattern": "rebound",
+   "kind": "spell",
+   "decks": 494,
+   "cards": [
+    "Ephemerate"
+   ]
+  },
+  {
+   "pattern": "prowess",
+   "kind": "static",
+   "decks": 476,
+   "cards": [
+    "Monastery Swiftspear",
+    "Pompous Battlemage // Improvised Act",
+    "Pinnacle Monk // Mystic Peak"
+   ]
+  },
+  {
+   "pattern": "domain — this spell costs {N} less to cast for each basic land type among lands you control.",
+   "kind": "static",
+   "decks": 463,
+   "cards": [
+    "Leyline Binding",
+    "Scion of Draco"
+   ]
+  },
+  {
+   "pattern": "whenever this creature attacks for the first time each turn, if there are four or more card types among cards in your graveyard, untap target creature. after this phase, there is an additional combat phase.",
+   "kind": "triggered",
+   "decks": 459,
+   "cards": [
+    "Fear of Missing Out"
+   ]
+  },
+  {
+   "pattern": "reach, first strike",
+   "kind": "static",
+   "decks": 448,
+   "cards": [
+    "Sire of Seven Deaths"
+   ]
+  },
+  {
+   "pattern": "vigilance, menace",
+   "kind": "static",
+   "decks": 448,
+   "cards": [
+    "Sire of Seven Deaths"
+   ]
+  },
+  {
+   "pattern": "ward—pay N life.",
+   "kind": "static",
+   "decks": 448,
+   "cards": [
+    "Sire of Seven Deaths"
+   ]
+  },
+  {
+   "pattern": "ascend",
+   "kind": "static",
+   "decks": 446,
+   "cards": [
+    "Ocelot Pride"
+   ]
+  },
+  {
+   "pattern": "whenever one or more other cats you control die, you may exile ajani, then return him to the battlefield transformed under his owner's control.",
+   "kind": "triggered",
+   "decks": 426,
+   "cards": [
+    "Ajani, Nacatl Pariah // Ajani, Nacatl Avenger"
+   ]
+  },
+  {
+   "pattern": "this land enters tapped unless you control a forest.",
+   "kind": "static",
+   "decks": 421,
+   "cards": [
+    "Shifting Woodland",
+    "Castle Garenbrig"
+   ]
+  },
+  {
+   "pattern": "this creature can't be blocked except by three or more creatures.",
+   "kind": "static",
+   "decks": 417,
+   "cards": [
+    "Troll of Khazad-dûm"
+   ]
+  },
+  {
+   "pattern": "swampcycling {N}",
+   "kind": "static",
+   "decks": 417,
+   "cards": [
+    "Troll of Khazad-dûm"
+   ]
+  },
+  {
+   "pattern": "{N}{g}: adapt N.",
+   "kind": "activated",
+   "decks": 411,
+   "cards": [
+    "Basking Broodscale"
+   ]
+  },
+  {
+   "pattern": "{N}{g}{g}: this land becomes a copy of target permanent card in your graveyard until end of turn. activate only if there are four or more card types among cards in your graveyard.",
+   "kind": "activated",
+   "decks": 409,
+   "cards": [
+    "Shifting Woodland"
+   ]
+  },
+  {
+   "pattern": "{N}{r}: level N",
+   "kind": "activated",
+   "decks": 402,
+   "cards": [
+    "Artist's Talent",
+    "Artist's Talent",
+    "Cool but Rude",
+    "Cool but Rude"
+   ]
+  },
+  {
+   "pattern": "each land is a forest in addition to its other land types.",
+   "kind": "static",
+   "decks": 400,
+   "cards": [
+    "Yavimaya, Cradle of Growth"
+   ]
+  },
+  {
+   "pattern": "mobilize N",
+   "kind": "static",
+   "decks": 396,
+   "cards": [
+    "Voice of Victory"
+   ]
+  },
+  {
+   "pattern": "at the beginning of your next upkeep, pay {N}{g}{g}. if you don't, you lose the game.",
+   "kind": "spell",
+   "decks": 392,
+   "cards": [
+    "Summoner's Pact"
+   ]
+  },
+  {
+   "pattern": "as this artifact enters, choose a card name.",
+   "kind": "static",
+   "decks": 390,
+   "cards": [
+    "Pithing Needle",
+    "Disruptor Flute"
+   ]
+  },
+  {
+   "pattern": "equip {N}{r}",
+   "kind": "static",
+   "decks": 379,
+   "cards": [
+    "Cori-Steel Cutter"
+   ]
+  },
+  {
+   "pattern": "when this equipment enters, tap target permanent.",
+   "kind": "triggered",
+   "decks": 376,
+   "cards": [
+    "Skateboard"
+   ]
+  },
+  {
+   "pattern": "when this creature enters, choose up to one target creature spell or planeswalker spell. its owner puts it on their choice of the top or bottom of their library.",
+   "kind": "triggered",
+   "decks": 367,
+   "cards": [
+    "Subtlety"
+   ]
+  },
+  {
+   "pattern": "evoke—exile a blue card from your hand.",
+   "kind": "static",
+   "decks": 367,
+   "cards": [
+    "Subtlety"
+   ]
+  },
+  {
+   "pattern": "this land enters tapped unless you control a swamp or a mountain.",
+   "kind": "static",
+   "decks": 361,
+   "cards": [
+    "Dalkovan Encampment"
+   ]
+  },
+  {
+   "pattern": "affinity for artifacts",
+   "kind": "static",
+   "decks": 356,
+   "cards": [
+    "Emry, Lurker of the Loch",
+    "Thoughtcast",
+    "Krang, Master Mind"
+   ]
+  },
+  {
+   "pattern": "evoke—exile a green card from your hand.",
+   "kind": "static",
+   "decks": 347,
+   "cards": [
+    "Endurance"
+   ]
+  },
+  {
+   "pattern": "if this card is in your opening hand, you may begin the game with it on the battlefield.",
+   "kind": "static",
+   "decks": 342,
+   "cards": [
+    "Leyline of the Guildpact",
+    "Leyline of Abundance",
+    "Leyline Axe"
+   ]
+  },
+  {
+   "pattern": "{N}: permanents your opponents control lose hexproof and indestructible until end of turn.",
+   "kind": "activated",
+   "decks": 336,
+   "cards": [
+    "Shadowspear"
+   ]
+  },
+  {
+   "pattern": "as an additional cost to cast this spell, you may exile any number of white cards from your hand. this spell costs {N} less to cast for each card exiled this way.",
+   "kind": "spell",
+   "decks": 336,
+   "cards": [
+    "March of Otherworldly Light"
+   ]
+  },
+  {
+   "pattern": "cascade",
+   "kind": "static",
+   "decks": 336,
+   "cards": [
+    "Shardless Agent",
+    "Violent Outburst"
+   ]
+  },
+  {
+   "pattern": "this land enters tapped unless you control a plains.",
+   "kind": "static",
+   "decks": 326,
+   "cards": [
+    "Monumental Henge",
+    "Castle Ardenvale"
+   ]
+  },
+  {
+   "pattern": "{t}: choose target artifact card in your graveyard. you may cast that card this turn.",
+   "kind": "activated",
+   "decks": 322,
+   "cards": [
+    "Emry, Lurker of the Loch"
+   ]
+  },
+  {
+   "pattern": "indestructible",
+   "kind": "static",
+   "decks": 321,
+   "cards": [
+    "Ulamog, the Ceaseless Hunger",
+    "Xenagos, God of Revels",
+    "The Mind Stone",
+    "Darksteel Citadel"
+   ]
+  },
+  {
+   "pattern": "{N}{b}: adapt N.",
+   "kind": "activated",
+   "decks": 312,
+   "cards": [
+    "Emperor of Bones"
+   ]
+  },
+  {
+   "pattern": "kicker {w}",
+   "kind": "spell",
+   "decks": 310,
+   "cards": [
+    "Orim's Chant"
+   ]
+  },
+  {
+   "pattern": "when this creature enters, you may put a land card from your hand onto the battlefield tapped.",
+   "kind": "triggered",
+   "decks": 296,
+   "cards": [
+    "Arboreal Grazer"
+   ]
+  },
+  {
+   "pattern": "each opponent can't draw more than one card each turn.",
+   "kind": "static",
+   "decks": 295,
+   "cards": [
+    "Narset, Parter of Veils"
+   ]
+  },
+  {
+   "pattern": "whenever this creature enters or attacks, you may search your library for up to two land cards, put them onto the battlefield tapped, then shuffle.",
+   "kind": "triggered",
+   "decks": 294,
+   "cards": [
+    "Primeval Titan"
+   ]
+  },
+  {
+   "pattern": "ward {N}",
+   "kind": "static",
+   "decks": 293,
+   "cards": [
+    "Kappa Cannoneer"
+   ]
+  },
+  {
+   "pattern": "warp {u/r}",
+   "kind": "static",
+   "decks": 291,
+   "cards": [
+    "Pinnacle Emissary"
+   ]
+  },
+  {
+   "pattern": "sunburst",
+   "kind": "static",
+   "decks": 288,
+   "cards": [
+    "Engineered Explosives"
+   ]
+  },
+  {
+   "pattern": "+N: until your next turn, up to one target noncreature artifact becomes an artifact creature with power and toughness each equal to its mana value.",
+   "kind": "activated",
+   "decks": 275,
+   "cards": [
+    "Karn, the Great Creator"
+   ]
+  },
+  {
+   "pattern": "you may sacrifice a nontoken black creature rather than pay this spell's mana cost.",
+   "kind": "spell",
+   "decks": 273,
+   "cards": [
+    "Flare of Malice"
+   ]
+  },
+  {
+   "pattern": "sacrifice any number of lands. search your library for up to that many land cards, put them onto the battlefield tapped, then shuffle.",
+   "kind": "spell",
+   "decks": 266,
+   "cards": [
+    "Scapeshift"
+   ]
+  },
+  {
+   "pattern": "plot {N}{r}",
+   "kind": "static",
+   "decks": 261,
+   "cards": [
+    "Slickshot Show-Off"
+   ]
+  },
+  {
+   "pattern": "lands you control enter untapped.",
+   "kind": "static",
+   "decks": 261,
+   "cards": [
+    "Spelunking"
+   ]
+  },
+  {
+   "pattern": "lands you control are every basic land type in addition to their other types.",
+   "kind": "static",
+   "decks": 261,
+   "cards": [
+    "Leyline of the Guildpact",
+    "Dryad of the Ilysian Grove"
+   ]
+  },
+  {
+   "pattern": "as an additional cost to cast this spell, sacrifice a creature.",
+   "kind": "spell",
+   "decks": 261,
+   "cards": [
+    "Neoform",
+    "Eldritch Evolution",
+    "Corrupted Conviction",
+    "Village Rites"
+   ]
+  },
+  {
+   "pattern": "whenever a permanent you control enters tapped, untap it.",
+   "kind": "triggered",
+   "decks": 260,
+   "cards": [
+    "Amulet of Vigor"
+   ]
+  },
+  {
+   "pattern": "~'s power and toughness are each equal to the number of lands you control.",
+   "kind": "static",
+   "decks": 259,
+   "cards": [
+    "Cultivator Colossus"
+   ]
+  },
+  {
+   "pattern": "{r}, {t}: target creature gains haste until end of turn.",
+   "kind": "activated",
+   "decks": 258,
+   "cards": [
+    "Hanweir Battlements"
+   ]
+  },
+  {
+   "pattern": "{N}{r}{r}, {t}: if you both own and control this land and a creature named hanweir garrison, exile them, then meld them into hanweir, the writhing township.",
+   "kind": "activated",
+   "decks": 258,
+   "cards": [
+    "Hanweir Battlements"
+   ]
+  },
+  {
+   "pattern": "transmute {N}{u}{u}",
+   "kind": "static",
+   "decks": 256,
+   "cards": [
+    "Tolaria West"
+   ]
+  },
+  {
+   "pattern": "you may activate abilities of creatures you control as though those creatures had haste.",
+   "kind": "static",
+   "decks": 255,
+   "cards": [
+    "Shang-Chi, Master of Kung Fu",
+    "Tyvar, Jubilant Brawler"
+   ]
+  },
+  {
+   "pattern": "you may have this land enter tapped as a copy of any land card in a graveyard, except it's a cave in addition to its other types.",
+   "kind": "static",
+   "decks": 250,
+   "cards": [
+    "Echoing Deeps"
+   ]
+  },
+  {
+   "pattern": "delve",
+   "kind": "static",
+   "decks": 247,
+   "cards": [
+    "Murktide Regent",
+    "Hooting Mandrills",
+    "Logic Knot"
+   ]
+  },
+  {
+   "pattern": "forestcycling {N}",
+   "kind": "static",
+   "decks": 245,
+   "cards": [
+    "Generous Ent"
+   ]
+  },
+  {
+   "pattern": "as this land enters, choose a creature type.",
+   "kind": "static",
+   "decks": 241,
+   "cards": [
+    "Cavern of Souls"
+   ]
+  },
+  {
+   "pattern": "when you draw your third card in a turn, exile tamiyo, then return her to the battlefield transformed under her owner's control.",
+   "kind": "triggered",
+   "decks": 232,
+   "cards": [
+    "Tamiyo, Inquisitive Student // Tamiyo, Seasoned Scholar"
+   ]
+  },
+  {
+   "pattern": "kicker {N}{u}",
+   "kind": "spell",
+   "decks": 223,
+   "cards": [
+    "Consult the Star Charts"
+   ]
+  },
+  {
+   "pattern": "you may have this land enter tapped as a copy of any land on the battlefield.",
+   "kind": "static",
+   "decks": 222,
+   "cards": [
+    "Vesuva"
+   ]
+  },
+  {
+   "pattern": "this spell can't be countered.",
+   "kind": "spell",
+   "decks": 221,
+   "cards": [
+    "Supreme Verdict",
+    "Emrakul, the Aeons Torn"
+   ]
+  },
+  {
+   "pattern": "when this artifact enters, you may exile an instant card with mana value N or less from your hand.",
+   "kind": "triggered",
+   "decks": 218,
+   "cards": [
+    "Isochron Scepter"
+   ]
+  },
+  {
+   "pattern": "splice onto arcane {N}{r}",
+   "kind": "spell",
+   "decks": 209,
+   "cards": [
+    "Desperate Ritual"
+   ]
+  },
+  {
+   "pattern": "evoke {g/u}{g/u}",
+   "kind": "static",
+   "decks": 209,
+   "cards": [
+    "Wistfulness"
+   ]
+  },
+  {
+   "pattern": "instant and sorcery spells you cast cost {N} less to cast.",
+   "kind": "static",
+   "decks": 200,
+   "cards": [
+    "Ral, Monsoon Mage // Ral, Leyline Prodigy"
+   ]
+  },
+  {
+   "pattern": "whenever you cast an instant or sorcery spell during your turn, flip a coin. if you lose the flip, ral deals N damage to you. if you win the flip, you may exile ral. if you do, return him to the battlefield transformed under his owner's control.",
+   "kind": "triggered",
+   "decks": 200,
+   "cards": [
+    "Ral, Monsoon Mage // Ral, Leyline Prodigy"
+   ]
+  },
+  {
+   "pattern": "red spells you cast cost {N} less to cast.",
+   "kind": "static",
+   "decks": 197,
+   "cards": [
+    "Ruby Medallion"
+   ]
+  },
+  {
+   "pattern": "delirium — if there are four or more card types among cards in your graveyard, that creature gains double strike until end of turn.",
+   "kind": "spell",
+   "decks": 196,
+   "cards": [
+    "Violent Urge"
+   ]
+  },
+  {
+   "pattern": "each nonland permanent you control is all colors.",
+   "kind": "static",
+   "decks": 194,
+   "cards": [
+    "Leyline of the Guildpact"
+   ]
+  },
+  {
+   "pattern": "each creature you control has vigilance if it's white, hexproof if it's blue, lifelink if it's black, first strike if it's red, and trample if it's green.",
+   "kind": "static",
+   "decks": 194,
+   "cards": [
+    "Scion of Draco"
+   ]
+  },
+  {
+   "pattern": "domain — ~'s power and toughness are each equal to the number of basic land types among lands you control.",
+   "kind": "static",
+   "decks": 192,
+   "cards": [
+    "Territorial Kavu"
+   ]
+  },
+  {
+   "pattern": "whenever this creature attacks, choose one —",
+   "kind": "triggered",
+   "decks": 192,
+   "cards": [
+    "Territorial Kavu"
+   ]
+  },
+  {
+   "pattern": "noncreature spells you cast cost {N} less to cast.",
+   "kind": "static",
+   "decks": 188,
+   "cards": [
+    "Artist's Talent"
+   ]
+  },
+  {
+   "pattern": "if a source you control would deal noncombat damage to an opponent or a permanent an opponent controls, it deals that much damage plus N instead.",
+   "kind": "static",
+   "decks": 188,
+   "cards": [
+    "Artist's Talent"
+   ]
+  },
+  {
+   "pattern": "warp {w}",
+   "kind": "static",
+   "decks": 187,
+   "cards": [
+    "Haliya, Guided by Light"
+   ]
+  },
+  {
+   "pattern": "impending N—{N}{b}",
+   "kind": "static",
+   "decks": 184,
+   "cards": [
+    "Overlord of the Balemurk"
+   ]
+  },
+  {
+   "pattern": "as this land enters, you may behold a jace. if you don't, this land enters tapped.",
+   "kind": "static",
+   "decks": 182,
+   "cards": [
+    "Theorist's Sanctum"
+   ]
+  },
+  {
+   "pattern": "{N}{u}, {t}: empower jace N.",
+   "kind": "activated",
+   "decks": 182,
+   "cards": [
+    "Theorist's Sanctum"
+   ]
+  },
+  {
+   "pattern": "iii — exile this saga, then return it to the battlefield transformed under your control.",
+   "kind": "triggered",
+   "decks": 182,
+   "cards": [
+    "Fable of the Mirror-Breaker // Reflection of Kiki-Jiki",
+    "The Legend of Roku // Avatar Roku"
+   ]
+  },
+  {
+   "pattern": "this creature can't block.",
+   "kind": "static",
+   "decks": 173,
+   "cards": [
+    "Carrion Feeder",
+    "Bloodghast"
+   ]
+  },
+  {
+   "pattern": "suspend N—{N}{b}{b}",
+   "kind": "spell",
+   "decks": 170,
+   "cards": [
+    "Living End"
+   ]
+  },
+  {
+   "pattern": "flying, ward {N}",
+   "kind": "static",
+   "decks": 167,
+   "cards": [
+    "Colossal Skyturtle"
+   ]
+  },
+  {
+   "pattern": "when this creature enters, earthbend N.",
+   "kind": "triggered",
+   "decks": 166,
+   "cards": [
+    "Badgermole Cub"
+   ]
+  },
+  {
+   "pattern": "this land enters tapped unless you control a basic land.",
+   "kind": "static",
+   "decks": 164,
+   "cards": [
+    "Ba Sing Se",
+    "Abandoned Air Temple"
+   ]
+  },
+  {
+   "pattern": "{N}, {t}: untap another target permanent.",
+   "kind": "activated",
+   "decks": 159,
+   "cards": [
+    "Formidable Speaker"
+   ]
+  },
+  {
+   "pattern": "cycling {u}",
+   "kind": "static",
+   "decks": 157,
+   "cards": [
+    "Striped Riverwinder",
+    "Curator of Mysteries"
+   ]
+  },
+  {
+   "pattern": "when you cast this spell, exile two target permanents.",
+   "kind": "triggered",
+   "decks": 150,
+   "cards": [
+    "Ulamog, the Ceaseless Hunger"
+   ]
+  },
+  {
+   "pattern": "whenever ulamog attacks, defending player exiles the top twenty cards of their library.",
+   "kind": "triggered",
+   "decks": 150,
+   "cards": [
+    "Ulamog, the Ceaseless Hunger"
+   ]
+  },
+  {
+   "pattern": "splice onto arcane {N}{b}",
+   "kind": "spell",
+   "decks": 147,
+   "cards": [
+    "Goryo's Vengeance"
+   ]
+  },
+  {
+   "pattern": "you may play an additional land on each of your turns.",
+   "kind": "static",
+   "decks": 145,
+   "cards": [
+    "Icetill Explorer",
+    "Dryad of the Ilysian Grove"
+   ]
+  },
+  {
+   "pattern": "{N}{u}: level N",
+   "kind": "activated",
+   "decks": 144,
+   "cards": [
+    "Stormchaser's Talent",
+    "Stormchaser's Talent"
+   ]
+  },
+  {
+   "pattern": "mountaincycling {N}",
+   "kind": "static",
+   "decks": 140,
+   "cards": [
+    "Oliphaunt"
+   ]
+  },
+  {
+   "pattern": "this land enters tapped unless you control a swamp.",
+   "kind": "static",
+   "decks": 134,
+   "cards": [
+    "Spymaster's Vault",
+    "Castle Locthwain"
+   ]
+  },
+  {
+   "pattern": "harmonize {x}{g}{g}{g}{g}",
+   "kind": "spell",
+   "decks": 133,
+   "cards": [
+    "Nature's Rhythm"
+   ]
+  },
+  {
+   "pattern": "this artifact enters with x charge counters on it.",
+   "kind": "static",
+   "decks": 128,
+   "cards": [
+    "Chalice of the Void"
+   ]
+  },
+  {
+   "pattern": "put a -N/-N counter on this creature: untap this creature.",
+   "kind": "static",
+   "decks": 126,
+   "cards": [
+    "Devoted Druid"
+   ]
+  },
+  {
+   "pattern": "if one or more -N/-N counters would be put on a creature you control, that many -N/-N counters minus one are put on it instead.",
+   "kind": "static",
+   "decks": 126,
+   "cards": [
+    "Vizier of Remedies"
+   ]
+  },
+  {
+   "pattern": "+N: untap up to one target creature.",
+   "kind": "activated",
+   "decks": 124,
+   "cards": [
+    "Tyvar, Jubilant Brawler"
+   ]
+  },
+  {
+   "pattern": "{N}{g}, {t}: earthbend N. activate only as a sorcery.",
+   "kind": "activated",
+   "decks": 118,
+   "cards": [
+    "Ba Sing Se"
+   ]
+  },
+  {
+   "pattern": "hexproof",
+   "kind": "static",
+   "decks": 111,
+   "cards": [
+    "Striped Riverwinder"
+   ]
+  },
+  {
+   "pattern": "this creature enters prepared.",
+   "kind": "static",
+   "decks": 110,
+   "cards": [
+    "Pompous Battlemage // Improvised Act"
+   ]
+  },
+  {
+   "pattern": "at the beginning of each upkeep, if no spells were cast last turn, transform this creature.",
+   "kind": "triggered",
+   "decks": 105,
+   "cards": [
+    "Duskwatch Recruiter // Krallenhorde Howler"
+   ]
+  },
+  {
+   "pattern": "you may spend mana as though it were mana of any color to activate abilities of creatures you control.",
+   "kind": "static",
+   "decks": 101,
+   "cards": [
+    "Agatha's Soul Cauldron"
+   ]
+  },
+  {
+   "pattern": "• destroy target creature with mana value less than or equal to the number of cards in its controller's graveyard.",
+   "kind": "spell",
+   "decks": 101,
+   "cards": [
+    "Drown in the Loch"
+   ]
+  },
+  {
+   "pattern": "you may sacrifice a nontoken blue creature rather than pay this spell's mana cost.",
+   "kind": "spell",
+   "decks": 100,
+   "cards": [
+    "Flare of Denial"
+   ]
+  },
+  {
+   "pattern": "at the beginning of each opponent's upkeep, manifest dread.",
+   "kind": "triggered",
+   "decks": 99,
+   "cards": [
+    "Abhorrent Oculus"
+   ]
+  },
+  {
+   "pattern": "at the beginning of your next upkeep, pay {N}{u}{u}. if you don't, you lose the game.",
+   "kind": "spell",
+   "decks": 97,
+   "cards": [
+    "Pact of Negation"
+   ]
+  },
+  {
+   "pattern": "{x}, {t}: this land becomes a copy of target nontoken artifact you control with mana value x.",
+   "kind": "activated",
+   "decks": 96,
+   "cards": [
+    "The Mycosynth Gardens"
+   ]
+  },
+  {
+   "pattern": "modular N",
+   "kind": "static",
+   "decks": 96,
+   "cards": [
+    "Arcbound Ravager",
+    "Zabaz, the Glimmerwasp"
+   ]
+  },
+  {
+   "pattern": "ninjutsu {N}{u}{b}",
+   "kind": "static",
+   "decks": 95,
+   "cards": [
+    "Kaito, Bane of Nightmares"
+   ]
+  },
+  {
+   "pattern": "−N: tap target creature. put two stun counters on it.",
+   "kind": "activated",
+   "decks": 95,
+   "cards": [
+    "Kaito, Bane of Nightmares"
+   ]
+  },
+  {
+   "pattern": "undying",
+   "kind": "static",
+   "decks": 94,
+   "cards": [
+    "Young Wolf",
+    "Strangleroot Geist"
+   ]
+  },
+  {
+   "pattern": "this land enters tapped unless you control a mountain or a forest.",
+   "kind": "static",
+   "decks": 93,
+   "cards": [
+    "Mistrise Village"
+   ]
+  },
+  {
+   "pattern": "{u}, {t}: the next spell you cast this turn can't be countered.",
+   "kind": "activated",
+   "decks": 93,
+   "cards": [
+    "Mistrise Village"
+   ]
+  },
+  {
+   "pattern": "{N}{w}{u}: until end of turn, this land becomes a N/N white and blue elemental creature with flying and vigilance. it's still a land.",
+   "kind": "activated",
+   "decks": 90,
+   "cards": [
+    "Celestial Colonnade"
+   ]
+  },
+  {
+   "pattern": "warp {N}{w}",
+   "kind": "static",
+   "decks": 88,
+   "cards": [
+    "Starfield Shepherd"
+   ]
+  },
+  {
+   "pattern": "if you control two or more other lands, this land enters tapped.",
+   "kind": "static",
+   "decks": 87,
+   "cards": [
+    "Hall of Storm Giants"
+   ]
+  },
+  {
+   "pattern": "{N}{u}: until end of turn, this land becomes a N/N blue giant creature with ward {N}. it's still a land.",
+   "kind": "activated",
+   "decks": 87,
+   "cards": [
+    "Hall of Storm Giants"
+   ]
+  },
+  {
+   "pattern": "you may play two additional lands on each of your turns.",
+   "kind": "static",
+   "decks": 86,
+   "cards": [
+    "Azusa, Lost but Seeking"
+   ]
+  },
+  {
+   "pattern": "you may sacrifice three artifacts rather than pay this spell's mana cost.",
+   "kind": "static",
+   "decks": 83,
+   "cards": [
+    "Salvage Titan"
+   ]
+  },
+  {
+   "pattern": "you may exile two green cards from your hand rather than pay this spell's mana cost.",
+   "kind": "static",
+   "decks": 82,
+   "cards": [
+    "Allosaurus Rider"
+   ]
+  },
+  {
+   "pattern": "~'s power and toughness are each equal to N plus the number of lands you control.",
+   "kind": "static",
+   "decks": 82,
+   "cards": [
+    "Allosaurus Rider"
+   ]
+  },
+  {
+   "pattern": "as long as your devotion to red and green is less than seven, xenagos isn't a creature.",
+   "kind": "static",
+   "decks": 81,
+   "cards": [
+    "Xenagos, God of Revels"
+   ]
+  },
+  {
+   "pattern": "flying, protection from white and from black",
+   "kind": "static",
+   "decks": 77,
+   "cards": [
+    "Ureni, the Song Unending"
+   ]
+  },
+  {
+   "pattern": "when ureni enters, it deals x damage divided as you choose among any number of target creatures and/or planeswalkers your opponents control, where x is the number of lands you control.",
+   "kind": "triggered",
+   "decks": 77,
+   "cards": [
+    "Ureni, the Song Unending"
+   ]
+  },
+  {
+   "pattern": "convoke",
+   "kind": "spell",
+   "decks": 76,
+   "cards": [
+    "Chord of Calling"
+   ]
+  },
+  {
+   "pattern": "spectacle {r}",
+   "kind": "spell",
+   "decks": 72,
+   "cards": [
+    "Skewer the Critics",
+    "Light Up the Stage"
+   ]
+  },
+  {
+   "pattern": "{N}{w}, {t}: harness ~.",
+   "kind": "activated",
+   "decks": 68,
+   "cards": [
+    "The Mind Stone"
+   ]
+  },
+  {
+   "pattern": "metalcraft — ~ deals N damage instead if you control three or more artifacts.",
+   "kind": "spell",
+   "decks": 67,
+   "cards": [
+    "Galvanic Blast"
+   ]
+  },
+  {
+   "pattern": "islandcycling {N}",
+   "kind": "spell",
+   "decks": 67,
+   "cards": [
+    "Lórien Revealed"
+   ]
+  },
+  {
+   "pattern": "protection from humans",
+   "kind": "static",
+   "decks": 67,
+   "cards": [
+    "Yawgmoth, Thran Physician"
+   ]
+  },
+  {
+   "pattern": "{b}{b}, discard a card: proliferate.",
+   "kind": "activated",
+   "decks": 67,
+   "cards": [
+    "Yawgmoth, Thran Physician"
+   ]
+  },
+  {
+   "pattern": "choose one. if you control a wizard as you cast this spell, you may choose two instead.",
+   "kind": "spell",
+   "decks": 63,
+   "cards": [
+    "Flame of Anor"
+   ]
+  },
+  {
+   "pattern": "this creature has haste as long as an opponent has N or less life.",
+   "kind": "static",
+   "decks": 63,
+   "cards": [
+    "Bloodghast"
+   ]
+  },
+  {
+   "pattern": "whenever you conjure one or more cards, this creature becomes prepared.",
+   "kind": "triggered",
+   "decks": 62,
+   "cards": [
+    "Crescendo Conductor // Boltwave"
+   ]
+  },
+  {
+   "pattern": "when this creature dies, learn.",
+   "kind": "triggered",
+   "decks": 62,
+   "cards": [
+    "Eyetwitch"
+   ]
+  },
+  {
+   "pattern": "when ~ enters, search your library for a basic land card or planet card, put it onto the battlefield tapped, then shuffle.",
+   "kind": "triggered",
+   "decks": 60,
+   "cards": [
+    "Genesis Device"
+   ]
+  },
+  {
+   "pattern": "{N}{g}{g}, {t}, sacrifice ~: sacrifice any number of lands you control, then search your library for up to that many land cards, put them onto the battlefield tapped, then shuffle. activate only as a sorcery.",
+   "kind": "activated",
+   "decks": 60,
+   "cards": [
+    "Genesis Device"
+   ]
+  },
+  {
+   "pattern": "you may exile a blue card with mana value x from your hand rather than pay this spell's mana cost.",
+   "kind": "spell",
+   "decks": 58,
+   "cards": [
+    "Disrupting Shoal"
+   ]
+  },
+  {
+   "pattern": "gift a tapped fish",
+   "kind": "spell",
+   "decks": 58,
+   "cards": [
+    "Into the Flood Maw"
+   ]
+  },
+  {
+   "pattern": "each land is a swamp in addition to its other land types.",
+   "kind": "static",
+   "decks": 58,
+   "cards": [
+    "Urborg, Tomb of Yawgmoth"
+   ]
+  },
+  {
+   "pattern": "when ~ enters, empower jace N.",
+   "kind": "triggered",
+   "decks": 58,
+   "cards": [
+    "Way of the Paradox",
+    "Way of the Pyromancer"
+   ]
+  },
+  {
+   "pattern": "suspend N—{N}",
+   "kind": "static",
+   "decks": 57,
+   "cards": [
+    "Lotus Bloom"
+   ]
+  },
+  {
+   "pattern": "tap all creatures target player controls. you may pay any amount of {e}. if you do, choose up to that many creatures tapped this way. put a stun counter on each of them.",
+   "kind": "spell",
+   "decks": 57,
+   "cards": [
+    "Suppression Ray // Orderly Plaza"
+   ]
+  },
+  {
+   "pattern": "ketramose can't attack or block unless there are seven or more cards in exile.",
+   "kind": "static",
+   "decks": 57,
+   "cards": [
+    "Ketramose, the New Dawn"
+   ]
+  },
+  {
+   "pattern": "flying, vigilance",
+   "kind": "static",
+   "decks": 55,
+   "cards": [
+    "Wan Shi Tong, Librarian"
+   ]
+  },
+  {
+   "pattern": "whenever this land becomes tapped, it deals N damage to you.",
+   "kind": "triggered",
+   "decks": 54,
+   "cards": [
+    "City of Brass"
+   ]
+  },
+  {
+   "pattern": "+N: look at the top card of target player's library. you may put that card on the bottom of that player's library.",
+   "kind": "activated",
+   "decks": 51,
+   "cards": [
+    "Jace, the Mind Sculptor"
+   ]
+  },
+  {
+   "pattern": "flying, first strike",
+   "kind": "static",
+   "decks": 51,
+   "cards": [
+    "White Orchid Phantom"
+   ]
+  }
+ ],
  "comboCandidates": [
   {
    "name": "Prowess",
@@ -2107,7 +3790,7 @@
   ]
  },
  "format": "Modern",
- "generatedAt": "2026-11-27T20:54:14.249Z",
+ "generatedAt": "2026-11-27T21:04:17.142Z",
  "decks": 5115,
  "otherOnly": [
   {
