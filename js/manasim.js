@@ -311,6 +311,21 @@
     return out;
   }
 
+  // プラスの忠誠度能力のうち、行動（サーチ・ドロー・ライフ回復・追加ターン）をするもの。メリットがあるので毎ターン使う
+  // 複数あるときは行動の多いものを使う（トークンを出すなど、行動以外の能力を選ぶ場面は考えない）
+  function plusActsOf(card) {
+    if (!/\bPlaneswalker\b/.test(frontType(card))) return null;
+    let best = null, bv = 0;
+    for (const line of frontOracle(card).split('\n')) {
+      const m = line.match(/^\s*\[?\+(\d+|X)\]?:\s*(.*)$/);
+      if (!m) continue;
+      const a = actsOf({ typeLine: 'Sorcery', oracle: m[2], name: card.name }, false);
+      const v = a.search + a.draw + a.life + a.extra;
+      if (v > bv) { bv = v; best = a; }
+    }
+    return best;
+  }
+
   // ---------- デッキの下準備 ----------
   // entries: [{qty, card, cat?, key?}]
   function prepare(entries, keyNames) {
@@ -335,6 +350,7 @@
         perm: land ? null : permOf(c)
       };
       info.acts = actsOf(c, !!info.search);
+      info.plusActs = land ? null : plusActsOf(c);
       // 構える妨害は、唱えて終わるインスタント・ソーサリーだけ。妨害のパーマネント（Karn、Teferi、Thalia など）は唱えて盤面に置く
       info.disrupt = !info.key && info.cat === 'disrupt' && /\b(Instant|Sorcery)\b/.test(frontType(c));
       for (let i = 0; i < e.qty; i++) cards.push(info);
@@ -412,6 +428,8 @@
     const g = { mana: [], idle: [], unused: [], held: [], inHand: [], cast: {}, seen: {}, board: [], combo: [], names: [], lands: [], groups: [], acts: [] };
     // そのターンの行動の回数（相手の行動干渉が効くもの）。fetch はフェッチランドの生け贄起動、search は呪文・能力でのサーチ
     let ev = { fetch: 0, search: 0, draw: 0, life: 0, extra: 0 };
+    const plusUsers = []; // 戦場にいて、毎ターンプラスの忠誠度能力で行動するPW
+    const addActs = a => { ev.search += a.search; ev.draw += a.draw; ev.life += a.life; ev.extra += a.extra; };
     // 盤面（土地以外）: クリーチャー {power, toughness}、それ以外のパーマネントの数、毎ターン出るトークン
     const board = { creatures: [], artifact: 0, enchantment: 0, planeswalker: 0, battle: 0, makers: [], names: { artifact: [], enchantment: [], planeswalker: [] } };
     const seenNames = new Set();
@@ -642,7 +660,9 @@
     };
     const record = c => {
       castThisTurn++;
-      if (c.acts) { ev.search += c.acts.search; ev.draw += c.acts.draw; ev.life += c.acts.life; ev.extra += c.acts.extra; }
+      if (c.acts) addActs(c.acts);
+      // 出したターンから使う。伝説のPWは同じ名前を2枚目からは数えない（レジェンド・ルール）
+      if (c.plusActs && !(/\bLegendary\b/.test(frontType(c.card)) && plusUsers.some(x => x.name === c.name))) { plusUsers.push({ name: c.name, a: c.plusActs }); addActs(c.plusActs); }
       if (!(c.name in g.seen)) g.seen[c.name] = turn;
       if (!(c.name in g.cast)) g.cast[c.name] = turn;
     };
@@ -715,6 +735,7 @@
       perms.forEach(x => { x.ready = true; });
       floated = null; landDrop = true; castThisTurn = 0; otherSpent = 0;
       ev = { fetch: 0, search: 0, draw: 0, life: 0, extra: 0 };
+      plusUsers.forEach(x => addActs(x.a));
       // 毎ターン（攻撃時・終了時など）トークンを出すパーマネントは、1ターンに1回出したものとして近似
       board.makers.forEach(list => list.forEach(t => board.creatures.push({ ...t })));
       pool.n += combatTreasure; // 前のターンまでに出たクリーチャーが攻撃して宝物を出したものとする
@@ -882,7 +903,8 @@
   // カードが行う行動（行動干渉が効くもの）: fetch / search / draw / life / extra の配列
   function actionKinds(card) {
     if (isLandCard(card)) return landProfile(card).fetch ? ['fetch'] : [];
-    const sp = searchSpec(card), a = actsOf(card, !!sp);
+    const sp = searchSpec(card), a = actsOf(card, !!sp), pa = plusActsOf(card);
+    if (pa) ['search', 'draw', 'life', 'extra'].forEach(k => { a[k] += pa[k]; });
     return [...(sp || a.search ? ['search'] : []), ...['draw', 'life', 'extra'].filter(k => a[k])];
   }
   const api = { simulate, landProfile, searchSpec, digSpec, rockSpec, costOf, actionKinds };
