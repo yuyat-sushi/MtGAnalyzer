@@ -731,12 +731,12 @@
         if (drop('ld') >= 0.45) landWhy.push(`土地を1枚壊すとマナ${n1(L4.alt.normal)}→${n1(L4.alt.ld)}`);
       }
       if (landWhy.length) needs.push('land');
-      // 行動干渉: 相手が3ターン目以降もサーチ・追加のドロー・ライフ回復・追加ターンを（重み付きで）平均0.5回以上行う
+      // 行動干渉: 相手が3〜6ターン目にサーチ・追加のドロー・ライフ回復・追加ターンを（重み付きで）合計1回以上行う
       const actsOpp = m.sim.draw && m.sim.draw.acts; // 自分が先手のときの相手（後手）
       const actWhy = [], actNeed = [];
       if (actsOpp) Object.keys(ACT_KEYS).forEach(y => {
         const r = actRemain(actsOpp, [y], 3);
-        if (r >= 0.5) { actNeed.push(y); actWhy.push(`${ACT_LABEL[y]}${y === 'library' ? `（フェッチ以外${n1(actRemain(actsOpp.map(a => ({ search: a.search })), ['library'], 3))}回）` : ''}`); }
+        if (r >= 1) { actNeed.push(y); actWhy.push(`${ACT_LABEL[y]}${y === 'library' ? `（フェッチ以外${n1(actRemain(actsOpp.map(a => ({ search: a.search })), ['library'], 3))}回）` : ''}`); }
       });
       if (actNeed.length) needs.push('action');
       const fits = (e, need) => {
@@ -777,8 +777,8 @@
       if (ac) {
         const all = [...ac.mn, ...ac.sd];
         const why = `3ターン目以降も${actWhy.join('・')}を行う`;
-        if (!all.length) { if (m.share >= 0.05) tips.push({ level: 'info', text: `対${m.name}（${pct(m.share)}）: ${why}けど、行動干渉はメインにもサイドにもないよ。` }); }
-        else if (all.every(e => actTiming(e).at[0].play < 0.5)) tips.push({ level: 'info', text: `対${m.name}（${pct(m.share)}）: ${why}けど、${short(all.map(e => displayName(e.card)))}は最速で着地しても止められる行動が平均0.5回未満。対策としては間に合いにくいかも。` });
+        // 行動干渉がないことは指摘しない（多くの相手が少しはドロー・サーチするので、毎回出ると邪魔になる）
+        if (all.length && all.every(e => actTiming(e).at[0].play < 0.5)) tips.push({ level: 'info', text: `対${m.name}（${pct(m.share)}）: ${why}けど、${short(all.map(e => displayName(e.card)))}は最速で着地しても止められる行動が平均0.5回未満。対策としては間に合いにくいかも。` });
       }
       // アドバイス
       const cr = cells.find(c => c.n === 'creature');
