@@ -272,6 +272,8 @@ function simOf(ds) {
       return { ok: w('ok'), alt: w('alt'), mana: w('mana'), color: w('color'), either };
     })(),
     screw3: +(1 - (s.ge[2][3] || 0)).toFixed(3),
+    // 待機・マナ・コストを持たないカードを、3・4・5ターン目までに唱えた率（手段ごと）
+    suspend: (s.suspend || []).map(x => ({ name: x.name, qty: x.qty, via: Object.fromEntries(Object.entries(x.via).map(([k, v]) => [k, r2([3, 4, 5].map(t => v[t - 1]))])) })),
     // カーブどおりに唱えにくいカード（低い順に5種）
     curveLow: s.curve.slice().sort((x, y) => x.ok - y.ok).slice(0, 5).map(c => ({ name: c.name, mv: c.mv, qty: c.qty, ok: +c.ok.toFixed(2), mana: +c.mana.toFixed(2), color: +c.color.toFixed(2), cyc: c.cyc ? +c.cyc.ok.toFixed(2) : null })),
     // 自分の効果で行動干渉を除去できるカード（嵐の目、ウギン など）の行動: r = 唱えたターン、t = 行動したターン
@@ -293,7 +295,7 @@ function simOf(ds) {
   // 自分の効果で除去できるもの（行動干渉が届くかはアプリ側でカードタイプ・色・マナ総量・タフネスから判定する）
   const selfRm = Object.fromEntries([...new Set([...Object.keys(r.play.rmActs || {}), ...Object.keys(r.draw.rmActs || {})])]
     .map(n => { const c = rep.cards.find(x => x.card.name === n); return [n, c ? ManaSim.selfRemovalOf(c.card) : null]; }).filter(([, v]) => v));
-  return { turns: [3, 4, 5], combos: combos.map(c => c.name), hasDisrupt: r.hasDisrupt, play: side(r.play), draw: side(r.draw), actCards, selfRm };
+  return { turns: [3, 4, 5], combos: combos.map(c => c.name), hasDisrupt: r.hasDisrupt, play: side(r.play), draw: side(r.draw), actCards, selfRm, access: r.access };
 }
 
 // ---------- メイン ----------

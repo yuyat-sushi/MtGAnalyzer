@@ -421,6 +421,30 @@
     return out;
   }
 
+  // ---------- 待機・続唱 ----------
+  // 待機: { n: 時間カウンター, cost }。続唱: Cascade の数
+  function suspendOf(card) {
+    const m = frontOracle(card).match(/(?:^|\n)\s*Suspend (\d+|X)\s*[—-]\s*((?:\{[^}]+\})+)/i);
+    return m ? { n: m[1] === 'X' ? 1 : +m[1], cost: costOf({ manaCost: m[2], cmc: symCount(m[2]) }) } : null;
+  }
+  const cascadeOf = card => (frontOracle(card).match(/(?:^|\n|,)\s*cascade\b/gi) || []).length;
+  // 発見 N（唱えたとき・戦場に出たとき）。X は数えない
+  const discoverOf = card => { const m = frontOracle(card).match(/\bdiscover (\d+)\b/i); return m ? +m[1] : 0; };
+  // ライブラリーから探して、マナ・コストを支払わずに唱える（Beseech the Mirror など）。{ mvMax, bargain }
+  function tutorCastOf(card) {
+    const t = frontOracle(card).replace(/\n/g, ' ');
+    const m = t.match(/search your library for (?:a|an) [^.]*?card[^.]*\.(?:[^.]*\.){0,2}?[^.]*?cast (?:the exiled card|that card|it) without paying its mana cost(?: if that spell's mana value is (\d+) or less)?/i);
+    if (!m) return null;
+    return { mvMax: m[1] ? +m[1] : 99, bargain: /if this spell was bargained/i.test(t) };
+  }
+  // 待機中の時間カウンターを取り除く、または手札の呪文をマナ・コストを支払わずに唱えさせるカード（一人回しでは扱わず、表示だけ）
+  function suspendEnabler(card) {
+    const t = frontOracle(card);
+    if (/remove (?:a|one|two|three|x|all|any number of|\w+) time counters?/i.test(t)) return 'time';
+    if (/cast [^.]*?from your hand without paying (?:its|their) mana costs?/i.test(t) && !/cascade/i.test(t)) return 'free';
+    return null;
+  }
+
   // ---------- サイクリング ----------
   // { cost, life, spec }。spec があればランドサイクリング（その土地を探して手札に加える）、なければ1枚引く
   // 「Swampcycling」「Basic landcycling」「Landcycling」「Cycling—Pay 2 life.」。土地以外のタイプサイクリング（Wizardcycling など）は引く扱い
@@ -507,6 +531,13 @@
       info.alts = land ? [] : altCostsOf(c);
       info.selfRed = land ? [] : selfReduceOf(c);
       info.cyc = land ? null : cyclingOf(c);
+      info.susp = land ? null : suspendOf(c);
+      info.cascade = land ? 0 : cascadeOf(c);
+      info.discover = land ? 0 : discoverOf(c);
+      info.tutorCast = land ? null : tutorCastOf(c);
+      info.enabler = land ? null : suspendEnabler(c);
+      // マナ・コストを持たないカード（Living End、Ancestral Vision など）は手札から普通には唱えられない
+      info.noCost = !land && !String(c.manaCost || '').trim() && !(c.cmc > 0);
       info.acts = actsOf(c, !!info.search);
       info.plusActs = land ? null : plusActsOf(c);
       // 自分で除去できて、行動もするカードだけ（行動を「止められない」扱いにするため）
@@ -586,7 +617,7 @@
     const rocks = []; // マナを出すパーマネント {amt, colors, sick, used}
     const perms = []; // 起動型のサーチを持つパーマネント（Expedition Map など）
     const tron = deck.tronTypes;
-    const g = { mana: [], idle: [], unused: [], held: [], inHand: [], cast: {}, seen: {}, board: [], combo: [], names: [], lands: [], groups: [], acts: [], colorMana: [], curve: {}, alt: {}, cycled: {} };
+    const g = { mana: [], idle: [], unused: [], held: [], inHand: [], cast: {}, seen: {}, board: [], combo: [], names: [], lands: [], groups: [], acts: [], colorMana: [], curve: {}, alt: {}, cycled: {}, via: {} };
     const dev = { W: 0, U: 0, B: 0, R: 0, G: 0 }; // 信心（戦場のパーマネントの色マナ・シンボルの数）
     // そのターンの行動の回数（相手の行動干渉が効くもの）。fetch はフェッチランドの生け贄起動、search は呪文・能力でのサーチ
     let ev = { fetch: 0, search: 0, draw: 0, life: 0, extra: 0 };
@@ -901,12 +932,14 @@
         if (alt.pitch) { const x = pitchFor(c, alt.pitch); if (!x) return false; hand.splice(hand.indexOf(x), 1); }
       } else {
         const cost = effCost(c);
-        if (!pay(cost)) return false;
+        if (c.noCost || !pay(cost)) return false;
         if (cost.delve) { const fromIS = Math.max(0, cost.delve - (gy.n - gy.is)); gy.n -= cost.delve; gy.is -= fromIS; } // 探査で墓地を追放
       }
       hand.splice(hand.indexOf(c), 1);
+      if (!(c.name in g.cast)) g.via[c.name] = alt ? 'alt' : 'hard';
       record(c);
       if (/\b(Instant|Sorcery)\b/.test(frontType(c.card))) { gy.n++; gy.is++; } // 解決して墓地へ
+      afterCast(c);
       if (alt) g.alt[c.name] = (g.alt[c.name] || 0) + 1;
       // 想起・疾駆・威迫で唱えたパーマネントは戦場に残らない（疾駆は手札に戻る）
       if (alt && !alt.stays) {
@@ -922,6 +955,63 @@
       return true;
     };
     const canPay = cost => !!plan(cost);
+    const canHard = c => !c.noCost && canPay(effCost(c)); // 普通に（マナ・コストで）唱えられるか
+    // 待機: 待機コストを払って追放し、毎ターンのアップキープに時間カウンターを1つ取り除き、0になったら唱える
+    const suspended = [];
+    const doSuspend = c => {
+      if (!pay(c.susp.cost)) return false;
+      hand.splice(hand.indexOf(c), 1);
+      castThisTurn++;
+      suspended.push({ c, n: c.susp.n });
+      return true;
+    };
+    // マナ・コストを支払わずに唱える（待機が明けた、続唱でめくれた）。via: 最初に唱えたときの手段
+    const castFree = (c, via) => {
+      if (!(c.name in g.cast)) g.via[c.name] = via;
+      record(c);
+      if (/\b(Instant|Sorcery)\b/.test(frontType(c.card))) { gy.n++; gy.is++; } else addPerm(c);
+      afterCast(c);
+    };
+    // 唱えたあとの、ライブラリーからタダで唱える効果（続唱・発見・Beseech the Mirror 型）
+    const afterCast = c => {
+      if (c.cascade) for (let k = 0; k < c.cascade; k++) doReveal(Math.round(c.cmc), false, 'cascade');
+      if (c.discover) doReveal(c.discover, true, 'discover');
+      if (c.tutorCast) doTutorCast(c);
+    };
+    // めくってタダで唱える。le: true なら MV が n 以下（発見）、false なら n 未満（続唱）。唱えられるなら唱える。ほかは下に戻す
+    const doReveal = (n, le, via) => {
+      const out = [];
+      let hit = null;
+      while (lib.length) { const x = lib.shift(); if (!x.land && (le ? Math.round(x.cmc) <= n : Math.round(x.cmc) < n)) { hit = x; break; } out.push(x); }
+      lib.push(...shuffle(out, rng));
+      if (hit) castFree(hit, via);
+    };
+    // Beseech the Mirror 型: 交換（アーティファクト・エンチャント・トークンの生け贄）できればMVの上限以下をタダで唱え、できなければ手札に入れる
+    // 探すのは、待機・マナ・コストを持たないカード → 主力 → MVの高いカードの順
+    const doTutorCast = src => {
+      const tc = src.tutorCast;
+      let canBargain = !tc.bargain;
+      if (tc.bargain) {
+        if (pool.n > pool.used) { pool.n--; canBargain = true; }
+        else if (board.artifact > 0) { board.artifact--; canBargain = true; }
+        else if (board.enchantment > 0) { board.enchantment--; canBargain = true; }
+        else {
+          // 手札の Lotus Petal・Lion's Eye Diamond など（出して生け贄にする。そのマナは使えなくなる）
+          const pt = hand.find(x => x.fast && x.fast.hand && /\bArtifact\b/.test(frontType(x.card)));
+          if (pt) { hand.splice(hand.indexOf(pt), 1); canBargain = true; }
+        }
+      }
+      const score = x => (x.susp || x.noCost ? 1000 : 0) + (x.key ? 100 : 0) + Math.round(x.cmc);
+      let bi = -1, bv = -Infinity;
+      lib.forEach((x, i) => {
+        if (x.land || x.name === src.name) return;
+        if (canBargain && Math.round(x.cmc) > tc.mvMax) return;
+        if (score(x) > bv) { bv = score(x); bi = i; }
+      });
+      if (bi < 0) return;
+      const x = takeFromLib(bi);
+      if (canBargain) castFree(x, 'tutor'); else hand.push(x);
+    };
     // サイクリング: 払って墓地に置き、ランドサイクリングなら土地を手札に、それ以外は1枚引く
     const cycle = c => {
       if (!pay(c.cyc.cost)) return false;
@@ -969,12 +1059,14 @@
       if (!landsInHand() && landDrop && digs.length) return castDig(digs[0]);
       // 5. 主力 → それ以外（妨害は構えるので唱えない）。重いものから唱えてマナを使い切る
       // 普通に払えなければ代替コスト（想起・疾駆・威迫・「rather than pay」など）を使う
-      const spells = hand.filter(c => !c.land && !c.disrupt && !c.rock && !c.search && !c.dig && !(c.fast && c.fast.hand) && (canPay(effCost(c)) || altOpt(c)));
+      // 待機は、普通にも代替コストでも唱えられないときに、待機コストを払えれば待機する（唱えられるターンに唱える）
+      const spells = hand.filter(c => !c.land && !c.disrupt && !c.rock && !c.search && !c.dig && !(c.fast && c.fast.hand) && (canHard(c) || altOpt(c) || (c.susp && canPay(c.susp.cost))));
       if (spells.length) {
         spells.sort((a, b) => (b.key - a.key) || (b.cmc - a.cmc));
         const c = spells[0];
         const before = avail();
-        castFromHand(c, canPay(effCost(c)) ? null : altOpt(c));
+        if (!canHard(c) && !altOpt(c)) { doSuspend(c); return true; }
+        castFromHand(c, canHard(c) ? null : altOpt(c));
         if (!c.key) otherSpent += before - avail();
         return true;
       }
@@ -1004,6 +1096,10 @@
       floated = null; landDrop = true; castThisTurn = 0; otherSpent = 0;
       ev = { fetch: 0, search: 0, draw: 0, life: 0, extra: 0 };
       hand.push(...dashBack.splice(0));
+      // アップキープ: 待機中のカードの時間カウンターを1つ取り除き、0になったら唱える
+      for (let i = suspended.length - 1; i >= 0; i--) {
+        if (--suspended[i].n <= 0) { const x = suspended.splice(i, 1)[0]; castFree(x.c, 'suspend'); }
+      }
       plusUsers.forEach(x => addActs(x.a, x.src));
       // 毎ターン（攻撃時・終了時など）トークンを出すパーマネントは、1ターンに1回出したものとして近似
       board.makers.forEach(list => list.forEach(t => board.creatures.push({ ...t })));
@@ -1111,7 +1207,8 @@
     const actsAgg = Array.from({ length: turns }, () => Object.fromEntries(EK.map(k => [k, 0])));
     const rmAgg = {};
     const curveAgg = {}; // カード名 → { ok, mana, color, miss: {色: 回数}, cyc, either }
-    const cycledAgg = {}; // カード名 → サイクリングした回数 // カード名 → 唱えたターン r → ターン t → 行動の合計
+    const cycledAgg = {}; // カード名 → サイクリングした回数
+    const viaAgg = {};    // カード名 → 手段 → ターンごとの「そのターンまでに、その手段で最初に唱えた」回数 // カード名 → 唱えたターン r → ターン t → 行動の合計
     const names = Object.fromEntries(NT.map(k => [k, {}])); // 種類 → カード名 → ターンごとの「戦場にある」回数
     const keys = new Set(keyNames);
     for (let n = 0; n < iters; n++) {
@@ -1133,6 +1230,11 @@
         if (ok || (r.curve[name] && r.curve[name].ok)) o.either = (o.either || 0) + 1;
       }
       for (const [name, n] of Object.entries(r.cycled)) { cycledAgg[name] = (cycledAgg[name] || 0) + n; }
+      for (const [name, t] of Object.entries(r.cast)) {
+        const v = r.via[name] || 'hard';
+        const arr = ((viaAgg[name] = viaAgg[name] || {})[v] = viaAgg[name][v] || Array(turns).fill(0));
+        for (let k = t - 1; k < turns; k++) arr[k]++;
+      }
       for (const [name, x] of Object.entries(r.curve)) {
         const o = curveAgg[name] = curveAgg[name] || { ok: 0, alt: 0, mana: 0, color: 0, miss: {}, cyc: 0, either: 0 };
         if (x.ok) { o.ok++; if (x.alt) o.alt++; } else if (x.why === 'mana') o.mana++; else { o.color++; x.miss.forEach(col => { o.miss[col] = (o.miss[col] || 0) + 1; }); }
@@ -1172,6 +1274,11 @@
       // 色ごとに出せるマナの平均（その色だけを出すとしたとき）
       colorMana: cmAgg.map(a => Object.fromEntries(CK.map(k => [k, a[k] / iters]))),
       // カーブどおり（MVと同じターン）にコストを払えた率と、払えなかった理由（マナ不足・色不足と足りない色）
+      // 待機を持つカード・マナ・コストを持たないカードを、そのターンまでに唱えた率と手段の内訳（hard: 普通に、alt: 代替コスト、suspend: 待機、cascade: 続唱）
+      suspend: deck.cards.filter((c, i, a) => (c.susp || c.noCost) && a.findIndex(x => x.name === c.name) === i).map(c => ({
+        name: c.name, qty: deck.cards.filter(x => x.name === c.name).length, n: c.susp ? c.susp.n : null, noCost: c.noCost,
+        via: Object.fromEntries(Object.entries(viaAgg[c.name] || {}).map(([k, v]) => [k, f(v)]))
+      })),
       curve: (deck.curveCards || []).map(({ c, t, qty }) => {
         const o = curveAgg[c.name] || { ok: 0, alt: 0, mana: 0, color: 0, miss: {} };
         return { name: c.name, mv: Math.round(c.cmc), t, qty, alts: (c.alts || []).map(a => a.kind),
@@ -1216,6 +1323,9 @@
       .map(c => ({ c, t: Math.min(turns, Math.round(c.cmc)), ct: c.cyc ? Math.max(1, Math.min(turns, c.cyc.mv)) : null, qty: deck.cards.filter(x => x.name === c.name).length }));
     const seed = hashStr(entries.filter(e => e.card).map(e => e.qty + e.card.name).sort().join('|') + '#' + keyNames.join('|'));
     const play = run(deck, true, turns, iters, seed, keyNames);
+    // 待機カードへのアクセス手段（続唱・時間カウンターを取り除く・手札からタダで唱えさせる）
+    const uniqNames = pred => [...new Set(deck.cards.filter(pred).map(c => c.name))];
+    const access = { cascade: uniqNames(c => c.cascade), discover: uniqNames(c => c.discover), tutor: uniqNames(c => c.tutorCast), time: uniqNames(c => c.enabler === 'time'), free: uniqNames(c => c.enabler === 'free') };
     const draw = run(deck, false, turns, iters, seed + 1, keyNames);
     const tron = deck.tronTypes.length >= 2;
     const accel = deck.lands.some(l => l.p.base >= 2 || l.p.tron || l.p.count || (l.p.cond && l.p.cond.amt >= 2));
@@ -1232,7 +1342,7 @@
       return { name, qty, without: r.keyBy[T - 1] };
     });
     const keyCmc = Object.fromEntries(keyNames.map(n => { const c = deck.cards.find(x => x.name === n); return [n, c ? c.cmc : 0]; }));
-    return { turns, iters, play, draw, tron, accel, hasDisrupt, keyNames, keyCmc, autoKey, keyTurn: T, enablers };
+    return { turns, iters, play, draw, tron, accel, hasDisrupt, keyNames, keyCmc, autoKey, keyTurn: T, enablers, access };
   }
 
   // カードが行う行動（行動干渉が効くもの）: fetch / search / draw / life / extra の配列

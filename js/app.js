@@ -397,7 +397,7 @@
     // デッキに登録済みのコンボ（パーツとデッキ要件がそろっているもの）を一人回しでもそろったか見る
     const lands = state.main.filter(e => rolesOf(e).includes('land')).reduce((s, e) => s + e.qty, 0);
     const combos = window.Combos ? Combos.detect({ main: state.main }, lands).filter(x => x.complete).map(x => ({ name: x.combo.name, pieces: x.combo.pieces })) : [];
-    const sig = list.map(e => `${e.qty}:${e.card.name}:${catOf(e)}`).sort().join('|') + '#' + combos.map(c => c.name).join('|') + '#v6';
+    const sig = list.map(e => `${e.qty}:${e.card.name}:${catOf(e)}`).sort().join('|') + '#' + combos.map(c => c.name).join('|') + '#v8';
     if (simCache.sig !== sig) {
       simCache = { sig, result: null, pending: true };
       box.innerHTML = list.length ? '<p class="hint">一人回し中…</p>' : '';
@@ -446,6 +446,29 @@
         ${all.map(({ x, d }) => `<tr><td>${esc(x.name)}×${x.qty}</td><td>${x.mv}</td><td>${x.t}T</td><td>${pctTxt(x.ok)}<span class="muted">/${pctTxt(d ? d.ok : 0)}</span></td><td>${x.alt >= 0.005 ? pctTxt(x.alt) : '-'}</td>${hasCyc ? `<td>${x.cyc ? `${x.cyc.t}Tに${pctTxt(x.cyc.ok)}${x.cyc.land ? '（土地を探す）' : ''}<span class="muted">・一人回しで${x.cyc.used.toFixed(1)}回</span>` : '-'}</td>` : ''}<td>${why(x)}</td></tr>`).join('')}
         </table></div></details>`;
     }
+    // 待機を持つカード・マナ・コストを持たないカード: そのターンまでに唱えた率と、アクセス手段の内訳
+    let suspendHTML = '';
+    if (r.play.suspend && r.play.suspend.length) {
+      const VIA = { hard: '普通に', alt: '代替コスト', suspend: '待機', cascade: '続唱', discover: '発見', tutor: 'ライブラリーから' };
+      const tot = (x, t) => Object.values(x.via).reduce((s2, v) => s2 + (v[t - 1] || 0), 0);
+      const dOf = x => r.draw.suspend.find(y => y.name === x.name) || x;
+      const ac = r.access || {};
+      const accessTxt = [
+        ac.cascade && ac.cascade.length ? `続唱（${ac.cascade.join('、')}）` : '',
+        ac.discover && ac.discover.length ? `発見（${ac.discover.join('、')}）` : '',
+        ac.tutor && ac.tutor.length ? `ライブラリーから探して唱える（${ac.tutor.join('、')}）` : '',
+        ac.time && ac.time.length ? `時間カウンターを取り除く（${ac.time.join('、')}・一人回しでは未対応）` : '',
+        ac.free && ac.free.length ? `手札からマナ・コストを支払わずに唱える（${ac.free.join('、')}・一人回しでは未対応）` : ''
+      ].filter(Boolean).join('／') || 'なし（待機か、普通に唱えるだけ）';
+      suspendHTML = `<h3>待機・マナ・コストを持たないカード</h3>
+        <p class="hint">デッキにあるアクセス手段: ${esc(accessTxt)}</p>
+        <div class="sim-scroll"><table class="meta-table sim-table"><tr><th>カード</th>${TT.map(t => `<th>${t}Tまでに唱えた</th>`).join('')}<th>4Tまでの手段（先手）</th></tr>
+        ${r.play.suspend.map(x => `<tr><td>${esc(x.name)}×${x.qty}${x.n != null ? `<span class="muted">（待機${x.n}）</span>` : ''}</td>
+          ${TT.map(t => `<td>${pctTxt(tot(x, t))}<span class="muted">/${pctTxt(tot(dOf(x), t))}</span></td>`).join('')}
+          <td>${Object.entries(x.via).filter(([, v]) => (v[3] || 0) >= 0.005).map(([k, v]) => `${VIA[k] || k} ${pctTxt(v[3])}`).join('・') || '-'}</td></tr>`).join('')}
+        </table></div>`;
+      r.play.suspend.forEach(x => { if (TT.includes(4)) tips.push({ level: 'info', text: `${x.name}を4ターン目までに唱えた率は先手${pctTxt(tot(x, 4))}・後手${pctTxt(tot(dOf(x), 4))}（${Object.entries(x.via).filter(([, v]) => (v[3] || 0) >= 0.005).map(([k, v]) => `${VIA[k] || k}${pctTxt(v[3])}`).join('・') || '唱えられなかった'}）。` }); });
+    }
     const n1 = x => x.toFixed(1);
     const pd = (p, d, f) => `${f(p)}<span class="muted">/${f(d)}</span>`;
     const B = (side, t) => r[side].board[t - 1];
@@ -473,6 +496,7 @@
       </table></div>
       ${TT.includes(4) ? cardBreakdownHTML(topCards(r.play.names), Object.assign({ lands: r.play.lands[3].n }, r.play.board[3]), '先手') : ''}
       ${curveHTML}
+      ${suspendHTML}
       <p class="hint">トークンは出たとき・唱えたときに出るものと、毎ターン出すもの（1ターンに1回として近似）を含みます。全体除去を撃たれたときにどれだけ巻き込まれるかの目安にしてね。色ごとのマナは、その色だけを出すとしたときの最大です（Nykthos は信心の一番多い色で数えます）。</p>`;
     if (TT.includes(4)) {
       const b = B('play', 4);
