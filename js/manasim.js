@@ -397,6 +397,47 @@
     return null;
   }
 
+  // ---------- 代替コスト ----------
+  // 手札から唱えるときの、マナ・コスト以外の支払い方。[{ kind, cost?, pitch?, life?, needType?, notMyTurn?, needCreature?, needSpell?, stays }]
+  //   cost: 代わりに払うマナ（evoke・dash など）、pitch: 手札から追放する色（Force of Will、Solitude）、
+  //   needType: 「If you control a Swamp」のような条件、stays: 唱えたあと戦場に残るか（想起・疾駆・威迫は残らない）
+  const COLOR_WORDS = { white: 'W', blue: 'U', black: 'B', red: 'R', green: 'G' };
+  function altCostsOf(card) {
+    if (isLandCard(card)) return [];
+    const out = [];
+    const text = frontOracle(card);
+    for (const line of text.split('\n')) {
+      let m;
+      if ((m = line.match(/^\s*(Evoke|Dash|Blitz|Surge|Emerge)\s*((?:\{[^}]+\})+)/i))) {
+        const kind = m[1].toLowerCase();
+        out.push({ kind, cost: costOf({ manaCost: m[2], cmc: symCount(m[2]) }), stays: !['evoke', 'dash', 'blitz'].includes(kind),
+          needSpell: kind === 'surge', needCreature: kind === 'emerge' });
+        continue;
+      }
+      if ((m = line.match(/^\s*Evoke\s*[—-]\s*Exile an? (white|blue|black|red|green) card from your hand/i))) {
+        out.push({ kind: 'evoke', pitch: COLOR_WORDS[m[1].toLowerCase()], stays: false });
+        continue;
+      }
+      // 「rather than pay this spell's mana cost」「cast this spell without paying its mana cost」
+      if (/rather than pay this spell's mana cost|cast this spell without paying its mana cost/i.test(line)) {
+        const o = { kind: 'alt', stays: true };
+        const ex = line.match(/exile an? (white|blue|black|red|green)?\s*(?:nonland )?card from your hand/i);
+        if (ex) o.pitch = ex[1] ? COLOR_WORDS[ex[1].toLowerCase()] : 'any';
+        const lf = line.match(/pay (\d+) life/i);
+        if (lf) o.life = +lf[1];
+        const ct = line.match(/If you control an? ([A-Z][a-z]+)\b/);
+        if (ct) o.needType = ct[1];
+        if (/if it's not your turn/i.test(line)) o.notMyTurn = true;
+        const mc = line.match(/(?:pay|paying) ((?:\{[^}]+\})+) rather than/i);
+        if (mc) o.cost = costOf({ manaCost: mc[1], cmc: symCount(mc[1]) });
+        // 読めない追加の支払い（生け贄・タップ・土地を戻すなど）があれば使わない
+        if (/sacrifice|tap an untapped|return (?:a|an|two|three) [^.]*? to (?:its|their) owner's hand|discard/i.test(line.split(/rather than|without paying/i)[0])) continue;
+        if (o.pitch || o.life || o.needType || o.cost || o.notMyTurn || /without paying/i.test(line)) out.push(o);
+      }
+    }
+    return out;
+  }
+
   // ---------- デッキの下準備 ----------
   // entries: [{qty, card, cat?, key?}]
   function prepare(entries, keyNames) {
@@ -420,6 +461,7 @@
         key: keySet.has(c.name),
         perm: land ? null : permOf(c)
       };
+      info.alts = land ? [] : altCostsOf(c);
       info.acts = actsOf(c, !!info.search);
       info.plusActs = land ? null : plusActsOf(c);
       // 自分で除去できて、行動もするカードだけ（行動を「止められない」扱いにするため）
@@ -499,10 +541,11 @@
     const rocks = []; // マナを出すパーマネント {amt, colors, sick, used}
     const perms = []; // 起動型のサーチを持つパーマネント（Expedition Map など）
     const tron = deck.tronTypes;
-    const g = { mana: [], idle: [], unused: [], held: [], inHand: [], cast: {}, seen: {}, board: [], combo: [], names: [], lands: [], groups: [], acts: [], colorMana: [] };
+    const g = { mana: [], idle: [], unused: [], held: [], inHand: [], cast: {}, seen: {}, board: [], combo: [], names: [], lands: [], groups: [], acts: [], colorMana: [], curve: {}, alt: {} };
     const dev = { W: 0, U: 0, B: 0, R: 0, G: 0 }; // 信心（戦場のパーマネントの色マナ・シンボルの数）
     // そのターンの行動の回数（相手の行動干渉が効くもの）。fetch はフェッチランドの生け贄起動、search は呪文・能力でのサーチ
     let ev = { fetch: 0, search: 0, draw: 0, life: 0, extra: 0 };
+    const dashBack = []; // 疾駆で唱えて、ターンの終わりに手札に戻るカード
     const plusUsers = []; // 戦場にいて、毎ターンプラスの忠誠度能力で行動するPW
     // rm: 自分で除去できるカード → { r: 唱えたターン, by: ターン → その札がした行動 }
     const rm = {};
@@ -760,10 +803,36 @@
       if (!(c.name in g.seen)) g.seen[c.name] = turn;
       if (!(c.name in g.cast)) g.cast[c.name] = turn;
     };
-    const castFromHand = c => {
-      if (!pay(effCost(c))) return false;
+    // 代替コストで唱えられるなら、その支払い方を返す。opts.held: 構える妨害として（相手のターンに唱える）見るとき
+    // ピッチ（手札の同じ色のカードを追放）は、ほかに追放できるカードが手札にあるときだけ
+    const pitchFor = (c, color) => hand.find(x => x !== c && !x.land && (color === 'any' || (x.card.colors || []).includes(color)));
+    const altOpt = (c, opts = {}) => {
+      for (const o of c.alts || []) {
+        if (o.notMyTurn && !opts.held) continue;
+        if (o.needSpell && !castThisTurn) continue;
+        if (o.needCreature && !board.creatures.length) continue;
+        if (o.needType && !hasType(bf, o.needType)) continue;
+        if (o.pitch && !pitchFor(c, o.pitch)) continue;
+        if (o.cost && !canPay(o.cost)) continue;
+        if (!opts.pitchOk && o.pitch && !c.disrupt) continue; // 2枚使うピッチは、妨害以外では一人回しで使わない
+        return o;
+      }
+      return null;
+    };
+    const castFromHand = (c, alt) => {
+      if (alt) {
+        if (alt.cost && !pay(alt.cost)) return false;
+        if (alt.pitch) { const x = pitchFor(c, alt.pitch); if (!x) return false; hand.splice(hand.indexOf(x), 1); }
+      } else if (!pay(effCost(c))) return false;
       hand.splice(hand.indexOf(c), 1);
       record(c);
+      if (alt) g.alt[c.name] = (g.alt[c.name] || 0) + 1;
+      // 想起・疾駆・威迫で唱えたパーマネントは戦場に残らない（疾駆は手札に戻る）
+      if (alt && !alt.stays) {
+        if (alt.kind === 'dash') dashBack.push(c); // ターンの終わりに手札に戻る
+        if (c.fast) { pool.n += c.fast.treasure; }
+        return true;
+      }
       // 使い捨てのキャントリップ（Chromatic Star など）と、起動して生け贄にするサーチは盤面に残さない
       if (!(c.dig && /\bArtifact\b/.test(frontType(c.card))) && !(c.search && c.search.ability)) addPerm(c);
       if (c.fast) { pool.n += c.fast.treasure; combatTreasure += c.fast.combat; }
@@ -800,12 +869,13 @@
       };
       if (!landsInHand() && landDrop && digs.length) return castDig(digs[0]);
       // 5. 主力 → それ以外（妨害は構えるので唱えない）。重いものから唱えてマナを使い切る
-      const spells = hand.filter(c => !c.land && !c.disrupt && !c.rock && !c.search && !c.dig && !(c.fast && c.fast.hand) && canPay(effCost(c)));
+      // 普通に払えなければ代替コスト（想起・疾駆・威迫・「rather than pay」など）を使う
+      const spells = hand.filter(c => !c.land && !c.disrupt && !c.rock && !c.search && !c.dig && !(c.fast && c.fast.hand) && (canPay(effCost(c)) || altOpt(c)));
       if (spells.length) {
         spells.sort((a, b) => (b.key - a.key) || (b.cmc - a.cmc));
         const c = spells[0];
         const before = avail();
-        castFromHand(c);
+        castFromHand(c, canPay(effCost(c)) ? null : altOpt(c));
         if (!c.key) otherSpent += before - avail();
         return true;
       }
@@ -829,6 +899,7 @@
       perms.forEach(x => { x.ready = true; });
       floated = null; landDrop = true; castThisTurn = 0; otherSpent = 0;
       ev = { fetch: 0, search: 0, draw: 0, life: 0, extra: 0 };
+      hand.push(...dashBack.splice(0));
       plusUsers.forEach(x => addActs(x.a, x.src));
       // 毎ターン（攻撃時・終了時など）トークンを出すパーマネントは、1ターンに1回出したものとして近似
       board.makers.forEach(list => list.forEach(t => board.creatures.push({ ...t })));
@@ -844,7 +915,7 @@
       const left = sources().filter(x => !x.fast).reduce((s, x) => s + x.amt, 0);
       // 主力以外の呪文を我慢すれば構えられたか（使ったマナを好きな色で戻して判定する近似）
       if (otherSpent) floated = { amt: (floated ? floated.amt - floated.used : 0) + otherSpent, used: 0 };
-      const held = hand.some(c => c.disrupt && canPay(effCost(c)));
+      const held = hand.some(c => c.disrupt && (canPay(effCost(c)) || altOpt(c, { held: true })));
       if (otherSpent) { floated.amt -= otherSpent; if (floated.amt <= 0) floated = null; }
       hand.forEach(c => { if (!c.land && !(c.name in g.seen)) g.seen[c.name] = turn; });
       hand.forEach(c => seenNames.add(nk(c.name)));
@@ -875,13 +946,31 @@
       const grp = {};
       for (const [gname, list] of Object.entries(deck.groups || {})) {
         const set = new Set(list.map(nk));
-        grp[gname] = hand.some(c => set.has(nk(c.name)) && canPay(effCost(c))) || Object.keys(g.cast).some(n => set.has(nk(n))) ||
+        grp[gname] = hand.some(c => set.has(nk(c.name)) && (canPay(effCost(c)) || altOpt(c, { held: true, pitchOk: true }))) || Object.keys(g.cast).some(n => set.has(nk(n))) ||
           bf.some(l => l.card && set.has(nk(l.card.name)));
       }
       g.groups.push(grp);
       g.acts.push(ev);
       g.names.push({ land: landNames, creature: new Set(cr.map(x => x.name)), artifact: new Set(board.names.artifact), enchantment: new Set(board.names.enchantment), planeswalker: new Set(board.names.planeswalker) });
       g.combo.push((deck.combos || []).some(cb => cb.pieces.every(gr => gr.some(n => seenNames.has(nk(n))))));
+      // カーブどおりに唱えられるか: MVと同じターンに、そのターンのマナを全部使えたとして（使った分も戻して）コストを払えるか。
+      // 払えないとき、色を無視すれば払えるなら「色不足」（足りない色も記録）、それでも払えなければ「マナ不足」
+      const cc = (deck.curveCards || []).filter(x => x.t === turn);
+      if (cc.length) {
+        const saved = bf.map(l => l.used), savedR = rocks.map(r => r.used);
+        bf.forEach(l => { l.used = 0; }); rocks.forEach(r => { r.used = 0; });
+        cc.forEach(({ c }) => {
+          const cost = effCost(c);
+          if (plan(cost)) { g.curve[c.name] = { ok: true }; return; }
+          // 代替コストでも払えるならOK（2種類以上の支払い方があるカード）。ピッチは手札に追放できるカードがあるときだけ
+          if (altOpt(c, { held: true, pitchOk: true })) { g.curve[c.name] = { ok: true, alt: true }; return; }
+          const n = cost.generic + Object.values(cost.pips).reduce((a, b) => a + b, 0);
+          if (!plan({ generic: n, pips: {} })) { g.curve[c.name] = { ok: false, why: 'mana' }; return; }
+          const miss = Object.keys(cost.pips).filter(col => !plan({ generic: 0, pips: { [col]: cost.pips[col] } }));
+          g.curve[c.name] = { ok: false, why: 'color', miss: miss.length ? miss : Object.keys(cost.pips) };
+        });
+        bf.forEach((l, i) => { l.used = saved[i]; }); rocks.forEach((r, i) => { r.used = savedR[i]; });
+      }
       g.mana.push(total);
       // 色ごとに出せるマナ（その色だけを出すとしたときの最大。土地とマナを出すパーマネント）
       const cm = { W: 0, U: 0, B: 0, R: 0, G: 0, C: 0 };
@@ -913,7 +1002,8 @@
     const CK = ['W', 'U', 'B', 'R', 'G', 'C'];
     const cmAgg = Array.from({ length: turns }, () => Object.fromEntries(CK.map(k => [k, 0])));
     const actsAgg = Array.from({ length: turns }, () => Object.fromEntries(EK.map(k => [k, 0])));
-    const rmAgg = {}; // カード名 → 唱えたターン r → ターン t → 行動の合計
+    const rmAgg = {};
+    const curveAgg = {}; // カード名 → { ok, mana, color, miss: {色: 回数} } // カード名 → 唱えたターン r → ターン t → 行動の合計
     const names = Object.fromEntries(NT.map(k => [k, {}])); // 種類 → カード名 → ターンごとの「戦場にある」回数
     const keys = new Set(keyNames);
     for (let n = 0; n < iters; n++) {
@@ -929,6 +1019,10 @@
       r.lands.forEach((l, t) => { landsAgg[t].n += l.n; landsAgg[t].basic += l.basic; AK.forEach(k => { landsAgg[t].alt[k] += l.alt[k]; }); });
       r.acts.forEach((a, t) => EK.forEach(k => { actsAgg[t][k] += a[k]; }));
       r.colorMana.forEach((a, t) => CK.forEach(k => { cmAgg[t][k] += a[k]; }));
+      for (const [name, x] of Object.entries(r.curve)) {
+        const o = curveAgg[name] = curveAgg[name] || { ok: 0, alt: 0, mana: 0, color: 0, miss: {} };
+        if (x.ok) { o.ok++; if (x.alt) o.alt++; } else if (x.why === 'mana') o.mana++; else { o.color++; x.miss.forEach(col => { o.miss[col] = (o.miss[col] || 0) + 1; }); }
+      }
       for (const [name, x] of Object.entries(r.rm)) for (const [t, b] of Object.entries(x.by)) {
         const key = `${x.r}-${t}`, o = ((rmAgg[name] = rmAgg[name] || {})[key] = rmAgg[name][key] || Object.fromEntries(EK.map(k => [k, 0])));
         EK.forEach(k => { o[k] += b[k]; });
@@ -963,6 +1057,12 @@
       acts: actsAgg.map(a => Object.fromEntries(EK.map(k => [k, a[k] / iters]))),
       // 色ごとに出せるマナの平均（その色だけを出すとしたとき）
       colorMana: cmAgg.map(a => Object.fromEntries(CK.map(k => [k, a[k] / iters]))),
+      // カーブどおり（MVと同じターン）にコストを払えた率と、払えなかった理由（マナ不足・色不足と足りない色）
+      curve: (deck.curveCards || []).map(({ c, t, qty }) => {
+        const o = curveAgg[c.name] || { ok: 0, alt: 0, mana: 0, color: 0, miss: {} };
+        return { name: c.name, mv: Math.round(c.cmc), t, qty, alts: (c.alts || []).map(a => a.kind), ok: o.ok / iters, alt: o.alt / iters, mana: o.mana / iters, color: o.color / iters,
+          miss: Object.fromEntries(Object.entries(o.miss).map(([k, v]) => [k, v / iters])) };
+      }),
       // 自分で除去できるカードの行動: カード名 → [{ r: 唱えたターン, t: 行動したターン, 行動の平均回数 }]
       rmActs: Object.fromEntries(Object.entries(rmAgg).map(([n, m]) => [n, Object.entries(m).map(([key, o]) => {
         const [r, t] = key.split('-').map(Number);
@@ -994,6 +1094,10 @@
     deck.combos = opts.combos || []; // [{ name, pieces: [[カード名…], …] }]
     deck.groups = opts.groups || {};  // { グループ名: [カード名…] }（対策札をそのターンに唱えられる率を見る）
     if (deck.cards.length < 8 || !deck.lands.length) return null;
+    // カーブどおりに唱えられるかを見るカード（土地以外・MV1以上。名前ごとに1枚。MV7以上は最後のターンで見る）
+    const seenCurve = new Set();
+    deck.curveCards = deck.cards.filter(c => !c.land && Math.round(c.cmc) >= 1 && !seenCurve.has(c.name) && seenCurve.add(c.name))
+      .map(c => ({ c, t: Math.min(turns, Math.round(c.cmc)), qty: deck.cards.filter(x => x.name === c.name).length }));
     const seed = hashStr(entries.filter(e => e.card).map(e => e.qty + e.card.name).sort().join('|') + '#' + keyNames.join('|'));
     const play = run(deck, true, turns, iters, seed, keyNames);
     const draw = run(deck, false, turns, iters, seed + 1, keyNames);
@@ -1022,7 +1126,7 @@
     [pa, ...a.cond].forEach(x => { if (x) ['search', 'draw', 'life', 'extra'].forEach(k => { a[k] += x[k]; }); });
     return [...(sp || a.search ? ['search'] : []), ...['draw', 'life', 'extra'].filter(k => a[k])];
   }
-  const api = { simulate, landProfile, searchSpec, digSpec, rockSpec, costOf, actionKinds, selfRemovalOf };
+  const api = { simulate, landProfile, searchSpec, digSpec, rockSpec, costOf, actionKinds, selfRemovalOf, altCostsOf };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else global.ManaSim = api;
 })(typeof window !== 'undefined' ? window : globalThis);

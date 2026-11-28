@@ -337,7 +337,7 @@
         <span class="l">${i === 7 ? '7+' : i}</span>
       </div>`).join('');
     $('#avgMV').textContent = a.nonLand ? `平均MV ${a.avgMV.toFixed(2)}（土地除く ${a.nonLand} 枚）` : '';
-    const simTips = renderManaSim();
+    const simTips = renderManaSim(a);
 
     // 色
     const totalPips = Object.values(a.pips).reduce((s, x) => s + x, 0);
@@ -363,7 +363,11 @@
     const metaTips = cmp && cmp.bench && cmp.bench.meta ? Roles.metaAdvice(dMain, dSide, cmp.bench.meta, cmp.group) : [];
     metaTips.push(...renderCombos(cmp));
     metaTips.push(...renderMatchups(cmp));
-    const all = [...a.advice, ...metaTips.map(x => ({ group: 'meta', ...x })), ...simTips.map(x => ({ group: 'plan', ...x }))];
+    // 一人回しの結果が出ていれば、土地の判定は一人回し（カーブどおりに唱えられるか）に置き換え、平均MVの目安は参考にする
+    const simLand = simTips.some(x => x.replacesLand);
+    const baseAdvice = simLand ? a.advice.map(x => x.key === 'land'
+      ? { group: 'base', level: 'info', text: `参考：平均MV ${a.avgMV.toFixed(2)} からの土地の目安は ${Math.round(a.recLand)} 枚（いま ${a.lands} 枚${a.mdfcLands ? `＋両面土地 ${a.mdfcLands}` : ''}）。土地以外のマナは含まない目安だよ。` } : x) : a.advice;
+    const all = [...baseAdvice, ...metaTips.map(x => ({ group: 'meta', ...x })), ...simTips.map(x => ({ group: 'plan', ...x }))];
     const GROUPS = [
       ['base', '前提チェック（枚数・土地・色）'],
       ['plan', 'メインの動き（一人回し）'],
@@ -386,14 +390,14 @@
   // 計算に少し時間がかかるので、デッキが変わったら後から計算して描き直す
   let simCache = { sig: null, result: null, pending: false };
   const pctTxt = x => `${Math.round(x * 100)}%`;
-  function renderManaSim() {
+  function renderManaSim(a) {
     const box = $('#manaSim');
     if (!window.ManaSim) { box.innerHTML = ''; return []; }
     const list = state.main.filter(e => e.card);
     // デッキに登録済みのコンボ（パーツとデッキ要件がそろっているもの）を一人回しでもそろったか見る
     const lands = state.main.filter(e => rolesOf(e).includes('land')).reduce((s, e) => s + e.qty, 0);
     const combos = window.Combos ? Combos.detect({ main: state.main }, lands).filter(x => x.complete).map(x => ({ name: x.combo.name, pieces: x.combo.pieces })) : [];
-    const sig = list.map(e => `${e.qty}:${e.card.name}:${catOf(e)}`).sort().join('|') + '#' + combos.map(c => c.name).join('|') + '#v4';
+    const sig = list.map(e => `${e.qty}:${e.card.name}:${catOf(e)}`).sort().join('|') + '#' + combos.map(c => c.name).join('|') + '#v5';
     if (simCache.sig !== sig) {
       simCache = { sig, result: null, pending: true };
       box.innerHTML = list.length ? '<p class="hint">一人回し中…</p>' : '';
@@ -416,6 +420,28 @@
 
     const tips = [];
     const TT = [3, 4, 5].filter(t => t <= r.turns);
+    // 前提チェック: カーブどおりに唱えられるか（土地以外のマナも込みで、MVと同じターンにコストを払えた率）
+    let curveHTML = '';
+    if (r.play.curve && r.play.curve.length && a) {
+      const cv = r.play.curve, W = cv.reduce((s, x) => s + x.qty, 0);
+      const wsum = (side, k) => r[side].curve.reduce((s, x) => s + x.qty * x[k], 0) / W;
+      const rate = wsum('play', 'ok'), rateD = wsum('draw', 'ok'), manaF = wsum('play', 'mana'), colorF = wsum('play', 'color'), altF = wsum('play', 'alt');
+      const miss = {};
+      cv.forEach(x => Object.entries(x.miss).forEach(([k, v]) => { miss[k] = (miss[k] || 0) + x.qty * v / W; }));
+      const missTop = Object.entries(miss).filter(([, v]) => v >= 0.03).sort((p, q) => q[1] - p[1]).map(([k]) => Roles.COLOR_JA[k] || k);
+      const unused5 = r.turns >= 5 ? r.play.unused[4] : 0;
+      // 良し悪しの目安は置かず、成立率そのものを出す（新しいアーキタイプを試すときに、既存のデッキとの比較で判断しないため）
+      const B = { group: 'base', replacesLand: true, level: 'info' };
+      tips.push({ ...B, text: `カーブどおりに唱えられる率は先手${pctTxt(rate)}・後手${pctTxt(rateD)}（土地以外のカードを、MVと同じターンに払えた率。枚数で重み付け、土地以外のマナと代替コストも込み${altF >= 0.01 ? `。うち代替コストで払えた分${pctTxt(altF)}` : ''}）。払えなかった内訳はマナ不足${pctTxt(manaF)}・色不足${pctTxt(colorF)}${missTop.length ? `（足りない色: ${missTop.join('・')}）` : ''}。` });
+      if (r.turns >= 4) tips.push({ ...B, text: `2/3/4ターン目に2/3/4マナ出せない率は先手${[2, 3, 4].map(t => pctTxt(1 - (r.play.ge[t - 1][t] || 0))).join('/')}。${r.turns >= 5 ? `5ターン目の使い残しは平均${unused5.toFixed(1)}マナ。` : ''}` });
+      // カードごとの成立率（低い順。全部載せて折りたたむ）
+      const all = cv.map((x, i) => ({ x, d: r.draw.curve[i] })).sort((p, q) => p.x.ok - q.x.ok);
+      const why = x => x.ok >= 0.995 ? '-' : x.mana >= x.color ? 'マナ不足' : `色不足（${Object.keys(x.miss).map(k => Roles.COLOR_JA[k] || k).join('・')}）`;
+      curveHTML = `<details class="sim-curve"><summary>カードごとのカーブどおりに唱えられる率（${all.length}種・低い順）</summary>
+        <div class="sim-scroll"><table class="meta-table sim-table"><tr><th>カード</th><th>MV</th><th>見るターン</th><th>払えた（先手/後手）</th><th>うち代替コスト</th><th>払えなかった主な理由</th></tr>
+        ${all.map(({ x, d }) => `<tr><td>${esc(x.name)}×${x.qty}</td><td>${x.mv}</td><td>${x.t}T</td><td>${pctTxt(x.ok)}<span class="muted">/${pctTxt(d ? d.ok : 0)}</span></td><td>${x.alt >= 0.005 ? pctTxt(x.alt) : '-'}</td><td>${why(x)}</td></tr>`).join('')}
+        </table></div></details>`;
+    }
     const n1 = x => x.toFixed(1);
     const pd = (p, d, f) => `${f(p)}<span class="muted">/${f(d)}</span>`;
     const B = (side, t) => r[side].board[t - 1];
@@ -442,6 +468,7 @@
       ${r.comboNames && r.comboNames.length ? brow('コンボがそろった', (s, t) => r[s].combo[t - 1], pctTxt) : ''}
       </table></div>
       ${TT.includes(4) ? cardBreakdownHTML(topCards(r.play.names), Object.assign({ lands: r.play.lands[3].n }, r.play.board[3]), '先手') : ''}
+      ${curveHTML}
       <p class="hint">トークンは出たとき・唱えたときに出るものと、毎ターン出すもの（1ターンに1回として近似）を含みます。全体除去を撃たれたときにどれだけ巻き込まれるかの目安にしてね。色ごとのマナは、その色だけを出すとしたときの最大です（Nykthos は信心の一番多い色で数えます）。</p>`;
     if (TT.includes(4)) {
       const b = B('play', 4);
