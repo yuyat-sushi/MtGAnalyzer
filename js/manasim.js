@@ -397,6 +397,30 @@
     return null;
   }
 
+  // ---------- カード自身のコスト軽減 ----------
+  // 親和・即席・召集・探査と「This spell costs {N} less to cast for each ～」。[{ per, n, kind }]
+  //   per: artifact（自分のアーティファクト）、creature、gy（墓地のカード）、gyIS（墓地のインスタント・ソーサリー）、
+  //        domain（土地の基本土地タイプの種類）、land、spell（このターンに唱えた呪文）、flat（条件を満たせば一定）
+  function selfReduceOf(card) {
+    if (isLandCard(card)) return [];
+    const t = frontOracle(card).toLowerCase(), out = [];
+    if (/\baffinity for artifacts\b/.test(t)) out.push({ per: 'artifact', n: 1, kind: 'affinity' });
+    if (/(^|\n|,)\s*improvise\b/.test(t)) out.push({ per: 'artifact', n: 1, kind: 'improvise' });
+    if (/(^|\n|,)\s*convoke\b/.test(t)) out.push({ per: 'creature', n: 1, kind: 'convoke' });
+    if (/(^|\n|,)\s*delve\b/.test(t)) out.push({ per: 'gy', n: 1, kind: 'delve' });
+    const PER = [
+      [/artifacts? you control/, 'artifact'], [/creatures? (you control|on the battlefield)/, 'creature'],
+      [/instant (and|or) sorcery cards? in your graveyard/, 'gyIS'], [/cards? in your graveyard/, 'gy'],
+      [/basic land types? among lands you control/, 'domain'], [/lands? you control/, 'land'],
+      [/other spells? you've cast this turn/, 'spell']
+    ];
+    const m = t.match(/this spell costs \{(\d+)\} less to cast for each ([^.]+)/);
+    if (m) { const hit = PER.find(([re]) => re.test(m[2])); if (hit) out.push({ per: hit[1], n: +m[1], kind: 'each' }); }
+    const f = t.match(/this spell costs \{(\d+)\} less to cast if you control an? (artifact|creature|enchantment|planeswalker|[a-z]+)\b/);
+    if (f) out.push({ per: 'flat', n: +f[1], kind: 'if', type: f[2] });
+    return out;
+  }
+
   // ---------- 代替コスト ----------
   // 手札から唱えるときの、マナ・コスト以外の支払い方。[{ kind, cost?, pitch?, life?, needType?, notMyTurn?, needCreature?, needSpell?, stays }]
   //   cost: 代わりに払うマナ（evoke・dash など）、pitch: 手札から追放する色（Force of Will、Solitude）、
@@ -462,6 +486,7 @@
         perm: land ? null : permOf(c)
       };
       info.alts = land ? [] : altCostsOf(c);
+      info.selfRed = land ? [] : selfReduceOf(c);
       info.acts = actsOf(c, !!info.search);
       info.plusActs = land ? null : plusActsOf(c);
       // 自分で除去できて、行動もするカードだけ（行動を「止められない」扱いにするため）
@@ -568,7 +593,38 @@
     const fx = { moon: false, b2b: false, sphere: false };
     const reducers = [];
     const COLOR_WORD = { white: 'W', blue: 'U', black: 'B', red: 'R', green: 'G' };
+    // 墓地（探査・「墓地のカードの数だけ軽くなる」用）。gyIS はそのうちのインスタント・ソーサリー
+    const gy = { n: 0, is: 0 };
+    const BASIC_TYPES = ['Plains', 'Island', 'Swamp', 'Mountain', 'Forest'];
+    const countFor = (per, type) => {
+      if (per === 'artifact') return board.artifact + board.creatures.filter(x => x.artifact).length + bf.filter(l => /\bArtifact\b/.test(l.p.typeStr)).length;
+      if (per === 'creature') return board.creatures.length;
+      if (per === 'gy') return gy.n;
+      if (per === 'gyIS') return gy.is;
+      if (per === 'domain') return BASIC_TYPES.filter(x => bf.some(l => l.p.every || l.p.typeStr.includes(x))).length;
+      if (per === 'land') return bf.length;
+      if (per === 'spell') return castThisTurn;
+      if (per === 'flat') return (type === 'creature' ? board.creatures.length : type === 'artifact' ? countFor('artifact') : (board[type] || 0) + bf.filter(l => l.p.typeStr.toLowerCase().includes(type)).length) > 0 ? 1 : 0;
+      return 0;
+    };
+    // カード自身の軽減（親和・即席・召集・探査など）。不特定マナの部分だけ減らす。探査は墓地を使った枚数を delve に入れる
+    const selfLess = (c, generic) => {
+      let less = 0, delve = 0;
+      for (const r of c.selfRed || []) {
+        if (r.kind === 'delve') { delve = Math.min(gy.n, Math.max(0, generic - less)); less += delve; continue; }
+        let n = countFor(r.per, r.type) * r.n;
+        if (r.kind === 'improvise') n = Math.max(0, n - rocks.length); // マナに使うアーティファクトは即席に使えない（近似）
+        less += n;
+      }
+      return { less: Math.min(less, generic), delve };
+    };
     const effCost = c => {
+      const base = effCost0(c);
+      if (!c.selfRed || !c.selfRed.length) return base;
+      const { less, delve } = selfLess(c, base.generic);
+      return less ? { generic: base.generic - less, pips: base.pips, delve } : base;
+    };
+    const effCost0 = c => {
       if (!reducers.length || c.land) return c.cost;
       const front = frontType(c.card).toLowerCase();
       const mc = String(c.card.manaCost || '').split('//')[0];
@@ -606,7 +662,7 @@
       const tokName = t => `${t.power}/${t.toughness} トークン（${front}）`;
       pm.etbTokens.forEach(t => board.creatures.push({ ...t, name: tokName(t) }));
       if (!pm.types.length) return;
-      if (pm.types.includes('creature')) board.creatures.push({ power: pm.power, toughness: pm.toughness, name: front });
+      if (pm.types.includes('creature')) board.creatures.push({ power: pm.power, toughness: pm.toughness, name: front, artifact: pm.types.includes('artifact') });
       ['artifact', 'enchantment', 'planeswalker', 'battle'].forEach(t => {
         if (pm.types.includes(t) && !pm.types.includes('creature')) { board[t]++; if (board.names[t]) board.names[t].push(front); }
       });
@@ -712,7 +768,7 @@
       const tapped = entersTapped(c.p, bf);
       if (c.p.fetch) {
         const i = pickTarget(c.p.fetch, 'battlefield');
-        if (i >= 0) { const t = takeFromLib(i); ev.fetch++; bf.push(newSlot(t, c.p.fetch.tapped || entersTapped(t.p, bf) || tapped)); return; }
+        if (i >= 0) { const t = takeFromLib(i); ev.fetch++; gy.n++; bf.push(newSlot(t, c.p.fetch.tapped || entersTapped(t.p, bf) || tapped)); return; }
       }
       const slot = newSlot(c, tapped);
       bf.push(slot);
@@ -823,18 +879,25 @@
       if (alt) {
         if (alt.cost && !pay(alt.cost)) return false;
         if (alt.pitch) { const x = pitchFor(c, alt.pitch); if (!x) return false; hand.splice(hand.indexOf(x), 1); }
-      } else if (!pay(effCost(c))) return false;
+      } else {
+        const cost = effCost(c);
+        if (!pay(cost)) return false;
+        if (cost.delve) { const fromIS = Math.max(0, cost.delve - (gy.n - gy.is)); gy.n -= cost.delve; gy.is -= fromIS; } // 探査で墓地を追放
+      }
       hand.splice(hand.indexOf(c), 1);
       record(c);
+      if (/\b(Instant|Sorcery)\b/.test(frontType(c.card))) { gy.n++; gy.is++; } // 解決して墓地へ
       if (alt) g.alt[c.name] = (g.alt[c.name] || 0) + 1;
       // 想起・疾駆・威迫で唱えたパーマネントは戦場に残らない（疾駆は手札に戻る）
       if (alt && !alt.stays) {
         if (alt.kind === 'dash') dashBack.push(c); // ターンの終わりに手札に戻る
+        else if (!/\b(Instant|Sorcery)\b/.test(frontType(c.card))) gy.n++; // 想起・威迫は墓地へ
         if (c.fast) { pool.n += c.fast.treasure; }
         return true;
       }
       // 使い捨てのキャントリップ（Chromatic Star など）と、起動して生け贄にするサーチは盤面に残さない
       if (!(c.dig && /\bArtifact\b/.test(frontType(c.card))) && !(c.search && c.search.ability)) addPerm(c);
+      else gy.n++; // 使い捨てのアーティファクト・起動して生け贄にするサーチは墓地へ
       if (c.fast) { pool.n += c.fast.treasure; combatTreasure += c.fast.combat; }
       return true;
     };
@@ -1126,7 +1189,7 @@
     [pa, ...a.cond].forEach(x => { if (x) ['search', 'draw', 'life', 'extra'].forEach(k => { a[k] += x[k]; }); });
     return [...(sp || a.search ? ['search'] : []), ...['draw', 'life', 'extra'].filter(k => a[k])];
   }
-  const api = { simulate, landProfile, searchSpec, digSpec, rockSpec, costOf, actionKinds, selfRemovalOf, altCostsOf };
+  const api = { simulate, landProfile, searchSpec, digSpec, rockSpec, costOf, actionKinds, selfRemovalOf, altCostsOf, selfReduceOf };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else global.ManaSim = api;
 })(typeof window !== 'undefined' ? window : globalThis);
