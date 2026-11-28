@@ -1065,7 +1065,7 @@
         ${tagListHTML(e.card)}
         <div class="pop-now">
           <div class="muted">今の判定${manual ? '<span class="pop-manual">手動で変更中</span>' : ''}</div>
-          <div><span class="chip cat" style="background:${C ? C.color : '#666'}">${esc(C ? C.label : '-')}</span>${chipsHTML(e)}</div>
+          <div class="pop-chips"><span class="chip cat" style="background:${C ? C.color : '#666'}">${esc(C ? C.label : '-')}</span>${chipsHTML(e)}</div>
           ${info.override ? `<div class="muted pop-note">例外リストで指定${info.override.note ? `：${esc(info.override.note)}` : ''}</div>` : ''}
         </div>
         <details class="pop-edit"${editOpen ? ' open' : ''}><summary>カテゴリを編集</summary>
