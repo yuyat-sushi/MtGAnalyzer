@@ -122,6 +122,8 @@
       base: 0, tron: null, count: null, cond: null, tapped: 'no', bounce: false, fetch: null
     };
     for (const line of text.split('\n')) {
+      // 信心の数だけマナを出す（Nykthos, Shrine to Nyx の「{2}, {T}: Choose a color. Add …」）。一番信心の多い色を選ぶ。起動コストは差し引く
+      if (/equal to your devotion to that color/i.test(line) && line.indexOf(':') > 0) { p.devotion = { cost: genericCost(line.slice(0, line.indexOf(':'))) }; continue; }
       const ci = line.indexOf(': Add ');
       if (ci < 0) continue;
       const cost = line.slice(0, ci);
@@ -163,6 +165,8 @@
       break;
     }
     p.colors = (card.producedMana || []).filter(x => /^[WUBRGC]$/.test(x));
+    // 信心の能力の色（好きな色）は、信心があるときだけ出る。ふだんの色は、ほかのマナ能力に書かれている色だけ
+    if (p.devotion) p.colors = [...new Set((text.match(/\{T\}: Add ((?:\{[WUBRGC]\})+)/g) || []).flatMap(x => x.match(/[WUBRGC](?=\})/g)))];
     if (!p.colors.length) p.colors = ['C'];
     p.bounce = /return a land you control to its owner's hand/i.test(text);
     const sp = searchSpec(card);
@@ -170,6 +174,25 @@
     return p;
   }
 
+  // 一番信心の多い色 { c, n }
+  const devBest = dev => { let c = null, n = 0; for (const k of 'WUBRG') if (dev[k] > n) { n = dev[k]; c = k; } return { c, n }; };
+  // マナ・コストの色マナ・シンボルの数（混成は両方の色に1つずつ、ファイレクシア・マナも数える）
+  const pipsOf = card => {
+    const out = {};
+    (String(card.manaCost || '').split('//')[0].match(/\{[^}]+\}/g) || []).forEach(sym => {
+      new Set(sym.match(/[WUBRG]/g) || []).forEach(c => { out[c] = (out[c] || 0) + 1; });
+    });
+    return out;
+  };
+  // 土地が出せる色（信心の能力を使うと、その色のマナだけになる）
+  function landColors(l, bf) {
+    const p = l.p;
+    if (p.devotion && l.dev) {
+      const b = devBest(l.dev);
+      if (b.c && b.n - p.devotion.cost > landMana(Object.assign({}, p, { devotion: null }), bf, l)) return [b.c];
+    }
+    return p.colors;
+  }
   const hasType = (bf, type) => bf.some(l => l.p.every || l.p.typeStr.includes(type));
   // 土地1枚が出せるマナ（Tron・タイプの数・条件付きを含む）
   function landMana(p, bf, slot) {
@@ -180,6 +203,7 @@
       m = Math.max(m, n - p.count.cost);
     }
     if (p.cond && slot && slot.condOn) m = Math.max(m, p.cond.amt);
+    if (p.devotion && slot && slot.dev) m = Math.max(m, devBest(slot.dev).n - p.devotion.cost);
     if (p.cap1 && m >= 2) m = 1; // Damping Sphere: 2マナ以上出る土地は{C}1つ
     return m;
   }
@@ -475,14 +499,16 @@
     const rocks = []; // マナを出すパーマネント {amt, colors, sick, used}
     const perms = []; // 起動型のサーチを持つパーマネント（Expedition Map など）
     const tron = deck.tronTypes;
-    const g = { mana: [], idle: [], unused: [], held: [], inHand: [], cast: {}, seen: {}, board: [], combo: [], names: [], lands: [], groups: [], acts: [] };
+    const g = { mana: [], idle: [], unused: [], held: [], inHand: [], cast: {}, seen: {}, board: [], combo: [], names: [], lands: [], groups: [], acts: [], colorMana: [] };
+    const dev = { W: 0, U: 0, B: 0, R: 0, G: 0 }; // 信心（戦場のパーマネントの色マナ・シンボルの数）
     // そのターンの行動の回数（相手の行動干渉が効くもの）。fetch はフェッチランドの生け贄起動、search は呪文・能力でのサーチ
     let ev = { fetch: 0, search: 0, draw: 0, life: 0, extra: 0 };
     const plusUsers = []; // 戦場にいて、毎ターンプラスの忠誠度能力で行動するPW
     // rm: 自分で除去できるカード → { r: 唱えたターン, by: ターン → その札がした行動 }
     const rm = {};
     // 唱えた時点で、その色のマナを2つ出せたか（戦場の土地とマナを出すパーマネントで数える。支払ったかどうかの近似）
-    const twoOf = x => bf.filter(l => (l.p.colors || []).includes(x)).length + rocks.filter(r => (r.colors || []).includes(x)).length >= 2;
+    const twoOf = x => bf.reduce((s, l) => s + (landColors(l, bf).includes(x) ? (l.p.devotion && l.dev && landColors(l, bf)[0] === x ? Math.max(1, landMana(l.p, bf, l)) : 1) : 0), 0) +
+      rocks.filter(r => (r.colors || []).includes(x)).length >= 2;
     const rmOn = new Set(); // このゲームで、自分の効果で実際に除去を起こしたカード
     const addActs = (a, src) => {
       ev.search += a.search; ev.draw += a.draw; ev.life += a.life; ev.extra += a.extra;
@@ -529,6 +555,8 @@
     const addPerm = c => {
       const pm = c.perm;
       if (!pm) return;
+      // 信心: 戦場に出したパーマネントのマナ・コストの色マナ・シンボル
+      if (pm.types.length) Object.entries(pipsOf(c.card)).forEach(([k, v]) => { dev[k] += v; });
       if (pm.landFx && !fx[pm.landFx]) { fx[pm.landFx] = true; applyFx(); }
       (pm.reduce || []).forEach(r => reducers.push(r));
       const front = String(c.name).split(' // ')[0];
@@ -563,7 +591,7 @@
     // ---- マナの支払い ----
     const sources = () => {
       const out = [];
-      bf.forEach(l => { if (!l.sick) out.push({ ref: l, amt: landMana(l.p, bf, l) - l.used, colors: l.p.colors }); });
+      bf.forEach(l => { if (!l.sick) out.push({ ref: l, amt: landMana(l.p, bf, l) - l.used, colors: landColors(l, bf) }); });
       rocks.forEach(r => { if (!r.sick) out.push({ ref: r, amt: r.amt - r.used, colors: r.colors }); });
       if (floated) out.push({ ref: floated, amt: floated.amt - floated.used, colors: ['W', 'U', 'B', 'R', 'G'] });
       // 即席マナは最後に使う（宝物、手札のエルフの指導霊・Lotus Petal・儀式）
@@ -634,7 +662,7 @@
       return best;
     };
     const takeFromLib = i => { const c = lib.splice(i, 1)[0]; shuffle(lib, rng); return c; };
-    const newSlot = (c, sick) => ({ p: fxProfile(c.p), orig: c.p, sick, card: c, used: 0, condOn: !!(c.p.cond && rng() < deck.ratio(c.p.cond.kw)) });
+    const newSlot = (c, sick) => ({ p: fxProfile(c.p), orig: c.p, sick, card: c, used: 0, dev, condOn: !!(c.p.cond && rng() < deck.ratio(c.p.cond.kw)) });
 
     // ---- 土地 ----
     const putLand = c => {
@@ -830,7 +858,7 @@
       });
       // 土地: 枚数・基本土地・名前と、土地への対策が効いたときのマナ（元のプロフィールで計算）
       const rockMana = rocks.reduce((s, r) => s + (r.sick ? 0 : r.amt), 0);
-      const origBf = bf.map(l => ({ p: l.orig || l.p, sick: l.sick, condOn: l.condOn }));
+      const origBf = bf.map(l => ({ p: l.orig || l.p, sick: l.sick, condOn: l.condOn, dev: l.dev }));
       const isBasic = l => /\bBasic\b/.test(l.p.typeStr);
       const live = origBf.filter(l => !l.sick);
       const moonBf = origBf.map(l => isBasic(l) ? l : { p: MOON_P, sick: l.sick });
@@ -855,6 +883,11 @@
       g.names.push({ land: landNames, creature: new Set(cr.map(x => x.name)), artifact: new Set(board.names.artifact), enchantment: new Set(board.names.enchantment), planeswalker: new Set(board.names.planeswalker) });
       g.combo.push((deck.combos || []).some(cb => cb.pieces.every(gr => gr.some(n => seenNames.has(nk(n))))));
       g.mana.push(total);
+      // 色ごとに出せるマナ（その色だけを出すとしたときの最大。土地とマナを出すパーマネント）
+      const cm = { W: 0, U: 0, B: 0, R: 0, G: 0, C: 0 };
+      bf.forEach(l => { if (l.sick) return; const a = landMana(l.p, bf, l); landColors(l, bf).forEach(k => { cm[k] += a; }); });
+      rocks.forEach(r => { if (!r.sick) r.colors.forEach(k => { cm[k] += r.amt; }); });
+      g.colorMana.push(cm);
       g.unused.push(held ? 0 : left);
       g.held.push(held);
       g.inHand.push(hand.some(c => c.disrupt));
@@ -877,6 +910,8 @@
     const landsAgg = Array.from({ length: turns }, () => ({ n: 0, basic: 0, alt: Object.fromEntries(AK.map(k => [k, 0])) }));
     const groupsAgg = {};
     const EK = ['fetch', 'search', 'draw', 'life', 'extra'];
+    const CK = ['W', 'U', 'B', 'R', 'G', 'C'];
+    const cmAgg = Array.from({ length: turns }, () => Object.fromEntries(CK.map(k => [k, 0])));
     const actsAgg = Array.from({ length: turns }, () => Object.fromEntries(EK.map(k => [k, 0])));
     const rmAgg = {}; // カード名 → 唱えたターン r → ターン t → 行動の合計
     const names = Object.fromEntries(NT.map(k => [k, {}])); // 種類 → カード名 → ターンごとの「戦場にある」回数
@@ -893,6 +928,7 @@
       r.names.forEach((nm, t) => NT.forEach(k => nm[k].forEach(n => { (names[k][n] = names[k][n] || Array(turns).fill(0))[t]++; })));
       r.lands.forEach((l, t) => { landsAgg[t].n += l.n; landsAgg[t].basic += l.basic; AK.forEach(k => { landsAgg[t].alt[k] += l.alt[k]; }); });
       r.acts.forEach((a, t) => EK.forEach(k => { actsAgg[t][k] += a[k]; }));
+      r.colorMana.forEach((a, t) => CK.forEach(k => { cmAgg[t][k] += a[k]; }));
       for (const [name, x] of Object.entries(r.rm)) for (const [t, b] of Object.entries(x.by)) {
         const key = `${x.r}-${t}`, o = ((rmAgg[name] = rmAgg[name] || {})[key] = rmAgg[name][key] || Object.fromEntries(EK.map(k => [k, 0])));
         EK.forEach(k => { o[k] += b[k]; });
@@ -925,6 +961,8 @@
       groups: Object.fromEntries(Object.entries(groupsAgg).map(([k, v]) => [k, f(v)])),
       // そのターンに行った行動の平均回数（フェッチ・呪文や能力でのサーチ・ドロー枚数・ライフ回復・追加ターン）
       acts: actsAgg.map(a => Object.fromEntries(EK.map(k => [k, a[k] / iters]))),
+      // 色ごとに出せるマナの平均（その色だけを出すとしたとき）
+      colorMana: cmAgg.map(a => Object.fromEntries(CK.map(k => [k, a[k] / iters]))),
       // 自分で除去できるカードの行動: カード名 → [{ r: 唱えたターン, t: 行動したターン, 行動の平均回数 }]
       rmActs: Object.fromEntries(Object.entries(rmAgg).map(([n, m]) => [n, Object.entries(m).map(([key, o]) => {
         const [r, t] = key.split('-').map(Number);

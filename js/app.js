@@ -393,7 +393,7 @@
     // デッキに登録済みのコンボ（パーツとデッキ要件がそろっているもの）を一人回しでもそろったか見る
     const lands = state.main.filter(e => rolesOf(e).includes('land')).reduce((s, e) => s + e.qty, 0);
     const combos = window.Combos ? Combos.detect({ main: state.main }, lands).filter(x => x.complete).map(x => ({ name: x.combo.name, pieces: x.combo.pieces })) : [];
-    const sig = list.map(e => `${e.qty}:${e.card.name}:${catOf(e)}`).sort().join('|') + '#' + combos.map(c => c.name).join('|') + '#v3';
+    const sig = list.map(e => `${e.qty}:${e.card.name}:${catOf(e)}`).sort().join('|') + '#' + combos.map(c => c.name).join('|') + '#v4';
     if (simCache.sig !== sig) {
       simCache = { sig, result: null, pending: true };
       box.innerHTML = list.length ? '<p class="hint">一人回し中…</p>' : '';
@@ -437,11 +437,12 @@
       ${brow('エンチャント', (s, t) => B(s, t).enchantment)}
       ${brow('PW', (s, t) => B(s, t).planeswalker)}
       ${brow('出せるマナ', (s, t) => r[s].avg[t - 1])}
+      ${r.play.colorMana ? colorRows(brow, (s, t) => r[s].colorMana[t - 1], TT, 0.05) : ''}
       ${r.hasDisrupt ? brow('妨害を構えられた', (s, t) => r[s].held[t - 1], pctTxt) : ''}
       ${r.comboNames && r.comboNames.length ? brow('コンボがそろった', (s, t) => r[s].combo[t - 1], pctTxt) : ''}
       </table></div>
       ${TT.includes(4) ? cardBreakdownHTML(topCards(r.play.names), Object.assign({ lands: r.play.lands[3].n }, r.play.board[3]), '先手') : ''}
-      <p class="hint">トークンは出たとき・唱えたときに出るものと、毎ターン出すもの（1ターンに1回として近似）を含みます。全体除去を撃たれたときにどれだけ巻き込まれるかの目安にしてね。</p>`;
+      <p class="hint">トークンは出たとき・唱えたときに出るものと、毎ターン出すもの（1ターンに1回として近似）を含みます。全体除去を撃たれたときにどれだけ巻き込まれるかの目安にしてね。色ごとのマナは、その色だけを出すとしたときの最大です（Nykthos は信心の一番多い色で数えます）。</p>`;
     if (TT.includes(4)) {
       const b = B('play', 4);
       tips.push({ level: 'info', text: `4ターン目の盤面（先手）は、クリーチャー平均${n1(b.creatures)}体（パワー計${n1(b.power)}）、タフネス2以下が${n1(b.t2)}体、3体以上並ぶ率${pctTxt(r.play.wide[3])}。アーティファクト${n1(b.artifact)}・エンチャント${n1(b.enchantment)}・PW${n1(b.planeswalker)}。` });
@@ -699,6 +700,12 @@
     if (ok && spec.mvMax != null) ok = (card.cmc || 0) <= spec.mvMax;
     return ok;
   }
+  // 色ごとに出せるマナの行（get(side, i) が {W,U,B,R,G,C} を返す。どれかのターンで min 以上の色だけ）
+  const COLOR_LABEL = { W: '白', U: '青', B: '黒', R: '赤', G: '緑', C: '無色' };
+  function colorRows(brow, get, idx, min) {
+    return Object.keys(COLOR_LABEL).filter(k => idx.some(i => ['play', 'draw'].some(sd => ((get(sd, i) || {})[k] || 0) >= min)))
+      .map(k => brow(`　${COLOR_LABEL[k]}マナ`, (sd, i) => (get(sd, i) || {})[k] || 0)).join('');
+  }
   function renderMatchups(cmp) {
     const tips = [];
     const box = $('#matchBox');
@@ -861,6 +868,7 @@
         ${brow('エンチャント', (s, i) => B(s, i).enchantment)}
         ${brow('PW', (s, i) => B(s, i).planeswalker)}
         ${brow('出せるマナ', (s, i) => m.sim[s].mana[i])}
+        ${m.sim.play.colorMana ? colorRows(brow, (s, i) => m.sim[s].colorMana[i], [0, 1, 2], 0.5) : ''}
         ${m.sim.play.lands ? brow('土地（枚）', (s, i) => m.sim[s].lands[i].n) + brow('うち基本土地', (s, i) => m.sim[s].lands[i].basic) +
           brow('Blood Moon下のマナ', (s, i) => m.sim[s].lands[i].alt.moon) + brow('Damping Sphere下', (s, i) => m.sim[s].lands[i].alt.sphere) +
           brow('Back to Basics下', (s, i) => m.sim[s].lands[i].alt.b2b) + brow('土地1枚破壊後', (s, i) => m.sim[s].lands[i].alt.ld) : ''}
