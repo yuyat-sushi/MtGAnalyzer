@@ -535,7 +535,7 @@
     const out = []; // {level: 'good'|'warn'|'bad'|'info', text, group}
     // group: base（前提チェック）/ plan（メインの動き）/ meta（対策）/ extra（補足）
     let grp = 'base';
-    const push = (level, text) => out.push({ level, text, group: grp });
+    const push = (level, text, key) => out.push({ level, text, group: grp, key });
 
     if (a.total === 0) {
       push('info', 'まずはカードを追加するか、MTGO形式のデッキを読み込んでね！');
@@ -553,9 +553,10 @@
     const rec = Math.round(a.recLand);
     const effLands = a.lands + a.mdfcLands * 0.5;
     const diff = effLands - a.recLand;
-    if (Math.abs(diff) <= 1) push('good', `土地 ${a.lands} 枚は平均MV ${a.avgMV.toFixed(2)} に対してちょうどいい感じ（目安 ${rec} 枚）。`);
-    else if (diff < 0) push('bad', `土地が少なめかも…平均MV ${a.avgMV.toFixed(2)} なら目安は ${rec} 枚（いま ${a.lands} 枚${a.mdfcLands ? `＋両面土地 ${a.mdfcLands}` : ''}）。土地事故が怖いよ！`);
-    else push('warn', `土地が多めかも。目安 ${rec} 枚に対して ${a.lands} 枚。マナフラッド対策に土地を減らすか、マナの使い道を足してみて。`);
+    // key: 'land' は一人回しの結果が出たら、一人回しによる判定に置き換える（アプリ側）
+    if (Math.abs(diff) <= 1) push('good', `土地 ${a.lands} 枚は平均MV ${a.avgMV.toFixed(2)} に対してちょうどいい感じ（目安 ${rec} 枚）。`, 'land');
+    else if (diff < 0) push('bad', `土地が少なめかも…平均MV ${a.avgMV.toFixed(2)} なら目安は ${rec} 枚（いま ${a.lands} 枚${a.mdfcLands ? `＋両面土地 ${a.mdfcLands}` : ''}）。土地事故が怖いよ！`, 'land');
+    else push('warn', `土地が多めかも。目安 ${rec} 枚に対して ${a.lands} 枚。マナフラッド対策に土地を減らすか、マナの使い道を足してみて。`, 'land');
 
     // カテゴリ（上位デッキや目安との比較。補足扱い）
     grp = 'extra';

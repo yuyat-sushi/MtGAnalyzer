@@ -499,7 +499,7 @@
     const rocks = []; // マナを出すパーマネント {amt, colors, sick, used}
     const perms = []; // 起動型のサーチを持つパーマネント（Expedition Map など）
     const tron = deck.tronTypes;
-    const g = { mana: [], idle: [], unused: [], held: [], inHand: [], cast: {}, seen: {}, board: [], combo: [], names: [], lands: [], groups: [], acts: [], colorMana: [] };
+    const g = { mana: [], idle: [], unused: [], held: [], inHand: [], cast: {}, seen: {}, board: [], combo: [], names: [], lands: [], groups: [], acts: [], colorMana: [], curve: {} };
     const dev = { W: 0, U: 0, B: 0, R: 0, G: 0 }; // 信心（戦場のパーマネントの色マナ・シンボルの数）
     // そのターンの行動の回数（相手の行動干渉が効くもの）。fetch はフェッチランドの生け贄起動、search は呪文・能力でのサーチ
     let ev = { fetch: 0, search: 0, draw: 0, life: 0, extra: 0 };
@@ -882,6 +882,22 @@
       g.acts.push(ev);
       g.names.push({ land: landNames, creature: new Set(cr.map(x => x.name)), artifact: new Set(board.names.artifact), enchantment: new Set(board.names.enchantment), planeswalker: new Set(board.names.planeswalker) });
       g.combo.push((deck.combos || []).some(cb => cb.pieces.every(gr => gr.some(n => seenNames.has(nk(n))))));
+      // カーブどおりに唱えられるか: MVと同じターンに、そのターンのマナを全部使えたとして（使った分も戻して）コストを払えるか。
+      // 払えないとき、色を無視すれば払えるなら「色不足」（足りない色も記録）、それでも払えなければ「マナ不足」
+      const cc = (deck.curveCards || []).filter(x => x.t === turn);
+      if (cc.length) {
+        const saved = bf.map(l => l.used), savedR = rocks.map(r => r.used);
+        bf.forEach(l => { l.used = 0; }); rocks.forEach(r => { r.used = 0; });
+        cc.forEach(({ c }) => {
+          const cost = effCost(c);
+          if (plan(cost)) { g.curve[c.name] = { ok: true }; return; }
+          const n = cost.generic + Object.values(cost.pips).reduce((a, b) => a + b, 0);
+          if (!plan({ generic: n, pips: {} })) { g.curve[c.name] = { ok: false, why: 'mana' }; return; }
+          const miss = Object.keys(cost.pips).filter(col => !plan({ generic: 0, pips: { [col]: cost.pips[col] } }));
+          g.curve[c.name] = { ok: false, why: 'color', miss: miss.length ? miss : Object.keys(cost.pips) };
+        });
+        bf.forEach((l, i) => { l.used = saved[i]; }); rocks.forEach((r, i) => { r.used = savedR[i]; });
+      }
       g.mana.push(total);
       // 色ごとに出せるマナ（その色だけを出すとしたときの最大。土地とマナを出すパーマネント）
       const cm = { W: 0, U: 0, B: 0, R: 0, G: 0, C: 0 };
@@ -913,7 +929,8 @@
     const CK = ['W', 'U', 'B', 'R', 'G', 'C'];
     const cmAgg = Array.from({ length: turns }, () => Object.fromEntries(CK.map(k => [k, 0])));
     const actsAgg = Array.from({ length: turns }, () => Object.fromEntries(EK.map(k => [k, 0])));
-    const rmAgg = {}; // カード名 → 唱えたターン r → ターン t → 行動の合計
+    const rmAgg = {};
+    const curveAgg = {}; // カード名 → { ok, mana, color, miss: {色: 回数} } // カード名 → 唱えたターン r → ターン t → 行動の合計
     const names = Object.fromEntries(NT.map(k => [k, {}])); // 種類 → カード名 → ターンごとの「戦場にある」回数
     const keys = new Set(keyNames);
     for (let n = 0; n < iters; n++) {
@@ -929,6 +946,10 @@
       r.lands.forEach((l, t) => { landsAgg[t].n += l.n; landsAgg[t].basic += l.basic; AK.forEach(k => { landsAgg[t].alt[k] += l.alt[k]; }); });
       r.acts.forEach((a, t) => EK.forEach(k => { actsAgg[t][k] += a[k]; }));
       r.colorMana.forEach((a, t) => CK.forEach(k => { cmAgg[t][k] += a[k]; }));
+      for (const [name, x] of Object.entries(r.curve)) {
+        const o = curveAgg[name] = curveAgg[name] || { ok: 0, mana: 0, color: 0, miss: {} };
+        if (x.ok) o.ok++; else if (x.why === 'mana') o.mana++; else { o.color++; x.miss.forEach(col => { o.miss[col] = (o.miss[col] || 0) + 1; }); }
+      }
       for (const [name, x] of Object.entries(r.rm)) for (const [t, b] of Object.entries(x.by)) {
         const key = `${x.r}-${t}`, o = ((rmAgg[name] = rmAgg[name] || {})[key] = rmAgg[name][key] || Object.fromEntries(EK.map(k => [k, 0])));
         EK.forEach(k => { o[k] += b[k]; });
@@ -963,6 +984,12 @@
       acts: actsAgg.map(a => Object.fromEntries(EK.map(k => [k, a[k] / iters]))),
       // 色ごとに出せるマナの平均（その色だけを出すとしたとき）
       colorMana: cmAgg.map(a => Object.fromEntries(CK.map(k => [k, a[k] / iters]))),
+      // カーブどおり（MVと同じターン）にコストを払えた率と、払えなかった理由（マナ不足・色不足と足りない色）
+      curve: (deck.curveCards || []).map(({ c, t, qty }) => {
+        const o = curveAgg[c.name] || { ok: 0, mana: 0, color: 0, miss: {} };
+        return { name: c.name, mv: Math.round(c.cmc), t, qty, ok: o.ok / iters, mana: o.mana / iters, color: o.color / iters,
+          miss: Object.fromEntries(Object.entries(o.miss).map(([k, v]) => [k, v / iters])) };
+      }),
       // 自分で除去できるカードの行動: カード名 → [{ r: 唱えたターン, t: 行動したターン, 行動の平均回数 }]
       rmActs: Object.fromEntries(Object.entries(rmAgg).map(([n, m]) => [n, Object.entries(m).map(([key, o]) => {
         const [r, t] = key.split('-').map(Number);
@@ -994,6 +1021,10 @@
     deck.combos = opts.combos || []; // [{ name, pieces: [[カード名…], …] }]
     deck.groups = opts.groups || {};  // { グループ名: [カード名…] }（対策札をそのターンに唱えられる率を見る）
     if (deck.cards.length < 8 || !deck.lands.length) return null;
+    // カーブどおりに唱えられるかを見るカード（土地以外・MV1以上。名前ごとに1枚。MV7以上は最後のターンで見る）
+    const seenCurve = new Set();
+    deck.curveCards = deck.cards.filter(c => !c.land && Math.round(c.cmc) >= 1 && !seenCurve.has(c.name) && seenCurve.add(c.name))
+      .map(c => ({ c, t: Math.min(turns, Math.round(c.cmc)), qty: deck.cards.filter(x => x.name === c.name).length }));
     const seed = hashStr(entries.filter(e => e.card).map(e => e.qty + e.card.name).sort().join('|') + '#' + keyNames.join('|'));
     const play = run(deck, true, turns, iters, seed, keyNames);
     const draw = run(deck, false, turns, iters, seed + 1, keyNames);
