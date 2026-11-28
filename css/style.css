@@ -164,6 +164,15 @@ input:focus, select:focus, textarea:focus { outline: 2px solid var(--gold-dim); 
 .role-pop .sw { width: 10px; height: 10px; border-radius: 3px; }
 .role-pop .pop-actions { display: flex; justify-content: space-between; margin-top: 8px; }
 .role-pop .pop-actions button { font-size: 12px; padding: 4px 8px; }
+.role-pop .pop-now { margin-top: 8px; padding-top: 6px; border-top: 1px solid var(--line, rgba(255,255,255,.12)); font-size: 12px; }
+.role-pop .pop-now .chip { margin: 2px 3px 0 0; }
+.role-pop .pop-now .chip.cat { font-weight: 700; }
+.role-pop .pop-manual { margin-left: 6px; color: var(--gold); }
+.role-pop .pop-edit { margin-top: 8px; font-size: 12px; }
+.role-pop .pop-edit > summary { cursor: pointer; color: var(--muted); padding: 2px 0; }
+.role-pop .pop-edit[open] > summary { margin-bottom: 4px; }
+.role-pop .pop-reset { margin-top: 8px; }
+.role-pop .pop-reset button { font-size: 12px; padding: 4px 8px; }
 
 /* ---- analysis ---- */
 .role-bars { display: flex; flex-direction: column; gap: 6px; }
@@ -305,7 +314,8 @@ dialog::backdrop { background: rgba(0,0,0,.6); }
 
   .role-pop { left: 0 !important; right: 0; top: auto !important; bottom: 0; width: auto; border-radius: 16px 16px 0 0; padding: 16px 16px calc(16px + env(safe-area-inset-bottom)); }
   .role-pop label { padding: 8px 0; font-size: 15px; }
-  .role-pop .pop-actions button { min-height: 44px; padding: 0 16px; font-size: 14px; }
+  .role-pop .pop-actions button, .role-pop .pop-reset button { min-height: 44px; padding: 0 16px; font-size: 14px; }
+  .role-pop .pop-edit > summary { min-height: 36px; display: flex; align-items: center; }
 
   .statusbar { position: fixed; left: 0; right: 0; bottom: calc(52px + env(safe-area-inset-bottom)); padding: 4px 10px; font-size: 11px; z-index: 15; }
   .statusbar #apiStats, .statusbar .muted:last-child { display: none; }
