@@ -397,7 +397,7 @@
     // デッキに登録済みのコンボ（パーツとデッキ要件がそろっているもの）を一人回しでもそろったか見る
     const lands = state.main.filter(e => rolesOf(e).includes('land')).reduce((s, e) => s + e.qty, 0);
     const combos = window.Combos ? Combos.detect({ main: state.main }, lands).filter(x => x.complete).map(x => ({ name: x.combo.name, pieces: x.combo.pieces })) : [];
-    const sig = list.map(e => `${e.qty}:${e.card.name}:${catOf(e)}`).sort().join('|') + '#' + combos.map(c => c.name).join('|') + '#v5';
+    const sig = list.map(e => `${e.qty}:${e.card.name}:${catOf(e)}`).sort().join('|') + '#' + combos.map(c => c.name).join('|') + '#v6';
     if (simCache.sig !== sig) {
       simCache = { sig, result: null, pending: true };
       box.innerHTML = list.length ? '<p class="hint">一人回し中…</p>' : '';
@@ -432,14 +432,18 @@
       const unused5 = r.turns >= 5 ? r.play.unused[4] : 0;
       // 良し悪しの目安は置かず、成立率そのものを出す（新しいアーキタイプを試すときに、既存のデッキとの比較で判断しないため）
       const B = { group: 'base', replacesLand: true, level: 'info' };
+      // サイクリング持ちは、唱える・サイクリングするのどちらで使うかを決めず、両方の率を並べる
+      const hasCyc = cv.some(x => x.cyc);
+      const eitherOf = side => r[side].curve.reduce((s2, x) => s2 + x.qty * (x.cyc ? x.cyc.either : x.ok), 0) / W;
       tips.push({ ...B, text: `カーブどおりに唱えられる率は先手${pctTxt(rate)}・後手${pctTxt(rateD)}（土地以外のカードを、MVと同じターンに払えた率。枚数で重み付け、土地以外のマナと代替コストも込み${altF >= 0.01 ? `。うち代替コストで払えた分${pctTxt(altF)}` : ''}）。払えなかった内訳はマナ不足${pctTxt(manaF)}・色不足${pctTxt(colorF)}${missTop.length ? `（足りない色: ${missTop.join('・')}）` : ''}。` });
+      if (hasCyc) tips.push({ ...B, text: `サイクリング持ち（${cv.filter(x => x.cyc).map(x => x.name).join('、')}）は唱えるかサイクリングできればよいとすると、先手${pctTxt(eitherOf('play'))}・後手${pctTxt(eitherOf('draw'))}（サイクリングはそのコストのMVのターン、0なら1ターン目で見る）。どちらで使うかは戦術次第なので、両方の率を並べています。` });
       if (r.turns >= 4) tips.push({ ...B, text: `2/3/4ターン目に2/3/4マナ出せない率は先手${[2, 3, 4].map(t => pctTxt(1 - (r.play.ge[t - 1][t] || 0))).join('/')}。${r.turns >= 5 ? `5ターン目の使い残しは平均${unused5.toFixed(1)}マナ。` : ''}` });
       // カードごとの成立率（低い順。全部載せて折りたたむ）
       const all = cv.map((x, i) => ({ x, d: r.draw.curve[i] })).sort((p, q) => p.x.ok - q.x.ok);
       const why = x => x.ok >= 0.995 ? '-' : x.mana >= x.color ? 'マナ不足' : `色不足（${Object.keys(x.miss).map(k => Roles.COLOR_JA[k] || k).join('・')}）`;
       curveHTML = `<details class="sim-curve"><summary>カードごとのカーブどおりに唱えられる率（${all.length}種・低い順）</summary>
-        <div class="sim-scroll"><table class="meta-table sim-table"><tr><th>カード</th><th>MV</th><th>見るターン</th><th>払えた（先手/後手）</th><th>うち代替コスト</th><th>払えなかった主な理由</th></tr>
-        ${all.map(({ x, d }) => `<tr><td>${esc(x.name)}×${x.qty}</td><td>${x.mv}</td><td>${x.t}T</td><td>${pctTxt(x.ok)}<span class="muted">/${pctTxt(d ? d.ok : 0)}</span></td><td>${x.alt >= 0.005 ? pctTxt(x.alt) : '-'}</td><td>${why(x)}</td></tr>`).join('')}
+        <div class="sim-scroll"><table class="meta-table sim-table"><tr><th>カード</th><th>MV</th><th>見るターン</th><th>払えた（先手/後手）</th><th>うち代替コスト</th>${hasCyc ? '<th>サイクリング</th>' : ''}<th>払えなかった主な理由</th></tr>
+        ${all.map(({ x, d }) => `<tr><td>${esc(x.name)}×${x.qty}</td><td>${x.mv}</td><td>${x.t}T</td><td>${pctTxt(x.ok)}<span class="muted">/${pctTxt(d ? d.ok : 0)}</span></td><td>${x.alt >= 0.005 ? pctTxt(x.alt) : '-'}</td>${hasCyc ? `<td>${x.cyc ? `${x.cyc.t}Tに${pctTxt(x.cyc.ok)}${x.cyc.land ? '（土地を探す）' : ''}<span class="muted">・一人回しで${x.cyc.used.toFixed(1)}回</span>` : '-'}</td>` : ''}<td>${why(x)}</td></tr>`).join('')}
         </table></div></details>`;
     }
     const n1 = x => x.toFixed(1);

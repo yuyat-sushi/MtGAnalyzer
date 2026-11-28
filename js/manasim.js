@@ -397,6 +397,49 @@
     return null;
   }
 
+  // ---------- カード自身のコスト軽減 ----------
+  // 親和・即席・召集・探査と「This spell costs {N} less to cast for each ～」。[{ per, n, kind }]
+  //   per: artifact（自分のアーティファクト）、creature、gy（墓地のカード）、gyIS（墓地のインスタント・ソーサリー）、
+  //        domain（土地の基本土地タイプの種類）、land、spell（このターンに唱えた呪文）、flat（条件を満たせば一定）
+  function selfReduceOf(card) {
+    if (isLandCard(card)) return [];
+    const t = frontOracle(card).toLowerCase(), out = [];
+    if (/\baffinity for artifacts\b/.test(t)) out.push({ per: 'artifact', n: 1, kind: 'affinity' });
+    if (/(^|\n|,)\s*improvise\b/.test(t)) out.push({ per: 'artifact', n: 1, kind: 'improvise' });
+    if (/(^|\n|,)\s*convoke\b/.test(t)) out.push({ per: 'creature', n: 1, kind: 'convoke' });
+    if (/(^|\n|,)\s*delve\b/.test(t)) out.push({ per: 'gy', n: 1, kind: 'delve' });
+    const PER = [
+      [/artifacts? you control/, 'artifact'], [/creatures? (you control|on the battlefield)/, 'creature'],
+      [/instant (and|or) sorcery cards? in your graveyard/, 'gyIS'], [/cards? in your graveyard/, 'gy'],
+      [/basic land types? among lands you control/, 'domain'], [/lands? you control/, 'land'],
+      [/other spells? you've cast this turn/, 'spell']
+    ];
+    const m = t.match(/this spell costs \{(\d+)\} less to cast for each ([^.]+)/);
+    if (m) { const hit = PER.find(([re]) => re.test(m[2])); if (hit) out.push({ per: hit[1], n: +m[1], kind: 'each' }); }
+    const f = t.match(/this spell costs \{(\d+)\} less to cast if you control an? (artifact|creature|enchantment|planeswalker|[a-z]+)\b/);
+    if (f) out.push({ per: 'flat', n: +f[1], kind: 'if', type: f[2] });
+    return out;
+  }
+
+  // ---------- サイクリング ----------
+  // { cost, life, spec }。spec があればランドサイクリング（その土地を探して手札に加える）、なければ1枚引く
+  // 「Swampcycling」「Basic landcycling」「Landcycling」「Cycling—Pay 2 life.」。土地以外のタイプサイクリング（Wizardcycling など）は引く扱い
+  function cyclingOf(card) {
+    if (isLandCard(card)) return null;
+    for (const line of frontOracle(card).split('\n')) {
+      const m = line.match(/^\s*(?:(Basic land|Land|Plains|Island|Swamp|Mountain|Forest|[A-Z][a-z]+)\s?)?cycling\s*(?:((?:\{[^}]+\})+)|[—-]\s*Pay (\d+) life)/i);
+      if (!m) continue;
+      const cost = m[2] ? costOf({ manaCost: m[2], cmc: symCount(m[2]) }) : GENERIC(0);
+      const kind = (m[1] || '').toLowerCase();
+      let spec = null;
+      if (kind === 'basic land') spec = { basic: true, types: null };
+      else if (kind === 'land') spec = { basic: false, types: null };
+      else if (LAND_TYPES.map(x => x.toLowerCase()).includes(kind)) spec = { basic: false, types: [kind[0].toUpperCase() + kind.slice(1)] };
+      return { cost, life: m[3] ? +m[3] : 0, spec, mv: cost.generic + Object.values(cost.pips).reduce((a, b) => a + b, 0) };
+    }
+    return null;
+  }
+
   // ---------- 代替コスト ----------
   // 手札から唱えるときの、マナ・コスト以外の支払い方。[{ kind, cost?, pitch?, life?, needType?, notMyTurn?, needCreature?, needSpell?, stays }]
   //   cost: 代わりに払うマナ（evoke・dash など）、pitch: 手札から追放する色（Force of Will、Solitude）、
@@ -462,6 +505,8 @@
         perm: land ? null : permOf(c)
       };
       info.alts = land ? [] : altCostsOf(c);
+      info.selfRed = land ? [] : selfReduceOf(c);
+      info.cyc = land ? null : cyclingOf(c);
       info.acts = actsOf(c, !!info.search);
       info.plusActs = land ? null : plusActsOf(c);
       // 自分で除去できて、行動もするカードだけ（行動を「止められない」扱いにするため）
@@ -541,7 +586,7 @@
     const rocks = []; // マナを出すパーマネント {amt, colors, sick, used}
     const perms = []; // 起動型のサーチを持つパーマネント（Expedition Map など）
     const tron = deck.tronTypes;
-    const g = { mana: [], idle: [], unused: [], held: [], inHand: [], cast: {}, seen: {}, board: [], combo: [], names: [], lands: [], groups: [], acts: [], colorMana: [], curve: {}, alt: {} };
+    const g = { mana: [], idle: [], unused: [], held: [], inHand: [], cast: {}, seen: {}, board: [], combo: [], names: [], lands: [], groups: [], acts: [], colorMana: [], curve: {}, alt: {}, cycled: {} };
     const dev = { W: 0, U: 0, B: 0, R: 0, G: 0 }; // 信心（戦場のパーマネントの色マナ・シンボルの数）
     // そのターンの行動の回数（相手の行動干渉が効くもの）。fetch はフェッチランドの生け贄起動、search は呪文・能力でのサーチ
     let ev = { fetch: 0, search: 0, draw: 0, life: 0, extra: 0 };
@@ -568,7 +613,38 @@
     const fx = { moon: false, b2b: false, sphere: false };
     const reducers = [];
     const COLOR_WORD = { white: 'W', blue: 'U', black: 'B', red: 'R', green: 'G' };
+    // 墓地（探査・「墓地のカードの数だけ軽くなる」用）。gyIS はそのうちのインスタント・ソーサリー
+    const gy = { n: 0, is: 0 };
+    const BASIC_TYPES = ['Plains', 'Island', 'Swamp', 'Mountain', 'Forest'];
+    const countFor = (per, type) => {
+      if (per === 'artifact') return board.artifact + board.creatures.filter(x => x.artifact).length + bf.filter(l => /\bArtifact\b/.test(l.p.typeStr)).length;
+      if (per === 'creature') return board.creatures.length;
+      if (per === 'gy') return gy.n;
+      if (per === 'gyIS') return gy.is;
+      if (per === 'domain') return BASIC_TYPES.filter(x => bf.some(l => l.p.every || l.p.typeStr.includes(x))).length;
+      if (per === 'land') return bf.length;
+      if (per === 'spell') return castThisTurn;
+      if (per === 'flat') return (type === 'creature' ? board.creatures.length : type === 'artifact' ? countFor('artifact') : (board[type] || 0) + bf.filter(l => l.p.typeStr.toLowerCase().includes(type)).length) > 0 ? 1 : 0;
+      return 0;
+    };
+    // カード自身の軽減（親和・即席・召集・探査など）。不特定マナの部分だけ減らす。探査は墓地を使った枚数を delve に入れる
+    const selfLess = (c, generic) => {
+      let less = 0, delve = 0;
+      for (const r of c.selfRed || []) {
+        if (r.kind === 'delve') { delve = Math.min(gy.n, Math.max(0, generic - less)); less += delve; continue; }
+        let n = countFor(r.per, r.type) * r.n;
+        if (r.kind === 'improvise') n = Math.max(0, n - rocks.length); // マナに使うアーティファクトは即席に使えない（近似）
+        less += n;
+      }
+      return { less: Math.min(less, generic), delve };
+    };
     const effCost = c => {
+      const base = effCost0(c);
+      if (!c.selfRed || !c.selfRed.length) return base;
+      const { less, delve } = selfLess(c, base.generic);
+      return less ? { generic: base.generic - less, pips: base.pips, delve } : base;
+    };
+    const effCost0 = c => {
       if (!reducers.length || c.land) return c.cost;
       const front = frontType(c.card).toLowerCase();
       const mc = String(c.card.manaCost || '').split('//')[0];
@@ -606,7 +682,7 @@
       const tokName = t => `${t.power}/${t.toughness} トークン（${front}）`;
       pm.etbTokens.forEach(t => board.creatures.push({ ...t, name: tokName(t) }));
       if (!pm.types.length) return;
-      if (pm.types.includes('creature')) board.creatures.push({ power: pm.power, toughness: pm.toughness, name: front });
+      if (pm.types.includes('creature')) board.creatures.push({ power: pm.power, toughness: pm.toughness, name: front, artifact: pm.types.includes('artifact') });
       ['artifact', 'enchantment', 'planeswalker', 'battle'].forEach(t => {
         if (pm.types.includes(t) && !pm.types.includes('creature')) { board[t]++; if (board.names[t]) board.names[t].push(front); }
       });
@@ -712,7 +788,7 @@
       const tapped = entersTapped(c.p, bf);
       if (c.p.fetch) {
         const i = pickTarget(c.p.fetch, 'battlefield');
-        if (i >= 0) { const t = takeFromLib(i); ev.fetch++; bf.push(newSlot(t, c.p.fetch.tapped || entersTapped(t.p, bf) || tapped)); return; }
+        if (i >= 0) { const t = takeFromLib(i); ev.fetch++; gy.n++; bf.push(newSlot(t, c.p.fetch.tapped || entersTapped(t.p, bf) || tapped)); return; }
       }
       const slot = newSlot(c, tapped);
       bf.push(slot);
@@ -823,22 +899,40 @@
       if (alt) {
         if (alt.cost && !pay(alt.cost)) return false;
         if (alt.pitch) { const x = pitchFor(c, alt.pitch); if (!x) return false; hand.splice(hand.indexOf(x), 1); }
-      } else if (!pay(effCost(c))) return false;
+      } else {
+        const cost = effCost(c);
+        if (!pay(cost)) return false;
+        if (cost.delve) { const fromIS = Math.max(0, cost.delve - (gy.n - gy.is)); gy.n -= cost.delve; gy.is -= fromIS; } // 探査で墓地を追放
+      }
       hand.splice(hand.indexOf(c), 1);
       record(c);
+      if (/\b(Instant|Sorcery)\b/.test(frontType(c.card))) { gy.n++; gy.is++; } // 解決して墓地へ
       if (alt) g.alt[c.name] = (g.alt[c.name] || 0) + 1;
       // 想起・疾駆・威迫で唱えたパーマネントは戦場に残らない（疾駆は手札に戻る）
       if (alt && !alt.stays) {
         if (alt.kind === 'dash') dashBack.push(c); // ターンの終わりに手札に戻る
+        else if (!/\b(Instant|Sorcery)\b/.test(frontType(c.card))) gy.n++; // 想起・威迫は墓地へ
         if (c.fast) { pool.n += c.fast.treasure; }
         return true;
       }
       // 使い捨てのキャントリップ（Chromatic Star など）と、起動して生け贄にするサーチは盤面に残さない
       if (!(c.dig && /\bArtifact\b/.test(frontType(c.card))) && !(c.search && c.search.ability)) addPerm(c);
+      else gy.n++; // 使い捨てのアーティファクト・起動して生け贄にするサーチは墓地へ
       if (c.fast) { pool.n += c.fast.treasure; combatTreasure += c.fast.combat; }
       return true;
     };
     const canPay = cost => !!plan(cost);
+    // サイクリング: 払って墓地に置き、ランドサイクリングなら土地を手札に、それ以外は1枚引く
+    const cycle = c => {
+      if (!pay(c.cyc.cost)) return false;
+      hand.splice(hand.indexOf(c), 1);
+      gy.n++;
+      castThisTurn++;
+      g.cycled[c.name] = (g.cycled[c.name] || 0) + 1;
+      if (c.cyc.spec) { const i = pickTarget(c.cyc.spec, 'hand'); if (i >= 0) { hand.push(takeFromLib(i)); ev.search++; } }
+      else { draw(1); ev.draw++; }
+      return true;
+    };
     // 1回分の行動。何かしたら true
     const step = (lateCantrips) => {
       // 1. 戦場にあるサーチの起動（Expedition Map など）
@@ -854,6 +948,11 @@
           else perms.push(x);
         } else doSearch(sc.search);
         return true;
+      }
+      // 2b. 土地が手札になく、まだ土地を置けるならランドサイクリング（損のない場面）
+      if (landDrop && !landsInHand()) {
+        const lc = hand.find(c => c.cyc && c.cyc.spec && canPay(c.cyc.cost) && lib.some(x => matches(c.cyc.spec, x)));
+        if (lc) return cycle(lc);
       }
       // 3. マナを出すパーマネント
       const rc = hand.find(c => c.rock && canPay(effCost(c)));
@@ -881,6 +980,11 @@
       }
       // 6. 余ったマナで占術・キャントリップ
       if (lateCantrips && digs.length) return castDig(digs[0]);
+      // 7. そのターンに唱えられるものがもう何もなければ、唱えられないカードをサイクリング（構える妨害は残す）
+      if (lateCantrips) {
+        const cc = hand.find(c => c.cyc && !c.disrupt && !canPay(effCost(c)) && !altOpt(c) && canPay(c.cyc.cost));
+        if (cc) return cycle(cc);
+      }
       return false;
     };
     const act = late => { for (let guard = 0; guard < 20 && step(late); guard++); };
@@ -956,7 +1060,8 @@
       // カーブどおりに唱えられるか: MVと同じターンに、そのターンのマナを全部使えたとして（使った分も戻して）コストを払えるか。
       // 払えないとき、色を無視すれば払えるなら「色不足」（足りない色も記録）、それでも払えなければ「マナ不足」
       const cc = (deck.curveCards || []).filter(x => x.t === turn);
-      if (cc.length) {
+      const cyCards = (deck.curveCards || []).filter(x => x.c.cyc && x.ct === turn);
+      if (cc.length || cyCards.length) {
         const saved = bf.map(l => l.used), savedR = rocks.map(r => r.used);
         bf.forEach(l => { l.used = 0; }); rocks.forEach(r => { r.used = 0; });
         cc.forEach(({ c }) => {
@@ -969,6 +1074,8 @@
           const miss = Object.keys(cost.pips).filter(col => !plan({ generic: 0, pips: { [col]: cost.pips[col] } }));
           g.curve[c.name] = { ok: false, why: 'color', miss: miss.length ? miss : Object.keys(cost.pips) };
         });
+        // サイクリングできるか（サイクリング・コストのMVと同じターン。0なら1ターン目）
+        cyCards.forEach(({ c }) => { (g.cycOk = g.cycOk || {})[c.name] = canPay(c.cyc.cost); });
         bf.forEach((l, i) => { l.used = saved[i]; }); rocks.forEach((r, i) => { r.used = savedR[i]; });
       }
       g.mana.push(total);
@@ -1003,7 +1110,8 @@
     const cmAgg = Array.from({ length: turns }, () => Object.fromEntries(CK.map(k => [k, 0])));
     const actsAgg = Array.from({ length: turns }, () => Object.fromEntries(EK.map(k => [k, 0])));
     const rmAgg = {};
-    const curveAgg = {}; // カード名 → { ok, mana, color, miss: {色: 回数} } // カード名 → 唱えたターン r → ターン t → 行動の合計
+    const curveAgg = {}; // カード名 → { ok, mana, color, miss: {色: 回数}, cyc, either }
+    const cycledAgg = {}; // カード名 → サイクリングした回数 // カード名 → 唱えたターン r → ターン t → 行動の合計
     const names = Object.fromEntries(NT.map(k => [k, {}])); // 種類 → カード名 → ターンごとの「戦場にある」回数
     const keys = new Set(keyNames);
     for (let n = 0; n < iters; n++) {
@@ -1019,8 +1127,14 @@
       r.lands.forEach((l, t) => { landsAgg[t].n += l.n; landsAgg[t].basic += l.basic; AK.forEach(k => { landsAgg[t].alt[k] += l.alt[k]; }); });
       r.acts.forEach((a, t) => EK.forEach(k => { actsAgg[t][k] += a[k]; }));
       r.colorMana.forEach((a, t) => CK.forEach(k => { cmAgg[t][k] += a[k]; }));
+      for (const [name, ok] of Object.entries(r.cycOk || {})) {
+        const o = curveAgg[name] = curveAgg[name] || { ok: 0, alt: 0, mana: 0, color: 0, miss: {}, cyc: 0, either: 0 };
+        if (ok) o.cyc = (o.cyc || 0) + 1;
+        if (ok || (r.curve[name] && r.curve[name].ok)) o.either = (o.either || 0) + 1;
+      }
+      for (const [name, n] of Object.entries(r.cycled)) { cycledAgg[name] = (cycledAgg[name] || 0) + n; }
       for (const [name, x] of Object.entries(r.curve)) {
-        const o = curveAgg[name] = curveAgg[name] || { ok: 0, alt: 0, mana: 0, color: 0, miss: {} };
+        const o = curveAgg[name] = curveAgg[name] || { ok: 0, alt: 0, mana: 0, color: 0, miss: {}, cyc: 0, either: 0 };
         if (x.ok) { o.ok++; if (x.alt) o.alt++; } else if (x.why === 'mana') o.mana++; else { o.color++; x.miss.forEach(col => { o.miss[col] = (o.miss[col] || 0) + 1; }); }
       }
       for (const [name, x] of Object.entries(r.rm)) for (const [t, b] of Object.entries(x.by)) {
@@ -1060,7 +1174,9 @@
       // カーブどおり（MVと同じターン）にコストを払えた率と、払えなかった理由（マナ不足・色不足と足りない色）
       curve: (deck.curveCards || []).map(({ c, t, qty }) => {
         const o = curveAgg[c.name] || { ok: 0, alt: 0, mana: 0, color: 0, miss: {} };
-        return { name: c.name, mv: Math.round(c.cmc), t, qty, alts: (c.alts || []).map(a => a.kind), ok: o.ok / iters, alt: o.alt / iters, mana: o.mana / iters, color: o.color / iters,
+        return { name: c.name, mv: Math.round(c.cmc), t, qty, alts: (c.alts || []).map(a => a.kind),
+          cyc: c.cyc ? { t: Math.max(1, Math.min(turns, c.cyc.mv)), land: !!c.cyc.spec, ok: (o.cyc || 0) / iters, either: (o.either || 0) / iters, used: (cycledAgg[c.name] || 0) / iters } : null,
+          ok: o.ok / iters, alt: o.alt / iters, mana: o.mana / iters, color: o.color / iters,
           miss: Object.fromEntries(Object.entries(o.miss).map(([k, v]) => [k, v / iters])) };
       }),
       // 自分で除去できるカードの行動: カード名 → [{ r: 唱えたターン, t: 行動したターン, 行動の平均回数 }]
@@ -1097,7 +1213,7 @@
     // カーブどおりに唱えられるかを見るカード（土地以外・MV1以上。名前ごとに1枚。MV7以上は最後のターンで見る）
     const seenCurve = new Set();
     deck.curveCards = deck.cards.filter(c => !c.land && Math.round(c.cmc) >= 1 && !seenCurve.has(c.name) && seenCurve.add(c.name))
-      .map(c => ({ c, t: Math.min(turns, Math.round(c.cmc)), qty: deck.cards.filter(x => x.name === c.name).length }));
+      .map(c => ({ c, t: Math.min(turns, Math.round(c.cmc)), ct: c.cyc ? Math.max(1, Math.min(turns, c.cyc.mv)) : null, qty: deck.cards.filter(x => x.name === c.name).length }));
     const seed = hashStr(entries.filter(e => e.card).map(e => e.qty + e.card.name).sort().join('|') + '#' + keyNames.join('|'));
     const play = run(deck, true, turns, iters, seed, keyNames);
     const draw = run(deck, false, turns, iters, seed + 1, keyNames);
@@ -1126,7 +1242,7 @@
     [pa, ...a.cond].forEach(x => { if (x) ['search', 'draw', 'life', 'extra'].forEach(k => { a[k] += x[k]; }); });
     return [...(sp || a.search ? ['search'] : []), ...['draw', 'life', 'extra'].filter(k => a[k])];
   }
-  const api = { simulate, landProfile, searchSpec, digSpec, rockSpec, costOf, actionKinds, selfRemovalOf, altCostsOf };
+  const api = { simulate, landProfile, searchSpec, digSpec, rockSpec, costOf, actionKinds, selfRemovalOf, altCostsOf, selfReduceOf, cyclingOf };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else global.ManaSim = api;
 })(typeof window !== 'undefined' ? window : globalThis);
