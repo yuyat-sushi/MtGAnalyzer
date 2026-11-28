@@ -293,20 +293,36 @@
   // ---------- 唱えたときの行動（相手の行動干渉が効くもの） ----------
   // search: 土地以外を探す（土地サーチは doSearch で数える）、draw: 引く枚数、life: ライフを得る、extra: 追加ターン
   // 「Whenever」「At the beginning」の誘発と、起動型能力（コロンの前にコスト・忠誠度能力）は唱えたときの行動ではないので数えない
+  // 「if {R}{R} was spent」のような、唱えるのに支払った色マナで効果が変わる文。1行を文に分けて、文ごとの条件の色を返す
+  // 条件の文の後ろの文は、次の「If」が来るまで同じ条件とみなす（Vibrance などの想起エレメンタル）
+  const SPENT_RE = /\bif \{([WUBRG])\}\{\1\} was spent/i;
+  function sentencesOf(line) {
+    const out = [];
+    let cond = null;
+    for (const sen of line.split(/(?<=\.)\s+(?=[A-Z])/)) {
+      const m = sen.match(SPENT_RE);
+      if (m) cond = m[1].toUpperCase(); else if (/^\s*if\b/i.test(sen)) cond = null;
+      out.push({ text: sen, cond });
+    }
+    return out;
+  }
   function actsOf(card, landSearch) {
-    const out = { search: 0, draw: 0, life: 0, extra: 0 };
+    const out = { search: 0, draw: 0, life: 0, extra: 0, cond: [] };
     if (isLandCard(card)) return out;
-    for (const line of frontOracle(card).split('\n')) {
+    for (const line0 of frontOracle(card).split('\n')) for (const { text: line, cond } of (SPENT_RE.test(line0) ? sentencesOf(line0) : [{ text: line0, cond: null }])) {
       if (/^\s*(whenever|at the beginning)/i.test(line)) continue;
       const colon = line.indexOf(':');
       if (colon > 0 && /\{/.test(line.slice(0, colon))) continue;
       if (/^\s*\[?[+−-]?(\d+|X)\]?:/.test(line)) continue; // 忠誠度能力（起動型能力。奥義も含む）
       if (/(target|each) (player|opponent)s? (may )?(searches|draws)|opponent (searches|draws)/i.test(line)) continue;
-      if (!landSearch && /search your library/i.test(line)) out.search++;
+      // 支払った色の条件がある文は、条件ごとに分けて数える（一人回しで、唱えた時点でその色を2つ出せるときだけ起きる）
+      const o = cond ? { color: cond, search: 0, draw: 0, life: 0, extra: 0 } : out;
+      if (!landSearch && /search your library/i.test(line)) o.search++;
       const dm = line.match(/\bdraws? (a|one|two|three|four|five|x) cards?/i);
-      if (dm && !/each player/i.test(line)) out.draw += Math.max(1, num(dm[1].toLowerCase()));
-      if (/\byou gain (\d+|x|that much) life|gain life equal/i.test(line)) out.life++;
-      if (/take an extra turn/i.test(line)) out.extra++;
+      if (dm && !/each player/i.test(line)) o.draw += Math.max(1, num(dm[1].toLowerCase()));
+      if (/\byou gain (\d+|x|that much) life|gain life equal/i.test(line)) o.life++;
+      if (/take an extra turn/i.test(line)) o.extra++;
+      if (cond && o.search + o.draw + o.life + o.extra) out.cond.push(o);
     }
     return out;
   }
@@ -331,10 +347,12 @@
   // 戻り値: { any, colored, nonland, types: [...], mvMax, dmg } または null
   function selfRemovalOf(card) {
     const TY = ['creature', 'artifact', 'enchantment', 'planeswalker', 'battle'];
-    for (const raw of frontOracle(card).split('\n')) {
+    for (const raw0 of frontOracle(card).split('\n')) {
+      if (!/^\s*(when you cast this spell|whenever you cast|when [^,]*? enters|when [^,]*? (is turned face up|evoked))/i.test(raw0)) continue;
+      // 支払った色の条件があれば文ごとに見る（「if {R}{R} was spent to cast it, ～ deals 3 damage」）
+      for (const { text: raw, cond } of (SPENT_RE.test(raw0) ? sentencesOf(raw0) : [{ text: raw0, cond: null }])) {
       const line = raw.toLowerCase();
-      if (!/^\s*(when you cast this spell|whenever you cast|when [^,]*? enters|when [^,]*? (is turned face up|evoked))/.test(line)) continue;
-      const out = { any: false, colored: false, nonland: false, types: [], mvMax: null, dmg: null };
+      const out = { any: false, colored: false, nonland: false, types: [], mvMax: null, dmg: null, needColor: cond };
       const dm = line.match(/deals? (\d+) damage to (?:any target|(?:up to \w+ )?target ([a-z ,/]+?))(?:[.,]| and | an opponent| you don't)/) ||
         line.match(/deals? (\d+) damage divided [^.]*?among [^.]*?targets? ([a-z ,/]+?)[.,]/);
       const rm = line.match(/(?:exile|destroy|return)s? (?:up to )?(?:\w+ )?(?:other )?(?:target|each|all) ([a-z ,'-]+?)[.,]/);
@@ -350,6 +368,7 @@
       } else continue;
       if (/nontoken/.test(line) && !out.types.length && !out.colored) out.nonland = true;
       if (out.any || out.colored || out.nonland || out.types.length) return out;
+      }
     }
     return null;
   }
@@ -380,7 +399,7 @@
       info.acts = actsOf(c, !!info.search);
       info.plusActs = land ? null : plusActsOf(c);
       // 自分で除去できて、行動もするカードだけ（行動を「止められない」扱いにするため）
-      const hasAct = a => a && (a.search + a.draw + a.life + a.extra) > 0;
+      const hasAct = a => a && ((a.search + a.draw + a.life + a.extra) > 0 || (a.cond || []).length > 0);
       info.selfRm = !land && (hasAct(info.acts) || hasAct(info.plusActs) || info.search) ? selfRemovalOf(c) : null;
       // 構える妨害は、唱えて終わるインスタント・ソーサリーだけ。妨害のパーマネント（Karn、Teferi、Thalia など）は唱えて盤面に置く
       info.disrupt = !info.key && info.cat === 'disrupt' && /\b(Instant|Sorcery)\b/.test(frontType(c));
@@ -462,9 +481,12 @@
     const plusUsers = []; // 戦場にいて、毎ターンプラスの忠誠度能力で行動するPW
     // rm: 自分で除去できるカード → { r: 唱えたターン, by: ターン → その札がした行動 }
     const rm = {};
+    // 唱えた時点で、その色のマナを2つ出せたか（戦場の土地とマナを出すパーマネントで数える。支払ったかどうかの近似）
+    const twoOf = x => bf.filter(l => (l.p.colors || []).includes(x)).length + rocks.filter(r => (r.colors || []).includes(x)).length >= 2;
+    const rmOn = new Set(); // このゲームで、自分の効果で実際に除去を起こしたカード
     const addActs = (a, src) => {
       ev.search += a.search; ev.draw += a.draw; ev.life += a.life; ev.extra += a.extra;
-      if (src && src.selfRm) {
+      if (src && src.selfRm && rmOn.has(src.name)) {
         const x = rm[src.name] = rm[src.name] || { r: turn, by: {} };
         const b = x.by[turn] = x.by[turn] || { fetch: 0, search: 0, draw: 0, life: 0, extra: 0 };
         b.search += a.search; b.draw += a.draw; b.life += a.life; b.extra += a.extra;
@@ -700,7 +722,11 @@
     };
     const record = c => {
       castThisTurn++;
-      if (c.acts) addActs(c.acts, c);
+      if (c.selfRm && (!c.selfRm.needColor || twoOf(c.selfRm.needColor))) rmOn.add(c.name);
+      if (c.acts) {
+        addActs(c.acts, c);
+        c.acts.cond.forEach(o => { if (twoOf(o.color)) addActs(o, c); });
+      }
       // 出したターンから使う。伝説のPWは同じ名前を2枚目からは数えない（レジェンド・ルール）
       if (c.plusActs && !(/\bLegendary\b/.test(frontType(c.card)) && plusUsers.some(x => x.name === c.name))) { plusUsers.push({ name: c.name, a: c.plusActs, src: c }); addActs(c.plusActs, c); }
       if (!(c.name in g.seen)) g.seen[c.name] = turn;
@@ -955,7 +981,7 @@
   function actionKinds(card) {
     if (isLandCard(card)) return landProfile(card).fetch ? ['fetch'] : [];
     const sp = searchSpec(card), a = actsOf(card, !!sp), pa = plusActsOf(card);
-    if (pa) ['search', 'draw', 'life', 'extra'].forEach(k => { a[k] += pa[k]; });
+    [pa, ...a.cond].forEach(x => { if (x) ['search', 'draw', 'life', 'extra'].forEach(k => { a[k] += x[k]; }); });
     return [...(sp || a.search ? ['search'] : []), ...['draw', 'life', 'extra'].filter(k => a[k])];
   }
   const api = { simulate, landProfile, searchSpec, digSpec, rockSpec, costOf, actionKinds, selfRemovalOf };
