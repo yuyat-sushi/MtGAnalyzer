@@ -429,24 +429,18 @@
       const miss = {};
       cv.forEach(x => Object.entries(x.miss).forEach(([k, v]) => { miss[k] = (miss[k] || 0) + x.qty * v / W; }));
       const missTop = Object.entries(miss).filter(([, v]) => v >= 0.03).sort((p, q) => q[1] - p[1]).map(([k]) => Roles.COLOR_JA[k] || k);
-      const screw3 = r.turns >= 3 ? 1 - (r.play.ge[2][3] || 0) : 0;
       const unused5 = r.turns >= 5 ? r.play.unused[4] : 0;
-      const B = { group: 'base', replacesLand: true };
-      tips.push({ ...B, level: rate >= 0.8 ? 'good' : rate >= 0.65 ? 'warn' : 'bad',
-        text: `カーブどおりに唱えられる率は先手${pctTxt(rate)}・後手${pctTxt(rateD)}（土地以外のカードを、MVと同じターンに払えた率。枚数で重み付け、土地以外のマナと代替コストも込み${altF >= 0.01 ? `。うち代替コストで払えた分${pctTxt(altF)}` : ''}）。払えなかった内訳はマナ不足${pctTxt(manaF)}・色不足${pctTxt(colorF)}。` });
-      if (colorF >= 0.08) tips.push({ ...B, level: 'warn', text: `色が足りなくて唱えられない場面が${pctTxt(colorF)}あるよ${missTop.length ? `（特に${missTop.join('・')}）` : ''}。その色の発生源を増やすか、色の重いカードを見直してみて。` });
-      if (screw3 >= 0.25) tips.push({ ...B, level: 'warn', text: `3ターン目に3マナ出せない率が${pctTxt(screw3)}（先手）。土地かマナ加速を足すと安定するよ（いま土地${a.lands}枚）。` });
-      if (rate >= 0.8 && a.lands + 1 < a.recLand) tips.push({ ...B, level: 'good', text: `土地は平均MVの目安（${Math.round(a.recLand)}枚）より少ない${a.lands}枚だけど、マナ加速で補えてるよ。` });
-      if (unused5 >= 2 && screw3 < 0.15) tips.push({ ...B, level: 'warn', text: `5ターン目に平均${unused5.toFixed(1)}マナ余っていて、3ターン目のマナ不足も少ないよ。土地を減らすか、マナの使い道を足す余地があるかも。` });
-      // 唱えにくいカード（先手でカーブどおりに払えた率が65%未満）
-      const low = cv.map((x, i) => ({ x, d: r.draw.curve[i] })).filter(({ x }) => x.ok < 0.65).sort((p, q) => p.x.ok - q.x.ok);
-      if (low.length) {
-        const why = x => x.mana >= x.color ? 'マナ不足' : `色不足（${Object.keys(x.miss).map(k => Roles.COLOR_JA[k] || k).join('・')}）`;
-        curveHTML = `<details class="sim-curve"><summary>カーブどおりに唱えにくいカード（先手で65%未満・${low.length}種）</summary>
-          <div class="sim-scroll"><table class="meta-table sim-table"><tr><th>カード</th><th>MV</th><th>見るターン</th><th>払えた（先手/後手）</th><th>主な理由</th></tr>
-          ${low.map(({ x, d }) => `<tr><td>${esc(x.name)}×${x.qty}</td><td>${x.mv}</td><td>${x.t}T</td><td>${pctTxt(x.ok)}<span class="muted">/${pctTxt(d ? d.ok : 0)}</span></td><td>${why(x)}</td></tr>`).join('')}
-          </table></div></details>`;
-      }
+      // 良し悪しの目安は置かず、成立率そのものを出す（新しいアーキタイプを試すときに、既存のデッキとの比較で判断しないため）
+      const B = { group: 'base', replacesLand: true, level: 'info' };
+      tips.push({ ...B, text: `カーブどおりに唱えられる率は先手${pctTxt(rate)}・後手${pctTxt(rateD)}（土地以外のカードを、MVと同じターンに払えた率。枚数で重み付け、土地以外のマナと代替コストも込み${altF >= 0.01 ? `。うち代替コストで払えた分${pctTxt(altF)}` : ''}）。払えなかった内訳はマナ不足${pctTxt(manaF)}・色不足${pctTxt(colorF)}${missTop.length ? `（足りない色: ${missTop.join('・')}）` : ''}。` });
+      if (r.turns >= 4) tips.push({ ...B, text: `2/3/4ターン目に2/3/4マナ出せない率は先手${[2, 3, 4].map(t => pctTxt(1 - (r.play.ge[t - 1][t] || 0))).join('/')}。${r.turns >= 5 ? `5ターン目の使い残しは平均${unused5.toFixed(1)}マナ。` : ''}` });
+      // カードごとの成立率（低い順。全部載せて折りたたむ）
+      const all = cv.map((x, i) => ({ x, d: r.draw.curve[i] })).sort((p, q) => p.x.ok - q.x.ok);
+      const why = x => x.ok >= 0.995 ? '-' : x.mana >= x.color ? 'マナ不足' : `色不足（${Object.keys(x.miss).map(k => Roles.COLOR_JA[k] || k).join('・')}）`;
+      curveHTML = `<details class="sim-curve"><summary>カードごとのカーブどおりに唱えられる率（${all.length}種・低い順）</summary>
+        <div class="sim-scroll"><table class="meta-table sim-table"><tr><th>カード</th><th>MV</th><th>見るターン</th><th>払えた（先手/後手）</th><th>うち代替コスト</th><th>払えなかった主な理由</th></tr>
+        ${all.map(({ x, d }) => `<tr><td>${esc(x.name)}×${x.qty}</td><td>${x.mv}</td><td>${x.t}T</td><td>${pctTxt(x.ok)}<span class="muted">/${pctTxt(d ? d.ok : 0)}</span></td><td>${x.alt >= 0.005 ? pctTxt(x.alt) : '-'}</td><td>${why(x)}</td></tr>`).join('')}
+        </table></div></details>`;
     }
     const n1 = x => x.toFixed(1);
     const pd = (p, d, f) => `${f(p)}<span class="muted">/${f(d)}</span>`;
