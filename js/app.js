@@ -397,7 +397,7 @@
     // デッキに登録済みのコンボ（パーツとデッキ要件がそろっているもの）を一人回しでもそろったか見る
     const lands = state.main.filter(e => rolesOf(e).includes('land')).reduce((s, e) => s + e.qty, 0);
     const combos = window.Combos ? Combos.detect({ main: state.main }, lands).filter(x => x.complete).map(x => ({ name: x.combo.name, pieces: x.combo.pieces })) : [];
-    const sig = list.map(e => `${e.qty}:${e.card.name}:${catOf(e)}`).sort().join('|') + '#' + combos.map(c => c.name).join('|') + '#v7';
+    const sig = list.map(e => `${e.qty}:${e.card.name}:${catOf(e)}`).sort().join('|') + '#' + combos.map(c => c.name).join('|') + '#v8';
     if (simCache.sig !== sig) {
       simCache = { sig, result: null, pending: true };
       box.innerHTML = list.length ? '<p class="hint">一人回し中…</p>' : '';
@@ -449,12 +449,14 @@
     // 待機を持つカード・マナ・コストを持たないカード: そのターンまでに唱えた率と、アクセス手段の内訳
     let suspendHTML = '';
     if (r.play.suspend && r.play.suspend.length) {
-      const VIA = { hard: '普通に', alt: '代替コスト', suspend: '待機', cascade: '続唱' };
+      const VIA = { hard: '普通に', alt: '代替コスト', suspend: '待機', cascade: '続唱', discover: '発見', tutor: 'ライブラリーから' };
       const tot = (x, t) => Object.values(x.via).reduce((s2, v) => s2 + (v[t - 1] || 0), 0);
       const dOf = x => r.draw.suspend.find(y => y.name === x.name) || x;
       const ac = r.access || {};
       const accessTxt = [
         ac.cascade && ac.cascade.length ? `続唱（${ac.cascade.join('、')}）` : '',
+        ac.discover && ac.discover.length ? `発見（${ac.discover.join('、')}）` : '',
+        ac.tutor && ac.tutor.length ? `ライブラリーから探して唱える（${ac.tutor.join('、')}）` : '',
         ac.time && ac.time.length ? `時間カウンターを取り除く（${ac.time.join('、')}・一人回しでは未対応）` : '',
         ac.free && ac.free.length ? `手札からマナ・コストを支払わずに唱える（${ac.free.join('、')}・一人回しでは未対応）` : ''
       ].filter(Boolean).join('／') || 'なし（待機か、普通に唱えるだけ）';

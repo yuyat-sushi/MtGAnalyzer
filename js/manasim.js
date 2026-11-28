@@ -428,6 +428,15 @@
     return m ? { n: m[1] === 'X' ? 1 : +m[1], cost: costOf({ manaCost: m[2], cmc: symCount(m[2]) }) } : null;
   }
   const cascadeOf = card => (frontOracle(card).match(/(?:^|\n|,)\s*cascade\b/gi) || []).length;
+  // 発見 N（唱えたとき・戦場に出たとき）。X は数えない
+  const discoverOf = card => { const m = frontOracle(card).match(/\bdiscover (\d+)\b/i); return m ? +m[1] : 0; };
+  // ライブラリーから探して、マナ・コストを支払わずに唱える（Beseech the Mirror など）。{ mvMax, bargain }
+  function tutorCastOf(card) {
+    const t = frontOracle(card).replace(/\n/g, ' ');
+    const m = t.match(/search your library for (?:a|an) [^.]*?card[^.]*\.(?:[^.]*\.){0,2}?[^.]*?cast (?:the exiled card|that card|it) without paying its mana cost(?: if that spell's mana value is (\d+) or less)?/i);
+    if (!m) return null;
+    return { mvMax: m[1] ? +m[1] : 99, bargain: /if this spell was bargained/i.test(t) };
+  }
   // 待機中の時間カウンターを取り除く、または手札の呪文をマナ・コストを支払わずに唱えさせるカード（一人回しでは扱わず、表示だけ）
   function suspendEnabler(card) {
     const t = frontOracle(card);
@@ -524,6 +533,8 @@
       info.cyc = land ? null : cyclingOf(c);
       info.susp = land ? null : suspendOf(c);
       info.cascade = land ? 0 : cascadeOf(c);
+      info.discover = land ? 0 : discoverOf(c);
+      info.tutorCast = land ? null : tutorCastOf(c);
       info.enabler = land ? null : suspendEnabler(c);
       // マナ・コストを持たないカード（Living End、Ancestral Vision など）は手札から普通には唱えられない
       info.noCost = !land && !String(c.manaCost || '').trim() && !(c.cmc > 0);
@@ -928,7 +939,7 @@
       if (!(c.name in g.cast)) g.via[c.name] = alt ? 'alt' : 'hard';
       record(c);
       if (/\b(Instant|Sorcery)\b/.test(frontType(c.card))) { gy.n++; gy.is++; } // 解決して墓地へ
-      if (c.cascade) doCascade(c);
+      afterCast(c);
       if (alt) g.alt[c.name] = (g.alt[c.name] || 0) + 1;
       // 想起・疾駆・威迫で唱えたパーマネントは戦場に残らない（疾駆は手札に戻る）
       if (alt && !alt.stays) {
@@ -959,17 +970,47 @@
       if (!(c.name in g.cast)) g.via[c.name] = via;
       record(c);
       if (/\b(Instant|Sorcery)\b/.test(frontType(c.card))) { gy.n++; gy.is++; } else addPerm(c);
-      if (c.cascade) doCascade(c);
+      afterCast(c);
     };
-    // 続唱: 土地でなく、MVが続唱の呪文より小さいカードが出るまでめくり、それを唱える。ほかは下に戻す
-    const doCascade = src => {
-      for (let k = 0; k < src.cascade; k++) {
-        const out = [];
-        let hit = null;
-        while (lib.length) { const x = lib.shift(); if (!x.land && Math.round(x.cmc) < Math.round(src.cmc)) { hit = x; break; } out.push(x); }
-        lib.push(...shuffle(out, rng));
-        if (hit) castFree(hit, 'cascade');
+    // 唱えたあとの、ライブラリーからタダで唱える効果（続唱・発見・Beseech the Mirror 型）
+    const afterCast = c => {
+      if (c.cascade) for (let k = 0; k < c.cascade; k++) doReveal(Math.round(c.cmc), false, 'cascade');
+      if (c.discover) doReveal(c.discover, true, 'discover');
+      if (c.tutorCast) doTutorCast(c);
+    };
+    // めくってタダで唱える。le: true なら MV が n 以下（発見）、false なら n 未満（続唱）。唱えられるなら唱える。ほかは下に戻す
+    const doReveal = (n, le, via) => {
+      const out = [];
+      let hit = null;
+      while (lib.length) { const x = lib.shift(); if (!x.land && (le ? Math.round(x.cmc) <= n : Math.round(x.cmc) < n)) { hit = x; break; } out.push(x); }
+      lib.push(...shuffle(out, rng));
+      if (hit) castFree(hit, via);
+    };
+    // Beseech the Mirror 型: 交換（アーティファクト・エンチャント・トークンの生け贄）できればMVの上限以下をタダで唱え、できなければ手札に入れる
+    // 探すのは、待機・マナ・コストを持たないカード → 主力 → MVの高いカードの順
+    const doTutorCast = src => {
+      const tc = src.tutorCast;
+      let canBargain = !tc.bargain;
+      if (tc.bargain) {
+        if (pool.n > pool.used) { pool.n--; canBargain = true; }
+        else if (board.artifact > 0) { board.artifact--; canBargain = true; }
+        else if (board.enchantment > 0) { board.enchantment--; canBargain = true; }
+        else {
+          // 手札の Lotus Petal・Lion's Eye Diamond など（出して生け贄にする。そのマナは使えなくなる）
+          const pt = hand.find(x => x.fast && x.fast.hand && /\bArtifact\b/.test(frontType(x.card)));
+          if (pt) { hand.splice(hand.indexOf(pt), 1); canBargain = true; }
+        }
       }
+      const score = x => (x.susp || x.noCost ? 1000 : 0) + (x.key ? 100 : 0) + Math.round(x.cmc);
+      let bi = -1, bv = -Infinity;
+      lib.forEach((x, i) => {
+        if (x.land || x.name === src.name) return;
+        if (canBargain && Math.round(x.cmc) > tc.mvMax) return;
+        if (score(x) > bv) { bv = score(x); bi = i; }
+      });
+      if (bi < 0) return;
+      const x = takeFromLib(bi);
+      if (canBargain) castFree(x, 'tutor'); else hand.push(x);
     };
     // サイクリング: 払って墓地に置き、ランドサイクリングなら土地を手札に、それ以外は1枚引く
     const cycle = c => {
@@ -1284,7 +1325,7 @@
     const play = run(deck, true, turns, iters, seed, keyNames);
     // 待機カードへのアクセス手段（続唱・時間カウンターを取り除く・手札からタダで唱えさせる）
     const uniqNames = pred => [...new Set(deck.cards.filter(pred).map(c => c.name))];
-    const access = { cascade: uniqNames(c => c.cascade), time: uniqNames(c => c.enabler === 'time'), free: uniqNames(c => c.enabler === 'free') };
+    const access = { cascade: uniqNames(c => c.cascade), discover: uniqNames(c => c.discover), tutor: uniqNames(c => c.tutorCast), time: uniqNames(c => c.enabler === 'time'), free: uniqNames(c => c.enabler === 'free') };
     const draw = run(deck, false, turns, iters, seed + 1, keyNames);
     const tron = deck.tronTypes.length >= 2;
     const accel = deck.lands.some(l => l.p.base >= 2 || l.p.tron || l.p.count || (l.p.cond && l.p.cond.amt >= 2));
