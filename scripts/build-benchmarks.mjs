@@ -270,6 +270,8 @@ function simOf(ds) {
       return { ok: w('ok'), alt: w('alt'), mana: w('mana'), color: w('color') };
     })(),
     screw3: +(1 - (s.ge[2][3] || 0)).toFixed(3),
+    // カーブどおりに唱えにくいカード（低い順に5種）
+    curveLow: s.curve.slice().sort((x, y) => x.ok - y.ok).slice(0, 5).map(c => ({ name: c.name, mv: c.mv, qty: c.qty, ok: +c.ok.toFixed(2), mana: +c.mana.toFixed(2), color: +c.color.toFixed(2) })),
     // 自分の効果で行動干渉を除去できるカード（嵐の目、ウギン など）の行動: r = 唱えたターン、t = 行動したターン
     rmActs: Object.fromEntries(Object.entries(s.rmActs || {}).map(([n, list]) => [n,
       list.map(o => Object.fromEntries(Object.entries(o).map(([k, v]) => [k, k === 'r' || k === 't' ? v : +v.toFixed(3)])))
