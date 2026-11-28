@@ -421,6 +421,25 @@
     return out;
   }
 
+  // ---------- サイクリング ----------
+  // { cost, life, spec }。spec があればランドサイクリング（その土地を探して手札に加える）、なければ1枚引く
+  // 「Swampcycling」「Basic landcycling」「Landcycling」「Cycling—Pay 2 life.」。土地以外のタイプサイクリング（Wizardcycling など）は引く扱い
+  function cyclingOf(card) {
+    if (isLandCard(card)) return null;
+    for (const line of frontOracle(card).split('\n')) {
+      const m = line.match(/^\s*(?:(Basic land|Land|Plains|Island|Swamp|Mountain|Forest|[A-Z][a-z]+)\s?)?cycling\s*(?:((?:\{[^}]+\})+)|[—-]\s*Pay (\d+) life)/i);
+      if (!m) continue;
+      const cost = m[2] ? costOf({ manaCost: m[2], cmc: symCount(m[2]) }) : GENERIC(0);
+      const kind = (m[1] || '').toLowerCase();
+      let spec = null;
+      if (kind === 'basic land') spec = { basic: true, types: null };
+      else if (kind === 'land') spec = { basic: false, types: null };
+      else if (LAND_TYPES.map(x => x.toLowerCase()).includes(kind)) spec = { basic: false, types: [kind[0].toUpperCase() + kind.slice(1)] };
+      return { cost, life: m[3] ? +m[3] : 0, spec, mv: cost.generic + Object.values(cost.pips).reduce((a, b) => a + b, 0) };
+    }
+    return null;
+  }
+
   // ---------- 代替コスト ----------
   // 手札から唱えるときの、マナ・コスト以外の支払い方。[{ kind, cost?, pitch?, life?, needType?, notMyTurn?, needCreature?, needSpell?, stays }]
   //   cost: 代わりに払うマナ（evoke・dash など）、pitch: 手札から追放する色（Force of Will、Solitude）、
@@ -487,6 +506,7 @@
       };
       info.alts = land ? [] : altCostsOf(c);
       info.selfRed = land ? [] : selfReduceOf(c);
+      info.cyc = land ? null : cyclingOf(c);
       info.acts = actsOf(c, !!info.search);
       info.plusActs = land ? null : plusActsOf(c);
       // 自分で除去できて、行動もするカードだけ（行動を「止められない」扱いにするため）
@@ -566,7 +586,7 @@
     const rocks = []; // マナを出すパーマネント {amt, colors, sick, used}
     const perms = []; // 起動型のサーチを持つパーマネント（Expedition Map など）
     const tron = deck.tronTypes;
-    const g = { mana: [], idle: [], unused: [], held: [], inHand: [], cast: {}, seen: {}, board: [], combo: [], names: [], lands: [], groups: [], acts: [], colorMana: [], curve: {}, alt: {} };
+    const g = { mana: [], idle: [], unused: [], held: [], inHand: [], cast: {}, seen: {}, board: [], combo: [], names: [], lands: [], groups: [], acts: [], colorMana: [], curve: {}, alt: {}, cycled: {} };
     const dev = { W: 0, U: 0, B: 0, R: 0, G: 0 }; // 信心（戦場のパーマネントの色マナ・シンボルの数）
     // そのターンの行動の回数（相手の行動干渉が効くもの）。fetch はフェッチランドの生け贄起動、search は呪文・能力でのサーチ
     let ev = { fetch: 0, search: 0, draw: 0, life: 0, extra: 0 };
@@ -902,6 +922,17 @@
       return true;
     };
     const canPay = cost => !!plan(cost);
+    // サイクリング: 払って墓地に置き、ランドサイクリングなら土地を手札に、それ以外は1枚引く
+    const cycle = c => {
+      if (!pay(c.cyc.cost)) return false;
+      hand.splice(hand.indexOf(c), 1);
+      gy.n++;
+      castThisTurn++;
+      g.cycled[c.name] = (g.cycled[c.name] || 0) + 1;
+      if (c.cyc.spec) { const i = pickTarget(c.cyc.spec, 'hand'); if (i >= 0) { hand.push(takeFromLib(i)); ev.search++; } }
+      else { draw(1); ev.draw++; }
+      return true;
+    };
     // 1回分の行動。何かしたら true
     const step = (lateCantrips) => {
       // 1. 戦場にあるサーチの起動（Expedition Map など）
@@ -917,6 +948,11 @@
           else perms.push(x);
         } else doSearch(sc.search);
         return true;
+      }
+      // 2b. 土地が手札になく、まだ土地を置けるならランドサイクリング（損のない場面）
+      if (landDrop && !landsInHand()) {
+        const lc = hand.find(c => c.cyc && c.cyc.spec && canPay(c.cyc.cost) && lib.some(x => matches(c.cyc.spec, x)));
+        if (lc) return cycle(lc);
       }
       // 3. マナを出すパーマネント
       const rc = hand.find(c => c.rock && canPay(effCost(c)));
@@ -944,6 +980,11 @@
       }
       // 6. 余ったマナで占術・キャントリップ
       if (lateCantrips && digs.length) return castDig(digs[0]);
+      // 7. そのターンに唱えられるものがもう何もなければ、唱えられないカードをサイクリング（構える妨害は残す）
+      if (lateCantrips) {
+        const cc = hand.find(c => c.cyc && !c.disrupt && !canPay(effCost(c)) && !altOpt(c) && canPay(c.cyc.cost));
+        if (cc) return cycle(cc);
+      }
       return false;
     };
     const act = late => { for (let guard = 0; guard < 20 && step(late); guard++); };
@@ -1019,7 +1060,8 @@
       // カーブどおりに唱えられるか: MVと同じターンに、そのターンのマナを全部使えたとして（使った分も戻して）コストを払えるか。
       // 払えないとき、色を無視すれば払えるなら「色不足」（足りない色も記録）、それでも払えなければ「マナ不足」
       const cc = (deck.curveCards || []).filter(x => x.t === turn);
-      if (cc.length) {
+      const cyCards = (deck.curveCards || []).filter(x => x.c.cyc && x.ct === turn);
+      if (cc.length || cyCards.length) {
         const saved = bf.map(l => l.used), savedR = rocks.map(r => r.used);
         bf.forEach(l => { l.used = 0; }); rocks.forEach(r => { r.used = 0; });
         cc.forEach(({ c }) => {
@@ -1032,6 +1074,8 @@
           const miss = Object.keys(cost.pips).filter(col => !plan({ generic: 0, pips: { [col]: cost.pips[col] } }));
           g.curve[c.name] = { ok: false, why: 'color', miss: miss.length ? miss : Object.keys(cost.pips) };
         });
+        // サイクリングできるか（サイクリング・コストのMVと同じターン。0なら1ターン目）
+        cyCards.forEach(({ c }) => { (g.cycOk = g.cycOk || {})[c.name] = canPay(c.cyc.cost); });
         bf.forEach((l, i) => { l.used = saved[i]; }); rocks.forEach((r, i) => { r.used = savedR[i]; });
       }
       g.mana.push(total);
@@ -1066,7 +1110,8 @@
     const cmAgg = Array.from({ length: turns }, () => Object.fromEntries(CK.map(k => [k, 0])));
     const actsAgg = Array.from({ length: turns }, () => Object.fromEntries(EK.map(k => [k, 0])));
     const rmAgg = {};
-    const curveAgg = {}; // カード名 → { ok, mana, color, miss: {色: 回数} } // カード名 → 唱えたターン r → ターン t → 行動の合計
+    const curveAgg = {}; // カード名 → { ok, mana, color, miss: {色: 回数}, cyc, either }
+    const cycledAgg = {}; // カード名 → サイクリングした回数 // カード名 → 唱えたターン r → ターン t → 行動の合計
     const names = Object.fromEntries(NT.map(k => [k, {}])); // 種類 → カード名 → ターンごとの「戦場にある」回数
     const keys = new Set(keyNames);
     for (let n = 0; n < iters; n++) {
@@ -1082,8 +1127,14 @@
       r.lands.forEach((l, t) => { landsAgg[t].n += l.n; landsAgg[t].basic += l.basic; AK.forEach(k => { landsAgg[t].alt[k] += l.alt[k]; }); });
       r.acts.forEach((a, t) => EK.forEach(k => { actsAgg[t][k] += a[k]; }));
       r.colorMana.forEach((a, t) => CK.forEach(k => { cmAgg[t][k] += a[k]; }));
+      for (const [name, ok] of Object.entries(r.cycOk || {})) {
+        const o = curveAgg[name] = curveAgg[name] || { ok: 0, alt: 0, mana: 0, color: 0, miss: {}, cyc: 0, either: 0 };
+        if (ok) o.cyc = (o.cyc || 0) + 1;
+        if (ok || (r.curve[name] && r.curve[name].ok)) o.either = (o.either || 0) + 1;
+      }
+      for (const [name, n] of Object.entries(r.cycled)) { cycledAgg[name] = (cycledAgg[name] || 0) + n; }
       for (const [name, x] of Object.entries(r.curve)) {
-        const o = curveAgg[name] = curveAgg[name] || { ok: 0, alt: 0, mana: 0, color: 0, miss: {} };
+        const o = curveAgg[name] = curveAgg[name] || { ok: 0, alt: 0, mana: 0, color: 0, miss: {}, cyc: 0, either: 0 };
         if (x.ok) { o.ok++; if (x.alt) o.alt++; } else if (x.why === 'mana') o.mana++; else { o.color++; x.miss.forEach(col => { o.miss[col] = (o.miss[col] || 0) + 1; }); }
       }
       for (const [name, x] of Object.entries(r.rm)) for (const [t, b] of Object.entries(x.by)) {
@@ -1123,7 +1174,9 @@
       // カーブどおり（MVと同じターン）にコストを払えた率と、払えなかった理由（マナ不足・色不足と足りない色）
       curve: (deck.curveCards || []).map(({ c, t, qty }) => {
         const o = curveAgg[c.name] || { ok: 0, alt: 0, mana: 0, color: 0, miss: {} };
-        return { name: c.name, mv: Math.round(c.cmc), t, qty, alts: (c.alts || []).map(a => a.kind), ok: o.ok / iters, alt: o.alt / iters, mana: o.mana / iters, color: o.color / iters,
+        return { name: c.name, mv: Math.round(c.cmc), t, qty, alts: (c.alts || []).map(a => a.kind),
+          cyc: c.cyc ? { t: Math.max(1, Math.min(turns, c.cyc.mv)), land: !!c.cyc.spec, ok: (o.cyc || 0) / iters, either: (o.either || 0) / iters, used: (cycledAgg[c.name] || 0) / iters } : null,
+          ok: o.ok / iters, alt: o.alt / iters, mana: o.mana / iters, color: o.color / iters,
           miss: Object.fromEntries(Object.entries(o.miss).map(([k, v]) => [k, v / iters])) };
       }),
       // 自分で除去できるカードの行動: カード名 → [{ r: 唱えたターン, t: 行動したターン, 行動の平均回数 }]
@@ -1160,7 +1213,7 @@
     // カーブどおりに唱えられるかを見るカード（土地以外・MV1以上。名前ごとに1枚。MV7以上は最後のターンで見る）
     const seenCurve = new Set();
     deck.curveCards = deck.cards.filter(c => !c.land && Math.round(c.cmc) >= 1 && !seenCurve.has(c.name) && seenCurve.add(c.name))
-      .map(c => ({ c, t: Math.min(turns, Math.round(c.cmc)), qty: deck.cards.filter(x => x.name === c.name).length }));
+      .map(c => ({ c, t: Math.min(turns, Math.round(c.cmc)), ct: c.cyc ? Math.max(1, Math.min(turns, c.cyc.mv)) : null, qty: deck.cards.filter(x => x.name === c.name).length }));
     const seed = hashStr(entries.filter(e => e.card).map(e => e.qty + e.card.name).sort().join('|') + '#' + keyNames.join('|'));
     const play = run(deck, true, turns, iters, seed, keyNames);
     const draw = run(deck, false, turns, iters, seed + 1, keyNames);
@@ -1189,7 +1242,7 @@
     [pa, ...a.cond].forEach(x => { if (x) ['search', 'draw', 'life', 'extra'].forEach(k => { a[k] += x[k]; }); });
     return [...(sp || a.search ? ['search'] : []), ...['draw', 'life', 'extra'].filter(k => a[k])];
   }
-  const api = { simulate, landProfile, searchSpec, digSpec, rockSpec, costOf, actionKinds, selfRemovalOf, altCostsOf, selfReduceOf };
+  const api = { simulate, landProfile, searchSpec, digSpec, rockSpec, costOf, actionKinds, selfRemovalOf, altCostsOf, selfReduceOf, cyclingOf };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else global.ManaSim = api;
 })(typeof window !== 'undefined' ? window : globalThis);
