@@ -165,11 +165,16 @@ input:focus, select:focus, textarea:focus { outline: 2px solid var(--gold-dim); 
 .role-pop .pop-actions { display: flex; justify-content: space-between; margin-top: 8px; }
 .role-pop .pop-actions button { font-size: 12px; padding: 4px 8px; }
 .role-pop .pop-now { margin-top: 8px; padding-top: 6px; border-top: 1px solid var(--line, rgba(255,255,255,.12)); font-size: 12px; }
-.role-pop .pop-now .chip { margin: 2px 3px 0 0; }
+/* チップが2段以上に折り返しても重ならないよう、行の間隔をとる */
+.role-pop .pop-chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+.role-pop .pop-now .chip { margin: 0; display: inline-flex; align-items: center; line-height: 1.3; }
 .role-pop .pop-now .chip.cat { font-weight: 700; }
 .role-pop .pop-manual { margin-left: 6px; color: var(--gold); }
 .role-pop .pop-edit { margin-top: 8px; font-size: 12px; }
-.role-pop .pop-edit > summary { cursor: pointer; color: var(--muted); padding: 2px 0; }
+.role-pop .pop-edit > summary { cursor: pointer; color: var(--muted); padding: 2px 0; list-style: none; }
+.role-pop .pop-edit > summary::-webkit-details-marker { display: none; }
+.role-pop .pop-edit > summary::before { content: '▸ '; }
+.role-pop .pop-edit[open] > summary::before { content: '▾ '; }
 .role-pop .pop-edit[open] > summary { margin-bottom: 4px; }
 .role-pop .pop-reset { margin-top: 8px; }
 .role-pop .pop-reset button { font-size: 12px; padding: 4px 8px; }
