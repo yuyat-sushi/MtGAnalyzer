@@ -1054,22 +1054,34 @@
     const pop = $('#rolePop');
     const info = Roles.inspect(e.card);
     const auto = info.roles;
+    // 編集欄は折りたたむ。描き直しても開いた状態を保つ
+    let editOpen = false;
     const draw = () => {
       const current = new Set(rolesOf(e));
       const autoCat = (e.manualRoles && e.manualRoles.length) ? Roles.categoryOf(Roles.normalizeRoles(e.manualRoles)) : info.cat;
+      const manual = !!((e.manualRoles && e.manualRoles.length) || e.manualCat);
+      const C = Roles.CAT_MAP[catOf(e)];
       pop.innerHTML = `<h4>${esc(e.card ? displayName(e.card) : e.name)}</h4>
-        <label class="pop-cat">主な採用理由
-          <select data-pop="cat">
-            <option value="">自動（${esc(Roles.CAT_MAP[autoCat].label)}）</option>
-            ${Roles.CATEGORIES.map(c => `<option value="${c.id}" ${e.manualCat === c.id ? 'selected' : ''}>${c.label}</option>`).join('')}
-          </select>
-        </label>
-        ${info.override ? `<div class="muted pop-note">例外リストで指定${info.override.note ? `：${esc(info.override.note)}` : ''}</div>` : ''}
-        ${Roles.CATEGORIES.filter(c => c.id !== 'other').map(c => `<div class="pop-group"><div class="pop-group-head" style="color:${c.color}">${c.label}</div>
-          ${Roles.ROLES.filter(r => r.cat === c.id).map(r => `<label><input type="checkbox" value="${r.id}" ${current.has(r.id) ? 'checked' : ''}>
-            <span class="sw" style="background:${r.color}"></span>${r.label}${auto.includes(r.id) ? ' <span class="muted">自動</span>' : ''}</label>`).join('')}</div>`).join('')}
         ${tagListHTML(e.card)}
-        <div class="pop-actions"><button data-pop="reset">自動判定に戻す</button><button data-pop="close" class="primary">OK</button></div>`;
+        <div class="pop-now">
+          <div class="muted">今の判定${manual ? '<span class="pop-manual">手動で変更中</span>' : ''}</div>
+          <div><span class="chip cat" style="background:${C ? C.color : '#666'}">${esc(C ? C.label : '-')}</span>${chipsHTML(e)}</div>
+          ${info.override ? `<div class="muted pop-note">例外リストで指定${info.override.note ? `：${esc(info.override.note)}` : ''}</div>` : ''}
+        </div>
+        <details class="pop-edit"${editOpen ? ' open' : ''}><summary>カテゴリを編集</summary>
+          <label class="pop-cat">主な採用理由
+            <select data-pop="cat">
+              <option value="">自動（${esc(Roles.CAT_MAP[autoCat].label)}）</option>
+              ${Roles.CATEGORIES.map(c => `<option value="${c.id}" ${e.manualCat === c.id ? 'selected' : ''}>${c.label}</option>`).join('')}
+            </select>
+          </label>
+          ${Roles.CATEGORIES.filter(c => c.id !== 'other').map(c => `<div class="pop-group"><div class="pop-group-head" style="color:${c.color}">${c.label}</div>
+            ${Roles.ROLES.filter(r => r.cat === c.id).map(r => `<label><input type="checkbox" value="${r.id}" ${current.has(r.id) ? 'checked' : ''}>
+              <span class="sw" style="background:${r.color}"></span>${r.label}${auto.includes(r.id) ? ' <span class="muted">自動</span>' : ''}</label>`).join('')}</div>`).join('')}
+          <div class="pop-reset"><button data-pop="reset">自動判定に戻す</button></div>
+        </details>
+        <div class="pop-actions"><span></span><button data-pop="close" class="primary">OK</button></div>`;
+      pop.querySelector('.pop-edit').addEventListener('toggle', ev => { editOpen = ev.target.open; });
     };
     draw();
     const rect = anchor.getBoundingClientRect();
