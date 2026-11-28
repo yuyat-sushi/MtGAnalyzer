@@ -425,7 +425,7 @@
     if (r.play.curve && r.play.curve.length && a) {
       const cv = r.play.curve, W = cv.reduce((s, x) => s + x.qty, 0);
       const wsum = (side, k) => r[side].curve.reduce((s, x) => s + x.qty * x[k], 0) / W;
-      const rate = wsum('play', 'ok'), rateD = wsum('draw', 'ok'), manaF = wsum('play', 'mana'), colorF = wsum('play', 'color');
+      const rate = wsum('play', 'ok'), rateD = wsum('draw', 'ok'), manaF = wsum('play', 'mana'), colorF = wsum('play', 'color'), altF = wsum('play', 'alt');
       const miss = {};
       cv.forEach(x => Object.entries(x.miss).forEach(([k, v]) => { miss[k] = (miss[k] || 0) + x.qty * v / W; }));
       const missTop = Object.entries(miss).filter(([, v]) => v >= 0.03).sort((p, q) => q[1] - p[1]).map(([k]) => Roles.COLOR_JA[k] || k);
@@ -433,7 +433,7 @@
       const unused5 = r.turns >= 5 ? r.play.unused[4] : 0;
       const B = { group: 'base', replacesLand: true };
       tips.push({ ...B, level: rate >= 0.8 ? 'good' : rate >= 0.65 ? 'warn' : 'bad',
-        text: `カーブどおりに唱えられる率は先手${pctTxt(rate)}・後手${pctTxt(rateD)}（土地以外のカードを、MVと同じターンに払えた率。枚数で重み付け、土地以外のマナも込み）。払えなかった内訳はマナ不足${pctTxt(manaF)}・色不足${pctTxt(colorF)}。` });
+        text: `カーブどおりに唱えられる率は先手${pctTxt(rate)}・後手${pctTxt(rateD)}（土地以外のカードを、MVと同じターンに払えた率。枚数で重み付け、土地以外のマナと代替コストも込み${altF >= 0.01 ? `。うち代替コストで払えた分${pctTxt(altF)}` : ''}）。払えなかった内訳はマナ不足${pctTxt(manaF)}・色不足${pctTxt(colorF)}。` });
       if (colorF >= 0.08) tips.push({ ...B, level: 'warn', text: `色が足りなくて唱えられない場面が${pctTxt(colorF)}あるよ${missTop.length ? `（特に${missTop.join('・')}）` : ''}。その色の発生源を増やすか、色の重いカードを見直してみて。` });
       if (screw3 >= 0.25) tips.push({ ...B, level: 'warn', text: `3ターン目に3マナ出せない率が${pctTxt(screw3)}（先手）。土地かマナ加速を足すと安定するよ（いま土地${a.lands}枚）。` });
       if (rate >= 0.8 && a.lands + 1 < a.recLand) tips.push({ ...B, level: 'good', text: `土地は平均MVの目安（${Math.round(a.recLand)}枚）より少ない${a.lands}枚だけど、マナ加速で補えてるよ。` });

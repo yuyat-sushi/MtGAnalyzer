@@ -267,7 +267,7 @@ function simOf(ds) {
     curve: (() => {
       const W = s.curve.reduce((x, c) => x + c.qty, 0) || 1;
       const w = k => +(s.curve.reduce((x, c) => x + c.qty * c[k], 0) / W).toFixed(3);
-      return { ok: w('ok'), mana: w('mana'), color: w('color') };
+      return { ok: w('ok'), alt: w('alt'), mana: w('mana'), color: w('color') };
     })(),
     screw3: +(1 - (s.ge[2][3] || 0)).toFixed(3),
     // 自分の効果で行動干渉を除去できるカード（嵐の目、ウギン など）の行動: r = 唱えたターン、t = 行動したターン
