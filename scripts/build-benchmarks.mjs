@@ -261,6 +261,8 @@ function simOf(ds) {
     combo: r2([3, 4, 5].map(t => s.combo[t - 1])),
     // 1〜6ターン目それぞれに行った行動の平均回数（行動干渉が間に合うかを見るため、全ターン分）
     acts: s.acts.map(r2o),
+    // 3・4・5ターン目に色ごとに出せるマナ（その色だけを出すとしたとき。Nykthos は信心の多い色）
+    colorMana: [3, 4, 5].map(t => r2o(s.colorMana[t - 1])),
     // 自分の効果で行動干渉を除去できるカード（嵐の目、ウギン など）の行動: r = 唱えたターン、t = 行動したターン
     rmActs: Object.fromEntries(Object.entries(s.rmActs || {}).map(([n, list]) => [n,
       list.map(o => Object.fromEntries(Object.entries(o).map(([k, v]) => [k, k === 'r' || k === 't' ? v : +v.toFixed(3)])))
