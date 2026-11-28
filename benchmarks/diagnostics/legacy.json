@@ -3,7 +3,7 @@
   {
    "pattern": "whenever one or more permanent cards are put into your graveyard from anywhere while this creature has a -N/-N counter on it, remove a -N/-N counter from this creature.",
    "kind": "triggered",
-   "decks": 386,
+   "decks": 378,
    "cards": [
     "Moonshadow"
    ]
@@ -11,7 +11,7 @@
   {
    "pattern": "{N}: remove an ice counter from ~.",
    "kind": "activated",
-   "decks": 192,
+   "decks": 188,
    "cards": [
     "Dark Depths"
    ]
@@ -19,7 +19,7 @@
   {
    "pattern": "when emrakul is put into a graveyard from anywhere, its owner shuffles their graveyard into their library.",
    "kind": "triggered",
-   "decks": 184,
+   "decks": 181,
    "cards": [
     "Emrakul, the Aeons Torn"
    ]
@@ -27,31 +27,31 @@
   {
    "pattern": "{t}: untap target attacking creature. prevent all combat damage that would be dealt to and dealt by that creature this turn.",
    "kind": "activated",
-   "decks": 169,
+   "decks": 165,
    "cards": [
     "Maze of Ith"
    ]
   },
   {
-   "pattern": "at the beginning of your first main phase, sacrifice this enchantment unless you pay {e}.",
-   "kind": "triggered",
-   "decks": 141,
-   "cards": [
-    "Static Prison"
-   ]
-  },
-  {
    "pattern": "{x}{x}, {t}: put x charge counters on this land.",
    "kind": "activated",
-   "decks": 139,
+   "decks": 136,
    "cards": [
     "Blast Zone"
    ]
   },
   {
+   "pattern": "at the beginning of your first main phase, sacrifice this enchantment unless you pay {e}.",
+   "kind": "triggered",
+   "decks": 134,
+   "cards": [
+    "Static Prison"
+   ]
+  },
+  {
    "pattern": "choose three. you may choose the same mode more than once.",
    "kind": "spell",
-   "decks": 128,
+   "decks": 127,
    "cards": [
     "Eldrazi Confluence"
    ]
@@ -59,7 +59,7 @@
   {
    "pattern": "• target creature gets +N/-N until end of turn.",
    "kind": "spell",
-   "decks": 128,
+   "decks": 127,
    "cards": [
     "Eldrazi Confluence"
    ]
@@ -67,7 +67,7 @@
   {
    "pattern": "{N}: put this card from your hand onto the battlefield.",
    "kind": "activated",
-   "decks": 125,
+   "decks": 121,
    "cards": [
     "Talon Gates of Madara"
    ]
@@ -75,7 +75,7 @@
   {
    "pattern": "whenever an artifact you control enters, put a loyalty counter on tezzeret.",
    "kind": "triggered",
-   "decks": 111,
+   "decks": 110,
    "cards": [
     "Tezzeret, Cruel Captain"
    ]
@@ -83,7 +83,7 @@
   {
    "pattern": "{N}{w}, {t}: you may put an equipment card from your hand onto the battlefield.",
    "kind": "activated",
-   "decks": 99,
+   "decks": 98,
    "cards": [
     "Stoneforge Mystic"
    ]
@@ -91,7 +91,7 @@
   {
    "pattern": "{t}, pay N life: exile the top card of your library.",
    "kind": "activated",
-   "decks": 99,
+   "decks": 98,
    "cards": [
     "Mystic Forge"
    ]
@@ -99,7 +99,7 @@
   {
    "pattern": "if a card would be put into your graveyard from anywhere this turn, exile that card instead.",
    "kind": "spell",
-   "decks": 97,
+   "decks": 94,
    "cards": [
     "Gaea's Will"
    ]
@@ -107,7 +107,7 @@
   {
    "pattern": "{t}: choose target artifact a player controls and target artifact card in that player's graveyard. if both targets are still legal as this ability resolves, that player simultaneously sacrifices the artifact and returns the artifact card to the battlefield.",
    "kind": "activated",
-   "decks": 93,
+   "decks": 90,
    "cards": [
     "Goblin Welder"
    ]
@@ -115,7 +115,7 @@
   {
    "pattern": "at the beginning of your upkeep, you may put a charge counter on this artifact.",
    "kind": "triggered",
-   "decks": 86,
+   "decks": 85,
    "cards": [
     "Aether Vial"
    ]
@@ -123,7 +123,7 @@
   {
    "pattern": "when acererak enters, if you haven't completed tomb of annihilation, return acererak to its owner's hand and venture into the dungeon.",
    "kind": "triggered",
-   "decks": 81,
+   "decks": 78,
    "cards": [
     "Acererak the Archlich"
    ]
@@ -131,7 +131,7 @@
   {
    "pattern": "when this card is put into your graveyard from your library, you may put it onto the battlefield.",
    "kind": "triggered",
-   "decks": 78,
+   "decks": 77,
    "cards": [
     "Narcomoeba"
    ]
@@ -139,7 +139,7 @@
   {
    "pattern": "you may spend mana as though it were mana of any color to activate abilities of creatures you control.",
    "kind": "static",
-   "decks": 77,
+   "decks": 74,
    "cards": [
     "Agatha's Soul Cauldron"
    ]
@@ -147,7 +147,7 @@
   {
    "pattern": "when phlage enters, sacrifice it unless it escaped.",
    "kind": "triggered",
-   "decks": 76,
+   "decks": 73,
    "cards": [
     "Phlage, Titan of Fire's Fury"
    ]
@@ -155,7 +155,7 @@
   {
    "pattern": "when cloak and dagger enter, choose target opponent and up to one target creature they control. they reveal their hand. you may exile a nonland card from their hand or the chosen creature until cloak and dagger leave the battlefield.",
    "kind": "triggered",
-   "decks": 70,
+   "decks": 69,
    "cards": [
     "Cloak and Dagger, Entwined"
    ]
@@ -163,7 +163,7 @@
   {
    "pattern": "as long as grist isn't on the battlefield, it's a N/N insect creature in addition to its other types.",
    "kind": "static",
-   "decks": 69,
+   "decks": 67,
    "cards": [
     "Grist, the Hunger Tide"
    ]
@@ -171,18 +171,10 @@
   {
    "pattern": "exalted",
    "kind": "static",
-   "decks": 62,
+   "decks": 60,
    "cards": [
     "Ignoble Hierarch",
     "Noble Hierarch"
-   ]
-  },
-  {
-   "pattern": "at the beginning of your end step, discard your hand.",
-   "kind": "triggered",
-   "decks": 60,
-   "cards": [
-    "Song of Creation"
    ]
   },
   {
@@ -194,9 +186,17 @@
    ]
   },
   {
+   "pattern": "at the beginning of your end step, discard your hand.",
+   "kind": "triggered",
+   "decks": 58,
+   "cards": [
+    "Song of Creation"
+   ]
+  },
+  {
    "pattern": "when a creature is put into an opponent's graveyard from the battlefield, if this card is in your graveyard, exile this card.",
    "kind": "triggered",
-   "decks": 53,
+   "decks": 52,
    "cards": [
     "Bridge from Below"
    ]
@@ -204,7 +204,7 @@
   {
    "pattern": "creature cards in graveyards and libraries can't enter the battlefield.",
    "kind": "static",
-   "decks": 42,
+   "decks": 41,
    "cards": [
     "Grafdigger's Cage"
    ]
@@ -266,9 +266,17 @@
    ]
   },
   {
+   "pattern": "when this creature enters, it deals N damage divided as you choose among any number of target creatures and/or planeswalkers.",
+   "kind": "triggered",
+   "decks": 22,
+   "cards": [
+    "Fury"
+   ]
+  },
+  {
    "pattern": "noncreature spells with mana value N or greater can't be cast.",
    "kind": "static",
-   "decks": 23,
+   "decks": 22,
    "cards": [
     "Gaddock Teeg"
    ]
@@ -276,17 +284,9 @@
   {
    "pattern": "noncreature spells with {x} in their mana costs can't be cast.",
    "kind": "static",
-   "decks": 23,
-   "cards": [
-    "Gaddock Teeg"
-   ]
-  },
-  {
-   "pattern": "when this creature enters, it deals N damage divided as you choose among any number of target creatures and/or planeswalkers.",
-   "kind": "triggered",
    "decks": 22,
    "cards": [
-    "Fury"
+    "Gaddock Teeg"
    ]
   },
   {
@@ -709,7 +709,7 @@
  "comboCandidates": [
   {
    "name": "Boros Energy",
-   "share": 0.043,
+   "share": 0.042,
    "comboCards": [
     "Ajani, Nacatl Pariah // Ajani, Nacatl Avenger",
     "Ocelot Pride",
@@ -751,7 +751,7 @@
   },
   {
    "name": "Elves",
-   "share": 0.027,
+   "share": 0.028,
    "comboCards": [
     "Natural Order",
     "Wirewood Symbiote",
@@ -769,7 +769,7 @@
   },
   {
    "name": "Sewer-Cam Combo",
-   "share": 0.021,
+   "share": 0.02,
    "comboCards": [
     "Sewer-veillance Cam",
     "Pinnacle Emissary"
@@ -777,7 +777,7 @@
   },
   {
    "name": "TES",
-   "share": 0.018,
+   "share": 0.017,
    "comboCards": [
     "Beseech the Mirror",
     "Tendrils of Agony"
@@ -785,16 +785,17 @@
   },
   {
    "name": "Mardu Energy",
-   "share": 0.015,
+   "share": 0.014,
    "comboCards": [
     "Ajani, Nacatl Pariah // Ajani, Nacatl Avenger",
     "Ocelot Pride",
-    "Sand Scout"
+    "Sand Scout",
+    "Forth Eorlingas!"
    ]
   },
   {
    "name": "Izzet Midrange系（推定）",
-   "share": 0.011,
+   "share": 0.012,
    "comboCards": [
     "Cori-Steel Cutter",
     "Stormchaser's Talent"
@@ -802,14 +803,14 @@
   },
   {
    "name": "Dredge",
-   "share": 0.01,
+   "share": 0.009,
    "comboCards": [
     "Bridge from Below"
    ]
   },
   {
    "name": "Naya Energy",
-   "share": 0.01,
+   "share": 0.009,
    "comboCards": [
     "Ajani, Nacatl Pariah // Ajani, Nacatl Avenger",
     "Ocelot Pride",
@@ -827,7 +828,7 @@
   },
   {
    "name": "4 Color Cradle Control系（推定）",
-   "share": 0.006,
+   "share": 0.007,
    "comboCards": [
     "Natural Order",
     "Mole Man, Moloid Master"
@@ -857,14 +858,6 @@
    ]
   },
   {
-   "name": "Blue Artifacts",
-   "share": 0.004,
-   "comboCards": [
-    "Pinnacle Emissary",
-    "Council of Reeds"
-   ]
-  },
-  {
    "name": "Mono Red Stompy",
    "share": 0.004,
    "comboCards": [
@@ -875,6 +868,14 @@
    "name": "The Epic Gamble",
    "share": 0.003,
    "comboCards": []
+  },
+  {
+   "name": "Blue Artifacts",
+   "share": 0.003,
+   "comboCards": [
+    "Pinnacle Emissary",
+    "Council of Reeds"
+   ]
   },
   {
    "name": "High Tide",
@@ -928,7 +929,7 @@
  "gyhateCandidates": [
   {
    "name": "Flow State",
-   "decks": 423,
+   "decks": 413,
    "roles": [
     "draw",
     "topselect"
@@ -937,7 +938,7 @@
   },
   {
    "name": "Force of Negation",
-   "decks": 388,
+   "decks": 380,
    "roles": [
     "spell"
    ],
@@ -945,7 +946,7 @@
   },
   {
    "name": "Murktide Regent",
-   "decks": 336,
+   "decks": 328,
    "roles": [
     "beater"
    ],
@@ -953,7 +954,7 @@
   },
   {
    "name": "Emrakul, the Aeons Torn",
-   "decks": 184,
+   "decks": 181,
    "roles": [
     "extraturn",
     "beater",
@@ -963,7 +964,7 @@
   },
   {
    "name": "Doomsday",
-   "decks": 151,
+   "decks": 148,
    "roles": [
     "tutor",
     "topmanip"
@@ -972,7 +973,7 @@
   },
   {
    "name": "Bilbo, Thief in the Night",
-   "decks": 140,
+   "decks": 134,
    "roles": [
     "recursion",
     "ramp"
@@ -981,7 +982,7 @@
   },
   {
    "name": "Gaea's Will",
-   "decks": 97,
+   "decks": 94,
    "roles": [
     "recursion"
    ],
@@ -997,7 +998,7 @@
   },
   {
    "name": "Bridge from Below",
-   "decks": 53,
+   "decks": 52,
    "roles": [
     "tokens"
    ],
@@ -1005,7 +1006,7 @@
   },
   {
    "name": "Triumph of Saint Katherine",
-   "decks": 19,
+   "decks": 18,
    "roles": [
     "topmanip",
     "beater",
@@ -1139,7 +1140,7 @@
   "removal": [
    {
     "name": "Karakas",
-    "decks": 803,
+    "decks": 785,
     "oracle": "{T}: Add {W}.\n{T}: Return target legendary creature to its owner's hand.",
     "detail": [
      "removal:bounce:creature"
@@ -1147,7 +1148,7 @@
    },
    {
     "name": "Swords to Plowshares",
-    "decks": 699,
+    "decks": 681,
     "oracle": "Exile target creature. Its controller gains life equal to its power.",
     "detail": [
      "removal:exile:creature"
@@ -1155,7 +1156,7 @@
    },
    {
     "name": "Orcish Bowmasters",
-    "decks": 520,
+    "decks": 511,
     "oracle": "Flash\nWhen this creature enters and whenever an opponent draws a card except the first one they draw in each of their draw steps, this creature deals 1 damage to any target. Then amass Orcs 1.",
     "detail": [
      "removal:damage:creature/planeswalker/battle/player",
@@ -1164,7 +1165,7 @@
    },
    {
     "name": "Boseiju, Who Endures",
-    "decks": 498,
+    "decks": 486,
     "oracle": "{T}: Add {G}.\nChannel — {1}{G}, Discard this card: Destroy target artifact, enchantment, or nonbasic land an opponent controls. That player may search their library for a land card with a basic land type, put it onto the battlefield, then shuffle. This ability costs {1} less to activate for each legendary creature you control.",
     "detail": [
      "removal:destroy:artifact/enchantment/land"
@@ -1172,7 +1173,7 @@
    },
    {
     "name": "Kozilek's Command",
-    "decks": 364,
+    "decks": 360,
     "oracle": "Choose two —\n• Target player creates X 0/1 colorless Eldrazi Spawn creature tokens with \"Sacrifice this token: Add {C}.\"\n• Target player scries X, then draws a card.\n• Exile target creature with mana value X or less.\n• Exile up to X target cards from graveyards.",
     "detail": [
      "removal:exile:creature",
@@ -1181,7 +1182,7 @@
    },
    {
     "name": "Fatal Push",
-    "decks": 316,
+    "decks": 308,
     "oracle": "Destroy target creature if it has mana value 2 or less.\nRevolt — Destroy that creature if it has mana value 4 or less instead if a permanent left the battlefield under your control this turn.",
     "detail": [
      "removal:destroy:creature"
@@ -1189,7 +1190,7 @@
    },
    {
     "name": "Phelia, Exuberant Shepherd",
-    "decks": 302,
+    "decks": 294,
     "oracle": "Flash\nWhenever Phelia attacks, exile up to one other target nonland permanent. At the beginning of the next end step, return that card to the battlefield under its owner's control. If it entered under your control, put a +1/+1 counter on Phelia.",
     "detail": [
      "removal:exile:creature/artifact/enchantment/planeswalker/battle"
@@ -1197,7 +1198,7 @@
    },
    {
     "name": "Brazen Borrower // Petty Theft",
-    "decks": 256,
+    "decks": 250,
     "oracle": "Flash\nFlying\nThis creature can block only creatures with flying.\n//\nReturn target nonland permanent an opponent controls to its owner's hand.",
     "detail": [
      "removal:bounce:creature/artifact/enchantment/planeswalker/battle"
@@ -1205,23 +1206,15 @@
    },
    {
     "name": "Prismatic Ending",
-    "decks": 240,
+    "decks": 235,
     "oracle": "Converge — Exile target nonland permanent if its mana value is less than or equal to the number of colors of mana spent to cast this spell.",
     "detail": [
      "removal:exile:creature/artifact/enchantment/planeswalker/battle"
     ]
    },
    {
-    "name": "Goblin Bombardment",
-    "decks": 194,
-    "oracle": "Sacrifice a creature: This enchantment deals 1 damage to any target.",
-    "detail": [
-     "removal:damage:creature/planeswalker/battle/player"
-    ]
-   },
-   {
     "name": "Ugin, Eye of the Storms",
-    "decks": 192,
+    "decks": 191,
     "oracle": "When you cast this spell, exile up to one target permanent that's one or more colors.\nWhenever you cast a colorless spell, exile up to one target permanent that's one or more colors.\n+2: You gain 3 life and draw a card.\n0: Add {C}{C}{C}.\n−11: Search your library for any number of colorless nonland cards, exile them, then shuffle. Until end of turn, you may cast those cards without paying their mana costs.",
     "detail": [
      "removal:exile:creature/artifact/enchantment/planeswalker/battle",
@@ -1229,8 +1222,16 @@
     ]
    },
    {
+    "name": "Goblin Bombardment",
+    "decks": 186,
+    "oracle": "Sacrifice a creature: This enchantment deals 1 damage to any target.",
+    "detail": [
+     "removal:damage:creature/planeswalker/battle/player"
+    ]
+   },
+   {
     "name": "Lightning Bolt",
-    "decks": 167,
+    "decks": 165,
     "oracle": "Lightning Bolt deals 3 damage to any target.",
     "detail": [
      "removal:damage:creature/planeswalker/battle/player"
@@ -1238,7 +1239,7 @@
    },
    {
     "name": "Giant's Boulder",
-    "decks": 166,
+    "decks": 162,
     "oracle": "When this artifact enters, scry 2. (Look at the top two cards of your library, then put any number of them on the bottom and the rest on top in any order.)\n{1}, {T}: Add one mana of any color.\n{7}, {T}, Sacrifice this artifact: Destroy target permanent.",
     "detail": [
      "removal:destroy:creature/artifact/enchantment/planeswalker/battle/land"
@@ -1246,7 +1247,7 @@
    },
    {
     "name": "Lazotep Quarry",
-    "decks": 163,
+    "decks": 157,
     "oracle": "{T}: Add {C}.\n{T}, Sacrifice a creature: Add one mana of any color.\n{X}{2}, {T}, Sacrifice a Desert: Exile target creature card with mana value X from your graveyard. Create a token that's a copy of it, except it's a 4/4 black Zombie. Activate only as a sorcery.",
     "detail": [
      "removal:exile:creature"
@@ -1254,7 +1255,7 @@
    },
    {
     "name": "Sink into Stupor // Soporific Springs",
-    "decks": 156,
+    "decks": 153,
     "oracle": "Return target spell or nonland permanent an opponent controls to its owner's hand.\n//\nAs this land enters, you may pay 3 life. If you don't, it enters tapped.\n{T}: Add {U}.",
     "detail": [
      "removal:bounce:creature/artifact/enchantment/planeswalker/battle/spell"
@@ -1262,7 +1263,7 @@
    },
    {
     "name": "Wastescape Battlemage",
-    "decks": 150,
+    "decks": 148,
     "oracle": "Kicker {G} and/or {1}{U}\nWhen you cast this spell, if it was kicked with its {G} kicker, exile target artifact or enchantment an opponent controls.\nWhen you cast this spell, if it was kicked with its {1}{U} kicker, return target creature an opponent controls to its owner's hand.",
     "detail": [
      "removal:exile:artifact/enchantment",
@@ -1271,7 +1272,7 @@
    },
    {
     "name": "Static Prison",
-    "decks": 141,
+    "decks": 134,
     "oracle": "When this enchantment enters, exile target nonland permanent an opponent controls until this enchantment leaves the battlefield. You get {E}{E} (two energy counters).\nAt the beginning of your first main phase, sacrifice this enchantment unless you pay {E}.",
     "detail": [
      "removal:exile:creature/artifact/enchantment/planeswalker/battle"
@@ -1279,7 +1280,7 @@
    },
    {
     "name": "Eldrazi Confluence",
-    "decks": 128,
+    "decks": 127,
     "oracle": "Choose three. You may choose the same mode more than once.\n• Target creature gets +3/-3 until end of turn.\n• Exile target nonland permanent, then return it to the battlefield tapped under its owner's control.\n• Create a 1/1 colorless Eldrazi Scion creature token with \"Sacrifice this token: Add {C}.\"",
     "detail": [
      "removal:exile:creature/artifact/enchantment/planeswalker/battle"
@@ -1287,23 +1288,15 @@
    },
    {
     "name": "Solitude",
-    "decks": 119,
+    "decks": 118,
     "oracle": "Flash\nLifelink\nWhen this creature enters, exile up to one other target creature. That creature's controller gains life equal to its power.\nEvoke—Exile a white card from your hand.",
     "detail": [
      "removal:exile:creature"
     ]
    },
    {
-    "name": "Snuff Out",
-    "decks": 112,
-    "oracle": "If you control a Swamp, you may pay 4 life rather than pay this spell's mana cost.\nDestroy target nonblack creature. It can't be regenerated.",
-    "detail": [
-     "removal:destroy:creature"
-    ]
-   },
-   {
     "name": "Archon of Cruelty",
-    "decks": 112,
+    "decks": 110,
     "oracle": "Flying\nWhenever this creature enters or attacks, target opponent sacrifices a creature or planeswalker of their choice, discards a card, and loses 3 life. You draw a card and gain 3 life.",
     "detail": [
      "removal:sacrifice:creature/planeswalker",
@@ -1312,7 +1305,7 @@
    },
    {
     "name": "Prismari Charm",
-    "decks": 109,
+    "decks": 108,
     "oracle": "Choose one —\n• Surveil 2, then draw a card.\n• Prismari Charm deals 1 damage to each of one or two targets.\n• Return target nonland permanent to its owner's hand.",
     "detail": [
      "removal:damage:creature",
@@ -1320,8 +1313,16 @@
     ]
    },
    {
-    "name": "Witch Enchanter // Witch-Blessed Meadow",
+    "name": "Snuff Out",
     "decks": 108,
+    "oracle": "If you control a Swamp, you may pay 4 life rather than pay this spell's mana cost.\nDestroy target nonblack creature. It can't be regenerated.",
+    "detail": [
+     "removal:destroy:creature"
+    ]
+   },
+   {
+    "name": "Witch Enchanter // Witch-Blessed Meadow",
+    "decks": 107,
     "oracle": "When this creature enters, destroy target artifact or enchantment an opponent controls.\n//\nAs this land enters, you may pay 3 life. If you don't, it enters tapped.\n{T}: Add {W}.",
     "detail": [
      "removal:destroy:artifact/enchantment"
@@ -1329,7 +1330,7 @@
    },
    {
     "name": "Erode",
-    "decks": 96,
+    "decks": 95,
     "oracle": "Destroy target creature or planeswalker. Its controller may search their library for a basic land card, put it onto the battlefield tapped, then shuffle.",
     "detail": [
      "removal:destroy:creature/planeswalker"
@@ -1354,7 +1355,7 @@
    },
    {
     "name": "Skyclave Apparition",
-    "decks": 88,
+    "decks": 87,
     "oracle": "When this creature enters, exile up to one target nonland, nontoken permanent you don't control with mana value 4 or less.\nWhen this creature leaves the battlefield, the exiled card's owner creates an X/X blue Illusion creature token, where X is the mana value of the exiled card.",
     "detail": [
      "removal:exile:creature/artifact/enchantment/planeswalker/battle"
@@ -1362,7 +1363,7 @@
    },
    {
     "name": "Flickerwisp",
-    "decks": 87,
+    "decks": 86,
     "oracle": "Flying\nWhen this creature enters, exile another target permanent. Return that card to the battlefield under its owner's control at the beginning of the next end step.",
     "detail": [
      "removal:exile:creature/artifact/enchantment/planeswalker/battle/land"
@@ -1370,7 +1371,7 @@
    },
    {
     "name": "Meteor Sword",
-    "decks": 87,
+    "decks": 86,
     "oracle": "When this Equipment enters, destroy target permanent.\nEquipped creature gets +3/+3.\nEquip {3} ({3}: Attach to target creature you control. Equip only as a sorcery.)",
     "detail": [
      "removal:destroy:creature/artifact/enchantment/planeswalker/battle/land"
@@ -1378,7 +1379,7 @@
    },
    {
     "name": "Otawara, Soaring City",
-    "decks": 85,
+    "decks": 82,
     "oracle": "{T}: Add {U}.\nChannel — {3}{U}, Discard this card: Return target artifact, creature, enchantment, or planeswalker to its owner's hand. This ability costs {1} less to activate for each legendary creature you control.",
     "detail": [
      "removal:bounce:creature/artifact/enchantment/planeswalker"
@@ -1386,7 +1387,7 @@
    },
    {
     "name": "Unholy Heat",
-    "decks": 83,
+    "decks": 82,
     "oracle": "Unholy Heat deals 2 damage to target creature or planeswalker.\nDelirium — Unholy Heat deals 6 damage instead if there are four or more card types among cards in your graveyard.",
     "detail": [
      "removal:damage:creature/planeswalker"
@@ -1394,7 +1395,7 @@
    },
    {
     "name": "Leyline Binding",
-    "decks": 78,
+    "decks": 76,
     "oracle": "Flash\nDomain — This spell costs {1} less to cast for each basic land type among lands you control.\nWhen this enchantment enters, exile target nonland permanent an opponent controls until this enchantment leaves the battlefield.",
     "detail": [
      "removal:exile:creature/artifact/enchantment/planeswalker/battle"
@@ -1402,7 +1403,7 @@
    },
    {
     "name": "Phlage, Titan of Fire's Fury",
-    "decks": 76,
+    "decks": 73,
     "oracle": "When Phlage enters, sacrifice it unless it escaped.\nWhenever Phlage enters or attacks, it deals 3 damage to any target and you gain 3 life.\nEscape—{R}{R}{W}{W}, Exile five other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)",
     "detail": [
      "removal:damage:creature/planeswalker/battle/player",
@@ -1411,7 +1412,7 @@
    },
    {
     "name": "Legion Extruder",
-    "decks": 72,
+    "decks": 69,
     "oracle": "When this artifact enters, it deals 2 damage to any target.\n{2}, {T}, Sacrifice another artifact: Create a 3/3 colorless Golem artifact creature token.",
     "detail": [
      "removal:damage:creature/planeswalker/battle/player"
@@ -1419,7 +1420,7 @@
    },
    {
     "name": "Grist, the Hunger Tide",
-    "decks": 69,
+    "decks": 67,
     "oracle": "As long as Grist isn't on the battlefield, it's a 1/1 Insect creature in addition to its other types.\n+1: Create a 1/1 black and green Insect creature token, then mill a card. If an Insect card was milled this way, put a loyalty counter on Grist and repeat this process.\n−2: You may sacrifice a creature. When you do, destroy target creature or planeswalker.\n−5: Each opponent loses life equal to the number of creature cards in your graveyard.",
     "detail": [
      "removal:destroy:creature"
@@ -1469,7 +1470,7 @@
   "wipe": [
    {
     "name": "Wrath of the Skies",
-    "decks": 147,
+    "decks": 146,
     "oracle": "You get X {E} (energy counters), then you may pay any amount of {E}. Destroy each artifact, creature, and enchantment with mana value less than or equal to the amount of {E} paid this way.",
     "detail": [
      "wipe:destroy:creature/artifact/enchantment"
@@ -1477,7 +1478,7 @@
    },
    {
     "name": "Blast Zone",
-    "decks": 139,
+    "decks": 136,
     "oracle": "This land enters with a charge counter on it.\n{T}: Add {C}.\n{X}{X}, {T}: Put X charge counters on this land.\n{3}, {T}, Sacrifice this land: Destroy each nonland permanent with mana value equal to the number of charge counters on this land.",
     "detail": [
      "wipe:destroy:creature/artifact/enchantment/planeswalker/battle"
@@ -1609,7 +1610,7 @@
   "spell": [
    {
     "name": "Force of Will",
-    "decks": 1379,
+    "decks": 1350,
     "oracle": "You may pay 1 life and exile a blue card from your hand rather than pay this spell's mana cost.\nCounter target spell.",
     "detail": [
      "counter:counter:spell"
@@ -1617,7 +1618,7 @@
    },
    {
     "name": "Daze",
-    "decks": 787,
+    "decks": 776,
     "oracle": "You may return an Island you control to its owner's hand rather than pay this spell's mana cost.\nCounter target spell unless its controller pays {1}.",
     "detail": [
      "counter:counter:spell"
@@ -1625,7 +1626,7 @@
    },
    {
     "name": "Force of Negation",
-    "decks": 388,
+    "decks": 380,
     "oracle": "If it's not your turn, you may exile a blue card from your hand rather than pay this spell's mana cost.\nCounter target noncreature spell. If that spell is countered this way, exile it instead of putting it into its owner's graveyard.",
     "detail": [
      "counter:counter_exile:noncreature spell"
@@ -1633,7 +1634,7 @@
    },
    {
     "name": "Chalice of the Void",
-    "decks": 236,
+    "decks": 234,
     "oracle": "This artifact enters with X charge counters on it.\nWhenever a player casts a spell with mana value equal to the number of charge counters on this artifact, counter that spell.",
     "detail": [
      "counter:counter:spell"
@@ -1641,7 +1642,7 @@
    },
    {
     "name": "Voice of Victory",
-    "decks": 196,
+    "decks": 188,
     "oracle": "Mobilize 2 (Whenever this creature attacks, create two tapped and attacking 1/1 red Warrior creature tokens. Sacrifice them at the beginning of the next end step.)\nYour opponents can't cast spells during your turn.",
     "detail": [
      "hate:lock:spell"
@@ -1649,7 +1650,7 @@
    },
    {
     "name": "Disruptor Flute",
-    "decks": 184,
+    "decks": 183,
     "oracle": "Flash\nAs this artifact enters, choose a card name.\nSpells with the chosen name cost {3} more to cast.\nActivated abilities of sources with the chosen name can't be activated unless they're mana abilities.",
     "detail": [
      "hate:lock:tax",
@@ -1658,7 +1659,7 @@
    },
    {
     "name": "Sink into Stupor // Soporific Springs",
-    "decks": 156,
+    "decks": 153,
     "oracle": "Return target spell or nonland permanent an opponent controls to its owner's hand.\n//\nAs this land enters, you may pay 3 life. If you don't, it enters tapped.\n{T}: Add {U}.",
     "detail": [
      "removal:bounce:creature/artifact/enchantment/planeswalker/battle/spell"
@@ -1666,7 +1667,7 @@
    },
    {
     "name": "Reality Smasher",
-    "decks": 145,
+    "decks": 143,
     "oracle": "({C} represents colorless mana.)\nTrample, haste\nWhenever this creature becomes the target of a spell an opponent controls, counter that spell unless its controller discards a card.",
     "detail": [
      "counter:counter:spell"
@@ -1674,7 +1675,7 @@
    },
    {
     "name": "Flusterstorm",
-    "decks": 143,
+    "decks": 140,
     "oracle": "Counter target instant or sorcery spell unless its controller pays {1}.\nStorm (When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)",
     "detail": [
      "counter:counter:instant/sorcery/spell"
@@ -1682,34 +1683,26 @@
    },
    {
     "name": "Trinisphere",
-    "decks": 112,
+    "decks": 111,
     "oracle": "As long as this artifact is untapped, each spell that would cost less than three mana to cast costs three mana to cast. (Additional mana in the cost may be paid with any color of mana or colorless mana. For example, a spell that would cost {1}{B} to cast costs {2}{B} to cast instead.)",
     "detail": [
      "hate:lock:tax"
     ]
    },
    {
-    "name": "Consign to Memory",
-    "decks": 105,
-    "oracle": "Replicate {1} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.)\nCounter target triggered ability or colorless spell.",
-    "detail": [
-     "counter:counter:triggered ability/spell"
-    ]
-   },
-   {
     "name": "Spell Pierce",
-    "decks": 103,
+    "decks": 102,
     "oracle": "Counter target noncreature spell unless its controller pays {2}.",
     "detail": [
      "counter:counter:noncreature spell"
     ]
    },
    {
-    "name": "Thalia, Guardian of Thraben",
-    "decks": 91,
-    "oracle": "First strike\nNoncreature spells cost {1} more to cast.",
+    "name": "Consign to Memory",
+    "decks": 102,
+    "oracle": "Replicate {1} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.)\nCounter target triggered ability or colorless spell.",
     "detail": [
-     "hate:lock:tax"
+     "counter:counter:triggered ability/spell"
     ]
    },
    {
@@ -1722,8 +1715,16 @@
     ]
    },
    {
+    "name": "Thalia, Guardian of Thraben",
+    "decks": 89,
+    "oracle": "First strike\nNoncreature spells cost {1} more to cast.",
+    "detail": [
+     "hate:lock:tax"
+    ]
+   },
+   {
     "name": "Sphere of Resistance",
-    "decks": 87,
+    "decks": 84,
     "oracle": "Spells cost {1} more to cast.",
     "detail": [
      "hate:lock:tax"
@@ -1739,7 +1740,7 @@
    },
    {
     "name": "Spell Snare",
-    "decks": 48,
+    "decks": 42,
     "oracle": "Counter target spell with mana value 2.",
     "detail": [
      "counter:counter:spell"
@@ -1747,7 +1748,7 @@
    },
    {
     "name": "Grafdigger's Cage",
-    "decks": 42,
+    "decks": 41,
     "oracle": "Creature cards in graveyards and libraries can't enter the battlefield.\nPlayers can't cast spells from graveyards or libraries.",
     "detail": [
      "hate:lock:spell/graveyard"
@@ -1772,7 +1773,7 @@
    },
    {
     "name": "Defense Grid",
-    "decks": 19,
+    "decks": 18,
     "oracle": "Each spell costs {3} more to cast except during its controller's turn.",
     "detail": [
      "hate:lock:tax"
@@ -1815,7 +1816,7 @@
    },
    {
     "name": "Counterbalance",
-    "decks": 11,
+    "decks": 10,
     "oracle": "Whenever an opponent casts a spell, you may reveal the top card of your library. If you do, counter that spell if it has the same mana value as the revealed card.",
     "detail": [
      "counter:counter:spell"
@@ -1941,7 +1942,7 @@
   "ability": [
    {
     "name": "Pithing Needle",
-    "decks": 290,
+    "decks": 286,
     "oracle": "As this artifact enters, choose a card name.\nActivated abilities of sources with the chosen name can't be activated unless they're mana abilities.",
     "detail": [
      "hate:lock:activated ability"
@@ -1949,7 +1950,7 @@
    },
    {
     "name": "Karn, the Great Creator",
-    "decks": 220,
+    "decks": 218,
     "oracle": "Activated abilities of artifacts your opponents control can't be activated.\n+1: Until your next turn, up to one target noncreature artifact becomes an artifact creature with power and toughness each equal to its mana value.\n−2: You may reveal an artifact card you own from outside the game or choose a face-up artifact card you own in exile. Put that card into your hand.",
     "detail": [
      "hate:lock:activated ability"
@@ -1957,7 +1958,7 @@
    },
    {
     "name": "Disruptor Flute",
-    "decks": 184,
+    "decks": 183,
     "oracle": "Flash\nAs this artifact enters, choose a card name.\nSpells with the chosen name cost {3} more to cast.\nActivated abilities of sources with the chosen name can't be activated unless they're mana abilities.",
     "detail": [
      "hate:lock:tax",
@@ -1966,7 +1967,7 @@
    },
    {
     "name": "Stifle",
-    "decks": 151,
+    "decks": 147,
     "oracle": "Counter target activated or triggered ability. (Mana abilities can't be targeted.)",
     "detail": [
      "counter:counter:activated ability/triggered ability"
@@ -1974,7 +1975,7 @@
    },
    {
     "name": "Petrified Hamlet",
-    "decks": 139,
+    "decks": 137,
     "oracle": "When this land enters, choose a land card name.\nActivated abilities of sources with the chosen name can't be activated unless they're mana abilities.\nLands with the chosen name have \"{T}: Add {C}.\"\n{T}: Add {C}.",
     "detail": [
      "hate:lock:activated ability"
@@ -1982,7 +1983,7 @@
    },
    {
     "name": "Consign to Memory",
-    "decks": 105,
+    "decks": 102,
     "oracle": "Replicate {1} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.)\nCounter target triggered ability or colorless spell.",
     "detail": [
      "counter:counter:triggered ability/spell"
@@ -1990,7 +1991,7 @@
    },
    {
     "name": "Collector Ouphe",
-    "decks": 96,
+    "decks": 94,
     "oracle": "Activated abilities of artifacts can't be activated.",
     "detail": [
      "hate:lock:activated ability"
@@ -2048,7 +2049,7 @@
   "action": [
    {
     "name": "Orcish Bowmasters",
-    "decks": 520,
+    "decks": 511,
     "oracle": "Flash\nWhen this creature enters and whenever an opponent draws a card except the first one they draw in each of their draw steps, this creature deals 1 damage to any target. Then amass Orcs 1.",
     "detail": [
      "removal:damage:creature/planeswalker/battle/player",
@@ -2124,7 +2125,7 @@
   "discard": [
    {
     "name": "Thoughtseize",
-    "decks": 813,
+    "decks": 794,
     "oracle": "Target player reveals their hand. You choose a nonland card from it. That player discards that card. You lose 2 life.",
     "detail": [
      "discard:discard:hand"
@@ -2132,7 +2133,7 @@
    },
    {
     "name": "Cabal Therapy",
-    "decks": 263,
+    "decks": 260,
     "oracle": "Choose a nonland card name. Target player reveals their hand and discards all cards with that name.\nFlashback—Sacrifice a creature. (You may cast this card from your graveyard for its flashback cost. Then exile it.)",
     "detail": [
      "discard:discard:hand"
@@ -2140,7 +2141,7 @@
    },
    {
     "name": "Thought-Knot Seer",
-    "decks": 152,
+    "decks": 150,
     "oracle": "({C} represents colorless mana.)\nWhen this creature enters, target opponent reveals their hand. You choose a nonland card from it and exile that card.\nWhen this creature leaves the battlefield, target opponent draws a card.",
     "detail": [
      "discard:exile:hand"
@@ -2148,7 +2149,7 @@
    },
    {
     "name": "Duress",
-    "decks": 97,
+    "decks": 94,
     "oracle": "Target opponent reveals their hand. You choose a noncreature, nonland card from it. That player discards that card.",
     "detail": [
      "discard:discard:hand"
@@ -2242,7 +2243,7 @@
   "gyhate": [
    {
     "name": "Kozilek's Command",
-    "decks": 364,
+    "decks": 360,
     "oracle": "Choose two —\n• Target player creates X 0/1 colorless Eldrazi Spawn creature tokens with \"Sacrifice this token: Add {C}.\"\n• Target player scries X, then draws a card.\n• Exile target creature with mana value X or less.\n• Exile up to X target cards from graveyards.",
     "detail": [
      "removal:exile:creature",
@@ -2251,7 +2252,7 @@
    },
    {
     "name": "Bojuka Bog",
-    "decks": 262,
+    "decks": 255,
     "oracle": "This land enters tapped.\nWhen this land enters, exile target player's graveyard.\n{T}: Add {B}.",
     "detail": [
      "gyhate:exile:graveyard"
@@ -2259,7 +2260,7 @@
    },
    {
     "name": "Soul-Guide Lantern",
-    "decks": 94,
+    "decks": 92,
     "oracle": "When this artifact enters, exile target card from a graveyard.\n{T}, Sacrifice this artifact: Exile each opponent's graveyard.\n{1}, {T}, Sacrifice this artifact: Draw a card.",
     "detail": [
      "gyhate:exile:graveyard",
@@ -2268,7 +2269,7 @@
    },
    {
     "name": "Endurance",
-    "decks": 86,
+    "decks": 83,
     "oracle": "Flash\nReach\nWhen this creature enters, up to one target player puts all the cards from their graveyard on the bottom of their library in a random order.\nEvoke—Exile a green card from your hand.",
     "detail": [
      "gyhate:exile:graveyard"
@@ -2276,7 +2277,7 @@
    },
    {
     "name": "Lion Sash",
-    "decks": 82,
+    "decks": 81,
     "oracle": "{W}: Exile target card from a graveyard. If it was a permanent card, put a +1/+1 counter on this permanent.\nEquipped creature gets +1/+1 for each +1/+1 counter on this Equipment.\nReconfigure {2} ({2}: Attach to target creature you control; or unattach from a creature. Reconfigure only as a sorcery. While attached, this isn't a creature.)",
     "detail": [
      "gyhate:exile:graveyard"
@@ -2284,7 +2285,7 @@
    },
    {
     "name": "Agatha's Soul Cauldron",
-    "decks": 77,
+    "decks": 74,
     "oracle": "You may spend mana as though it were mana of any color to activate abilities of creatures you control.\nCreatures you control with +1/+1 counters on them have all activated abilities of all creature cards exiled with Agatha's Soul Cauldron.\n{T}: Exile target card from a graveyard. When a creature card is exiled this way, put a +1/+1 counter on target creature you control.",
     "detail": [
      "gyhate:exile:graveyard"
@@ -2292,7 +2293,7 @@
    },
    {
     "name": "Canoptek Scarab Swarm",
-    "decks": 46,
+    "decks": 45,
     "oracle": "Flying\nFeeder Mandibles — When this creature enters, exile target player's graveyard. For each artifact or land card exiled this way, create a 1/1 colorless Insect artifact creature token with flying.",
     "detail": [
      "gyhate:exile:graveyard"
@@ -2308,7 +2309,7 @@
    },
    {
     "name": "Grafdigger's Cage",
-    "decks": 42,
+    "decks": 41,
     "oracle": "Creature cards in graveyards and libraries can't enter the battlefield.\nPlayers can't cast spells from graveyards or libraries.",
     "detail": [
      "hate:lock:spell/graveyard"
@@ -2467,7 +2468,7 @@
   "manalock": [
    {
     "name": "Wasteland",
-    "decks": 1473,
+    "decks": 1440,
     "oracle": "{T}: Add {C}.\n{T}, Sacrifice this land: Destroy target nonbasic land.",
     "detail": [
      "removal:destroy:land"
@@ -2475,7 +2476,7 @@
    },
    {
     "name": "Boseiju, Who Endures",
-    "decks": 498,
+    "decks": 486,
     "oracle": "{T}: Add {G}.\nChannel — {1}{G}, Discard this card: Destroy target artifact, enchantment, or nonbasic land an opponent controls. That player may search their library for a land card with a basic land type, put it onto the battlefield, then shuffle. This ability costs {1} less to activate for each legendary creature you control.",
     "detail": [
      "removal:destroy:artifact/enchantment/land"
@@ -2483,7 +2484,7 @@
    },
    {
     "name": "Ghost Quarter",
-    "decks": 204,
+    "decks": 201,
     "oracle": "{T}: Add {C}.\n{T}, Sacrifice this land: Destroy target land. Its controller may search their library for a basic land card, put it onto the battlefield, then shuffle.",
     "detail": [
      "removal:destroy:land"
@@ -2491,7 +2492,7 @@
    },
    {
     "name": "Giant's Boulder",
-    "decks": 166,
+    "decks": 162,
     "oracle": "When this artifact enters, scry 2. (Look at the top two cards of your library, then put any number of them on the bottom and the rest on top in any order.)\n{1}, {T}: Add one mana of any color.\n{7}, {T}, Sacrifice this artifact: Destroy target permanent.",
     "detail": [
      "removal:destroy:creature/artifact/enchantment/planeswalker/battle/land"
@@ -2499,7 +2500,7 @@
    },
    {
     "name": "White Orchid Phantom",
-    "decks": 104,
+    "decks": 100,
     "oracle": "Flying, first strike\nWhen this creature enters, destroy up to one target nonbasic land. Its controller may search their library for a basic land card, put it onto the battlefield tapped, then shuffle.",
     "detail": [
      "removal:destroy:land"
@@ -2507,7 +2508,7 @@
    },
    {
     "name": "Flickerwisp",
-    "decks": 87,
+    "decks": 86,
     "oracle": "Flying\nWhen this creature enters, exile another target permanent. Return that card to the battlefield under its owner's control at the beginning of the next end step.",
     "detail": [
      "removal:exile:creature/artifact/enchantment/planeswalker/battle/land"
@@ -2515,7 +2516,7 @@
    },
    {
     "name": "Meteor Sword",
-    "decks": 87,
+    "decks": 86,
     "oracle": "When this Equipment enters, destroy target permanent.\nEquipped creature gets +3/+3.\nEquip {3} ({3}: Attach to target creature you control. Equip only as a sorcery.)",
     "detail": [
      "removal:destroy:creature/artifact/enchantment/planeswalker/battle/land"
@@ -2539,7 +2540,7 @@
    },
    {
     "name": "Ashen Rider",
-    "decks": 25,
+    "decks": 24,
     "oracle": "Flying\nWhen this creature enters or dies, exile target permanent.",
     "detail": [
      "removal:exile:creature/artifact/enchantment/planeswalker/battle/land",
@@ -2705,8 +2706,8 @@
   ]
  },
  "format": "Legacy",
- "generatedAt": "2026-11-27T22:28:31.696Z",
- "decks": 2805,
+ "generatedAt": "2026-11-28T06:13:41.521Z",
+ "decks": 2750,
  "otherOnly": [
   {
    "name": "Shallow Grave",
@@ -2889,7 +2890,7 @@
  "manyRoles": [
   {
    "name": "Orcish Bowmasters",
-   "decks": 520,
+   "decks": 511,
    "roles": [
     "removal",
     "action",
@@ -2904,7 +2905,7 @@
   },
   {
    "name": "Boseiju, Who Endures",
-   "decks": 498,
+   "decks": 486,
    "roles": [
     "land",
     "removal",
@@ -2917,7 +2918,7 @@
   },
   {
    "name": "Atraxa, Grand Unifier",
-   "decks": 432,
+   "decks": 424,
    "roles": [
     "draw",
     "beater",
@@ -2930,7 +2931,7 @@
   },
   {
    "name": "Kozilek's Command",
-   "decks": 364,
+   "decks": 360,
    "roles": [
     "removal",
     "gyhate",
@@ -2946,7 +2947,7 @@
   },
   {
    "name": "Kaito, Bane of Nightmares",
-   "decks": 331,
+   "decks": 325,
    "roles": [
     "draw",
     "selfmill",
@@ -2966,7 +2967,7 @@
   },
   {
    "name": "Ugin, Eye of the Storms",
-   "decks": 192,
+   "decks": 191,
    "roles": [
     "removal",
     "draw",
@@ -2983,7 +2984,7 @@
   },
   {
    "name": "Emrakul, the Aeons Torn",
-   "decks": 184,
+   "decks": 181,
    "roles": [
     "extraturn",
     "beater",
@@ -2999,7 +3000,7 @@
   },
   {
    "name": "Malevolent Rumble",
-   "decks": 169,
+   "decks": 166,
    "roles": [
     "draw",
     "topselect",
@@ -3013,7 +3014,7 @@
   },
   {
    "name": "Giant's Boulder",
-   "decks": 166,
+   "decks": 162,
    "roles": [
     "removal",
     "manalock",
@@ -3028,7 +3029,7 @@
   },
   {
    "name": "Sink into Stupor // Soporific Springs",
-   "decks": 156,
+   "decks": 153,
    "roles": [
     "removal",
     "spell",
@@ -3041,8 +3042,21 @@
    ]
   },
   {
+   "name": "Thought-Knot Seer",
+   "decks": 150,
+   "roles": [
+    "discard",
+    "draw",
+    "beater"
+   ],
+   "tags": [
+    "discard@etb",
+    "draw@once_trigger"
+   ]
+  },
+  {
    "name": "Consider",
-   "decks": 152,
+   "decks": 149,
    "roles": [
     "draw",
     "selfmill",
@@ -3055,21 +3069,8 @@
    ]
   },
   {
-   "name": "Thought-Knot Seer",
-   "decks": 152,
-   "roles": [
-    "discard",
-    "draw",
-    "beater"
-   ],
-   "tags": [
-    "discard@etb",
-    "draw@once_trigger"
-   ]
-  },
-  {
    "name": "Icetill Explorer",
-   "decks": 142,
+   "decks": 141,
    "roles": [
     "recursion",
     "selfmill",
@@ -3083,7 +3084,7 @@
   },
   {
    "name": "Grave Researcher // Reanimate",
-   "decks": 127,
+   "decks": 125,
    "roles": [
     "cheat",
     "selfmill",
@@ -3098,7 +3099,7 @@
   },
   {
    "name": "Solitude",
-   "decks": 119,
+   "decks": 118,
    "roles": [
     "removal",
     "beater",
@@ -3113,7 +3114,7 @@
   },
   {
    "name": "Griselbrand",
-   "decks": 116,
+   "decks": 115,
    "roles": [
     "draw",
     "beater",
@@ -3125,8 +3126,23 @@
    ]
   },
   {
+   "name": "Tezzeret, Cruel Captain",
+   "decks": 110,
+   "roles": [
+    "untap",
+    "tutor",
+    "enhance"
+   ],
+   "tags": [
+    "misc@creature_enters",
+    "pump@loyalty",
+    "untap@loyalty",
+    "tutor@loyalty"
+   ]
+  },
+  {
    "name": "Archon of Cruelty",
-   "decks": 112,
+   "decks": 110,
    "roles": [
     "removal",
     "draw",
@@ -3144,23 +3160,8 @@
    ]
   },
   {
-   "name": "Tezzeret, Cruel Captain",
-   "decks": 111,
-   "roles": [
-    "untap",
-    "tutor",
-    "enhance"
-   ],
-   "tags": [
-    "misc@creature_enters",
-    "pump@loyalty",
-    "untap@loyalty",
-    "tutor@loyalty"
-   ]
-  },
-  {
    "name": "Prismari Charm",
-   "decks": 109,
+   "decks": 108,
    "roles": [
     "removal",
     "draw",
@@ -3177,7 +3178,7 @@
   },
   {
    "name": "Tendrils of Agony",
-   "decks": 101,
+   "decks": 98,
    "roles": [
     "copy",
     "reach",
@@ -3206,7 +3207,7 @@
   },
   {
    "name": "Flickerwisp",
-   "decks": 87,
+   "decks": 86,
    "roles": [
     "removal",
     "manalock",
@@ -3219,7 +3220,7 @@
   },
   {
    "name": "Meteor Sword",
-   "decks": 87,
+   "decks": 86,
    "roles": [
     "removal",
     "manalock",
@@ -3233,7 +3234,7 @@
   },
   {
    "name": "Overlord of the Balemurk",
-   "decks": 78,
+   "decks": 77,
    "roles": [
     "recursion",
     "selfmill",
@@ -3249,7 +3250,7 @@
   },
   {
    "name": "Phlage, Titan of Fire's Fury",
-   "decks": 76,
+   "decks": 73,
    "roles": [
     "removal",
     "recursion",
@@ -3270,7 +3271,7 @@
   },
   {
    "name": "Legion Extruder",
-   "decks": 72,
+   "decks": 69,
    "roles": [
     "removal",
     "tokens",
@@ -3284,7 +3285,7 @@
   },
   {
    "name": "Phyrexian Dragon Engine",
-   "decks": 70,
+   "decks": 68,
    "roles": [
     "draw",
     "recursion",
@@ -3298,7 +3299,7 @@
   },
   {
    "name": "Grist, the Hunger Tide",
-   "decks": 69,
+   "decks": 67,
    "roles": [
     "removal",
     "tokens",
@@ -3313,7 +3314,7 @@
   },
   {
    "name": "Jace, Wielder of Mysteries",
-   "decks": 61,
+   "decks": 60,
    "roles": [
     "altwin",
     "draw",
@@ -3349,35 +3350,35 @@
   "disrupt": [
    {
     "name": "Force of Will",
-    "decks": 1379,
+    "decks": 1350,
     "roles": [
      "spell"
     ]
    },
    {
     "name": "Thoughtseize",
-    "decks": 813,
+    "decks": 794,
     "roles": [
      "discard"
     ]
    },
    {
     "name": "Daze",
-    "decks": 787,
+    "decks": 776,
     "roles": [
      "spell"
     ]
    },
    {
     "name": "Swords to Plowshares",
-    "decks": 699,
+    "decks": 681,
     "roles": [
      "removal"
     ]
    },
    {
     "name": "Orcish Bowmasters",
-    "decks": 520,
+    "decks": 511,
     "roles": [
      "removal",
      "action",
@@ -3386,14 +3387,14 @@
    },
    {
     "name": "Force of Negation",
-    "decks": 388,
+    "decks": 380,
     "roles": [
      "spell"
     ]
    },
    {
     "name": "Kozilek's Command",
-    "decks": 364,
+    "decks": 360,
     "roles": [
      "removal",
      "gyhate",
@@ -3403,28 +3404,28 @@
    },
    {
     "name": "Fatal Push",
-    "decks": 316,
+    "decks": 308,
     "roles": [
      "removal"
     ]
    },
    {
     "name": "Phelia, Exuberant Shepherd",
-    "decks": 302,
+    "decks": 294,
     "roles": [
      "removal"
     ]
    },
    {
     "name": "Pithing Needle",
-    "decks": 290,
+    "decks": 286,
     "roles": [
      "ability"
     ]
    },
    {
     "name": "Cabal Therapy",
-    "decks": 263,
+    "decks": 260,
     "roles": [
      "discard",
      "recursion"
@@ -3432,7 +3433,7 @@
    },
    {
     "name": "Brazen Borrower // Petty Theft",
-    "decks": 256,
+    "decks": 250,
     "roles": [
      "removal",
      "beater"
@@ -3440,45 +3441,29 @@
    },
    {
     "name": "Prismatic Ending",
-    "decks": 240,
+    "decks": 235,
     "roles": [
      "removal"
     ]
    },
    {
     "name": "Chalice of the Void",
-    "decks": 236,
+    "decks": 234,
     "roles": [
      "spell"
     ]
    },
    {
     "name": "Karn, the Great Creator",
-    "decks": 220,
+    "decks": 218,
     "roles": [
      "ability",
      "tutor"
     ]
    },
    {
-    "name": "Voice of Victory",
-    "decks": 196,
-    "roles": [
-     "spell",
-     "tokens"
-    ]
-   },
-   {
-    "name": "Goblin Bombardment",
-    "decks": 194,
-    "roles": [
-     "removal",
-     "reach"
-    ]
-   },
-   {
     "name": "Ugin, Eye of the Storms",
-    "decks": 192,
+    "decks": 191,
     "roles": [
      "removal",
      "draw",
@@ -3487,8 +3472,24 @@
     ]
    },
    {
+    "name": "Voice of Victory",
+    "decks": 188,
+    "roles": [
+     "spell",
+     "tokens"
+    ]
+   },
+   {
+    "name": "Goblin Bombardment",
+    "decks": 186,
+    "roles": [
+     "removal",
+     "reach"
+    ]
+   },
+   {
     "name": "Disruptor Flute",
-    "decks": 184,
+    "decks": 183,
     "roles": [
      "spell",
      "ability"
@@ -3496,7 +3497,7 @@
    },
    {
     "name": "Lightning Bolt",
-    "decks": 167,
+    "decks": 165,
     "roles": [
      "removal",
      "reach"
@@ -3504,7 +3505,7 @@
    },
    {
     "name": "Giant's Boulder",
-    "decks": 166,
+    "decks": 162,
     "roles": [
      "removal",
      "manalock",
@@ -3514,7 +3515,7 @@
    },
    {
     "name": "Sink into Stupor // Soporific Springs",
-    "decks": 156,
+    "decks": 153,
     "roles": [
      "removal",
      "spell",
@@ -3523,7 +3524,7 @@
    },
    {
     "name": "Thought-Knot Seer",
-    "decks": 152,
+    "decks": 150,
     "roles": [
      "discard",
      "draw",
@@ -3531,24 +3532,24 @@
     ]
    },
    {
-    "name": "Stifle",
-    "decks": 151,
+    "name": "Wastescape Battlemage",
+    "decks": 148,
     "roles": [
-     "ability"
+     "removal"
     ]
    },
    {
-    "name": "Wastescape Battlemage",
-    "decks": 150,
+    "name": "Stifle",
+    "decks": 147,
     "roles": [
-     "removal"
+     "ability"
     ]
    }
   ],
   "resource": [
    {
     "name": "Brainstorm",
-    "decks": 1313,
+    "decks": 1286,
     "roles": [
      "draw",
      "topmanip"
@@ -3556,7 +3557,7 @@
    },
    {
     "name": "Ponder",
-    "decks": 1251,
+    "decks": 1224,
     "roles": [
      "draw",
      "topmanip"
@@ -3564,14 +3565,14 @@
    },
    {
     "name": "Tamiyo, Inquisitive Student // Tamiyo, Seasoned Scholar",
-    "decks": 496,
+    "decks": 485,
     "roles": [
      "draw"
     ]
    },
    {
     "name": "Atraxa, Grand Unifier",
-    "decks": 432,
+    "decks": 424,
     "roles": [
      "draw",
      "beater",
@@ -3580,7 +3581,7 @@
    },
    {
     "name": "Flow State",
-    "decks": 423,
+    "decks": 413,
     "roles": [
      "draw",
      "topselect"
@@ -3588,14 +3589,14 @@
    },
    {
     "name": "Mishra's Bauble",
-    "decks": 398,
+    "decks": 387,
     "roles": [
      "draw"
     ]
    },
    {
     "name": "Stock Up",
-    "decks": 332,
+    "decks": 325,
     "roles": [
      "draw",
      "topselect"
@@ -3603,7 +3604,7 @@
    },
    {
     "name": "Kaito, Bane of Nightmares",
-    "decks": 331,
+    "decks": 325,
     "roles": [
      "draw",
      "selfmill",
@@ -3614,7 +3615,7 @@
    },
    {
     "name": "The One Ring",
-    "decks": 285,
+    "decks": 281,
     "roles": [
      "draw",
      "protection"
@@ -3622,17 +3623,9 @@
    },
    {
     "name": "Hogaak, Arisen Necropolis",
-    "decks": 274,
+    "decks": 272,
     "roles": [
      "recursion",
-     "beater"
-    ]
-   },
-   {
-    "name": "Quantum Riddler",
-    "decks": 261,
-    "roles": [
-     "draw",
      "beater"
     ]
    },
@@ -3645,21 +3638,29 @@
    },
    {
     "name": "Stitcher's Supplier",
-    "decks": 254,
+    "decks": 253,
     "roles": [
      "selfmill"
     ]
    },
    {
+    "name": "Quantum Riddler",
+    "decks": 252,
+    "roles": [
+     "draw",
+     "beater"
+    ]
+   },
+   {
     "name": "Expedition Map",
-    "decks": 234,
+    "decks": 230,
     "roles": [
      "tutor"
     ]
    },
    {
     "name": "Once Upon a Time",
-    "decks": 233,
+    "decks": 230,
     "roles": [
      "draw",
      "topselect"
@@ -3667,7 +3668,7 @@
    },
    {
     "name": "Amped Raptor",
-    "decks": 195,
+    "decks": 187,
     "roles": [
      "topselect",
      "energy"
@@ -3675,21 +3676,21 @@
    },
    {
     "name": "Life from the Loam",
-    "decks": 183,
+    "decks": 179,
     "roles": [
      "recursion"
     ]
    },
    {
     "name": "Green Sun's Zenith",
-    "decks": 177,
+    "decks": 174,
     "roles": [
      "tutor"
     ]
    },
    {
     "name": "Veil of Summer",
-    "decks": 174,
+    "decks": 167,
     "roles": [
      "draw",
      "protection"
@@ -3697,7 +3698,7 @@
    },
    {
     "name": "Malevolent Rumble",
-    "decks": 169,
+    "decks": 166,
     "roles": [
      "draw",
      "topselect",
@@ -3705,23 +3706,23 @@
     ]
    },
    {
-    "name": "Nethergoyf",
-    "decks": 163,
-    "roles": [
-     "recursion"
-    ]
-   },
-   {
     "name": "Street Wraith",
-    "decks": 161,
+    "decks": 158,
     "roles": [
      "draw",
      "beater"
     ]
    },
    {
+    "name": "Nethergoyf",
+    "decks": 158,
+    "roles": [
+     "recursion"
+    ]
+   },
+   {
     "name": "Consider",
-    "decks": 152,
+    "decks": 149,
     "roles": [
      "draw",
      "selfmill",
@@ -3730,7 +3731,7 @@
    },
    {
     "name": "Doomsday",
-    "decks": 151,
+    "decks": 148,
     "roles": [
      "tutor",
      "topmanip"
@@ -3738,7 +3739,7 @@
    },
    {
     "name": "Edge of Autumn",
-    "decks": 149,
+    "decks": 146,
     "roles": [
      "draw",
      "ramp"
@@ -3748,21 +3749,21 @@
   "damage": [
    {
     "name": "Moonshadow",
-    "decks": 386,
+    "decks": 378,
     "roles": [
      "beater"
     ]
    },
    {
     "name": "Murktide Regent",
-    "decks": 336,
+    "decks": 328,
     "roles": [
      "beater"
     ]
    },
    {
     "name": "Glaring Fleshraker",
-    "decks": 237,
+    "decks": 234,
     "roles": [
      "reach",
      "fastmana"
@@ -3777,14 +3778,14 @@
    },
    {
     "name": "Eldrazi Linebreaker",
-    "decks": 149,
+    "decks": 147,
     "roles": [
      "beater"
     ]
    },
    {
     "name": "Dragon's Rage Channeler",
-    "decks": 134,
+    "decks": 132,
     "roles": [
      "selfmill",
      "beater"
@@ -3799,14 +3800,14 @@
    },
    {
     "name": "Goblin Welder",
-    "decks": 93,
+    "decks": 90,
     "roles": [
      "beater"
     ]
    },
    {
     "name": "Sire of Seven Deaths",
-    "decks": 81,
+    "decks": 79,
     "roles": [
      "beater",
      "lifegain"
@@ -3814,14 +3815,7 @@
    },
    {
     "name": "Narcomoeba",
-    "decks": 78,
-    "roles": [
-     "beater"
-    ]
-   },
-   {
-    "name": "Kappa Cannoneer",
-    "decks": 73,
+    "decks": 77,
     "roles": [
      "beater"
     ]
@@ -3835,8 +3829,8 @@
     ]
    },
    {
-    "name": "Scythecat Cub",
-    "decks": 39,
+    "name": "Kappa Cannoneer",
+    "decks": 72,
     "roles": [
      "beater"
     ]
@@ -3850,8 +3844,15 @@
     ]
    },
    {
+    "name": "Scythecat Cub",
+    "decks": 37,
+    "roles": [
+     "beater"
+    ]
+   },
+   {
     "name": "Anger",
-    "decks": 30,
+    "decks": 29,
     "roles": [
      "beater"
     ]
@@ -3871,14 +3872,14 @@
     ]
    },
    {
-    "name": "Gaddock Teeg",
-    "decks": 23,
+    "name": "Fury",
+    "decks": 22,
     "roles": [
      "beater"
     ]
    },
    {
-    "name": "Fury",
+    "name": "Gaddock Teeg",
     "decks": 22,
     "roles": [
      "beater"
@@ -3892,19 +3893,19 @@
     ]
    },
    {
-    "name": "Agate Instigator",
-    "decks": 18,
-    "roles": [
-     "reach",
-     "beater"
-    ]
-   },
-   {
     "name": "Frenzied Baloth",
     "decks": 16,
     "roles": [
      "beater",
      "protection"
+    ]
+   },
+   {
+    "name": "Agate Instigator",
+    "decks": 16,
+    "roles": [
+     "reach",
+     "beater"
     ]
    },
    {
@@ -3932,14 +3933,14 @@
   "support": [
    {
     "name": "Skateboard",
-    "decks": 301,
+    "decks": 293,
     "roles": [
      "enhance"
     ]
    },
    {
     "name": "Guide of Souls",
-    "decks": 197,
+    "decks": 189,
     "roles": [
      "lifegain",
      "energy"
@@ -3947,14 +3948,14 @@
    },
    {
     "name": "Hexing Squelcher",
-    "decks": 194,
+    "decks": 188,
     "roles": [
      "protection"
     ]
    },
    {
     "name": "Sylvan Safekeeper",
-    "decks": 103,
+    "decks": 99,
     "roles": [
      "protection"
     ]
@@ -3968,7 +3969,7 @@
    },
    {
     "name": "Cloak and Dagger, Entwined",
-    "decks": 70,
+    "decks": 69,
     "roles": [
      "lifegain"
     ]
@@ -4111,29 +4112,29 @@
   "combo": [
    {
     "name": "Show and Tell",
-    "decks": 243,
+    "decks": 237,
     "roles": [
      "cheat"
     ]
    },
    {
-    "name": "Omniscience",
-    "decks": 204,
-    "roles": [
-     "cheatloop"
-    ]
-   },
-   {
     "name": "Thassa's Oracle",
-    "decks": 203,
+    "decks": 200,
     "roles": [
      "altwin",
      "topmanip"
     ]
    },
    {
+    "name": "Omniscience",
+    "decks": 198,
+    "roles": [
+     "cheatloop"
+    ]
+   },
+   {
     "name": "Ocelot Pride",
-    "decks": 197,
+    "decks": 189,
     "roles": [
      "tokens",
      "lifegain"
@@ -4141,14 +4142,14 @@
    },
    {
     "name": "Ajani, Nacatl Pariah // Ajani, Nacatl Avenger",
-    "decks": 196,
+    "decks": 188,
     "roles": [
      "tokens"
     ]
    },
    {
     "name": "Emrakul, the Aeons Torn",
-    "decks": 184,
+    "decks": 181,
     "roles": [
      "extraturn",
      "beater",
@@ -4157,7 +4158,7 @@
    },
    {
     "name": "Cori-Steel Cutter",
-    "decks": 159,
+    "decks": 157,
     "roles": [
      "tokens",
      "enhance"
@@ -4165,7 +4166,7 @@
    },
    {
     "name": "Grim Monolith",
-    "decks": 155,
+    "decks": 154,
     "roles": [
      "untap",
      "ramp"
@@ -4173,14 +4174,14 @@
    },
    {
     "name": "Manifold Key",
-    "decks": 130,
+    "decks": 129,
     "roles": [
      "untap"
     ]
    },
    {
     "name": "Sand Scout",
-    "decks": 129,
+    "decks": 126,
     "roles": [
      "tokens",
      "tutor"
@@ -4188,7 +4189,7 @@
    },
    {
     "name": "Grave Researcher // Reanimate",
-    "decks": 127,
+    "decks": 125,
     "roles": [
      "cheat",
      "selfmill",
@@ -4198,14 +4199,14 @@
    },
    {
     "name": "Sneak Attack",
-    "decks": 119,
+    "decks": 118,
     "roles": [
      "cheatloop"
     ]
    },
    {
     "name": "Tezzeret, Cruel Captain",
-    "decks": 111,
+    "decks": 110,
     "roles": [
      "untap",
      "tutor",
@@ -4214,34 +4215,17 @@
    },
    {
     "name": "Forth Eorlingas!",
-    "decks": 110,
+    "decks": 107,
     "roles": [
      "tokens"
     ]
    },
    {
     "name": "Raph & Mikey, Troublemakers",
-    "decks": 103,
+    "decks": 101,
     "roles": [
      "cheatloop",
      "beater"
-    ]
-   },
-   {
-    "name": "Beseech the Mirror",
-    "decks": 102,
-    "roles": [
-     "cheat",
-     "tutor"
-    ]
-   },
-   {
-    "name": "Tendrils of Agony",
-    "decks": 101,
-    "roles": [
-     "copy",
-     "reach",
-     "lifegain"
     ]
    },
    {
@@ -4253,15 +4237,32 @@
     ]
    },
    {
+    "name": "Beseech the Mirror",
+    "decks": 99,
+    "roles": [
+     "cheat",
+     "tutor"
+    ]
+   },
+   {
+    "name": "Tendrils of Agony",
+    "decks": 98,
+    "roles": [
+     "copy",
+     "reach",
+     "lifegain"
+    ]
+   },
+   {
     "name": "Voltaic Key",
-    "decks": 93,
+    "decks": 92,
     "roles": [
      "untap"
     ]
    },
    {
     "name": "Sewer-veillance Cam",
-    "decks": 90,
+    "decks": 87,
     "roles": [
      "untap",
      "draw"
@@ -4269,7 +4270,7 @@
    },
    {
     "name": "Aether Vial",
-    "decks": 86,
+    "decks": 85,
     "roles": [
      "cheatloop"
     ]
@@ -4283,8 +4284,15 @@
     ]
    },
    {
+    "name": "Quirion Ranger",
+    "decks": 80,
+    "roles": [
+     "untap"
+    ]
+   },
+   {
     "name": "Acererak the Archlich",
-    "decks": 81,
+    "decks": 78,
     "roles": [
      "tokens",
      "beater"
@@ -4292,16 +4300,9 @@
    },
    {
     "name": "Aluren",
-    "decks": 81,
+    "decks": 78,
     "roles": [
      "cheatloop"
-    ]
-   },
-   {
-    "name": "Quirion Ranger",
-    "decks": 80,
-    "roles": [
-     "untap"
     ]
    }
   ],
@@ -4458,7 +4459,7 @@
  "damage": [
   {
    "name": "Moonshadow",
-   "decks": 386,
+   "decks": 378,
    "roles": [
     "beater"
    ],
@@ -4470,7 +4471,7 @@
   },
   {
    "name": "Murktide Regent",
-   "decks": 336,
+   "decks": 328,
    "roles": [
     "beater"
    ],
@@ -4484,7 +4485,7 @@
   },
   {
    "name": "Glaring Fleshraker",
-   "decks": 237,
+   "decks": 234,
    "roles": [
     "reach",
     "fastmana"
@@ -4506,7 +4507,7 @@
   },
   {
    "name": "Eldrazi Linebreaker",
-   "decks": 149,
+   "decks": 147,
    "roles": [
     "beater"
    ],
@@ -4519,7 +4520,7 @@
   },
   {
    "name": "Dragon's Rage Channeler",
-   "decks": 134,
+   "decks": 132,
    "roles": [
     "selfmill",
     "beater"
@@ -4545,7 +4546,7 @@
   },
   {
    "name": "Goblin Welder",
-   "decks": 93,
+   "decks": 90,
    "roles": [
     "beater"
    ],
@@ -4555,7 +4556,7 @@
   },
   {
    "name": "Sire of Seven Deaths",
-   "decks": 81,
+   "decks": 79,
    "roles": [
     "beater",
     "lifegain"
@@ -4569,26 +4570,13 @@
   },
   {
    "name": "Narcomoeba",
-   "decks": 78,
+   "decks": 77,
    "roles": [
     "beater"
    ],
    "tags": [
     "evasion@static",
     "misc@once_trigger"
-   ]
-  },
-  {
-   "name": "Kappa Cannoneer",
-   "decks": 73,
-   "roles": [
-    "beater"
-   ],
-   "tags": [
-    "costreduce@static",
-    "resilience@static",
-    "pump@etb",
-    "evasion@etb"
    ]
   },
   {
@@ -4603,14 +4591,16 @@
    ]
   },
   {
-   "name": "Scythecat Cub",
-   "decks": 39,
+   "name": "Kappa Cannoneer",
+   "decks": 72,
    "roles": [
     "beater"
    ],
    "tags": [
-    "evasion@static",
-    "pump@landfall"
+    "costreduce@static",
+    "resilience@static",
+    "pump@etb",
+    "evasion@etb"
    ]
   },
   {
@@ -4626,8 +4616,19 @@
    ]
   },
   {
+   "name": "Scythecat Cub",
+   "decks": 37,
+   "roles": [
+    "beater"
+   ],
+   "tags": [
+    "evasion@static",
+    "pump@landfall"
+   ]
+  },
+  {
    "name": "Anger",
-   "decks": 30,
+   "decks": 29,
    "roles": [
     "beater"
    ],
@@ -4657,16 +4658,6 @@
    ]
   },
   {
-   "name": "Gaddock Teeg",
-   "decks": 23,
-   "roles": [
-    "beater"
-   ],
-   "tags": [
-    "misc@static"
-   ]
-  },
-  {
    "name": "Fury",
    "decks": 22,
    "roles": [
@@ -4676,6 +4667,16 @@
     "combatkw@static",
     "misc@etb",
     "altcost@static"
+   ]
+  },
+  {
+   "name": "Gaddock Teeg",
+   "decks": 22,
+   "roles": [
+    "beater"
+   ],
+   "tags": [
+    "misc@static"
    ]
   },
   {
@@ -4690,18 +4691,6 @@
    ]
   },
   {
-   "name": "Agate Instigator",
-   "decks": 18,
-   "roles": [
-    "reach",
-    "beater"
-   ],
-   "tags": [
-    "addcost@static",
-    "drain@creature_enters"
-   ]
-  },
-  {
    "name": "Frenzied Baloth",
    "decks": 16,
    "roles": [
@@ -4713,6 +4702,18 @@
     "evasion@static",
     "haste@static",
     "misc@static"
+   ]
+  },
+  {
+   "name": "Agate Instigator",
+   "decks": 16,
+   "roles": [
+    "reach",
+    "beater"
+   ],
+   "tags": [
+    "addcost@static",
+    "drain@creature_enters"
    ]
   },
   {
@@ -4760,17 +4761,6 @@
    ]
   },
   {
-   "name": "Patchwork Automaton",
-   "decks": 7,
-   "roles": [
-    "beater"
-   ],
-   "tags": [
-    "resilience@static",
-    "pump@cast_trigger"
-   ]
-  },
-  {
    "name": "Reckless Pyrosurfer",
    "decks": 7,
    "roles": [
@@ -4803,6 +4793,17 @@
    ]
   },
   {
+   "name": "Patchwork Automaton",
+   "decks": 6,
+   "roles": [
+    "beater"
+   ],
+   "tags": [
+    "resilience@static",
+    "pump@cast_trigger"
+   ]
+  },
+  {
    "name": "Super Shredder",
    "decks": 6,
    "roles": [
@@ -4811,31 +4812,6 @@
    "tags": [
     "evasion@static",
     "pump@other_trigger"
-   ]
-  },
-  {
-   "name": "Hawkeye's Bow",
-   "decks": 5,
-   "roles": [
-    "reach",
-    "enhance"
-   ],
-   "tags": [
-    "pump@static",
-    "combatkw@static",
-    "drain@other_trigger",
-    "equip@activated"
-   ]
-  },
-  {
-   "name": "Memory Guardian",
-   "decks": 5,
-   "roles": [
-    "beater"
-   ],
-   "tags": [
-    "costreduce@static",
-    "evasion@static"
    ]
   },
   {
@@ -4901,6 +4877,31 @@
    "tags": [
     "evasion@static",
     "misc@dies"
+   ]
+  },
+  {
+   "name": "Memory Guardian",
+   "decks": 4,
+   "roles": [
+    "beater"
+   ],
+   "tags": [
+    "costreduce@static",
+    "evasion@static"
+   ]
+  },
+  {
+   "name": "Hawkeye's Bow",
+   "decks": 4,
+   "roles": [
+    "reach",
+    "enhance"
+   ],
+   "tags": [
+    "pump@static",
+    "combatkw@static",
+    "drain@other_trigger",
+    "equip@activated"
    ]
   },
   {
