@@ -11,7 +11,7 @@
   {
    "pattern": "if a source you control would deal noncombat damage to a creature an opponent controls, put that many -N/-N counters on that creature instead.",
    "kind": "static",
-   "decks": 136,
+   "decks": 133,
    "cards": [
     "Soul-Scar Mage"
    ]
@@ -19,7 +19,7 @@
   {
    "pattern": "whenever this creature is dealt damage, it deals that much damage to any other target. if a player is dealt damage this way, they can't gain life for the rest of the game.",
    "kind": "triggered",
-   "decks": 128,
+   "decks": 125,
    "cards": [
     "Screaming Nemesis"
    ]
@@ -27,7 +27,7 @@
   {
    "pattern": "daybound",
    "kind": "static",
-   "decks": 125,
+   "decks": 124,
    "cards": [
     "Graveyard Trespasser // Graveyard Glutton"
    ]
@@ -52,7 +52,7 @@
   {
    "pattern": "damage can't be prevented.",
    "kind": "static",
-   "decks": 77,
+   "decks": 74,
    "cards": [
     "Sunspine Lynx"
    ]
@@ -114,14 +114,6 @@
    ]
   },
   {
-   "pattern": "enlist",
-   "kind": "static",
-   "decks": 46,
-   "cards": [
-    "Guardian of New Benalia"
-   ]
-  },
-  {
    "pattern": "each nonland permanent you control is all colors.",
    "kind": "static",
    "decks": 44,
@@ -130,19 +122,11 @@
    ]
   },
   {
-   "pattern": "discard a card: exile this creature. return it to the battlefield under its owner's control at the beginning of the next end step.",
-   "kind": "activated",
+   "pattern": "enlist",
+   "kind": "static",
    "decks": 43,
    "cards": [
-    "Fleeting Spirit"
-   ]
-  },
-  {
-   "pattern": "{x}, {t}: this land becomes a copy of target nontoken artifact you control with mana value x.",
-   "kind": "activated",
-   "decks": 43,
-   "cards": [
-    "The Mycosynth Gardens"
+    "Guardian of New Benalia"
    ]
   },
   {
@@ -151,6 +135,22 @@
    "decks": 40,
    "cards": [
     "Oath of Nissa"
+   ]
+  },
+  {
+   "pattern": "discard a card: exile this creature. return it to the battlefield under its owner's control at the beginning of the next end step.",
+   "kind": "activated",
+   "decks": 40,
+   "cards": [
+    "Fleeting Spirit"
+   ]
+  },
+  {
+   "pattern": "{x}, {t}: this land becomes a copy of target nontoken artifact you control with mana value x.",
+   "kind": "activated",
+   "decks": 40,
+   "cards": [
+    "The Mycosynth Gardens"
    ]
   },
   {
@@ -252,7 +252,7 @@
   {
    "pattern": "{N}{b}: sacrifice this enchantment.",
    "kind": "activated",
-   "decks": 17,
+   "decks": 16,
    "cards": [
     "Hopeless Nightmare"
    ]
@@ -260,7 +260,7 @@
   {
    "pattern": "start your engines!",
    "kind": "static",
-   "decks": 17,
+   "decks": 16,
    "cards": [
     "Momentum Breaker"
    ]
@@ -830,21 +830,21 @@
  "comboCandidates": [
   {
    "name": "Golgari Midrange系（推定）",
-   "share": 0.1,
+   "share": 0.101,
    "comboCards": [
     "Unholy Annex // Ritual Chamber"
    ]
   },
   {
    "name": "Mono Red Aggro",
-   "share": 0.075,
+   "share": 0.073,
    "comboCards": [
     "Monstrous Rage"
    ]
   },
   {
    "name": "Izzet Prowess",
-   "share": 0.06,
+   "share": 0.061,
    "comboCards": [
     "Stormchaser's Talent",
     "Monstrous Rage"
@@ -862,7 +862,7 @@
   },
   {
    "name": "Izzet Cauldron",
-   "share": 0.05,
+   "share": 0.051,
    "comboCards": [
     "Stormchaser's Talent",
     "Fear of Missing Out",
@@ -880,7 +880,7 @@
   },
   {
    "name": "Orzhov Greasefang",
-   "share": 0.037,
+   "share": 0.034,
    "comboCards": [
     "Parhelion II"
    ]
@@ -931,7 +931,7 @@
   },
   {
    "name": "Boros Convoke",
-   "share": 0.014,
+   "share": 0.013,
    "comboCards": [
     "Cosmogrand Zenith"
    ]
@@ -1219,7 +1219,7 @@
    },
    {
     "name": "Fatal Push",
-    "decks": 301,
+    "decks": 297,
     "oracle": "Destroy target creature if it has mana value 2 or less.\nRevolt — Destroy that creature if it has mana value 4 or less instead if a permanent left the battlefield under your control this turn.",
     "detail": [
      "removal:destroy:creature"
@@ -1227,7 +1227,7 @@
    },
    {
     "name": "Otawara, Soaring City",
-    "decks": 282,
+    "decks": 281,
     "oracle": "{T}: Add {U}.\nChannel — {3}{U}, Discard this card: Return target artifact, creature, enchantment, or planeswalker to its owner's hand. This ability costs {1} less to activate for each legendary creature you control.",
     "detail": [
      "removal:bounce:creature/artifact/enchantment/planeswalker"
@@ -1235,7 +1235,7 @@
    },
    {
     "name": "Eiganjo, Seat of the Empire",
-    "decks": 213,
+    "decks": 209,
     "oracle": "{T}: Add {W}.\nChannel — {2}{W}, Discard this card: It deals 4 damage to target attacking or blocking creature. This ability costs {1} less to activate for each legendary creature you control.",
     "detail": [
      "removal:damage:creature"
@@ -1251,7 +1251,7 @@
    },
    {
     "name": "Boomerang Basics",
-    "decks": 179,
+    "decks": 178,
     "oracle": "Return target nonland permanent to its owner's hand. If you controlled that permanent, draw a card.",
     "detail": [
      "removal:bounce:creature/artifact/enchantment/planeswalker/battle"
@@ -1267,7 +1267,7 @@
    },
    {
     "name": "Reckless Rage",
-    "decks": 166,
+    "decks": 163,
     "oracle": "Reckless Rage deals 4 damage to target creature you don't control and 2 damage to target creature you control.",
     "detail": [
      "removal:damage:creature"
@@ -1275,7 +1275,7 @@
    },
    {
     "name": "Burst Lightning",
-    "decks": 159,
+    "decks": 156,
     "oracle": "Kicker {4} (You may pay an additional {4} as you cast this spell.)\nBurst Lightning deals 2 damage to any target. If this spell was kicked, it deals 4 damage instead.",
     "detail": [
      "removal:damage:creature/planeswalker/battle/player/spell"
@@ -1322,17 +1322,17 @@
     ]
    },
    {
-    "name": "Sheltered by Ghosts",
-    "decks": 81,
-    "oracle": "Enchant creature you control\nWhen this Aura enters, exile target nonland permanent an opponent controls until this Aura leaves the battlefield.\nEnchanted creature gets +1/+0 and has lifelink and ward {2}.",
+    "name": "Skyclave Apparition",
+    "decks": 79,
+    "oracle": "When this creature enters, exile up to one target nonland, nontoken permanent you don't control with mana value 4 or less.\nWhen this creature leaves the battlefield, the exiled card's owner creates an X/X blue Illusion creature token, where X is the mana value of the exiled card.",
     "detail": [
      "removal:exile:creature/artifact/enchantment/planeswalker/battle"
     ]
    },
    {
-    "name": "Skyclave Apparition",
-    "decks": 79,
-    "oracle": "When this creature enters, exile up to one target nonland, nontoken permanent you don't control with mana value 4 or less.\nWhen this creature leaves the battlefield, the exiled card's owner creates an X/X blue Illusion creature token, where X is the mana value of the exiled card.",
+    "name": "Sheltered by Ghosts",
+    "decks": 77,
+    "oracle": "Enchant creature you control\nWhen this Aura enters, exile target nonland permanent an opponent controls until this Aura leaves the battlefield.\nEnchanted creature gets +1/+0 and has lifelink and ward {2}.",
     "detail": [
      "removal:exile:creature/artifact/enchantment/planeswalker/battle"
     ]
@@ -1343,14 +1343,6 @@
     "oracle": "If one or more tokens would be created under your control, twice that many of those tokens are created instead.\n+1: Create a 1/1 white Soldier creature token.\n0: Put a +1/+1 counter on each creature you control. Those creatures gain flying until your next turn.\n−3: Destroy target creature an opponent controls with mana value 3 or greater.",
     "detail": [
      "removal:destroy:creature"
-    ]
-   },
-   {
-    "name": "This Town Ain't Big Enough",
-    "decks": 62,
-    "oracle": "This spell costs {3} less to cast if it targets a permanent you control.\nReturn up to two target nonland permanents to their owners' hands.",
-    "detail": [
-     "removal:bounce:creature/artifact/enchantment/planeswalker/battle"
     ]
    },
    {
@@ -1379,6 +1371,14 @@
     ]
    },
    {
+    "name": "This Town Ain't Big Enough",
+    "decks": 61,
+    "oracle": "This spell costs {3} less to cast if it targets a permanent you control.\nReturn up to two target nonland permanents to their owners' hands.",
+    "detail": [
+     "removal:bounce:creature/artifact/enchantment/planeswalker/battle"
+    ]
+   },
+   {
     "name": "Get Lost",
     "decks": 61,
     "oracle": "Destroy target creature, enchantment, or planeswalker. Its controller creates two Map tokens. (They're artifacts with \"{1}, {T}, Sacrifice this token: Target creature you control explores. Activate only as a sorcery.\")",
@@ -1395,14 +1395,6 @@
     ]
    },
    {
-    "name": "Vanishing Verse",
-    "decks": 50,
-    "oracle": "Exile target monocolored permanent.",
-    "detail": [
-     "removal:exile:creature/artifact/enchantment/planeswalker/battle"
-    ]
-   },
-   {
     "name": "Mayhem Devil",
     "decks": 49,
     "oracle": "Whenever a player sacrifices a permanent, this creature deals 1 damage to any target.",
@@ -1416,6 +1408,14 @@
     "oracle": "Gift a tapped Fish (You may promise an opponent a gift as you cast this spell. If you do, they create a tapped 1/1 blue Fish creature token before its other effects.)\nReturn target creature an opponent controls to its owner's hand. If the gift was promised, instead return target nonland permanent an opponent controls to its owner's hand.",
     "detail": [
      "removal:bounce:creature"
+    ]
+   },
+   {
+    "name": "Vanishing Verse",
+    "decks": 47,
+    "oracle": "Exile target monocolored permanent.",
+    "detail": [
+     "removal:exile:creature/artifact/enchantment/planeswalker/battle"
     ]
    },
    {
@@ -1508,14 +1508,6 @@
     ]
    },
    {
-    "name": "Nowhere to Run",
-    "decks": 35,
-    "oracle": "Flash\nWhen this enchantment enters, target creature an opponent controls gets -3/-3 until end of turn.\nCreatures your opponents control can be the targets of spells and abilities as though they didn't have hexproof. Ward abilities of those creatures don't trigger.",
-    "detail": [
-     "removal:minus:creature"
-    ]
-   },
-   {
     "name": "Voldaren Thrillseeker",
     "decks": 35,
     "oracle": "Backup 2 (When this creature enters, put two +1/+1 counters on target creature. If that's another creature, it gains the following ability until end of turn.)\n{1}, Sacrifice this creature: It deals damage equal to its power to any target.",
@@ -1524,12 +1516,20 @@
     ]
    },
    {
-    "name": "Sheoldred's Edict",
-    "decks": 28,
-    "oracle": "Choose one —\n• Each opponent sacrifices a nontoken creature of their choice.\n• Each opponent sacrifices a creature token of their choice.\n• Each opponent sacrifices a planeswalker of their choice.",
+    "name": "Nowhere to Run",
+    "decks": 34,
+    "oracle": "Flash\nWhen this enchantment enters, target creature an opponent controls gets -3/-3 until end of turn.\nCreatures your opponents control can be the targets of spells and abilities as though they didn't have hexproof. Ward abilities of those creatures don't trigger.",
     "detail": [
-     "removal:sacrifice:creature",
-     "removal:sacrifice:planeswalker"
+     "removal:minus:creature"
+    ]
+   },
+   {
+    "name": "Jennifer Walters // The Sensational She-Hulk",
+    "decks": 28,
+    "oracle": "Your opponents can't cast spells during your turn.\n{3}{G}{W}{W}: Transform Jennifer Walters. Activate only as a sorcery.\n//\nReach, trample\nYour opponents can't cast spells during your turn.\nWhenever a creature you control is dealt damage, you may have The Sensational She-Hulk deal that much damage to any target. Do this only once each turn.",
+    "detail": [
+     "hate:lock:spell",
+     "removal:damage:creature/planeswalker/battle/player"
     ]
    }
   ],
@@ -1715,7 +1715,7 @@
   "spell": [
    {
     "name": "Burst Lightning",
-    "decks": 159,
+    "decks": 156,
     "oracle": "Kicker {4} (You may pay an additional {4} as you cast this spell.)\nBurst Lightning deals 2 damage to any target. If this spell was kicked, it deals 4 damage instead.",
     "detail": [
      "removal:damage:creature/planeswalker/battle/player/spell"
@@ -2049,7 +2049,7 @@
   "ability": [
    {
     "name": "Petrified Hamlet",
-    "decks": 65,
+    "decks": 64,
     "oracle": "When this land enters, choose a land card name.\nActivated abilities of sources with the chosen name can't be activated unless they're mana abilities.\nLands with the chosen name have \"{T}: Add {C}.\"\n{T}: Add {C}.",
     "detail": [
      "hate:lock:activated ability"
@@ -2101,7 +2101,7 @@
    },
    {
     "name": "Sunspine Lynx",
-    "decks": 77,
+    "decks": 74,
     "oracle": "Players can't gain life.\nDamage can't be prevented.\nWhen this creature enters, it deals damage to each player equal to the number of nonbasic lands that player controls.",
     "detail": [
      "hate:lock:lifegain"
@@ -2109,7 +2109,7 @@
    },
    {
     "name": "Narset, Parter of Veils",
-    "decks": 36,
+    "decks": 35,
     "oracle": "Each opponent can't draw more than one card each turn.\n−2: Look at the top four cards of your library. You may reveal a noncreature, nonland card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.",
     "detail": [
      "hate:lock:draw"
@@ -2119,7 +2119,7 @@
   "discard": [
    {
     "name": "Thoughtseize",
-    "decks": 320,
+    "decks": 316,
     "oracle": "Target player reveals their hand. You choose a nonland card from it. That player discards that card. You lose 2 life.",
     "detail": [
      "discard:discard:hand"
@@ -2144,7 +2144,7 @@
    },
    {
     "name": "Hopeless Nightmare",
-    "decks": 17,
+    "decks": 16,
     "oracle": "When this enchantment enters, each opponent discards a card and loses 2 life.\nWhen this enchantment is put into a graveyard from the battlefield, scry 2.\n{2}{B}: Sacrifice this enchantment.",
     "detail": [
      "discard:discard:hand"
@@ -2256,7 +2256,7 @@
   "gyhate": [
    {
     "name": "Graveyard Trespasser // Graveyard Glutton",
-    "decks": 125,
+    "decks": 124,
     "oracle": "Ward—Discard a card.\nWhenever this creature enters or attacks, exile up to one target card from a graveyard. If a creature card was exiled this way, each opponent loses 1 life and you gain 1 life.\nDaybound (If a player casts no spells during their own turn, it becomes night next turn.)\n//\nWard—Discard a card.\nWhenever this creature enters or attacks, exile up to two target cards from graveyards. For each creature card exiled this way, each opponent loses 1 life and you gain 1 life.\nNightbound (If a player casts at least two spells during their own turn, it becomes day next turn.)",
     "detail": [
      "gyhate:exile:graveyard",
@@ -2539,8 +2539,8 @@
   "combat": []
  },
  "format": "Pioneer",
- "generatedAt": "2026-11-27T21:34:04.339Z",
- "decks": 1176,
+ "generatedAt": "2026-11-28T06:13:41.521Z",
+ "decks": 1168,
  "otherOnly": [
   {
    "name": "Academic Dispute",
@@ -2622,20 +2622,6 @@
    ]
   },
   {
-   "name": "Burst Lightning",
-   "decks": 159,
-   "roles": [
-    "removal",
-    "spell",
-    "reach"
-   ],
-   "tags": [
-    "addcost@static",
-    "drain@spell",
-    "removal@spell"
-   ]
-  },
-  {
    "name": "Sheoldred, the Apocalypse",
    "decks": 159,
    "roles": [
@@ -2649,6 +2635,20 @@
     "lifegain@other_trigger",
     "drain@other_trigger",
     "hate@other_trigger"
+   ]
+  },
+  {
+   "name": "Burst Lightning",
+   "decks": 156,
+   "roles": [
+    "removal",
+    "spell",
+    "reach"
+   ],
+   "tags": [
+    "addcost@static",
+    "drain@spell",
+    "removal@spell"
    ]
   },
   {
@@ -2669,7 +2669,7 @@
   },
   {
    "name": "Graveyard Trespasser // Graveyard Glutton",
-   "decks": 125,
+   "decks": 124,
    "roles": [
     "gyhate",
     "reach",
@@ -2760,7 +2760,7 @@
   },
   {
    "name": "Sunspine Lynx",
-   "decks": 77,
+   "decks": 74,
    "roles": [
     "action",
     "reach",
@@ -2969,20 +2969,6 @@
    ]
   },
   {
-   "name": "Monument to Endurance",
-   "decks": 44,
-   "roles": [
-    "draw",
-    "reach",
-    "fastmana"
-   ],
-   "tags": [
-    "draw@other_trigger",
-    "mana@other_trigger",
-    "drain@other_trigger"
-   ]
-  },
-  {
    "name": "Cauldron Familiar",
    "decks": 44,
    "roles": [
@@ -3031,6 +3017,20 @@
    ]
   },
   {
+   "name": "Monument to Endurance",
+   "decks": 41,
+   "roles": [
+    "draw",
+    "reach",
+    "fastmana"
+   ],
+   "tags": [
+    "draw@other_trigger",
+    "mana@other_trigger",
+    "drain@other_trigger"
+   ]
+  },
+  {
    "name": "Thor, God of Thunder",
    "decks": 39,
    "roles": [
@@ -3067,14 +3067,14 @@
   "disrupt": [
    {
     "name": "Thoughtseize",
-    "decks": 320,
+    "decks": 316,
     "roles": [
      "discard"
     ]
    },
    {
     "name": "Fatal Push",
-    "decks": 301,
+    "decks": 297,
     "roles": [
      "removal"
     ]
@@ -3088,7 +3088,7 @@
    },
    {
     "name": "Boomerang Basics",
-    "decks": 179,
+    "decks": 178,
     "roles": [
      "removal",
      "draw"
@@ -3103,18 +3103,9 @@
    },
    {
     "name": "Reckless Rage",
-    "decks": 166,
+    "decks": 163,
     "roles": [
      "removal"
-    ]
-   },
-   {
-    "name": "Burst Lightning",
-    "decks": 159,
-    "roles": [
-     "removal",
-     "spell",
-     "reach"
     ]
    },
    {
@@ -3128,8 +3119,17 @@
     ]
    },
    {
+    "name": "Burst Lightning",
+    "decks": 156,
+    "roles": [
+     "removal",
+     "spell",
+     "reach"
+    ]
+   },
+   {
     "name": "Graveyard Trespasser // Graveyard Glutton",
-    "decks": 125,
+    "decks": 124,
     "roles": [
      "gyhate",
      "reach",
@@ -3194,14 +3194,6 @@
     ]
    },
    {
-    "name": "Sheltered by Ghosts",
-    "decks": 81,
-    "roles": [
-     "removal",
-     "enhance"
-    ]
-   },
-   {
     "name": "Skyclave Apparition",
     "decks": 79,
     "roles": [
@@ -3210,8 +3202,16 @@
     ]
    },
    {
-    "name": "Sunspine Lynx",
+    "name": "Sheltered by Ghosts",
     "decks": 77,
+    "roles": [
+     "removal",
+     "enhance"
+    ]
+   },
+   {
+    "name": "Sunspine Lynx",
+    "decks": 74,
     "roles": [
      "action",
      "reach",
@@ -3252,35 +3252,38 @@
     ]
    },
    {
-    "name": "This Town Ain't Big Enough",
-    "decks": 62,
-    "roles": [
-     "removal"
-    ]
-   },
-   {
     "name": "Volcanic Spite",
     "decks": 62,
     "roles": [
      "removal",
      "draw"
     ]
+   },
+   {
+    "name": "The Wandering Emperor",
+    "decks": 62,
+    "roles": [
+     "removal",
+     "tokens",
+     "enhance",
+     "lifegain"
+    ]
    }
   ],
   "resource": [
-   {
-    "name": "Emberheart Challenger",
-    "decks": 178,
-    "roles": [
-     "draw"
-    ]
-   },
    {
     "name": "Sleight of Hand",
     "decks": 178,
     "roles": [
      "draw",
      "topselect"
+    ]
+   },
+   {
+    "name": "Emberheart Challenger",
+    "decks": 175,
+    "roles": [
+     "draw"
     ]
    },
    {
@@ -3331,14 +3334,6 @@
     ]
    },
    {
-    "name": "Lively Dirge",
-    "decks": 82,
-    "roles": [
-     "tutor",
-     "recursion"
-    ]
-   },
-   {
     "name": "The Sackville-Bagginses",
     "decks": 82,
     "roles": [
@@ -3364,19 +3359,19 @@
     ]
    },
    {
-    "name": "Consult the Star Charts",
-    "decks": 78,
+    "name": "Lively Dirge",
+    "decks": 79,
     "roles": [
-     "draw",
-     "topselect"
+     "tutor",
+     "recursion"
     ]
    },
    {
-    "name": "Greasefang, Okiba Boss",
-    "decks": 71,
+    "name": "Consult the Star Charts",
+    "decks": 77,
     "roles": [
-     "recursion",
-     "beater"
+     "draw",
+     "topselect"
     ]
    },
    {
@@ -3385,6 +3380,14 @@
     "roles": [
      "draw",
      "ramp",
+     "beater"
+    ]
+   },
+   {
+    "name": "Greasefang, Okiba Boss",
+    "decks": 68,
+    "roles": [
+     "recursion",
      "beater"
     ]
    },
@@ -3436,20 +3439,20 @@
     ]
    },
    {
-    "name": "The Legend of Roku // Avatar Roku",
-    "decks": 55,
-    "roles": [
-     "draw",
-     "ramp"
-    ]
-   },
-   {
     "name": "Atraxa, Grand Unifier",
     "decks": 53,
     "roles": [
      "draw",
      "beater",
      "lifegain"
+    ]
+   },
+   {
+    "name": "The Legend of Roku // Avatar Roku",
+    "decks": 52,
+    "roles": [
+     "draw",
+     "ramp"
     ]
    },
    {
@@ -3461,39 +3464,40 @@
     ]
    },
    {
-    "name": "Guardian of New Benalia",
-    "decks": 46,
+    "name": "Cauldron Familiar",
+    "decks": 44,
     "roles": [
-     "topmanip",
-     "protection"
+     "recursion",
+     "reach",
+     "lifegain"
     ]
    }
   ],
   "damage": [
    {
     "name": "Monastery Swiftspear",
-    "decks": 194,
+    "decks": 191,
     "roles": [
      "beater"
     ]
    },
    {
     "name": "Soul-Scar Mage",
-    "decks": 136,
+    "decks": 133,
     "roles": [
      "beater"
     ]
    },
    {
     "name": "Screaming Nemesis",
-    "decks": 128,
+    "decks": 125,
     "roles": [
      "beater"
     ]
    },
    {
     "name": "Kumano Faces Kakkazan // Etching of Kumano",
-    "decks": 100,
+    "decks": 97,
     "roles": [
      "reach",
      "beater"
@@ -3536,7 +3540,7 @@
    },
    {
     "name": "Voldaren Epicure",
-    "decks": 57,
+    "decks": 56,
     "roles": [
      "reach",
      "beater"
@@ -3544,14 +3548,14 @@
    },
    {
     "name": "Fleeting Spirit",
-    "decks": 43,
+    "decks": 40,
     "roles": [
      "beater"
     ]
    },
    {
     "name": "Iron-Shield Elf",
-    "decks": 43,
+    "decks": 40,
     "roles": [
      "beater",
      "protection"
@@ -3586,14 +3590,14 @@
     ]
    },
    {
-    "name": "Ornithopter",
-    "decks": 24,
+    "name": "Slickshot Show-Off",
+    "decks": 23,
     "roles": [
      "beater"
     ]
    },
    {
-    "name": "Slickshot Show-Off",
+    "name": "Ornithopter",
     "decks": 23,
     "roles": [
      "beater"
@@ -3610,13 +3614,6 @@
    {
     "name": "The Queen of Dale",
     "decks": 19,
-    "roles": [
-     "beater"
-    ]
-   },
-   {
-    "name": "Venerated Loxodon",
-    "decks": 16,
     "roles": [
      "beater"
     ]
@@ -3644,11 +3641,17 @@
     ]
    },
    {
-    "name": "Seasoned Hallowblade",
+    "name": "Venerated Loxodon",
     "decks": 15,
     "roles": [
-     "beater",
-     "protection"
+     "beater"
+    ]
+   },
+   {
+    "name": "Tarmogoyf",
+    "decks": 14,
+    "roles": [
+     "beater"
     ]
    }
   ],
@@ -3836,7 +3839,7 @@
   "combo": [
    {
     "name": "Stormchaser's Talent",
-    "decks": 175,
+    "decks": 174,
     "roles": [
      "tokens",
      "recursion"
@@ -3854,7 +3857,7 @@
    },
    {
     "name": "Monstrous Rage",
-    "decks": 150,
+    "decks": 147,
     "roles": [
      "tokens",
      "enhance"
@@ -3870,20 +3873,20 @@
     ]
    },
    {
-    "name": "Parhelion II",
-    "decks": 71,
-    "roles": [
-     "tokens",
-     "beater"
-    ]
-   },
-   {
     "name": "Storm the Festival",
     "decks": 69,
     "roles": [
      "cheat",
      "recursion",
      "topmanip"
+    ]
+   },
+   {
+    "name": "Parhelion II",
+    "decks": 68,
+    "roles": [
+     "tokens",
+     "beater"
     ]
    },
    {
@@ -4031,7 +4034,7 @@
    },
    {
     "name": "Cosmogrand Zenith",
-    "decks": 17,
+    "decks": 16,
     "roles": [
      "tokens"
     ]
@@ -4099,7 +4102,7 @@
  "damage": [
   {
    "name": "Monastery Swiftspear",
-   "decks": 194,
+   "decks": 191,
    "roles": [
     "beater"
    ],
@@ -4110,7 +4113,7 @@
   },
   {
    "name": "Soul-Scar Mage",
-   "decks": 136,
+   "decks": 133,
    "roles": [
     "beater"
    ],
@@ -4121,7 +4124,7 @@
   },
   {
    "name": "Screaming Nemesis",
-   "decks": 128,
+   "decks": 125,
    "roles": [
     "beater"
    ],
@@ -4132,7 +4135,7 @@
   },
   {
    "name": "Kumano Faces Kakkazan // Etching of Kumano",
-   "decks": 100,
+   "decks": 97,
    "roles": [
     "reach",
     "beater"
@@ -4203,7 +4206,7 @@
   },
   {
    "name": "Voldaren Epicure",
-   "decks": 57,
+   "decks": 56,
    "roles": [
     "reach",
     "beater"
@@ -4214,7 +4217,7 @@
   },
   {
    "name": "Fleeting Spirit",
-   "decks": 43,
+   "decks": 40,
    "roles": [
     "beater"
    ],
@@ -4225,7 +4228,7 @@
   },
   {
    "name": "Iron-Shield Elf",
-   "decks": 43,
+   "decks": 40,
    "roles": [
     "beater",
     "protection"
@@ -4280,16 +4283,6 @@
    ]
   },
   {
-   "name": "Ornithopter",
-   "decks": 24,
-   "roles": [
-    "beater"
-   ],
-   "tags": [
-    "evasion@static"
-   ]
-  },
-  {
    "name": "Slickshot Show-Off",
    "decks": 23,
    "roles": [
@@ -4300,6 +4293,16 @@
     "haste@static",
     "pump@cast_trigger",
     "altcost@static"
+   ]
+  },
+  {
+   "name": "Ornithopter",
+   "decks": 23,
+   "roles": [
+    "beater"
+   ],
+   "tags": [
+    "evasion@static"
    ]
   },
   {
@@ -4321,17 +4324,6 @@
    ],
    "tags": [
     "misc@cast_trigger"
-   ]
-  },
-  {
-   "name": "Venerated Loxodon",
-   "decks": 16,
-   "roles": [
-    "beater"
-   ],
-   "tags": [
-    "costreduce@static",
-    "pump@etb"
    ]
   },
   {
@@ -4371,14 +4363,14 @@
    ]
   },
   {
-   "name": "Seasoned Hallowblade",
+   "name": "Venerated Loxodon",
    "decks": 15,
    "roles": [
-    "beater",
-    "protection"
+    "beater"
    ],
    "tags": [
-    "protection@activated"
+    "costreduce@static",
+    "pump@etb"
    ]
   },
   {
@@ -4410,6 +4402,17 @@
    ],
    "tags": [
     "pump@etb"
+   ]
+  },
+  {
+   "name": "Seasoned Hallowblade",
+   "decks": 14,
+   "roles": [
+    "beater",
+    "protection"
+   ],
+   "tags": [
+    "protection@activated"
    ]
   },
   {

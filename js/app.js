@@ -393,7 +393,7 @@
     // デッキに登録済みのコンボ（パーツとデッキ要件がそろっているもの）を一人回しでもそろったか見る
     const lands = state.main.filter(e => rolesOf(e).includes('land')).reduce((s, e) => s + e.qty, 0);
     const combos = window.Combos ? Combos.detect({ main: state.main }, lands).filter(x => x.complete).map(x => ({ name: x.combo.name, pieces: x.combo.pieces })) : [];
-    const sig = list.map(e => `${e.qty}:${e.card.name}:${catOf(e)}`).sort().join('|') + '#' + combos.map(c => c.name).join('|') + '#v2';
+    const sig = list.map(e => `${e.qty}:${e.card.name}:${catOf(e)}`).sort().join('|') + '#' + combos.map(c => c.name).join('|') + '#v3';
     if (simCache.sig !== sig) {
       simCache = { sig, result: null, pending: true };
       box.innerHTML = list.length ? '<p class="hint">一人回し中…</p>' : '';
@@ -402,6 +402,8 @@
         let r = null;
         // 特殊地形・土地への対策札（マナ妨害）を、何ターン目に唱えられるかも見る
         const groups = { land: list.filter(e => Roles.inspect(e.card).roles.includes('manalock')).map(e => e.card.name) };
+        // 行動干渉は1枚ずつ（カードごとに最速で着地するターンが違うため）
+        list.filter(e => Roles.inspect(e.card).roles.includes('action')).forEach(e => { groups['act:' + e.card.name] = [e.card.name]; });
         try { r = ManaSim.simulate(list.map(e => ({ qty: e.qty, card: e.card, cat: catOf(e) })), { combos, groups }); } catch (err) { console.error(err); }
         if (r) r.comboNames = combos.map(c => c.name);
         simCache = { sig, result: r, pending: false };
@@ -640,7 +642,23 @@
   const topNames = (cards, k, n = 2) => ((cards || {})[k] || []).slice(0, n).map(x => `${x.name} ${Math.round(x.r[1] * 100)}%`).join('・');
 
   // 対策の種類（相手の4ターン目の盤面から、必要なものだけ出す）
-  const NEED_LABEL = { creature: 'クリーチャー除去', wipe: '全体除去', artifact: 'アーティファクト対策', enchantment: 'エンチャント対策', planeswalker: 'PW対策', spell: '打ち消し・手札破壊', graveyard: '墓地対策', land: '特殊地形・土地対策' };
+  const NEED_LABEL = { creature: 'クリーチャー除去', wipe: '全体除去', artifact: 'アーティファクト対策', enchantment: 'エンチャント対策', planeswalker: 'PW対策', spell: '打ち消し・手札破壊', graveyard: '墓地対策', land: '特殊地形・土地対策', action: '行動干渉' };
+  // 行動干渉: 止める行動の種類 → 一人回しで数えた行動。フェッチランドの生け贄起動によるサーチは軽く数える
+  const ACT_KEYS = { library: ['fetch', 'search'], draw: ['draw'], lifegain: ['life'], extraturn: ['extra'] };
+  const ACT_W = { fetch: 0.3, search: 1, draw: 1, life: 1, extra: 1 };
+  const ACT_LABEL = { library: 'サーチ', draw: '追加のドロー', lifegain: 'ライフ回復', extraturn: '追加ターン' };
+  // カードが止める行動の種類
+  function actionTypes(card) {
+    const out = new Set();
+    Roles.inspect(card).tags.forEach(t => { if (t.effect === 'hate' && t.detail) (t.detail.types || []).forEach(y => { if (ACT_KEYS[y]) out.add(y); }); });
+    return [...out];
+  }
+  // 相手が from ターン目以降に行う行動の回数（重み付き）。acts は1ターン目からの配列
+  function actRemain(acts, types, from) {
+    let s = 0;
+    for (let t = Math.max(1, from); t <= acts.length; t++) types.forEach(y => ACT_KEYS[y].forEach(k => { s += ACT_W[k] * (acts[t - 1][k] || 0); }));
+    return s;
+  }
   // 全体除去で相手の盤面から平均何体巻き込めるか（ダメージ型はタフネス1〜3以下の体数で見積もる）
   function wipeKills(card, b) {
     const info = Roles.inspect(card);
@@ -660,6 +678,26 @@
     if (/land (is|becomes) an? /.test(t)) return '土地のタイプを変える';
     if (/(destroy|exile)[^.]*\bland/.test(t)) return /nonbasic/.test(t) ? '特殊地形を破壊' : '土地破壊';
     return 'マナ妨害';
+  }
+  // 相手の表: 3〜5ターン目それぞれに行う行動（どれかのターンで平均0.05回以上のものだけ）
+  function actRows(sim, brow) {
+    if (!sim.play.acts || !sim.draw.acts) return '';
+    const R = [['fetch', 'フェッチ（回）'], ['search', 'サーチ（呪文・能力）'], ['draw', '追加のドロー（枚）'], ['life', 'ライフ回復（回）'], ['extra', '追加ターン（回）']];
+    return R.filter(([k]) => [2, 3, 4].some(t => (sim.play.acts[t] || {})[k] >= 0.05 || (sim.draw.acts[t] || {})[k] >= 0.05))
+      .map(([k, label]) => brow(label, (s, i) => (sim[s].acts[i + 2] || {})[k] || 0)).join('');
+  }
+  // 相手のカード自身の効果（唱えたとき・戦場に出たとき）で、先に置いた行動干渉を除去できるか
+  function selfRmHits(spec, card) {
+    const ty = String(card.typeLine || '').split('//')[0].toLowerCase();
+    if (/\b(instant|sorcery|land)\b/.test(ty)) return false; // 戦場に残らない／土地は対象外
+    let ok = spec.colored ? (card.colors || []).length > 0 : (spec.any || spec.nonland) ? true : spec.types.some(t => ty.includes(t));
+    if (ok && spec.dmg != null) {
+      const tough = /creature/.test(ty) && spec.types.includes('creature') ? parseInt(card.toughness, 10) : NaN;
+      const loy = /planeswalker/.test(ty) && spec.types.includes('planeswalker') ? parseInt(card.loyalty, 10) : NaN;
+      ok = (!isNaN(tough) && tough <= spec.dmg) || (!isNaN(loy) && loy <= spec.dmg);
+    }
+    if (ok && spec.mvMax != null) ok = (card.cmc || 0) <= spec.mvMax;
+    return ok;
   }
   function renderMatchups(cmp) {
     const tips = [];
@@ -706,6 +744,17 @@
         if (drop('ld') >= 0.45) landWhy.push(`土地を1枚壊すとマナ${n1(L4.alt.normal)}→${n1(L4.alt.ld)}`);
       }
       if (landWhy.length) needs.push('land');
+      // 行動干渉: 相手が3〜6ターン目にサーチ・追加のドロー・ライフ回復・追加ターンを（重み付きで）合計1回以上行う
+      const actsOpp = m.sim.draw && m.sim.draw.acts; // 自分が先手のときの相手（後手）
+      const actWhy = [], actNeed = [];
+      if (actsOpp) Object.keys(ACT_KEYS).forEach(y => {
+        // 相手のカード自身の効果で行動干渉を除去できるもの（嵐の目、ウギン など）の行動は、必要かどうかの判定から外す
+        let own = 0;
+        Object.values(m.sim.draw.rmActs || {}).forEach(list => list.forEach(o => { if (o.r >= 3 && o.t >= 3) ACT_KEYS[y].forEach(k => { own += ACT_W[k] * (o[k] || 0); }); }));
+        const r = actRemain(actsOpp, [y], 3) - own;
+        if (r >= 1) { actNeed.push(y); actWhy.push(`${ACT_LABEL[y]}${y === 'library' ? `（フェッチ以外${n1(actRemain(actsOpp.map(a => ({ search: a.search })), ['library'], 3))}回）` : ''}`); }
+      });
+      if (actNeed.length) needs.push('action');
       const fits = (e, need) => {
         const info = Roles.inspect(e.card);
         if (need === 'creature') { const w = Roles.answerWhy(e.card, pseudo.creature); return w && w.ok && w.how === 'removal' && info.roles.includes('removal'); }
@@ -714,11 +763,13 @@
         if (need === 'spell') return info.tags.some(t => t.effect === 'counter' || t.effect === 'discard');
         if (need === 'graveyard') return info.roles.includes('gyhate');
         if (need === 'land') return info.roles.includes('manalock');
+        if (need === 'action') return info.roles.includes('action') && actionTypes(e.card).some(y => actNeed.includes(y));
         return false;
       };
       const cells = needs.map(n => {
         const mn = mainE.filter(e => fits(e, n)), sd = sideE.filter(e => fits(e, n));
         let chance = null;
+        if (n === 'action') return { n, mn, sd, main: qtyOf(mn), side: qtyOf(sd), chance };
         if (mn.length && n === 'land' && sim && sim.play.groups && sim.play.groups.land) {
           chance = sim.play.groups.land[Math.min(4, sim.turns) - 1]; // コスト軽減も込みで、4ターン目までに手札にあって唱えられる率
         } else if (mn.length) {
@@ -728,6 +779,35 @@
         }
         return { n, mn, sd, main: qtyOf(mn), side: qtyOf(sd), chance };
       });
+      // 行動干渉の登場ターン: 最速（マナ総量。一人回しでコスト軽減・加速により早く唱えられる率が5%以上ならそのターン）、+1、+2ターンに
+      // 着地したとき、相手がそれ以降に行う行動の回数。先手なら相手のそのターンから、後手なら次のターンから止められる
+      const actTiming = e => {
+        const types = actionTypes(e.card).filter(y => actNeed.includes(y));
+        let F = Math.max(1, Math.round(e.card.cmc || 0));
+        const gr = sim && sim.play.groups && sim.play.groups['act:' + e.card.name];
+        if (gr) { const i = gr.findIndex(x => x >= 0.05); if (i >= 0) F = Math.max(1, Math.min(F, i + 1)); }
+        // 相手のカード自身の効果で除去される場合、そのカードが着地後（除去した後）に行う行動は止められない
+        const rmBy = Object.entries(m.sim.selfRm || {}).filter(([, sp]) => selfRmHits(sp, e.card)).map(([n]) => n);
+        const lost = (side, from) => {
+          let v = 0;
+          rmBy.forEach(n => ((m.sim[side].rmActs || {})[n] || []).forEach(o => {
+            if (o.r >= from && o.t >= from) types.forEach(y => ACT_KEYS[y].forEach(k => { v += ACT_W[k] * (o[k] || 0); }));
+          }));
+          return v;
+        };
+        const at = [F, F + 1, F + 2].map(L => ({ L,
+          play: Math.max(0, actRemain(m.sim.draw.acts, types, L) - lost('draw', L)),
+          draw: Math.max(0, actRemain(m.sim.play.acts, types, L + 1) - lost('play', L + 1)),
+          lost: lost('draw', L) }));
+        return { types, F, at, rmBy: rmBy.filter(n => at.some(a => a.lost >= 0.05)) };
+      };
+      const ac = cells.find(c => c.n === 'action');
+      if (ac) {
+        const all = [...ac.mn, ...ac.sd];
+        const why = `3ターン目以降も${actWhy.join('・')}を行う`;
+        // 行動干渉がないことは指摘しない（多くの相手が少しはドロー・サーチするので、毎回出ると邪魔になる）
+        if (all.length && all.every(e => actTiming(e).at[0].play < 0.5)) tips.push({ level: 'info', text: `対${m.name}（${pct(m.share)}）: ${why}けど、${short(all.map(e => displayName(e.card)))}は最速で着地しても止められる行動が平均0.5回未満。対策としては間に合いにくいかも。` });
+      }
       // アドバイス
       const cr = cells.find(c => c.n === 'creature');
       if (cr && !cr.main && !cr.side) tips.push({ level: 'bad', text: `対${m.name}（${pct(m.share)}）: 4ターン目にクリーチャーが平均${n1(b4.creatures)}体並ぶのに、クリーチャー除去がメインにもサイドにもないよ。` });
@@ -759,6 +839,10 @@
         if (n === 'wipe') { const k = wipeKills(e.card, b4); if (k != null) extra = `（平均${n1(k)}体）`; }
         else if (n === 'spell') extra = `（${Roles.inspect(e.card).tags.some(t => t.effect === 'counter') ? '打ち消し' : '手札破壊'}）`;
         else if (n === 'land') extra = `（${landHateKind(e.card)}）`;
+        else if (n === 'action') {
+          const tm = actTiming(e);
+          extra = `（${tm.types.map(y => ACT_LABEL[y]).join('・')}。止められる回数 先手/後手: ${tm.at.map((a, i) => `${i ? '' : '最速'}${a.L}T ${n1(a.play)}/${n1(a.draw)}回${a.play >= 0.5 ? '◎' : ''}`).join('・')}${tm.rmBy.length ? `。${tm.rmBy.join('・')}自身の効果で除去されるぶんは引いた（最速着地で−${n1(tm.at[0].lost)}回）` : ''}）`;
+        }
         return `${esc(displayName(e.card))}×${e.qty}<span class="muted">${extra}</span>`;
       }).join('、') : '<span class="bad-t">なし</span>';
       // クリーチャー除去で、ダメージ量や条件で届かないもの
@@ -780,13 +864,14 @@
         ${m.sim.play.lands ? brow('土地（枚）', (s, i) => m.sim[s].lands[i].n) + brow('うち基本土地', (s, i) => m.sim[s].lands[i].basic) +
           brow('Blood Moon下のマナ', (s, i) => m.sim[s].lands[i].alt.moon) + brow('Damping Sphere下', (s, i) => m.sim[s].lands[i].alt.sphere) +
           brow('Back to Basics下', (s, i) => m.sim[s].lands[i].alt.b2b) + brow('土地1枚破壊後', (s, i) => m.sim[s].lands[i].alt.ld) : ''}
+        ${actRows(m.sim, brow)}
         ${m.sim.hasDisrupt ? brow('妨害を構える', (s, i) => m.sim[s].held[i], pct) : ''}
         ${m.sim.combos && m.sim.combos.length ? brow('コンボがそろう', (s, i) => m.sim[s].combo[i], pct) : ''}
         </table></div>`;
       const body = `<div class="mu-body">
           ${oppTable}
           ${cardBreakdownHTML(S.cards, Object.assign({ lands: L4 ? L4.n : 0 }, b4), '先手')}
-          ${cells.map(c => `<div class="mu-sub">${NEED_LABEL[c.n]}${c.chance != null ? `<span class="muted">（4Tまでに手札にあって唱えられる率 ${pct(c.chance)}・先手${c.n === 'land' && sim && sim.play.groups && sim.play.groups.land ? `。2T/3T: ${pct(sim.play.groups.land[1])}/${pct(sim.play.groups.land[2])}、コスト軽減込み` : ''}）</span>` : ''}</div>
+          ${cells.map(c => `<div class="mu-sub">${NEED_LABEL[c.n]}${c.n === 'action' ? '<span class="muted">（最速・+1T・+2Tに着地したとき、相手がそれ以降に行う行動の回数。フェッチランドの生け贄起動は0.3回分、◎は0.5回以上）</span>' : ''}${c.chance != null ? `<span class="muted">（4Tまでに手札にあって唱えられる率 ${pct(c.chance)}・先手${c.n === 'land' && sim && sim.play.groups && sim.play.groups.land ? `。2T/3T: ${pct(sim.play.groups.land[1])}/${pct(sim.play.groups.land[2])}、コスト軽減込み` : ''}）</span>` : ''}</div>
             <div>メイン: ${list(c.mn, c.n)}</div><div class="muted">サイド: ${c.sd.length ? list(c.sd, c.n) : 'なし'}</div>`).join('')}
           ${near.length ? `<div class="mu-sub">数えなかったクリーチャー除去（相手のクリーチャーは平均タフネス${n1(perT)}）</div><ul class="mu-list">${[...new Set(near)].map(x => `<li>${x}</li>`).join('')}</ul>` : ''}
           ${deadN ? `<div class="mu-sub">腐りやすい枠</div><div>${esc(dead.map(e => `${displayName(e.card)}×${e.qty}`).join('、'))}${good.length ? `<br>→ 入れ替え候補（サイド）: ${esc(good.map(e => `${displayName(e.card)}×${e.qty}`).join('、'))}` : '<br><span class="muted">サイドに入れ替え先が見当たらない</span>'}</div>` : ''}
@@ -797,6 +882,7 @@
         <div class="muted">${summary}</div>
         <div class="mu-threats">${cells.map(c => `<span class="mu-t ${cls(c)}">${NEED_LABEL[c.n]} <b>${c.main}</b><span class="muted">/${c.side}</span></span>`).join('')}</div>
         ${landWhy.length ? `<div class="muted">土地への依存: ${esc(landWhy.join('、'))}</div>` : ''}
+        ${actWhy.length ? `<div class="muted">3T以降の行動: ${esc(actWhy.join('、'))}</div>` : ''}
         ${deadN ? `<div class="muted">腐りやすい枠あり（${deadN}枚）</div>` : ''}
       </summary>${body}</details>`;
     }).join('');
